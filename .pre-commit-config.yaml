@@ -1,0 +1,9 @@
+repos:
+-   repo: local
+    hooks:
+    -   id: nbconvert
+        name: nbconvert
+        entry: ipython nbconvert --to html --template full
+        language: system
+        files: .ipynb
+        types: [file]
