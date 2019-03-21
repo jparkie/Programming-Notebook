@@ -1,9 +1,16 @@
 repos:
 -   repo: local
     hooks:
-    -   id: nbconvert
-        name: nbconvert
+    -   id: pre-commit-html
+        name: Generate HTML
         entry: ipython nbconvert --to html --template full
         language: system
         files: .ipynb
         types: [file]
+    -   id: pre-commit-directory
+        name: Generate Directory
+        entry: tree -P '*.html' -H http://jacobpark.me/Programming-Notebook -T 'Programming Notebook' -o docs/index.html
+        language: system
+        exclude: docs/index.html
+        types: [html]
+        pass_filenames: false
