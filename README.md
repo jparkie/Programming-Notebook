@@ -31,22 +31,30 @@ A collection of [BeakerX](http://beakerx.com/) IPython notebooks and PDFs about 
 │   ├── Approximately\ Detecting\ Duplicates\ for\ Streaming\ Data\ using\ Stable\ Bloom\ Filters.pdf
 │   ├── Architecture\ of\ a\ Database\ System.pdf
 │   ├── Bizur\ -\ A\ Key-value\ Consensus\ Algorithm\ for\ Scalable\ File-systems.pdf
+│   ├── BloomUnit\ -\ Declarative\ Testing\ for\ Distributed\ Programs.pdf
 │   ├── CRDTs.pdf
 │   ├── Cassandra.pdf
+│   ├── Consistency\ Analysis\ in\ Bloom\ -\ a\ CALM\ and\ Collected\ Approach.pdf
+│   ├── Coordination\ Avoidance\ in\ Database\ Systems.pdf
 │   ├── Discretized\ Streams\ -\ Fault-Tolerant\ Streaming\ Computation\ at\ Scale.pdf
 │   ├── Dynamo\ -\ Amazon\200\231s\ Highly\ Available\ Key-value\ Store.pdf
 │   ├── HDFS.pdf
 │   ├── Hashing\ Techniques\ -\ A\ Survey\ and\ Taxonomy.pdf
+│   ├── Highly\ Available\ Transactions\ -\ Virtues\ and\ Limitations.pdf
 │   ├── Hive\ -\ A\ Warehousing\ Solution\ Over\ a\ Map-Reduce\ Framework.pdf
 │   ├── How\ to\ Read\ a\ Paper.pdf
 │   ├── Kafka\ -\ a\ Distributed\ Messaging\ System\ for\ Log\ Processing.pdf
+│   ├── Logic\ and\ Lattices\ for\ Distributed\ Programming.pdf
 │   ├── MapReduce.pdf
 │   ├── MillWheel\ -\ Fault-Tolerant\ Stream\ Processing\ at\ Internet\ Scale.pdf
 │   ├── Parallel\ Implementation\ of\ Tree\ Skeletons.pdf
 │   ├── Practical\ Implementation\ of\ Rank\ and\ Select\ Queries.pdf
+│   ├── Probabilistically\ Bounded\ Staleness\ for\ Practical\ Partial\ Quorums.pdf
+│   ├── Quantifying\ eventual\ consistency\ with\ PBS.pdf
 │   ├── Readings\ in\ Database\ Systems,\ 5th\ Edition\ -\ Reading\ List.pdf
 │   ├── Readings\ in\ Database\ Systems,\ 5th\ Edition.pdf
 │   ├── Resilient\ Distributed\ Datasets\ -\ A\ Fault-Tolerant\ Abstraction\ for\ In-Memory\ Cluster\ Computing.pdf
+│   ├── Scalable\ Atomic\ Visibility\ with\ RAMP\ Transactions.pdf
 │   ├── Spanner\ -\ Google's\ Globally-Distributed\ Database.pdf
 │   ├── Spark\ SQL\ -\ Relational\ Data\ Processing\ in\ Spark.pdf
 │   ├── The\ Little\ Book\ of\ Semaphores.pdf
@@ -57,7 +65,7 @@ A collection of [BeakerX](http://beakerx.com/) IPython notebooks and PDFs about 
 │   └── Scala.ipynb
 └── References.ipynb
 
-9 directories, 41 files
+9 directories, 49 files
 ```
 
 - **Big Data**: A collection of anecdotal notes regarding *Big Data*.
