@@ -20,6 +20,7 @@ A collection of [BeakerX](http://beakerx.com/) IPython notebooks and PDFs about 
 	- [Anomaly Detection Principles and Algorithms.html](http://jacobpark.me/Programming-Notebook/Books/Anomaly%20Detection%20Principles%20and%20Algorithms/Anomaly%20Detection%20Principles%20and%20Algorithms.html)
 	- [Database System Concepts.html](http://jacobpark.me/Programming-Notebook/Books/Database%20System%20Concepts/Database%20System%20Concepts.html)
 - **Courses**
+	- [ECE454 - Distributed Computing](http://jacobpark.me/Programming-Notebook/Courses/ECE454/ECE454%20Notes.html)
 	- [ECE457A - Cooperative and Adaptive Algorithms](http://jacobpark.me/Programming-Notebook/Courses/ECE457A/ECE457A%20Notes.html)
 - **Data Structures and Algorithms**
 	- [1\. Java Standard Library.html](http://jacobpark.me/Programming-Notebook/Data%20Structures%20and%20Algorithms/1.%20Java%20Standard%20Library.html)
