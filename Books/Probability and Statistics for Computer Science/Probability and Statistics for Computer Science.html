@@ -11810,8 +11810,8 @@ div#notebook {
 <li>$\mathcal{A}$ - <strong>Set</strong></li>
 <li>$\mathcal{A}^c = \Omega - \mathcal{A}$ - <strong>Set Complement</strong></li>
 <li>$\mathcal{E}$ - <strong>Event</strong></li>
-<li>$P(\{\mathcal{E}\})$ - <strong>Probability of Event $\mathcal{E}$</strong></li>
-<li>$P(\{\mathcal{E}\} \vert \{\mathcal{F}\})$ - <strong>Probability of Event $\mathcal{E}$, Conditioned on Event $\mathcal{F}$</strong></li>
+<li>$P(\mathcal{E})$ - <strong>Probability of Event $\mathcal{E}$</strong></li>
+<li>$P(\mathcal{E} \vert \mathcal{F})$ - <strong>Probability of Event $\mathcal{E}$, Conditioned on Event $\mathcal{F}$</strong></li>
 <li>$p(x)$ - <strong>Probability That Random Variable $X$ Equals Value $x$</strong></li>
 <li>$p(x, y)$ - <strong>Probability That Random Variable $X$ Equals Value $x$ And Random Variable $Y$ Equals Value $y$</strong></li>
 <li>$\max_{x} f(x)$ - <strong>Value of $x$ That Maximizes $f(x)$</strong></li>
@@ -12258,6 +12258,160 @@ $$\text{corr}(\{(x, y)\}) = \frac{\sum_{i} \hat{x}_i \hat{y}_i}{N}$$<ul>
 <li><strong>Root Mean Square Error</strong>: $\sqrt{1 - r^2}$.</li>
 <li>If $x_0$ is $k$ standard deviations from the mean of $x$, then the predicted value of $y$ will be $rk$ standard deviations away from the mean of $y$, and the sign of $r$ tells whether $y$ increases or decreases.</li>
 <li>The predicted value of $y$ increases by $r$ standard deviations when the value of $x$ increases by one standard deviation.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="3.-Basic-Ideas-in-Probability">3. Basic Ideas in Probability<a class="anchor-link" href="#3.-Basic-Ideas-in-Probability">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Counting">Counting<a class="anchor-link" href="#Counting">&#182;</a></h3><h4 id="Product-Rule">Product Rule<a class="anchor-link" href="#Product-Rule">&#182;</a></h4><ul>
+<li>Suppose that a procedure can be broken down into a sequence of two tasks.</li>
+<li>If there are $n_1$ ways to do the first task and for each of these ways of doing the first task, there are $n_2$ ways to do the second task, then there are $n_1 \cdot n_2$ ways to do the procedure.</li>
+</ul>
+<h4 id="Sum-Rule">Sum Rule<a class="anchor-link" href="#Sum-Rule">&#182;</a></h4><ul>
+<li>If a task can be done in either one of $n_1$ ways or in one of $n_2$ ways such that the set of $n_1$ ways and the set of $n_2$ ways are disjoint, then there are $n_1 + n_2$ ways to do the task.</li>
+</ul>
+<h4 id="Permutations-(Ordering)">Permutations (Ordering)<a class="anchor-link" href="#Permutations-(Ordering)">&#182;</a></h4><ul>
+<li><strong>Elements without Repetition</strong>: $\text{permutation}(n, r) = \frac{n!}{(n - r)!}$</li>
+<li><strong>Elements with Repetition</strong>: $\text{permutation}(n, r) = n^r$</li>
+</ul>
+<h4 id="Combinations-(No-Ordering)">Combinations (No Ordering)<a class="anchor-link" href="#Combinations-(No-Ordering)">&#182;</a></h4><ul>
+<li>$\text{combinations}(n, r) = \frac{n!}{r! (n - r)!}$</li>
+<li>$\text{combinations}(n, r) = \text{combinations}(n, n - r)$</li>
+<li>$\text{combinations}(n, r) = \text{combinations}(n - 1, r - 1) + \text{combinations}(n - 1, r)$</li>
+</ul>
+<h4 id="Binomial-Theorem">Binomial Theorem<a class="anchor-link" href="#Binomial-Theorem">&#182;</a></h4><ul>
+<li>$(x + y)^n = \sum_{i = 0}^{n} \text{combinations}(n, i) \cdot x^{n - i} \cdot y^i$</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Outcomes">Outcomes<a class="anchor-link" href="#Outcomes">&#182;</a></h3><ul>
+<li><strong>Outcome</strong>: The result from a run of an experiment.</li>
+<li><strong>Sample Space</strong>: The set of all outcomes, denoted by $\Omega$.</li>
+<li>Sample spaces are required, and need not be finite.</li>
+<li>The probability of an outcome is the frequency of that outcome in a very large number of repeated experiments. The sum of probabilities over all outcomes must be one.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Events-and-Probability">Events and Probability<a class="anchor-link" href="#Events-and-Probability">&#182;</a></h3><ul>
+<li><strong>Event</strong>: A set of outcomes, denoted by $\mathcal{E}$.
+$$P(\mathcal{E}) = \frac{\lvert \mathcal{E} \rvert}{\lvert \Omega \rvert}$$</li>
+</ul>
+<h4 id="Properties-of-Events">Properties of Events<a class="anchor-link" href="#Properties-of-Events">&#182;</a></h4><ul>
+<li><strong>Union</strong>: $\mathcal{E} \cup \mathcal{F}$</li>
+<li><strong>Intersection</strong>: $\mathcal{E} \cap \mathcal{F}$</li>
+<li><strong>Compliment</strong>: $\mathcal{E}^c$</li>
+<li><strong>Subset</strong>: $\mathcal{E} \subset \mathcal{F}$</li>
+<li><strong>Commutative</strong>: $\mathcal{E} \cup \mathcal{F} = \mathcal{F} \cup \mathcal{E}$ and $\mathcal{E} \cap \mathcal{F} = \mathcal{F} \cap \mathcal{E}$</li>
+<li><strong>Associative</strong>: $(\mathcal{E} \cup \mathcal{F}) \cup \mathcal{G} = \mathcal{E} \cup (\mathcal{F} \cup \mathcal{G})$ and $(\mathcal{E} \cap \mathcal{F}) \cap \mathcal{G} = \mathcal{E} \cap (\mathcal{F} \cap \mathcal{G})$</li>
+<li><strong>Distributive</strong>: $(\mathcal{E} \cup \mathcal{F}) \cap \mathcal{G} = (\mathcal{E} \cap \mathcal{G}) \cup (\mathcal{F} \cap \mathcal{G})$ and $(\mathcal{E} \cap \mathcal{F}) \cup \mathcal{G} = (\mathcal{E} \cup \mathcal{G}) \cap (\mathcal{F} \cup \mathcal{G})$</li>
+<li><strong>De Morgan's Laws</strong>: $(\cup_{i = 1}^{n} \mathcal{E}_i)^c = \cap_{i = 1}^{n} E_i^c$ and $(\cap_{i = 1}^{n} \mathcal{E}_i)^c = \cup_{i = 1}^{n} E_i^c$</li>
+</ul>
+<h4 id="Properties-of-the-Probability-of-Events">Properties of the Probability of Events<a class="anchor-link" href="#Properties-of-the-Probability-of-Events">&#182;</a></h4><ul>
+<li>The probability of every event is between zero and one: $0 \le P(\mathcal{A}) \le 1$</li>
+<li>Every experiment has an outcome: $P(\Omega) = 1$</li>
+<li>The probability of disjoint events is additive: $P(\cup_{i} \mathcal{A}_i) = \sum_{i} P(\mathcal{A}_i)$</li>
+<li><strong>Complement</strong>: $P(\mathcal{A}^c) = 1 - P(\mathcal{A})$</li>
+<li><strong>Empty Set</strong>: $P(\emptyset) = 0$</li>
+<li><strong>Set Difference</strong>: $P(\mathcal{A} - \mathcal{B}) = P(\mathcal{A}) - P(\mathcal{A} \cap \mathcal{B})$</li>
+<li><strong>Set Union</strong>: $P(\mathcal{A} \cup \mathcal{B}) = P(\mathcal{A}) + P(\mathcal{B}) - P(\mathcal{A} \cap \mathcal{B})$</li>
+<li><strong>Generic Union</strong>: $P(\cup_{i} \mathcal{A}_i) = \sum_{i} P(\mathcal{A}_i) - \sum_{i &lt; j} P(\mathcal{A}_i \cap \mathcal{A}_j) + \sum_{i &lt; j &lt; k} P(\mathcal{A}_i \cap \mathcal{A}_j \cap \mathcal{A}_k) + ... (-1)^{n + 1} P(\mathcal{A}_1 \cap \mathcal{A}_2 \cap ... \cap \mathcal{A}_n)$</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Conditional-Probability">Conditional Probability<a class="anchor-link" href="#Conditional-Probability">&#182;</a></h3><ul>
+<li>Assume we have a space of outcomes and a collection of events. The conditional probability of $\mathcal{B}$, conditioned on $\mathcal{A}$, is the probability that $\mathcal{B}$ occurs given that $\mathcal{A}$ has definitely occured.
+$$
+\begin{align}
+P(\mathcal{B} \vert \mathcal{A}) 
+&amp;= \frac{P(\mathcal{B} \cap \mathcal{A})}{P(\mathcal{A})} \\
+&amp;= \frac{P(\mathcal{A} \vert \mathcal{B}) \cdot P(\mathcal{B})}{P(\mathcal{A})}
+\end{align}
+$$</li>
+</ul>
+<h4 id="Conditional-Probability-Formulas">Conditional Probability Formulas<a class="anchor-link" href="#Conditional-Probability-Formulas">&#182;</a></h4><ul>
+<li>$P(\mathcal{A}) = P(\mathcal{A} \cap \mathcal{B}) + P(\mathcal{A} \cap \mathcal{B}^c)$</li>
+<li>$P(\mathcal{A}) = P(\mathcal{A} \vert \mathcal{B}) \cdot P(\mathcal{B}) + P(\mathcal{A} \vert \mathcal{B}^c) \cdot P(\mathcal{B}^c)$</li>
+<li>If $\mathcal{B}_1, \mathcal{B}_2, ..., \mathcal{B}_n$ are mutually exclusive events and $\mathcal{A} = \cup_{i = 1}^{n} (\mathcal{A} \cap \mathcal{B}_i)$,<ul>
+<li>$P(\mathcal{A}) = \sum_{i = 1}^{n} P(\mathcal{A} \vert \mathcal{B}_i) \cdot P(\mathcal{B}_i)$</li>
+<li>$P(\mathcal{B}_i \vert \mathcal{A}) = \frac{P(\mathcal{A} \vert \mathcal{B}_i) \cdot P(\mathcal{B}_i)}{\sum_{i = 1}^{n} P(\mathcal{A} \vert \mathcal{B}_i) \cdot P(\mathcal{B}_i)}$</li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Independence">Independence<a class="anchor-link" href="#Independence">&#182;</a></h3><ul>
+<li>Two events $\mathcal{A}$ and $\mathcal{B}$ are independent if and only if
+$$P(\mathcal{A} \cap \mathcal{B}) = P(\mathcal{A})P(\mathcal{B})$$
+$$P(\mathcal{A} \vert \mathcal{B}) = P(\mathcal{A})$$
+$$P(\mathcal{B} \vert \mathcal{A}) = P(\mathcal{B})$$</li>
+<li>Generally, the probability of a sequence of independent events can become very small, very quickly.</li>
+<li>Therefore, modelling events that are not independent as independent can be a mistake.</li>
+</ul>
+<h4 id="Pairwise-Independence">Pairwise Independence<a class="anchor-link" href="#Pairwise-Independence">&#182;</a></h4><ul>
+<li>Events $\mathcal{A}_1, ..., \mathcal{A}_n$ are pairwise independent if each pair is independent.</li>
+</ul>
+<h4 id="Conditional-Independence">Conditional Independence<a class="anchor-link" href="#Conditional-Independence">&#182;</a></h4><ul>
+<li>Events $\mathcal{A}_1, ..., \mathcal{A}_n$ are conditionally independent conditioned on event $\mathcal{B}$ if
+$$P(\mathcal{A}_1 \cap ... \cap \mathcal{A}_n \vert \mathcal{B}) = P(\mathcal{A}_1 \vert \mathcal{B}) ... P(\mathcal{A}_n \vert \mathcal{B})$$</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Fallacies">Fallacies<a class="anchor-link" href="#Fallacies">&#182;</a></h3><h4 id="Gambler's-Fallacy">Gambler's Fallacy<a class="anchor-link" href="#Gambler's-Fallacy">&#182;</a></h4><ul>
+<li>When you reason that the probability of an independent event has been changed by previous outcomes.<ul>
+<li>e.g., If a fair coin is tossed $25$ times, and the $25$ outcomes are heads, the probability that the next toss will result in a head has not changed at all.</li>
+</ul>
+</li>
+</ul>
+<h4 id="Prosecutor's-Fallacy">Prosecutor's Fallacy<a class="anchor-link" href="#Prosecutor's-Fallacy">&#182;</a></h4><ol>
+<li>A prosecutor has evidence $\mathcal{E}$ against a suspect.</li>
+<li>Let $\mathcal{I}$ be the event that the suspect is innocent.</li>
+<li>When $P(\mathcal{E} \vert \mathcal{I})$ is small, the prosecutor argues, incorrectly, that the suspect must be guilty, because $P(\mathcal{E} \vert \mathcal{I})$ is so small.</li>
+</ol>
+<ul>
+<li>The argument is incorrect because $P(\mathcal{E} \vert \mathcal{I})$ is irrelevant to the issue; instead, $P(\mathcal{I} \vert \mathcal{E})$ is relevant.</li>
+<li><em>Note</em>: $P(\mathcal{I} \vert \mathcal{E})$ can be large even if $P(\mathcal{E} \vert \mathcal{I})$ is small.</li>
 </ul>
 
 </div>
