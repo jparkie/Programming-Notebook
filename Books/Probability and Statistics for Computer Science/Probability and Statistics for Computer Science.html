@@ -12112,7 +12112,7 @@ $$y(x) = \frac{1}{\sqrt{2\pi}}e^{-x^2 / 2}$$</li>
 </li>
 <li>Many datasets expressed in standard coordinates are symmetric and unimodal, so they tend to be normal data.</li>
 </ul>
-<h4 id="Figure-of-Standard-Normal-Curve">Figure of Standard Normal Curve<a class="anchor-link" href="#Figure-of-Standard-Normal-Curve">&#182;</a></h4><p><img src="images/Figure_1_7.png" alt="Standard Normal Curve"></p>
+<h4 id="Standard-Normal-Curve">Standard Normal Curve<a class="anchor-link" href="#Standard-Normal-Curve">&#182;</a></h4><p><img src="images/Figure_1_7.png" alt="Standard Normal Curve"></p>
 <h4 id="Properties-of-Normal-Data">Properties of Normal Data<a class="anchor-link" href="#Properties-of-Normal-Data">&#182;</a></h4><ul>
 <li>Approximately 68% of data lie within one standard deviations of the mean.</li>
 <li>Approximately 95% of data lie within two standard deviations of the mean.</li>
@@ -12137,6 +12137,128 @@ $$y(x) = \frac{1}{\sqrt{2\pi}}e^{-x^2 / 2}$$</li>
 </li>
 </ul>
 <p><img src="images/Figure_1_8.png" alt="Box Plot"></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="2.-Looking-at-Relationships">2. Looking at Relationships<a class="anchor-link" href="#2.-Looking-at-Relationships">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Plotting-2D-Data">Plotting 2D Data<a class="anchor-link" href="#Plotting-2D-Data">&#182;</a></h3><ul>
+<li>Pie Chart</li>
+<li>Heat Map</li>
+<li>Stacked Bar Chart</li>
+<li>3D Bar Chart</li>
+<li>Series</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Scatter-Plots">Scatter Plots<a class="anchor-link" href="#Scatter-Plots">&#182;</a></h3><ul>
+<li><strong>Scatter Plots</strong>: A most effective tool for geographic and 2D data in general.<ul>
+<li>A scatter plot should be your first step with a new 2D dataset.</li>
+<li>The plot scale can mask effects in scatter plots, and it's usually a good idea to plot in standard coordinates.</li>
+<li>Any $d$-dimensional vector can be projected into 2D.</li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Correlation">Correlation<a class="anchor-link" href="#Correlation">&#182;</a></h3><ul>
+<li><strong>Correlation</strong>: Relationship<ul>
+<li><em>Positive</em>: When larger $\hat{x}$ values tend to appear with larger $\hat{y}$ values, and vice versa.</li>
+<li><em>Negative</em>: When larger $\hat{x}$ values tend to appear with smaller $\hat{y}$ values, and vice versa.</li>
+<li><em>Zero</em>: When there is no relationship between $\hat{x}$ values and $\hat{y}$ values.<ul>
+<li><em>Mean in Standard Coordinates</em>: $\text{mean}(\{\hat{x}\}) = 0$ and $\text{mean}(\{\hat{y}\}) = 0$</li>
+<li><em>Variance in Standard Coordinates</em>: $\text{var}(\{\hat{x}\}) = 1$ and $\text{var}(\{\hat{y}\}) = 1$</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><img src="images/Figure_2_15.png" alt="Correlations"></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Correlation-Coefficient">Correlation Coefficient<a class="anchor-link" href="#Correlation-Coefficient">&#182;</a></h3><ul>
+<li>Assume we have $N$ data items which are $2$-vectors $(x_1, y_1), ..., (x_N, y_N)$. The correlation coefficient is the mean value of $\hat{x} \hat{y}$:
+$$\text{corr}(\{(x, y)\}) = \frac{\sum_{i} \hat{x}_i \hat{y}_i}{N}$$<ul>
+<li>Where $\hat{x}_i$ and $\hat{y}_i$ are in standard coordinates.</li>
+</ul>
+</li>
+</ul>
+<h4 id="Properties-of-Correlation-Coefficient">Properties of Correlation Coefficient<a class="anchor-link" href="#Properties-of-Correlation-Coefficient">&#182;</a></h4><ul>
+<li><strong>Symmetric</strong>: $\text{corr}(\{(x, y)\}) = \text{corr}(\{(y, x)\})$</li>
+<li><strong>Scaling and Translation</strong>: $\text{corr}(\{(ax + b, cy + d)\}) = \text{sign}(ab)\text{corr}(\{(x, y)\})$<ul>
+<li><em>Scaling</em>: Changes Sign.</li>
+<li><em>Translation</em>: No Effect.</li>
+</ul>
+</li>
+<li><strong>Maximum Value</strong>: $1$ when $\hat{x} = \hat{y}$.</li>
+<li><strong>Minimum Value</strong>: $-1$ when $\hat{x} = -\hat{y}$.</li>
+<li>If $\hat{y}$ tends to be large for large values of $\hat{x}$, then the correlation coefficient will be positive, and vice versa.</li>
+<li>If $\hat{y}$ tends to be small for large values of $\hat{x}$, then the correlation coefficient will be negative, and vice versa.</li>
+<li>If $\hat{y}$ does not depend on $\hat{x}$, then the correlation coefficient is close to zero.</li>
+</ul>
+<h4 id="Interpretation-of-Correlation-Coefficient">Interpretation of Correlation Coefficient<a class="anchor-link" href="#Interpretation-of-Correlation-Coefficient">&#182;</a></h4><ul>
+<li>The correlation coefficient is a measure of the ability to predict a $x$ given a $y$ and vice versa.</li>
+<li>The correlation coefficient ranges from $-1$ to $1$.</li>
+<li><em>Large Correlation Coefficient ($1.0$)</em>: Strong Predictions.</li>
+<li><em>Small Correlation Coefficient ($&lt;0.5$)</em>: Weak Predictions.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Predicting-a-Value-Using-Correlation">Predicting a Value Using Correlation<a class="anchor-link" href="#Predicting-a-Value-Using-Correlation">&#182;</a></h3><ul>
+<li>Assume we have $N$ data items which are $2$-vectors $(x_1, y_1), ..., (x_N, y_N)$.</li>
+</ul>
+<h4 id="Predicting-$y_0$-Given-$x_0$">Predicting $y_0$ Given $x_0$<a class="anchor-link" href="#Predicting-$y_0$-Given-$x_0$">&#182;</a></h4><ol>
+<li>Transform the dataset into standard coordinates: $\hat{x}_i$, $\hat{y}_i$, and $\hat{x}_0$.</li>
+<li>Compute the correlation coefficient: $r = \text{corr}(\{(x, y)\}) = \text{mean}(\{\hat{x} \hat{y}\})$</li>
+<li>Predict $\hat{y}_0 = r \cdot \hat{x}_0$.</li>
+<li>Transform this prediction into the original coordinate system: $y_0 = \text{std}(\{y\}) \cdot r \cdot \hat{x}_0 + \text{mean}(\{y\})$</li>
+</ol>
+<h4 id="Predicting-$x_0$-Given-$y_0$">Predicting $x_0$ Given $y_0$<a class="anchor-link" href="#Predicting-$x_0$-Given-$y_0$">&#182;</a></h4><ol>
+<li>Transform the dataset into standard coordinates: $\hat{x}_i$, $\hat{y}_i$, and $\hat{y}_0$.</li>
+<li>Compute the correlation coefficient: $r = \text{corr}(\{(x, y)\}) = \text{mean}(\{\hat{x} \hat{y}\})$</li>
+<li>Predict $\hat{x}_0 = r \cdot \hat{y}_0$.</li>
+<li>Transform this prediction into the original coordinate system: $x_0 = \text{std}(\{x\}) \cdot r \cdot \hat{y}_0 + \text{mean}(\{x\})$</li>
+</ol>
+<h4 id="Notes-on-Predictions-with-Correlation">Notes on Predictions with Correlation<a class="anchor-link" href="#Notes-on-Predictions-with-Correlation">&#182;</a></h4><ul>
+<li><strong>Root Mean Square Error</strong>: $\sqrt{1 - r^2}$.</li>
+<li>If $x_0$ is $k$ standard deviations from the mean of $x$, then the predicted value of $y$ will be $rk$ standard deviations away from the mean of $y$, and the sign of $r$ tells whether $y$ increases or decreases.</li>
+<li>The predicted value of $y$ increases by $r$ standard deviations when the value of $x$ increases by one standard deviation.</li>
+</ul>
 
 </div>
 </div>
