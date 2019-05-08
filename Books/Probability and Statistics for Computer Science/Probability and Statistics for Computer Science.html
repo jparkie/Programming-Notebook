@@ -12645,6 +12645,476 @@ $$</li>
 </div>
 </div>
 </div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="5.-Useful-Probability-Distributions">5. Useful Probability Distributions<a class="anchor-link" href="#5.-Useful-Probability-Distributions">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Motivations-of-Probability-Distributions">Motivations of Probability Distributions<a class="anchor-link" href="#Motivations-of-Probability-Distributions">&#182;</a></h3><ul>
+<li>Model Building<ol>
+<li>What process produced the data?</li>
+<li>What sort of data can we expect in the future?</li>
+<li>What labels should we attach to unlabelled data?</li>
+<li>Is an effect easily explained by chance variations, or is it real?</li>
+</ol>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Discrete-Uniform-Distribution">Discrete Uniform Distribution<a class="anchor-link" href="#Discrete-Uniform-Distribution">&#182;</a></h3><p><em><a href="https://en.wikipedia.org/wiki/Discrete_uniform_distribution">See Also: Wikipedia</a></em></p>
+<ul>
+<li>A discrete uniform random variable, $X$, takes values from $a$ until $b$ with the same probability $\frac{1}{b - a}$.</li>
+</ul>
+<h4 id="Properties-of-Discrete-Uniform-Distribution">Properties of Discrete Uniform Distribution<a class="anchor-link" href="#Properties-of-Discrete-Uniform-Distribution">&#182;</a></h4><ul>
+<li><strong>Parameters</strong>: $a$, $b$<ul>
+<li>Where $a &lt; b$</li>
+</ul>
+</li>
+<li><strong>PMF</strong>:
+$$P(\{X = x\}) = \frac{1}{b - a}$$</li>
+<li><strong>CDF</strong>:
+$$P(\{X \le x\}) = \frac{x - a}{b - a}$$</li>
+<li><strong>Mean</strong>:
+$$\text{mean}(X) = \frac{a + b}{2}$$</li>
+<li><strong>Variance</strong>:
+$$\text{var}(X) = \frac{(b - a)^2}{12}$$</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Discrete-Bernoulli-Distribution">Discrete Bernoulli Distribution<a class="anchor-link" href="#Discrete-Bernoulli-Distribution">&#182;</a></h3><p><em><a href="https://en.wikipedia.org/wiki/Bernoulli_distribution">See Also: Wikipedia</a></em></p>
+<ul>
+<li>A discrete Bernoulli random variable, $X$, is the outcome from a single experiment from which this outcome is classified as either a success, $X = 1$ with probability $p$, or a failure, $X = 0$ with probability $1 - p$.</li>
+</ul>
+<h4 id="Properties-of-Discrete-Bernoulli-Distribution">Properties of Discrete Bernoulli Distribution<a class="anchor-link" href="#Properties-of-Discrete-Bernoulli-Distribution">&#182;</a></h4><ul>
+<li><strong>Parameters</strong>: $p$<ul>
+<li>Where $0 \le p \le 1$</li>
+<li>Where $p$ is the probability of the trial's success</li>
+</ul>
+</li>
+<li><strong>PMF</strong>:
+$$
+P(\{X = x\}) = 
+\begin{cases}
+1 - p &amp; \text{if } x = 0 \\
+p     &amp; \text{if } x = 1
+\end{cases}
+$$</li>
+<li><strong>CDF</strong>:
+$$
+P(\{X \le x\}) = 
+\begin{cases}
+0     &amp; \text{if } x &lt; 0\\
+1 - p &amp; \text{if } 0 \le x &lt; 0 \\
+p     &amp; \text{if } x \ge 1
+\end{cases}
+$$</li>
+<li><strong>Mean</strong>:
+$$\text{mean}(X) = p$$</li>
+<li><strong>Variance</strong>:
+$$\text{var}(X) = p(1 - p)$$</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Discrete-Binomial-Distribution">Discrete Binomial Distribution<a class="anchor-link" href="#Discrete-Binomial-Distribution">&#182;</a></h3><p><em><a href="https://en.wikipedia.org/wiki/Binomial_distribution">See Also: Wikipedia</a></em></p>
+<ul>
+<li>A discrete binomial random variable, $X$, is the number of successful outcomes from a sequence of $n$ independent experiments in which each experiment has  an outcome classified as either a success with probability $p$ or a failure with probability $1 - p$</li>
+</ul>
+<h4 id="Properties-of-Discrete-Binomial-Distribution">Properties of Discrete Binomial Distribution<a class="anchor-link" href="#Properties-of-Discrete-Binomial-Distribution">&#182;</a></h4><ul>
+<li><strong>Parameters</strong>: $n$, $p$<ul>
+<li>Where $n \ge 0$</li>
+<li>Where $0 \le p \le 1$</li>
+<li>Where $n$ is the number of trials</li>
+<li>Where $p$ is the probability of each trial's success</li>
+</ul>
+</li>
+<li><strong>PMF</strong>:
+$$P(\{X = x\}) = \binom{n}{x} p^x (1 - p)^{n - x}$$</li>
+<li><strong>CDF</strong>:
+$$P(\{X \le x\}) = \sum_{i = 0}^{x} \binom{n}{i} p^i (1 - p)^{n - i}$$</li>
+<li><strong>Mean</strong>:
+$$\text{mean}(X) = np$$</li>
+<li><strong>Variance</strong>:
+$$\text{var}(X) = np(1 - p)$$</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Discrete-Poisson-Distribution">Discrete Poisson Distribution<a class="anchor-link" href="#Discrete-Poisson-Distribution">&#182;</a></h3><p><em><a href="https://en.wikipedia.org/wiki/Poisson_distribution">See Also: Wikipedia</a></em></p>
+<ul>
+<li>A discrete Poisson random variable, $X$, is the number of events occuring in a fixed interval of time or at a fixed rate.</li>
+<li>A discrete random variable is approximated by a discrete binomial random variable where $n$ is large and $p$ is small such that $\lambda = np$ is moderate.</li>
+</ul>
+<h4 id="Properties-of-Discrete-Poisson-Distribution">Properties of Discrete Poisson Distribution<a class="anchor-link" href="#Properties-of-Discrete-Poisson-Distribution">&#182;</a></h4><ul>
+<li><strong>Parameters</strong>: $\lambda$<ul>
+<li>Where $\lambda &gt; 0, \lambda \in \mathbb{R}$</li>
+<li>Where $\lambda$ is the occurrence rate</li>
+</ul>
+</li>
+<li><strong>PMF</strong>:
+$$P(\{X = x\}) = e^{-\lambda} \frac{\lambda^x}{x!}$$</li>
+<li><strong>CDF</strong>:
+$$P(\{X \le x\}) = e^{-\lambda} \sum_{i = 0}^{x} \frac{\lambda^i}{i!}$$</li>
+<li><strong>Mean</strong>:
+$$\text{mean}(X) = \lambda$$</li>
+<li><strong>Variance</strong>:
+$$\text{var}(X) = \lambda$$</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Discrete-Geometric-Distribution">Discrete Geometric Distribution<a class="anchor-link" href="#Discrete-Geometric-Distribution">&#182;</a></h3><p><em><a href="https://en.wikipedia.org/wiki/Geometric_distribution">See Also: Wikipedia</a></em></p>
+<ul>
+<li>A discrete geometric random variable, $X$, is the number of Bernoulli trials with probability $p$ needed to get one success.</li>
+</ul>
+<h4 id="Properties-of-Discrete-Geometric-Distribution">Properties of Discrete Geometric Distribution<a class="anchor-link" href="#Properties-of-Discrete-Geometric-Distribution">&#182;</a></h4><ul>
+<li><strong>Parameters</strong>: $p$<ul>
+<li>Where $0 \le p \le 1$</li>
+<li>Where $p$ is the probability of each trial's success</li>
+</ul>
+</li>
+<li><strong>PMF</strong>:
+$$P(\{X = x\}) = (1 - p)^{x - 1} p$$</li>
+<li><strong>CDF</strong>:
+$$P(\{X \le x\}) = 1 - (1 - p)^x$$</li>
+<li><strong>Mean</strong>:
+$$\text{mean}(X) = \frac{1}{p}$$</li>
+<li><strong>Variance</strong>:
+$$\text{var}(X) = \frac{1 - p}{p^2}$$</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Discrete-Negative-Binomial-Distribution">Discrete Negative Binomial Distribution<a class="anchor-link" href="#Discrete-Negative-Binomial-Distribution">&#182;</a></h3><p><em><a href="https://en.wikipedia.org/wiki/Negative_binomial_distribution">See Also: Wikipedia</a></em></p>
+<ul>
+<li>A discrete negative binomial random variable, $X$, is the number of successes in a sequence of independent and identically distributed Bernoulli trials before a specified (non-random) number of failures.</li>
+</ul>
+<h4 id="Properties-of-Discrete-Negative-Binomial-Distribution">Properties of Discrete Negative Binomial Distribution<a class="anchor-link" href="#Properties-of-Discrete-Negative-Binomial-Distribution">&#182;</a></h4><ul>
+<li><strong>Parameters</strong>: $r$, $p$<ul>
+<li>Where $r &gt; 0$</li>
+<li>Where $0 \le p \le 1$</li>
+<li>Where $r$ is the number of failures until the trials are stopped.</li>
+<li>Where $p$ is the probability of the trial's success</li>
+</ul>
+</li>
+<li><strong>PMF</strong>:
+$$P(\{X = x\}) = \binom{x + r - 1}{x} p^x (1 - p)^r$$</li>
+<li><strong>CDF</strong>:
+$$P(\{X \le x\}) = \sum_{i = 0}^{x} \binom{i + r - 1}{i} p^i (1 - p)^r$$</li>
+<li><strong>Mean</strong>:
+$$\text{mean}(X) = \frac{pr}{1 - p}$$</li>
+<li><strong>Variance</strong>:
+$$\text{var}(X) = \frac{pr}{(1 - p)^2}$$</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Discrete-Hypergeometric-Distribution">Discrete Hypergeometric Distribution<a class="anchor-link" href="#Discrete-Hypergeometric-Distribution">&#182;</a></h3><p><em><a href="https://en.wikipedia.org/wiki/Hypergeometric_distribution">See Also: Wikipedia</a></em></p>
+<ul>
+<li>A discrete hypergeometric random variable, $X$, is the number of successes (or random draws for which the object drawn has a specified feature) in $n$ draws, without replacement, from a finite population of size $N$ that contains exactly $K$ objects wth that specified feature.</li>
+</ul>
+<h4 id="Properties-of-Discrete-Hypergeometric-Distribution">Properties of Discrete Hypergeometric Distribution<a class="anchor-link" href="#Properties-of-Discrete-Hypergeometric-Distribution">&#182;</a></h4><ul>
+<li><strong>Parameters</strong>: $N$, $n$, $K$<ul>
+<li>Where $N \ge 0$</li>
+<li>Where $0 \le n \le N$</li>
+<li>Where $0 \le K \le N$</li>
+<li>Where $N$ is the size of the population</li>
+<li>Where $n$ is the number of objects drawn</li>
+<li>Where $K$ is the number of objects with the specified feature</li>
+</ul>
+</li>
+<li><strong>PMF</strong>:
+$$P(\{X = x\}) = \frac{\binom{K}{x} \binom{N - K}{n - x}}{\binom{N}{n}}$$</li>
+<li><strong>Mean</strong>:
+$$\text{mean}(X) = n \frac{K}{N}$$</li>
+<li><strong>Variance</strong>:
+$$\text{var}(X) = n \frac{K}{N} \frac{N - K}{N} \frac{N - n}{N - 1}$$</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Continuous-Uniform-Distribution">Continuous Uniform Distribution<a class="anchor-link" href="#Continuous-Uniform-Distribution">&#182;</a></h3><p><em><a href="https://en.wikipedia.org/wiki/Uniform_distribution_%28continuous%29">See Also: Wikipedia</a></em></p>
+<p><img src="images/Uniform_PDF.gif" alt="Continuous Uniform Distribution"></p>
+<h4 id="Properties-of-Continuous-Uniform-Distribution">Properties of Continuous Uniform Distribution<a class="anchor-link" href="#Properties-of-Continuous-Uniform-Distribution">&#182;</a></h4><ul>
+<li><strong>Parameters</strong>: $a$, $b$<ul>
+<li>Where $a &lt; b$</li>
+</ul>
+</li>
+<li><strong>PDF</strong>:
+$$p(x) = \frac{1}{b - a}$$</li>
+<li><strong>CDF</strong>:
+$$F(x) = \frac{x - a}{b - a}$$</li>
+<li><strong>Mean</strong>:
+$$\text{mean}(X) = \frac{a + b}{2}$$</li>
+<li><strong>Variance</strong>:
+$$\text{var}(X) = \frac{(b - a)^2}{12}$$</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Continuous-Normal-Distribution">Continuous Normal Distribution<a class="anchor-link" href="#Continuous-Normal-Distribution">&#182;</a></h3><p><em><a href="https://en.wikipedia.org/wiki/Normal_distribution">See Also: Wikipedia</a></em></p>
+<p><img src="images/Normal_PDF.gif" alt="Continuous Normal Distribution"></p>
+<h4 id="Properties-of-Continuous-Normal-Distribution">Properties of Continuous Normal Distribution<a class="anchor-link" href="#Properties-of-Continuous-Normal-Distribution">&#182;</a></h4><ul>
+<li><strong>Parameters</strong>: $\mu$, $\sigma^2$<ul>
+<li>Where $\mu$ is the mean</li>
+<li>Where $\sigma^2$ is the variance</li>
+</ul>
+</li>
+<li><strong>PDF</strong>:
+$$p(x) = \frac{1}{\sqrt{2 \pi \sigma^2}} e^{-\frac{(x - \mu)^2}{2 \sigma^2}}$$</li>
+<li><strong>CDF</strong>:
+$$
+\begin{align}
+F(x) &amp;= \Phi\left(\frac{x - \mu}{\sigma}\right) \\
+\Phi(x) &amp;= \frac{1}{\sqrt{2 \pi}} \int_{-\infty}^{x} e^{-\frac{y^2}{2}} dy
+\end{align}
+$$</li>
+<li><strong>Mean</strong>:
+$$\text{mean}(X) = \mu$$</li>
+<li><strong>Variance</strong>:
+$$\text{var}(X) = \sigma^2$$</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Continuous-Exponential-Distribution">Continuous Exponential Distribution<a class="anchor-link" href="#Continuous-Exponential-Distribution">&#182;</a></h3><p><em><a href="https://en.wikipedia.org/wiki/Exponential_distribution">See Also: Wikipedia</a></em></p>
+<p><img src="images/Exponential_PDF.gif" alt="Continuous Exponential Distribution"></p>
+<h4 id="Properties-of-Continuous-Exponential-Distribution">Properties of Continuous Exponential Distribution<a class="anchor-link" href="#Properties-of-Continuous-Exponential-Distribution">&#182;</a></h4><ul>
+<li><strong>Parameters</strong>: $\lambda$<ul>
+<li>Where $\lambda &gt; 0, \lambda \in \mathbb{R}$</li>
+<li>Where $\lambda$ is the occurrence rate</li>
+</ul>
+</li>
+<li><strong>PDF</strong>:
+$$p(x) = \lambda e^{-\lambda x}$$</li>
+<li><strong>CDF</strong>:
+$$F(x) = 1 - e^{-\lambda x}$$</li>
+<li><strong>Mean</strong>:
+$$\text{mean}(X) = \frac{1}{\lambda}$$</li>
+<li><strong>Variance</strong>:
+$$\text{var}(X) = \frac{1}{\lambda^2}$$</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Continuous-Gamma-Distribution">Continuous Gamma Distribution<a class="anchor-link" href="#Continuous-Gamma-Distribution">&#182;</a></h3><p><em><a href="https://en.wikipedia.org/wiki/Gamma_distribution">See Also: Wikipedia</a></em></p>
+<p><img src="images/Gamma_PDF.gif" alt="Continuous Gamma Distribution"></p>
+<h4 id="Properties-of-Continuous-Gamma-Distribution">Properties of Continuous Gamma Distribution<a class="anchor-link" href="#Properties-of-Continuous-Gamma-Distribution">&#182;</a></h4><ul>
+<li>$\Gamma(x)$ is the <a href="https://en.wikipedia.org/wiki/Gamma_function">gamma function</a>.<ul>
+<li>The gamma function is a generalization of a factorial:
+$$\Gamma(\alpha) = (\alpha - 1)\Gamma(\alpha - 1)$$</li>
+</ul>
+</li>
+<li>$\gamma(s, x)$ is the <a href="https://en.wikipedia.org/wiki/Incomplete_gamma_function">lower incomplete gamma function</a></li>
+<li><strong>Parameters</strong>: $\alpha$, $\beta$<ul>
+<li>Where $\alpha &gt; 0$</li>
+<li>Where $\beta &gt; 0$</li>
+<li>Where $\alpha$ is the shape</li>
+<li>Where $\beta$ is the rate</li>
+</ul>
+</li>
+<li><strong>PDF</strong>:
+$$p(x) = \frac{\beta^\alpha}{\Gamma(\alpha)} x^{\alpha - 1} e^{-\beta x}$$</li>
+<li><strong>CDF</strong>:
+$$F(x) = \frac{1}{\Gamma(\alpha)} \gamma(\alpha, \beta x)$$</li>
+<li><strong>Mean</strong>:
+$$\text{mean}(X) = \frac{\alpha}{\beta}$$</li>
+<li><strong>Variance</strong>:
+$$\text{var}(X) = \frac{\alpha}{\beta^2}$$</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Continuous-Weibull-Distribution">Continuous Weibull Distribution<a class="anchor-link" href="#Continuous-Weibull-Distribution">&#182;</a></h3><p><em><a href="https://en.wikipedia.org/wiki/Weibull_distribution">See Also: Wikipedia</a></em></p>
+<p><img src="images/Weibull_PDF.gif" alt="Continuous Weibull Distribution"></p>
+<h4 id="Properties-of-Continuous-Weibull-Distribution">Properties of Continuous Weibull Distribution<a class="anchor-link" href="#Properties-of-Continuous-Weibull-Distribution">&#182;</a></h4><ul>
+<li><strong>Parameters</strong>: $\lambda$, $k$<ul>
+<li>Where $\lambda &gt; 0$</li>
+<li>Where $k &gt; 0$</li>
+<li>Where $\lambda$ is the scale</li>
+<li>Where $k$ is the shape</li>
+</ul>
+</li>
+<li><strong>PDF</strong>:
+$$
+p(x) = 
+\begin{cases}
+\frac{k}{\lambda} \left(\frac{x}{\lambda}\right)^{k - 1} e^{-(x / \lambda)^k} &amp; \text{if } x \ge 0 \\
+0                                                                             &amp; \text{if } x &lt; 0
+\end{cases}
+$$</li>
+<li><strong>CDF</strong>:
+$$
+F(x) = 
+\begin{cases}
+1 - e^{-(x / \lambda)^k} &amp; \text{if } x \ge 0 \\
+0                        &amp; \text{if } x &lt; 0
+\end{cases}
+$$</li>
+<li><strong>Mean</strong>:
+$$\text{mean}(X) = \lambda \Gamma(1 + 1 / k)$$</li>
+<li><strong>Variance</strong>:
+$$\text{var}(X) = \lambda^2 \left[\Gamma\left(1 + \frac{2}{k}\right) - \left(\Gamma\left(1 + \frac{1}{k}\right)\right)^2\right]$$</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Continuous-Cauchy-Distribution">Continuous Cauchy Distribution<a class="anchor-link" href="#Continuous-Cauchy-Distribution">&#182;</a></h3><p><em><a href="https://en.wikipedia.org/wiki/Cauchy_distribution">See Also: Wikipedia</a></em></p>
+<p><img src="images/Cauchy_PDF.gif" alt="Continuous Cauchy Distribution"></p>
+<h4 id="Properties-of-Continuous-Cauchy-Distribution">Properties of Continuous Cauchy Distribution<a class="anchor-link" href="#Properties-of-Continuous-Cauchy-Distribution">&#182;</a></h4><ul>
+<li><strong>Parameters</strong>: $x_0$, $\gamma$<ul>
+<li>Where $\gamma &gt; 0$</li>
+<li>Where $x_0$ is the location</li>
+<li>Where $\gamma$ is the scale</li>
+</ul>
+</li>
+<li><strong>PDF</strong>:
+$$p(x) = \frac{1}{\pi \gamma \left[1 + \left(\frac{x - x_0}{\gamma}\right)^2\right]}$$</li>
+<li><strong>CDF</strong>:
+$$F(x) = \frac{1}{\pi} \arctan\left(\frac{x - x_0}{\gamma}\right) + \frac{1}{2}$$</li>
+<li><strong>Mean</strong>:
+$$\text{mean}(X) = \text{undefined}$$</li>
+<li><strong>Variance</strong>:
+$$\text{var}(X) = \text{undefined}$$</li>
+<li><strong>Median</strong>:
+$$\text{median}(X) = x_0$$</li>
+<li><strong>IQR</strong>:
+$$\text{iqr}(X) = 2\gamma$$</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Continuous-Beta-Distribution">Continuous Beta Distribution<a class="anchor-link" href="#Continuous-Beta-Distribution">&#182;</a></h3><p><em><a href="https://en.wikipedia.org/wiki/Beta_distribution">See Also: Wikipedia</a></em></p>
+<p><img src="images/Beta_PDF.gif" alt="Continuous Beta Distribution"></p>
+<h4 id="Properties-of-Continuous-Beta-Distribution">Properties of Continuous Beta Distribution<a class="anchor-link" href="#Properties-of-Continuous-Beta-Distribution">&#182;</a></h4><ul>
+<li>$B(\alpha, \beta) = \frac{\Gamma(\alpha)\Gamma(\beta)}{\Gamma(\alpha + \beta)}$</li>
+<li><strong>Parameters</strong>: $\alpha$, $\beta$<ul>
+<li>Where $\alpha &gt; 0$</li>
+<li>Where $\beta &gt; 0$</li>
+<li>Where $\alpha$ is the shape</li>
+<li>Where $\beta$ is the shape</li>
+</ul>
+</li>
+<li><strong>PDF</strong>:
+$$p(x) = \frac{x^{\alpha - 1} (1 - x)^{\beta - 1}}{B(\alpha, \beta)}$$</li>
+<li><strong>Mean</strong>:
+$$\text{mean}(X) = \frac{\alpha}{\alpha + \beta}$$</li>
+<li><strong>Variance</strong>:
+$$\text{var}(X) = \frac{\alpha \beta}{(\alpha + \beta)^2 (\alpha + \beta + 1)}$$</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Normal-Approximation-to-Binomial-Distribution">Normal Approximation to Binomial Distribution<a class="anchor-link" href="#Normal-Approximation-to-Binomial-Distribution">&#182;</a></h3><ul>
+<li>The <strong>DeMoivre-Laplace limit theorem</strong> (a special case of the <em>central limit theorem</em>) states that if the discrete binomial random variable is expressed in standard coordinates, then this standard coordinates distribution will converge to the standard normal distribution ($X \sim N(0, 1)$).</li>
+<li>Accordingly, if $X$ is a discrete binomial random variable with $n$ number of trials and $p$ probability of each trial's success, then for any $a &lt; b$, as $n \to \infty$:
+$$P\left(\left\{a \le \frac{X - \mu}{\sigma} \le b\right\}\right) \to \Phi(b) - \Phi(a)$$<ul>
+<li>Where $\mu = np$</li>
+<li>Where $\sigma^2 = np(1 - p)$</li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="How-Often-a-Normal-Random-Variable-is-How-Far-from-the-Mean">How Often a Normal Random Variable is How Far from the Mean<a class="anchor-link" href="#How-Often-a-Normal-Random-Variable-is-How-Far-from-the-Mean">&#182;</a></h3><ul>
+<li>About $68%$ of the time, a normal random variable takes a value within one standard deviation of the mean.</li>
+<li>About $95%$ of the time, a normal random variable takes a value within two standard deviations of the mean.</li>
+<li>About $99%$ of the time, a normal random variable takes a value within three standard deviations of the mean.</li>
+</ul>
+
+</div>
+</div>
+</div>
     </div>
   </div>
 </body>
