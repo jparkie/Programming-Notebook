@@ -12377,9 +12377,13 @@ $$</li>
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Independence">Independence<a class="anchor-link" href="#Independence">&#182;</a></h3><ul>
 <li>Two events $\mathcal{A}$ and $\mathcal{B}$ are independent if and only if
-$$P(\mathcal{A} \cap \mathcal{B}) = P(\mathcal{A})P(\mathcal{B})$$
-$$P(\mathcal{A} \vert \mathcal{B}) = P(\mathcal{A})$$
-$$P(\mathcal{B} \vert \mathcal{A}) = P(\mathcal{B})$$</li>
+$$
+\begin{align}
+P(\mathcal{A} \cap \mathcal{B}) &amp;= P(\mathcal{A})P(\mathcal{B}) \\
+P(\mathcal{A} \vert \mathcal{B}) &amp;= P(\mathcal{A}) \\
+P(\mathcal{B} \vert \mathcal{A}) &amp;= P(\mathcal{B})
+\end{align}
+$$</li>
 <li>Generally, the probability of a sequence of independent events can become very small, very quickly.</li>
 <li>Therefore, modelling events that are not independent as independent can be a mistake.</li>
 </ul>
@@ -12412,6 +12416,230 @@ $$P(\mathcal{A}_1 \cap ... \cap \mathcal{A}_n \vert \mathcal{B}) = P(\mathcal{A}
 <ul>
 <li>The argument is incorrect because $P(\mathcal{E} \vert \mathcal{I})$ is irrelevant to the issue; instead, $P(\mathcal{I} \vert \mathcal{E})$ is relevant.</li>
 <li><em>Note</em>: $P(\mathcal{I} \vert \mathcal{E})$ can be large even if $P(\mathcal{E} \vert \mathcal{I})$ is small.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="4.-Random-Variables-and-Expectations">4. Random Variables and Expectations<a class="anchor-link" href="#4.-Random-Variables-and-Expectations">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Random-Variables">Random Variables<a class="anchor-link" href="#Random-Variables">&#182;</a></h3><ul>
+<li>Given a sample space $\Omega$, a set of events $\mathcal{F}$, a probability function $P$, and a countable set of real numbers $D$, a discrete random variable is a function with domain $\Omega$ and range $D$.</li>
+<li>A function whose argument is a discrete random variable to a set of numbers is also a discrete random variable.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Probability-Distribution-of-a-Discrete-Random-Variable">Probability Distribution of a Discrete Random Variable<a class="anchor-link" href="#Probability-Distribution-of-a-Discrete-Random-Variable">&#182;</a></h3><ul>
+<li>The probability distribution (or <strong>probability mass function</strong>) of a discrete random variable is the set of numbers $P(\{X = x\})$ for each value $x$ that $X$ can take.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Cumulative-Distribution-of-a-Discrete-Random-Variable">Cumulative Distribution of a Discrete Random Variable<a class="anchor-link" href="#Cumulative-Distribution-of-a-Discrete-Random-Variable">&#182;</a></h3><ul>
+<li>The cumulative distribution (or <strong>probability cumulative distribution function</strong>) of a discrete random variable is the set of numbers $P(\{X \le x\})$ for each value $x$ that $X$ can take.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Joint-and-Conditional-Probability-for-Random-Variables">Joint and Conditional Probability for Random Variables<a class="anchor-link" href="#Joint-and-Conditional-Probability-for-Random-Variables">&#182;</a></h3><ul>
+<li>Assume we have two random variables $X$ and $Y$. The probability that $X$ takes the value $x$ and $Y$ takes the value $y$,the <strong>joint probability distribution</strong> is $P(x, y) = P(\{X = x\} \cap \{Y = y\})$.<ul>
+<li>*i.e., Table of Probabilities per $x$ and $y$ Pairs</li>
+</ul>
+</li>
+</ul>
+<h4 id="Bayes'-Rule">Bayes' Rule<a class="anchor-link" href="#Bayes'-Rule">&#182;</a></h4><p>$$P(x \vert y) = \frac{P(y \vert x) \cdot P(x)}{P(y)}$$</p>
+<h4 id="Marginal-Probability-of-a-Random-Variable">Marginal Probability of a Random Variable<a class="anchor-link" href="#Marginal-Probability-of-a-Random-Variable">&#182;</a></h4><p>$$P(x) = \sum_{y} P(x, y) = \sum_{y} P(\{X = x\} \cap \{Y = y\}) = P(\{X = x\})$$</p>
+<h4 id="Independent-Random-Variables">Independent Random Variables<a class="anchor-link" href="#Independent-Random-Variables">&#182;</a></h4><ul>
+<li>The random variables $X$ and $Y$ are independent if the events $\{X = x\}$ and $\{Y = y\}$ are independent for all values $x$ and $y$.
+$$P(x, y) = P(x)P(y)$$</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Continuous-Probability">Continuous Probability<a class="anchor-link" href="#Continuous-Probability">&#182;</a></h3><ul>
+<li>A continuous random variable has a <strong>probability density function</strong>: $p(x)$.
+$$
+\begin{align}
+P(\{X \in [a, b]\}) &amp;= \int_{a}^{b} p(x) dx \\
+P(\{X \in [-\infty, +\infty]\}) &amp;= \int_{-\infty}^{+\infty} p(x) dx = 1
+\end{align}
+$$</li>
+<li>If $g(x)$ is a non-negative function that is proportional to the probability density function $p(x)$, $p(x)$ can be recovered by <strong>normalization</strong>:
+$$p(x) = \frac{1}{\int_{-\infty}^{+\infty} g(x) dx} g(x)$$</li>
+</ul>
+<h4 id="Interpretation-of-Continuous-Probability">Interpretation of Continuous Probability<a class="anchor-link" href="#Interpretation-of-Continuous-Probability">&#182;</a></h4><ul>
+<li>A probability density function can be interpreted as the limites of a histogram whose intervals are arbitrarily narrow and whose area is one.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Expected-Values">Expected Values<a class="anchor-link" href="#Expected-Values">&#182;</a></h3><h4 id="Discrete-Expected-Value">Discrete Expected Value<a class="anchor-link" href="#Discrete-Expected-Value">&#182;</a></h4><ul>
+<li>Given a discrete random variable $X$ which takes values in the set $\mathcal{D}$ and which has probability distribution $P$, the expected value is:
+$$\mathbb{E}[X] = \sum_{x \in \mathcal{D}} x \cdot P(X = x)$$</li>
+</ul>
+<h4 id="Discrete-Expectation">Discrete Expectation<a class="anchor-link" href="#Discrete-Expectation">&#182;</a></h4><ul>
+<li>Assume we have a function $f$ that maps a discrete random variable $X$ into a set of numbers $\mathcal{D}_f$. Then $F = f(X)$ is a discrete random variable. The expected value of $F$ is:
+$$\mathbb{E}[f] = \sum_{u \in \mathcal{D}_f} u \cdot P(F = u) = \sum_{x \in \mathcal{D}} f(x) \cdot P(X = x)$$</li>
+</ul>
+<h4 id="Continuous-Expected-Value">Continuous Expected Value<a class="anchor-link" href="#Continuous-Expected-Value">&#182;</a></h4><ul>
+<li>Given a continuous random variable $X$ which takes values in the set $\mathcal{D}$ and which has probability distribution $P$, the expected value is:
+$$\mathbb{E}[X] = \int_{x \in \mathcal{D}} x \cdot p(x) dx$$</li>
+</ul>
+<h4 id="Continuous-Expectation">Continuous Expectation<a class="anchor-link" href="#Continuous-Expectation">&#182;</a></h4><ul>
+<li>Assume we have a function $f$ that maps a continuous random variable $X$ into a set of numbers $\mathcal{D}_f$. Then $F = f(X)$ is a discrete random variable. The expected value of $F$ is:
+$$\mathbb{E}[f] = \int_{x \in \mathcal{D}} f(x) \cdot p(x) dx$$</li>
+</ul>
+<h4 id="Properties-of-Expectations">Properties of Expectations<a class="anchor-link" href="#Properties-of-Expectations">&#182;</a></h4><ul>
+<li>Let $f$ and $g$ be functions of random variables, and $k$ be a constant. Expectations have linearity.<ul>
+<li>$\mathbb{E}[0] = 0$</li>
+<li>$\mathbb{E}[k \cdot f] = k \cdot \mathbb{E}[f]$</li>
+<li>$\mathbb{E}[f + g] = \mathbb{E}[f] + \mathbb{E}[g]$</li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Expectations-with-Mean,-Variance-and-Covariance">Expectations with Mean, Variance and Covariance<a class="anchor-link" href="#Expectations-with-Mean,-Variance-and-Covariance">&#182;</a></h3><ul>
+<li><strong>Mean</strong>: $\text{mean}(X) = \mathbb{E}[X]$</li>
+<li><strong>Variance</strong>: $\text{var}(X) = \mathbb{E}[(X - \mathbb{E}[X])^2] = \mathbb{E}[X^2] - (\mathbb{E}[X])^2$</li>
+<li><strong>Standard Deviation</strong>: $\text{std}(X) = \sqrt{\text{var}(X)}$</li>
+<li><strong>Covariance</strong>: $\text{cov}(X, Y) = \mathbb{E}[(X - \mathbb{E}[X])(Y - \mathbb{E}[Y])] = \mathbb{E}[XY] - \mathbb{E}[X]\mathbb{E}[Y]$</li>
+</ul>
+<h4 id="Properties-of-Variance">Properties of Variance<a class="anchor-link" href="#Properties-of-Variance">&#182;</a></h4><ul>
+<li>For any constant $k$, $\text{var}(k) = 0$</li>
+<li>$\text{var}(X) \ge 0$</li>
+<li>$\text{var}(k \cdot X) = k^2 \cdot \text{var}(X)$</li>
+<li>If $X$ and $Y$ are independent, then $\text{var}(X + Y) = \text{var}(X) + \text{var}(Y)$</li>
+</ul>
+<h4 id="Facts-of-Covariance">Facts of Covariance<a class="anchor-link" href="#Facts-of-Covariance">&#182;</a></h4><ul>
+<li>If $X$ and $Y$ are independent, then $\mathbb{E}[XY] = \mathbb{E}[X]\mathbb{E}[Y]$</li>
+<li>If $X$ and $Y$ are independent, then $\text{cov}(X, Y) = 0$</li>
+<li>$\text{var}(X) = \text{cov}(X, X)$</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="IID-Samples">IID Samples<a class="anchor-link" href="#IID-Samples">&#182;</a></h3><ul>
+<li>Assume we have a set of data items $x_i$ such that:<ol>
+<li>They are independent;</li>
+<li>The histogram of a very large set of data items looks increasingly like the probability distribution $P(X)$ as the number of data items increases.</li>
+</ol>
+</li>
+<li>Then, these data items are <strong>independent identically distributed samples</strong> of $P(X)$.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Markov's-Inequality">Markov's Inequality<a class="anchor-link" href="#Markov's-Inequality">&#182;</a></h3><p>$$P(\{\lvert X \rvert \ge a\}) \le \frac{\mathbb{E}[\lvert X \rvert]}{a}$$</p>
+<h4 id="Interpretation-of-Markov's-Inequality">Interpretation of Markov's Inequality<a class="anchor-link" href="#Interpretation-of-Markov's-Inequality">&#182;</a></h4><ul>
+<li>Markov's Inequality relates probability cumulative distribution functions to expectations by establishing an upper bound.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Chebyshev's-Inequality">Chebyshev's Inequality<a class="anchor-link" href="#Chebyshev's-Inequality">&#182;</a></h3><p>$$
+\begin{align}
+P(\{\lvert X - \mathbb{E}[X] \rvert \ge a\}) &amp;\le \frac{\text{var}(X)}{a^2} \\
+P(\{\lvert X - \mathbb{E}[X] \rvert \ge k\sigma\}) &amp;\le \frac{1}{k^2}
+\end{align}
+$$</p>
+<h4 id="Interpretation-of-Chebyshev's-Inequality">Interpretation of Chebyshev's Inequality<a class="anchor-link" href="#Interpretation-of-Chebyshev's-Inequality">&#182;</a></h4><ul>
+<li>Chebyshev's Inequality states that the probability of a random variable being at least $k$ standard deviations from the mean must be at most $\frac{1}{k^2}$.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Indicator-Functions">Indicator Functions<a class="anchor-link" href="#Indicator-Functions">&#182;</a></h3><ul>
+<li>An indicator function for an event is a function that takes the value zero for values of $x$ where the event does not occur, and one where the event occurs.
+$$\mathbb{I}_{\lvert \mathcal{E} \rvert}$$</li>
+<li>An indicator function for an event has an expectation equivalent to the probability of the event.
+$$\mathbb{E}[\mathbb{I}_{\lvert \mathcal{E} \rvert}] = P(\mathcal{E})$$</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Weak-Law-of-Large-Numbers">Weak Law of Large Numbers<a class="anchor-link" href="#Weak-Law-of-Large-Numbers">&#182;</a></h3><ul>
+<li>Assume a set of $N$ IID samples $x_i$ of a probability distribution $P(X)$. $X_N$ is a random variable of the IID samples.
+$$\mathbb{E}[X_N] = \frac{\sum_{i = 1}^{N} x_i}{N}$$</li>
+<li>If $P(X)$ has finite variance, then for any positive number $\epsilon$,
+$$
+\begin{align}
+\lim_{N \to \infty} P(\{\lvert X_N - \mathbb{E}[X] \rvert \ge \epsilon \}) &amp;= 0 \\
+\lim_{N \to \infty} P(\{\lvert X_N - \mathbb{E}[X] \rvert &lt; \epsilon \}) &amp;= 1
+\end{align}
+$$</li>
+</ul>
+<h4 id="Implications-of-Weak-Law-of-Large-Numbers">Implications of Weak Law of Large Numbers<a class="anchor-link" href="#Implications-of-Weak-Law-of-Large-Numbers">&#182;</a></h4><ul>
+<li>Assume a random variable $X$. Then, the weak law of large numbers state that if large number of IID samples of the random variable is observed, the average of these IID samples should be very close to $\mathbb{E}[X]$.</li>
+<li>As the weak law of large numbers allow expectations to be estimated, <strong>PROBABILITIES</strong> follow as they are expectations of indicator functions.</li>
+<li><strong>THUS, EXPECTATIONS CAN BE USED IN BUILDING A THEORY OF DECISION MAKING!</strong></li>
 </ul>
 
 </div>
