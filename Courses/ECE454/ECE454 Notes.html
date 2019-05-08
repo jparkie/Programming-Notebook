@@ -11883,16 +11883,188 @@ div#notebook {
 <h3 id="Shared-Memory-vs.-Message-Passing">Shared Memory vs. Message Passing<a class="anchor-link" href="#Shared-Memory-vs.-Message-Passing">&#182;</a></h3><ul>
 <li><strong>Shared Memory</strong>:<ul>
 <li>Less Scalable</li>
+<li>Faster</li>
 <li>CPU-Intensive Problems</li>
 <li>Parallel Computing</li>
 </ul>
 </li>
 <li><strong>Message Passing</strong>:<ul>
 <li>More Scalable</li>
+<li>Slower</li>
 <li>Resource Sharing / Coordination Problems</li>
 <li>Distributed Computing</li>
 </ul>
 </li>
+<li>Apache Hadoop is an example of a hybrid computing framework that uses message passing at a broad-view and shared memory at a detailed-view.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Cloud-and-Grid-Computing">Cloud and Grid Computing<a class="anchor-link" href="#Cloud-and-Grid-Computing">&#182;</a></h3><ul>
+<li><strong>IaaS</strong>: Infrastructure as a Service<ul>
+<li>VM Computation, Block File Storage</li>
+</ul>
+</li>
+<li><strong>PaaS</strong>: Platform as a Service<ul>
+<li>Software Frameworks, Databases</li>
+</ul>
+</li>
+<li><strong>SaaS</strong>: Software as a Service<ul>
+<li>Web Services, Business Apps</li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Transaction-Processing-Systems">Transaction Processing Systems<a class="anchor-link" href="#Transaction-Processing-Systems">&#182;</a></h3><ul>
+<li><strong>Transaction Processing Monitor</strong>: Coordinates Distributed Transactions</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Architectures">Architectures<a class="anchor-link" href="#Architectures">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Definitions">Definitions<a class="anchor-link" href="#Definitions">&#182;</a></h3><ul>
+<li><strong>Component</strong>: A modular unit with well-defined interfaces.</li>
+<li><strong>Connector</strong>: A mechanism that mediates communication, coordination, or cooperation among components.</li>
+<li><strong>Software Architecture</strong>: Organization of software components.</li>
+<li><strong>System Architecture</strong>: Instantiation of software architecture in which software components are placed on real machines.</li>
+<li><strong>Autonomic System</strong>: Adapts to its environment by monitoring its own behavior and reacting accordingly.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Architectural-Styles">Architectural Styles<a class="anchor-link" href="#Architectural-Styles">&#182;</a></h3><ul>
+<li>Layered<ul>
+<li><em>Note: Assignment Topic</em></li>
+</ul>
+</li>
+<li>Object-Based</li>
+<li>Data-Centered</li>
+<li>Event-Based</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Layered-Architecture">Layered Architecture<a class="anchor-link" href="#Layered-Architecture">&#182;</a></h3><p><img src="images/Architecture_1.png" alt="Layers"></p>
+<ul>
+<li><strong>Examples</strong>:<ul>
+<li>Database Server, Application Server, Client</li>
+<li>SSH Server, SSH Client</li>
+</ul>
+</li>
+<li>Requests Flow Down Stack</li>
+<li>Responses Flow Up Stack</li>
+<li><em>Handle-Upcall</em>: Async Notification<ul>
+<li>Subscribe with Handle</li>
+<li>Publish with Upcall</li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Client-Server-Interactions">Client-Server Interactions<a class="anchor-link" href="#Client-Server-Interactions">&#182;</a></h3><p><img src="images/Architecture_2.png" alt="Client-Server Interactions"></p>
+<ul>
+<li><em>Bolded Lines</em> = Busy</li>
+<li><em>Dashed Lines</em> = Idle</li>
+<li><strong>Client</strong>: Initiates with a Request</li>
+<li><strong>Server</strong>: Follows with a Response</li>
+<li><strong>Total Round-Trip Time</strong>: $(N - 1) \times t_{\text{Request-Response}}$<ul>
+<li>Layering can reduce the amount of processing time per layer, but the additional communication overhead between the layers introduces diminishing returns.</li>
+</ul>
+</li>
+<li>An intermediate layer can be both a client and a server to the others.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Multi-Tiered-Architecture">Multi-Tiered Architecture<a class="anchor-link" href="#Multi-Tiered-Architecture">&#182;</a></h3><ul>
+<li>Logical Software Layers $\mapsto$ Physical Tiers<ul>
+<li><em>Trade-Offs</em>: Ease of Maintenance vs. Reliability</li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Horizontal-vs.-Vertical-Distribution">Horizontal vs. Vertical Distribution<a class="anchor-link" href="#Horizontal-vs.-Vertical-Distribution">&#182;</a></h3><ul>
+<li><strong>Vertical Distribution</strong>: When the logical layers of a system are organized as separate physical tiers.<ul>
+<li><em>Performance</em>: High.</li>
+<li><em>Scalability</em>: Low.</li>
+<li><em>Dependability</em>: Low-Medium.</li>
+</ul>
+</li>
+<li><strong>Horizontal Distribution</strong>: When one logical layer is split across multiple machines - <strong>sharding</strong>.<ul>
+<li><em>Performance</em>: Low.</li>
+<li><em>Scalability</em>: High.</li>
+<li><em>Dependability</em>: Medium-High.</li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Object-Based-Architecture">Object-Based Architecture<a class="anchor-link" href="#Object-Based-Architecture">&#182;</a></h3><ul>
+<li>In an object-based architecture, components communicate using remote object references and method calls.</li>
+</ul>
+<h4 id="Problems-with-Object-Based-Architecture">Problems with Object-Based Architecture<a class="anchor-link" href="#Problems-with-Object-Based-Architecture">&#182;</a></h4><ul>
+<li>Complex Interfaces</li>
+<li>Increased Communication Costs</li>
+<li>Not Scalable</li>
+<li>Language Specific</li>
 </ul>
 
 </div>
