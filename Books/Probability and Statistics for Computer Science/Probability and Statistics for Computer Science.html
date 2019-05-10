@@ -13214,6 +13214,78 @@ $$\text{stderr}(\{x\}) = \frac{\text{stdunbiased}(\{x\})}{\sqrt{N}}$$</li>
 </div>
 </div>
 </div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="T-Distribution-of-the-Sample-Mean">T-Distribution of the Sample Mean<a class="anchor-link" href="#T-Distribution-of-the-Sample-Mean">&#182;</a></h3><ul>
+<li>Student's t-distribution is a probability distribution taken from a family, indexed by a number (the degrees of freedom of the distribution).<ul>
+<li>If the number of degrees of freedom is large, the distribution is very similar to a normal distribution.</li>
+<li>Else, the tails are somewhat heavier than those of a normal distribution.</li>
+</ul>
+</li>
+<li>The sample mean yields the value of a t-random variable with $N - 1$ degrees of freedom:
+$$T = \frac{\text{mean}(\{x\}) - \text{popmean}(\{X\})}{\text{stderr}(\{x\})}$$</li>
+<li>If $N$ is large enough ($N \ge 30$), the sample mean yields the value of a standard normal random variable, $Z$:
+$$Z = \frac{\text{mean}(\{x\}) - \text{popmean}(\{X\})}{\text{stderr}(\{x\})}$$</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Confidence-Intervals-for-Population-Means">Confidence Intervals for Population Means<a class="anchor-link" href="#Confidence-Intervals-for-Population-Means">&#182;</a></h3><ul>
+<li>Assume the sample is large enough so that $\frac{\text{mean}(\{x\}) - \text{popmean}(\{X\})}{\text{stderr}(\{x\})}$ is a standard normal random variable.</li>
+<li>For about $68\%$ of samples:
+$$\text{mean}(\{x\}) - \text{stderr}(\{x\}) \le \text{popmean}(\{X\}) \le \text{mean}(\{x\}) + \text{stderr}(\{x\})$$</li>
+<li>For about $95\%$ of samples:
+$$\text{mean}(\{x\}) - 2\cdot\text{stderr}(\{x\}) \le \text{popmean}(\{X\}) \le \text{mean}(\{x\}) + 2\cdot\text{stderr}(\{x\})$$</li>
+<li>For about $99\%$ of samples:
+$$\text{mean}(\{x\}) - 3\cdot\text{stderr}(\{x\}) \le \text{popmean}(\{X\}) \le \text{mean}(\{x\}) + 3\cdot\text{stderr}(\{x\})$$</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Constructing-a-Centered-$1---2\alpha$-Confidence-Interval-for-a-Population-Mean-for-a-Large-Sample">Constructing a Centered $1 - 2\alpha$ Confidence Interval for a Population Mean for a Large Sample<a class="anchor-link" href="#Constructing-a-Centered-$1---2\alpha$-Confidence-Interval-for-a-Population-Mean-for-a-Large-Sample">&#182;</a></h3><ol>
+<li>Draw a sample $\{x\}$ of $N$ items from a population.
+$$\text{stdunbiased}(\{x\}) = \sqrt{\frac{1}{N - 1} \sum_{i = 1}^{N} \left(x_i - \text{mean}(\{x\}) \right)^2}$$</li>
+<li>Estimate the standard error.
+$$\text{stderr}(\{x\}) = \frac{\text{stdunbiased}(\{x\})}{\sqrt{N}}$$</li>
+<li>If $N$ is large enough, $T$ is a standard normal variable.
+$$T = \frac{\text{mean}(\{x\}) - \text{popmean}(\{X\})}{\text{stderr}(\{x\})}$$</li>
+<li>Compute $b$ such that for a standard normal variable, $P(\{T \ge b\}) = a$.</li>
+</ol>
+<h4 id="Confidence-Interval">Confidence Interval<a class="anchor-link" href="#Confidence-Interval">&#182;</a></h4><p>$$[\text{mean}(\{x\}) - b\cdot\text{stderr}(\{x\}), \text{mean}(\{x\}) + b\cdot\text{stderr}(\{x\})]$$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Constructing-a-Centered-$1---2\alpha$-Confidence-Interval-for-a-Population-Mean-for-a-Small-Sample">Constructing a Centered $1 - 2\alpha$ Confidence Interval for a Population Mean for a Small Sample<a class="anchor-link" href="#Constructing-a-Centered-$1---2\alpha$-Confidence-Interval-for-a-Population-Mean-for-a-Small-Sample">&#182;</a></h3><ol>
+<li>Draw a sample $\{x\}$ of $N$ items from a population.
+$$\text{stdunbiased}(\{x\}) = \sqrt{\frac{1}{N - 1} \sum_{i = 1}^{N} \left(x_i - \text{mean}(\{x\}) \right)^2}$$</li>
+<li>Estimate the standard error.
+$$\text{stderr}(\{x\}) = \frac{\text{stdunbiased}(\{x\})}{\sqrt{N}}$$</li>
+<li>If $N$ is small, $T$ is a t-random variable.
+$$T = \frac{\text{mean}(\{x\}) - \text{popmean}(\{X\})}{\text{stderr}(\{x\})}$$</li>
+<li>Compute $b$ such that for a t-random variable, $P(\{T \ge b\}) = a$.</li>
+</ol>
+<h4 id="Confidence-Interval">Confidence Interval<a class="anchor-link" href="#Confidence-Interval">&#182;</a></h4><p>$$[\text{mean}(\{x\}) - b\cdot\text{stderr}(\{x\}), \text{mean}(\{x\}) + b\cdot\text{stderr}(\{x\})]$$</p>
+
+</div>
+</div>
+</div>
     </div>
   </div>
 </body>
