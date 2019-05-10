@@ -11896,7 +11896,7 @@ $$\text{mean}(\{x\}) = \frac{1}{N} \sum_{i = 1}^{N} x_i$$</li>
 $$
 \begin{align}
 \text{std}(\{x\}) 
-&amp; = \sqrt{\frac{1}{N} \sum_{i = 1}^{N} \left( x_i - \text{mean}(\{x\}) \right)^2} \\
+&amp; = \sqrt{\frac{1}{N} \sum_{i = 1}^{N} \left(x_i - \text{mean}(\{x\}) \right)^2} \\
 &amp; = \sqrt{\text{mean}\left( \{ \left( x_i - \text{mean}(\{x\}) \right)^2 \} \right)}
 \end{align}
 $$</li>
@@ -13107,9 +13107,108 @@ $$P\left(\left\{a \le \frac{X - \mu}{\sigma} \le b\right\}\right) \to \Phi(b) - 
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="How-Often-a-Normal-Random-Variable-is-How-Far-from-the-Mean">How Often a Normal Random Variable is How Far from the Mean<a class="anchor-link" href="#How-Often-a-Normal-Random-Variable-is-How-Far-from-the-Mean">&#182;</a></h3><ul>
-<li>About $68%$ of the time, a normal random variable takes a value within one standard deviation of the mean.</li>
-<li>About $95%$ of the time, a normal random variable takes a value within two standard deviations of the mean.</li>
-<li>About $99%$ of the time, a normal random variable takes a value within three standard deviations of the mean.</li>
+<li>About $68\%$ of the time, a normal random variable takes a value within one standard deviation of the mean.</li>
+<li>About $95\%$ of the time, a normal random variable takes a value within two standard deviations of the mean.</li>
+<li>About $99\%$ of the time, a normal random variable takes a value within three standard deviations of the mean.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="6.-Samples-and-Populations">6. Samples and Populations<a class="anchor-link" href="#6.-Samples-and-Populations">&#182;</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Sample-Mean">Sample Mean<a class="anchor-link" href="#Sample-Mean">&#182;</a></h3><ul>
+<li><em>Assumption: Sampling with Replacement</em></li>
+</ul>
+<h4 id="Properties-of-Sample-and-Population-Mean">Properties of Sample and Population Mean<a class="anchor-link" href="#Properties-of-Sample-and-Population-Mean">&#182;</a></h4><ul>
+<li>The sample mean is a random variable. It is random, because different samples from the population will have different values of the sample mean.</li>
+<li>The expected value of this random variable is the population mean.</li>
+</ul>
+<h4 id="Expressions-for-Mean-and-Variance-of-the-Sample-Mean">Expressions for Mean and Variance of the Sample Mean<a class="anchor-link" href="#Expressions-for-Mean-and-Variance-of-the-Sample-Mean">&#182;</a></h4><ul>
+<li>Let $X^{(N)}$ for the mean of $N$ samples.
+$$
+\begin{align}
+\mathbb{E}[X^{(N)}] &amp;= \text{popmean}(\{X\}) \\
+\text{var}(X^{(N)}) &amp;= \frac{\text{popstd}(\{X\})^2}{N} \\
+\text{std}(X^{(N)}) &amp;= \frac{\text{popstd}(\{X\})}{\sqrt{N}}
+\end{align}
+$$</li>
+<li>If you draw $N$ samples, because the standard deviation of your estimate of the mean is $\frac{\text{popstd}(\{X\})}{\sqrt{N}}$,<ol>
+<li>The more samples you draw, the better your estimate becomes.</li>
+<li>The estimate improves rather slowly.</li>
+</ol>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Sample-Mean-and-Distributions">Sample Mean and Distributions<a class="anchor-link" href="#Sample-Mean-and-Distributions">&#182;</a></h3><ul>
+<li>A population and the sampling process can be replaced by a probability distribution and the drawing of IID samples.</li>
+<li>Assume a set of $N$ data items $x_i$ drawn as IID samples from some probability distribution $P(X)$,
+$$
+\begin{align}
+X^{(N)} &amp;= \frac{\sum_{i} x_i}{N} \\
+\mathbb{E}[X^{(N)}] &amp;= \mathbb{E}_{P(X)}[X] \\
+\text{var}(X^{(N)}) &amp;= \frac{\text{var}(P(X)}{N}
+\end{align}
+$$</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Confidence-Interval-for-a-Population-Mean">Confidence Interval for a Population Mean<a class="anchor-link" href="#Confidence-Interval-for-a-Population-Mean">&#182;</a></h3><ul>
+<li>Choose some fraction $f$. A $f$ confidence interval for a population mean is an interval constructed using the sample mean.</li>
+<li>It has the property that for that fraction $f$ of all samples, the population mean will lie inside the interval constructed from each sample's mean.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Centered-Confidence-Interval-for-a-Population-Mean">Centered Confidence Interval for a Population Mean<a class="anchor-link" href="#Centered-Confidence-Interval-for-a-Population-Mean">&#182;</a></h3><ul>
+<li>Choose some $0 &lt; \alpha &lt; 0.5$. A $1 - 2\alpha$ centered confidence interval for a population mean is an interval $[a, b]$ constructed using the sample mean.</li>
+<li>It has the property that for $\alpha$ of all samples, the population mean is greater than $b$, and for another $\alpha$ of all samples, the population is less than $a$. For all other samples, the population mean will lie inside the interval.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Estimating-the-Variance-of-the-Sample-Mean">Estimating the Variance of the Sample Mean<a class="anchor-link" href="#Estimating-the-Variance-of-the-Sample-Mean">&#182;</a></h3><p><img src="images/Figure_6_1.png" alt="Variances of Sample Means"></p>
+<ul>
+<li>If $N$ is large,
+$$\text{popstd}(\{x\}) = \text{std}(\{x\}) = \sqrt{\frac{1}{N} \sum_{i = 1}^{N} \left(x_i - \text{mean}(\{x\}) \right)^2}$$</li>
+<li>If $N$ is small,
+$$\text{popstd}(\{x\}) = \text{stdunbiased}(\{x\}) = \sqrt{\frac{1}{N - 1} \sum_{i = 1}^{N} \left(x_i - \text{mean}(\{x\}) \right)^2}$$</li>
+<li>Let $X^{(N)}$ be a random variable for the mean of $N$ samples $x_i$. An estimate of the standard deviation of $X^{(N)}$ is:
+$$\text{stderr}(\{x\}) = \frac{\text{stdunbiased}(\{x\})}{\sqrt{N}}$$</li>
+<li>A $\text{popstd}(\{x\}) \approx \text{std}(\{x\})$ approximation is biased because the approximation tends to be slightly too small. $N - 1$ replaces $N$ because $\sum_{i = 1}^{N} \left(x_i - \text{mean}(\{x\}) \right)$ has only $N - 1$ independent numbers (i.e., <strong>degrees of freedom</strong>).</li>
 </ul>
 
 </div>
