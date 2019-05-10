@@ -11821,11 +11821,11 @@ div#notebook {
 <li><strong>Rational Agent</strong>: An agent that acts in a way that is expected to maximize performance on the basis of perceptual history and built-in knowledge.</li>
 </ul>
 <h4 id="Types-of-Agents">Types of Agents<a class="anchor-link" href="#Types-of-Agents">&#182;</a></h4><ul>
-<li><em>Simple Reflex Agents</em>: Follow a lookup-table approach; needs fully observable environment.</li>
-<li><em>Model-Based Reflex Agents</em>: Add state information to handle partially observable environments.</li>
-<li><em>Goal-Based Agents:</em> Add concept of goals to help choose actions.</li>
-<li><em>Utility-Based Agents</em>: Add utility to decide "good" or "bad" when face with conflicting goals.</li>
-<li><em>Learning Agents</em>: Add ability to learn from experience to improve performance.</li>
+<li><strong>Simple Reflex Agents</strong>: Follow a lookup-table approach; needs fully observable environment.</li>
+<li><strong>Model-Based Reflex Agents</strong>: Add state information to handle partially observable environments.</li>
+<li><strong>Goal-Based Agents</strong>: Add concept of goals to help choose actions.</li>
+<li><strong>Utility-Based Agents</strong>: Add utility to decide "good" or "bad" when face with conflicting goals.</li>
+<li><strong>Learning Agents</strong>: Add ability to learn from experience to improve performance.</li>
 </ul>
 
 </div>
@@ -11866,6 +11866,145 @@ div#notebook {
 <h3 id="Cooperative-and-Adaptive-Algorithms">Cooperative and Adaptive Algorithms<a class="anchor-link" href="#Cooperative-and-Adaptive-Algorithms">&#182;</a></h3><ul>
 <li><strong>Cooperative</strong>: Solve Joint Problems.</li>
 <li><strong>Adaptive</strong>: Change Behavior While Running.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Search-Problem-Formulation">Search Problem Formulation<a class="anchor-link" href="#Search-Problem-Formulation">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Characteristics-of-Search-Problems">Characteristics of Search Problems<a class="anchor-link" href="#Characteristics-of-Search-Problems">&#182;</a></h3><ul>
+<li>Large, Non-Polynomial Search Space Size</li>
+<li>Large, Non-Polynomial Constraints Size</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Well-Structured-vs.-Ill-Structured-Problems">Well-Structured vs. Ill-Structured Problems<a class="anchor-link" href="#Well-Structured-vs.-Ill-Structured-Problems">&#182;</a></h3><ul>
+<li><strong>Well-Structured Problems</strong>: Problems for which the existing state and desired state are clearly identified, and the methods to reach the desired state are fairly obvious.</li>
+<li><strong>Ill-Structured Problems</strong>: Situation in which its existing state and the desired state are unclear and, hence, methods of reaching the desired state cannot be found.<ol>
+<li>Start &amp; Improve Guess</li>
+<li>Search Alternatives</li>
+<li>Forward Search from Problem to Answer</li>
+<li>Backward Search from Goal to Problem Situation</li>
+</ol>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Optimization-Problems">Optimization Problems<a class="anchor-link" href="#Optimization-Problems">&#182;</a></h3><ul>
+<li><strong>Optimization Problem</strong>: Finding the best solutions from a set of solutions subject to a set of constraints.</li>
+</ul>
+<h4 id="Types-of-Optimization-Algorithms">Types of Optimization Algorithms<a class="anchor-link" href="#Types-of-Optimization-Algorithms">&#182;</a></h4><ul>
+<li><strong>Exact Algorithms</strong>:<ul>
+<li>Find Optimal Solution</li>
+<li>High Computational Cost</li>
+</ul>
+</li>
+<li><strong>Approximate Algorithms</strong>:<ul>
+<li>Find Near-Optimal Solution</li>
+<li>Low Computational Cost</li>
+</ul>
+</li>
+</ul>
+<h4 id="Approximate-Algorithms">Approximate Algorithms<a class="anchor-link" href="#Approximate-Algorithms">&#182;</a></h4><ul>
+<li><strong>Heuristics</strong>: A solution strategy or rules by trial and error to produce acceptable (optimal or sub-optimal) solutions to complex problems in a reasonably practical time.</li>
+<li><strong>Constructive Methods</strong>: A solution is constructed by iteratively introducing a new component.</li>
+<li><strong>Local Search Methods</strong>: An initial solution is improved by iteratively applying actions.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Goal-and-Problem-Formulation">Goal and Problem Formulation<a class="anchor-link" href="#Goal-and-Problem-Formulation">&#182;</a></h3><ul>
+<li><em>Requirements for Search: Goal Formulation + Problem Formulation</em></li>
+<li><em>Closed World Assumption: All necessary information about a problem domain is available in each percept so that each state is a complete description of the world.</em></li>
+</ul>
+<h4 id="Problem-Formulation-Template">Problem Formulation Template<a class="anchor-link" href="#Problem-Formulation-Template">&#182;</a></h4><ul>
+<li><strong>State Space</strong>: Complete/Partial Configuration of Problem<ul>
+<li><em>Required: Each State = <strong>UNIQUE</strong></em></li>
+</ul>
+</li>
+<li><strong>Initial State</strong>: Beginning Search State</li>
+<li><strong>Goal State</strong>: Ending Search State</li>
+<li><strong>Action Set</strong>: Set of Possible State Transitions</li>
+<li><strong>Cost</strong>: Comparison Function between Solutions</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Graph-Search-Algorithms">Graph Search Algorithms<a class="anchor-link" href="#Graph-Search-Algorithms">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Search-Tree-Terminology">Search Tree Terminology<a class="anchor-link" href="#Search-Tree-Terminology">&#182;</a></h3><ul>
+<li><strong>Node</strong>: Search Problem State</li>
+<li><strong>Edge</strong>: Search Problem Action</li>
+<li><strong>Fringe</strong>: Frontier/Leaves of Search Tree</li>
+<li><strong>Branching Factor ($b$)</strong>: The maximum number of child nodes extending from a parent node.</li>
+<li><strong>Maximum Depth ($d$)</strong>: The number of edges in the shortest path from the root node to the furthest leaf node.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Properties-of-Search-Algorithms">Properties of Search Algorithms<a class="anchor-link" href="#Properties-of-Search-Algorithms">&#182;</a></h3><ul>
+<li>Completeness</li>
+<li>Optimality</li>
+<li>Time Complexity</li>
+<li>Space Complexity</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Generic-Search">Generic Search<a class="anchor-link" href="#Generic-Search">&#182;</a></h3><ul>
+<li><em>Fringe = Queue-Like Data Structure</em></li>
+<li>Choose Node</li>
+<li>Test Node</li>
+<li>Expand Node</li>
 </ul>
 
 </div>
