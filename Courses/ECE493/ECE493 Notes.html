@@ -11799,6 +11799,152 @@ div#notebook {
 </div>
 </div>
 </div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Bayesian-Networks">Bayesian Networks<a class="anchor-link" href="#Bayesian-Networks">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Probabilistic-Modeling">Probabilistic Modeling<a class="anchor-link" href="#Probabilistic-Modeling">&#182;</a></h3><ul>
+<li><strong>Bayesian Networks</strong>: A directed graph $G = (V, E)$ with<ul>
+<li>A random variable $x_i$ for each node $i \in V$</li>
+<li>A conditional probability distribution (CPD) $p(x_{i} \vert x_{A_i})$ per node, specifying the probability of $x_i$ conditioned on its parent's values (i.e. ancestors).
+$$p(x_{1}, x_{2}, ..., x_{n}) = p(x_{1}) p(x_{2} \mid x_{1}) ... p(x_{n} \mid x_{n - 1}, ..., x_{2}, x_{1})$$</li>
+</ul>
+</li>
+<li><strong>Compact Bayesian Network</strong>: Reduce Large Arity Factors with Ancestor Variables $x_{A_i}$
+$$p(x_{i} \mid x_{i - 1}, ..., x_{1}) = p(x_{i} \mid x_{A_i})$$<ul>
+<li><em>Allow</em>: $x_{A_i} \subseteq \{x_{i - 1}, ..., x_{1}\}$</li>
+</ul>
+</li>
+<li><strong>Probability Tables</strong>: Discrete Variables and $p(x_{i} \mid x_{A_i})$ Factors<ul>
+<li><em>Rows</em>: Values of $x_{A_i}$</li>
+<li><em>Columns</em>: Values of $x_i$</li>
+<li><em>Entries</em>: Probabilities $p(x_{i} \mid x_{A_i})$</li>
+</ul>
+</li>
+</ul>
+<h4 id="Space-Complexity-of-Bayesian-Networks">Space Complexity of Bayesian Networks<a class="anchor-link" href="#Space-Complexity-of-Bayesian-Networks">&#182;</a></h4><ul>
+<li><em>Probability Table Space Complexity</em>: If each variable takes $d$ values and has at most $k$ ancestors: $O(d^{k + 1})$</li>
+<li><em>Compact Bayesian Network Space Complexity</em>: $O(nd^{k + 1})$</li>
+<li><em>Naive Bayesian Network Space Complexity</em>: $O(d^{n})$</li>
+</ul>
+<h4 id="Interpretation-of-Bayesian-Networks">Interpretation of Bayesian Networks<a class="anchor-link" href="#Interpretation-of-Bayesian-Networks">&#182;</a></h4><ul>
+<li>A probability $p$ factorizes over a DAG $G$ if it can be decomposed into a product of factors, as specified by $G$.</li>
+<li>A Bayesian network represents a probability distribution formed via a product of smaller, locally conditional probability distributions (one for each variable).</li>
+<li>A Bayesian network introduces assumptions that certain variables are independent.</li>
+</ul>
+<h4 id="Validity-of-Bayseian-Networks">Validity of Bayseian Networks<a class="anchor-link" href="#Validity-of-Bayseian-Networks">&#182;</a></h4><ol>
+<li>Is the probability non-negative?</li>
+<li>Is the sum over all vaiables equivalent to one?</li>
+<li>Is the directed graph acyclic?</li>
+</ol>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Graphical-Representation">Graphical Representation<a class="anchor-link" href="#Graphical-Representation">&#182;</a></h3><ul>
+<li>Directed Acyclic Graphs</li>
+<li><em>Vertices</em>: Variables $x_i$</li>
+<li><em>Edges</em>: Dependency Relationships</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="$3$-Variable-Independencies-in-Directed-Graphs">$3$-Variable Independencies in Directed Graphs<a class="anchor-link" href="#$3$-Variable-Independencies-in-Directed-Graphs">&#182;</a></h3><ul>
+<li>Let $I(p)$ be the set of all independencies that hold for a joint distribution $p$.</li>
+<li>Let $G$ be a Bayesian network with three nodes: $A$, $B$, and $C$.</li>
+</ul>
+<h4 id="Common-Parent">Common Parent<a class="anchor-link" href="#Common-Parent">&#182;</a></h4><ul>
+<li>If $G$ is of the form $A \leftarrow B \rightarrow C$,<ul>
+<li>If $B$ is observed, then $A \perp C \mid B$</li>
+<li>If $B$ is unobserved, then $A \not\perp C$</li>
+</ul>
+</li>
+<li><strong>Intuition</strong>: $B$ contains all the information that determines the outcomes of $A$ and $C$; once it is observed, there is nothing else that affects $A$'s and $C$s' outcomes.</li>
+</ul>
+<h4 id="Cascade">Cascade<a class="anchor-link" href="#Cascade">&#182;</a></h4><ul>
+<li>If $G$ equals $A \rightarrow B \rightarrow C$,<ul>
+<li>If $B$ is observed, then $A \perp C \mid B$</li>
+<li>If $B$ is unobserved, then $A \not\perp C$</li>
+</ul>
+</li>
+<li><strong>Intuition</strong>: $B$ contains all the information that determines the outcomes of $C$; once it is observed, there is nothing else that affects $C$'s outcomes.</li>
+</ul>
+<h4 id="V-Structure">V-Structure<a class="anchor-link" href="#V-Structure">&#182;</a></h4><ul>
+<li>If $G$ is $A \rightarrow C \leftarrow B$, then knowing $C$ couples $A$ and $B$.<ul>
+<li>If $C$ is unobserved, then $A \perp B$</li>
+<li>If $C$ is observed, then $A \not\perp B \mid C$</li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="$n$-Variable-Independencies-in-Directed-Graphs">$n$-Variable Independencies in Directed Graphs<a class="anchor-link" href="#$n$-Variable-Independencies-in-Directed-Graphs">&#182;</a></h3><h4 id="$d$-separation-(Directed)">$d$-separation (Directed)<a class="anchor-link" href="#$d$-separation-(Directed)">&#182;</a></h4><ul>
+<li>$Q$ and $W$ are $d$-separated when variables $O$ are observed if they are not connected by an active path.</li>
+</ul>
+<h4 id="Active-Path">Active Path<a class="anchor-link" href="#Active-Path">&#182;</a></h4><ul>
+<li>An undirected path in the Bayesian Network structure $G$ is called active given observed variables $O$ if for every consecutive triple of variables $X$, $Y$, $Z$ on the path, one of the following holds:<ul>
+<li>$X \leftarrow Y \leftarrow Z$, and $Y$ is unobserved $Y \not\in O$</li>
+<li>$X \rightarrow Y \rightarrow Z$, and $Y$ is unobserved $Y \not\in O$</li>
+<li>$X \leftarrow Y \rightarrow Z$, and $Y$ is unobserved $Y \not\in O$</li>
+<li>$X \rightarrow Y \leftarrow Z$, and $Y$ or any of its descendants are observed</li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Independence-Maps">Independence Maps<a class="anchor-link" href="#Independence-Maps">&#182;</a></h3><ul>
+<li>Let $I(G) = \{(X \perp Y \mid Z) : X, Y \text{ are } d\text{-sep given } Z\}$ be a set of variables that are $d$-separated in $G$.</li>
+<li>If $p$ factorizes over $G$, then $I(G) \subseteq I(p)$, then $G$ is an $I$-map for $p$.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Equivalence-of-Bayesian-Networks">Equivalence of Bayesian Networks<a class="anchor-link" href="#Equivalence-of-Bayesian-Networks">&#182;</a></h3><ul>
+<li>$G_1$ and $G_2$ are $I$-equivalent...<ul>
+<li>If they encode the same dependencies: $I(G_1) = I(G_2)$.</li>
+<li>If they have the same skeleton and the same v-structures.</li>
+<li>If the $d$-separation between variables is the same.</li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
     </div>
   </div>
 </body>
