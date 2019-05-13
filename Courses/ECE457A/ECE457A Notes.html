@@ -11987,10 +11987,10 @@ div#notebook {
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Properties-of-Search-Algorithms">Properties of Search Algorithms<a class="anchor-link" href="#Properties-of-Search-Algorithms">&#182;</a></h3><ul>
-<li>Completeness</li>
-<li>Optimality</li>
-<li>Time Complexity</li>
-<li>Space Complexity</li>
+<li><strong>Completeness</strong>: Guarantee Find A Goal Node</li>
+<li><strong>Optimality</strong>: Guarantee Find Best Goal Node</li>
+<li><strong>Time Complexity</strong>: # of Nodes Generated</li>
+<li><strong>Space Complexity</strong>: # of Nodes Stored</li>
 </ul>
 
 </div>
@@ -12002,9 +12002,76 @@ div#notebook {
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Generic-Search">Generic Search<a class="anchor-link" href="#Generic-Search">&#182;</a></h3><ul>
 <li><em>Fringe = Queue-Like Data Structure</em></li>
+</ul>
+<ol>
 <li>Choose Node</li>
 <li>Test Node</li>
 <li>Expand Node</li>
+</ol>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Local-Search-Strategies">Local Search Strategies<a class="anchor-link" href="#Local-Search-Strategies">&#182;</a></h3><ul>
+<li><strong>Uninformed Strategies</strong>: No knowledge of the direction of goal nodes.<ul>
+<li>Breadth-First</li>
+<li>Depth-First</li>
+<li>Depth-Limited</li>
+<li>Uniform-Cost</li>
+<li>Depth-First Iterative Deepening</li>
+<li>Bidirectional</li>
+</ul>
+</li>
+<li><strong>Informed Strategies</strong>: Domain knowledge of the direction of goal nodes.<ul>
+<li>Hill Climbing</li>
+<li>Best-First</li>
+<li>Greedy Search</li>
+<li>Beam Search</li>
+<li>A</li>
+<li>A*</li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Breadth-First-Search">Breadth-First Search<a class="anchor-link" href="#Breadth-First-Search">&#182;</a></h3><ul>
+<li>Expand the shallowest unexpanded nodes, storing the fringe to be expanded in a FIFO queue.</li>
+</ul>
+<h4 id="Properties-of-Breadth-First-Search">Properties of Breadth-First Search<a class="anchor-link" href="#Properties-of-Breadth-First-Search">&#182;</a></h4><ul>
+<li><em>Complete</em></li>
+<li><em>Optimal</em> (If cost is equal to depth, otherwise may be non-optimal)</li>
+<li><em>Time Complexity</em>: $O(b^{d + 1})$</li>
+<li><em>Space Complexity</em>: $O(b^{d + 1})$</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Uniform-Cost-Search">Uniform Cost Search<a class="anchor-link" href="#Uniform-Cost-Search">&#182;</a></h3><ul>
+<li>Expand the lowest cost unexpanded node, storing the fringe to be expanded in a minimum priority queue.</li>
+<li><strong>Required</strong>: <em>No Zero/Negative-Cost Edges</em></li>
+</ul>
+<h4 id="Properties-of-Uniform-Cost-Search">Properties of Uniform Cost Search<a class="anchor-link" href="#Properties-of-Uniform-Cost-Search">&#182;</a></h4><ul>
+<li>Let $C^*$ be the path cost to the goal.</li>
+<li>Let $\epsilon$ be the minimum cost of all other actions.</li>
+<li><em>Complete</em></li>
+<li><em>Optimal</em></li>
+<li><em>Time Complexity</em>: $O(b^{\frac{C^*}{\epsilon} + 1})$</li>
+<li><em>Space Complexity</em>: $O(b^{\frac{C^*}{\epsilon} + 1})$</li>
 </ul>
 
 </div>
