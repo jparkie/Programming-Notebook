@@ -12061,10 +12061,182 @@ div#notebook {
 <li>In an object-based architecture, components communicate using remote object references and method calls.</li>
 </ul>
 <h4 id="Problems-with-Object-Based-Architecture">Problems with Object-Based Architecture<a class="anchor-link" href="#Problems-with-Object-Based-Architecture">&#182;</a></h4><ul>
-<li>Complex Interfaces</li>
-<li>Increased Communication Costs</li>
+<li>Complex Communication Interfaces</li>
+<li>Complex Communication Costs</li>
 <li>Not Scalable</li>
-<li>Language Specific</li>
+<li>Not Language Agnostic</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Data-Centered-Architecture">Data-Centered Architecture<a class="anchor-link" href="#Data-Centered-Architecture">&#182;</a></h3><ul>
+<li>In a data-centered architecture, components communicate by accessing a shared data repository.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Event-Based-Architecture">Event-Based Architecture<a class="anchor-link" href="#Event-Based-Architecture">&#182;</a></h3><p><img src="images/Architecture_3.png" alt="Publish/Subscribe Middleware"></p>
+<ul>
+<li>In an event-based architecture, components communicate by propagating events using a publish/subscribe system.</li>
+</ul>
+<h4 id="Handling-Asynchronous-Delivery-Failure">Handling Asynchronous Delivery Failure<a class="anchor-link" href="#Handling-Asynchronous-Delivery-Failure">&#182;</a></h4><ul>
+<li><em>At-Least Once Delivery</em>: Do Retransmit</li>
+<li><em>At-Most Once Delivery</em>: Do Not Retransmit</li>
+<li><em>Exactly Once Delivery</em>: Unknown/Unachievable</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Peer-to-Peer-Systems">Peer-to-Peer Systems<a class="anchor-link" href="#Peer-to-Peer-Systems">&#182;</a></h3><p><img src="images/Architecture_4.png" alt="Chord&#39;s Finger Table"></p>
+<ul>
+<li>In a peer-to-peer system, decentralized processes are organized in an overlay network that defines a set of communication channels.</li>
+<li>In a peer-to-peer, distributed hash table, a keyspace is represented by a consistent hash ring on top of which nodes partition ranges amongst themselves.</li>
+<li>The mappings of partition ranges to nodes are maintained by a finger table which can be queried in a logarithm process.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Hybrid-Architectures">Hybrid Architectures<a class="anchor-link" href="#Hybrid-Architectures">&#182;</a></h3><ul>
+<li>BitTorrent is an example of a hybrid architecture combining a client-server architecture and a peer-to-peer architecture.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Self-Management">Self-Management<a class="anchor-link" href="#Self-Management">&#182;</a></h3><p><img src="images/Architecture_5.png" alt="Self-Management Systems"></p>
+<ul>
+<li>In self-management, systems use a feedback control loop that monitors system behaviors and adjusts system operations.</li>
+<li><strong>Assignment Note</strong>: Useful for Unknown Assignment</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Processes">Processes<a class="anchor-link" href="#Processes">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="IPC">IPC<a class="anchor-link" href="#IPC">&#182;</a></h3><ul>
+<li><strong>Inter-Process Communication (IPC)</strong>: Expensive b/c Context Switching</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Threads">Threads<a class="anchor-link" href="#Threads">&#182;</a></h3><ul>
+<li>Typically, an operating system kernel support multi-threading through <strong>lightweight processes (LWP)</strong>.</li>
+<li><strong>Assignment Note</strong>: Do Not Spawn Too Many Threads</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Multi-Threaded-Servers">Multi-Threaded Servers<a class="anchor-link" href="#Multi-Threaded-Servers">&#182;</a></h3><ul>
+<li><strong>Dispatcher/Worker Design</strong>: A dispatcher thread receives requests from the network and feeds them to a pool of worker threads.</li>
+<li><strong>Assignment Note</strong>: Useful for Assignment 1 &amp; Partition into Sequential Work and Parallel Work</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Hardware-and-Software-Interfaces">Hardware and Software Interfaces<a class="anchor-link" href="#Hardware-and-Software-Interfaces">&#182;</a></h3><p><img src="images/Processes_1.png" alt="Hardware and Software Interfaces"></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Virtualization">Virtualization<a class="anchor-link" href="#Virtualization">&#182;</a></h3><p><img src="images/Processes_2.png" alt="VMs"></p>
+<ul>
+<li><strong>Advantage</strong>:<ul>
+<li>Portability</li>
+<li>Live Migration of VMs</li>
+<li>Replication for Availability/Fault Tolerance</li>
+</ul>
+</li>
+<li><strong>Disadvantage</strong>:<ul>
+<li>Performance</li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Server-Clusters">Server Clusters<a class="anchor-link" href="#Server-Clusters">&#182;</a></h3><p><img src="images/Processes_3.png" alt="Three Physical Tier"></p>
+<ul>
+<li><strong>Assignment Note</strong>: Useful for Assignment 2</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Communication">Communication<a class="anchor-link" href="#Communication">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Remote-Procedure-Calls">Remote Procedure Calls<a class="anchor-link" href="#Remote-Procedure-Calls">&#182;</a></h3><ul>
+<li><strong>Remote Procedure Calls</strong>: A transient communication abstraction implemented using a client-server protocol.</li>
+<li><strong>Client Stub</strong>: Translate a RPC on the client.</li>
+<li><strong>Server Stub</strong>: Translate a RPC on the server.</li>
 </ul>
 
 </div>
