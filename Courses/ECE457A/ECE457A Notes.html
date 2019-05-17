@@ -11955,6 +11955,10 @@ div#notebook {
 <li><strong>Action Set</strong>: Set of Possible State Transitions</li>
 <li><strong>Cost</strong>: Comparison Function between Solutions</li>
 </ul>
+<h4 id="Extra-Terminologies">Extra Terminologies<a class="anchor-link" href="#Extra-Terminologies">&#182;</a></h4><ul>
+<li><strong>State</strong>: Any Possible Agent/Problem Configuration</li>
+<li><strong>Transition Model</strong>: Action Description</li>
+</ul>
 
 </div>
 </div>
@@ -11976,7 +11980,8 @@ div#notebook {
 <li><strong>Edge</strong>: Search Problem Action</li>
 <li><strong>Fringe</strong>: Frontier/Leaves of Search Tree</li>
 <li><strong>Branching Factor ($b$)</strong>: The maximum number of child nodes extending from a parent node.</li>
-<li><strong>Maximum Depth ($d$)</strong>: The number of edges in the shortest path from the root node to the furthest leaf node.</li>
+<li><strong>Maximum Depth ($m$)</strong>: The number of edges in the shortest path from the root node to the furthest leaf node.</li>
+<li><strong>Optimal Goal Depth ($d$)</strong>: the number of edges in the shortest path from the root node to an optimal goal node.</li>
 </ul>
 
 </div>
@@ -12044,14 +12049,28 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Uninformed-Search-Strategies">Uninformed Search Strategies<a class="anchor-link" href="#Uninformed-Search-Strategies">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Breadth-First-Search">Breadth-First Search<a class="anchor-link" href="#Breadth-First-Search">&#182;</a></h3><ul>
 <li>Expand the shallowest unexpanded nodes, storing the fringe to be expanded in a FIFO queue.</li>
 </ul>
 <h4 id="Properties-of-Breadth-First-Search">Properties of Breadth-First Search<a class="anchor-link" href="#Properties-of-Breadth-First-Search">&#182;</a></h4><ul>
-<li><em>Complete</em></li>
-<li><em>Optimal</em> (If cost is equal to depth, otherwise may be non-optimal)</li>
-<li><em>Time Complexity</em>: $O(b^{d + 1})$</li>
-<li><em>Space Complexity</em>: $O(b^{d + 1})$</li>
+<li><em>Completeness</em>:<ul>
+<li>Yes - If $b$ is Finite</li>
+</ul>
+</li>
+<li><em>Optimality</em>:<ul>
+<li>Yes - If Cost = Depth</li>
+</ul>
+</li>
+<li><em>Time Complexity</em>: $O(b^{d + 1}) \approx O(b^d)$</li>
+<li><em>Space Complexity</em>: $O(b^{d + 1}) \approx O(b^d)$</li>
 </ul>
 
 </div>
@@ -12068,11 +12087,116 @@ div#notebook {
 <h4 id="Properties-of-Uniform-Cost-Search">Properties of Uniform Cost Search<a class="anchor-link" href="#Properties-of-Uniform-Cost-Search">&#182;</a></h4><ul>
 <li>Let $C^*$ be the path cost to the goal.</li>
 <li>Let $\epsilon$ be the minimum cost of all other actions.</li>
-<li><em>Complete</em></li>
-<li><em>Optimal</em></li>
-<li><em>Time Complexity</em>: $O(b^{\frac{C^*}{\epsilon} + 1})$</li>
-<li><em>Space Complexity</em>: $O(b^{\frac{C^*}{\epsilon} + 1})$</li>
+<li><em>Completeness</em>:<ul>
+<li>Yes - If $b$ is Finite</li>
 </ul>
+</li>
+<li><em>Optimality</em>: Yes</li>
+<li><em>Time Complexity</em>: $O(b^{\frac{C^*}{\epsilon} + 1}) \approx O(b^d)$</li>
+<li><em>Space Complexity</em>: $O(b^{\frac{C^*}{\epsilon} + 1}) \approx O(b^d)$</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Depth-First-Search">Depth-First Search<a class="anchor-link" href="#Depth-First-Search">&#182;</a></h3><ul>
+<li>Expand the deepest unexpanded nodes, storing the fringe to be expanded in a LIFO stack.</li>
+</ul>
+<h4 id="Properties-of-Depth-First-Search">Properties of Depth-First Search<a class="anchor-link" href="#Properties-of-Depth-First-Search">&#182;</a></h4><ul>
+<li><em>Completeness</em>:<ul>
+<li>No - If Search Space with Infinite-Depth/Loops</li>
+</ul>
+</li>
+<li><em>Optimality</em>: No</li>
+<li><em>Time Complexity</em>: $O(b^m)$</li>
+<li><em>Space Complexity</em>: $O(bm)$</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Depth-Limited-Search">Depth-Limited Search<a class="anchor-link" href="#Depth-Limited-Search">&#182;</a></h3><ul>
+<li>Execute DFS with a maximum search depth as a restriction.<ul>
+<li>Prevents Infinite-Depth Problem</li>
+<li>Prevents Loops Problem</li>
+</ul>
+</li>
+</ul>
+<h4 id="Properties-of-Depth-Limited-Search">Properties of Depth-Limited Search<a class="anchor-link" href="#Properties-of-Depth-Limited-Search">&#182;</a></h4><ul>
+<li>Let $l$ be the maximum search depth.</li>
+<li><em>Completeness</em>:<ul>
+<li>Yes - If Solution's Depth $d \le l$</li>
+</ul>
+</li>
+<li><em>Optimality</em>: No</li>
+<li><em>Time Complexity</em>: $O(b^l)$</li>
+<li><em>Space Complexity</em>: $O(bl)$</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Iterative-Deepening-Search">Iterative Deepening Search<a class="anchor-link" href="#Iterative-Deepening-Search">&#182;</a></h3><ul>
+<li>Iteratively, execute DLS with an increasing maximum search depth $l$ until a solution is found.</li>
+</ul>
+<h4 id="Properties-of-Iterative-Deepening-Search">Properties of Iterative Deepening Search<a class="anchor-link" href="#Properties-of-Iterative-Deepening-Search">&#182;</a></h4><ul>
+<li><em>Completeness</em>:<ul>
+<li>Yes - If $b$ is Finite</li>
+</ul>
+</li>
+<li><em>Optimality</em>:<ul>
+<li>Yes - If Cost = Depth</li>
+</ul>
+</li>
+<li><em>Time Complexity</em>: $O(b^d)$</li>
+<li><em>Space Complexity</em>: $O(bd)$</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Breadth-First-vs.-Depth-First-Strategies">Breadth-First vs. Depth-First Strategies<a class="anchor-link" href="#Breadth-First-vs.-Depth-First-Strategies">&#182;</a></h3><h4 id="Breadth-First-Strategies">Breadth-First Strategies<a class="anchor-link" href="#Breadth-First-Strategies">&#182;</a></h4><ul>
+<li>High Memory Requirement</li>
+<li>Never Stuck on Infinite Depths</li>
+<li>Find Shortest Path to Goal</li>
+</ul>
+<h4 id="Depth-First-Strategies">Depth-First Strategies<a class="anchor-link" href="#Depth-First-Strategies">&#182;</a></h4><ul>
+<li>Low Memory Requirement</li>
+<li>Stuck on Infinite Depths</li>
+<li>Find Any Path to Goal</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Avoiding-Repeated-States">Avoiding Repeated States<a class="anchor-link" href="#Avoiding-Repeated-States">&#182;</a></h3><ul>
+<li><em>Increasing Computational Costs</em>:</li>
+</ul>
+<ol>
+<li>Do not return to the state your just came from.</li>
+<li>Do not create paths with cycles in them.</li>
+<li>Do not generate any state that was ever created before.</li>
+</ol>
 
 </div>
 </div>
