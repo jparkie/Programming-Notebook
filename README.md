@@ -33,6 +33,7 @@ A collection of [BeakerX](http://beakerx.com/) IPython notebooks and PDFs about 
 	- [6\. Dynamic Programming](http://jacobpark.me/Programming-Notebook/Data%20Structures%20and%20Algorithms/6.%20Dynamic%20Programming.html)
 	- [7\. Graphs](http://jacobpark.me/Programming-Notebook/Data%20Structures%20and%20Algorithms/7.%20Graphs.html)
 	- [8\. Trees](http://jacobpark.me/Programming-Notebook/Data%20Structures%20and%20Algorithms/8.%20Trees.html)
+	- [9\. Bit Hacks](http://jacobpark.me/Programming-Notebook/Data%20Structures%20and%20Algorithms/9.%20Bit%20Hacks.html)
 - **Programming Languages**
 	- [Java](http://jacobpark.me/Programming-Notebook/Programming%20Languages/Java.html)
 	- [Python 3](http://jacobpark.me/Programming-Notebook/Programming%20Languages/Python%203.html)
