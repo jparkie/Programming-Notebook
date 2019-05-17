@@ -11783,7 +11783,7 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Probability">Probability<a class="anchor-link" href="#Probability">&#182;</a></h2>
+<h2 id="Preliminaries---Review-of-Probability-Theory">Preliminaries - Review of Probability Theory<a class="anchor-link" href="#Preliminaries---Review-of-Probability-Theory">&#182;</a></h2>
 </div>
 </div>
 </div>
@@ -11791,9 +11791,72 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<ol>
-<li><em>See <a href="http://jacobpark.me/Programming-Notebook/Books/Probability%20and%20Statistics%20for%20Computer%20Science/Probability%20and%20Statistics%20for%20Computer%20Science.html">Probability and Statistics for Computer Science</a>.</em></li>
-<li><em>See <a href="https://ermongroup.github.io/cs228-notes/preliminaries/probabilityreview/">Stanford CS229 - Probability Review</a>.</em></li>
+<ul>
+<li><em>See <a href="https://ermongroup.github.io/cs228-notes/preliminaries/probabilityreview/">Stanford CS228 - Probability Review</a>.</em></li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Representation">Representation<a class="anchor-link" href="#Representation">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li><strong>Problem</strong>: <em>How do we express a probability distribution $p(x_{1}, x_{2}, ..., x_{n})$ that models some real-world phenomenon?</em><ul>
+<li><em>Naive Complexity</em>: $O(d^{n})$</li>
+</ul>
+</li>
+<li><strong>Solution</strong>: <em>Representation with Probabilistic Graphical Models + Verifying Independence Assumptions</em></li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Bayesian-Networks-(Directed-Probabilistic-Graphical-Model)">Bayesian Networks (Directed Probabilistic Graphical Model)<a class="anchor-link" href="#Bayesian-Networks-(Directed-Probabilistic-Graphical-Model)">&#182;</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Definition---What-is-a-Bayesian-network?">Definition - What is a Bayesian network?<a class="anchor-link" href="#Definition---What-is-a-Bayesian-network?">&#182;</a></h4><ul>
+<li>A <strong>Bayesian network</strong> is a directed graph $G = (V, E)$ with the following:<ul>
+<li><em>Nodes</em>: A random variable $x_{i}$ for each node $i \in V$.</li>
+<li><em>Edges</em>: A conditional probability distribution (CPD) $p(x_{i} \mid x_{A_{i}})$ per node, specifying the probability of $x_i$ conditioned on its parent's values.</li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Representation---How-does-a-Bayesian-network-express-a-probability-distribution?">Representation - How does a Bayesian network express a probability distribution?<a class="anchor-link" href="#Representation---How-does-a-Bayesian-network-express-a-probability-distribution?">&#182;</a></h4><ol>
+<li>Let $p$ be a probability distribution.</li>
+<li>A naive representation of $p$ can be derived using the chain rule:
+$$p(x_{1}, x_{2}, ..., x_{n}) = p(x_{1}) p(x_{2} \mid x_{1}) \cdots p(x_{n} \mid x_{n - 1}, ..., x_{2}, x_{1})$$</li>
+<li>A Bayesian network representation of $p$ compacts the naive representation by having each factor in the right hand side depend only on a small number of <strong>ancestor variables</strong> $x_{A_{i}}$:
+$$p(x_{i} \mid x_{i - 1}, ..., x_{2}, x_{1}) = p(x_{i} \mid x_{A_{i}})$$<ul>
+<li>e.g., Approximate $p(x_{5} \mid x_{4}, x_{3}, x_{2}, x_{1})$ with $p(x_{5} \mid x_{A_{5}})$ where $x_{A_{5}} = \{x_{4}, x_{3}\}$.</li>
+</ul>
+</li>
 </ol>
 
 </div>
@@ -11803,60 +11866,17 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Bayesian-Networks">Bayesian Networks<a class="anchor-link" href="#Bayesian-Networks">&#182;</a></h2>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Probabilistic-Modeling">Probabilistic Modeling<a class="anchor-link" href="#Probabilistic-Modeling">&#182;</a></h3><ul>
-<li><strong>Bayesian Networks</strong>: A directed graph $G = (V, E)$ with<ul>
-<li>A random variable $x_i$ for each node $i \in V$</li>
-<li>A conditional probability distribution (CPD) $p(x_{i} \vert x_{A_i})$ per node, specifying the probability of $x_i$ conditioned on its parent's values (i.e. ancestors).
-$$p(x_{1}, x_{2}, ..., x_{n}) = p(x_{1}) p(x_{2} \mid x_{1}) ... p(x_{n} \mid x_{n - 1}, ..., x_{2}, x_{1})$$</li>
+<h4 id="Space-Complexity---How-compact-is-a-Bayesian-network-representation?">Space Complexity - How compact is a Bayesian network representation?<a class="anchor-link" href="#Space-Complexity---How-compact-is-a-Bayesian-network-representation?">&#182;</a></h4><ul>
+<li>Consider each of the factors $p(x_{i} \mid x_{A_{i}})$ as a <strong>probability table</strong>:<ul>
+<li><em>Rows</em>: Values of $x_{i}$</li>
+<li><em>Columns</em>: Values of $x_{A_{i}}$</li>
+<li><em>Cells</em>: Values of $p(x_{i} \mid x_{A_{i}})$</li>
 </ul>
 </li>
-<li><strong>Compact Bayesian Network</strong>: Reduce Large Arity Factors with Ancestor Variables $x_{A_i}$
-$$p(x_{i} \mid x_{i - 1}, ..., x_{1}) = p(x_{i} \mid x_{A_i})$$<ul>
-<li><em>Allow</em>: $x_{A_i} \subseteq \{x_{i - 1}, ..., x_{1}\}$</li>
-</ul>
-</li>
-<li><strong>Probability Tables</strong>: Discrete Variables and $p(x_{i} \mid x_{A_i})$ Factors<ul>
-<li><em>Rows</em>: Values of $x_{A_i}$</li>
-<li><em>Columns</em>: Values of $x_i$</li>
-<li><em>Entries</em>: Probabilities $p(x_{i} \mid x_{A_i})$</li>
-</ul>
-</li>
-</ul>
-<h4 id="Space-Complexity-of-Bayesian-Networks">Space Complexity of Bayesian Networks<a class="anchor-link" href="#Space-Complexity-of-Bayesian-Networks">&#182;</a></h4><ul>
-<li><em>Probability Table Space Complexity</em>: If each variable takes $d$ values and has at most $k$ ancestors: $O(d^{k + 1})$</li>
-<li><em>Compact Bayesian Network Space Complexity</em>: $O(nd^{k + 1})$</li>
-<li><em>Naive Bayesian Network Space Complexity</em>: $O(d^{n})$</li>
-</ul>
-<h4 id="Interpretation-of-Bayesian-Networks">Interpretation of Bayesian Networks<a class="anchor-link" href="#Interpretation-of-Bayesian-Networks">&#182;</a></h4><ul>
-<li>A probability $p$ factorizes over a DAG $G$ if it can be decomposed into a product of factors, as specified by $G$.</li>
-<li>A Bayesian network represents a probability distribution formed via a product of smaller, locally conditional probability distributions (one for each variable).</li>
-<li>A Bayesian network introduces assumptions that certain variables are independent.</li>
-</ul>
-<h4 id="Validity-of-Bayseian-Networks">Validity of Bayseian Networks<a class="anchor-link" href="#Validity-of-Bayseian-Networks">&#182;</a></h4><ol>
-<li>Is the probability non-negative?</li>
-<li>Is the sum over all vaiables equivalent to one?</li>
-<li>Is the directed graph acyclic?</li>
-</ol>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Graphical-Representation">Graphical Representation<a class="anchor-link" href="#Graphical-Representation">&#182;</a></h3><ul>
-<li>Directed Acyclic Graphs</li>
-<li><em>Vertices</em>: Variables $x_i$</li>
-<li><em>Edges</em>: Dependency Relationships</li>
+<li>If each variable takes $d$ values and has at most $k$ ancestors, then each probability table has at most $O(d^{k + 1})$ entries.</li>
+<li><strong>Naive Representation Space Complexity</strong>: $O(d^n)$</li>
+<li><strong>Bayesian Networks Representation Space Complexity</strong>: $O(nd^{k + 1})$
+$$\therefore \text{Bayesian Networks Representation} \le \text{Naive Representation}$$</li>
 </ul>
 
 </div>
@@ -11866,11 +11886,29 @@ $$p(x_{i} \mid x_{i - 1}, ..., x_{1}) = p(x_{i} \mid x_{A_i})$$<ul>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="$3$-Variable-Independencies-in-Directed-Graphs">$3$-Variable Independencies in Directed Graphs<a class="anchor-link" href="#$3$-Variable-Independencies-in-Directed-Graphs">&#182;</a></h3><ul>
-<li>Let $I(p)$ be the set of all independencies that hold for a joint distribution $p$.</li>
+<h4 id="Independence-Assumptions---Why-should-we-care-about-the-independence-assumptions-introduced-by-a-Bayesian-network?">Independence Assumptions - Why should we care about the independence assumptions introduced by a Bayesian network?<a class="anchor-link" href="#Independence-Assumptions---Why-should-we-care-about-the-independence-assumptions-introduced-by-a-Bayesian-network?">&#182;</a></h4><ul>
+<li>A Bayesian network expresses a probability distribution $p$ via products of smaller, local conditional probability distributions (one for each variable).</li>
+<li>A Bayesian network introduces assumptions into the model of $p$ that certain variables are independent.</li>
+<li><strong>Important Note</strong>: Which independence assumptions are we exactly making by using a model Bayesian network with a given structure described by $G$?<ul>
+<li><em>Important for Correctness: Are these independence assumptions valid?</em></li>
+<li><em>Important for Efficiency: Are there additional independence assumptions to compact the representation?</em></li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="$3$-Variable-Independencies-in-Directed-Graphs---How-do-you-identify-the-pairs-of-independent-variables-in-a-$3$-variable-Bayesian-network?">$3$-Variable Independencies in Directed Graphs - How do you identify the pairs of independent variables in a $3$-variable Bayesian network?<a class="anchor-link" href="#$3$-Variable-Independencies-in-Directed-Graphs---How-do-you-identify-the-pairs-of-independent-variables-in-a-$3$-variable-Bayesian-network?">&#182;</a></h4><ul>
+<li>Let $x \perp y$ indicate that variables $x$ and $y$ are independent.</li>
+<li>Let $I(p)$ be the set of all independencies that hold for a joint probability distribution $p$.</li>
 <li>Let $G$ be a Bayesian network with three nodes: $A$, $B$, and $C$.</li>
 </ul>
-<h4 id="Common-Parent">Common Parent<a class="anchor-link" href="#Common-Parent">&#182;</a></h4><ul>
+<h5 id="Common-Parent">Common Parent<a class="anchor-link" href="#Common-Parent">&#182;</a></h5><ul>
 <li>If $G$ is of the form $A \leftarrow B \rightarrow C$,<ul>
 <li>If $B$ is observed, then $A \perp C \mid B$</li>
 <li>If $B$ is unobserved, then $A \not\perp C$</li>
@@ -11878,7 +11916,7 @@ $$p(x_{i} \mid x_{i - 1}, ..., x_{1}) = p(x_{i} \mid x_{A_i})$$<ul>
 </li>
 <li><strong>Intuition</strong>: $B$ contains all the information that determines the outcomes of $A$ and $C$; once it is observed, there is nothing else that affects $A$'s and $C$s' outcomes.</li>
 </ul>
-<h4 id="Cascade">Cascade<a class="anchor-link" href="#Cascade">&#182;</a></h4><ul>
+<h5 id="Cascade">Cascade<a class="anchor-link" href="#Cascade">&#182;</a></h5><ul>
 <li>If $G$ equals $A \rightarrow B \rightarrow C$,<ul>
 <li>If $B$ is observed, then $A \perp C \mid B$</li>
 <li>If $B$ is unobserved, then $A \not\perp C$</li>
@@ -11886,7 +11924,7 @@ $$p(x_{i} \mid x_{i - 1}, ..., x_{1}) = p(x_{i} \mid x_{A_i})$$<ul>
 </li>
 <li><strong>Intuition</strong>: $B$ contains all the information that determines the outcomes of $C$; once it is observed, there is nothing else that affects $C$'s outcomes.</li>
 </ul>
-<h4 id="V-Structure">V-Structure<a class="anchor-link" href="#V-Structure">&#182;</a></h4><ul>
+<h5 id="V-Structure">V-Structure<a class="anchor-link" href="#V-Structure">&#182;</a></h5><ul>
 <li>If $G$ is $A \rightarrow C \leftarrow B$, then knowing $C$ couples $A$ and $B$.<ul>
 <li>If $C$ is unobserved, then $A \perp B$</li>
 <li>If $C$ is observed, then $A \not\perp B \mid C$</li>
@@ -11901,29 +11939,26 @@ $$p(x_{i} \mid x_{i - 1}, ..., x_{1}) = p(x_{i} \mid x_{A_i})$$<ul>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="$n$-Variable-Independencies-in-Directed-Graphs">$n$-Variable Independencies in Directed Graphs<a class="anchor-link" href="#$n$-Variable-Independencies-in-Directed-Graphs">&#182;</a></h3><h4 id="$d$-separation-(Directed)">$d$-separation (Directed)<a class="anchor-link" href="#$d$-separation-(Directed)">&#182;</a></h4><ul>
-<li>$Q$ and $W$ are $d$-separated when variables $O$ are observed if they are not connected by an active path.</li>
+<h4 id="$n$-Variable-Independencies-in-Directed-Graphs---How-do-you-identify-the-pairs-of-independent-variables-in-a-$n$-variable-Bayesian-network?">$n$-Variable Independencies in Directed Graphs - How do you identify the pairs of independent variables in a $n$-variable Bayesian network?<a class="anchor-link" href="#$n$-Variable-Independencies-in-Directed-Graphs---How-do-you-identify-the-pairs-of-independent-variables-in-a-$n$-variable-Bayesian-network?">&#182;</a></h4><h5 id="$d$-separation-(a.k.a.-Independence-Separation)">$d$-separation (a.k.a. Independence Separation)<a class="anchor-link" href="#$d$-separation-(a.k.a.-Independence-Separation)">&#182;</a></h5><ul>
+<li>$Q$ and $W$ are <strong>$d$-separated</strong> when variables $O$ are observed if they are not connected by an active path.</li>
 </ul>
-<h4 id="Active-Path">Active Path<a class="anchor-link" href="#Active-Path">&#182;</a></h4><ul>
-<li>An undirected path in the Bayesian Network structure $G$ is called active given observed variables $O$ if for every consecutive triple of variables $X$, $Y$, $Z$ on the path, one of the following holds:<ul>
-<li>$X \leftarrow Y \leftarrow Z$, and $Y$ is unobserved $Y \not\in O$</li>
-<li>$X \rightarrow Y \rightarrow Z$, and $Y$ is unobserved $Y \not\in O$</li>
-<li>$X \leftarrow Y \rightarrow Z$, and $Y$ is unobserved $Y \not\in O$</li>
-<li>$X \rightarrow Y \leftarrow Z$, and $Y$ or any of its descendants are observed</li>
+<h5 id="Active-Path-(a.k.a.-Dependent-Path)">Active Path (a.k.a. Dependent Path)<a class="anchor-link" href="#Active-Path-(a.k.a.-Dependent-Path)">&#182;</a></h5><ul>
+<li>An undirected path in the Bayesian Network structure $G$ is called <strong>active</strong> given observed variables $O$ if for every consecutive triple of variables $X$, $Y$, $Z$ on the path, one of the following holds:<ul>
+<li><strong>Evidential Trail</strong>: $X \leftarrow Y \leftarrow Z$, and $Y$ is unobserved $Y \not\in O$</li>
+<li><strong>Causal Trail</strong>: $X \rightarrow Y \rightarrow Z$, and $Y$ is unobserved $Y \not\in O$</li>
+<li><strong>Common Cause</strong>: $X \leftarrow Y \rightarrow Z$, and $Y$ is unobserved $Y \not\in O$</li>
+<li><strong>Common Effect</strong>: $X \rightarrow Y \leftarrow Z$, and $Y$ or any of its descendants are observed</li>
 </ul>
 </li>
 </ul>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Independence-Maps">Independence Maps<a class="anchor-link" href="#Independence-Maps">&#182;</a></h3><ul>
+<h5 id="Independence-Maps">Independence Maps<a class="anchor-link" href="#Independence-Maps">&#182;</a></h5><ul>
 <li>Let $I(G) = \{(X \perp Y \mid Z) : X, Y \text{ are } d\text{-sep given } Z\}$ be a set of variables that are $d$-separated in $G$.</li>
-<li>If $p$ factorizes over $G$, then $I(G) \subseteq I(p)$, then $G$ is an $I$-map for $p$.</li>
+<li>If a probability distribution $p$ factorizes over $G$, then $I(G) \subseteq I(p)$.<ul>
+<li>$G$ is an $I$-map (<strong>independence map</strong>) for $p$.</li>
+</ul>
+</li>
+<li>However, a probability distribution $q$ can factorize over $G$, yet have independencies that are not captured in $G$.</li>
+<li><strong>Important Note</strong>: A Bayesian network cannot perfectly represent all probability distributions.</li>
 </ul>
 
 </div>
@@ -11933,13 +11968,120 @@ $$p(x_{i} \mid x_{i - 1}, ..., x_{1}) = p(x_{i} \mid x_{A_i})$$<ul>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Equivalence-of-Bayesian-Networks">Equivalence of Bayesian Networks<a class="anchor-link" href="#Equivalence-of-Bayesian-Networks">&#182;</a></h3><ul>
-<li>$G_1$ and $G_2$ are $I$-equivalent...<ul>
+<h4 id="Equivalence---How-can-Bayesian-networks-be-equivalent?">Equivalence - How can Bayesian networks be equivalent?<a class="anchor-link" href="#Equivalence---How-can-Bayesian-networks-be-equivalent?">&#182;</a></h4><ul>
+<li>$G_1$ and $G_2$ are <strong>$I$-equivalent</strong>...<ul>
 <li>If they encode the same dependencies: $I(G_1) = I(G_2)$.</li>
-<li>If they have the same skeleton and the same v-structures.</li>
+<li>If they have the same skeleton and the same v-structures.<ul>
+<li>A <strong>skeleton</strong> is an undirected graph obtained by dropping the directionality of the arrows.</li>
+</ul>
+</li>
 <li>If the $d$-separation between variables is the same.</li>
 </ul>
 </li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Example-Problem-1">Example Problem 1<a class="anchor-link" href="#Example-Problem-1">&#182;</a></h4><p><img src="images/BN_1.png" alt="Problem 1"></p>
+<h5 id="Question">Question<a class="anchor-link" href="#Question">&#182;</a></h5><ul>
+<li>Are $X_{1}$ and $X_{6}$ $d$-separated given $\{X_{2}, X_{3}\}$?</li>
+</ul>
+<h5 id="Solution">Solution<a class="anchor-link" href="#Solution">&#182;</a></h5><ol>
+<li><strong>Path</strong>: $X_{1} \rightarrow X_{2} \rightarrow X_{6}$<ol>
+<li><em>Consecutive Triple</em>: $X_{1} \rightarrow X_{2} \rightarrow X_{6}$<ul>
+<li>Although $X_{2}$ is observed, the <em>common effect</em> does not hold.</li>
+</ul>
+</li>
+<li>As not all the consecutive triples hold, this path is not <em>active</em>.</li>
+</ol>
+</li>
+<li><strong>Path</strong>: $X_{1} \rightarrow X_{3} \rightarrow X_{5} \rightarrow X_{6}$<ol>
+<li><em>Consecutive Triple</em>: $X_{1} \rightarrow X_{3} \rightarrow X_{5}$<ul>
+<li>Although $X_{3}$ is observed, the <em>common effect</em> does not hold.</li>
+</ul>
+</li>
+<li><em>Consecutive Triple</em>: $X_{3} \rightarrow X_{5} \rightarrow X_{6}$<ul>
+<li>As $X_{5}$ is unobserved, the <em>causal trail</em> does hold.</li>
+</ul>
+</li>
+<li>As not all the consecutive triples hold, this path is not <em>active</em>.</li>
+</ol>
+</li>
+<li>As there are no active paths between $X_{1}$ and $X_{6}$, they are $d$-separated given $\{X_{2}, X_{3}\}$.</li>
+</ol>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Example-Problem-2">Example Problem 2<a class="anchor-link" href="#Example-Problem-2">&#182;</a></h4><p><img src="images/BN_2.png" alt="Problem 2"></p>
+<h5 id="Question">Question<a class="anchor-link" href="#Question">&#182;</a></h5><ul>
+<li>Are $X_{2}$ and $X_{3}$ $d$-separated given $\{X_{1}, X_{6}\}$?</li>
+</ul>
+<h5 id="Solution">Solution<a class="anchor-link" href="#Solution">&#182;</a></h5><ol>
+<li><strong>Path</strong>: $X_{2} \leftarrow X_{1} \rightarrow X_{3}$<ol>
+<li><em>Consecutive Triple</em>: $X_{2} \leftarrow X_{1} \rightarrow X_{3}$<ul>
+<li>Although $X_{1}$ is observed, the <em>common effect</em> does not hold.</li>
+</ul>
+</li>
+<li>As not all the consecutive triples hold, this path is not <em>active</em>.</li>
+</ol>
+</li>
+<li><strong>Path</strong>: $X_{2} \rightarrow X_{6} \leftarrow X_{5} \leftarrow X_{3}$<ol>
+<li><em>Consecutive Triple</em>: $X_{2} \rightarrow X_{6} \leftarrow X_{5}$<ul>
+<li>As $X_{6}$ is observed, the <em>common effect</em> does hold.</li>
+</ul>
+</li>
+<li><em>Consecutive Triple</em>: $X_{6} \leftarrow X_{5} \leftarrow X_{3}$<ul>
+<li>As $X_{5}$ is unobserved. the <em>causal trail</em> does hold.</li>
+</ul>
+</li>
+<li>As all the consecutive triples hold, this path is <em>active</em>.</li>
+</ol>
+</li>
+<li>As there exists an active path between $X_{2}$ and $X_{3}$, they are not $d$-separated given $\{X_{1}, X_{6}\}$.</li>
+</ol>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Markov-Random-Fields-(Undirected-Probabilistic-Graphical-Model)">Markov Random Fields (Undirected Probabilistic Graphical Model)<a class="anchor-link" href="#Markov-Random-Fields-(Undirected-Probabilistic-Graphical-Model)">&#182;</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>TODO</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Inference">Inference<a class="anchor-link" href="#Inference">&#182;</a></h2><ul>
+<li><strong>Problem</strong>: <em>Given a probabilistic model, how do we obtain answers to relevant questions about the world?</em><ul>
+<li><strong>Marginal Inference</strong>: <em>What is the probability of a given variable in our model after we sum everything else out?</em></li>
+<li><strong>Maximum A Posteriori</strong>: <em>What is the most likely assignment of variables?</em></li>
+<li><em>Naive Complexity</em>: NP-Hard</li>
+</ul>
+</li>
+<li><strong>Solution</strong>: TODO.</li>
 </ul>
 
 </div>
