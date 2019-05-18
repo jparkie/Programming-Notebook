@@ -11834,8 +11834,8 @@ div#notebook {
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h4 id="Definition---What-is-a-Bayesian-network?">Definition - What is a Bayesian network?<a class="anchor-link" href="#Definition---What-is-a-Bayesian-network?">&#182;</a></h4><ul>
-<li>A <strong>Bayesian network</strong> is a directed graph $G = (V, E)$ with the following:<ul>
-<li><em>Nodes</em>: A random variable $x_{i}$ for each node $i \in V$.</li>
+<li>A <strong>Bayesian network</strong> is a directed graph $G$ with the following:<ul>
+<li><em>Nodes</em>: A random variable $x_{i}$.</li>
 <li><em>Edges</em>: A conditional probability distribution (CPD) $p(x_{i} \mid x_{A_{i}})$ per node, specifying the probability of $x_i$ conditioned on its parent's values.</li>
 </ul>
 </li>
@@ -11875,8 +11875,8 @@ $$p(x_{i} \mid x_{i - 1}, ..., x_{2}, x_{1}) = p(x_{i} \mid x_{A_{i}})$$<ul>
 </li>
 <li>If each variable takes $d$ values and has at most $k$ ancestors, then each probability table has at most $O(d^{k + 1})$ entries.</li>
 <li><strong>Naive Representation Space Complexity</strong>: $O(d^n)$</li>
-<li><strong>Bayesian Networks Representation Space Complexity</strong>: $O(nd^{k + 1})$
-$$\therefore \text{Bayesian Networks Representation} \le \text{Naive Representation}$$</li>
+<li><strong>Bayesian Networks Representation Space Complexity</strong>: $O(n \cdot d^{k + 1})$
+$$\approx \text{Bayesian Networks Representation} \le \text{Naive Representation}$$</li>
 </ul>
 
 </div>
@@ -12071,7 +12071,130 @@ $$\therefore \text{Bayesian Networks Representation} \le \text{Naive Representat
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>TODO</p>
+<h4 id="Definition---What-is-a-Markov-random-field?">Definition - What is a Markov random field?<a class="anchor-link" href="#Definition---What-is-a-Markov-random-field?">&#182;</a></h4><ul>
+<li>A <strong>Markov random field</strong> is an undirected graph $G$ with the following:<ul>
+<li><em>Nodes</em>: A random variable $x_{i}$.</li>
+<li><em>Fully Connected Subgraphs</em>: An optional factor $\phi_{c}(x_{c})$ per clique, specifying the level of coupling (<strong>potentials</strong>) between all the dependent variables within the clique.</li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Representation---How-does-a-Markov-random-field-express-a-probability-distribution?">Representation - How does a Markov random field express a probability distribution?<a class="anchor-link" href="#Representation---How-does-a-Markov-random-field-express-a-probability-distribution?">&#182;</a></h4><ol>
+<li>Let $p$ be a probability distribution.</li>
+<li>A Markov random field representation of $p$ is the following:
+$$p(x_{1}, x_{2}, ..., x_{n}) = \frac{1}{Z} \prod_{c \in C} \phi_{c}(x_{c})$$<ul>
+<li>Where $C$ is the set of cliques of $G$.</li>
+<li>Where $\phi_{c}$ is a <strong>factor</strong> (nonnegative function) over the variables in a clique.</li>
+<li>Where $Z$ is a <strong>normalizing constant</strong> that ensures that $p$ sums to one.
+$$Z = \sum_{x_{1}, x_{2}, ..., x_{n}} \prod_{c \in C} \phi_{c}(x_{c})$$</li>
+</ul>
+</li>
+</ol>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Space-Complexity---How-compact-is-a-Markov-random-field?">Space Complexity - How compact is a Markov random field?<a class="anchor-link" href="#Space-Complexity---How-compact-is-a-Markov-random-field?">&#182;</a></h4><h5 id="Factor-Product">Factor Product<a class="anchor-link" href="#Factor-Product">&#182;</a></h5><ul>
+<li>Let $A$, $B$, and $C$ be three disjoint sets of variables.</li>
+<li>Let $\phi_{1}(A, B)$ and $\phi_{2}(B, C)$ be two factors.</li>
+<li>Let $\psi(A, B, C)$ be the factor product $\phi_{1} \times \phi_{2}$.
+$$\psi(A, B, C) = \phi_{1}(A, B) \cdot \phi_{2}(B, C)$$<ul>
+<li>Where the two factors are multiplied for common values of $B$.</li>
+</ul>
+</li>
+</ul>
+<h5 id="Binary-Factor-Tables">Binary Factor Tables<a class="anchor-link" href="#Binary-Factor-Tables">&#182;</a></h5><ul>
+<li>Each of the optional factors $\phi_{c}(x_{c})$ can be expressed as a product of <strong>binary factor tables</strong> $\phi(X, Y)$:<ul>
+<li><em>Rows</em>: Values of $X$</li>
+<li><em>Columns</em>: Values of $Y$</li>
+<li><em>Cells</em>: Values of $\phi(X, Y)$</li>
+</ul>
+</li>
+<li>If each variable takes $d$ values, each binary factor table has at most $O(d^{2})$ entries.</li>
+<li><strong>Markov Random Fields Representation Space Complexity</strong>: $O(E \cdot d^{2})$<ul>
+<li>Where $E$ is the number of edges in a Markov random field.
+$$\approx \text{Markov Random Field Representation} \le \text{Naive Representation}$$</li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Markov-Random-Fields-vs.-Bayesian-Networks---What-are-the-advantages-and-disadvantages-of-Markov-random-fields?">Markov Random Fields vs. Bayesian Networks - What are the advantages and disadvantages of Markov random fields?<a class="anchor-link" href="#Markov-Random-Fields-vs.-Bayesian-Networks---What-are-the-advantages-and-disadvantages-of-Markov-random-fields?">&#182;</a></h4><h5 id="Advantages">Advantages<a class="anchor-link" href="#Advantages">&#182;</a></h5><ul>
+<li><em>Applicable for Variable Dependencies Without Natural Directionality</em></li>
+<li><em>Succinctly Express Dependencies Not Easily Expressible in Bayesian Networks</em></li>
+</ul>
+<h5 id="Disadvantages">Disadvantages<a class="anchor-link" href="#Disadvantages">&#182;</a></h5><ul>
+<li><em>Cannot Express Dependencies Easily Expressible in Bayesian Networks</em><ul>
+<li><em>e.g., V-Structures</em></li>
+</ul>
+</li>
+<li><em>Computing Normalization Constant $Z$ Is NP-Hard</em></li>
+<li><em>Generally Require Approximation Techniques</em></li>
+<li><em>Difficult to Interpret</em></li>
+<li><em>Easier to Construct Bayesian Networks</em></li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Moralization---What-is-moralization?">Moralization - What is moralization?<a class="anchor-link" href="#Moralization---What-is-moralization?">&#182;</a></h4><p><img src="images/MRF_1.png" alt="Moralization"></p>
+<ul>
+<li>Bayesian networks are a special case of Markov random fields with factors corresponding to conditional probability distributions and a normalizing constant of one.</li>
+<li><strong>Moralization</strong>: Bayesian Network $\to$ Markov Random Field<ol>
+<li>Add side edges to all parents of a given node.</li>
+<li>Remove the directionality of all the edges.</li>
+</ol>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="$n$-Variable-Independencies-in-Undirected-Graphs---How-do-you-identify-independent-variables-in-a-$n$-variable-Markov-random-field?">$n$-Variable Independencies in Undirected Graphs - How do you identify independent variables in a $n$-variable Markov random field?<a class="anchor-link" href="#$n$-Variable-Independencies-in-Undirected-Graphs---How-do-you-identify-independent-variables-in-a-$n$-variable-Markov-random-field?">&#182;</a></h4><ol>
+<li>If variables $X$ and $Y$ are connected by a path of unobserved variables, then $X$ and $Y$ are dependent.</li>
+<li>If variable $X$'s neighbors are all observed, then $X$ is independent of all the other variables.</li>
+<li>If a set of observed variables forms a cut-set between two halves of the graph, then variables in one half are independent from ones in the other.</li>
+</ol>
+<h5 id="Cut-Set-Variable-Independencies">Cut-Set Variable Independencies<a class="anchor-link" href="#Cut-Set-Variable-Independencies">&#182;</a></h5><p><img src="images/MRF_2.png" alt="Cut-Set Variable Independencies"></p>
+<h5 id="Markov-Blanket">Markov Blanket<a class="anchor-link" href="#Markov-Blanket">&#182;</a></h5><ul>
+<li>The <strong>Markov blanket</strong> $U$ of a variable $X$ is the minimal set of nodes such that $X$ is independent from the rest of the graph if $U$ is observed.
+$$X \perp (\mathcal{X} - \{X\} - U) \mid U$$</li>
+<li>In an undirected graph, the Markov blanket is a node's neighborhood.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Conditional-Random-Fields---TODO">Conditional Random Fields - TODO<a class="anchor-link" href="#Conditional-Random-Fields---TODO">&#182;</a></h4><p>TODO</p>
 
 </div>
 </div>
