@@ -11866,7 +11866,7 @@ $$p(x_{i} \mid x_{i - 1}, ..., x_{2}, x_{1}) = p(x_{i} \mid x_{A_{i}})$$<ul>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Space-Complexity---How-compact-is-a-Bayesian-network-representation?">Space Complexity - How compact is a Bayesian network representation?<a class="anchor-link" href="#Space-Complexity---How-compact-is-a-Bayesian-network-representation?">&#182;</a></h4><ul>
+<h4 id="Space-Complexity---How-compact-is-a-Bayesian-network?">Space Complexity - How compact is a Bayesian network?<a class="anchor-link" href="#Space-Complexity---How-compact-is-a-Bayesian-network?">&#182;</a></h4><ul>
 <li>Consider each of the factors $p(x_{i} \mid x_{A_{i}})$ as a <strong>probability table</strong>:<ul>
 <li><em>Rows</em>: Values of $x_{i}$</li>
 <li><em>Columns</em>: Values of $x_{A_{i}}$</li>
@@ -11886,12 +11886,12 @@ $$\therefore \text{Bayesian Networks Representation} \le \text{Naive Representat
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Independence-Assumptions---Why-should-we-care-about-the-independence-assumptions-introduced-by-a-Bayesian-network?">Independence Assumptions - Why should we care about the independence assumptions introduced by a Bayesian network?<a class="anchor-link" href="#Independence-Assumptions---Why-should-we-care-about-the-independence-assumptions-introduced-by-a-Bayesian-network?">&#182;</a></h4><ul>
+<h4 id="Independence-Assumptions---Why-are-the-independence-assumptions-of-a-Bayesian-network-important-to-identify?">Independence Assumptions - Why are the independence assumptions of a Bayesian network important to identify?<a class="anchor-link" href="#Independence-Assumptions---Why-are-the-independence-assumptions-of-a-Bayesian-network-important-to-identify?">&#182;</a></h4><ul>
 <li>A Bayesian network expresses a probability distribution $p$ via products of smaller, local conditional probability distributions (one for each variable).</li>
-<li>A Bayesian network introduces assumptions into the model of $p$ that certain variables are independent.</li>
-<li><strong>Important Note</strong>: Which independence assumptions are we exactly making by using a model Bayesian network with a given structure described by $G$?<ul>
-<li><em>Important for Correctness: Are these independence assumptions valid?</em></li>
-<li><em>Important for Efficiency: Are there additional independence assumptions to compact the representation?</em></li>
+<li>These smaller, local conditional probability distributions introduces assumptions into the model of $p$ that certain variables are independent.</li>
+<li><strong>Important Note</strong>: Which independence assumptions are we exactly making by using a Bayesian network?<ul>
+<li><em>Correctness: Are these independence assumptions correct?</em></li>
+<li><em>Efficiency: Do these independence assumptions efficiently compact the representation?</em></li>
 </ul>
 </li>
 </ul>
@@ -11903,7 +11903,7 @@ $$\therefore \text{Bayesian Networks Representation} \le \text{Naive Representat
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="$3$-Variable-Independencies-in-Directed-Graphs---How-do-you-identify-the-pairs-of-independent-variables-in-a-$3$-variable-Bayesian-network?">$3$-Variable Independencies in Directed Graphs - How do you identify the pairs of independent variables in a $3$-variable Bayesian network?<a class="anchor-link" href="#$3$-Variable-Independencies-in-Directed-Graphs---How-do-you-identify-the-pairs-of-independent-variables-in-a-$3$-variable-Bayesian-network?">&#182;</a></h4><ul>
+<h4 id="$3$-Variable-Independencies-in-Directed-Graphs---How-do-you-identify-independent-variables-in-a-$3$-variable-Bayesian-network?">$3$-Variable Independencies in Directed Graphs - How do you identify independent variables in a $3$-variable Bayesian network?<a class="anchor-link" href="#$3$-Variable-Independencies-in-Directed-Graphs---How-do-you-identify-independent-variables-in-a-$3$-variable-Bayesian-network?">&#182;</a></h4><ul>
 <li>Let $x \perp y$ indicate that variables $x$ and $y$ are independent.</li>
 <li>Let $G$ be a Bayesian network with three nodes: $A$, $B$, and $C$.</li>
 </ul>
@@ -11938,11 +11938,19 @@ $$\therefore \text{Bayesian Networks Representation} \le \text{Naive Representat
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="$n$-Variable-Independencies-in-Directed-Graphs---How-do-you-identify-the-pairs-of-independent-variables-in-a-$n$-variable-Bayesian-network?">$n$-Variable Independencies in Directed Graphs - How do you identify the pairs of independent variables in a $n$-variable Bayesian network?<a class="anchor-link" href="#$n$-Variable-Independencies-in-Directed-Graphs---How-do-you-identify-the-pairs-of-independent-variables-in-a-$n$-variable-Bayesian-network?">&#182;</a></h4><h5 id="$d$-separation-(a.k.a.-Independence-Separation)">$d$-separation (a.k.a. Independence Separation)<a class="anchor-link" href="#$d$-separation-(a.k.a.-Independence-Separation)">&#182;</a></h5><ul>
-<li>$Q$ and $W$ are <strong>$d$-separated</strong> when variables $O$ are observed if they are not connected by an active path.</li>
+<h4 id="$n$-Variable-Independencies-in-Directed-Graphs---How-do-you-identify-independent-variables-in-a-$n$-variable-Bayesian-network?">$n$-Variable Independencies in Directed Graphs - How do you identify independent variables in a $n$-variable Bayesian network?<a class="anchor-link" href="#$n$-Variable-Independencies-in-Directed-Graphs---How-do-you-identify-independent-variables-in-a-$n$-variable-Bayesian-network?">&#182;</a></h4><ul>
+<li>Let $I(p)$ be the set of all independencies that hold for a probability distribution $p$.</li>
+<li>Let $I(G) = \{(X \perp Y \mid Z) : X, Y \text{ are } d\text{-sep given } Z\}$ be a set of variables that are $d$-separated in $G$.</li>
+<li>If the probability distribution $p$ factorizes over $G$, then $I(G) \subseteq I(p)$ and $G$ is an $I$-map (<strong>independence map</strong>) for $p$.</li>
+<li><strong>Important Note 1</strong>: Thus, variables that are $d$-separated in $G$ are independent in $p$.</li>
+<li><strong>Important Note 2</strong>: However, a probability distribution $q$ can factorize over $G$, yet have independencies that are not captured in $G$.</li>
+<li><strong>Important Caveat</strong>: A Bayesian network cannot perfectly represent all probability distributions.</li>
 </ul>
-<h5 id="Active-Path-(a.k.a.-Dependent-Path)">Active Path (a.k.a. Dependent Path)<a class="anchor-link" href="#Active-Path-(a.k.a.-Dependent-Path)">&#182;</a></h5><ul>
-<li>An undirected path in the Bayesian Network structure $G$ is called <strong>active</strong> given observed variables $O$ if for every consecutive triple of variables $X$, $Y$, $Z$ on the path, one of the following holds:<ul>
+<h5 id="$d$-separation-(a.k.a.-Directed-Separation)">$d$-separation (a.k.a. Directed Separation)<a class="anchor-link" href="#$d$-separation-(a.k.a.-Directed-Separation)">&#182;</a></h5><ul>
+<li>$Q$ and $W$ are <strong>$d$-separated</strong> when variables $O$ are observed if they are <strong>NOT CONNECTED</strong> by an active path.</li>
+</ul>
+<h5 id="Active-Path">Active Path<a class="anchor-link" href="#Active-Path">&#182;</a></h5><ul>
+<li>An undirected path in the Bayesian Network structure $G$ is called <strong>active</strong> given observed variables $O$ if for <strong>EVERY CONSECUTIVE TRIPLE</strong> of variables $X$, $Y$, $Z$ on the path, one of the following holds:<ul>
 <li><strong>Evidential Trail</strong>: $X \leftarrow Y \leftarrow Z$, and $Y$ is unobserved $Y \not\in O$</li>
 <li><strong>Causal Trail</strong>: $X \rightarrow Y \rightarrow Z$, and $Y$ is unobserved $Y \not\in O$</li>
 <li><strong>Common Cause</strong>: $X \leftarrow Y \rightarrow Z$, and $Y$ is unobserved $Y \not\in O$</li>
@@ -11950,15 +11958,6 @@ $$\therefore \text{Bayesian Networks Representation} \le \text{Naive Representat
 </ul>
 </li>
 </ul>
-<h5 id="Independence-Maps">Independence Maps<a class="anchor-link" href="#Independence-Maps">&#182;</a></h5><ul>
-<li>Let $I(G) = \{(X \perp Y \mid Z) : X, Y \text{ are } d\text{-sep given } Z\}$ be a set of variables that are $d$-separated in $G$.</li>
-<li>If a probability distribution $p$ factorizes over $G$, then $I(G) \subseteq I(p)$.<ul>
-<li>$G$ is an $I$-map (<strong>independence map</strong>) for $p$.</li>
-</ul>
-</li>
-<li>However, a probability distribution $q$ can factorize over $G$, yet have independencies that are not captured in $G$.</li>
-<li><strong>Important Note</strong>: A Bayesian network cannot perfectly represent all probability distributions.</li>
-</ul>
 
 </div>
 </div>
@@ -11967,17 +11966,25 @@ $$\therefore \text{Bayesian Networks Representation} \le \text{Naive Representat
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Equivalence---How-can-Bayesian-networks-be-equivalent?">Equivalence - How can Bayesian networks be equivalent?<a class="anchor-link" href="#Equivalence---How-can-Bayesian-networks-be-equivalent?">&#182;</a></h4><ul>
+<h4 id="Equivalence---When-are-two-Bayesian-networks-$I$-equivalent?">Equivalence - When are two Bayesian networks $I$-equivalent?<a class="anchor-link" href="#Equivalence---When-are-two-Bayesian-networks-$I$-equivalent?">&#182;</a></h4><ul>
 <li>$G_1$ and $G_2$ are <strong>$I$-equivalent</strong>...<ul>
 <li>If they encode the same dependencies: $I(G_1) = I(G_2)$.</li>
-<li>If they have the same skeleton and the same v-structures.<ul>
-<li>A <strong>skeleton</strong> is an undirected graph obtained by dropping the directionality of the arrows.</li>
-</ul>
-</li>
+<li>If they have the same skeleton and the same v-structures.</li>
 <li>If the $d$-separation between variables is the same.</li>
 </ul>
 </li>
 </ul>
+<h5 id="Skeleton">Skeleton<a class="anchor-link" href="#Skeleton">&#182;</a></h5><p><img src="images/BN_1.png" alt="Skeleton"></p>
+<ul>
+<li>A <strong>skeleton</strong> is an undirected graph obtained by dropping the directionality of the arrows.<ul>
+<li>(a) is Cascade</li>
+<li>(b) is Cascade</li>
+<li>(c) is Common Parent</li>
+<li>(d) is V-Structure</li>
+<li>(a), (b), (c), and (d) have the same skeleton.</li>
+</ul>
+</li>
+</ul>
 
 </div>
 </div>
@@ -11986,7 +11993,7 @@ $$\therefore \text{Bayesian Networks Representation} \le \text{Naive Representat
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Example-Problem-1">Example Problem 1<a class="anchor-link" href="#Example-Problem-1">&#182;</a></h4><p><img src="images/BN_1.png" alt="Problem 1"></p>
+<h4 id="Example-Problem-1---$d$-separation">Example Problem 1 - $d$-separation<a class="anchor-link" href="#Example-Problem-1---$d$-separation">&#182;</a></h4><p><img src="images/BN_P1.png" alt="Problem 1"></p>
 <h5 id="Question">Question<a class="anchor-link" href="#Question">&#182;</a></h5><ul>
 <li>Are $X_{1}$ and $X_{6}$ $d$-separated given $\{X_{2}, X_{3}\}$?</li>
 </ul>
@@ -12021,7 +12028,7 @@ $$\therefore \text{Bayesian Networks Representation} \le \text{Naive Representat
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Example-Problem-2">Example Problem 2<a class="anchor-link" href="#Example-Problem-2">&#182;</a></h4><p><img src="images/BN_2.png" alt="Problem 2"></p>
+<h4 id="Example-Problem-2---$d$-separation">Example Problem 2 - $d$-separation<a class="anchor-link" href="#Example-Problem-2---$d$-separation">&#182;</a></h4><p><img src="images/BN_P2.png" alt="Problem 2"></p>
 <h5 id="Question">Question<a class="anchor-link" href="#Question">&#182;</a></h5><ul>
 <li>Are $X_{2}$ and $X_{3}$ $d$-separated given $\{X_{1}, X_{6}\}$?</li>
 </ul>
