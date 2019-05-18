@@ -12077,6 +12077,9 @@ $$\approx \text{Bayesian Networks Representation} \le \text{Naive Representation
 <li><em>Fully Connected Subgraphs</em>: An optional factor $\phi_{c}(x_{c})$ per clique, specifying the level of coupling (<strong>potentials</strong>) between all the dependent variables within the clique.</li>
 </ul>
 </li>
+<li><strong>Important Note</strong>:<blockquote><p>...SPECIFYING THE LEVEL OF COUPLING BETWEEN ALL THE DEPENDENT VARIABLES WITHIN THE CLIQUE...</p>
+</blockquote>
+</li>
 </ul>
 
 </div>
@@ -12194,7 +12197,74 @@ $$X \perp (\mathcal{X} - \{X\} - U) \mid U$$</li>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Conditional-Random-Fields---TODO">Conditional Random Fields - TODO<a class="anchor-link" href="#Conditional-Random-Fields---TODO">&#182;</a></h4><p>TODO</p>
+<h4 id="Conditional-Random-Fields---What-are-conditional-random-fields?">Conditional Random Fields - What are conditional random fields?<a class="anchor-link" href="#Conditional-Random-Fields---What-are-conditional-random-fields?">&#182;</a></h4><h5 id="Definition">Definition<a class="anchor-link" href="#Definition">&#182;</a></h5><ul>
+<li>A <strong>conditional random field</strong> is a Markov random field over variables $\mathcal{X} \cup \mathcal{Y}$ which specifies a conditional distribution:
+$$
+\begin{align}
+P(y \mid x) &amp;= \frac{1}{Z(x)} \prod_{c \in C} \phi_{c}(x_{c}, y_{c}) \\
+Z(x) &amp;= \sum_{y \in \mathcal{Y}} \prod_{c \in C} \phi_{c}(x_{c}, y_{c})
+\end{align}
+$$<ul>
+<li>Where $x \in \mathcal{X}$ and $y \in \mathcal{Y}$ are <strong>VECTOR-VALUED</strong> variables.</li>
+<li>Where $Z(x)$ is the partition function.</li>
+</ul>
+</li>
+<li><strong>Important Note 1</strong>: A conditional random field results in an instantiation of a new Markov random field for each input $x$.</li>
+<li><strong>Important Note 2</strong>: A conditional random field is useful for structured prediction in which the output labels are predicted considering the neighboring input samples.<ul>
+<li><em>See <a href="https://ermongroup.github.io/cs228-notes/representation/undirected/#conditional-random-fields">Stanford CS228 - Markov Random Fields: Conditional Random Fields (OCR Example)</a>.</em></li>
+</ul>
+</li>
+</ul>
+<h5 id="Features">Features<a class="anchor-link" href="#Features">&#182;</a></h5><ul>
+<li>Assume the factors $\phi_{c}(x_{c}, y_{c})$ are of the following form:
+$$\phi_{c}(x_{c}, y_{c}) = \exp(w_{c}^{T} f_{c}(x_{c}, y_{c}))$$<ul>
+<li>Where $f_{c}(x_{c}, y_{c})$ can be an arbitrary set of features describing the compatibility between $x_{c}$ and $y_{c}$.</li>
+<li>Where $w_{c}^{T}$ is the transposed weight matrix.</li>
+</ul>
+</li>
+<li>Accordingly, $f_{c}(x_{c}, y_{c})$ allows arbitrarily complex features.<ul>
+<li>e.g., $f(x, y_{i})$ are features that depend on the entirety of input samples $x$.</li>
+<li>e.g., $f(y_{i}, y_{i + 1})$ are features that depend on successive pairs of output labels $y$.</li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Conditonal-Random-Fields-vs.-Markov-Random-Fields---Why-is-a-conditional-random-field-a-special-case-of-Markov-random-fields?">Conditonal Random Fields vs. Markov Random Fields - Why is a conditional random field a special case of Markov random fields?<a class="anchor-link" href="#Conditonal-Random-Fields-vs.-Markov-Random-Fields---Why-is-a-conditional-random-field-a-special-case-of-Markov-random-fields?">&#182;</a></h4><ul>
+<li>If we were to model $p(x, y)$ using a Markov random field, then we need to fit two probability distributions to the data: $p(y \mid x)$ and $p(x)$.<ul>
+<li><em>Remember Baye's Rule</em>: $p(x, y) = p(y \mid x) \cdot p(x)$</li>
+</ul>
+</li>
+<li>However, if all we are interested in is predicting $y$ given $x$, then modeling $p(x)$ is expensive and unnecessary.
+$$\text{Prediction} \implies \text{CRF} &gt; \text{MRF}$$</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Factor-Graphs---What-is-a-factor-graph?-Why-does-a-factor-graph-exist?">Factor Graphs - What is a factor graph? Why does a factor graph exist?<a class="anchor-link" href="#Factor-Graphs---What-is-a-factor-graph?-Why-does-a-factor-graph-exist?">&#182;</a></h4><p><img src="images/MRF_3.png" alt="Factor Graph"></p>
+<ul>
+<li>A <strong>factor graph</strong> is a bipartite graph where one group is the variables in the distribution being modeled, and the other group is the factors defined on these variables.<ul>
+<li><em>Edges Between Factors and Variables</em></li>
+</ul>
+</li>
+<li><strong>Side Note</strong>: A <strong>bipartite graph</strong> is a graph whose vertices are divided into two disjoint and independent sets.<ul>
+<li><em>Set 1: Variables</em></li>
+<li><em>Set 2: Factors</em></li>
+</ul>
+</li>
+<li><strong>Important Note</strong>: Use a factor graph to identify what variables a factor depends on when computing probability distributions.</li>
+</ul>
 
 </div>
 </div>
