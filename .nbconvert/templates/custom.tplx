@@ -1,0 +1,6 @@
+((* extends 'article.tplx' *))
+
+((* block commands *))
+\setcounter{secnumdepth}{0}
+((( super() )))
+((* endblock commands *))
