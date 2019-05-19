@@ -3,7 +3,7 @@ repos:
     hooks:
     -   id: nbconvert
         name: nbconvert
-        entry: ipython nbconvert --to html --template full
+        entry: jupyter nbconvert --TemplateExporter.exclude_rawBool=True --to html --template full
         language: system
         files: .ipynb
         types: [file]
