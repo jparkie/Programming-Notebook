@@ -13544,10 +13544,131 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Layered-Network-Model">Layered Network Model<a class="anchor-link" href="#Layered-Network-Model">&#182;</a></h3><p><img src="images/Communication_1.png" alt="Layered Network Model"></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Remote-Procedure-Calls">Remote Procedure Calls<a class="anchor-link" href="#Remote-Procedure-Calls">&#182;</a></h3><ul>
 <li><strong>Remote Procedure Calls</strong>: A transient communication abstraction implemented using a client-server protocol.</li>
 <li><strong>Client Stub</strong>: Translate a RPC on the client.</li>
 <li><strong>Server Stub</strong>: Translate a RPC on the server.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Steps-of-a-RPC">Steps of a RPC<a class="anchor-link" href="#Steps-of-a-RPC">&#182;</a></h3><p><img src="images/Communication_2.png" alt="Steps of a RPC"></p>
+<ol>
+<li>The client process invokes the client stub using an ordinary procedure call.</li>
+<li>The client stub builds a message and passes it to the client's OS.</li>
+<li>The client's OS sends the message to the server's OS.</li>
+<li>The server's OS delivers the message to the server stub.</li>
+<li>The server stub unpacks the parameters and invokes the appropriate service handler in the server process.</li>
+<li>The <strong>service handler</strong> does the work and returns the result to the server stub.</li>
+<li>The server stub packs the result into a message and passes it to the server's OS.</li>
+<li>The server's OS sends the message to the client's OS.</li>
+<li>The client's OS delivers the message to the client stub.</li>
+<li>The client stub unpacks the result and returns it to the client process.</li>
+</ol>
+<ul>
+<li><strong>Parameter Marshalling</strong>: Packing Parameter $\to$ Message<ul>
+<li>Processor Architectures, Network Protocols, and VMs $\implies$ <strong>Little-Endian</strong> vs. <strong>Big-Endian</strong></li>
+</ul>
+</li>
+<li><strong>Number of System Calls</strong>: 4<ol>
+<li>Client Process $\to$ Client OS Socket</li>
+<li>Server OS Socket $\to$ Server Process</li>
+<li>Server Process $\to$ Server OS Socket</li>
+<li>Client OS Socket $\to$ Client Process</li>
+</ol>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Defining-RPC-Interfaces">Defining RPC Interfaces<a class="anchor-link" href="#Defining-RPC-Interfaces">&#182;</a></h3><ul>
+<li><strong>Interface Definition Language (IDL)</strong>: Specify RPC Signatures $\to$ Client/Server Stubs<ul>
+<li>High-Level Format</li>
+<li>Parameter Ordering</li>
+<li>Byte Sizes</li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Synchronous-vs.-Asynchronous-RPCs">Synchronous vs. Asynchronous RPCs<a class="anchor-link" href="#Synchronous-vs.-Asynchronous-RPCs">&#182;</a></h3><ul>
+<li><strong>Synchronous RPC</strong>: The client blocks to wait for the return value.</li>
+<li><strong>Asynchronous RPC</strong>: The client blocks to wait for the server acknowledgement of the receipt of the request.</li>
+<li><strong>One-Way RPC</strong>: The client does not block to wait.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Message-Queuing-Model">Message Queuing Model<a class="anchor-link" href="#Message-Queuing-Model">&#182;</a></h3><p><img src="images/Communication_3.png" alt="Message Queue Interface"></p>
+<ul>
+<li><strong>Message Queue</strong>: Alternative to RPCs</li>
+<li><strong>Persistent Communication</strong>: Loose Coupling between Client/Server<ul>
+<li><em>Advantage</em>: Resilient to Client/Server Hardware Failure</li>
+<li><em>Disadvantage</em>: Guaranteed Delivery = Impossible</li>
+</ul>
+</li>
+<li><strong>Message-Oriented Middleware (MOM)</strong>: Asynchronous Message Passing</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Process-Coupling">Process Coupling<a class="anchor-link" href="#Process-Coupling">&#182;</a></h3><ul>
+<li><strong>Referential Coupling</strong>: When one process explicitly references another.<ul>
+<li><em>Positive Example</em>: RPC client connects to server using an IP address and a port number</li>
+<li><em>Negative Example</em>: Publisher inserts a news item into a pub-sub system without knowing which subscriber will read it.</li>
+</ul>
+</li>
+<li><strong>Temporal Coupling</strong>: Communicating processes must both be up and running.<ul>
+<li><em>Positive Example</em>: A client cannot execute a RPC if the server is down.</li>
+<li><em>Negative Example</em>: A producer appends a job to a message queue today, and a consumer extracts the job tomorrow.</li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="RPC-vs.-MOM">RPC vs. MOM<a class="anchor-link" href="#RPC-vs.-MOM">&#182;</a></h3><h4 id="RPC">RPC<a class="anchor-link" href="#RPC">&#182;</a></h4><ul>
+<li>Used mostly for two-way communication, particularly where the client requires immediate response from the server.</li>
+<li>The middleware is linked into the client and the server processes.</li>
+<li>Tighter coupling means that server failure can prevent client from making progress.</li>
+</ul>
+<h4 id="MOM">MOM<a class="anchor-link" href="#MOM">&#182;</a></h4><ul>
+<li>Used mostly for one-way communication where one party does not require an immediate response from another.</li>
+<li>The middleware is a separate component between the sender/publisher/producer and the receiver/subscriber/consumer.</li>
+<li>Looser coupling isolates one process from another which contributes to flexibility and scalability.</li>
 </ul>
 
 </div>
