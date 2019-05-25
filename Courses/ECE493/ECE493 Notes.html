@@ -13123,7 +13123,7 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Review-of-Probability-Theory">Review of Probability Theory<a class="anchor-link" href="#Review-of-Probability-Theory">&#182;</a></h2>
+<h2 id="Review-of-Probability-Theory-">Review of Probability Theory <span name="S01" /><a class="anchor-link" href="#Review-of-Probability-Theory-">&#182;</a></h2>
 </div>
 </div>
 </div>
@@ -13140,7 +13140,7 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Representation">Representation<a class="anchor-link" href="#Representation">&#182;</a></h2>
+<h2 id="Representation-">Representation <span name="S02" /><a class="anchor-link" href="#Representation-">&#182;</a></h2>
 </div>
 </div>
 </div>
@@ -13161,7 +13161,7 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Bayesian-Networks-(Directed-Probabilistic-Graphical-Model)">Bayesian Networks (Directed Probabilistic Graphical Model)<a class="anchor-link" href="#Bayesian-Networks-(Directed-Probabilistic-Graphical-Model)">&#182;</a></h3>
+<h3 id="Bayesian-Networks-(Directed-Probabilistic-Graphical-Model)-">Bayesian Networks (Directed Probabilistic Graphical Model) <span name="S03" /><a class="anchor-link" href="#Bayesian-Networks-(Directed-Probabilistic-Graphical-Model)-">&#182;</a></h3>
 </div>
 </div>
 </div>
@@ -13389,7 +13389,7 @@ $$\approx \text{Bayesian Networks Representation} \le \text{Naive Representation
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Markov-Random-Fields-(Undirected-Probabilistic-Graphical-Model)">Markov Random Fields (Undirected Probabilistic Graphical Model)<a class="anchor-link" href="#Markov-Random-Fields-(Undirected-Probabilistic-Graphical-Model)">&#182;</a></h3>
+<h3 id="Markov-Random-Fields-(Undirected-Probabilistic-Graphical-Model)-">Markov Random Fields (Undirected Probabilistic Graphical Model) <span name="S04" /><a class="anchor-link" href="#Markov-Random-Fields-(Undirected-Probabilistic-Graphical-Model)-">&#182;</a></h3>
 </div>
 </div>
 </div>
@@ -13589,7 +13589,7 @@ $$\text{Prediction} \implies \text{CRF} &gt; \text{MRF}$$</li>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Inference">Inference<a class="anchor-link" href="#Inference">&#182;</a></h2><ul>
+<h2 id="Inference-">Inference <span name="S05" /><a class="anchor-link" href="#Inference-">&#182;</a></h2><ul>
 <li><strong>Problem</strong>: <em>Given a probabilistic model, how do we obtain answers to relevant questions about the world?</em><ul>
 <li><strong>Marginal Inference</strong>: <em>What is the probability of a given variable in our model after we sum everything else out?</em>
 $$p(y = 1) = \sum_{x_{1}} \sum_{x_{2}} \cdots \sum_{x_{n}} p(y = 1, x_{1}, x_{2}, ..., x_{n})$$<ul>
@@ -13621,7 +13621,7 @@ $$\max_{x_{1}, ..., x_{n}} p(y = 1, x_{1}, x_{2}, ..., x_{n})$$<ul>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Vairable-Elimination-(Exact-Inference-Algorithm)">Vairable Elimination (Exact Inference Algorithm)<a class="anchor-link" href="#Vairable-Elimination-(Exact-Inference-Algorithm)">&#182;</a></h3>
+<h3 id="Vairable-Elimination-(Exact-Inference-Algorithm)-">Vairable Elimination (Exact Inference Algorithm) <span name="S06" /><a class="anchor-link" href="#Vairable-Elimination-(Exact-Inference-Algorithm)-">&#182;</a></h3>
 </div>
 </div>
 </div>
@@ -13825,6 +13825,130 @@ $$p(l) = \sum_{g} p(l \mid g) \cdot \sum_{s} \sum_{i} p(s \mid i) \cdot p(i) \cd
 <li><strong>Thus, with $n = 4$ and $M = 2$, the time complexity is at most $O(n \cdot k^{M + 1}) = O(4 \cdot k^{3})$.</strong></li>
 </ul>
 </li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="MAP-Inference-">MAP Inference <span name="S07" /><a class="anchor-link" href="#MAP-Inference-">&#182;</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Overview---What-is-MAP-inference?">Overview - What is MAP inference?<a class="anchor-link" href="#Overview---What-is-MAP-inference?">&#182;</a></h4><ul>
+<li><em>See <a href="#S05">Inference</a>.</em></li>
+<li>Given a probabilistic graphical model $p(x_{1}, ..., x_{n}) = \prod_{c \in C} \phi_{c}(x_{c})$, MAP inference corresponds to the following optimization problem:
+$$\max_{x} \log p(x) = \max_{x} \sum_{c \in C} \theta_{c}(x_{c}) - \log Z$$<ul>
+<li>Where $\theta_{c}(x_{c}) = \log \phi_{c}(x_{c})$</li>
+</ul>
+</li>
+</ul>
+<h5 id="Derivation---Why-is-the-MAP-inference-optmization-problem-expressed-the-way-it-is?">Derivation - Why is the MAP inference optmization problem expressed the way it is?<a class="anchor-link" href="#Derivation---Why-is-the-MAP-inference-optmization-problem-expressed-the-way-it-is?">&#182;</a></h5><ol>
+<li>All probabilistic graphical models (as BNs and CRFs are special cases of MRFs) have the following representation:
+$$p(x) = \frac{1}{Z} \prod_{c \in C} \phi_{c}(x_{c})$$<ul>
+<li>Where $Z$ is NP-Hard</li>
+</ul>
+</li>
+<li>MAP inference desires to infer the set of conditions that maximizes the probability of some real-world phenomenon being observed.
+$$\max_{x} p(x) = \max_{x} \frac{1}{Z} \prod_{c \in C} \phi_{c}(x_{c})$$</li>
+<li>As $Z$ is expensive to calculate, maximize $\log p(x)$ instead of $p(x)$.
+$$\max_{x} \log p(x) = \max_{x} \log \left[ \frac{1}{Z} \prod_{c \in C} \phi_{c}(x_{c}) \right]$$</li>
+<li>Simplify using logarithmic identities.<ul>
+<li>$\log(x \times y) = \log(x) + \log(y)$</li>
+<li>$\log(x \div y) = \log(x) - \log(y)$
+$$\max_{x} \log p(x) = \max_{x} \left[ \sum_{c} \log \phi_{c}(x_{c}) - \log Z \right]$$</li>
+</ul>
+</li>
+<li>Simplify using maximum identities.<ul>
+<li>$\max_{x}(x \pm 1) = \max_{x}(x) \pm 1$
+$$\max_{x} \log p(x) = \max_{x} \sum_{c} \log \phi_{c}(x_{c}) - \log Z$$</li>
+</ul>
+</li>
+<li>Let $\theta_{c}(x_{c}) = \log \phi_{c}(x_{c})$.
+$$\max_{x} \log p(x) = \max_{x} \sum_{c \in C} \theta_{c}(x_{c}) - \log Z$$</li>
+</ol>
+<ul>
+<li>As $\log Z$ is outside the scope of the maximization, if you desire to infer the set of conditions that maximizes the probability of some real-world phenomenon being observed, then solve the following optimization problem:
+$$\arg \max_{x} \log p(x) = \arg \max_{x} \sum_{c \in C} \theta_{c}(x_{c})$$</li>
+<li><strong>Important Note 1</strong>: Without $Z$, this optimization problem suggests that MAP inference is computationally cheaper than marginal inference questions.</li>
+<li><strong>Important Note 2</strong>: As maximization and summation both distribute over products, techniques used to solve marginal inference problems can be used to solve MAP inference problems.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Graph-Cuts---How-can-MAP-inference-problems-be-solved-using-graph-cuts?">Graph Cuts - How can MAP inference problems be solved using graph cuts?<a class="anchor-link" href="#Graph-Cuts---How-can-MAP-inference-problems-be-solved-using-graph-cuts?">&#182;</a></h4><ul>
+<li>A <strong>graph cut</strong> of an undirected graph $G = (V, E)$ is a partition of $V$ into two disjoint sets $V_{s}$ and $V_{t}$.</li>
+<li>The <strong>min-cut</strong> problem is to find the partition $V_{s}, V_{t}$ that minimize the cost of the graph cut.<ul>
+<li>The cost of a graph cut is the sum of the nonnegative costs of the edges that cross between the two partitions:
+$$\text{cost}(V_{s}, V_{t}) = \sum_{v_{1} \in V_{s}, v_{2} \in V_{t}} \text{cost}(v_{1}, v_{2})$$</li>
+<li><strong>Time Complexity 1</strong>: $O(\lvert E \rvert \lvert V \rvert \log \lvert V \rvert)$</li>
+<li><strong>Time Complexity 2</strong>: $O({\lvert V \rvert}^{3})$</li>
+</ul>
+</li>
+<li>A MAP inference problem can be reduced into the min-cut problem in certain restricted cases of MRFs with binary variables.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Linear-Programming---How-can-MAP-inference-problems-be-solved-using-linear-programming?">Linear Programming - How can MAP inference problems be solved using linear programming?<a class="anchor-link" href="#Linear-Programming---How-can-MAP-inference-problems-be-solved-using-linear-programming?">&#182;</a></h4><ul>
+<li>An approximate approach to computing the MAP values is to use Integer Linear Programming by introducing:<ul>
+<li>An indicator variable per variable in the PGM.</li>
+<li>An indicator variable per edge/clique in the PGM.</li>
+<li>Constraints on consistent values in cliques.</li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Local-Search---How-can-MAP-inference-problems-be-solved-using-local-search?">Local Search - How can MAP inference problems be solved using local search?<a class="anchor-link" href="#Local-Search---How-can-MAP-inference-problems-be-solved-using-local-search?">&#182;</a></h4><ul>
+<li>A heuristic solution that starts with an arbitrary assignment and performs modifications on the joint assignment that locally increase the probability.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Branch-and-Bound---How-can-MAP-inference-problems-be-solved-using-branch-and-bound?">Branch and Bound - How can MAP inference problems be solved using branch and bound?<a class="anchor-link" href="#Branch-and-Bound---How-can-MAP-inference-problems-be-solved-using-branch-and-bound?">&#182;</a></h4><ul>
+<li>An exhaustive solution that searches over the space of assignments while pruning branches that can be provably shown not to contain a MAP assignment.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Simulated-Annealing---How-can-MAP-inference-problems-be-solved-using-simulated-annealing?">Simulated Annealing - How can MAP inference problems be solved using simulated annealing?<a class="anchor-link" href="#Simulated-Annealing---How-can-MAP-inference-problems-be-solved-using-simulated-annealing?">&#182;</a></h4><ul>
+<li>A sampling solution that expresses a probability distribution with the following:
+$$p_{t}(x) \propto \exp\left( \frac{1}{t} \sum_{c \in C} \theta_{c}(x_{c}) \right)$$<ul>
+<li>Where $t$ is temperature.<ul>
+<li>$t \to \infty$ $\implies$ $p_{t}$ approaches a continuous uniform distribution.</li>
+<li>$t \to 0$ $\implies$ $p_{t}$ approaches a continuous exponential distribution with a significant peak of $\arg \max_{x} \sum_{c \in C} \theta_{c}(x_{c})$.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>As the peak is a MAP assignment, a sampling algorithm starting with a high temperature which gradually decreases can eventually find the peak, given a sufficiently slow cooling rate.</li>
 </ul>
 
 </div>
