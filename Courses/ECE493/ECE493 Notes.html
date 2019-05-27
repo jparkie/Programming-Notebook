@@ -13633,7 +13633,7 @@ $$\max_{x_{1}, ..., x_{n}} p(y = 1, x_{1}, x_{2}, ..., x_{n})$$<ul>
 <li><strong>Problem</strong>: <em>Marginal Inference</em>
 $$p(y = 1) = \sum_{x_{1}} \sum_{x_{2}} \cdots \sum_{x_{n}} p(y = 1, x_{1}, x_{2}, ..., x_{n})$$</li>
 <li><strong>Naive Solution's Time Complexity</strong> (<em>Exponential</em>): $O(k^{n})$<ul>
-<li><em>Rule of Product in Combinatorics: <a href="https://en.wikipedia.org/wiki/Rule_of_product">Wikipedia</a></em></li>
+<li><em>See <a href="https://en.wikipedia.org/wiki/Rule_of_product">Rule of Product in Combinatorics</a></em></li>
 </ul>
 </li>
 <li><strong>Variable Elimination Solution's Time Complexity</strong> (<em>Non-Exponential</em>): $O(n \cdot k^{M + 1})$<ul>
@@ -13950,6 +13950,152 @@ $$p_{t}(x) \propto \exp\left( \frac{1}{t} \sum_{c \in C} \theta_{c}(x_{c}) \righ
 </li>
 <li>As the peak is a MAP assignment, a sampling algorithm starting with a high temperature which gradually decreases can eventually find the peak, given a sufficiently slow cooling rate.</li>
 </ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Sampling-Based-Inference-">Sampling-Based Inference <span name="S08" /><a class="anchor-link" href="#Sampling-Based-Inference-">&#182;</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Overview---Why-does-sampling-based-inference-algorithms-exist?">Overview - Why does sampling-based inference algorithms exist?<a class="anchor-link" href="#Overview---Why-does-sampling-based-inference-algorithms-exist?">&#182;</a></h4><ul>
+<li><strong>Exact Inference Algorithms</strong>: Slow/NP-Hard</li>
+<li><strong>Approximate Inference Algorithms</strong>: Marginal Inference, MAP Inference, Expectations</li>
+</ul>
+<h5 id="Expectations-$\mathbb{E}[f(X)]$---Why-do-we-want-to-estimate-expectations-of-random-variables?">Expectations $\mathbb{E}[f(X)]$ - Why do we want to estimate expectations of random variables?<a class="anchor-link" href="#Expectations-$\mathbb{E}[f(X)]$---Why-do-we-want-to-estimate-expectations-of-random-variables?">&#182;</a></h5><ul>
+<li>Abstractly, approximate inference algorithms want to estimate the probability of some real-world phenomenon.</li>
+<li>Mathematically, estimating a probability $p(x)$ is a <strong>SPECIALIZATION</strong> of estimating an expectation $\mathbb{E}_{x \sim p}[f(x)] = \sum_{x} f(x)p(x)$</li>
+<li>If $f(x) = \mathbb{I}_{\lvert x \rvert}$, where $\mathbb{I}_{\lvert x \rvert}$ is an indicator function for event $x$,
+$$\mathbb{E}_{x \sim p}[\mathbb{I}_{\lvert x \rvert}] = p(x)$$</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Multinomial-Sampling---How-do-you-sample-a-discrete-CPD?">Multinomial Sampling - How do you sample a discrete CPD?<a class="anchor-link" href="#Multinomial-Sampling---How-do-you-sample-a-discrete-CPD?">&#182;</a></h4><ol>
+<li>Let $p$ be a multinomial probability distribution with event values $\{x^{1}, ..., x^{k}\}$ and event probabilities $\{\theta_{1}, ..., \theta_{k}\}$.</li>
+<li>Generate a sample $s$ uniformly from the interval $[0, 1]$.</li>
+<li>Partition the interval into $k$ subintervals:
+$$[0, \theta_{1}), [\theta_{1}, \theta_{1} + \theta_{2}), ..., \left[ \sum_{j = 1}^{i - 1} \theta_{j}, \sum_{j = 1}^{i} \theta_{j} \right)$$</li>
+<li>If $s$ is in the $i$th interval, then the sampled value is $x^{i}$.</li>
+</ol>
+<ul>
+<li><strong>Time Complexity</strong>: $O(\log k)$ - <em>Using Binary Search</em></li>
+<li><em>Remember Baye's Rule</em>: $p(y \mid x) = \frac{p(x, y)}{p(x)}$<ul>
+<li>$p(x, y)$ is a multinomial probability distribution.</li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Forward-Sampling---How-do-you-sample-a-discrete-Bayesian-network?">Forward Sampling - How do you sample a discrete Bayesian network?<a class="anchor-link" href="#Forward-Sampling---How-do-you-sample-a-discrete-Bayesian-network?">&#182;</a></h4><ol>
+<li>Let $G$ be a Bayesian network representing a probability distribution $p(x_{1}, ..., x_{n})$.</li>
+<li>Sample the variables in a topological order.</li>
+<li>Sample the successor variables by conditioning these node's CPDs to the values sampled by their ancestors.</li>
+<li>Repeat until all $n$ variables have been sampled.</li>
+</ol>
+<ul>
+<li><strong>Time Complexity</strong>: $O(n)$</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Monte-Carlo-Estimation---How-do-you-take-a-large-number-of-samples-and-estimate-expectations?">Monte Carlo Estimation - How do you take a large number of samples and estimate expectations?<a class="anchor-link" href="#Monte-Carlo-Estimation---How-do-you-take-a-large-number-of-samples-and-estimate-expectations?">&#182;</a></h4><ul>
+<li><em>Monte Carlo $\approx$ Large Number of Samples</em>
+$$\mathbb{E}_{x \sim p}[f(x)] \approx I_{T} = \frac{1}{T} \sum_{t = 1}^{T} f(x^{t})$$<ul>
+<li>Where $x^{1}, ..., x^{T}$ are <a href="https://en.wikipedia.org/wiki/Independent_and_identically_distributed_random_variables">i.i.d.</a> samples drawn according to $p$.
+$$
+\begin{align}
+\mathbb{E}_{x^{1}, ..., x^{T} \sim^{\text{i.i.d.}} p}[I_{T}] &amp;=  \mathbb{E}_{x \sim p}[f(x)] \\
+\text{Var}_{x^{1}, ..., x^{T} \sim^{\text{i.i.d.}} p}[I_{T}] &amp;= \frac{1}{T} \text{Var}_{x \sim p}[f(x)]
+\end{align}
+$$</li>
+<li>Where the Monte Carlo estimate $I_T$</li>
+</ul>
+</li>
+</ul>
+<h5 id="Implications---What-is-important-about-Monte-Carlo-estimations?">Implications - What is important about Monte Carlo estimations?<a class="anchor-link" href="#Implications---What-is-important-about-Monte-Carlo-estimations?">&#182;</a></h5><ol>
+<li>$I_{T}$ is an unbiased estimator for $\mathbb{E}_{x \sim p}[f(x)]$.</li>
+<li>Referencing the <a href="https://en.wikipedia.org/wiki/Law_of_large_numbers">Weak Law of Large Numbers</a>, if $T \to \infty$, then $I_{T} \to \mathbb{E}_{x \sim p}[f(x)]$.</li>
+</ol>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Rejection-Sampling---How-does-rejection-sampling-work?">Rejection Sampling - How does rejection sampling work?<a class="anchor-link" href="#Rejection-Sampling---How-does-rejection-sampling-work?">&#182;</a></h4><ul>
+<li>Compute a target probability distribution $p(x)$ by sampling a proposal probability distribution $q(x)$, rejecting samples inconsistent with $p(x)$, and applying the Monte Carlo estimation.<ul>
+<li><strong>Examples</strong>: <em>See <a href="https://ermongroup.github.io/cs228-notes/inference/sampling/">Rejection Sampling</a></em></li>
+<li><strong>Disadvantage</strong>: <em>Ignores Many Samples</em></li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Importance-Sampling---How-does-importance-sampling-work?">Importance Sampling - How does importance sampling work?<a class="anchor-link" href="#Importance-Sampling---How-does-importance-sampling-work?">&#182;</a></h4><ul>
+<li>Compute a target probability distribution $p(x)$ by sampling a proposal probability distribution $q(x)$, reweighing samples with $w(x) = \frac{p(x)}{q(x)}$, and applying the Monte Carlo estimation.
+$$
+\begin{align}
+\mathbb{E}_{x \sim p}[f(x)] &amp;= \sum_{x} f(x)p(x) \\
+&amp;= \sum_{x} f(x)\frac{p(x)}{q(x)}q(x) \\
+&amp;= \mathbb{E}_{x \sim q}[f(x)w(x)] \\
+&amp;\approx \frac{1}{T} \sum_{t = 1}^{T} f(x^{t})w(x^{t})
+\end{align}
+$$<ul>
+<li><strong>Examples</strong>: <em>See <a href="https://ermongroup.github.io/cs228-notes/inference/sampling/">Importance Sampling</a></em></li>
+<li><strong>Advantage</strong>: <em>Uses All Samples</em></li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Normalized-Importance-Sampling---How-does-normalized-importance-sampling-work?">Normalized Importance Sampling - How does normalized importance sampling work?<a class="anchor-link" href="#Normalized-Importance-Sampling---How-does-normalized-importance-sampling-work?">&#182;</a></h4><ol>
+<li>Let $p(x)$ be unknown.</li>
+<li>Let $\tilde{p}(x) = Z \cdot p(x)$ be known.</li>
+<li>The weight $w(x) = \frac{\tilde{p}(x)}{q(x)}$ is invalid for unnormalized importance sampling.</li>
+<li>The <strong>normalizing constant</strong> of the distribution $\tilde{p}(x)$ is the following:
+$$\mathbb{E}_{x \sim q}[w(x)] = \sum_{x} q(x)\frac{\tilde{p}(x)}{q(x)} = \sum_{x} \tilde{p}(x) = Z$$</li>
+<li>The <strong>normalized importance sampling estimator</strong> is the following:
+$$
+\begin{align}
+\mathbb{E}_{x \sim p}[f(x)] &amp;= \sum_{x} f(x)p(x) \\
+&amp;= \sum_{x} f(x)\frac{p(x)}{q(x)}q(x) \\
+&amp;= \frac{1}{Z} \sum_{x} f(x)\frac{\tilde{p}(x)}{q(x)}q(x) \\
+&amp;= \frac{1}{Z} \mathbb{E}_{x \sim q}[f(x)w(x)] \\
+&amp;= \frac{\mathbb{E}_{x \sim q}[f(x)w(x)]}{\mathbb{E}_{x \sim q}[w(x)]}
+\end{align}
+$$</li>
+</ol>
 
 </div>
 </div>
