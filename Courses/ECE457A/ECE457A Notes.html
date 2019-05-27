@@ -13648,6 +13648,10 @@ div#notebook {
 <li>No - If $h(n) \to \infty$</li>
 </ul>
 </li>
+<li><em>Optimality</em>:<ul>
+<li>No</li>
+</ul>
+</li>
 </ul>
 <h4>Properties of A&ast; Search</h4>
 <ul>
@@ -13659,12 +13663,10 @@ div#notebook {
 <li>Yes - If $b$ is finite and only fixed positive costs.</li>
 </ul>
 </li>
+<li><em>Optimality</em>:<ul>
+<li>Yes</li>
 </ul>
-<h4>Notes on A&ast; Search</h4>
-<ul>
-<li><strong>Perfect Heuristic</strong>: If $h(n) = h^{*}(n)$, then only nodes on the optimal solution are expanded.</li>
-<li><strong>Null Heuristic</strong>: If $h(n) = 0$, then A&amp;ast behaves like uniform cost search.</li>
-<li><strong>Better Heuristic</strong>: If $h_{1}(n) &lt; h_{2}(n) &lt; h^{*}(n)$, then $h_{2}$ is a better heuristic than $h_{1}$.</li>
+</li>
 </ul>
 
 </div>
@@ -13694,6 +13696,139 @@ div#notebook {
 <li>True $\implies$ Advance from $n$ to $s$.</li>
 <li>False $\implies$ Halt at $n$.</li>
 </ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Heuristics">Heuristics<a class="anchor-link" href="#Heuristics">&#182;</a></h3><ul>
+<li><strong>Perfect Heuristic</strong>: If $h(n) = h^{*}(n)$, then only nodes on the optimal solution are expanded.</li>
+<li><strong>Null Heuristic</strong>: If $h(n) = 0$, then A&amp;ast behaves like uniform cost search.</li>
+<li><strong>Better Heuristic</strong>: If $h_{1}(n) &lt; h_{2}(n) &lt; h^{*}(n)$, then $h_{2}$ is a better heuristic than $h_{1}$.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Game-Playing-as-Search">Game Playing as Search<a class="anchor-link" href="#Game-Playing-as-Search">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Overview">Overview<a class="anchor-link" href="#Overview">&#182;</a></h3><ul>
+<li>Games involve playing against an opponent, where search problems involve finding a good move, waiting for an opponent's response, and then repeating.</li>
+<li>Time is typically limited in each search.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Problem-Formulation-of-Games">Problem Formulation of Games<a class="anchor-link" href="#Problem-Formulation-of-Games">&#182;</a></h3><ul>
+<li><strong>Initial State</strong>: <em>Initial Position + Whose Move It Is</em></li>
+<li><strong>Operators</strong>: <em>Legal Player Moves</em></li>
+<li><strong>Goal (Terminal Test)</strong>: <em>Is Game Over?</em></li>
+<li><strong>Utility (Payoff)</strong>: <em>Measures Outcome/Desirability</em></li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Types-of-Games">Types of Games<a class="anchor-link" href="#Types-of-Games">&#182;</a></h3><ul>
+<li><strong>Perfect Information</strong>: Each player has complete information on the opponent's state and available choices.</li>
+<li><strong>Imperfect Information</strong>: Each player does not have complete information on the opponent's state and available choices.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Max-Min-Strategy">Max Min Strategy<a class="anchor-link" href="#Max-Min-Strategy">&#182;</a></h3><ul>
+<li>With perfect information and two players, a game tree can be expanded to describe all possible moves of the player and the opponent in the game.</li>
+<li><strong>Zero Sum Games</strong>: <em>Player Win $\implies$ Opponent Loss</em></li>
+<li><strong>Minimax Principle</strong>: <em>Minimize the maximum losses that occur.</em></li>
+</ul>
+<h4 id="Minimax-Algorithm">Minimax Algorithm<a class="anchor-link" href="#Minimax-Algorithm">&#182;</a></h4><p><img src="images/Minimax_Algorithm_1.png" alt="Example of Minimax Algorithm"></p>
+<ul>
+<li><strong>Important Note</strong>: <em>Bottom-Up</em></li>
+</ul>
+<ol>
+<li>Generate the game tree labeling each level with alternating $\text{MAX}(player)$ and $\text{MIN}(opponent)$ labels.</li>
+<li>Apply the utility function to each terminal state (leaf) to get its minimax value.</li>
+<li>Extrapolate these minimax values to determine the utility of the nodes on level higher in the search tree.<ul>
+<li>For a $\text{MAX}(player)$ level, select the maximum minimax value of its successors.</li>
+<li>For a $\text{MIN}(opponent)$ level, select the minimum minimax value of its successors.</li>
+</ul>
+</li>
+<li>From the root node, select the move which leads to the highest minimax value.</li>
+</ol>
+<h4 id="Limited-Depth">Limited Depth<a class="anchor-link" href="#Limited-Depth">&#182;</a></h4><ul>
+<li>For complicated games, a limited depth of the game tree should be explored.</li>
+<li>An <strong>evaluation function $f(n)$</strong> is used to measure the "goodness" of a game state.</li>
+</ul>
+<h4 id="Properties-of-Minimax-Algorithm">Properties of Minimax Algorithm<a class="anchor-link" href="#Properties-of-Minimax-Algorithm">&#182;</a></h4><ul>
+<li><em>Completeness</em>:<ul>
+<li>Yes - If game tree is finite</li>
+</ul>
+</li>
+<li><em>Optimality</em>:<ul>
+<li>Yes - If opponent is optimal</li>
+</ul>
+</li>
+<li><em>Time Complexity</em>: $O(b^{d})$</li>
+<li><em>Space Complexity</em>: $O(bd)$</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="$\alpha$-$\beta$-Pruning">$\alpha$-$\beta$ Pruning<a class="anchor-link" href="#$\alpha$-$\beta$-Pruning">&#182;</a></h3><ul>
+<li><em>Branch and Bound: Reduce # of Generated/Evaluated Nodes</em><ul>
+<li><em>Avoid Processing Subtrees $\ne$ Affecting Result</em></li>
+</ul>
+</li>
+<li><strong>Alpha ($\alpha$)</strong>: The best value for $\text{MAX}$ seen so far.<ul>
+<li>Used in $\text{MIN}$ nodes</li>
+<li>Assigned in $\text{MAX}$ nodes</li>
+<li>Never Decreases</li>
+</ul>
+</li>
+<li><strong>Beta ($\beta$)</strong>: The best value for $\text{MIN}$ seen so far.<ul>
+<li>Used in $\text{MAX}$ nodes</li>
+<li>Assigned in $\text{MIN}$ nodes</li>
+<li>Never Increases</li>
+</ul>
+</li>
+<li><strong>Alpha Cutoff</strong> (<em>Lower Bound</em>): When the value of a minimum position is less than or equal to the alpha-value of its parent, stop generating further successors.</li>
+<li><strong>Beta Cutoff</strong> (<em>Upper Bound</em>): When the value of a maximum position is greater than the beta-value of its parent, stop generating further successors.</li>
+</ul>
+<h4 id="$\alpha$-$\beta$-Minimax-Algorithm-Revisions">$\alpha$-$\beta$ Minimax Algorithm Revisions<a class="anchor-link" href="#$\alpha$-$\beta$-Minimax-Algorithm-Revisions">&#182;</a></h4><ol>
+<li>Search discontinued below any $\text{MIN}$ with $\beta \le \alpha$ of one of its ancestors.<ul>
+<li>Set final value of the node to be this $\beta$ value.</li>
+</ul>
+</li>
+<li>Search discontinued below any $\text{MAX}$ with $\alpha \ge \beta$ of one of its ancestors.<ul>
+<li>Set final value of the node to be this $\alpha$ value.</li>
+</ul>
+</li>
+</ol>
 
 </div>
 </div>
