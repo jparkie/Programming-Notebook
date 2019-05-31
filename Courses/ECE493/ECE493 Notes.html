@@ -14018,7 +14018,7 @@ $$[0, \theta_{1}), [\theta_{1}, \theta_{1} + \theta_{2}), ..., \left[ \sum_{j = 
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Monte-Carlo-Estimation---How-do-you-take-a-large-number-of-samples-and-estimate-expectations?">Monte Carlo Estimation - How do you take a large number of samples and estimate expectations?<a class="anchor-link" href="#Monte-Carlo-Estimation---How-do-you-take-a-large-number-of-samples-and-estimate-expectations?">&#182;</a></h4><ul>
+<h4 id="Monte-Carlo-Integration/Estimation---How-do-you-take-a-large-number-of-samples-to-estimate-expectations?">Monte Carlo Integration/Estimation - How do you take a large number of samples to estimate expectations?<a class="anchor-link" href="#Monte-Carlo-Integration/Estimation---How-do-you-take-a-large-number-of-samples-to-estimate-expectations?">&#182;</a></h4><ul>
 <li><em>Monte Carlo $\approx$ Large Number of Samples</em>
 $$\mathbb{E}_{x \sim p}[f(x)] \approx I_{T} = \frac{1}{T} \sum_{t = 1}^{T} f(x^{t})$$<ul>
 <li>Where $x^{1}, ..., x^{T}$ are <a href="https://en.wikipedia.org/wiki/Independent_and_identically_distributed_random_variables">i.i.d.</a> samples drawn according to $p$.
@@ -14096,6 +14096,95 @@ $$
 \end{align}
 $$</li>
 </ol>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Markov-Chain---What-is-a-Markov-chain?">Markov Chain - What is a Markov chain?<a class="anchor-link" href="#Markov-Chain---What-is-a-Markov-chain?">&#182;</a></h4><ul>
+<li><strong>Markov Chain</strong>: A sequence of random variables $S_{0}, S_{1}, S_{2}, ...$ with each random variable $S_{i} \in \{1, 2, ..., d\}$ taking one of $d$ possible values.<ul>
+<li><em>Initial State</em>: $P(S_{0})$</li>
+<li><em>Subsequent States</em>: $P(S_{i} \mid S_{i - 1})$</li>
+</ul>
+</li>
+<li><strong>Markov Assumption</strong>: $S_{i}$ cannot depend directly on $S_{j}$ where $j &lt; i - 1$.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Stationary-Distribution---Why-is-it-important-for-a-stationary-distribution-to-exist?">Stationary Distribution - Why is it important for a stationary distribution to exist?<a class="anchor-link" href="#Stationary-Distribution---Why-is-it-important-for-a-stationary-distribution-to-exist?">&#182;</a></h4><ul>
+<li>Let $T_{ij} = P(S_{\text{new}} = i \mid S_{\text{prev}} = j)$ be a $d \times d$ transition probability matrix.</li>
+<li>If the initial state $S_{0}$ is drawn from a vector probabilities $p_{0}$, the probability $p_{t}$ of ending in <strong>EACH STATE</strong> after $t$ steps is the following:
+$$p_{t} = T^{t} p_{0}$$<ul>
+<li>Where $T^{t}$ is matrix exponentiation.</li>
+</ul>
+</li>
+<li><strong>Stationary Distribution</strong>: If it exists, the limit $\pi = \lim_{t \to \infty} p_{t}$.</li>
+<li><strong>Important Note 1</strong>: A Markov chain whose states are joint assignments to the variables in a probabilistic graphical model $p$ has a stationary distribution equal to $p$.</li>
+</ul>
+<h5 id="Existence-of-Stationary-Distribution">Existence of Stationary Distribution<a class="anchor-link" href="#Existence-of-Stationary-Distribution">&#182;</a></h5><ul>
+<li><strong>Irreducibility</strong>: It is possible to get from any state $x$ to any other state $x'$ with probability $&gt;0$ in a finite number of steps.</li>
+<li><strong>Aperiodicity</strong>: It is possible to return to any state at any time, i.e. there exists an $n$ such that for all $i$ and all $n' \ge n$, $P(s_{n'} = i \mid s_{0} = i) &gt; 0$.</li>
+<li><strong>Important Note 2</strong>: An irreducible and aperiodic finite-state Markov chain has a stationary distribution.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Markov-Chain-Monte-Carlo---How-do-you-sample-from-a-MCMC?">Markov Chain Monte Carlo - How do you sample from a MCMC?<a class="anchor-link" href="#Markov-Chain-Monte-Carlo---How-do-you-sample-from-a-MCMC?">&#182;</a></h4><ol>
+<li>Let $T$ be a <strong>transition operator</strong> specifying a Markov chain whose stationary distribution is $p$.</li>
+<li>Le $x_{0}$ be an initial assignment to the variables of $p$.</li>
+<li>Run the Markov chain from $x_{0}$ for $B$ <em>burn-in</em> steps.<ul>
+<li>If $B$ is sufficiently large, $\pi \to p$.</li>
+</ul>
+</li>
+<li>Run the Markov chain for $N$ <em>sampling</em> steps and collect all the states that it visits.<ul>
+<li>The collection of states form samples from $p$.</li>
+</ul>
+</li>
+</ol>
+<h5 id="Applications-of-Markov-Chain-Monte-Carlo">Applications of Markov Chain Monte Carlo<a class="anchor-link" href="#Applications-of-Markov-Chain-Monte-Carlo">&#182;</a></h5><ol>
+<li>Use samples for Monte Carlo integration to estimate expectations.</li>
+<li>Use samples to perform marginal inference.</li>
+<li>Use the sample with the highest probability to perform MAP inference.</li>
+</ol>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Gibbs-Sampling---How-do-you-construct-a-MCMC?">Gibbs Sampling - How do you construct a MCMC?<a class="anchor-link" href="#Gibbs-Sampling---How-do-you-construct-a-MCMC?">&#182;</a></h4><ol>
+<li>Let $x_{1}, ..., x_{n}$ be an ordered set of variables.</li>
+<li>Let $x^{0} = (x_{1}^{0}, ..., x_{n}^{0})$ be a starting configuration.</li>
+<li>Repeat until convergence for $t = 1, 2, ...$,<ol>
+<li>Set $x \gets x^{t - 1}$.</li>
+<li>For each variable $x_{i}$,<ol>
+<li>Sample $x_{i}' \sim p(x_{i} \mid x_{-i})$.<ul>
+<li>Where $x_{-i}$ is all variables in $x$ except $x_{i}$</li>
+</ul>
+</li>
+<li>Update $x \gets (x_{1}, ..., x_{i}', ..., x_{n})$.</li>
+</ol>
+</li>
+<li>Set $x^{t} \gets x$</li>
+</ol>
+</li>
+</ol>
+<ul>
+<li><strong>Important Note 1</strong>: When $x_{i}$ is updated, its new value is immediately used for sampling other variables $x_{j}$.</li>
+<li><strong>Important Note 2</strong>: Every iteration of $x^{t}$ is a new sample from $p$.</li>
+</ul>
 
 </div>
 </div>
