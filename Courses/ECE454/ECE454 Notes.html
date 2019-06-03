@@ -13674,6 +13674,98 @@ div#notebook {
 </div>
 </div>
 </div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Distributed-File-Systems">Distributed File Systems<a class="anchor-link" href="#Distributed-File-Systems">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Accessing-Remote-Files">Accessing Remote Files<a class="anchor-link" href="#Accessing-Remote-Files">&#182;</a></h3><p><img src="images/DFS_1.png" alt="DFS Models"></p>
+<ul>
+<li><strong>Remote Access Model</strong></li>
+<li><strong>Upload/Download Model</strong></li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Network-File-System-(NFS)">Network File System (NFS)<a class="anchor-link" href="#Network-File-System-(NFS)">&#182;</a></h3><p><img src="images/DFS_2.png" alt="Overview of NFS"></p>
+<ul>
+<li><em>Supports Client-Side Caching</em><ul>
+<li>Modifications are flushed to the server when the client closes the file.</li>
+<li>Consistency is implementation dependent.</li>
+</ul>
+</li>
+</ul>
+<p><img src="images/DFS_3.png" alt="Authority Delegation"></p>
+<ul>
+<li><em>Supports Authority Delegation</em><ul>
+<li>A server can delegate authority to a client and recall it through a callback mechanism.</li>
+</ul>
+</li>
+</ul>
+<p><img src="images/DFS_4.png" alt="Compound Procedure"></p>
+<ul>
+<li><em>Supports Compound Procedures</em><ul>
+<li>Multiple Round Trips to Single Round Trip</li>
+</ul>
+</li>
+</ul>
+<p><img src="images/DFS_5.png" alt="Partial Exports"></p>
+<ul>
+<li><em>Supports Partial Exports</em></li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Google-File-System-(GFS)">Google File System (GFS)<a class="anchor-link" href="#Google-File-System-(GFS)">&#182;</a></h3><p><img src="images/DFS_6.png" alt="Google File System"></p>
+<ul>
+<li><strong>GFS</strong>: A distributed file system that stripes files across inexpensive commodity servers without RAID.<ul>
+<li><em>Layered Above Linux File System</em></li>
+<li><em>Fault Tolerance Through Software</em></li>
+</ul>
+</li>
+<li><strong>GFS Master</strong>: <em>Stores Metadata About Files/Chunks</em><ul>
+<li><em>Metadata Cache in Main Memory</em></li>
+<li><em>Updated Log in Local Storage</em></li>
+<li><em>Periodically Polls Client Servers for Consistency</em></li>
+</ul>
+</li>
+</ul>
+<h4 id="Reading-a-File">Reading a File<a class="anchor-link" href="#Reading-a-File">&#182;</a></h4><ol>
+<li>A client sends the file name and chunk index to the master.</li>
+<li>The master responds with a contact address.</li>
+<li>The client then pulls data directly from a chunk server, bypassing the master.</li>
+</ol>
+<h4 id="Updating-a-File">Updating a File<a class="anchor-link" href="#Updating-a-File">&#182;</a></h4><ol>
+<li>The client pushes its updates to the nearest chunk server holding the data.</li>
+<li>The nearest chunk server pushes the update to the next closest chunk server holding the data, and so on.</li>
+<li>When all replicas have received the data, the primary chunk server assigns a sequence number to the update operation and passes it on to the secondary chunk servers.</li>
+<li>The primary replica informs the client that the update is complete.</li>
+</ol>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="File-Sharing-Semantics">File Sharing Semantics<a class="anchor-link" href="#File-Sharing-Semantics">&#182;</a></h3><p><img src="images/DFS_7.png" alt="File Sharing Semantics"></p>
+
+</div>
+</div>
+</div>
     </div>
   </div>
 </body>
