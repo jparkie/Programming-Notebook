@@ -13833,6 +13833,183 @@ div#notebook {
 </div>
 </div>
 </div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Metaheuristics">Metaheuristics<a class="anchor-link" href="#Metaheuristics">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Overview">Overview<a class="anchor-link" href="#Overview">&#182;</a></h3><p><img src="images/Metaheuristics_1.png" alt="Overview of Metaheuristic Methods"></p>
+<ul>
+<li><strong>Metaheuristics</strong>: High-level heuristics designed to select other heuristics to solve a problem by exploring and exploiting its search space.<ul>
+<li><em>Approximate Solutions</em></li>
+<li><em>Nondeterministic Solutions</em></li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Properties">Properties<a class="anchor-link" href="#Properties">&#182;</a></h3><ul>
+<li>Mechanisms to avoid getting trapped in confined areas of the search space.</li>
+<li>Not problem-specific; may use domain-specific knowledge from heuristics controlled by upper-level strategy.</li>
+<li>Search history to guide te search.</li>
+<li>Hybrid search models where the search identifies neighborhoods where a goal may lie, and then the search is intensified in that area.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Population-Based-Methods">Population-Based Methods<a class="anchor-link" href="#Population-Based-Methods">&#182;</a></h3><ul>
+<li>Population-based methods are metaheuristic approaches that apply multiple agents to a search space and can handle multiple simultaneous solutions.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Trajectory-Methods">Trajectory Methods<a class="anchor-link" href="#Trajectory-Methods">&#182;</a></h3><ul>
+<li>Trajectory methods are metaheuristic variants of local search that apply memory structure to avoid getting stuck at local minima, and implement an explorative strategy that tries to avoid revisiting nodes.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Simulated-Annealing">Simulated Annealing<a class="anchor-link" href="#Simulated-Annealing">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Physical-Annealing-Analogy">Physical Annealing Analogy<a class="anchor-link" href="#Physical-Annealing-Analogy">&#182;</a></h3><ul>
+<li>Physical annealing involves heating a substance (e.g. a metal) and then letting it cool to increase its ductility and reduce hardness.</li>
+<li>The goal is to make the molecules in a cooled substances arrange themselves in a low-energy structure, and the properties of this structure are inuenced by the temperatures reached and the rate of cooling.</li>
+<li>A sequence of cooling times and temperatures is referred to as an annealing or cooling schedule.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Simulated-Annealing-Algorithm">Simulated Annealing Algorithm<a class="anchor-link" href="#Simulated-Annealing-Algorithm">&#182;</a></h3><ul>
+<li>Let $s = s_{0}$ be a current solution initialized to $s_{0}$.</li>
+<li>Let $t = t_{0}$ be a current temperature initialized to $t_{0}$.</li>
+<li>Let $\alpha$ be a temperature reduction function.</li>
+</ul>
+<ol>
+<li>Repeat,<ol>
+<li>Repeat,<ol>
+<li>Select a solution $s_{i}$ from the neighborhood $N(s)$.</li>
+<li>Calculate the change in cost $\Delta C$.</li>
+<li>If $\Delta C &lt; 0$, then accept the new solution: $s = s_{i}$.</li>
+<li>Else, generate a random number $x \in (0, 1)$.</li>
+<li>If $x &lt; \exp(\frac{-\Delta C}{t})$, then accept the new solution: $s = s_{i}$.</li>
+</ol>
+</li>
+<li>Until maximum number of iteration for $t$.</li>
+<li>Decrease $t$ using $\alpha$.</li>
+</ol>
+</li>
+</ol>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Strategy">Strategy<a class="anchor-link" href="#Strategy">&#182;</a></h3><p><img src="images/Simulated_Annealing_1.png" alt="Simulated Annealing Strategy"></p>
+<ul>
+<li>Simulated annealing always accepts better solutions.</li>
+<li>Simulated annealing randomly accepts worse solutions.</li>
+<li>At higher temperatures, explore parameter space.</li>
+<li>At lower temperatures, restrict exploration.</li>
+</ul>
+$$\text{ Low Temperature } \wedge \text{ High Change in Cost } \implies \text{ Low Acceptance Probability }$$
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Annealing-Schedule">Annealing Schedule<a class="anchor-link" href="#Annealing-Schedule">&#182;</a></h3><ul>
+<li><strong>Annealing Schedule</strong>: <em>Adjusts Temperature</em><ul>
+<li><em>Initial Temperature</em></li>
+<li><em>Final Temperature</em></li>
+<li><em>Temperature Decrement Rule</em></li>
+<li><em>Temperature Iterations</em></li>
+</ul>
+</li>
+</ul>
+<h4 id="Initial-Temperature">Initial Temperature<a class="anchor-link" href="#Initial-Temperature">&#182;</a></h4><ul>
+<li>The initial temperature should be high enough to allow exploration to any part of the search space.</li>
+<li>If the initial temperature is too hot, simulated annealing would behave too randomly.</li>
+<li>The maximum change of a cost function should be considered when setting the initial temperature.</li>
+<li><strong>General Rule</strong>: Set the initial temperature to accept around $60\%$ of worse solutions.</li>
+</ul>
+<h4 id="Final-Temperature">Final Temperature<a class="anchor-link" href="#Final-Temperature">&#182;</a></h4><ul>
+<li>The final temperature should be quite low but not neccessarily have to reach zero.</li>
+<li>A search using simulated annealing can be stopped once no better moves are being found and no worse moves are being accepted.</li>
+</ul>
+<h4 id="Temperature-Decrement-Rule">Temperature Decrement Rule<a class="anchor-link" href="#Temperature-Decrement-Rule">&#182;</a></h4><ul>
+<li><strong>Linear</strong>: $t = t - \alpha$</li>
+<li><strong>Geometric</strong>: $t = t \times alpha$</li>
+<li><strong>Slow Decrease</strong>: $t = \frac{t}{1 + \beta t}$</li>
+</ul>
+<h4 id="Temperature-Iterations">Temperature Iterations<a class="anchor-link" href="#Temperature-Iterations">&#182;</a></h4><ul>
+<li>Enough iterations should be allowed at every temperature for the system to be stable at that temperature.</li>
+<li>If the search space is very large, a large number of iterations may be required.</li>
+<li>If the slow decrease rule is used, one iteration per temperature should be used.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Convergence">Convergence<a class="anchor-link" href="#Convergence">&#182;</a></h3><ul>
+<li>Simulated annealing is guaranteed to eventually converge to a solution at a constant temperature, assuming some sequence of moves leads to the goal state.</li>
+<li>When temperature is not constant, convergence can still be guaranteed but only under conditions that result in very slow temperature reduction and an exponential increase in the number of iterations at each temperature.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Advantages-and-Disadvantages">Advantages and Disadvantages<a class="anchor-link" href="#Advantages-and-Disadvantages">&#182;</a></h3><h4 id="Advantages">Advantages<a class="anchor-link" href="#Advantages">&#182;</a></h4><ul>
+<li>Easy</li>
+<li>Widely Applicable</li>
+</ul>
+<h4 id="Disadvantages">Disadvantages<a class="anchor-link" href="#Disadvantages">&#182;</a></h4><ul>
+<li>Time Complexity</li>
+<li>Many Tunable Parameters</li>
+</ul>
+
+</div>
+</div>
+</div>
     </div>
   </div>
 </body>
