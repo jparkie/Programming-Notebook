@@ -1,4 +1,4 @@
-# Programming Notebook
+# [Programming Notebook](https://github.com/jparkie/Programming-Notebook)
 
 A collection of [BeakerX](http://beakerx.com/) IPython notebooks and PDFs about various topics I actively study.
 
