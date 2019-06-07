@@ -13724,8 +13724,8 @@ $$\tau(A) = \sum_{B} \phi(A, B)$$</li>
 <div class="text_cell_render border-box-sizing rendered_html">
 <h4 id="Time-Complexity---What-is-the-time-complexity-of-variable-elimination?">Time Complexity - What is the time complexity of variable elimination?<a class="anchor-link" href="#Time-Complexity---What-is-the-time-complexity-of-variable-elimination?">&#182;</a></h4><ul>
 <li><strong>Time Complexity</strong>: $O(n \cdot k^{M + 1})$<ul>
-<li>Where $n$ is the number of variables</li>
-<li>Where $M$ is the maximum number of dimensions of any factor $\tau$ formed during the elimination process</li>
+<li>Where $n$ is the number of variables.</li>
+<li>Where $M$ is the maximum number of dimensions of any factor $\tau$ formed during the elimination process.</li>
 </ul>
 </li>
 </ul>
@@ -13844,14 +13844,14 @@ $$p(l) = \sum_{g} p(l \mid g) \cdot \sum_{s} \sum_{i} p(s \mid i) \cdot p(i) \cd
 <li><em>See <a href="#S05">Inference</a>.</em></li>
 <li>Given a probabilistic graphical model $p(x_{1}, ..., x_{n}) = \prod_{c \in C} \phi_{c}(x_{c})$, MAP inference corresponds to the following optimization problem:
 $$\max_{x} \log p(x) = \max_{x} \sum_{c \in C} \theta_{c}(x_{c}) - \log Z$$<ul>
-<li>Where $\theta_{c}(x_{c}) = \log \phi_{c}(x_{c})$</li>
+<li>Where $\theta_{c}(x_{c}) = \log \phi_{c}(x_{c})$.</li>
 </ul>
 </li>
 </ul>
 <h5 id="Derivation---Why-is-the-MAP-inference-optmization-problem-expressed-the-way-it-is?">Derivation - Why is the MAP inference optmization problem expressed the way it is?<a class="anchor-link" href="#Derivation---Why-is-the-MAP-inference-optmization-problem-expressed-the-way-it-is?">&#182;</a></h5><ol>
 <li>All probabilistic graphical models (as BNs and CRFs are special cases of MRFs) have the following representation:
 $$p(x) = \frac{1}{Z} \prod_{c \in C} \phi_{c}(x_{c})$$<ul>
-<li>Where $Z$ is NP-Hard</li>
+<li>Where $Z$ is NP-Hard.</li>
 </ul>
 </li>
 <li>MAP inference desires to infer the set of conditions that maximizes the probability of some real-world phenomenon being observed.
@@ -13964,7 +13964,7 @@ $$p_{t}(x) \propto \exp\left( \frac{1}{t} \sum_{c \in C} \theta_{c}(x_{c}) \righ
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Overview---Why-does-sampling-based-inference-algorithms-exist?">Overview - Why does sampling-based inference algorithms exist?<a class="anchor-link" href="#Overview---Why-does-sampling-based-inference-algorithms-exist?">&#182;</a></h4><ul>
+<h4 id="Motivation---Why-does-sampling-based-inference-algorithms-exist?">Motivation - Why does sampling-based inference algorithms exist?<a class="anchor-link" href="#Motivation---Why-does-sampling-based-inference-algorithms-exist?">&#182;</a></h4><ul>
 <li><strong>Exact Inference Algorithms</strong>: Slow/NP-Hard</li>
 <li><strong>Approximate Inference Algorithms</strong>: Marginal Inference, MAP Inference, Expectations</li>
 </ul>
@@ -14184,6 +14184,136 @@ $$p_{t} = T^{t} p_{0}$$<ul>
 <ul>
 <li><strong>Important Note 1</strong>: When $x_{i}$ is updated, its new value is immediately used for sampling other variables $x_{j}$.</li>
 <li><strong>Important Note 2</strong>: Every iteration of $x^{t}$ is a new sample from $p$.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Learning-">Learning <span name="S09" /><a class="anchor-link" href="#Learning-">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li><strong>Problem</strong>: <em>Given a dataset $D$ of $m$ i.i.d. samples from some underlying distribution $p^{\ast}$, how do you fit the best model, given a family of models $M$, to make useful predictions?</em><ul>
+<li><strong>Parameter Learning</strong>: <em>Where the graph structure is known, and we want to estimate the factors.</em></li>
+<li><strong>Structure Learning</strong>: <em>Where we want to estimate the graph, i,e. determine from data how the variables depend on each other.</em></li>
+</ul>
+</li>
+<li><strong>Solution</strong>: <em>Best Approximation of $p^{\ast}$</em><ul>
+<li><strong>Density Estimation</strong>: <em>We are interested in the full distribution.</em></li>
+<li><strong>Specific Prediction Tasks</strong>: <em>We are using the distribution to make a prediction.</em><ul>
+<li>e.g. Is this email spam or not?</li>
+</ul>
+</li>
+<li><strong>Structure or Knowledge Discovery</strong>: <em>We are interested in the model itself.</em><ul>
+<li>e.g. How do some genes interact with each other?</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Maximum-Likelihood-Estimation">Maximum Likelihood Estimation<a class="anchor-link" href="#Maximum-Likelihood-Estimation">&#182;</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Motivation---Why-does-maximum-likelihood-estimation-exist?">Motivation - Why does maximum likelihood estimation exist?<a class="anchor-link" href="#Motivation---Why-does-maximum-likelihood-estimation-exist?">&#182;</a></h4><ul>
+<li><strong>Goal</strong>: How do we approximate $p$ as close as possible to $p^{\ast}$?</li>
+<li><strong>Approach</strong>: When the KL divergence between $p$ and $p^{\ast}$ is minimal, $p$ is as close as possible to $p^{\ast}$.</li>
+</ul>
+<h5 id="KL-Divergence---What-is-KL-divergence?">KL Divergence - What is KL divergence?<a class="anchor-link" href="#KL-Divergence---What-is-KL-divergence?">&#182;</a></h5><ul>
+<li><strong>KL Divergence</strong>: How different is one probability distribution from another probability distribution?
+$$KL(p^{\ast} \parallel p) = \sum_{x} p^{\ast}(x) \log \frac{p^{\ast}(x)}{p(x)} = -H(p^{\ast}) - \mathbb{E}_{x \sim p^{\ast}}[\log p(x)]$$</li>
+</ul>
+<h5 id="Minimal-KL-Divergence---When-is-KL-divergence-minimal?">Minimal KL Divergence - When is KL divergence minimal?<a class="anchor-link" href="#Minimal-KL-Divergence---When-is-KL-divergence-minimal?">&#182;</a></h5><ul>
+<li><strong>General Idea</strong>: <em>Minimizing KL Divergence</em> $\Longleftrightarrow$ <em>Maximizing Likelihood</em>
+$$\min KL(p^{\ast} \parallel p) \Longleftrightarrow \max \mathbb{E}_{x \sim p^{\ast}}[\log p(x)]$$</li>
+<li>Because $p^{\ast}$ is unknown, approximate the log-likelihood with the emperical log-likelihood using a Monte-Carlo estimate.
+$$\mathbb{E}_{x \sim p^{\ast}}[\log p(x)] \approx \frac{1}{\lvert D \rvert} \sum_{x \in D} \log p(x)$$</li>
+</ul>
+<h5 id="Maximum-Likelihood-Learning---How-do-you-fit-the-best-model-using-maximum-likelihood-learning?">Maximum Likelihood Learning - How do you fit the best model using maximum likelihood learning?<a class="anchor-link" href="#Maximum-Likelihood-Learning---How-do-you-fit-the-best-model-using-maximum-likelihood-learning?">&#182;</a></h5><ul>
+<li>Given a family of models $M$, to fit the best model $p$, compute the following.
+$$\max_{p \in M} \mathbb{E}_{x \sim p^{\ast}}[\log p(x)] \approx \max_{p \in M} \frac{1}{\lvert D \rvert} \sum_{x \in D} \log p(x)$$</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Definition---What-is-maximum-likelihood-estimation?">Definition - What is maximum likelihood estimation?<a class="anchor-link" href="#Definition---What-is-maximum-likelihood-estimation?">&#182;</a></h4><ul>
+<li><strong>Maximum Likelihood Estimation</strong>: Given a data set $D$, choose parameters $\hat{\theta}$ that satisfy the following.
+$$\max_{\theta in \Theta} L(\theta, D)$$</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Loss-Function---What-is-a-loss-function?">Loss Function - What is a loss function?<a class="anchor-link" href="#Loss-Function---What-is-a-loss-function?">&#182;</a></h4><ul>
+<li><strong>Loss Function</strong> ($L(x, p)$): A measure of the loss that a model distribution $p$ makes on a particular instance $x$.<ul>
+<li>e.g., <em>MLE Loss Function</em>: $L(x, p) = -\log p(x)$</li>
+</ul>
+</li>
+<li><strong>Important Note</strong>: Assuming instances are sampled from some distribution $p^{\ast}$, to fit the best model, <strong>MINIMIZE</strong> the expected loss.
+$$\mathbb{E}_{x \sim p^{\ast}}[L(x, p)] \approx \frac{1}{\lvert D \rvert} \sum_{x \in D} L(x, p)$$</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Likelihood-Function---What-is-a-likelihood-function?">Likelihood Function - What is a likelihood function?<a class="anchor-link" href="#Likelihood-Function---What-is-a-likelihood-function?">&#182;</a></h4><ul>
+<li><strong>Likelihood Function</strong> ($L(\theta, D)$): The probability of observing the i.i.d. samples $D$ for all permissible values of the parameters $\theta$.</li>
+</ul>
+<h5 id="Example---Likelihood-Function">Example - Likelihood Function<a class="anchor-link" href="#Example---Likelihood-Function">&#182;</a></h5><ol>
+<li>Let $p(x)$ be a probability distribution where $x \in \{h, t\}$ such that $p(x = h) = \theta$ and $p(x = t) = 1 - \theta$.</li>
+<li>Let $D = \{h, h, t, h, t\}$ be observed i.i.d. samples.</li>
+<li>Accordingly, $p(x)$ models the outcome of a biased coin where parameter $\theta$ represents the probability of flipping heads and $1 - \theta$ represents the probability of flipping tails.</li>
+<li>Express the likelihood function as the following.
+$$L(\theta, D) = \theta \cdot \theta \cdot (1 - \theta) \cdot \theta \cdot (1 - \theta) = \theta^{3} \cdot (1 - \theta)^{2}$$</li>
+</ol>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Bayesian-Networks---How-does-maximum-likelihood-learning-estimate-the-CPDs-in-Bayesian-networks?">Bayesian Networks - How does maximum likelihood learning estimate the CPDs in Bayesian networks?<a class="anchor-link" href="#Bayesian-Networks---How-does-maximum-likelihood-learning-estimate-the-CPDs-in-Bayesian-networks?">&#182;</a></h4><ol>
+<li>Let $p(x) = \prod_{i = 1}^{n} \theta_{x_{i} \mid x_{pa(i)}}$ be a Bayesian network.<ul>
+<li>Where $\theta_{x_{i} \mid x_{pa(i)}}$ are parameters (CPDs) with <strong>UNKNOWN VALUES</strong>.</li>
+</ul>
+</li>
+<li>Let $D = \{x^{(1)}, x^{(2)}, ..., x^{(m)}\}$ be i.i.d. samples.</li>
+<li>Let $L(\theta, D) = \prod_{i = 1}^{n} \prod_{j = 1}^{m} \theta_{x_{i}^{j} \mid x_{pa(i)}^{j}}$ be the likelihood function.</li>
+<li>Log and collect like terms of the likelihood function.
+$$\log L(\theta, D) = \sum_{i = 1}^{n} \sum_{x_{pa(i)}} \sum_{x_{i}} \#(x_{i}, x_{pa(i)}) \cdot \log \theta_{x_{i} \mid x_{pa(i)}}$$</li>
+<li>Maximize the (log) likelihood function by decomposing it into separate maximizations for the local conditional distributions.</li>
+</ol>
+<ul>
+<li><strong>Important Note</strong>: The maximum-likelihood estimates of the parameters (CPDs) have closed-form solutions.
+$$\theta_{x_{i} \mid x_{pa(i)}}^{\ast} = \frac{\#(x_{i}, x_{pa(i)})}{\#(x_{pa(i)})}$$</li>
 </ul>
 
 </div>
