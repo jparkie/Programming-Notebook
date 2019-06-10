@@ -13634,8 +13634,8 @@ div#notebook {
 </ul>
 </li>
 <li><em>A&ast; Search: Constraint $h(n)
-\le h^{</em>}(n)$*<ul>
-<li>$h^{*}(n)$ is the actual minimal path cost from $n$ to the goal.</li>
+\le h^{\ast}(n)$</em><ul>
+<li>$h^{\ast}(n)$ is the actual minimal path cost from $n$ to the goal.</li>
 </ul>
 </li>
 </ul>
@@ -13656,7 +13656,7 @@ div#notebook {
 <h4>Properties of A&ast; Search</h4>
 <ul>
 <li><em>Admissible</em>:<ul>
-<li>Yes - If $h(n) \le h^{*}(n)$*</li>
+<li>Yes - If $h(n) \le h^{\ast}(n)$</li>
 </ul>
 </li>
 <li><em>Completeness</em>:<ul>
@@ -14005,6 +14005,283 @@ $$\text{ Low Temperature } \wedge \text{ High Change in Cost } \implies \text{ L
 <h4 id="Disadvantages">Disadvantages<a class="anchor-link" href="#Disadvantages">&#182;</a></h4><ul>
 <li>Time Complexity</li>
 <li>Many Tunable Parameters</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Adaptation">Adaptation<a class="anchor-link" href="#Adaptation">&#182;</a></h3><ul>
+<li><strong>Adaptation</strong> refers to adapting the critical parameters of the simulated annealing algorithm.</li>
+</ul>
+<h4 id="Initial-Temperature">Initial Temperature<a class="anchor-link" href="#Initial-Temperature">&#182;</a></h4><ul>
+<li>Finding the right temperature is very problem-specific, and different search algorithms can be applied in finding this temperature.</li>
+</ul>
+<h4 id="Cooling-Schedule">Cooling Schedule<a class="anchor-link" href="#Cooling-Schedule">&#182;</a></h4><ul>
+<li>Some cooling schedules require that only the cooling rate $\alpha$ is specified, and the remainder of parameters are automatically determined using a linear random combination of previously accepted states and parameters to estimate new steps and parameters.</li>
+</ul>
+<h4 id="Probability-of-Acceptance">Probability of Acceptance<a class="anchor-link" href="#Probability-of-Acceptance">&#182;</a></h4><ul>
+<li>Some attempted adaptations concerning the probability of acceptance include using a lookup table for the relevant calculations (to decrease computation time) or using a different, non-exponential probability formula.</li>
+</ul>
+<h4 id="Cost-Function">Cost Function<a class="anchor-link" href="#Cost-Function">&#182;</a></h4><ul>
+<li>Cost functions that return similar values for many different states tend to not lead to effective search.</li>
+<li>As an alternative, a cost function can have a penalty term associated with certain types of states, and weighting of these penalty terms can vary dynamically.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Cooperation">Cooperation<a class="anchor-link" href="#Cooperation">&#182;</a></h3><ul>
+<li>Cooperative simulated annealing involves multiple concurrent runs of a simulated annealing search algorithm on a search space.</li>
+<li>Potential solutions are produced by somehow combining the value of a run with the value of a random previous run of the algorithm.</li>
+<li>This exchange of information from other solutions is known as cooperative transition, and is a concept borrowed from genetic algorithms.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Tabu-Search">Tabu Search<a class="anchor-link" href="#Tabu-Search">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Overview">Overview<a class="anchor-link" href="#Overview">&#182;</a></h3><ul>
+<li><strong>Tabu Search</strong>: A general trajectory-based metaheuristic strategy for controlling inner heuristics.<ul>
+<li><em>Combination of Local Search Strategy + Search Experience Model $\implies$ Escape Local Minima + Explorative Strategy</em></li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Local-Search-Strategy">Local Search Strategy<a class="anchor-link" href="#Local-Search-Strategy">&#182;</a></h3><ol>
+<li>Start with an initial feasible solution.</li>
+<li>Repeat,<ol>
+<li>Generate a neighboring solution by applying a series of local modifications.</li>
+<li>If the new solution is better, then replace the current solution.</li>
+</ol>
+</li>
+</ol>
+<h4 id="Local-Search-Strategy-Challenges">Local Search Strategy Challenges<a class="anchor-link" href="#Local-Search-Strategy-Challenges">&#182;</a></h4><ol>
+<li>It can be costly to consider all possible local modifications.</li>
+<li>It can get stuck in local optimum.</li>
+</ol>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Basic-Ideas">Basic Ideas<a class="anchor-link" href="#Basic-Ideas">&#182;</a></h3><ul>
+<li>Penalize moves that take a solution back to a previously visited (tabu) state.</li>
+<li>Accepts non-improving solutions in order to escape from local optima and eventually find a better solution.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Use-of-Memory">Use of Memory<a class="anchor-link" href="#Use-of-Memory">&#182;</a></h3><ul>
+<li><strong>Short-Term Memory</strong> (<em>Recency of Occurrence</em>): Prevent the search from revisiting recently visited solutions.<ul>
+<li><strong>Tabu List</strong>: A short-term memory structure that stores recent moves applied to the current solutions or their attributes.</li>
+<li><strong>Tabu Tenure</strong>: The number of iterations $T$ for which a certain move or its attributes are kept in the list.</li>
+<li>Complete solutions are rarely used because of the space requirement.</li>
+</ul>
+</li>
+<li><strong>Long-Term Memory</strong> (<em>Frequency of Occurrence</em>): Prevent the search from revisiting frequently visited solutions.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Neighborhood">Neighborhood<a class="anchor-link" href="#Neighborhood">&#182;</a></h3><ul>
+<li>When selecting a new state, consider neighbors that are not on the tabu list.
+$$N(s) - T(s)$$</li>
+<li>The neighborhood structure $N(s)$ can be reduced and modified based on history and knowledge.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Termination-Conditions">Termination Conditions<a class="anchor-link" href="#Termination-Conditions">&#182;</a></h3><ul>
+<li><em>Sample Conditions</em>:<ul>
+<li>No feasible solution in the neighborhood of current solution.</li>
+<li>Reached the maximum number of iterations allowed.</li>
+<li>The number of iterations since the last improvement is larger than a specified number.</li>
+<li>Evidence shows that an optimum solution has been obtained.</li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Candidates-and-Aspiration">Candidates and Aspiration<a class="anchor-link" href="#Candidates-and-Aspiration">&#182;</a></h3><ul>
+<li>A <strong>candidate list</strong> stores the potential solutions in a neighborhood to be examined.<ul>
+<li>Isolate regions of a neighborhood with desirable features, aiming to find a solution more efficiently.</li>
+<li>At times, it can be desirable to include a move in a candidate list even if it is tabu in order to prevent <strong>stagnation</strong>.</li>
+<li><strong>Aspiration Criteria</strong>: <em>Approaches for Canceling Tabus</em></li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Tabu-Search-Algorithm">Tabu Search Algorithm<a class="anchor-link" href="#Tabu-Search-Algorithm">&#182;</a></h3><ul>
+<li>Let $s = s_{0}$ be a current solution initialized to $s_{0}$.</li>
+<li>Let $N(s)$ be the neighborhood of the current solution.</li>
+<li>Let $T(s)$ be the tabu list of the current solution.</li>
+<li>Let $A(s)$ be the aspiration list of the current solution.</li>
+</ul>
+<ol>
+<li>Repeat,<ol>
+<li>Select the best solution $s'$ from $N^{\ast}(s) = N(s) - T(s) + A(s)$.</li>
+<li>Memorize $s'$ if it is improves the best known solution.</li>
+<li>Let $s = s'$.</li>
+<li>Update $T(s)$ and $A(s)$</li>
+</ol>
+</li>
+<li>Until termination criteria are met.</li>
+</ol>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Selecting-Tabu-Restrictions">Selecting Tabu Restrictions<a class="anchor-link" href="#Selecting-Tabu-Restrictions">&#182;</a></h3><ul>
+<li><em>Sample Restrictions</em>:<ul>
+<li>Not picking a move that involves the same exchange of positions of a tabu move.</li>
+<li>Not picking a move that results in positions that previously appeared in a tabu move.</li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Selecting-Tabu-Tenure">Selecting Tabu Tenure<a class="anchor-link" href="#Selecting-Tabu-Tenure">&#182;</a></h3><ul>
+<li><em>Sample Strategies</em>:<ul>
+<li>Statically assigning $T$ to be a constant: $\sqrt{n}$ where $n$ is the problem size.</li>
+<li>Dynamically letting $T$ vary between a $T_{min}$ and a $T_{max}$.<ul>
+<li><em>Advantages: Better Limits Cycles</em></li>
+<li><em>Disadvantages: May Contain Cycles Longer Than Tabu Tenure</em></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Selecting-Aspiration-Criteria">Selecting Aspiration Criteria<a class="anchor-link" href="#Selecting-Aspiration-Criteria">&#182;</a></h3><ul>
+<li><em>Sample Strategies</em>:<ul>
+<li>By default, where a tabu move becomes admissible if it yields a better solution than any found so far.</li>
+<li>By objective, where a tabu move becomes admissible if it yield a solution better than an aspiration value.</li>
+<li>By search direction, where a tabu move becomes admissible if the direction of the search remains constant.</li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Intensification">Intensification<a class="anchor-link" href="#Intensification">&#182;</a></h3><ul>
+<li><strong>Intensification</strong>: The process of exploiting a small portion of the search space (e.g. penalizing solutions far from the current solution).</li>
+<li><em>General Idea</em>: Locally optimize a best known solution while trying to preserve the general components of that solution (based on short-term memory).</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Diversification">Diversification<a class="anchor-link" href="#Diversification">&#182;</a></h3><ul>
+<li><strong>Diversification</strong>: The process of forcing the search into unexplored areas (e.g. penalizing solutions close to the current solution).</li>
+<li><em>General Problem</em>: Tabu search can miss some good solutions in unexplored search space areas.</li>
+</ul>
+<h4 id="Diversification-Strategies">Diversification Strategies<a class="anchor-link" href="#Diversification-Strategies">&#182;</a></h4><ul>
+<li><strong>Restart Diversification</strong>: Where components rarely appearing in solutions are forced into new solutions.</li>
+<li><strong>Continuous Diversification</strong>: Where the evaluation of possible moves is biased by a term related to component frequency.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Adaptation">Adaptation<a class="anchor-link" href="#Adaptation">&#182;</a></h3><ul>
+<li><strong>Adaptation</strong> refers to a series of techniques for varying the tabu tenure.<ul>
+<li>If the tabu tenure is too small, then cycles in the search are likely.</li>
+<li>If the tabu tenure is too big, then many moves could be prevented at each iteration.</li>
+</ul>
+</li>
+</ul>
+<h4 id="Adaptation-Techniques">Adaptation Techniques<a class="anchor-link" href="#Adaptation-Techniques">&#182;</a></h4><ul>
+<li>Randomly select a new tenure from a pre-computed range every predetermined number of iterations.</li>
+<li>Set the tenure to one if a best-so-far solution is found, decreasing it in an improving phase, and increasing it in a worsening phase.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Cooperation">Cooperation<a class="anchor-link" href="#Cooperation">&#182;</a></h3><ul>
+<li>Cooperative tabu search involves multiple concurrent runs of a tabu search algorithm on a search space.</li>
+<li><strong>Synchronous Communication</strong>: Search agents exchange information every fixed number of iterations.</li>
+<li><strong>Asynchronous Communication</strong>: Search agents relay their best-so-far results to a central memory.</li>
+<li><strong>Forced Diversification</strong>: A search agent can replace its own best-so-far solution with an incoming solution.</li>
+<li><strong>Conditional Import</strong>: A seach agent can replace its own best-so-far solution with an incoming solution only if the incoming solution is better.</li>
+</ul>
+<h4 id="Observations-on-Tabu-Search-Cooperation">Observations on Tabu Search Cooperation<a class="anchor-link" href="#Observations-on-Tabu-Search-Cooperation">&#182;</a></h4><ul>
+<li>Increasing the number of search agents improves the solution up to a certain point.</li>
+<li>Increasing the number of synchronization messages increases the computation time due to message passing overhead.</li>
+<li>Conditional imports are almost always preferable to forced diversification.</li>
 </ul>
 
 </div>
