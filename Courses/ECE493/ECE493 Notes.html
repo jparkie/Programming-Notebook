@@ -14087,13 +14087,13 @@ $$<ul>
 $$\mathbb{E}_{x \sim q}[w(x)] = \sum_{x} q(x)\frac{\tilde{p}(x)}{q(x)} = \sum_{x} \tilde{p}(x) = Z$$</li>
 <li>The <strong>normalized importance sampling estimator</strong> is the following:
 $$
-\begin{align}
+\begin{aligned}
 \mathbb{E}_{x \sim p}[f(x)] &amp;= \sum_{x} f(x)p(x) \\
 &amp;= \sum_{x} f(x)\frac{p(x)}{q(x)}q(x) \\
 &amp;= \frac{1}{Z} \sum_{x} f(x)\frac{\tilde{p}(x)}{q(x)}q(x) \\
 &amp;= \frac{1}{Z} \mathbb{E}_{x \sim q}[f(x)w(x)] \\
 &amp;= \frac{\mathbb{E}_{x \sim q}[f(x)w(x)]}{\mathbb{E}_{x \sim q}[w(x)]}
-\end{align}
+\end{aligned}
 $$</li>
 </ol>
 
