@@ -13360,7 +13360,7 @@ $$\text{iqr}(\{x\}) = \text{percentile}(\{x\}, 75) - \text{percentile}(\{x\}, 25
 $$
 \begin{align}
 \hat{\mu}_{1} &amp;= x_1 \\
-\hat{\mu}_{k + 1} &amp;= \frac{\hat{\mu}_{k} + x_{k + 1}}{k + 1}
+\hat{\mu}_{k + 1} &amp;= \frac{k \cdot \hat{\mu}_{k} + x_{k + 1}}{k + 1}
 \end{align}
 $$<h4 id="Standard-Deviation">Standard Deviation<a class="anchor-link" href="#Standard-Deviation">&#182;</a></h4><ul>
 <li>Let $\hat{\sigma}_{k}$ be an estimate for the standard deviation of the dataset after seeing $k$ elements.</li>
