@@ -13519,10 +13519,10 @@ $$X \perp (\mathcal{X} - \{X\} - U) \mid U$$</li>
 <h4 id="Conditional-Random-Fields---What-are-conditional-random-fields?">Conditional Random Fields - What are conditional random fields?<a class="anchor-link" href="#Conditional-Random-Fields---What-are-conditional-random-fields?">&#182;</a></h4><h5 id="Definition">Definition<a class="anchor-link" href="#Definition">&#182;</a></h5><ul>
 <li>A <strong>conditional random field</strong> is a Markov random field over variables $\mathcal{X} \cup \mathcal{Y}$ which specifies a conditional distribution:
 $$
-\begin{align}
+\begin{aligned}
 P(y \mid x) &amp;= \frac{1}{Z(x)} \prod_{c \in C} \phi_{c}(x_{c}, y_{c}) \\
 Z(x) &amp;= \sum_{y \in \mathcal{Y}} \prod_{c \in C} \phi_{c}(x_{c}, y_{c})
-\end{align}
+\end{aligned}
 $$<ul>
 <li>Where $x \in \mathcal{X}$ and $y \in \mathcal{Y}$ are <strong>VECTOR-VALUED</strong> variables.</li>
 <li>Where $Z(x)$ is the partition function.</li>
@@ -13785,31 +13785,31 @@ $$p(l) = \sum_{g} \sum_{i} \sum_{d} \sum_{s} p(l, g, i, d, s)$$</li>
 $$d, i, s, g$$</li>
 <li>Eliminate $d$ with a new factor $\tau_{1}$:
 $$
-\begin{align}
+\begin{aligned}
 \tau_{1}(g, i) &amp;= \sum_{d} p(g \mid i, d) \cdot p(d) \\
 p(l, g, i, s) &amp;= p(l \mid g) \cdot p(s \mid i) \cdot p(i) \cdot \tau_{1}(g, i)
-\end{align}
+\end{aligned}
 $$</li>
 <li>Eliminate $i$ with a new factor $\tau_{2}$:
 $$
-\begin{align}
+\begin{aligned}
 \tau_{2}(g, s) &amp;= \sum_{i} p(s \mid i) \cdot p(i) \cdot \tau_{1}(g, i) \\
 p(l, g, s) &amp;= p(l \mid g) \cdot \tau_{2}(g, s)
-\end{align}
+\end{aligned}
 $$</li>
 <li>Eliminate $s$ with a new factor $\tau_{3}$:
 $$
-\begin{align}
+\begin{aligned}
 \tau_{3}(g) &amp;= \sum_{s} \tau_{2}(g, s) \\
 p(l, g) &amp;= p(l \mid g) \cdot \tau_{3}(g)
-\end{align}
+\end{aligned}
 $$</li>
 <li>Eliminate $g$ with a new factor $\tau_{4}$:
 $$
-\begin{align}
+\begin{aligned}
 \tau_{4}(l) &amp;= \sum_{g} p(l \mid g) \cdot \tau_{3}(g) \\
 p(l) &amp;= \tau_{4}(l)
-\end{align}
+\end{aligned}
 $$</li>
 <li>Expanding $\tau_{i}$:
 $$p(l) = \sum_{g} p(l \mid g) \cdot \sum_{s} \sum_{i} p(s \mid i) \cdot p(i) \cdot \sum_{d} p(g \mid i, d) \cdot p(d)$$</li>
@@ -14023,10 +14023,10 @@ $$[0, \theta_{1}), [\theta_{1}, \theta_{1} + \theta_{2}), ..., \left[ \sum_{j = 
 $$\mathbb{E}_{x \sim p}[f(x)] \approx I_{T} = \frac{1}{T} \sum_{t = 1}^{T} f(x^{t})$$<ul>
 <li>Where $x^{1}, ..., x^{T}$ are <a href="https://en.wikipedia.org/wiki/Independent_and_identically_distributed_random_variables">i.i.d.</a> samples drawn according to $p$.
 $$
-\begin{align}
+\begin{aligned}
 \mathbb{E}_{x^{1}, ..., x^{T} \sim^{\text{i.i.d.}} p}[I_{T}] &amp;=  \mathbb{E}_{x \sim p}[f(x)] \\
 \text{Var}_{x^{1}, ..., x^{T} \sim^{\text{i.i.d.}} p}[I_{T}] &amp;= \frac{1}{T} \text{Var}_{x \sim p}[f(x)]
-\end{align}
+\end{aligned}
 $$</li>
 <li>Where the Monte Carlo estimate $I_T$</li>
 </ul>
@@ -14060,12 +14060,12 @@ $$</li>
 <h4 id="Importance-Sampling---How-does-importance-sampling-work?">Importance Sampling - How does importance sampling work?<a class="anchor-link" href="#Importance-Sampling---How-does-importance-sampling-work?">&#182;</a></h4><ul>
 <li>Compute a target probability distribution $p(x)$ by sampling a proposal probability distribution $q(x)$, reweighing samples with $w(x) = \frac{p(x)}{q(x)}$, and applying the Monte Carlo estimation.
 $$
-\begin{align}
+\begin{aligned}
 \mathbb{E}_{x \sim p}[f(x)] &amp;= \sum_{x} f(x)p(x) \\
 &amp;= \sum_{x} f(x)\frac{p(x)}{q(x)}q(x) \\
 &amp;= \mathbb{E}_{x \sim q}[f(x)w(x)] \\
 &amp;\approx \frac{1}{T} \sum_{t = 1}^{T} f(x^{t})w(x^{t})
-\end{align}
+\end{aligned}
 $$<ul>
 <li><strong>Examples</strong>: <em>See <a href="https://ermongroup.github.io/cs228-notes/inference/sampling/">Importance Sampling</a></em></li>
 <li><strong>Advantage</strong>: <em>Uses All Samples</em></li>
@@ -14259,7 +14259,7 @@ $$\max_{p \in M} \mathbb{E}_{x \sim p^{\ast}}[\log p(x)] \approx \max_{p \in M} 
 <div class="text_cell_render border-box-sizing rendered_html">
 <h4 id="Definition---What-is-maximum-likelihood-estimation?">Definition - What is maximum likelihood estimation?<a class="anchor-link" href="#Definition---What-is-maximum-likelihood-estimation?">&#182;</a></h4><ul>
 <li><strong>Maximum Likelihood Estimation</strong>: Given a data set $D$, choose parameters $\hat{\theta}$ that satisfy the following.
-$$\max_{\theta in \Theta} L(\theta, D)$$<ul>
+$$\max_{\theta \in \Theta} L(\theta, D)$$<ul>
 <li>i.e., Maximize the parameters $\theta$ to best fit the data set $D$.</li>
 </ul>
 </li>
@@ -14546,7 +14546,7 @@ $$\Gamma(x) = \int_{0}^{\infty} t^{x - 1} e^{-t} dt$$</li>
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h4 id="Definition---What-is-A/B-Testing?">Definition - What is A/B Testing?<a class="anchor-link" href="#Definition---What-is-A/B-Testing?">&#182;</a></h4><ul>
-<li><strong>A/B Testing</strong>: A randomized experiment with two variants, $A$ and $B$, that determines which of the two variants is more effective with their respective cohorts at achieving successes in $n$ trials.</li>
+<li>A randomized experiment with two variants, $A$ and $B$, that determines which of the two variants is more effective with their respective cohorts at achieving successes in $n$ trials.</li>
 </ul>
 
 </div>
@@ -14597,6 +14597,69 @@ $$\Gamma(x) = \int_{0}^{\infty} t^{x - 1} e^{-t} dt$$</li>
 </ul>
 </li>
 </ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Definition---What-is-the-Multi-armed-bandit-problem?">Definition - What is the Multi-armed bandit problem?<a class="anchor-link" href="#Definition---What-is-the-Multi-armed-bandit-problem?">&#182;</a></h4><ul>
+<li>A fixed limited set of resources must be allocated between competing (alternative) actions in a way that maximizes their expected reward, when each action's properties are only partially known at the time of allocation, and may become better understood as time passes or by allocating resources to the action.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Exploration-Exploitation-Tradeoff-Dilemma---What-is-the-exploration-exploitation-tradeoff-dilemma?">Exploration-Exploitation Tradeoff Dilemma - What is the exploration-exploitation tradeoff dilemma?<a class="anchor-link" href="#Exploration-Exploitation-Tradeoff-Dilemma---What-is-the-exploration-exploitation-tradeoff-dilemma?">&#182;</a></h4><ul>
+<li><strong>Exploitation</strong>: If we have chosen an action that yields a pretty good reward, do we keep choosing it to maintain a pretty good reward?</li>
+<li><strong>Exploration</strong>: Otherwise, do we choose other actions in hopes of finding an even-better action?</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="$\epsilon$-Greedy-Bandits-Algorithm---How-do-you-choose-actions-using-the-$\epsilon$-greedy-bandits-algorithm?">$\epsilon$-Greedy Bandits Algorithm - How do you choose actions using the $\epsilon$-greedy bandits algorithm?<a class="anchor-link" href="#$\epsilon$-Greedy-Bandits-Algorithm---How-do-you-choose-actions-using-the-$\epsilon$-greedy-bandits-algorithm?">&#182;</a></h4><ol>
+<li>Let $A_{t}$ be the action chosen from $k$ possibilities at time step $t$.</li>
+<li>Let $R_{t}$ be the independent and identically distributed reward yielded by action $A_{t}$.</li>
+<li>Let $Q_{t}(a)$ be the expected reward from choosing action $a$ until time step $t$.</li>
+<li>Let $N_{t}(a)$ be the number of tmes action $a$ was chosen until time step $t$.</li>
+<li>Initialize $Q_{0}(a) \gets 0, \forall a \in \{1, ..., k\}$.</li>
+<li>Initialize $N_{0}(a) \gets 0, \forall a \in \{1, ..., k\}$.</li>
+<li>Repeat for $t = 0, 1, 2, ...$,<ol>
+<li>Set $A_{t} \gets \max_{a} Q_{t}(a)$ with probability $1 - \epsilon$.</li>
+<li>Set $A_{t} \gets \text{random}(a)$ with probability $\epsilon$.</li>
+<li>Sample $R_{t} \gets \text{bandit}(A_{t})$.</li>
+<li>Update $N_{t + 1}(A_{t}) \gets N_{t}(A_{t}) + 1$.</li>
+<li>Update $Q_{t + 1}(A_{t}) \gets Q_{t}(A_{t}) + \frac{1}{N_{t}(A_{t})}[R_{t} - Q_{t}(A_{t})]$.</li>
+</ol>
+</li>
+</ol>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Bayesian-Bandits-Algorithm---How-do-you-choose-actions-using-the-Bayesian-bandits-algorithm?">Bayesian Bandits Algorithm - How do you choose actions using the Bayesian bandits algorithm?<a class="anchor-link" href="#Bayesian-Bandits-Algorithm---How-do-you-choose-actions-using-the-Bayesian-bandits-algorithm?">&#182;</a></h4><ol>
+<li>Let $A_{t}$ be the action chosen from $k$ possibilities at time step $t$.</li>
+<li>Let $R_{t}$ be the independent and identically distributed reward yielded by action $A_{t}$.</li>
+<li>Let $p_{t}(a)$ be the initially unknown probabilitites of the rewards yielded by choosing action $a$ until time step $t$.</li>
+<li>Repeat for $t = 0, 1, 2, ...$,<ol>
+<li>Sample a random variable $X_{a}$ using $p_{t}(a)$ for each $a \in \{1, ..., k\}$.</li>
+<li>Set $A_{t} \gets \max_{a} X_{a}$.</li>
+<li>Sample $R_{t} \gets \text{bandit}(A_{t})$.</li>
+<li>Update $p_{t + 1}(A_{t} \mid R_{t}) \propto p_{t}(R_{t} \mid A_{t}) p_{t}(A_{t})$.</li>
+</ol>
+</li>
+</ol>
 
 </div>
 </div>
