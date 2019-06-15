@@ -14351,8 +14351,9 @@ $$\theta_{x_{i} \mid x_{pa(i)}}^{\ast} = \frac{\#(x_{i}, x_{pa(i)})}{\#(x_{pa(i)
 $$p(\theta \mid D) = \frac{p(D \mid \theta) p(\theta)}{p(D)} 
 \propto p(D \mid \theta) p(\theta)$$
 $$posterior \propto likelihood \times prior$$</li>
-<li><strong>Important Note 1</strong>: Bayes'rule allows prior knowledge to be incorporated into a model's parameters.</li>
+<li><strong>Important Note 1</strong>: Bayes' rule allows prior knowledge to be incorporated into a model's parameters.</li>
 <li><strong>Important Note 2</strong>: Using Bayes' rule, the numerator is easy to calculate, but the denominator is difficult to calculate.</li>
+<li><strong>Important Note 3</strong>: The expected value of the posterior $p(\theta \mid D)$ is the estimate of the parameter $\theta$ that causes $p$ to be as close as possible to $p^{\ast}$.</li>
 </ul>
 
 </div>
@@ -14377,16 +14378,16 @@ $$P(\theta) \in \phi \implies P(\theta \mid D) \in \phi$$</li>
 <ul>
 <li>A <strong>Beta distribution</strong> is parameterized by two hyperparameters $\alpha \in \mathbb{R}$, and $\beta \in \mathbb{R}$ with the following continuous probability distribution.
 $$\theta \sim \text{Beta}(\alpha, \beta) \implies p(\theta) = \frac{\theta^{\alpha - 1} (1 - \theta)^{\beta - 1}}{B(\alpha, \beta)}$$<ul>
-<li>Where the constant $\alpha$ intuitively corresponds to the number of <strong>SUCCESSES</strong> before observing new data.</li>
-<li>Where the constant $\beta$ intuitively corresponds to the number of <strong>FAILURES</strong> before observing new data.</li>
+<li>Where $\theta \in (0, 1)$.</li>
+<li>Where the constant $\alpha$ intuitively corresponds to the number of <strong>SUCCESSES</strong> outcomes.</li>
+<li>Where the constant $\beta$ intuitively corresponds to the number of <strong>FAILURES</strong> outcomes.</li>
 <li>Where the constant $B(\alpha, \beta)$ is a normalizing constant defined by the following.
 $$B(\alpha, \beta) = \frac{\Gamma(\alpha) \Gamma(\beta)}{\Gamma(\alpha + \beta)}$$</li>
 <li>Where the Gamma function $\Gamma(x)$ is the continuous generalization of the factorial function defined by the following.
 $$\Gamma(x) = \int_{0}^{\infty} t^{x - 1} e^{-t} dt$$</li>
 </ul>
 </li>
-<li><strong>Mean</strong>: $$\text{mean}[X] = \frac{\alpha}{\alpha + \beta}$$</li>
-<li><strong>Variance</strong>: $$\text{var}[X] = \frac{\alpha \beta}{(\alpha + \beta)^{2} (\alpha + \beta + 1)}$$</li>
+<li><strong>Expected Value</strong>: $$\mathbb{E}[X] = \frac{\alpha}{\alpha + \beta}$$</li>
 </ul>
 
 </div>
@@ -14395,24 +14396,150 @@ $$\Gamma(x) = \int_{0}^{\infty} t^{x - 1} e^{-t} dt$$</li>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Conjugate-Priors-and-Beta-Distribution---How-do-you-calculate-a-posterior-with-data-observed-from-a-binary-process?">Conjugate Priors and Beta Distribution - How do you calculate a posterior with data observed from a binary process?<a class="anchor-link" href="#Conjugate-Priors-and-Beta-Distribution---How-do-you-calculate-a-posterior-with-data-observed-from-a-binary-process?">&#182;</a></h4><ul>
+<h4 id="Conjugate-Priors-and-Beta-Distribution---How-do-you-calculate-a-posterior-with-data-observed-from-a-binary-process?">Conjugate Priors and Beta Distribution - How do you calculate a posterior with data observed from a binary process?<a class="anchor-link" href="#Conjugate-Priors-and-Beta-Distribution---How-do-you-calculate-a-posterior-with-data-observed-from-a-binary-process?">&#182;</a></h4><blockquote><p>Think Coin Toss</p>
+</blockquote>
+<ul>
 <li>The beta distribution is the conjugate prior for the following probability distributions:<ul>
 <li><strong>Bernoulli</strong>: A discrete Bernoulli random variable, $X$, is the outcome from a single experiment from which this outcome is classified as either a success, $X = 1$ with probability $p$, or a failure, $X = 0$ with probability $1 - p$.</li>
 <li><strong>Binomial</strong>: A discrete binomial random variable, $X$, is the number of successful outcomes from a sequence of $n$ independent experiments in which each experiment has an outcome classified as either a success with probability $p$ or a failure with probability $1 - p$</li>
 <li><strong>Geometric</strong>: A discrete geometric random variable, $X$, is the number of Bernoulli trials with probability $p$ needed to get one success.</li>
-<li><strong>Negative Binomial</strong>: A discrete negative binomial random variable, $X$, is the number of successes in a sequence of independent and identically distributed Bernoulli trials before a specified (non-random) number of failures.</li>
+<li><strong>Negative Binomial</strong>: A discrete negative binomial random variable, $X$, is the number of successes in a sequence of independent and identically distributed Bernoulli trials before $r$ failures.</li>
 </ul>
 </li>
-<li><strong>Important Note</strong>: To best fit a binary model with a probability distribution $p$, the beta distribution can be used by the following.<ol>
+<li><strong>Important Note</strong>: To best fit a binary model with a probability distribution $p \approx p^{\ast}$, the beta distribution can be used by the following.<ol>
 <li>Assign $\text{Beta}(\alpha, \beta)$ as a prior to $p$.</li>
-<li>Observe data generated by a binary process.<ul>
-<li>If $X \sim \text{Bernoulli}(\theta)$, then the posterior is $\text{Beta}(\alpha + 1, \beta)$ or $\text{Beta}(\alpha, \beta + 1)$.</li>
-<li>If $X \sim \text{Binomial}(N, \theta)$, then the posterior is $\text{Beta}(\alpha + X, \beta + N - X)$.</li>
-<li>If $X \sim \text{Geometric}(N, \theta)$, then the posterior is $\text{Beta}(\alpha + X, \beta + 1)$.</li>
-<li>If $X \sim \text{Negative-Binomial}(R, \theta)$, then the posterior is $\text{Beta}(\alpha + X, \beta + R)$.</li>
+<li>Observe $n$ data points generated by a binary process with unknown, underlying $p^{\ast}$.<ul>
+<li>If $X_{i} \sim \text{Bernoulli}(p^{\ast})$, then the posterior is $\text{Beta}(\alpha + \sum_{i = 1}^{n} x_{i}, \beta + n - \sum_{i = 1}^{n} x_{i})$.</li>
+<li>If $X_{i} \sim \text{Binomial}(N, p^{\ast})$, then the posterior is $\text{Beta}(\alpha + \sum_{i = 1}^{n} x_{i}, \beta + \sum_{i = 1}^{n} N_{i} - \sum_{i = 1}^{n} x_{i})$.</li>
+<li>If $X_{i} \sim \text{Geometric}(p^{\ast})$, then the posterior is $\text{Beta}(\alpha + n, \beta + \sum_{i = 1}^{n} x_{i} - n)$.</li>
+<li>If $X_{i} \sim \text{Negative-Binomial}(r, p^{\ast})$, then the posterior is $\text{Beta}(\alpha + \sum_{i = 1}^{n} x_{i}, \beta + rn)$.</li>
 </ul>
 </li>
 </ol>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Dirichlet-Distribution-(Multivariate-Beta-Distribution)---What-is-the-Dirichlet-distribution?">Dirichlet Distribution (Multivariate Beta Distribution) - What is the Dirichlet distribution?<a class="anchor-link" href="#Dirichlet-Distribution-(Multivariate-Beta-Distribution)---What-is-the-Dirichlet-distribution?">&#182;</a></h4><ul>
+<li>A <strong>Dirichlet distribution</strong> is parameterized by the following hyperparameters $\pmb{\alpha} = (\alpha_{1}, ..., \alpha_{K}) \in \mathbb{R}^{K}$ with the following continuous probability distribution.
+$$\theta \sim \text{Dirichlet}(\pmb{\alpha}) \implies p(\theta) = \frac{1}{B(\pmb{\alpha})} \prod_{i = 1}^{K} \theta_{i}^{\alpha_{i} - 1}$$<ul>
+<li>Where $\theta_{i} \in (0, 1)$ and $\sum_{i = 1}^{K} \theta_{i} = 1$.</li>
+<li>Where the constant $\alpha_{i}$ intuitively corresponds to the number of outcomes for category $i$.</li>
+<li>Where the constant $B(\pmb{\alpha})$ is a normalizing constant defined by the following.
+$$B(\pmb{\alpha}) = \frac{\prod_{i = 1}^{K} \Gamma(\alpha_{i})}{\Gamma(\sum_{i = 1}^{K} \alpha_{i})}$$</li>
+<li>Where the Gamma function $\Gamma(x)$ is the continuous generalization of the factorial function defined by the following.
+$$\Gamma(x) = \int_{0}^{\infty} t^{x - 1} e^{-t} dt$$</li>
+</ul>
+</li>
+<li><strong>Expected Value</strong>: $$\mathbb{E}[X_{i}] = \frac{\alpha_{i}}{\sum_{k} \alpha_{k}}$$</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Conjugate-Priors-and-Dirichlet-Distribution---How-do-you-calculate-a-posterior-with-data-observed-from-a-categorical-process?">Conjugate Priors and Dirichlet Distribution - How do you calculate a posterior with data observed from a categorical process?<a class="anchor-link" href="#Conjugate-Priors-and-Dirichlet-Distribution---How-do-you-calculate-a-posterior-with-data-observed-from-a-categorical-process?">&#182;</a></h4><blockquote><p>Think $K$-Sided Dice Roll</p>
+</blockquote>
+<ul>
+<li>The Dirichlet distribution is the conjugate prior for the following probability distributions:<ul>
+<li><strong>Categorical</strong> (<em>Generalized Bernoulli</em>): A discrete categorical random variable, $X$, is the outcome from a single experiment from which this outcome is classified as one of $K$ categories with probability $p_{i} &gt; 0$ and $\sum_{i = 1}^{K} p_{i} = 1$.</li>
+<li><strong>Multinomial</strong> (<em>Generalized Binomial</em>): A discrete multinomial random variable, $X$, is the number of outcomes from a sequence of $n$ independent experiments in which each experiment has an outcome classified as one of $K$ categories with probability $p_{i} &gt; 0$ and $\sum_{i = 1}^{K} p_{i} = 1$.</li>
+</ul>
+</li>
+<li><strong>Important Note</strong>: To best fit a categorical model with a probability distribution $\pmb{p} \approx \pmb{p}^{\ast}$, the Dirichlet distribution can be used by the following.<ol>
+<li>Assign $\text{Dirichlet}(\pmb{\alpha})$ as a prior to $\pmb{p}$.</li>
+<li>Observe $n$ data points generated by a categorical process with unknown, underlying $\pmb{p}^{\ast}$.<ul>
+<li>If $X_{i} \sim \text{Categorical}(\pmb{p}^{\ast})$, then the posterior is $\text{Dirichlet}(\pmb{\alpha} + (c_{1}, ..., c_{K}))$.<ul>
+<li>Where $c_{i}$ is the number of observations in category $i$.</li>
+</ul>
+</li>
+<li>If $X_{i} \sim \text{Multinomial}(N, \pmb{p}^{\ast})$, then the posterior is $\text{Dirichlet}(\pmb{\alpha} + \sum_{i = 1}^{n} \pmb{x_{i}})$.</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Gamma-Distribution---What-is-the-Gamma-distribution?">Gamma Distribution - What is the Gamma distribution?<a class="anchor-link" href="#Gamma-Distribution---What-is-the-Gamma-distribution?">&#182;</a></h4><ul>
+<li>A <strong>Gamma distribution</strong> is parameterized by two hyperparameters $\alpha \in \mathbb{R}$, and $\beta \in \mathbb{R}$ with the following continuous probability distribution.
+$$\theta \sim \text{Gamma}(\alpha, \beta) \implies p(\theta) = \frac{\beta^{\alpha}}{\Gamma(\alpha)} \theta^{\alpha - 1} e^{-\beta \theta}$$<ul>
+<li>Where $\theta \in (0, \infty)$.</li>
+<li>Where the constants $\alpha$ and $\beta$ intuitively corresponds to $\alpha$ total occurrences in $\beta$ intervals.</li>
+<li>Where the Gamma function $\Gamma(x)$ is the continuous generalization of the factorial function defined by the following.
+$$\Gamma(x) = \int_{0}^{\infty} t^{x - 1} e^{-t} dt$$</li>
+</ul>
+</li>
+<li><strong>Expected Value</strong>: $$\mathbb{E}[X] = \frac{\alpha}{\beta}$$</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Conjugate-Priors-and-Gamma-Distribution---How-do-you-calculate-a-posterior-with-data-observed-from-a-Poisson-point-process?">Conjugate Priors and Gamma Distribution - How do you calculate a posterior with data observed from a Poisson point process?<a class="anchor-link" href="#Conjugate-Priors-and-Gamma-Distribution---How-do-you-calculate-a-posterior-with-data-observed-from-a-Poisson-point-process?">&#182;</a></h4><blockquote><p>Think Rate (Events/Second)</p>
+</blockquote>
+<ul>
+<li>The Gamma distribution is the conjugate prior for the following probability distributions:<ul>
+<li><strong>Poisson</strong>: A discrete Poisson random variable, $X$, is the number of events occuring in a fixed interval of time or at a fixed rate.</li>
+<li><strong>Exponential</strong>: A continuous exponential random variable, $X$, is the time between events in a Poisson point process.</li>
+</ul>
+</li>
+<li><strong>Important Note</strong>: To best fit a Poisson point model with a probability distribution $p \approx p^{\ast}$, the Gamma distribution can be used by the following.<ol>
+<li>Assign $\text{Gamma}(\alpha, \beta)$ as a prior to $p$.</li>
+<li>Observe $n$ data points generated by a Poisson point process with unknown, underlying $p^{\ast}$.<ul>
+<li>If $X_{i} \sim \text{Poisson}(\lambda^{\ast})$, then the posterior is $\text{Gamma}(\alpha + \sum_{i = 1}^{n} x_{i}, \beta + n)$.</li>
+<li>If $X_{i} \sim \text{Exponential}(N, \lambda^{\ast})$, then the posterior is $\text{Gamma}(\alpha + n, \beta + \sum_{i = 1}^{n} x_{i})$.</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Decision-Making-Under-Uncertainty-">Decision Making Under Uncertainty <span name="S05" /><a class="anchor-link" href="#Decision-Making-Under-Uncertainty-">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="A/B-Testing-and-Multi-Armed-Bandits-">A/B Testing and Multi-Armed Bandits <span name="S05-01" /><a class="anchor-link" href="#A/B-Testing-and-Multi-Armed-Bandits-">&#182;</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li><em>See <a href="https://camdavidsonpilon.github.io/Probabilistic-Programming-and-Bayesian-Methods-for-Hackers">Bayesian Methods for Hackers: Probabilistic Programming and Bayesian Inference</a></em><ul>
+<li><em><a href="http://nbviewer.jupyter.org/github/CamDavidsonPilon/Probabilistic-Programming-and-Bayesian-Methods-for-Hackers/blob/master/Chapter1_Introduction/Ch1_Introduction_PyMC3.ipynb">Chapter 1: Introduction to Bayesian Methods</a></em></li>
+<li><em><a href="http://nbviewer.jupyter.org/github/CamDavidsonPilon/Probabilistic-Programming-and-Bayesian-Methods-for-Hackers/blob/master/Chapter2_MorePyMC/Ch2_MorePyMC_PyMC3.ipynb">Chapter 2: A little more on PyMC</a></em></li>
+<li><em><a href="http://nbviewer.jupyter.org/github/CamDavidsonPilon/Probabilistic-Programming-and-Bayesian-Methods-for-Hackers/blob/master/Chapter6_Priorities/Ch6_Priors_PyMC3.ipynb">Chapter 6: Getting our prior-ities straight</a></em></li>
+</ul>
+</li>
+<li><em>See <a href="http://incompleteideas.net/book/the-book-2nd.html">Reinforcement Learning: An Introduction</a></em><ul>
+<li><em>Chapter 2: Multi-armed Bandits</em></li>
+</ul>
 </li>
 </ul>
 
