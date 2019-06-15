@@ -1,9 +1,9 @@
 repos:
 -   repo: local
     hooks:
-    -   id: nbconvert
-        name: nbconvert
-        entry: jupyter nbconvert --TemplateExporter.exclude_rawBool=True --to html --template full
+    -   id: jupyter-html
+        name: HTML Render
+        entry: jupyter nbconvert --to=html --template=full
         language: system
         files: .ipynb
         types: [file]
