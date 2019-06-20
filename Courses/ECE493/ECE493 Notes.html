@@ -13130,8 +13130,338 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<ul>
-<li><em>See <a href="https://ermongroup.github.io/cs228-notes/preliminaries/probabilityreview/">Stanford CS228 - Probability Review</a>.</em></li>
+<h3 id="Probability-">Probability <span name="S01-1" /><a class="anchor-link" href="#Probability-">&#182;</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Definition">Definition<a class="anchor-link" href="#Definition">&#182;</a></h4><ul>
+<li><strong>Sample Space</strong> ($\Omega$): The set of all the outcomes of a random experiment.</li>
+<li><strong>Event Space</strong> ($F$): A set whose elements $A \in F$ (called events) are subsets of $\Omega$.</li>
+</ul>
+<h5 id="Axioms-of-Probability">Axioms of Probability<a class="anchor-link" href="#Axioms-of-Probability">&#182;</a></h5><ol>
+<li>$P(A) \ge 0, \forall A \in F$.</li>
+<li>$P(\cup_{i} A_{i}) = \sum_{i} P(A_{i})$ if $A_{1}, A_{2}, ...$ are disjoint events.</li>
+<li>$P(\Omega) = 1$.</li>
+</ol>
+<h5 id="Properties-of-Probability">Properties of Probability<a class="anchor-link" href="#Properties-of-Probability">&#182;</a></h5><ul>
+<li>$A \subseteq B \implies P(A) \le P(B)$.</li>
+<li>$P(A \cap B) \le \min(P(A), P(B))$.</li>
+<li><strong>Union Bound</strong>: $P(A \cup B) \le P(A) + P(B)$.</li>
+<li><strong>Complement</strong>: $P(\Omega - A) = 1 - P(A)$.</li>
+<li><strong>Law of Total Probability</strong>: $\sum_{i = 1}^{k} P(A_{i}) = 1$ if $A_{1}, ..., A_{k}$ are disjoint events and $\cup_{i = 1}^{k} A_{i} = \Omega$.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Conditional-Probability">Conditional Probability<a class="anchor-link" href="#Conditional-Probability">&#182;</a></h4><ul>
+<li>The <strong>conditional probability</strong> of $A$, conditioned on $B$, is the probability that $A$ occurs given that $B$ has definitely occured.
+$$
+\begin{aligned}
+P(A \mid B) 
+&amp;= \frac{P(A \cap B)}{P(B)} \\
+&amp;= \frac{P(B \mid A) \cdot P(A)}{P(B)}
+\end{aligned}
+$$</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Chain-Rule">Chain Rule<a class="anchor-link" href="#Chain-Rule">&#182;</a></h4><ul>
+<li>Let $S_{1}, ..., S_{k}$ be events, $P(S_{i}) &gt; 0$.
+$$
+\begin{aligned}
+&amp; P(S_{1} \cap S_{2} \cap \cdots \cap S_{k}) \\
+&amp;= P(S_{1}) P(S_{2} \mid S_{1}) P(S_{3} \mid S_{2} \cap S_{1}) \cdots P(S_{k} \mid S_{1} \cap S_{2} \cap \cdots \cap S_{k - 1})
+\end{aligned}
+$$</li>
+<li>If $k = 2$,
+$$P(S_{1} \cap S_{2}) = P(S_{1}) P(S_{2} \mid S_{1})$$</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Independence">Independence<a class="anchor-link" href="#Independence">&#182;</a></h4><ul>
+<li>Two events $A$ and $B$ are independent if and only if
+$$
+\begin{aligned}
+P(A \cap B) &amp;= P(A) P(B) \\
+P(A \vert B) &amp;= P(A) \\
+P(B \vert A) &amp;= P(B)
+\end{aligned}
+$$</li>
+</ul>
+<h5 id="Pairwise-Independence">Pairwise Independence<a class="anchor-link" href="#Pairwise-Independence">&#182;</a></h5><ul>
+<li>Events $A_{1}, ..., A_{k}$ are pairwise independent if each pair is independent.</li>
+</ul>
+<h5 id="Conditional-Independence">Conditional Independence<a class="anchor-link" href="#Conditional-Independence">&#182;</a></h5><ul>
+<li>Events $A_{1}, ..., A_{k}$ are conditionally independent conditioned on event $B$ if
+$$P(A_{1} \cap ... \cap A_{k} \mid B) = P(A_{1} \mid B) ... P(A_{k} \mid B)$$</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Random-Variables-">Random Variables <span name="S01-2" /><a class="anchor-link" href="#Random-Variables-">&#182;</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Definition">Definition<a class="anchor-link" href="#Definition">&#182;</a></h4><ul>
+<li>A <strong>random variable</strong> $X$ is a function $X : \Omega \to \mathbb{R}$.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Cumulative-Distribution-Functions">Cumulative Distribution Functions<a class="anchor-link" href="#Cumulative-Distribution-Functions">&#182;</a></h4><ul>
+<li>A <strong>cumulative distribution function</strong> (CDF) is a function $F_{X} : \mathbb{R} \to [0, 1]$ such that $F_{X}(x) = P(X \le x)$.</li>
+</ul>
+<h5 id="Properties-of-Cumulative-Distribution-Functions">Properties of Cumulative Distribution Functions<a class="anchor-link" href="#Properties-of-Cumulative-Distribution-Functions">&#182;</a></h5><ul>
+<li>$0 \le F_{X}(x) \le 1$.</li>
+<li>$\lim_{x \to -\infty} F_{X}(x) = 0$.</li>
+<li>$\lim_{x \to +\infty} F_{X}(x) = 1$.</li>
+<li>$x \le y \implies F_{X}(x) \le F_{X}(y)$.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Probability-Mass-Functions-(Discrete)">Probability Mass Functions (Discrete)<a class="anchor-link" href="#Probability-Mass-Functions-(Discrete)">&#182;</a></h4><ul>
+<li>A <strong>probability mass function</strong> (PMF) is a function $p_{X} : \Omega \to \mathbb{R}$ such that $p_{X}(x) = P(X = x)$.</li>
+</ul>
+<h5 id="Properties-of-Probability-Mass-Functions">Properties of Probability Mass Functions<a class="anchor-link" href="#Properties-of-Probability-Mass-Functions">&#182;</a></h5><ul>
+<li>$0 \le p_{X}(x) \le 1$.</li>
+<li>$\sum_{x \in \text{Values}(X)} p_{X}(x) = 1$.</li>
+<li>$\sum_{x \in A} p_{X}(x) = P(X \in A)$.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Probability-Density-Functions-(Continuous)">Probability Density Functions (Continuous)<a class="anchor-link" href="#Probability-Density-Functions-(Continuous)">&#182;</a></h4><ul>
+<li>A <strong>probability density function</strong> (PDF)  is a function $f_{X}(x) : \Omega \to \mathbb{R}$ such that $f_{X}(x) = \frac{dF_{X}(x)}{dx}$.</li>
+</ul>
+<h5 id="Properties-of-Probability-Density-Functions">Properties of Probability Density Functions<a class="anchor-link" href="#Properties-of-Probability-Density-Functions">&#182;</a></h5><ul>
+<li>$f_{X}(x) \ge 0$.</li>
+<li>$\int_{-\infty}^{\infty} f_{X}(x) = 1$.</li>
+<li>$\int_{x \in A} f_{X}(x) dx = P(X \in A)$.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Expectation">Expectation<a class="anchor-link" href="#Expectation">&#182;</a></h4><ul>
+<li>Suppose that $X$ is a discrete random variable with PMF $p_{X}(x)$ and $g : \mathbb{R} \to \mathbb{R}$ is an arbitrary function. The <strong>expected value</strong> of $g(X)$ is the following.
+$$\mathbb{E}[g(X)] = \sum_{x \in \text{Values}(X)} g(x) p_{X}(x)$$</li>
+<li>Suppose that $X$ is a continuous random variable with PDF $f_{X}(x)$ and $g : \mathbb{R} \to \mathbb{R}$ is an arbitrary function. The <strong>expected value</strong> of $g(X)$ is the following.
+$$\mathbb{E}[g(X)] = \int_{-\infty}^{\infty} g(x) f_{X}(x) dx$$</li>
+</ul>
+<h5 id="Properties-of-Expectation">Properties of Expectation<a class="anchor-link" href="#Properties-of-Expectation">&#182;</a></h5><ul>
+<li>$\mathbb{E}[a] = a$ for any constant $a \in \mathbb{R}$.</li>
+<li>$\mathbb{E}[a \cdot f(X)] = a \cdot \mathbb{E}[f(X)]$ for any constant $a \in \mathbb{R}$.</li>
+<li>$\mathbb{E}[f(X) + g(X)] = \mathbb{E}[f(X)] + \mathbb{E}[g(X)]$.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Variance">Variance<a class="anchor-link" href="#Variance">&#182;</a></h4><ul>
+<li>The <strong>variance</strong> of a random variable $X$ is a measure of how concentrated the distribution of a random variable $X$ is around its mean.
+$$
+\begin{aligned}
+\text{Var}[X] &amp;= \mathbb{E}[(X - \mathbb{E}[X])^{2}] \\
+&amp;= \mathbb{E}[X^{2}] - \mathbb{E}[X]^{2}
+\end{aligned}
+$$</li>
+</ul>
+<h5 id="Properties-of-Variance">Properties of Variance<a class="anchor-link" href="#Properties-of-Variance">&#182;</a></h5><ul>
+<li>$\text{Var}[a] = 0$ for any constant $a \in \mathbb{R}$.</li>
+<li>$\text{Var}[a \cdot f(x)] = a^{2} \cdot \text{Var}[f(x)]$ for any constant $a \in \mathbb{R}$.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Two-Random-Variables-">Two Random Variables <span name="S01-3" /><a class="anchor-link" href="#Two-Random-Variables-">&#182;</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Joint-and-Marginal-Distributions">Joint and Marginal Distributions<a class="anchor-link" href="#Joint-and-Marginal-Distributions">&#182;</a></h4><ul>
+<li>The <strong>joint cumulative distribution function</strong> of $X$ and $Y$ is defined by the following.
+$$F_{XY}(x, y) = P(X \le x, Y \le y)$$</li>
+<li>The <strong>marginal cumulative distribution functions</strong> of $F_{XY}(x, y)$ is defined by the following.
+$$
+\begin{aligned}
+F_{X}(x) &amp;= \lim_{y \to \infty} F_{XY}(x, y) \\
+F_{Y}(y) &amp;= \lim_{x \to \infty} F_{XY}(x, y)
+\end{aligned}
+$$</li>
+</ul>
+<h5 id="Properties-of-Joint-Distributions">Properties of Joint Distributions<a class="anchor-link" href="#Properties-of-Joint-Distributions">&#182;</a></h5><ul>
+<li>$0 \le F_{XY}(x, y) \le 1$.</li>
+<li>$\lim_{x,y \to \infty} F_{XY}(x, y) = 1$.</li>
+<li>$\lim_{x,y \to -\infty} F_{XY}(x, y) = 0$.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Joint-and-Marginal-Probability-Mass-Functions">Joint and Marginal Probability Mass Functions<a class="anchor-link" href="#Joint-and-Marginal-Probability-Mass-Functions">&#182;</a></h4><ul>
+<li>If $X$ and $Y$ are discrete random variables, then the <strong>joint probability mass function</strong> $p_{XY} : \text{Values}(X) \times \text{Values}(Y) \to [0, 1]$ is defined by the following.
+$$p_{XY}(x, y) = P(X = x, Y = y)$$</li>
+<li>The <strong>marginal probability mass functions</strong> of $p_{XY}$ are defined by the following.
+$$
+\begin{aligned}
+p_{X}(x) &amp;= \sum_{y} p_{XY}(x, y) \\
+p_{Y}(y) &amp;= \sum_{x} p_{XY}(x, y)
+\end{aligned}
+$$</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Joint-and-Marginal-Probability-Density-Functions">Joint and Marginal Probability Density Functions<a class="anchor-link" href="#Joint-and-Marginal-Probability-Density-Functions">&#182;</a></h4><ul>
+<li>If $X$ and $Y$ are continuous random variables, then the <strong>joint probability density function</strong> $f_{XY} : \text{Values}(X) \times \text{Values}(Y) \to \mathbb{R}$ is defined by the following.
+$$f_{XY}(x, y) = \frac{\partial^{2} F_{XY}(x, y)}{\partial x \partial y}$$</li>
+<li>The <strong>marginal probability density functions</strong> of $f_{XY}$ are defined by the following.
+$$
+\begin{aligned}
+f_{X}(x) &amp;= \int_{-\infty}^{\infty} f_{XY}(x, y) dy\\
+f_{Y}(y) &amp;= \int_{-\infty}^{\infty} f_{XY}(x, y) dx
+\end{aligned}
+$$</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Conditional-Distributions">Conditional Distributions<a class="anchor-link" href="#Conditional-Distributions">&#182;</a></h4><ul>
+<li>The <strong>conditional probability mass function</strong> of $Y$ given $X$ is defined by the following.
+$$p_{Y \mid X}(y \mid x) = \frac{p_{XY}(x, y)}{p_{X}(x)}$$</li>
+<li>The <strong>conditional probability density function</strong> of $Y$ given $X$ is defined by the following.
+$$f_{Y \mid X}(y \mid x) = \frac{f_{XY}(x, y)}{f_{X}(x)}$$</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Chain-Rule">Chain Rule<a class="anchor-link" href="#Chain-Rule">&#182;</a></h4>$$
+\begin{aligned}
+&amp; p_{X_{1}, ..., X_{n}}(x_{1}, ..., x_{n}) \\
+&amp;= p_{X_{1}}(x_{1}) p_{X_{2} \mid X_{1}}(x_{2} \mid x_{1}) ... p_{X_{n} \mid X_{1}, ..., X_{n - 1}}(x_{n} \mid x_{1}, ..., x_{n - 1})
+\end{aligned}
+$$
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Bayes'-Rule">Bayes' Rule<a class="anchor-link" href="#Bayes'-Rule">&#182;</a></h4><ul>
+<li>For discrete random variables $X$ and $Y$,
+$$P_{Y \mid X}(y \mid x) = \frac{P_{XY}(x, y)}{P_{X}(x)} = \frac{P_{X \mid Y}(x \mid y) P_{Y}(y)}{\sum_{y' \in \text{Values}(Y) P_{X \mid Y}(x \mid y') P_{Y}(y')}}$$</li>
+<li>For continuous random variables $X$ and $Y$,
+$$f_{Y \mid X}(y \mid x) = \frac{f_{XY}(x, y)}{f_{X}(x)} = \frac{f_{X \mid Y}(x \mid y) f_{Y}(y)}{\int_{-\infty}^{\infty} f_{X \mid Y}(x \mid y') f_Y(y') dy'}$$</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Independence">Independence<a class="anchor-link" href="#Independence">&#182;</a></h4><ul>
+<li>For discrete random variables, $p_{XY}(x, y) = p_{X}(x) p_{Y}(y)$ for all $x \in \text{Values}(X)$, $y \in \text{Values}(Y)$.</li>
+<li>For discrete random variables, $p_{Y \mid X}(y \mid x) = p_{Y}(y)$ whenever $p_{X}(x) \ne 0$ for all $y \in \text{Values}(Y)$.</li>
+<li>For continuous random variables, $f_{XY}(x, y) = f_{X}(x) f_{Y}(y)$ for all $x \in \mathbb{R}$, $y \in \mathbb{R}$.</li>
+<li>For continuous random variables, $f_{Y \mid X}(y \mid x) = f_{Y}(y)$ whenever $f_{X}(x) \ne 0$ for all $y \in \mathbb{R}$.</li>
+</ul>
+<h5 id="Independence-Lemma">Independence Lemma<a class="anchor-link" href="#Independence-Lemma">&#182;</a></h5><ul>
+<li>If $X$ and $Y$ are independent, then for any subsets $A, B \subseteq \mathbb{R}$,
+$$P(X \in A, Y \in B) = P(X \in A) P(Y \in B)$$</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Expectation-and-Covariance">Expectation and Covariance<a class="anchor-link" href="#Expectation-and-Covariance">&#182;</a></h4><ul>
+<li>Suppose that $X$ and $Y$ are random variables, and $g : \mathbb{R}^{2} \to \mathbb{R}$ is a function of these two random variables. The <strong>expected value</strong> of $g(X, Y)$ is the following.
+$$
+\begin{aligned}
+\mathbb{E}[g(X,Y)] &amp;= \sum_{x \in \text{Values}(X)} \sum_{y \in \text{Values}(Y)} g(x, y) p_{XY}(x, y) \\
+\mathbb{E}[g(X,Y)] &amp;= \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} g(x, y) f_{XY}(x, y) dx dy
+\end{aligned}
+$$</li>
+<li>The <strong>covariance</strong> of two random variables $X$ and $Y$ is defined by the following.
+$$
+\begin{aligned}
+\text{Cov}[X, Y] &amp;= \mathbb{E}[(X - \mathbb{E}[X])(Y - \mathbb{E}[Y])] \\
+&amp;= \mathbb{E}[XY] - \mathbb{E}[X] \mathbb{E}[Y]
+\end{aligned}
+$$</li>
+</ul>
+<h5 id="Properties-of-Expectation-and-Covariance">Properties of Expectation and Covariance<a class="anchor-link" href="#Properties-of-Expectation-and-Covariance">&#182;</a></h5><ul>
+<li>$\mathbb{E}[f(X, Y) + g(X,Y)] = \mathbb{E}[f(X, Y)] + \mathbb{E}[g(X, Y)]$.</li>
+<li>$\text{Var}[X + Y] = \text{Var}[X] + \text{Var}[Y] + 2\text{Cov}[X, Y]$.</li>
+<li>If $X$ and $Y$ are independent, then $\text{Cov}[X, Y] = 0$.</li>
+<li>If $X$ and $Y$ are independent, then $\mathbb{E}[f(X)g(Y)] = \mathbb{E}[f(X)] \mathbb{E}[g(Y)]$.</li>
 </ul>
 
 </div>
@@ -14400,10 +14730,26 @@ $$\Gamma(x) = \int_{0}^{\infty} t^{x - 1} e^{-t} dt$$</li>
 </blockquote>
 <ul>
 <li>The beta distribution is the conjugate prior for the following probability distributions:<ul>
-<li><strong>Bernoulli</strong>: A discrete Bernoulli random variable, $X$, is the outcome from a single experiment from which this outcome is classified as either a success, $X = 1$ with probability $p$, or a failure, $X = 0$ with probability $1 - p$.</li>
-<li><strong>Binomial</strong>: A discrete binomial random variable, $X$, is the number of successful outcomes from a sequence of $n$ independent experiments in which each experiment has an outcome classified as either a success with probability $p$ or a failure with probability $1 - p$</li>
-<li><strong>Geometric</strong>: A discrete geometric random variable, $X$, is the number of Bernoulli trials with probability $p$ needed to get one success.</li>
-<li><strong>Negative Binomial</strong>: A discrete negative binomial random variable, $X$, is the number of successes in a sequence of independent and identically distributed Bernoulli trials before $r$ failures.</li>
+<li><strong>Bernoulli</strong>: A discrete Bernoulli random variable, $X$, is the outcome from a single experiment from which this outcome is classified as either a success, $X = 1$ with probability $p$, or a failure, $X = 0$ with probability $1 - p$.
+$$
+X \sim \text{Bernoulli}(p) \implies P(\{X = x\}) = 
+\begin{cases}
+1 - p &amp; \text{if } x = 0 \\
+p     &amp; \text{if } x = 1
+\end{cases}
+$$</li>
+<li><strong>Binomial</strong>: A discrete binomial random variable, $X$, is the number of successful outcomes from a sequence of $n$ independent experiments in which each experiment has an outcome classified as either a success with probability $p$ or a failure with probability $1 - p$
+$$
+X \sim \text{Binomial}(n, p) \implies P(\{X = x\}) = \binom{n}{x} p^x (1 - p)^{n - x}
+$$</li>
+<li><strong>Geometric</strong>: A discrete geometric random variable, $X$, is the number of Bernoulli trials with probability $p$ needed to get one success.
+$$
+X \sim \text{Geometric}(p) \implies P(\{X = x\}) = (1 - p)^{x - 1} p
+$$</li>
+<li><strong>Negative Binomial</strong>: A discrete negative binomial random variable, $X$, is the number of successes in a sequence of independent and identically distributed Bernoulli trials before $r$ failures.
+$$
+X \sim \text{Negative-Binomial}(r, p) \implies P(\{X = x\}) = \binom{x + r - 1}{x} p^x (1 - p)^r
+$$</li>
 </ul>
 </li>
 <li><strong>Important Note</strong>: To best fit a binary model with a probability distribution $p \approx p^{\ast}$, the beta distribution can be used by the following.<ol>
@@ -14449,8 +14795,14 @@ $$\Gamma(x) = \int_{0}^{\infty} t^{x - 1} e^{-t} dt$$</li>
 </blockquote>
 <ul>
 <li>The Dirichlet distribution is the conjugate prior for the following probability distributions:<ul>
-<li><strong>Categorical</strong> (<em>Generalized Bernoulli</em>): A discrete categorical random variable, $X$, is the outcome from a single experiment from which this outcome is classified as one of $K$ categories with probability $p_{i} &gt; 0$ and $\sum_{i = 1}^{K} p_{i} = 1$.</li>
-<li><strong>Multinomial</strong> (<em>Generalized Binomial</em>): A discrete multinomial random variable, $X$, is the number of outcomes from a sequence of $n$ independent experiments in which each experiment has an outcome classified as one of $K$ categories with probability $p_{i} &gt; 0$ and $\sum_{i = 1}^{K} p_{i} = 1$.</li>
+<li><strong>Categorical</strong> (<em>Generalized Bernoulli</em>): A discrete categorical random variable, $X$, is the outcome from a single experiment from which this outcome is classified as one of $K$ categories with probability $p_{i} &gt; 0$ and $\sum_{i = 1}^{K} p_{i} = 1$.
+$$
+X \sim \text{Categorical}(\pmb{p}) \implies P(\{X = i\}) = p_{i}
+$$</li>
+<li><strong>Multinomial</strong> (<em>Generalized Binomial</em>): A discrete multinomial random variable, $X$, is the number of outcomes from a sequence of $n$ independent experiments in which each experiment has an outcome classified as one of $K$ categories with probability $p_{i} &gt; 0$ and $\sum_{i = 1}^{K} p_{i} = 1$.
+$$
+X \sim \text{Multinomial}(n, \pmb{p}) \implies P(\{\pmb{X} = \pmb{x}\}) = \frac{n!}{x_{1}! ... x_{k}!} p_{1}^{x_{1}} ... p_{k}^{x_{k}}
+$$</li>
 </ul>
 </li>
 <li><strong>Important Note</strong>: To best fit a categorical model with a probability distribution $\pmb{p} \approx \pmb{p}^{\ast}$, the Dirichlet distribution can be used by the following.<ol>
@@ -14495,15 +14847,21 @@ $$\Gamma(x) = \int_{0}^{\infty} t^{x - 1} e^{-t} dt$$</li>
 </blockquote>
 <ul>
 <li>The Gamma distribution is the conjugate prior for the following probability distributions:<ul>
-<li><strong>Poisson</strong>: A discrete Poisson random variable, $X$, is the number of events occuring in a fixed interval of time or at a fixed rate.</li>
-<li><strong>Exponential</strong>: A continuous exponential random variable, $X$, is the time between events in a Poisson point process.</li>
+<li><strong>Poisson</strong>: A discrete Poisson random variable, $X$, is the number of events occuring in a fixed interval of time or at a fixed rate.
+$$
+X \sim \text{Poisson}(\lambda) \implies P(\{X = x\}) = e^{-\lambda} \frac{\lambda^x}{x!}
+$$</li>
+<li><strong>Exponential</strong>: A continuous exponential random variable, $X$, is the time between events in a Poisson point process.
+$$
+X \sim \text{Exponential}(\lambda) \implies P(\{X = x\}) = \lambda e^{-\lambda x}
+$$</li>
 </ul>
 </li>
 <li><strong>Important Note</strong>: To best fit a Poisson point model with a probability distribution $p \approx p^{\ast}$, the Gamma distribution can be used by the following.<ol>
 <li>Assign $\text{Gamma}(\alpha, \beta)$ as a prior to $p$.</li>
 <li>Observe $n$ data points generated by a Poisson point process with unknown, underlying $p^{\ast}$.<ul>
 <li>If $X_{i} \sim \text{Poisson}(\lambda^{\ast})$, then the posterior is $\text{Gamma}(\alpha + \sum_{i = 1}^{n} x_{i}, \beta + n)$.</li>
-<li>If $X_{i} \sim \text{Exponential}(N, \lambda^{\ast})$, then the posterior is $\text{Gamma}(\alpha + n, \beta + \sum_{i = 1}^{n} x_{i})$.</li>
+<li>If $X_{i} \sim \text{Exponential}(\lambda^{\ast})$, then the posterior is $\text{Gamma}(\alpha + n, \beta + \sum_{i = 1}^{n} x_{i})$.</li>
 </ul>
 </li>
 </ol>
