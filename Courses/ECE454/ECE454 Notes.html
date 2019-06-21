@@ -13766,6 +13766,141 @@ div#notebook {
 </div>
 </div>
 </div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Apache-Hadoop-MapReduce">Apache Hadoop MapReduce<a class="anchor-link" href="#Apache-Hadoop-MapReduce">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="High-Level-Architecture">High-Level Architecture<a class="anchor-link" href="#High-Level-Architecture">&#182;</a></h3><p><img src="images/Hadoop_1.png" alt="Hadoop High-Level Architecture"></p>
+<ul>
+<li>Transform lists of input data elements into lists of output data elements by applying <em>Mappers</em> and <em>Reducers</em><ul>
+<li><em>Immutable Data</em></li>
+<li><em>No Communication</em></li>
+</ul>
+</li>
+</ul>
+<h4 id="Mapper">Mapper<a class="anchor-link" href="#Mapper">&#182;</a></h4><ul>
+<li>A list of input data elements are iterated and individually transformed into zero or more output data elements.</li>
+</ul>
+<h4 id="Reducer">Reducer<a class="anchor-link" href="#Reducer">&#182;</a></h4><ul>
+<li>A list of input data elements are iterated and individually aggregated into a single output data element.</li>
+</ul>
+<h4 id="Combiner">Combiner<a class="anchor-link" href="#Combiner">&#182;</a></h4><ul>
+<li>An optional component that consumes the outputs of a mapper to produce a summary as the inputs for a reducer.</li>
+</ul>
+<h4 id="Terms">Terms<a class="anchor-link" href="#Terms">&#182;</a></h4><ul>
+<li><strong>InputSplit</strong>: A unit of work assigned to one map task.<ul>
+<li>Usually corresponds to a chunk of an input file.</li>
+<li>Each record in a file belongs to exactly one input split and the framework takes care of dealing with record boundaries.</li>
+</ul>
+</li>
+<li><strong>InputFormat</strong>: Determines how the input files are parsed, and defines the input splits.</li>
+<li><strong>OutputFormat</strong>: Determines how the output files are formatted.</li>
+<li><strong>RecordReader</strong>: Reads data from an input split and creates key-value pairs for the mapper.</li>
+<li><strong>RecordWriter</strong>: Writes key-value pairs to output files.</li>
+<li><strong>Partitioner</strong>: Determines which partition a given key-value pair will go to.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Data-Flow">Data Flow<a class="anchor-link" href="#Data-Flow">&#182;</a></h3><p><img src="images/Hadoop_2.png" alt="MapReduce Data Flow 1"></p>
+<p><img src="images/Hadoop_3.png" alt="MapReduce Data Flow 2"></p>
+<ul>
+<li><strong>Shuffle</strong>: The process of partitioning by reducer, sorting and copying data partitions from mappers to reducers.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Fault-Tolerance">Fault Tolerance<a class="anchor-link" href="#Fault-Tolerance">&#182;</a></h3><ul>
+<li><em>Primarily: Restart Failed Tasks</em><ol>
+<li>Individual <em>TaskTrackers</em> periodically emit a heartbeat to the <em>JobTracker</em>.</li>
+<li>If a <em>TaskTracker</em> fails to emit a heartbeat to the <em>JobTracker</em>, the <em>JobTracker</em> assumes that the <em>TaskTracker</em> crashed.</li>
+<li>If the failed node was mapping, then other <em>TaskTrackers</em> will be asked to re-execute all the map tasks previously run by the failed <em>TaskTracker</em>.</li>
+</ol>
+<ul>
+<li><em>Must be Side-Effect Free</em></li>
+</ul>
+<ol>
+<li>If the failed node was reducing, then other <em>TaskTrackers</em> will be asked to re-execute all reduce tasks that were in progress on the failed <em>TaskTracker</em>.</li>
+</ol>
+<ul>
+<li><em>Must be Side-Effect Free</em></li>
+</ul>
+</li>
+<li><em>Secondarily: Speculative Execution</em><ul>
+<li>If some <strong>straggler</strong> nodes rate limit the rest of the program, Hadoop will schedule redundant copies of remaining tasks across several nodes which do not have other work to perform.</li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="MapReduce-Design-Patterns">MapReduce Design Patterns<a class="anchor-link" href="#MapReduce-Design-Patterns">&#182;</a></h3><h4 id="Counts-and-Summations">Counts and Summations<a class="anchor-link" href="#Counts-and-Summations">&#182;</a></h4><ul>
+<li>A mapper can emit a tuple of an element and one for each element.</li>
+<li>A mapper can aggregate the counts for each element and emit a tuple of the element and its count.</li>
+<li>A combiner can aggregate the counts across all the elements processed by a mapper.</li>
+</ul>
+<h4 id="Selection">Selection<a class="anchor-link" href="#Selection">&#182;</a></h4><ul>
+<li>A mapper can emit a tuple for each element that satisfies a predicate.</li>
+</ul>
+<h4 id="Projection">Projection<a class="anchor-link" href="#Projection">&#182;</a></h4><ul>
+<li>A mapper can emit a tuple whose fields are a subset of each element.</li>
+<li>A reducer can eliminate duplicates.</li>
+</ul>
+<h4 id="Inverted-Index">Inverted Index<a class="anchor-link" href="#Inverted-Index">&#182;</a></h4><ul>
+<li>A mapper can emit a tuple of a value and a key in that specific order.</li>
+<li>A reducer can aggregate all the keys for a distinct value.</li>
+</ul>
+<h4 id="Cross-Correlation">Cross-Correlation<a class="anchor-link" href="#Cross-Correlation">&#182;</a></h4><ul>
+<li><strong>Problem</strong>: Given a set of tuples of items, for each possible pair of items, calculate the number of tuples where these items co-occur.</li>
+</ul>
+<h5 id="Pairs-Approach-(Slow)">Pairs Approach (Slow)<a class="anchor-link" href="#Pairs-Approach-(Slow)">&#182;</a></h5>
+<pre><code>class Mapper
+  method Map(void, items [i1, i2, ...])
+    for all item i in [i1, i2, ...]
+      for all item j in [i1, i2, ...] such that j &gt; i
+        Emit(pair [i, j], count 1)
+
+class Reducer
+  method Reduce(pair [i, j], counts [c1, c2, ...])
+    s = sum([c1, c2, ...])
+    Emit(pair [i, j], count s)</code></pre>
+<h5 id="Stripes-Approach-(Fast)">Stripes Approach (Fast)<a class="anchor-link" href="#Stripes-Approach-(Fast)">&#182;</a></h5>
+<pre><code>class Mapper
+  method Map(void, items [i1, i2, ...])
+    for all item i in [i1, i2, ...]
+      H = new AssociativeArray : item -&gt; counter
+      for all item j in [i1, i2, ...] such that j &gt; i
+        H{j} = H{j} + 1
+      Emit(item i, stripe H)
+
+class Reducer
+  method Reduce(item i, stripes [H1, H2, ...])
+    H = new AssociativeArray : item -&gt; counter
+    H = merge-sum([H1, H2, ...])
+    for all item j in H.keys()
+      Emit(pair [i, j], H{j})</code></pre>
+
+</div>
+</div>
+</div>
     </div>
   </div>
 </body>
