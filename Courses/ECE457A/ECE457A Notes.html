@@ -14287,6 +14287,217 @@ $$N(s) - T(s)$$</li>
 </div>
 </div>
 </div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Swarm-Intelligence">Swarm Intelligence<a class="anchor-link" href="#Swarm-Intelligence">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Overview">Overview<a class="anchor-link" href="#Overview">&#182;</a></h3><ul>
+<li><strong>Swarm Intelligence</strong>: The collective behavior of decentralized, self-organized systems.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Interactions">Interactions<a class="anchor-link" href="#Interactions">&#182;</a></h3><ul>
+<li><strong>Swarm</strong>: A group of agents that communicate with each other by acting on their local environment.</li>
+<li>Complex problem-solving behavior may emerge not as a result of any particular individual, but rather as a result of their interactions.</li>
+<li>Interactions between individuals may be direct (physical contact) or indirect (via local change to the environment, <strong>stigmergy</strong>).</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Properties">Properties<a class="anchor-link" href="#Properties">&#182;</a></h3><ul>
+<li><strong>Flexibility</strong>: System performance is adaptive to internal or external changes.</li>
+<li><strong>Robustness</strong>: System can perform even if some individuals fail.</li>
+<li><strong>Decentralization</strong>: Control is distributed among individuals rather than allocated to some master.</li>
+<li><strong>Self-Organization</strong>: Global behaviors emerge as a result of local interactions.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Models-of-Behavior">Models of Behavior<a class="anchor-link" href="#Models-of-Behavior">&#182;</a></h3><ul>
+<li><strong>Swarm</strong>: Group with little parallel alignment.</li>
+<li><strong>Torus</strong>: Group in which individuals rotate around an empty core in one direction.</li>
+<li><strong>Dynamic Parallel Group</strong>: Group where individuals are polarized and move as a coherent group, but can still move throughout the group such that the group density and form fluctuates.</li>
+<li><strong>Highly Parallel Group</strong>: Group similar to dynamical parallel group but with minimal fluctuations.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Swarm-Intelligence-Problem-Solving">Swarm Intelligence Problem Solving<a class="anchor-link" href="#Swarm-Intelligence-Problem-Solving">&#182;</a></h3><ul>
+<li><strong>Proximity</strong>: The swarm should be able to carry out simple space and time computations.</li>
+<li><strong>Quality</strong>: The swarm should be able to respond to quality factors in its environment.</li>
+<li><strong>Diverse Response</strong>: The swarm should not commit to excessively narrow channels of exploration.</li>
+<li><strong>Stability</strong>: The swarm should not rapidly alter its behavior in response to all environmental changes.</li>
+<li><strong>Adaptability</strong>: The swarm should be willing to change its behavior when it is worth the computational price.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Ant-Colony-Optimization">Ant Colony Optimization<a class="anchor-link" href="#Ant-Colony-Optimization">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Background">Background<a class="anchor-link" href="#Background">&#182;</a></h3><ul>
+<li><strong>Ant Colony Optimization</strong>: A search technique based on the swarm intelligence of ants.</li>
+<li>Ants interact with one another through stigmergy, meaning that individual ants can make changes to their environment to be picked up by other ants.</li>
+<li>Ants do this by forming trails with substances known as pheromone. Ants tend to follow paths with higher pheromone concentrations. Pheromone also evaporates over time, so more recent pheromone deposits have a greater influence than older ones.</li>
+<li>Ants can use this mechanism to find the shortest path to a destination. If multiple paths are available, ants will pick their initial paths randomly. Ants that take the shorter path will return faster, so their trail will have more unevaporated pheromone. This makes other ants more likely to pick this trail, and eventually, they converge on this shortest path.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="ACO-Algorithm">ACO Algorithm<a class="anchor-link" href="#ACO-Algorithm">&#182;</a></h3><ul>
+<li>Let $G = (N, E)$ be a graph where $N$ is a set of nodes and $E$ is a set of edges.</li>
+<li>Let $d_{i, j}$ be the length of each edge $(i, j)$.</li>
+<li>Let $\tau_{i, j}$ be the amount of pheromones of each edge $(i, j)$.</li>
+</ul>
+<h4 id="Initialization">Initialization<a class="anchor-link" href="#Initialization">&#182;</a></h4><ul>
+<li>Initialize all edges with a small amount of pheromones.</li>
+<li>Initialize the source node with a group of $m$ ants.</li>
+</ul>
+<h4 id="Transition-Rule">Transition Rule<a class="anchor-link" href="#Transition-Rule">&#182;</a></h4><ul>
+<li>At each node $i$, with adjacent nodes $N_{i}$, an ant can move to an adjacent node $j$ with the following probability.
+$$\frac{\frac{\tau_{i, j}^{\alpha}}{d_{i, j}^{\beta}}}{\sum_{n \in N_{i}} \frac{\tau_{i, n}^{\alpha}}{d_{i, n}^{\beta}}}$$</li>
+<li>$\alpha$ and $\beta$ balance the local and the global search abilities respectively.</li>
+</ul>
+<h4 id="Pheromone-Evaporation-and-Update">Pheromone Evaporation and Update<a class="anchor-link" href="#Pheromone-Evaporation-and-Update">&#182;</a></h4><ul>
+<li>In each step, the amount of pheromone on the trail is evaporated (i.e. $\tau = \tau \cdot (1 - p)$).</li>
+<li>In each step, the amount of pheromone on the trail is increased if ants choose the trail (i.e. $\tau = \tau + \Delta\tau$).<ul>
+<li><strong>Ant Density Model</strong>: Where a constant value is added.</li>
+<li><strong>Ant Quality Model</strong>: Where a constant is divided by the edge length.</li>
+<li><strong>Online Delayed Model</strong>: Where an ant first builds a solution, then traces its path backwards and adds pheromone based on the solution quality.</li>
+</ul>
+</li>
+</ul>
+<h4 id="Termination-Criteria">Termination Criteria<a class="anchor-link" href="#Termination-Criteria">&#182;</a></h4><ul>
+<li><em>Sample Criteria</em>:<ul>
+<li><em>Maximum Number of Iterations Reached</em></li>
+<li><em>Good Enough Solution Reached</em></li>
+<li><em>Stagnation Occurs</em></li>
+</ul>
+</li>
+</ul>
+<h4 id="Tunable-Parameters">Tunable Parameters<a class="anchor-link" href="#Tunable-Parameters">&#182;</a></h4><ul>
+<li><em>Number of Ants</em></li>
+<li><em>Maximum Number of Iterations</em></li>
+<li><em>Initial Pheromone</em></li>
+<li><em>Pheromone Delay Parameters (i.e. $p$)</em></li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Ant-Colony-System-Algorithm">Ant Colony System Algorithm<a class="anchor-link" href="#Ant-Colony-System-Algorithm">&#182;</a></h3><ul>
+<li>The <strong>ant colony system</strong> (ACS) algorithm features the following extensions on ACO:<ul>
+<li>The transition rules sometimes just choose the best path (i.e. acts greedily) instead of applying probabilistic selection.</li>
+<li>Pheromone update is only based on the best solution (i.e. highest increase in $\tau$ either globally or in iteration).</li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Max-Min-Ant-System-Algorithm">Max-Min Ant System Algorithm<a class="anchor-link" href="#Max-Min-Ant-System-Algorithm">&#182;</a></h3><ul>
+<li>The <strong>max-min ant system</strong> algorithm is an extension that restricts pheromone values within a range.<ul>
+<li>The max and min pheromone values can be adjusted to favor exploration over exploitation during early phases of the search.</li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Adaptation">Adaptation<a class="anchor-link" href="#Adaptation">&#182;</a></h3><h4 id="ACSGA-TSP">ACSGA-TSP<a class="anchor-link" href="#ACSGA-TSP">&#182;</a></h4><ul>
+<li>Have a genetic algorithm running on top of ACS to attempt to optimize its parameter values.</li>
+<li>Each ant has certain parameters (e.g. $p$, $\beta$) encoded into a chromosome.</li>
+<li>New generations are formed by crossing over the best-performing ants.</li>
+</ul>
+<h4 id="Near-Parameter-Free-ACS">Near Parameter Free ACS<a class="anchor-link" href="#Near-Parameter-Free-ACS">&#182;</a></h4><ul>
+<li>Apply an ant approach to optimize ant parameters.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Cooperation">Cooperation<a class="anchor-link" href="#Cooperation">&#182;</a></h3><ul>
+<li>Heterogeneous cooperation approaches involve ants in different colonies having different behavior.<ul>
+<li>This can be used, for instance, to optimize for different criteria of a solution.</li>
+</ul>
+</li>
+<li>Homoegeneous cooperation approaches involve ants in different colonies having similar behavior.<ul>
+<li>Exchange of information can take place in a similar way to that of genetic algorithms.</li>
+<li>Homogeneous cooperation implementations can be course-grained, where each process holds a single ant, or fine-grained, where each process holds a colony.</li>
+<li>An effective version of homogeneous cooperation is a circular exchange of locally best solutions.</li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Advantages-and-Disadvantages">Advantages and Disadvantages<a class="anchor-link" href="#Advantages-and-Disadvantages">&#182;</a></h3><h4 id="Advantages">Advantages<a class="anchor-link" href="#Advantages">&#182;</a></h4><ul>
+<li>Memory of entire colony retained.</li>
+<li>Poor solutions rarely converged on due to many combinations of path selection.</li>
+<li>Effective handling of dynamic environments.</li>
+</ul>
+<h4 id="Disadvantages">Disadvantages<a class="anchor-link" href="#Disadvantages">&#182;</a></h4><ul>
+<li>Theoretical analysis is limited.</li>
+<li>Many parameters to tune.</li>
+<li>Convergence may take long.</li>
+</ul>
+
+</div>
+</div>
+</div>
     </div>
   </div>
 </body>
