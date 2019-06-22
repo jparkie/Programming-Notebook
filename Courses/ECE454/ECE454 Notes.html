@@ -13901,6 +13901,60 @@ class Reducer
 </div>
 </div>
 </div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Apache-Spark">Apache Spark<a class="anchor-link" href="#Apache-Spark">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="RDD">RDD<a class="anchor-link" href="#RDD">&#182;</a></h3><ul>
+<li><strong>RDDs</strong> are fault-tolerant, parallel data structures that let users explicitly persist intermediate results in memory, control their partitioning to optimize data placement, and manipulate them using a rich set of operators.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Lineage">Lineage<a class="anchor-link" href="#Lineage">&#182;</a></h3><p><img src="images/Spark_1.png" alt="Lineage"></p>
+<ul>
+<li>A <strong>lineage</strong> is a directed acyclic graph that expresses the dependencies between RDDs such that a RDD can be rebuilt in the event of a failure.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Transformation-and-Actions">Transformation and Actions<a class="anchor-link" href="#Transformation-and-Actions">&#182;</a></h3><ul>
+<li><strong>Transformations</strong>: Operations that convert one RDDs or a pair of RDDs into another RDD.</li>
+<li><strong>Actions</strong>: Operations that convert a RDD into an output.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Narrow-vs.-Wide-Dependencies">Narrow vs. Wide Dependencies<a class="anchor-link" href="#Narrow-vs.-Wide-Dependencies">&#182;</a></h3><p><img src="images/Spark_2.png" alt="Dependencies"></p>
+<p><img src="images/Spark_3.png" alt="Execution"></p>
+<ul>
+<li>When an action is invoked on a RDD, the Spark scheduler examines the lineage graph of the RDD and builds a directed acyclic graph of transformations.</li>
+<li>The transformations in the DAG are grouped into <strong>stages</strong>.</li>
+<li>A <strong>stage</strong> is a collection of transformations with <strong>narrow dependencies</strong>, meaning that one partition of the output depends on only one partition of each input.</li>
+<li>The boundaries between stages correspond to <strong>wide dependencies</strong>, meaning that one partition of the output depends on multiple partitions of some input, requiring a shuffle.</li>
+</ul>
+
+</div>
+</div>
+</div>
     </div>
   </div>
 </body>
