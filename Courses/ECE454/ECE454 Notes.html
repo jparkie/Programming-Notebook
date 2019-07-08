@@ -14275,6 +14275,187 @@ class Reducer
 </div>
 </div>
 </div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Fault-Tolerance">Fault Tolerance<a class="anchor-link" href="#Fault-Tolerance">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Dependability-Requirements">Dependability Requirements<a class="anchor-link" href="#Dependability-Requirements">&#182;</a></h3><ol>
+<li><strong>Availability</strong>: The system should operate correctly at any given instant in time.</li>
+<li><strong>Reliability</strong>: The system should run continuously without interruption.</li>
+<li><strong>Safety</strong>: Failure of the system should not have catastrophic consequences.</li>
+<li><strong>Maintainability</strong>: A failed system should be easy to repair.</li>
+</ol>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Definitions">Definitions<a class="anchor-link" href="#Definitions">&#182;</a></h3><ul>
+<li><strong>Failure</strong>: When a system cannot fulfill its promises.</li>
+<li><strong>Error</strong>: Part of a system's state that may lead to a failure.</li>
+<li><strong>Fault</strong>: The cause of an error.</li>
+</ul>
+<blockquote><p>A <strong>fault</strong> may lead to an <strong>error</strong>, which may lead to a <strong>failure</strong>.</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Types-of-Faults">Types of Faults<a class="anchor-link" href="#Types-of-Faults">&#182;</a></h3><ol>
+<li><strong>Transient</strong>: Occurs once and disappears.</li>
+<li><strong>Intermittent</strong>: Occurs and vanishes, reappears.</li>
+<li><strong>Permanent</strong>: Continues to exist until faulty component is replaced.</li>
+</ol>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Types-of-Failure">Types of Failure<a class="anchor-link" href="#Types-of-Failure">&#182;</a></h3><ol>
+<li><strong>Crash Failure</strong>: A server halts, but is working correctly until it halts.</li>
+<li><strong>Omission Failure</strong>: A server fails to respond to incoming requests.<ol>
+<li><em>Receive Omission</em>: A server fails to receive incoming messages.</li>
+<li><em>Send Omission</em>: A server fails to send outgoing messages.</li>
+</ol>
+</li>
+<li><strong>Timing Failure</strong>: A server's response lies outside the specified time interval.</li>
+<li><strong>Response Failure</strong>: A server's response is incorrect.<ol>
+<li><em>Value Failure</em>: The value of the response is wrong.</li>
+<li><em>State Transition Failure</em>: The server deviates from the correct flow of control.</li>
+</ol>
+</li>
+<li><strong>Arbitrary Failure</strong>: A server may produce arbitrary responses at arbitrary times.</li>
+</ol>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Failure-Masking-by-Redundancy">Failure Masking by Redundancy<a class="anchor-link" href="#Failure-Masking-by-Redundancy">&#182;</a></h3><ul>
+<li><strong>Information Redundancy</strong>: Extra bits are added to allow recovery from garbled bits.<ul>
+<li>e.g., Hamming Code</li>
+</ul>
+</li>
+<li><strong>Time Redundancy</strong>: An action is performed, and then, if need be, it is performed again.<ul>
+<li>e.g., Transactions, Idempotent Requests</li>
+</ul>
+</li>
+<li><strong>Physical Redundancy</strong>: Extra equipment or processes are added to make it possible for the system as a whole to tolerate the loss of malfunctioning of some parts.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Resilience-by-Process-Groups">Resilience by Process Groups<a class="anchor-link" href="#Resilience-by-Process-Groups">&#182;</a></h3><p><img src="images/Fault_Tolerance_1.png" alt="Flat Groups and Hierarchical Groups"></p>
+<ul>
+<li>Protection against process failures can be achieved by replicating processes into groups.</li>
+<li>When a message is sent to the group itself, all members of the group receive it.</li>
+<li>The purpose of introducing groups is to alow a process to deal with collections of other processes as a single abstraction.</li>
+<li>A <strong>flat group</strong> is symmetrical and has no single point of failure.<ul>
+<li><em>Advantage</em>: If one of the processes crashes, the group simply becomes smaller, but can otherwise continue.</li>
+<li><em>Disadvantage</em>: Decision making is more complicated.</li>
+</ul>
+</li>
+<li>A <strong>hierarchical group</strong> is asymmetrical with a single point of failure.<ul>
+<li><em>Advantage</em>: Decision making is simpler.</li>
+<li><em>Disadvantage</em>: If the coordinator crashes, the entire group halts.</li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Consensus-Problem">Consensus Problem<a class="anchor-link" href="#Consensus-Problem">&#182;</a></h3><ul>
+<li>Each process has a procedure <code>propose(val)</code> and a procedure <code>decide()</code>.</li>
+<li>Each process first proposes a value by calling <code>propose(val)</code> once, with some argument <code>val</code> determined by the initial state of the process.</li>
+<li>Each process then learns the value agreed upon by calling <code>decide()</code>.</li>
+</ul>
+<h4 id="Properties">Properties<a class="anchor-link" href="#Properties">&#182;</a></h4><ul>
+<li><strong>Safety Property 1 (Agreement)</strong>: Two calls to <code>decide()</code> never return different values.</li>
+<li><strong>Safety Property 2 (Validity)</strong>: If a process calls <code>decide()</code> with response <code>v</code>, then some process invoked a call to <code>propose(v)</code>.</li>
+<li><strong>Liveness Property</strong>: If a process calls <code>propse(v)</code> or <code>decide()</code> and does not fail, then this call eventually terminates.</li>
+</ul>
+<h4 id="Variations">Variations<a class="anchor-link" href="#Variations">&#182;</a></h4><p><img src="images/Fault_Tolerance_2.png" alt="Circumstances Under Which Distributed Consensus Can Be Reached"></p>
+<ol>
+<li><strong>Synchronous vs. Asynchronous Processes</strong>: Is there a bound on the amount of time it takes for a process to take its next step? Is the bound known by all processes?</li>
+<li><strong>Communication Delays</strong>: Is there a bound on the length of time it takes for a sent message to be delivered? Is the bound known by all processes?</li>
+<li><strong>Message Delivery Order</strong>: How does the order in which messages are sent affect the order in which they are delivered to the recipients?</li>
+<li><strong>Unicast vs. Multicast Messaging</strong>.</li>
+</ol>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="RPC-Failure-Semantics">RPC Failure Semantics<a class="anchor-link" href="#RPC-Failure-Semantics">&#182;</a></h3><ol>
+<li>The client is unable to locate the server.</li>
+<li>The request message from the client to the server is lost.</li>
+<li>The server crashes after receiving a request.</li>
+<li>The reply message from the server to the client is lost.</li>
+<li>The client crashes after sending a request.</li>
+</ol>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Dealing-with-RPC-Server-Crashes">Dealing with RPC Server Crashes<a class="anchor-link" href="#Dealing-with-RPC-Server-Crashes">&#182;</a></h3><ol>
+<li>Reissue the request, leading to <strong>at-least-once semantics</strong>. As a side-effect, the request may be processed multiple times by the service handler, which is safe as long as the request is idempotent.</li>
+<li>Give up and report a failure, leading to <strong>at-most-once semantics</strong>. There is no guarantee that the request has been processed.</li>
+<li>Determine whether the request was processed and reissue if needed, leading to <strong>exactly once semantics</strong>. This scheme is difficult to implement as the server may have no way of knowing whether it performed a particular action.</li>
+<li>Make no guarantees at all, leading to confusion.</li>
+</ol>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Actions-and-Acknowledgments">Actions and Acknowledgments<a class="anchor-link" href="#Actions-and-Acknowledgments">&#182;</a></h3><p><img src="images/Fault_Tolerance_3.png" alt="Actions and Acknowledgements"></p>
+<ul>
+<li>Let $M$ be the server replying to the client with an acknowledgment message.</li>
+<li>Let $P$ be the server executing a request from the client.</li>
+<li>Let $C$ be the server crashing.</li>
+</ul>
+<ol>
+<li>$M \to P \to C$ (<em>Very Bad</em>): A crash occurs after sending the completion message and executing the request.</li>
+<li>$M \to C \to P$ (<em>Very Bad</em>): A crash happens after sending the completion message, but before executing the request.</li>
+<li>$C \to M \to P$ (<em>Bad</em>): A crash happens before the server could do anything.</li>
+<li>$P \to M \to C$ (<em>Good</em>): A crash occurs after sending the completion message and executing the request.</li>
+<li>$P \to C \to M$ (<em>Bad</em>): The request is executed, after which a crash occurs, before the completion message could be send.</li>
+<li>$C \to P \to M$ (<em>Bad</em>): A crash happens before the server could do anything.</li>
+</ol>
+
+</div>
+</div>
+</div>
     </div>
   </div>
 </body>
