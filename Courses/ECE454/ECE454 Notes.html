@@ -13955,6 +13955,326 @@ class Reducer
 </div>
 </div>
 </div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Distributed-Graph-Processing">Distributed Graph Processing<a class="anchor-link" href="#Distributed-Graph-Processing">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Pregel">Pregel<a class="anchor-link" href="#Pregel">&#182;</a></h3><ul>
+<li>In Pregel, graph processing problems are expressed as a sequence of iterations, in each of which a vertex can receive messages sent in the previous iteration, send messages to other vertices, and modify its own state and that of its outgoing edges or mutate graph topology.</li>
+<li>This <strong>vertex-centric approach</strong> is flexible enough to express a broad set of algorithms.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Architecture">Architecture<a class="anchor-link" href="#Architecture">&#182;</a></h3><ul>
+<li><strong>Unit of Work</strong>: A <em>partition</em> consisting of a set of vertices and their outgoing edges.</li>
+<li><strong>Coordination</strong>: A single <em>master</em> with many <em>workers</em>.</li>
+</ul>
+<ol>
+<li>The master determines the number of partitions and distributes the partitions to each worker.</li>
+<li>The master assigns a portion of the user's input to each worker.<ol>
+<li>If the worker is assigned a vertex that belongs to its partition of the graph, then the worker updates the the state of the vertex.<ul>
+<li><em>Vertex's Current Value</em></li>
+<li><em>Vertex's Outgoing Edges</em></li>
+<li><em>Vertex's Activity Flag</em></li>
+</ul>
+</li>
+<li>If the worker is assigned a vertex that does not belong to its partition of the graph, then the worker sends a message containing the vertex and its edges to the appropriate remote peer.</li>
+<li>All the input vertices are marked as active.</li>
+</ol>
+</li>
+<li>The master instructs each worker to perform a <strong>superstep</strong>.<ol>
+<li>The worker loops to compute through its active vertices.<ol>
+<li>Asynchronously execute a user-defined function on each vertex.</li>
+<li>Receive messages sent in the previous superstep.</li>
+<li>Send messages to be received in the next superstep.</li>
+<li>Vertices can modify their value.</li>
+<li>Vertices can modify the values of their edges.</li>
+<li>Vertices can add or remove edges.</li>
+<li>Vertices can deactivate themselves.  </li>
+</ol>
+</li>
+<li>The worker notifies the master how many vertices will be active in the next superstep.</li>
+</ol>
+</li>
+<li>Repeat <em>Step 3</em> until all the vertices are inactive.</li>
+</ol>
+<ul>
+<li><strong>Important Note</strong>: An active vertex is reactivated when it receives a message.</li>
+<li><strong>Bulk Synchronous Parallel</strong>: Workers compute asynchronously within each superstep, and communicate only between supersteps.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Combiners-and-Aggregators">Combiners and Aggregators<a class="anchor-link" href="#Combiners-and-Aggregators">&#182;</a></h3><ul>
+<li><strong>Combiners</strong>: An optional component which reduces the amount of data exchanged over the network and the number of messages.<ul>
+<li>i.e., A <em>commutative</em> and <em>associative</em> user-defined function.</li>
+</ul>
+</li>
+<li><strong>Aggregators</strong>: An optional component which computes aggregate statistics from vertex-reported values.<ol>
+<li>Workers aggregate values from their vertices during each supersep.</li>
+<li>At the end of each superstep, the values from the workers are aggregated in a tree structure, and the value from the root of the tree is sent to the master.</li>
+<li>The master shares the value with all vertices in the next superstep.</li>
+</ol>
+</li>
+<li>An aggregator is useful for detecting convergence conditions for vertices to transition to the inactive state.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Fault-Tolerance">Fault Tolerance<a class="anchor-link" href="#Fault-Tolerance">&#182;</a></h3><ul>
+<li><strong>Key Idea</strong>: <em>Checkpointing</em></li>
+<li>At the beginning of a superstep, the master instructs the workers to save the state of their partitions to persistent storage.<ul>
+<li>Vertex Values.</li>
+<li>Edge Values.</li>
+<li>Incoming Messages.</li>
+</ul>
+</li>
+<li>The master separately saves the aggregator values.</li>
+<li>Worker failures are detected using regular pings from the master to the workers.</li>
+<li>When one or more workers fail, the master reassigns graph partitions to the currently available set of workers, and they all reload their partition state from the most recent available checkpoint.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Consistency-and-Replication">Consistency and Replication<a class="anchor-link" href="#Consistency-and-Replication">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Motivations-for-Replication">Motivations for Replication<a class="anchor-link" href="#Motivations-for-Replication">&#182;</a></h3><ul>
+<li><em>Increased Reliability</em></li>
+<li><em>Increased Throughput</em></li>
+<li><em>Decreased Latency</em></li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Replicated-Data-Store">Replicated Data Store<a class="anchor-link" href="#Replicated-Data-Store">&#182;</a></h3><ul>
+<li>In a <strong>replicated data store</strong>, each data object is replicated at multiple hosts.<ul>
+<li><strong>Local Replica</strong>: <em>Same Hosts</em></li>
+<li><strong>Remote Replica</strong>: <em>Different Hosts</em></li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Consistency-Models">Consistency Models<a class="anchor-link" href="#Consistency-Models">&#182;</a></h3><ol>
+<li><em>Sequential Consistency</em></li>
+<li><em>Causal Consistency</em></li>
+<li><em>Linearizability</em></li>
+<li><em>Eventual Consistency</em></li>
+<li><em>Session Guarantees</em></li>
+</ol>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Sequential-Consistency">Sequential Consistency<a class="anchor-link" href="#Sequential-Consistency">&#182;</a></h3><ul>
+<li>A data store is sequentially consistent when the result of any execution is the same as if the operations by all processes on the data were executed in some sequential order and the operations of each individual process appear in this sequence in the order specified by its program.</li>
+</ul>
+<p><img src="images/Consistency_1.png" alt="Positive Sequential Consistency Example">
+<em>Positive Sequential Consistency Example</em></p>
+<p><img src="images/Consistency_2.png" alt="Negative Sequential Consistency Example">
+<em>Negative Sequential Consistency Example</em></p>
+<ol>
+<li><code>R(x)a</code> and <code>R(x)b</code> conflict.</li>
+</ol>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Causal-Consistency">Causal Consistency<a class="anchor-link" href="#Causal-Consistency">&#182;</a></h3><ul>
+<li>A data store is causally consistent when writes related by the "causally precedes" relation must be seen by all processes in the same oder.</li>
+<li>Concurrent writes may be seen in a different order on different machines.</li>
+<li><strong>"Causally precedes"</strong> is the transitive closure of two rules.<ol>
+<li>Operation A causally precedes operation B if A occurs before B in the same process.</li>
+<li>Operation A causally precedes operation B if B reads a value written by A.</li>
+</ol>
+</li>
+<li>If operations A and B are concurrent (no "causally precedes"), then A and B can be read in either order.</li>
+</ul>
+<p><img src="images/Consistency_3.png" alt="Positive Causal Consistency Example">
+<em>Positive Causal Consistency Example</em></p>
+<ol>
+<li><code>W(x)a</code> causally precedes <code>R(x)a</code>.</li>
+<li><code>R(x)a</code> causally precedes <code>W(x)b</code>.</li>
+<li><code>W(x)b</code> and <code>W(x)c</code> are concurrent.</li>
+<li>Therefore, the reads must occur in the following sequences:<ol>
+<li>A, B, C, or</li>
+<li>A, C, B.</li>
+</ol>
+</li>
+</ol>
+<p><img src="images/Consistency_4.png" alt="Negative Causal Consistency Example">
+<em>Negative Causal Consistency Example</em></p>
+<ol>
+<li><code>W(x)a</code> causally precedes <code>R(x)a</code>.</li>
+<li><code>R(x)a</code> causally precedes <code>W(x)b</code>.</li>
+<li>However, P3's <code>R(x)b</code> before <code>R(x)a</code> violates causal consistency.</li>
+</ol>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Linearizability">Linearizability<a class="anchor-link" href="#Linearizability">&#182;</a></h3><ul>
+<li>A data store is linearizable when the result of any execution is the same as if the operations by all processes on the data store were executed in some sequential order that extends the "happens before" relation.</li>
+<li>If operation A finishes before operation B begins, then A must precede B in the sequential order.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Eventual-Consistency">Eventual Consistency<a class="anchor-link" href="#Eventual-Consistency">&#182;</a></h3><ul>
+<li>If no updates take palce for a long time, all replicas will gradually become consistent.</li>
+<li>Allows different processes to observe write operations taking effect in different orders, even when these write operations are related by "causally precedes" or "happens before".</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Session-Guarantees">Session Guarantees<a class="anchor-link" href="#Session-Guarantees">&#182;</a></h3><ul>
+<li><strong>Session Guarantees</strong>: Restrict the behavior of operations applied by a single process in a single session.</li>
+<li><strong>Monotonic Reads</strong>: If a process reads $x$, any successive reads on $x$ by that process will always return the same value or a more recent value.</li>
+<li><strong>Monotonic Writes</strong>: A write by a process on $x$ is completed before any successive write on $x$ by the same process.</li>
+<li><strong>Read Your Own Writes</strong>: The effect of a write operation by a process on $x$ will always be seen by a successive read on $x$ by the same process.</li>
+<li><strong>Writes Follow Reads</strong>: A write by a process on $x$ following a previous read on $x$ by the same process is guaranteed to take place on the same or a more recent value of $x$ that was read.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Primary-Based-Replication-Protocols">Primary-Based Replication Protocols<a class="anchor-link" href="#Primary-Based-Replication-Protocols">&#182;</a></h3><ul>
+<li>In a primary-based protocol, each $x$ in the data store has an associated primary, which is responsible for coordinating writes on $x$.</li>
+<li>If the primary replica fails, then one of the backup replicas may take over as the new primary.<ul>
+<li><em>Disadvantage</em>: If the network is partitioned, the cluster can become <strong>split-brain</strong> such that one replica in each partition believes its the primary replica; hence, a divergence of state.</li>
+</ul>
+</li>
+</ul>
+<h4 id="Advantages-and-Disadvantages">Advantages and Disadvantages<a class="anchor-link" href="#Advantages-and-Disadvantages">&#182;</a></h4><h5 id="Advantages">Advantages<a class="anchor-link" href="#Advantages">&#182;</a></h5><ul>
+<li><em>Strong Consistency</em></li>
+</ul>
+<h5 id="Disadvantages">Disadvantages<a class="anchor-link" href="#Disadvantages">&#182;</a></h5><ul>
+<li><em>Performance Bottlenecks</em></li>
+<li><em>Loss of Availability</em></li>
+</ul>
+<h4 id="Remote-Write-Protocol">Remote-Write Protocol<a class="anchor-link" href="#Remote-Write-Protocol">&#182;</a></h4><p><img src="images/Replication_1.png" alt="Remote-Write Protocol Example"></p>
+<ul>
+<li><strong>Remote-Write</strong>: The primary replica is generally stationary and therefore must be updated remotely by other servers.</li>
+</ul>
+<h4 id="Local-Write-Protocol">Local-Write Protocol<a class="anchor-link" href="#Local-Write-Protocol">&#182;</a></h4><p><img src="images/Replication_2.png" alt="Local-Write Protocol Example"></p>
+<ul>
+<li><strong>Local-Write</strong>: The primary replica migrates from server to server, allowing local updates.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Quorum-Based-Replication-Protocols">Quorum-Based Replication Protocols<a class="anchor-link" href="#Quorum-Based-Replication-Protocols">&#182;</a></h3><ul>
+<li>In a quorum-based protocol, all replicas are allowed to receive updates and reads, but operations are required to be accepted by a sufficiently large subset of replicas called a <strong>write quorum</strong> or a <strong>read quorum</strong>.</li>
+</ul>
+<h4 id="Requirements-of-Write-and-Read-Quorums">Requirements of Write and Read Quorums<a class="anchor-link" href="#Requirements-of-Write-and-Read-Quorums">&#182;</a></h4><p><img src="images/Replication_3.png" alt="Write and Read Quorums Examples"></p>
+<ul>
+<li>Let $N$ be the total number of replicas.</li>
+<li>Let $N_{W}$ be the size of the write quorum.</li>
+<li>Let $N_{R}$ be the size of the read quorum.</li>
+<li>The following two rules must be satisfied:<ol>
+<li>$N_{R} + N_{E} &gt; N$; Read and write quorums must overlap.</li>
+<li>$N_{W} + N_{W} &gt; N$; Two write quorums must overlap.</li>
+</ol>
+</li>
+<li>The first rule enables detection of <strong>read-write conflicts</strong>.<ul>
+<li>Read-write conflicts occur when one process wants to update data item while another is concurrently attempting to read that item.</li>
+</ul>
+</li>
+<li>The second rule enables detection of <strong>write-write conflicts</strong>.<ul>
+<li>Write-write conflicts occur when two processes want to perform an update on the same data.</li>
+</ul>
+</li>
+</ul>
+<h4 id="Partial-Quorums">Partial Quorums<a class="anchor-link" href="#Partial-Quorums">&#182;</a></h4><ul>
+<li>Derivatives of Anamzon's Dynamo, allow various degress of consistency by tuning $N_{R}$ and $N_{W}$.<ul>
+<li><strong>Strong Consistency</strong>: $N_{R} + N_{W} &gt; N$</li>
+<li><strong>Weak Consistency</strong>: $N_{R} + N_{W} \le N$</li>
+</ul>
+</li>
+<li><strong>Important Note 1</strong>: The strong consistency mode does not avoid write-write conflicts.</li>
+<li><strong>Important Note 2</strong>: The weak consistency mode does not avoid read-write conflicts or write-write conflicts.</li>
+<li>To resolve write-write conflicts, updates are tagged with timestamps, and resolution policies such as <strong>last-write wins</strong> or <strong>vector clocks</strong> are applied.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Eventually-Consistent-Replication">Eventually-Consistent Replication<a class="anchor-link" href="#Eventually-Consistent-Replication">&#182;</a></h3><ul>
+<li>A server that receives an update replies with an acknowledgement to the client first, and then propagates the update lazily to the remaining replicas.</li>
+<li>If a replica is unreachable, then it can be updated later using an <strong>anti-entropy</strong> mechanism.<ul>
+<li>e.g., Replicas may periodically exchange hashes of data to detect discrepancies using Merkle trees.</li>
+<li>e.g., Updates can be timestamped to enable determination of the latest version of a data item.</li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
     </div>
   </div>
 </body>
