@@ -14983,16 +14983,27 @@ $$</li>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Learning-Rule-as-Averaging---What-is-the-standard-form-of-learning-rules?">Learning Rule as Averaging - What is the standard form of learning rules?<a class="anchor-link" href="#Learning-Rule-as-Averaging---What-is-the-standard-form-of-learning-rules?">&#182;</a></h4>$$
+\begin{aligned}
+\text{New Estimate} \gets \text{Old Estimate} + \text{Step Size} \cdot \left[ \text{Target} - \text{Old Estimate} \right]
+\end{aligned}
+$$
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h4 id="$\epsilon$-Greedy-Bandits-Algorithm---How-do-you-choose-actions-using-the-$\epsilon$-greedy-bandits-algorithm?">$\epsilon$-Greedy Bandits Algorithm - How do you choose actions using the $\epsilon$-greedy bandits algorithm?<a class="anchor-link" href="#$\epsilon$-Greedy-Bandits-Algorithm---How-do-you-choose-actions-using-the-$\epsilon$-greedy-bandits-algorithm?">&#182;</a></h4><ol>
 <li>Let $A_{t}$ be the action chosen from $k$ possibilities at time step $t$.</li>
 <li>Let $R_{t}$ be the independent and identically distributed reward yielded by action $A_{t}$.</li>
 <li>Let $Q_{t}(a)$ be the expected reward from choosing action $a$ until time step $t$.</li>
-<li>Let $N_{t}(a)$ be the number of tmes action $a$ was chosen until time step $t$.</li>
+<li>Let $N_{t}(a)$ be the number of times action $a$ was chosen until time step $t$.</li>
 <li>Initialize $Q_{0}(a) \gets 0, \forall a \in \{1, ..., k\}$.</li>
 <li>Initialize $N_{0}(a) \gets 0, \forall a \in \{1, ..., k\}$.</li>
 <li>Repeat for $t = 0, 1, 2, ...$,<ol>
-<li>Set $A_{t} \gets \max_{a} Q_{t}(a)$ with probability $1 - \epsilon$.</li>
-<li>Set $A_{t} \gets \text{random}(a)$ with probability $\epsilon$.</li>
+<li><strong>Set $A_{t} \gets \max_{a} Q_{t}(a)$ with probability $1 - \epsilon$.</strong></li>
+<li><strong>Set $A_{t} \gets \text{random}(a)$ with probability $\epsilon$.</strong></li>
 <li>Sample $R_{t} \gets \text{bandit}(A_{t})$.</li>
 <li>Update $N_{t + 1}(A_{t}) \gets N_{t}(A_{t}) + 1$.</li>
 <li>Update $Q_{t + 1}(A_{t}) \gets Q_{t}(A_{t}) + \frac{1}{N_{t}(A_{t})}[R_{t} - Q_{t}(A_{t})]$.</li>
@@ -15006,7 +15017,43 @@ $$</li>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Bayesian-Bandits-Algorithm---How-do-you-choose-actions-using-the-Bayesian-bandits-algorithm?">Bayesian Bandits Algorithm - How do you choose actions using the Bayesian bandits algorithm?<a class="anchor-link" href="#Bayesian-Bandits-Algorithm---How-do-you-choose-actions-using-the-Bayesian-bandits-algorithm?">&#182;</a></h4><ol>
+<h4 id="$\epsilon$-Greedy-Action-Selection---How-does-$\epsilon$-greedy-action-selection-work?">$\epsilon$-Greedy Action Selection - How does $\epsilon$-greedy action selection work?<a class="anchor-link" href="#$\epsilon$-Greedy-Action-Selection---How-does-$\epsilon$-greedy-action-selection-work?">&#182;</a></h4>$$
+A_{t} \gets
+\begin{cases}
+\max_{a} Q_{t}(a) &amp; \text{ with probability } 1 - \epsilon \\
+\text{random}(a)  &amp; \text{ with probability } \epsilon
+\end{cases}
+$$<ul>
+<li>Balances exploration and exploitation by choosing randomly a small fraction of the time.</li>
+<li><strong>Problem</strong>: Indiscriminately, with no preference for those that are nearly greedy or particularly uncertain, selects non-greedy actions.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Upper-Confidence-Bound-Action-Selection---How-does-upper-confidence-bound-action-selection-work?">Upper-Confidence-Bound Action Selection - How does upper-confidence-bound action selection work?<a class="anchor-link" href="#Upper-Confidence-Bound-Action-Selection---How-does-upper-confidence-bound-action-selection-work?">&#182;</a></h4>$$
+A_{t} \gets \max_{a} \left[ Q_{t}(a) + c \cdot \sqrt{\frac{\log t}{N_{t}(a)}} \right]
+$$<ul>
+<li>Balances exploration and exploitation by choosing deterministically but achieving exploration by subtly favoring at each step the actions that have so far received fewer samples.<ul>
+<li>$\sqrt{\frac{\log t}{N_{t}(a)}}$ is a measure of the uncertainty or variance in the estimate of $a$’s value.</li>
+<li>$c &gt; 0$ determines the confidence level by controlling the degree of exploration.</li>
+<li>$\log t$ increases the uncertainty in the estimate of $a$’s value as $a$ is exploited less.</li>
+<li>$N_{t}(a)$ decreases the uncertainty in the estimate of $a$’s value as $a$ is exploited more.</li>
+</ul>
+</li>
+<li><strong>Solution for $\epsilon$-Greedy Action Selection's Problem</strong>: As $\log t$'s increases get smaller over time, but are unbounded; all actions will eventually be selected, but actions with lower value estimates or that have already been selected frequently, will be selected with decreasing frequency over time.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Thompson-Sampling-Bandits-Algorithm---How-do-you-choose-actions-using-the-Thompson-sampling-bandits-algorithm?">Thompson Sampling Bandits Algorithm - How do you choose actions using the Thompson sampling bandits algorithm?<a class="anchor-link" href="#Thompson-Sampling-Bandits-Algorithm---How-do-you-choose-actions-using-the-Thompson-sampling-bandits-algorithm?">&#182;</a></h4><ol>
 <li>Let $A_{t}$ be the action chosen from $k$ possibilities at time step $t$.</li>
 <li>Let $R_{t}$ be the independent and identically distributed reward yielded by action $A_{t}$.</li>
 <li>Let $p_{t}(a)$ be the initially unknown probabilitites of the rewards yielded by choosing action $a$ until time step $t$.</li>
@@ -15014,13 +15061,61 @@ $$</li>
 <li>Sample a random variable $X_{a}$ using $p_{t}(a)$ for each $a \in \{1, ..., k\}$.</li>
 <li>Set $A_{t} \gets \max_{a} X_{a}$.</li>
 <li>Sample $R_{t} \gets \text{bandit}(A_{t})$.</li>
-<li>Update $p_{t + 1}(A_{t} \mid R_{t}) \propto p_{t}(R_{t} \mid A_{t}) p_{t}(A_{t})$.</li>
+<li>Update $p_{t + 1}(A_{t} \mid R_{t}) \propto p_{t}(R_{t} \mid A_{t}) p_{t}(A_{t})$.<ul>
+<li><em>i.e., According to Bayesian learning.</em></li>
+</ul>
+</li>
 </ol>
 </li>
 </ol>
 
 </div>
 </div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Thompson-Sampling-Action-Selection---How-does-Thompson-sampling-action-selection-work?">Thompson Sampling Action Selection - How does Thompson sampling action selection work?<a class="anchor-link" href="#Thompson-Sampling-Action-Selection---How-does-Thompson-sampling-action-selection-work?">&#182;</a></h4>$$
+\begin{aligned}
+X_{a} &amp;\sim p_{t}(a) \\
+A_{t} &amp;\gets \max_{a} X_{a}
+\end{aligned}
+$$<ul>
+<li>Balances exploration and exploitation by sampling actions in proportion to the belief they are optimal.</li>
+<li><strong>Solution for $\epsilon$-Greedy Action Selection's Problem</strong>: As TS selects actions according to <strong>SAMPLES</strong> from posterior distributions of the unknown probabilities that each respective action is optimal, TS explores to resolve uncertainty where there is a chance that resolution will help the agent identify the optimal action, but avoids probing where feedback would not be helpful.</li>
+</ul>
+<h5 id="Example:-Thompson-Sampling-Intuition">Example: Thompson Sampling Intuition<a class="anchor-link" href="#Example:-Thompson-Sampling-Intuition">&#182;</a></h5><p><img src="images/Thompson_Sampling_1.png" alt="Thompson Sampling Action Selection Example"></p>
+<ul>
+<li>The wider a posterior distribution, there is more uncertainty in probability that an action is optimal, so it still has the chance of generating the best sample at time $t$ which leads to further exploration to reduce uncertainty.</li>
+<li>The narrower a posterior distribution, there is less uncertainty in probability that an action is optimal, so either its action will be exploited more (if more certainty in its <em>optimality</em>) or explored less (if more certainty in its <em>sub-optimality</em>).</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Upper-Confidence-Bounds-and-Thompson-Sampling">Upper-Confidence-Bounds and Thompson Sampling<a class="anchor-link" href="#Upper-Confidence-Bounds-and-Thompson-Sampling">&#182;</a></h4><ul>
+<li>Both heuristics explore the actions that are currently predicted to be optimal, and they are optimistic about action if there is too little information.</li>
+<li><strong>Bayesian Optimization</strong>: Both optimize Bayesian regret ant their bounds can be converted between each other.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+
+    </div>
+</div>
+</div>
+
 </div>
     </div>
   </div>
