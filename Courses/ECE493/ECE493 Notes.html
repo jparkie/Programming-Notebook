@@ -15300,7 +15300,9 @@ v_{\pi}(s)
 &amp;= \mathbb{E}_{\pi}[G_{t} \mid S_{t} = s]\\
 &amp;= \mathbb{E}_{\pi}[R_{t + 1} + \gamma \cdot v_{\pi}(S_{t + 1}) \mid S_{t} = s]\\
 &amp;= \sum_{a \in \mathcal{A}} \pi(a \mid s) q_{\pi}(s, a)\\
-&amp;= \sum_{a \in \mathcal{A}} \pi(a \mid s) \left( \mathcal{R}_{s}^{a} + \gamma \sum_{s' \in \mathcal{S}} \mathcal{P}_{ss'}^{a} v_{\pi}(s') \right)
+&amp;= \sum_{a \in \mathcal{A}} \pi(a \mid s) \left( \mathcal{R}_{s}^{a} + \gamma \sum_{s' \in \mathcal{S}} \mathcal{P}_{ss'}^{a} v_{\pi}(s') \right)\\
+v_{\pi}(s)
+&amp;= \sum_{a} \pi(a \mid s) \left[ \sum_{s', r} p(s', r \mid s, a) \left[ r + \gamma \cdot v_{\pi}(s') \right] \right] 
 \end{aligned}
 $$<h5 id="Action-Value-Function">Action-Value Function<a class="anchor-link" href="#Action-Value-Function">&#182;</a></h5>$$
 \begin{aligned}
@@ -15308,21 +15310,114 @@ q_{\pi}(s, a)
 &amp;= \mathbb{E}_{\pi}[G_{t} \mid S_{t} = s, A_{t} = a]\\
 &amp;= \mathbb{E}_{\pi}[R_{t + 1} + \gamma \cdot q_{\pi}(S_{t + 1}, A_{t + 1}) \mid S_{t} = s, A_{t} = a]\\
 &amp;= \mathcal{R}_{s}^{a} + \gamma \sum_{s' \in \mathcal{S}} \mathcal{P}_{ss'}^{a} v_{\pi}(s')\\
-&amp;= \mathcal{R}_{s}^{a} + \gamma \sum_{s' \in \mathcal{S}} \mathcal{P}_{ss'}^{a} \left( \sum_{a' \in \mathcal{A}} \pi(a' \mid s') q_{\pi}(s', a') \right)
+&amp;= \mathcal{R}_{s}^{a} + \gamma \sum_{s' \in \mathcal{S}} \mathcal{P}_{ss'}^{a} \left( \sum_{a' \in \mathcal{A}} \pi(a' \mid s') q_{\pi}(s', a') \right)\\
+q_{\pi}(s, a)
+&amp;= \sum_{s', r} p(s', r \mid s, a) \left[ r + \gamma \cdot v_{\pi}(s') \right]
 \end{aligned}
 $$<h5 id="Optimal-State-Value-Function">Optimal State-Value Function<a class="anchor-link" href="#Optimal-State-Value-Function">&#182;</a></h5>$$
 \begin{aligned}
 v_{\ast}(s)
 &amp;= \max_{a} q_{\ast}(s, a)\\
-&amp;= \max_{a} \left( \mathcal{R}_{s}^{a} + \gamma \sum_{s' \in \mathcal{S}} \mathcal{P}_{ss'}^{a} v_{\ast}(s') \right)
+&amp;= \max_{a} \left( \mathcal{R}_{s}^{a} + \gamma \sum_{s' \in \mathcal{S}} \mathcal{P}_{ss'}^{a} v_{\ast}(s') \right)\\
+v_{\ast}(s)
+&amp;= \max_{a} \sum_{s', r} p(s', r \mid s, a) \left[ r + \gamma \cdot v_{\ast}(s') \right]
 \end{aligned}
 $$<h5 id="Optimal-Action-Value-Function">Optimal Action-Value Function<a class="anchor-link" href="#Optimal-Action-Value-Function">&#182;</a></h5>$$
 \begin{aligned}
 q_{\ast}(s, a)
 &amp;= \mathcal{R}_{s}^{a} + \gamma \sum_{s' \in \mathcal{S}} \mathcal{P}_{ss'}^{a} v_{\ast}(s') \\
-&amp;= \mathcal{R}_{s}^{a} + \gamma \sum_{s' \in \mathcal{S}} \mathcal{P}_{ss'}^{a} \left( \max_{a'} q_{\ast}(s', a') \right)
+&amp;= \mathcal{R}_{s}^{a} + \gamma \sum_{s' \in \mathcal{S}} \mathcal{P}_{ss'}^{a} \left( \max_{a'} q_{\ast}(s', a') \right)\\
+q_{\ast}(s, a)
+&amp;= \sum_{s', r} p(s', r \mid s, a) \left[ r + \gamma \cdot \max_{a'} q_{\ast}(s', a') \right]
 \end{aligned}
 $$
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Deep-Reinforcement-Learning-">Deep Reinforcement Learning <span name="S06" /><a class="anchor-link" href="#Deep-Reinforcement-Learning-">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Dynamic-Programming-">Dynamic Programming <span name="S06-01" /><a class="anchor-link" href="#Dynamic-Programming-">&#182;</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Motivation---Why-do-you-use-dynamic-programming-to-solve-MDPs?">Motivation - Why do you use dynamic programming to solve MDPs?<a class="anchor-link" href="#Motivation---Why-do-you-use-dynamic-programming-to-solve-MDPs?">&#182;</a></h4><ul>
+<li>MDPs have optimal substructure and overlapping subproblems in the recursive decomposition of Bellman equations.</li>
+<li>Appropriately, dynamic programming is used for <em>planning</em> in a MDP to predict and to control.<ul>
+<li><strong>Prediction</strong>: Given a MDP $\langle \mathcal{S}, \mathcal{A}, \mathcal{P}, \mathcal{R}, \gamma \rangle$ and a policy $\pi$, output a value function $v_{\pi}$.</li>
+<li><strong>Control</strong>: Given a MDP $\langle \mathcal{S}, \mathcal{A}, \mathcal{P}, \mathcal{R}, \gamma \rangle$, output the optimal value function $v_{\ast}$ and the optimal policy $\pi_{\ast}$.</li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Policy-Evaluation---How-do-you-use-dynamic-programming-to-perform-prediction?">Policy Evaluation - How do you use dynamic programming to perform prediction?<a class="anchor-link" href="#Policy-Evaluation---How-do-you-use-dynamic-programming-to-perform-prediction?">&#182;</a></h4><p><img src="images/MDP_7.png" alt="Policy Evaluation Algorithm"></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Policy-Improvement-Theorem---How-does-policy-iteration-converge-to-the-optimal-policy?">Policy Improvement Theorem - How does policy iteration converge to the optimal policy?<a class="anchor-link" href="#Policy-Improvement-Theorem---How-does-policy-iteration-converge-to-the-optimal-policy?">&#182;</a></h4><p><img src="images/MDP_6.png" alt="Policy Improvement Theorem"></p>
+<ul>
+<li>Given a policy $\pi$,<ol>
+<li><strong>Evaluate</strong> the policy $\pi$,
+$$v_{\pi}(s) = \mathbb{E}_{\pi}[G_{t} \mid S_{t} = s]$$</li>
+<li><strong>Improve</strong> the policy by acting greedily with respect to $v_{\pi}$.
+$$\pi' = \text{Greedy}(v_{\pi})$$</li>
+</ol>
+</li>
+<li>The process of <strong>policy iteration</strong> has $\pi'$ converge to $\pi_{\ast}$ in a finite number of steps.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Policy-Iteration---How-do-you-use-dynamic-programming-to-perform-control?">Policy Iteration - How do you use dynamic programming to perform control?<a class="anchor-link" href="#Policy-Iteration---How-do-you-use-dynamic-programming-to-perform-control?">&#182;</a></h4><p><img src="images/MDP_8.png" alt="Policy Iteration Algorithm"></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Backup-Operations---What-are-sweeps-and-backups?">Backup Operations - What are sweeps and backups?<a class="anchor-link" href="#Backup-Operations---What-are-sweeps-and-backups?">&#182;</a></h4><p><img src="images/MDP_9.png" alt="Backup and Sweeps"></p>
+<ul>
+<li>A <strong>backup</strong> is a one-step lookahead, iterative application of the Bellman equation.</li>
+<li>A <strong>sweep</strong> is the iterative application of the backup operation to each state.</li>
+<li><strong>Full Policy-Evaluation Backup</strong>:
+$$v_{k + 1}(s) = \sum_{a} \pi(a \mid s) \sum_{s', r} p(s', r \mid s, a) \left[ r + \gamma \cdot v_{k}(s') \right], \forall s \in S$$</li>
+<li><strong>Full Value-Iteration Backup</strong>:
+$$v_{k + 1}(s) = \max_{a} \sum_{s', r} p(s', r \mid s, a) \left[ r + \gamma \cdot v_{k}(s') \right], \forall s \in S$$</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Value-Iteration---How-do-you-use-dynamic-programming-to-output-a-deterministic-policy?">Value Iteration - How do you use dynamic programming to output a deterministic policy?<a class="anchor-link" href="#Value-Iteration---How-do-you-use-dynamic-programming-to-output-a-deterministic-policy?">&#182;</a></h4><p><img src="images/MDP_10.png" alt="Value Iteration Algorithm"></p>
+
 </div>
 </div>
 </div>
