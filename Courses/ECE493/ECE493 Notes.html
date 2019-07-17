@@ -15084,7 +15084,7 @@ $$<ul>
 <li>Balances exploration and exploitation by sampling actions in proportion to the belief they are optimal.</li>
 <li><strong>Solution for $\epsilon$-Greedy Action Selection's Problem</strong>: As TS selects actions according to <strong>SAMPLES</strong> from posterior distributions of the unknown probabilities that each respective action is optimal, TS explores to resolve uncertainty where there is a chance that resolution will help the agent identify the optimal action, but avoids probing where feedback would not be helpful.</li>
 </ul>
-<h5 id="Example:-Thompson-Sampling-Intuition">Example: Thompson Sampling Intuition<a class="anchor-link" href="#Example:-Thompson-Sampling-Intuition">&#182;</a></h5><p><img src="images/Thompson_Sampling_1.png" alt="Thompson Sampling Action Selection Example"></p>
+<h5 id="Example:-Thompson-Sampling-Intuition">Example: Thompson Sampling Intuition<a class="anchor-link" href="#Example:-Thompson-Sampling-Intuition">&#182;</a></h5><p><img src="images/TS_1.png" alt="Thompson Sampling Action Selection Example"></p>
 <ul>
 <li>The wider a posterior distribution, there is more uncertainty in probability that an action is optimal, so it still has the chance of generating the best sample at time $t$ which leads to further exploration to reduce uncertainty.</li>
 <li>The narrower a posterior distribution, there is less uncertainty in probability that an action is optimal, so either its action will be exploited more (if more certainty in its <em>optimality</em>) or explored less (if more certainty in its <em>sub-optimality</em>).</li>
@@ -15098,24 +15098,233 @@ $$<ul>
 <div class="text_cell_render border-box-sizing rendered_html">
 <h4 id="Upper-Confidence-Bounds-and-Thompson-Sampling">Upper-Confidence-Bounds and Thompson Sampling<a class="anchor-link" href="#Upper-Confidence-Bounds-and-Thompson-Sampling">&#182;</a></h4><ul>
 <li>Both heuristics explore the actions that are currently predicted to be optimal, and they are optimistic about action if there is too little information.</li>
-<li><strong>Bayesian Optimization</strong>: Both optimize Bayesian regret ant their bounds can be converted between each other.</li>
+<li><strong>Bayesian Optimization</strong>: Both optimize Bayesian regret and their bounds can be converted between each other.</li>
 </ul>
 
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
-</pre></div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Limitations-of-Thompson-Sampling">Limitations of Thompson Sampling<a class="anchor-link" href="#Limitations-of-Thompson-Sampling">&#182;</a></h4><ol>
+<li><strong>Problems Not Requiring Exploration</strong>: Some problems are better solved by a greedy algorithm.</li>
+<li><strong>Problems Not Requiring Exploitation</strong>: Some problems do not need a balance between exploration and exploitation.</li>
+<li><strong>Time Sensitivity</strong>: Some time-sensitive problems favor intensification of exploitation than a balance between exploration and exploitation.</li>
+<li><strong>Problems Requiring Careful Assessment of Information Gain</strong>: Some problems require a more careful assessment of the information actions provide instead of favoring the most promising actions.</li>
+</ol>
 
-    </div>
 </div>
 </div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Markov-Decision-Processes-">Markov Decision Processes <span name="S05-03" /><a class="anchor-link" href="#Markov-Decision-Processes-">&#182;</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Agent-Environment-Interface---How-does-an-agent-interact-with-its-environment?">Agent-Environment Interface - How does an agent interact with its environment?<a class="anchor-link" href="#Agent-Environment-Interface---How-does-an-agent-interact-with-its-environment?">&#182;</a></h4><p><img src="images/MDP_1.png" alt="Agent-Environment Interface"></p>
+<ul>
+<li>At discrete time steps $t = 0, 1, 2, 3, ...$,<ol>
+<li>The agent observes the state from the environment, at step $t$: $S_{t} \in \mathcal{S}$.</li>
+<li>The agent produces an action upon the environment, at step $t$: $A_{t} \in \mathcal{A}(S_{t})$.</li>
+<li>The agent gets a resulting reward from the environment: $R_{t + 1} \in \mathcal{R} \subset \mathbb{R}$.</li>
+<li>The environment transitions into the next state as a result of the agent's action: $S_{t + 1} \in \mathcal{S}^{+}$.</li>
+</ol>
+</li>
+</ul>
 
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Markov-Property---What-is-the-Markov-property?">Markov Property - What is the Markov property?<a class="anchor-link" href="#Markov-Property---What-is-the-Markov-property?">&#182;</a></h4><ul>
+<li>A state $S_{t}$ is <strong>Markov</strong> if and only if,
+$$\mathbb{P}[S_{t + 1} \mid S_t] = \mathbb{P}[S_{t + 1} \mid S_{1}, ..., S_{t}]$$</li>
+<li><strong>Important Note</strong>: i.e., the future is independent of the past given the present.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Markov-Process/Chain---What-is-a-Markov-process/chain?">Markov Process/Chain - What is a Markov process/chain?<a class="anchor-link" href="#Markov-Process/Chain---What-is-a-Markov-process/chain?">&#182;</a></h4><p><img src="images/MDP_2.png" alt="Markov Process Example"></p>
+<ul>
+<li>A <strong>Markov process/chain</strong> is a tuple $\langle \mathcal{S}, \mathcal{P} \rangle$,<ul>
+<li>$\mathcal{S}$ is a finite set of states.</li>
+<li>$\mathcal{P}$ is a <em>state transition probability matrix</em>, $\mathcal{P}_{ss'} = \mathbb{P}[S_{t + 1} = s' \mid S_{t} = s]$.</li>
+</ul>
+</li>
+<li><strong>Important Note</strong>: i.e., a memoryless random process.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Markov-Reward-Process---What-is-a-Markov-reward-process?">Markov Reward Process - What is a Markov reward process?<a class="anchor-link" href="#Markov-Reward-Process---What-is-a-Markov-reward-process?">&#182;</a></h4><p><img src="images/MDP_3.png" alt="Markov Reward Process Example"></p>
+<ul>
+<li>A <strong>Markov reward process</strong> is a tuple $\langle \mathcal{S}, \mathcal{P}, \mathcal{R}, \gamma \rangle$<ul>
+<li>$\mathcal{S}$ is a finite set of states.</li>
+<li>$\mathcal{P}$ is a <em>state transition probability matrix</em>, $\mathcal{P}_{ss'} = \mathbb{P}[S_{t + 1} = s' \mid S_{t} = s]$.</li>
+<li>$\mathcal{R}$ is a reward function, $\mathcal{R}_{s} = \mathbb{E}[R_{t + 1} \mid S_{t} = s]$.</li>
+<li>$\gamma \in [0, 1]$ is a discount factor.</li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Markov-Decision-Process---What-is-a-Markov-decision-process?">Markov Decision Process - What is a Markov decision process?<a class="anchor-link" href="#Markov-Decision-Process---What-is-a-Markov-decision-process?">&#182;</a></h4><p><img src="images/MDP_4.png" alt="Markov Decision Process Example"></p>
+<ul>
+<li>A <strong>Markov decision process</strong> is a tuple $\langle \mathcal{S}, \mathcal{A}, \mathcal{P}, \mathcal{R}, \gamma \rangle$<ul>
+<li>$\mathcal{S}$ is a finite set of states.</li>
+<li>$\mathcal{A}$ is a finite set of actions.</li>
+<li>$\mathcal{P}$ is a <em>state transition probability matrix</em>, $\mathcal{P}_{ss'}^{a} = \mathbb{P}[S_{t + 1} = s' \mid S_{t} = s, A_{t} = a]$.</li>
+<li>$\mathcal{R}$ is a reward function, $\mathcal{R}_{s}^{a} = \mathbb{E}[R_{t + 1} \mid S_{t} = s, A_{t} = a]$.</li>
+<li>$\gamma \in [0, 1]$ is a discount factor.</li>
+</ul>
+</li>
+<li><strong>Important Note</strong>: A majority of reinforcement learning problems can be formalized as MDPs.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Policy---What-is-a-policy?">Policy - What is a policy?<a class="anchor-link" href="#Policy---What-is-a-policy?">&#182;</a></h4><ul>
+<li>A <strong>policy</strong> $\pi$ is a distribution over actions given states,
+$$\pi(a \mid s) = \mathbb{P}[A_{t} = a \mid S_{t} = s]$$</li>
+<li><strong>Important Note 1</strong>: A policy fully defines the behavior of an agent.</li>
+<li><strong>Important Note 2</strong>: Reinforcement learning methods specify how an agent changes its policy according to history.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Return---What-is-a-return?">Return - What is a return?<a class="anchor-link" href="#Return---What-is-a-return?">&#182;</a></h4><ul>
+<li>The <strong>return</strong> $G_{t}$ is some measure of reward from time-step $t$.
+$$G_{t} = R_{t + 1} + \gamma \cdot R_{t + 2} + ... = \sum_{k = 0}^{\infty} \gamma^{k} R_{t + k + 1}$$</li>
+<li><strong>Important Note</strong>: Reinforcement learning methods seek to maximize the <em>expected return</em> $\mathbb{E}[G_{t}]$, on each time-step $t$.</li>
+</ul>
+<h5 id="Variations-of-Reward">Variations of Reward<a class="anchor-link" href="#Variations-of-Reward">&#182;</a></h5><ul>
+<li><strong>Total Reward</strong>: The sum of all future rewards for episodic tasks.<ul>
+<li>$\gamma = 1$.</li>
+<li>$R_{t} = 0, \forall t &gt; T$, where $T$ is the terminal time-step.</li>
+</ul>
+</li>
+<li><strong>Discounted Reward</strong>: The sum of all future discounted rewards for continuous tasks.<ul>
+<li>$\gamma \to 0$ implies <em>shortsighted</em> rewards.</li>
+<li>$\gamma \to 1$ implies <em>farsighted</em> rewards.</li>
+<li>Typically, $\gamma = 0.9$.</li>
+</ul>
+</li>
+<li><strong>Important Note</strong>: A discount factor avoids infinite returns in cyclic Markov processes.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Value-Functions---What-are-the-4-value-functions?">Value Functions - What are the 4 value functions?<a class="anchor-link" href="#Value-Functions---What-are-the-4-value-functions?">&#182;</a></h4><p><img src="images/MDP_5.png" alt="4 Ideal Value Functions"></p>
+<ul>
+<li>The <strong>state-value function</strong> $v_{\pi}(s)$ is the expected return starting from state $s$, and then following policy $\pi$.
+$$v_{\pi}(s) = \mathbb{E}_{\pi}[G_{t} \mid S_{t} = s]$$</li>
+<li>The <strong>action-value function</strong> $q_{\pi}(s, a)$ is the expected return starting from state $s$, taking action $a$, and then following policy $\pi$.
+$$q_{\pi}(s, a) = \mathbb{E}_{\pi}[G_{t} \mid S_{t} = s, A_{t} = a]$$</li>
+<li>The <strong>optimal state-value function</strong> $v_{\ast}(s)$ is the maximum value function over all policies.
+$$v_{\ast}(s) = \max_{\pi} v_{\pi}(s)$$</li>
+<li>The <strong>optimal action-value function</strong> $q_{\ast}(s, a)$ is the maximum action-value function over all policies.
+$$q_{\ast}(s, a) = \max_{\pi} q_{\pi}(s, a)$$</li>
+<li><strong>Important Note 1</strong>: The optimal value function specifies the best possible performance in the MDP.</li>
+<li><strong>Important Note 2</strong>: A MDP is solved when the optimal value function is known.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Optimal-Policy---What-is-an-optimal-policy?">Optimal Policy - What is an optimal policy?<a class="anchor-link" href="#Optimal-Policy---What-is-an-optimal-policy?">&#182;</a></h4><ul>
+<li><strong>FOR ANY MDP</strong>,<ol>
+<li>There exists an <strong>optimal policy</strong> $\pi_{\ast}$ that is better than or equal to all other policies, $\pi_{\ast} \ge \pi, \forall \pi$.
+$$\pi \ge \pi' \text{ if } v_{\pi}(s) \ge v_{\pi'}(s), \forall s$$</li>
+<li>All optimal policies achieve the same optimal value function, $v_{\pi_{\ast}}(s) = v_{\ast}(s)$.</li>
+<li>All optimal policies achieve the same optimal action-value function, $q_{\pi_{\ast}}(s, a) = q_{\ast}(s, a)$.</li>
+</ol>
+</li>
+</ul>
+<h5 id="Finding-a-Deterministic-Optimal-Policy">Finding a Deterministic Optimal Policy<a class="anchor-link" href="#Finding-a-Deterministic-Optimal-Policy">&#182;</a></h5>$$
+\pi_{\ast}(a \mid s) =
+\begin{cases}
+1 &amp;\text{ if } a = \max_{a \in \mathcal{A}} q_{\ast}(s, a)\\
+0 &amp;\text{ otherwise}
+\end{cases}
+$$<ul>
+<li><strong>Important Note</strong>: The optimal policy $\pi_{\ast}$ is greedy with respect to $q_{\ast}$ or $v_{\ast}$.<blockquote><p><em>i.e., Deterministic Decision Making Under Uncertainty</em></p>
+</blockquote>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Bellman-Equation---What-are-the-Bellman-equations-for-the-4-value-functions?">Bellman Equation - What are the Bellman equations for the 4 value functions?<a class="anchor-link" href="#Bellman-Equation---What-are-the-Bellman-equations-for-the-4-value-functions?">&#182;</a></h4><h5 id="State-Value-Function">State-Value Function<a class="anchor-link" href="#State-Value-Function">&#182;</a></h5>$$
+\begin{aligned}
+v_{\pi}(s)
+&amp;= \mathbb{E}_{\pi}[G_{t} \mid S_{t} = s]\\
+&amp;= \mathbb{E}_{\pi}[R_{t + 1} + \gamma \cdot v_{\pi}(S_{t + 1}) \mid S_{t} = s]\\
+&amp;= \sum_{a \in \mathcal{A}} \pi(a \mid s) q_{\pi}(s, a)\\
+&amp;= \sum_{a \in \mathcal{A}} \pi(a \mid s) \left( \mathcal{R}_{s}^{a} + \gamma \sum_{s' \in \mathcal{S}} \mathcal{P}_{ss'}^{a} v_{\pi}(s') \right)
+\end{aligned}
+$$<h5 id="Action-Value-Function">Action-Value Function<a class="anchor-link" href="#Action-Value-Function">&#182;</a></h5>$$
+\begin{aligned}
+q_{\pi}(s, a)
+&amp;= \mathbb{E}_{\pi}[G_{t} \mid S_{t} = s, A_{t} = a]\\
+&amp;= \mathbb{E}_{\pi}[R_{t + 1} + \gamma \cdot q_{\pi}(S_{t + 1}, A_{t + 1}) \mid S_{t} = s, A_{t} = a]\\
+&amp;= \mathcal{R}_{s}^{a} + \gamma \sum_{s' \in \mathcal{S}} \mathcal{P}_{ss'}^{a} v_{\pi}(s')\\
+&amp;= \mathcal{R}_{s}^{a} + \gamma \sum_{s' \in \mathcal{S}} \mathcal{P}_{ss'}^{a} \left( \sum_{a' \in \mathcal{A}} \pi(a' \mid s') q_{\pi}(s', a') \right)
+\end{aligned}
+$$<h5 id="Optimal-State-Value-Function">Optimal State-Value Function<a class="anchor-link" href="#Optimal-State-Value-Function">&#182;</a></h5>$$
+\begin{aligned}
+v_{\ast}(s)
+&amp;= \max_{a} q_{\ast}(s, a)\\
+&amp;= \max_{a} \left( \mathcal{R}_{s}^{a} + \gamma \sum_{s' \in \mathcal{S}} \mathcal{P}_{ss'}^{a} v_{\ast}(s') \right)
+\end{aligned}
+$$<h5 id="Optimal-Action-Value-Function">Optimal Action-Value Function<a class="anchor-link" href="#Optimal-Action-Value-Function">&#182;</a></h5>$$
+\begin{aligned}
+q_{\ast}(s, a)
+&amp;= \mathcal{R}_{s}^{a} + \gamma \sum_{s' \in \mathcal{S}} \mathcal{P}_{ss'}^{a} v_{\ast}(s') \\
+&amp;= \mathcal{R}_{s}^{a} + \gamma \sum_{s' \in \mathcal{S}} \mathcal{P}_{ss'}^{a} \left( \max_{a'} q_{\ast}(s', a') \right)
+\end{aligned}
+$$
+</div>
+</div>
 </div>
     </div>
   </div>
