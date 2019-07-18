@@ -14348,8 +14348,8 @@ $$[0, \theta_{1}), [\theta_{1}, \theta_{1} + \theta_{2}), ..., \left[ \sum_{j = 
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Monte-Carlo-Integration/Estimation---How-do-you-take-a-large-number-of-samples-to-estimate-expectations?">Monte Carlo Integration/Estimation - How do you take a large number of samples to estimate expectations?<a class="anchor-link" href="#Monte-Carlo-Integration/Estimation---How-do-you-take-a-large-number-of-samples-to-estimate-expectations?">&#182;</a></h4><ul>
-<li><em>Monte Carlo $\approx$ Large Number of Samples</em>
+<h4 id="Monte-Carlo-Integration/Estimation---How-do-you-take-a-large-number-of-samples-to-estimate-expectations?">Monte-Carlo Integration/Estimation - How do you take a large number of samples to estimate expectations?<a class="anchor-link" href="#Monte-Carlo-Integration/Estimation---How-do-you-take-a-large-number-of-samples-to-estimate-expectations?">&#182;</a></h4><ul>
+<li><em>Monte-Carlo $\approx$ Large Number of Samples</em>
 $$\mathbb{E}_{x \sim p}[f(x)] \approx I_{T} = \frac{1}{T} \sum_{t = 1}^{T} f(x^{t})$$<ul>
 <li>Where $x^{1}, ..., x^{T}$ are <a href="https://en.wikipedia.org/wiki/Independent_and_identically_distributed_random_variables">i.i.d.</a> samples drawn according to $p$.
 $$
@@ -14358,11 +14358,11 @@ $$
 \text{Var}_{x^{1}, ..., x^{T} \sim^{\text{i.i.d.}} p}[I_{T}] &amp;= \frac{1}{T} \text{Var}_{x \sim p}[f(x)]
 \end{aligned}
 $$</li>
-<li>Where the Monte Carlo estimate $I_T$</li>
+<li>Where the Monte-Carlo estimate $I_T$</li>
 </ul>
 </li>
 </ul>
-<h5 id="Implications---What-is-important-about-Monte-Carlo-estimations?">Implications - What is important about Monte Carlo estimations?<a class="anchor-link" href="#Implications---What-is-important-about-Monte-Carlo-estimations?">&#182;</a></h5><ol>
+<h5 id="Implications---What-is-important-about-Monte-Carlo-estimations?">Implications - What is important about Monte-Carlo estimations?<a class="anchor-link" href="#Implications---What-is-important-about-Monte-Carlo-estimations?">&#182;</a></h5><ol>
 <li>$I_{T}$ is an unbiased estimator for $\mathbb{E}_{x \sim p}[f(x)]$.</li>
 <li>Referencing the <a href="https://en.wikipedia.org/wiki/Law_of_large_numbers">Weak Law of Large Numbers</a>, if $T \to \infty$, then $I_{T} \to \mathbb{E}_{x \sim p}[f(x)]$.</li>
 </ol>
@@ -14374,7 +14374,7 @@ $$</li>
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h4 id="Rejection-Sampling---How-does-rejection-sampling-work?">Rejection Sampling - How does rejection sampling work?<a class="anchor-link" href="#Rejection-Sampling---How-does-rejection-sampling-work?">&#182;</a></h4><ul>
-<li>Compute a target probability distribution $p(x)$ by sampling a proposal probability distribution $q(x)$, rejecting samples inconsistent with $p(x)$, and applying the Monte Carlo estimation.<ul>
+<li>Compute a target probability distribution $p(x)$ by sampling a proposal probability distribution $q(x)$, rejecting samples inconsistent with $p(x)$, and applying the Monte-Carlo estimation.<ul>
 <li><strong>Examples</strong>: <em>See <a href="https://ermongroup.github.io/cs228-notes/inference/sampling/">Rejection Sampling</a></em></li>
 <li><strong>Disadvantage</strong>: <em>Ignores Many Samples</em></li>
 </ul>
@@ -14388,7 +14388,7 @@ $$</li>
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h4 id="Importance-Sampling---How-does-importance-sampling-work?">Importance Sampling - How does importance sampling work?<a class="anchor-link" href="#Importance-Sampling---How-does-importance-sampling-work?">&#182;</a></h4><ul>
-<li>Compute a target probability distribution $p(x)$ by sampling a proposal probability distribution $q(x)$, reweighing samples with $w(x) = \frac{p(x)}{q(x)}$, and applying the Monte Carlo estimation.
+<li>Compute a target probability distribution $p(x)$ by sampling a proposal probability distribution $q(x)$, reweighing samples with $w(x) = \frac{p(x)}{q(x)}$, and applying the Monte-Carlo estimation.
 $$
 \begin{aligned}
 \mathbb{E}_{x \sim p}[f(x)] &amp;= \sum_{x} f(x)p(x) \\
@@ -15358,6 +15358,8 @@ $$
 <li><strong>Control</strong>: Given a MDP $\langle \mathcal{S}, \mathcal{A}, \mathcal{P}, \mathcal{R}, \gamma \rangle$, output the optimal value function $v_{\ast}$ and the optimal policy $\pi_{\ast}$.</li>
 </ul>
 </li>
+<li><em>Caveats 1: Requires Full Knowledge of MDP.</em></li>
+<li><em>Caveats 2: Polynomial Time, Yet Astronomically Large Number of States.</em></li>
 </ul>
 
 </div>
@@ -15366,7 +15368,7 @@ $$
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Policy-Evaluation---How-do-you-use-dynamic-programming-to-perform-prediction?">Policy Evaluation - How do you use dynamic programming to perform prediction?<a class="anchor-link" href="#Policy-Evaluation---How-do-you-use-dynamic-programming-to-perform-prediction?">&#182;</a></h4><p><img src="images/MDP_7.png" alt="Policy Evaluation Algorithm"></p>
+<h4 id="Policy-Evaluation---How-do-you-use-dynamic-programming-to-perform-prediction?">Policy Evaluation - How do you use dynamic programming to perform prediction?<a class="anchor-link" href="#Policy-Evaluation---How-do-you-use-dynamic-programming-to-perform-prediction?">&#182;</a></h4><p><img src="images/DP_RL_1.png" alt="Policy Evaluation Algorithm"></p>
 
 </div>
 </div>
@@ -15374,7 +15376,7 @@ $$
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Policy-Improvement-Theorem---How-does-policy-iteration-converge-to-the-optimal-policy?">Policy Improvement Theorem - How does policy iteration converge to the optimal policy?<a class="anchor-link" href="#Policy-Improvement-Theorem---How-does-policy-iteration-converge-to-the-optimal-policy?">&#182;</a></h4><p><img src="images/MDP_6.png" alt="Policy Improvement Theorem"></p>
+<h4 id="Policy-Improvement-Theorem---How-does-policy-iteration-converge-to-the-optimal-policy?">Policy Improvement Theorem - How does policy iteration converge to the optimal policy?<a class="anchor-link" href="#Policy-Improvement-Theorem---How-does-policy-iteration-converge-to-the-optimal-policy?">&#182;</a></h4><p><img src="images/DP_RL_2.png" alt="Policy Improvement Theorem"></p>
 <ul>
 <li>Given a policy $\pi$,<ol>
 <li><strong>Evaluate</strong> the policy $\pi$,
@@ -15392,7 +15394,7 @@ $$\pi' = \text{Greedy}(v_{\pi})$$</li>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Policy-Iteration---How-do-you-use-dynamic-programming-to-perform-control?">Policy Iteration - How do you use dynamic programming to perform control?<a class="anchor-link" href="#Policy-Iteration---How-do-you-use-dynamic-programming-to-perform-control?">&#182;</a></h4><p><img src="images/MDP_8.png" alt="Policy Iteration Algorithm"></p>
+<h4 id="Policy-Iteration---How-do-you-use-dynamic-programming-to-perform-control?">Policy Iteration - How do you use dynamic programming to perform control?<a class="anchor-link" href="#Policy-Iteration---How-do-you-use-dynamic-programming-to-perform-control?">&#182;</a></h4><p><img src="images/DP_RL_3.png" alt="Policy Iteration Algorithm"></p>
 
 </div>
 </div>
@@ -15400,7 +15402,7 @@ $$\pi' = \text{Greedy}(v_{\pi})$$</li>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Backup-Operations---What-are-sweeps-and-backups?">Backup Operations - What are sweeps and backups?<a class="anchor-link" href="#Backup-Operations---What-are-sweeps-and-backups?">&#182;</a></h4><p><img src="images/MDP_9.png" alt="Backup and Sweeps"></p>
+<h4 id="Backup-Operations---What-are-sweeps-and-backups?">Backup Operations - What are sweeps and backups?<a class="anchor-link" href="#Backup-Operations---What-are-sweeps-and-backups?">&#182;</a></h4><p><img src="images/DP_RL_4.png" alt="Backup and Sweeps"></p>
 <ul>
 <li>A <strong>backup</strong> is a one-step lookahead, iterative application of the Bellman equation.</li>
 <li>A <strong>sweep</strong> is the iterative application of the backup operation to each state.</li>
@@ -15416,7 +15418,170 @@ $$v_{k + 1}(s) = \max_{a} \sum_{s', r} p(s', r \mid s, a) \left[ r + \gamma \cdo
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Value-Iteration---How-do-you-use-dynamic-programming-to-output-a-deterministic-policy?">Value Iteration - How do you use dynamic programming to output a deterministic policy?<a class="anchor-link" href="#Value-Iteration---How-do-you-use-dynamic-programming-to-output-a-deterministic-policy?">&#182;</a></h4><p><img src="images/MDP_10.png" alt="Value Iteration Algorithm"></p>
+<h4 id="Value-Iteration---How-do-you-use-dynamic-programming-to-output-a-deterministic-policy?">Value Iteration - How do you use dynamic programming to output a deterministic policy?<a class="anchor-link" href="#Value-Iteration---How-do-you-use-dynamic-programming-to-output-a-deterministic-policy?">&#182;</a></h4><p><img src="images/DP_RL_5.png" alt="Value Iteration Algorithm"></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Backup-Diagram---N/A">Backup Diagram - N/A<a class="anchor-link" href="#Backup-Diagram---N/A">&#182;</a></h4><p><img src="images/DP_RL_6.png" alt="Dynamic Programming Backup Diagram"></p>
+<ul>
+<li><strong>Important Note</strong>: DP considers all the choices at each state, so it suffers a performance dilemma.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Monte-Carlo-Reinforcement-Learning-">Monte-Carlo Reinforcement Learning <span name="S06-02" /><a class="anchor-link" href="#Monte-Carlo-Reinforcement-Learning-">&#182;</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Motivation---Why-does-Monte-Carlo-reinforcement-learning-exist?">Motivation - Why does Monte-Carlo reinforcement learning exist?<a class="anchor-link" href="#Motivation---Why-does-Monte-Carlo-reinforcement-learning-exist?">&#182;</a></h4><ul>
+<li><strong>Goal</strong>: How do you learn $v_{\pi}$ from episodes of experience under policy $\pi$?<ul>
+<li><em>i.e. Model-Free Prediction</em></li>
+</ul>
+</li>
+<li><strong>Approach</strong>: Apply Monte-Carlo methods to learn $v_{\pi}$ as the <em>empirical mean return</em> instead of <em>expected return</em>.<ul>
+<li><strong>Advantages</strong>: <em>No Bootstrapping, Model-Free, Time Complexity Independent from Number of States</em></li>
+<li><strong>Disadvantages</strong>: <em>All Episodes Must Terminate</em></li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="First-Visit-Monte-Carlo-Policy-Evaluation---How-does-first-visit-Monte-Carlo-policy-evaluation-perform-prediction?">First-Visit Monte-Carlo Policy Evaluation - How does first-visit Monte-Carlo policy evaluation perform prediction?<a class="anchor-link" href="#First-Visit-Monte-Carlo-Policy-Evaluation---How-does-first-visit-Monte-Carlo-policy-evaluation-perform-prediction?">&#182;</a></h4><ul>
+<li>To evaluate state $s$, the <strong>first</strong> time-step $t$ that state $s$ is visted in an episode,<ol>
+<li>Increment counter $N(s) \gets N(s) + 1$.</li>
+<li>Increment total return $S(s) \gets S(s) + G_{t}$.</li>
+<li>Value is estimated by mean return $V(s) = \frac{S(s)}{N(s)}$.</li>
+</ol>
+</li>
+<li>By the weak law of large numbers, $V(s) \to v_{\pi}(s)$ as $N(s) \to \infty$.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Every-Visit-Monte-Carlo-Policy-Evaluation---How-does-every-visit-Monte-Carlo-policy-evaluation-perform-prediction?">Every-Visit Monte-Carlo Policy Evaluation - How does every-visit Monte-Carlo policy evaluation perform prediction?<a class="anchor-link" href="#Every-Visit-Monte-Carlo-Policy-Evaluation---How-does-every-visit-Monte-Carlo-policy-evaluation-perform-prediction?">&#182;</a></h4><ul>
+<li>To evaluate state $s$, the <strong>every</strong> time-step $t$ that state $s$ is visted in an episode,<ol>
+<li>Increment counter $N(s) \gets N(s) + 1$.</li>
+<li>Increment total return $S(s) \gets S(s) + G_{t}$.</li>
+<li>Value is estimated by mean return $V(s) = \frac{S(s)}{N(s)}$.</li>
+</ol>
+</li>
+<li>By the weak law of large numbers, $V(s) \to v_{\pi}(s)$ as $N(s) \to \infty$.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Backup-Diagram---N/A">Backup Diagram - N/A<a class="anchor-link" href="#Backup-Diagram---N/A">&#182;</a></h4><p><img src="images/MC_RL_1.png" alt="Monte-Carlo Backup Diagram"></p>
+<ul>
+<li><strong>Important Note</strong>: MC considers only one choice at each state, so it suffers from an explore/exploit dilemma.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Monte-Carlo-Exploring-Starts---How-do-you-use-Monte-Carlo-Exploring-Starts-method-to-perform-control?">Monte-Carlo Exploring Starts - How do you use Monte-Carlo Exploring Starts method to perform control?<a class="anchor-link" href="#Monte-Carlo-Exploring-Starts---How-do-you-use-Monte-Carlo-Exploring-Starts-method-to-perform-control?">&#182;</a></h4><p><img src="images/MC_RL_2.png" alt="Monte-Carlo Exploring Starts Methods"></p>
+<ul>
+<li><strong>Exploring Starts</strong>: Requires every state-action pair to have a non-zero probability of being the starting pair.<ul>
+<li><strong>Advantages</strong>: <em>Asymptotically Converges</em></li>
+<li><strong>Disadvantages</strong>: <em>Restricts Modelling</em></li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="On-Policy-Monte-Carlo---How-do-you-use-On-Policy-Monte-Carlo-method-to-perform-control?">On-Policy Monte-Carlo - How do you use On-Policy Monte-Carlo method to perform control?<a class="anchor-link" href="#On-Policy-Monte-Carlo---How-do-you-use-On-Policy-Monte-Carlo-method-to-perform-control?">&#182;</a></h4><p><img src="images/MC_RL_3.png" alt="On-Policy Monte-Carlo Method"></p>
+<ul>
+<li><strong>On-Policy Learning</strong>: Learn about policy $\pi$ from experience sampled from $\pi$.<ul>
+<li><em>i.e. Learn on the job.</em></li>
+</ul>
+</li>
+<li><strong>Soft Policy</strong>: Requires every state-action pair to have a non-zero probability.<ul>
+<li><strong>Advantages</strong>: <em>Removes Exploring Starts</em></li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Off-Policy-Monte-Carlo---How-do-you-use-Off-Policy-Monte-Carlo-method-to-perform-control?">Off-Policy Monte Carlo - How do you use Off-Policy Monte-Carlo method to perform control?<a class="anchor-link" href="#Off-Policy-Monte-Carlo---How-do-you-use-Off-Policy-Monte-Carlo-method-to-perform-control?">&#182;</a></h4><p><img src="images/MC_RL_4.png" alt="Off-Policy Monte-Carlo Method 1"></p>
+<p><img src="images/MC_RL_5.png" alt="Off-Policy Monte-Carlo Method 2"></p>
+<ul>
+<li><strong>Off-Policy Learning</strong>: Learn about policy $\pi$ from experience sampled from behavior policy $b$.<ul>
+<li><em>i.e. Look over someone's shoulder.</em></li>
+</ul>
+</li>
+<li><strong>Behavior Policy</strong>: Requires $b$ generates behavior that covers, or includes, $\pi$.
+$$b(a \mid s) &gt; 0 \implies \pi(a \mid s) &gt; 0, \forall a \in \mathcal{A}, s \in \mathcal{S}$$<ul>
+<li><strong>Question</strong>: How do you extract/emphasize $\pi$ from $b$?</li>
+<li><strong>Answer</strong>: Use importance sampling.</li>
+</ul>
+</li>
+<li><strong>Importance Sampling</strong>: Weigh each return by the ratio of the probabilities of the trajectory under the two policies.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Importance-Sampling---How-do-you-calculate-state-value-function-using-importance-sampling?">Importance Sampling - How do you calculate state-value function using importance sampling?<a class="anchor-link" href="#Importance-Sampling---How-do-you-calculate-state-value-function-using-importance-sampling?">&#182;</a></h4><ul>
+<li><strong>Importance Sampling Ratio</strong>: A relative probability of the trajectory under the two policies.
+$$p_{t : T - 1} = \prod_{k = t}^{T - 1} \frac{\pi(A_{k} \mid S_{k})}{b(A_{k} \mid S_{k})}$$
+$$\mathbb{E}\left[ \frac{\pi(A_{k} \mid S_{k})}{b(A_{k} \mid S_{k})} \right] = 1$$</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Monte-Carlo-Methods-vs.-Dynamic-Programming---What-are-the-advantages-and-disadvantages-of-Monte-Carlo-methods?">Monte-Carlo Methods vs. Dynamic Programming - What are the advantages and disadvantages of Monte-Carlo methods?<a class="anchor-link" href="#Monte-Carlo-Methods-vs.-Dynamic-Programming---What-are-the-advantages-and-disadvantages-of-Monte-Carlo-methods?">&#182;</a></h4><h5 id="Advantages">Advantages<a class="anchor-link" href="#Advantages">&#182;</a></h5><ul>
+<li><em>Learn Directly from Interactions with Environment</em></li>
+<li><em>Does Not Require Full Models</em></li>
+<li><em>Does Not Require Learning About All States (No Bootstrapping)</em></li>
+<li><em>Less Harmed by Violating Markov Property</em></li>
+</ul>
+<h5 id="Disadvantages">Disadvantages<a class="anchor-link" href="#Disadvantages">&#182;</a></h5><ul>
+<li><em>Requires Sufficient Exploration</em></li>
+<li><em>Requires Exploring Starts or Soft Policies</em></li>
+</ul>
 
 </div>
 </div>
