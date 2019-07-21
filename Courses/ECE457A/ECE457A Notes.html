@@ -14982,6 +14982,86 @@ $$<ul>
 </div>
 </div>
 </div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Real-Valued-Genetic-Algorithms">Real-Valued Genetic Algorithms<a class="anchor-link" href="#Real-Valued-Genetic-Algorithms">&#182;</a></h3><h4 id="Crossover">Crossover<a class="anchor-link" href="#Crossover">&#182;</a></h4><h5 id="Single-Arithmetic-Crossover-(Single-Random)">Single Arithmetic Crossover (Single Random)<a class="anchor-link" href="#Single-Arithmetic-Crossover-(Single-Random)">&#182;</a></h5><p><img src="images/GA_5.png" alt="Single Arithmetic Crossover Example"></p>
+<ul>
+<li>For a single parent gene pair $x$ and $y$, one child's gene becomes $\alpha x + (1 - \alpha) y$, and the reverse for the other child.</li>
+</ul>
+<h5 id="Simple-Arithmetic-Crossover-(Random-After-$k$)">Simple Arithmetic Crossover (Random After $k$)<a class="anchor-link" href="#Simple-Arithmetic-Crossover-(Random-After-$k$)">&#182;</a></h5><p><img src="images/GA_6.png" alt="Simple Arithmetic Crossover Example"></p>
+<ul>
+<li>For each parent gene pair $x$ and $y$, after a certain gene pair $k$, one child's gene becomes $\alpha x + (1 - \alpha) y$, and the reverse for the other child.</li>
+</ul>
+<h5 id="Whole-Arithmetic-Crossover-(All-Random)">Whole Arithmetic Crossover (All Random)<a class="anchor-link" href="#Whole-Arithmetic-Crossover-(All-Random)">&#182;</a></h5><p><img src="images/GA_7.png" alt="Whole Arithmetic Crossover Example"></p>
+<ul>
+<li>For each parent gene pair $x$ and $y$, one child's gene becomes $\alpha x + (1 - \alpha) y$, and the reverse for the other child.</li>
+</ul>
+<h4 id="Mutation">Mutation<a class="anchor-link" href="#Mutation">&#182;</a></h4><ul>
+<li>Assign a uniform random value between some lower and upper bound to a gene.</li>
+<li>Some variants on this technique also adds some noise (e.g. from a Gaussian distribution) to this number.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Permutation-Genetic-Algorithms">Permutation Genetic Algorithms<a class="anchor-link" href="#Permutation-Genetic-Algorithms">&#182;</a></h3><ul>
+<li><strong>Permutation Problems</strong>: <em>Arranging Elements.</em><ul>
+<li><em>Adjacency of Elements.</em></li>
+<li><em>Overall Order of Elements.</em></li>
+</ul>
+</li>
+</ul>
+<h4 id="Crossover">Crossover<a class="anchor-link" href="#Crossover">&#182;</a></h4><h5 id="Partially-Mapped-Crossover-(PMX)">Partially Mapped Crossover (PMX)<a class="anchor-link" href="#Partially-Mapped-Crossover-(PMX)">&#182;</a></h5><p><img src="images/GA_8.png" alt="Partially Mapped Crossover Example"></p>
+<ol>
+<li>Copy a random segment from parent $P_{1}$.</li>
+<li>Starting from the first crossover point, look for elements in parent $P_{2}$ that have not been copied.</li>
+<li>For each of these elements $i$, look in the offspring to see which element $j$ has been copied in its place.</li>
+<li>Place $i$ in the position occupied by $j$ in $P_{2}$. If the place occupied by $j$ in $P_{2}$ has already been filled in by $k$, put $i$ in the position occupied by $k$ in $P_{2}$.</li>
+<li>The rest of the offspring can be filled in from $P_{2}$.</li>
+</ol>
+<h5 id="Order-1-Edge-Crossover">Order 1 Edge Crossover<a class="anchor-link" href="#Order-1-Edge-Crossover">&#182;</a></h5><p><img src="images/GA_9.png" alt="Order 1 Edge Crossover Example"></p>
+<ol>
+<li>Choose arbitrary part from $P_{1}$.</li>
+<li>Copy this part to the first child.</li>
+<li>Starting from the right of the cut point of the copied part, copy the elements in the order of $P_{2}$ that are not yet in the child, wrapping around if needed.</li>
+<li>Analogous for the second child, with parent roles reversed.</li>
+</ol>
+<h5 id="Cycle-Edge-Crossover">Cycle Edge Crossover<a class="anchor-link" href="#Cycle-Edge-Crossover">&#182;</a></h5><p><img src="images/GA_10.png" alt="Cycle Edge Crossover Crossover Example"></p>
+<ol>
+<li>Form a cycle of genes from $P_{1}$ by the following,<ol>
+<li>Start with the first gene from $P_{1}$.</li>
+<li>Go to the position in $P_{1}$ that has the value of the corresponding gene in $P_{2}$.</li>
+<li>Add this gene to the cycle.</li>
+<li>Repeat this cycle formation until the first gene of $P_{1}$ is reached.</li>
+</ol>
+</li>
+<li>Put the genes of the cycle in the positions from $P_{1}$.</li>
+<li>Repeat steps above for the second parent.</li>
+</ol>
+<h4 id="Mutation">Mutation<a class="anchor-link" href="#Mutation">&#182;</a></h4><h5 id="Insert-Mutation">Insert Mutation<a class="anchor-link" href="#Insert-Mutation">&#182;</a></h5><p><img src="images/GA_11.png" alt="Insert Mutation Example"></p>
+<ul>
+<li>Pick two elements, and move one to immediately follow the other, shifting any elements if necessary (i.e. similar to insertion sort).</li>
+</ul>
+<h5 id="Swap-Mutation">Swap Mutation<a class="anchor-link" href="#Swap-Mutation">&#182;</a></h5><p><img src="images/GA_12.png" alt="Swap Mutation Example"></p>
+<ul>
+<li>Pick two elements and swap their order.</li>
+</ul>
+<h5 id="Inversion-Mutation">Inversion Mutation<a class="anchor-link" href="#Inversion-Mutation">&#182;</a></h5><p><img src="images/GA_13.png" alt="Inversion Mutation Example"></p>
+<ul>
+<li>Pick two genes and reverse the subsequence between them.</li>
+</ul>
+<h5 id="Scramble-Mutation">Scramble Mutation<a class="anchor-link" href="#Scramble-Mutation">&#182;</a></h5><p><img src="images/GA_14.png" alt="Scramble Mutation Example"></p>
+<ul>
+<li>Pick two genes and find a random permutation of the genes between them.</li>
+</ul>
+
+</div>
+</div>
+</div>
     </div>
   </div>
 </body>
