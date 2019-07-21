@@ -15062,6 +15062,88 @@ $$<ul>
 </div>
 </div>
 </div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Adaptation">Adaptation<a class="anchor-link" href="#Adaptation">&#182;</a></h3><h4 id="Parameter-Tuning">Parameter Tuning<a class="anchor-link" href="#Parameter-Tuning">&#182;</a></h4><ul>
+<li><strong>Parameter Tuning</strong>: Finding suitable values for different algorithm parameters.</li>
+</ul>
+<h4 id="Parameter-Control">Parameter Control<a class="anchor-link" href="#Parameter-Control">&#182;</a></h4><ul>
+<li><strong>Deterministic</strong>: Parameters are controlled as a function of the generation number; search progress is not taken into account.</li>
+<li><strong>Adaptive</strong>: Parameters are controlled using the current state of the search combined with some heuristics.</li>
+<li><strong>Self-Adaptive</strong>: Parameters are incorporated into chromosomes and are controlled through similar processes as the problem population (i.e. selection, crossover, and mutation).</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Parallel-Genetic-Algorithms">Parallel Genetic Algorithms<a class="anchor-link" href="#Parallel-Genetic-Algorithms">&#182;</a></h3><h4 id="Master-Slave-Genetic-Algorithms-(Global-Parallel-GAs)">Master-Slave Genetic Algorithms (Global Parallel GAs)<a class="anchor-link" href="#Master-Slave-Genetic-Algorithms-(Global-Parallel-GAs)">&#182;</a></h4><ul>
+<li>In master-slave GAs, selection and mating are performed by a single master processor.</li>
+<li>However, fitness evaluation is distributed among several slave processors.</li>
+</ul>
+<h4 id="Fine-Grained-Genetic-Algorithms">Fine-Grained Genetic Algorithms<a class="anchor-link" href="#Fine-Grained-Genetic-Algorithms">&#182;</a></h4><ul>
+<li>In fine-grained GAs, selection and mating occurs in local (not necessarily disjunct) neighborhoods.</li>
+<li>This technique can be effective for handling computations on massively parallel computers.</li>
+</ul>
+<h4 id="Coarse-Grained-Genetic-Algorithms-(Distributed/Multi-Dense-GAs)">Coarse-Grained Genetic Algorithms (Distributed/Multi-Dense GAs)<a class="anchor-link" href="#Coarse-Grained-Genetic-Algorithms-(Distributed/Multi-Dense-GAs)">&#182;</a></h4><ul>
+<li>Coarse-grained genetic algorithms feature multiple populations evolving in parallel.</li>
+<li>Selection and mating is limited to individuals within the same population, and different populations may periodically exchange individuals.</li>
+</ul>
+<h5 id="Coarse-Grained-Factors">Coarse-Grained Factors<a class="anchor-link" href="#Coarse-Grained-Factors">&#182;</a></h5><ul>
+<li><strong>Topology</strong>: Controls which populations are connected to one another. Individuals may only migrate between connected populations.</li>
+<li><strong>Migration Policy</strong>: Determines how migrating individuals are sent and received.<ul>
+<li>e.g., Exchange a random individual in one population for a random individual in another population.</li>
+<li>e.g., Exchange the best individual in one generation for the worst individual in another.</li>
+</ul>
+</li>
+<li><strong>Migration Frequency</strong>: Controls whwn communication between populations occurs.<ul>
+<li><em>Synchronous</em>: Migrations occur every predetermined number of generations.</li>
+<li><em>Asynchronous</em>: Migrations are triggered by a certain event.</li>
+</ul>
+</li>
+<li><strong>Migration Rate</strong>: The number of individuals migrating from one population to another at every communication step.<ul>
+<li><em>Low</em>: Populations act almost completely independently.</li>
+<li><em>High</em>: Fast convergence to sub-optimal solutions.</li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Cooperative-Genetic-Algorithms">Cooperative Genetic Algorithms<a class="anchor-link" href="#Cooperative-Genetic-Algorithms">&#182;</a></h3><ul>
+<li>Cooperative GAs tend to contain multiple populations where the fitness of an individual in one population depends on the fitness of individuals in other population.</li>
+<li>A commonly applied strategy is to have different populations optimize different variables of a problem, where the fitness of an individual is determined by its value and the value of the best individuals in other populations.</li>
+<li>This strategy tends to perform best when the different variables are independent of one another.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Advantages-and-Disadvantages">Advantages and Disadvantages<a class="anchor-link" href="#Advantages-and-Disadvantages">&#182;</a></h3><h4 id="Advantages">Advantages<a class="anchor-link" href="#Advantages">&#182;</a></h4><ul>
+<li>Highly Multimodal</li>
+<li>Applicable to Discrete/Continuous Problems</li>
+<li>Support High-Dimensional Problems</li>
+<li>Support Non-Linear Parameter Dependencies</li>
+</ul>
+<h4 id="Disadvantages">Disadvantages<a class="anchor-link" href="#Disadvantages">&#182;</a></h4><ul>
+<li>Premature Convergence</li>
+<li>Poor Choice of Genetic Operators</li>
+<li>Biased/Incomplete Representations</li>
+</ul>
+
+</div>
+</div>
+</div>
     </div>
   </div>
 </body>
