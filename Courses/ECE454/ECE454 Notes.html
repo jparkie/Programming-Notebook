@@ -14456,6 +14456,177 @@ class Reducer
 </div>
 </div>
 </div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Apache-ZooKeeper">Apache ZooKeeper<a class="anchor-link" href="#Apache-ZooKeeper">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Overview">Overview<a class="anchor-link" href="#Overview">&#182;</a></h3><ul>
+<li><strong>ZooKeeper</strong> is a centralized system that manages distributed systems as a hierarchical key-value store.</li>
+<li>ZooKeeper emphasizes good performance (particularly for read-dominant workloads), being general enough to be used for many different purposes, reliability, and ease of use.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Common-Use-Cases">Common Use-Cases<a class="anchor-link" href="#Common-Use-Cases">&#182;</a></h3><ol>
+<li>Group Membership</li>
+<li>Leader Election</li>
+<li>Dynamic Configuration</li>
+<li>Status Monitoring</li>
+<li>Queuing</li>
+<li>Barriers</li>
+<li>Critical Sections</li>
+</ol>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Data-Model">Data Model<a class="anchor-link" href="#Data-Model">&#182;</a></h3><ul>
+<li><strong>ZooKeeper's Data Model</strong>: A hierchical key-value store similar to a file system.</li>
+<li><strong>ZNode</strong>: A node that may contain data and children.</li>
+<li>Reads and writes to a single node are considered to be atomic with values read, or written fully, or not at all.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Node-Flags">Node Flags<a class="anchor-link" href="#Node-Flags">&#182;</a></h3><ol>
+<li><strong>Ephemeral Flags</strong>: Make nodes exist as long as the session that created them is active, unless they were explicitly deleted.</li>
+<li><strong>Sequence Flags</strong>: Make nodes append a monotonically increasing counter to the end of their path.</li>
+</ol>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Consistency-Model">Consistency Model<a class="anchor-link" href="#Consistency-Model">&#182;</a></h3><ul>
+<li>ZooKeeper ensures that writes are linearizable and that reads are serializable.</li>
+<li>ZooKeeper guarantees per-client FIFO servicing of requests.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Servers">Servers<a class="anchor-link" href="#Servers">&#182;</a></h3><ul>
+<li>When running in replicated mode, all servers have a copy of the state in memory.</li>
+<li>A leader is elected at startup, and all updates go through this leader.</li>
+<li>Update responses are sent once a majority of servers have persisted the change.</li>
+<li>To tolerate $n$ failures, $2n + 1$ replicated servers are required.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Distributed-Commit-and-Checkpoints">Distributed Commit and Checkpoints<a class="anchor-link" href="#Distributed-Commit-and-Checkpoints">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="ACID">ACID<a class="anchor-link" href="#ACID">&#182;</a></h3><ul>
+<li><strong>Atomicity</strong>: An operation occurs fully or not at all. (<em>Difficult</em>)</li>
+<li><strong>Consistency</strong>: A transaction is a valid transformation of the state.</li>
+<li><strong>Isolated</strong>: A transaction is not aware of other concurrent transactions.</li>
+<li><strong>Durable</strong>: Once a transaction completes, its updates persist, even in the event of failure.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Two-Phase-Commit-(2PC)">Two-Phase Commit (2PC)<a class="anchor-link" href="#Two-Phase-Commit-(2PC)">&#182;</a></h3><ul>
+<li><strong>Two-Phase Commit</strong>: A coordinator-based distributed transaction commitment protocol.</li>
+<li><strong>Phase 1</strong>: Coordinator asks participants whether they are ready to commit.</li>
+<li><strong>Phase 2</strong>: Coordinator examines votes and decides the outcome of the transaction.<ul>
+<li>If all participants vote to commit, then the transaction is committed successfully.</li>
+<li>Otherwise, the transaction is aborted.</li>
+</ul>
+</li>
+</ul>
+<h4 id="Key-Assumptions">Key Assumptions<a class="anchor-link" href="#Key-Assumptions">&#182;</a></h4><ul>
+<li>Synchronous Processes</li>
+<li>Bounded Communication Delays</li>
+<li>Crash-Recovery Failures</li>
+<li>Stable Storage with Recovery Logs</li>
+</ul>
+<h4 id="States-and-Transitions">States and Transitions<a class="anchor-link" href="#States-and-Transitions">&#182;</a></h4><p><img src="images/2PC_1.png" alt="2PC States and Transitions"></p>
+<ul>
+<li><em>(a): Coordinator</em></li>
+<li><em>(b): Participants</em></li>
+</ul>
+<h4 id="Participant-Participant-Communication">Participant-Participant Communication<a class="anchor-link" href="#Participant-Participant-Communication">&#182;</a></h4><p><img src="images/2PC_2.png" alt="Participant-Participant Communication"></p>
+<ul>
+<li>If a participant $P$ does not receive a decision from the coordinator within a bounded period of time, it may try to learn the decision from another participant $Q$.</li>
+</ul>
+<h4 id="Coordinator-Crashes">Coordinator Crashes<a class="anchor-link" href="#Coordinator-Crashes">&#182;</a></h4><ul>
+<li>A participant is able to make progress as long as it received the decision from the coordinator despite the crash, or if it was able to learn the decision from another participant.</li>
+<li>In general, the transaction is safe to commit if all participants voted to commit (<em>READY</em> or <em>COMMIT</em>), and safe to abort otherwise.</li>
+</ul>
+<h4 id="Simultaneous-Coordinator-and-Participant-Crashes">Simultaneous Coordinator and Participant Crashes<a class="anchor-link" href="#Simultaneous-Coordinator-and-Participant-Crashes">&#182;</a></h4><ul>
+<li>A simultaneous failure of the coordinator and a participant makes it difficult to determine whether all the participants are all <em>READY</em>.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Distributed-Checkpoints">Distributed Checkpoints<a class="anchor-link" href="#Distributed-Checkpoints">&#182;</a></h3><ul>
+<li>Recovery after failure is only possible if the collection of checkpoints by individual processes forms a <em>distributed snapshot</em>.</li>
+<li>A <strong>distributed snapshot</strong> requires that process checkpoints contain a corresponding send event for each message received.</li>
+<li><strong>Recovery Line</strong>: The most recent distributed snapshot.</li>
+<li><strong>Domino Effect</strong>: If the most recent checkpoints taken by processes do not provide a recovery line, then successively earlier checkpoints must be considered.<ul>
+<li><em>i.e., Cascading Rollback.</em></li>
+</ul>
+</li>
+</ul>
+<h4 id="Coordinated-Checkpointing-Algorithm">Coordinated Checkpointing Algorithm<a class="anchor-link" href="#Coordinated-Checkpointing-Algorithm">&#182;</a></h4><ul>
+<li>The <strong>coordinated checkpointing algorithm</strong> can be applied to create recovery lines.</li>
+</ul>
+<h5 id="Phase-1">Phase 1<a class="anchor-link" href="#Phase-1">&#182;</a></h5><ol>
+<li>The coordinator sends a <em>CHECKPOINT_REQUEST</em> message to all processes.</li>
+<li>Upon receiving a <em>CHECKPOINT_REQUEST</em> message, each process does the following:<ol>
+<li>Pause sending new messages to other processes.</li>
+<li>Takes a local checkpoint.</li>
+<li>Returns an acknowledgment to the coordinator.</li>
+</ol>
+</li>
+</ol>
+<h5 id="Phase-2">Phase 2<a class="anchor-link" href="#Phase-2">&#182;</a></h5><ol>
+<li>Upon receiving acknowledgments from all processes, the coordinator sends a <em>CHECKPOINT_DONE</em> message to all processes.</li>
+<li>Upon receiving a <em>CHECKPOINT_DONE</em> message, each process resumes processing messages.</li>
+</ol>
+
+</div>
+</div>
+</div>
     </div>
   </div>
 </body>
