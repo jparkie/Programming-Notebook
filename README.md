@@ -34,11 +34,12 @@ A collection of [BeakerX](http://beakerx.com/) IPython notebooks and PDFs about 
 	- [7\. Graphs](http://jacobpark.me/Programming-Notebook/Data%20Structures%20and%20Algorithms/7.%20Graphs.html)
 	- [8\. Trees](http://jacobpark.me/Programming-Notebook/Data%20Structures%20and%20Algorithms/8.%20Trees.html)
 	- [9\. Bit Hacks](http://jacobpark.me/Programming-Notebook/Data%20Structures%20and%20Algorithms/9.%20Bit%20Hacks.html)
+- [**Papers**](https://github.com/jparkie/Programming-Notebook/tree/master/Papers)
 - **Programming Languages**
 	- [Java](http://jacobpark.me/Programming-Notebook/Programming%20Languages/Java.html)
 	- [Python 3](http://jacobpark.me/Programming-Notebook/Programming%20Languages/Python%203.html)
 	- [Scala](http://jacobpark.me/Programming-Notebook/Programming%20Languages/Scala.html)
-- [References](http://jacobpark.me/Programming-Notebook/References.html)
+- [**References**](http://jacobpark.me/Programming-Notebook/References.html)
 
 ## Converting Notebooks to HTML
 
