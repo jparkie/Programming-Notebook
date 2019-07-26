@@ -14627,6 +14627,167 @@ class Reducer
 </div>
 </div>
 </div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Raft-Consensus-Algorithm">Raft Consensus Algorithm<a class="anchor-link" href="#Raft-Consensus-Algorithm">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Replicated-State-Machines">Replicated State Machines<a class="anchor-link" href="#Replicated-State-Machines">&#182;</a></h3><ul>
+<li>In a <strong>replicated state machine</strong> architecture, a consensus algorithm manages a replicated log containing state machine commands from clients.</li>
+<li>The servers' state machines process identical sequences of commands from the logs, so they produce the same outputs.</li>
+<li>As a result, the servers appear to form a single, highly reliable state machine.</li>
+<li>Furthermore, the distributed system is available as long as any majority of the servers are operational and can communicate with each other and with clients.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Problems-with-Paxos">Problems with Paxos<a class="anchor-link" href="#Problems-with-Paxos">&#182;</a></h3><ol>
+<li>Unintuitive.</li>
+<li>Incomplete.<ul>
+<li>Multi-Paxos?</li>
+<li>Liveness?</li>
+<li>Cluster Membership Management?</li>
+</ul>
+</li>
+<li>Inefficient.<ul>
+<li>2 Message Rounds vs. Single Leader.</li>
+</ul>
+</li>
+<li>No Agreement on Implementation.</li>
+</ol>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Cheat-Sheet">Cheat Sheet<a class="anchor-link" href="#Cheat-Sheet">&#182;</a></h3><p><img src="images/Raft_Algorithm_1.png" alt="Raft Consensus Algorithm"></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Key-Properties">Key Properties<a class="anchor-link" href="#Key-Properties">&#182;</a></h3><ul>
+<li><strong>Election Safety</strong>: At most one leader can be elected in a given term.</li>
+<li><strong>Leader Append-Only</strong>: A leader never overwrites or deletes entries in its log; it only appends new entries.</li>
+<li><strong>Log Matching</strong>: If two logs contain an entry with the same index and term, then the logs are identical in all entries up though the given index.</li>
+<li><strong>Leader Completeness</strong>: If a log entry is committed in a given term, then that entry will be present in the logs of the leaders for all higher-numbered terms.</li>
+<li><strong>State Machine Safety</strong>: If a server has applied a log entry at a given index to its state machine, no other server will ever apply a different log entry for the same index.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Basics">Basics<a class="anchor-link" href="#Basics">&#182;</a></h3><p><img src="images/Raft_Algorithm_2.png" alt="Raft Basics"></p>
+<h4 id="Server-States">Server States<a class="anchor-link" href="#Server-States">&#182;</a></h4><ul>
+<li>A Raft cluster contains several servers in which each server is in one of three states: <em>leader</em>, <em>follower</em>, and <em>candidate</em>.</li>
+<li><strong>Leader</strong>: A single active server that handles all client requests.</li>
+<li><strong>Follower</strong>: Many passive server that respond to requests from leaders and candidates.</li>
+<li><strong>Candidate</strong>: A server used to elect a new leader.</li>
+</ul>
+<h4 id="Terms">Terms<a class="anchor-link" href="#Terms">&#182;</a></h4><ul>
+<li><strong>Terms</strong> act as a logical clock that allow servers to detect obsolete information.</li>
+<li>Each server stores a current term number, which increases monotonically over time.</li>
+<li>Current terms are exchanged whenever servers communicate.</li>
+<li>If one server’s current term is smaller than the other’s, then it updates its current term to the larger value.</li>
+<li>If a candidate or leader discovers that its term is out of date, it immediately reverts to follower state.</li>
+<li>If a server receives a request with a stale term number, it rejects the request.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Leader-Election">Leader Election<a class="anchor-link" href="#Leader-Election">&#182;</a></h3><ul>
+<li><strong>Goal</strong>: A new leader must be chosen when an existing leader fails.</li>
+</ul>
+<ol>
+<li>A server starts as a follower and remains a follower as long as it receives periodic, valid RPCs from a leader or a candidate.</li>
+<li>If the follower receives no communication over the <strong>election timeout</strong>, then it begins a leader election.</li>
+<li>The follower increments its current term and becomes a candidate.</li>
+<li>The candidate votes for itself and broadcasts <em>RequestVote</em> RPCs in parallel to each of the other servers in the cluster.<ol>
+<li>If the candidate receives a majority of the votes, it becomes the new leader.</li>
+<li>If the candidate receives an <em>AppendEntries</em> RPC from a leader whose term is at least as large as the candidate's current term, the candidate becomes a follower.</li>
+<li>If the candidate neither wins nor loses the election, the candidate starts a new leader election.</li>
+</ol>
+</li>
+</ol>
+<ul>
+<li><strong>Safety</strong>: Each server will vote for at most one candidate in a given term, on a first-come-first-served basis.</li>
+<li><strong>Liveness</strong>: Randomized election timeouts are used to ensure that split votes are rare.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Log-Replication">Log Replication<a class="anchor-link" href="#Log-Replication">&#182;</a></h3><ul>
+<li><strong>Goal</strong>: The leader must accept log entries from clients and replicate them across the cluster, forcing the other logs to agree with its own.</li>
+</ul>
+<ol>
+<li>The leader receives a command from a client.</li>
+<li>The leader appends the command to its log as a new entry.</li>
+<li>The leader broadcasts <em>AppendEntries</em> RPCs in parallel to each of the other servers in the cluster.</li>
+<li>When the entry has been safely replicated, the leader applies the entry applies the entry to its state machine.</li>
+<li>The leader returns the result of the command's execution to the client.</li>
+</ol>
+<ul>
+<li><strong>Important Note</strong>: For crashed or slow followers, the leader retries <em>AppendEntries</em> RPCs until they succeed.</li>
+</ul>
+<h4 id="Log-Structure">Log Structure<a class="anchor-link" href="#Log-Structure">&#182;</a></h4><p><img src="images/Raft_Algorithm_3.png" alt="Raft Log Structure"></p>
+<ul>
+<li><strong>Committed</strong>: A durable entry guaranteed to be executed by all of the available state machines if it has been replicated on a majority of servers.</li>
+</ul>
+<h4 id="Log-Matching-Property">Log Matching Property<a class="anchor-link" href="#Log-Matching-Property">&#182;</a></h4><ol>
+<li>If two entries in different logs have the same index and term, then they store the same command.</li>
+<li>If two entries in different logs have the same index and term, then the logs are identical in all preceding entries.</li>
+</ol>
+<h4 id="AppendEntries-Consistency-Check-(Induction-Step)"><em>AppendEntries</em> Consistency Check (Induction Step)<a class="anchor-link" href="#AppendEntries-Consistency-Check-(Induction-Step)">&#182;</a></h4><ul>
+<li>When sending an <em>AppendEntries</em> RPC, the leader includes the index and term of the entry in its log that immediately precedes the new entries.</li>
+<li>If the follower does not find an entry in its log with the same index and term, then it refuses the new entries.</li>
+<li>Inconsistencies are handled by forcing the followers' logs to duplicate the leader's.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Safety">Safety<a class="anchor-link" href="#Safety">&#182;</a></h3><ul>
+<li><strong>Goal</strong>: If any server has applied a particular log entry to its state machine, then no other server may apply a different command for the same log index.</li>
+</ul>
+<h4 id="Leader-Completeness-Property">Leader Completeness Property<a class="anchor-link" href="#Leader-Completeness-Property">&#182;</a></h4><ul>
+<li><strong>Leader Completeness Property</strong>: Once a log entry is committed, all future leaders must store that entry.</li>
+<li>Therefore, servers with incomplete logs must not get elected.<ul>
+<li>Candidates include the index and the term of the last log entry in their <em>RequestVote</em> RPCs.</li>
+<li>Followers denies a <em>RequestVote</em> RPC, if their logs are more up-to-date than the RPC.</li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
     </div>
   </div>
 </body>
