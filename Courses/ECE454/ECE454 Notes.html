@@ -14470,14 +14470,7 @@ class Reducer
 <li><strong>ZooKeeper</strong> is a centralized system that manages distributed systems as a hierarchical key-value store.</li>
 <li>ZooKeeper emphasizes good performance (particularly for read-dominant workloads), being general enough to be used for many different purposes, reliability, and ease of use.</li>
 </ul>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Common-Use-Cases">Common Use-Cases<a class="anchor-link" href="#Common-Use-Cases">&#182;</a></h3><ol>
+<h4 id="Common-Use-Cases">Common Use-Cases<a class="anchor-link" href="#Common-Use-Cases">&#182;</a></h4><ol>
 <li>Group Membership</li>
 <li>Leader Election</li>
 <li>Dynamic Configuration</li>
@@ -14783,6 +14776,109 @@ class Reducer
 <li>Followers denies a <em>RequestVote</em> RPC, if their logs are more up-to-date than the RPC.</li>
 </ul>
 </li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Apache-Kafka">Apache Kafka<a class="anchor-link" href="#Apache-Kafka">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Overview">Overview<a class="anchor-link" href="#Overview">&#182;</a></h3><ul>
+<li><strong>Apache Kafka</strong> is an open-source distributed stream-processing platform.</li>
+</ul>
+<h4 id="Key-Features">Key Features<a class="anchor-link" href="#Key-Features">&#182;</a></h4><ul>
+<li>Publish-Subscribe Messages.</li>
+<li>Real-Time Stream Processing.</li>
+<li>Distributed and Replicated Message/Stream Storage.</li>
+</ul>
+<h4 id="Common-Use-Cases">Common Use-Cases<a class="anchor-link" href="#Common-Use-Cases">&#182;</a></h4><ul>
+<li>High-Throughput Messaging.</li>
+<li>Activity Tracking.</li>
+<li>Metric Collection.</li>
+<li>Log Aggregation.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Topics,-Partitions,-and-Retention-Policy">Topics, Partitions, and Retention Policy<a class="anchor-link" href="#Topics,-Partitions,-and-Retention-Policy">&#182;</a></h3><ul>
+<li><strong>Topic</strong>: A stream of key-value records that are stored as a partitioned log with a retention policy.</li>
+<li>Partitions allow a topic to be parallelized by splitting its data among multiple Kafka brokers, which can have multiple replicas.</li>
+<li>Kafka only provides a total order over records within a partition.</li>
+<li>Kafka only retains a finite time period of records or performs log compaction to retain the latest record per key.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Producers">Producers<a class="anchor-link" href="#Producers">&#182;</a></h3><ul>
+<li><strong>Producers</strong> push records to Kafka brokers for a specific partition.</li>
+<li>Producers support asynchronous batching for improved throughput with a small latency penalty.</li>
+<li>Producers support idempotent delivery to avoid duplicate commits.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Consumers">Consumers<a class="anchor-link" href="#Consumers">&#182;</a></h3><ul>
+<li><strong>Consumers</strong> pull records in batches from Kafka brokers who advance the consumers' offsets within the topic.</li>
+<li>Consumers support exactly once semantics when a client consumes from one topic and produces to another.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Record-Streams-vs.-Changelog-Streams">Record Streams vs. Changelog Streams<a class="anchor-link" href="#Record-Streams-vs.-Changelog-Streams">&#182;</a></h3><p><img src="images/Kafka_1.png" alt="`KStream`-`KTable` Conversion"></p>
+<ul>
+<li><strong>Record Streams</strong>: Where each record represents a single event.</li>
+<li><strong>Changelog Stream</strong>: Where each record represents an update to a state.</li>
+<li>Kafka provides the <code>KStream</code> API for record streams.</li>
+<li>Kafka provides the <code>KTable</code> API for changelog streams.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Streams-Tables-Duality">Streams-Tables Duality<a class="anchor-link" href="#Streams-Tables-Duality">&#182;</a></h3><ul>
+<li>Each record in a changelog stream defines the latest row operation in a table, per key.</li>
+<li>Each row in a table defines the latest record in a changelog stream, per key.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Windowed-Streams">Windowed Streams<a class="anchor-link" href="#Windowed-Streams">&#182;</a></h3><ul>
+<li>Windowing allows for grouping records close in time.</li>
+<li><strong>Hopping Time Windows</strong>: Which are defined by a size and a hop.</li>
+<li><strong>Tumbling Time Windows</strong>: Which are special non-overlapping case of hopping time windows; the hop equals the size.</li>
+<li><strong>Sliding Windows</strong>: Which slide continuously over the time axis, used only for joins.</li>
+<li><strong>Session Windows</strong>: Which aggregate data by period of activity; new windows are created once a period of inactivity exceeds a certain length.</li>
 </ul>
 
 </div>
