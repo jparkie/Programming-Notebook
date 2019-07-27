@@ -15012,6 +15012,123 @@ $$\delta = \frac{(T_{4} - T{1}) - (T_{3} - T_{2})}{2}$$</li>
 </div>
 </div>
 </div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="CAP-Principle">CAP Principle<a class="anchor-link" href="#CAP-Principle">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Brewer's-Theorem">Brewer's Theorem<a class="anchor-link" href="#Brewer's-Theorem">&#182;</a></h3><ul>
+<li>It is impossible for a distributed system to provide all three of:<ol>
+<li><strong>Consistency</strong>: Nodes in a system agree on the most recent state of the data.</li>
+<li><strong>Availability</strong>: Nodes are able to execute read-only queries and updates.</li>
+<li><strong>Partition Tolerance</strong>: The system continues to function if its servers are separated into disjoint sets (e.g., because of a network failure).</li>
+</ol>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="CP-vs.-AP-Systems">CP vs. AP Systems<a class="anchor-link" href="#CP-vs.-AP-Systems">&#182;</a></h3><ul>
+<li>In the event of a partition (P), the system must choose either consistency (C) or availability (A), and cannot provide both simultaneously.</li>
+<li>However, during failure-free operation, a system may be simultaneously highly available and strongly consistent.</li>
+<li><strong>CP System</strong>: In the event of a partition, choose <strong>Consistency (C)</strong> over <strong>Availability (A)</strong>.<ul>
+<li>Supports serializability, linearizability, sequential consistency, and $N_{R} + N_{W} &gt; N$.</li>
+</ul>
+</li>
+<li><strong>AP System</strong>: In the event of a partition, choose <strong>Availability (A)</strong> over <strong>Consistency (C)</strong>.<ul>
+<li>Supports eventual consistency, and causal consistency.</li>
+<li>Appropriate for many applications that are latency-sensitive, inconsistency-tolerant, and transactions-free.</li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="PACELC">PACELC<a class="anchor-link" href="#PACELC">&#182;</a></h3><ul>
+<li>If there is a <strong>Partition (P)</strong>, a choice must be made between <strong>Availability (A)</strong> and <strong>Consistency (C)</strong>.</li>
+<li><strong>Else</strong>, a choice must be made between lower <strong>Latency (L)</strong> and <strong>Consistency (C)</strong>.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Tunable-Consistency">Tunable Consistency<a class="anchor-link" href="#Tunable-Consistency">&#182;</a></h3><ul>
+<li><strong>Key-Value, Strong Consistency</strong>: If $N_{R} + N_{W} &gt; N$, then every read is guaranteed to observe the effects of all writes that finished before the read started.</li>
+<li>The partial quorums for reads and writes can be determined in some key-value storage systems on a per-request basis using <strong>client-side consistency</strong> settings, leading to <strong>tunable consistency</strong>.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Client-Side-Consistency">Client-Side Consistency<a class="anchor-link" href="#Client-Side-Consistency">&#182;</a></h3><ul>
+<li><strong>Sloppy Quorums</strong>: A partial quorum in which a set of replicas can change dynamically, such as to adjust to network partitions.</li>
+<li><strong>Hinted Handoff</strong>: Where an arbitrary node accepts an update and handsoff the update to the desired node once the network partition is removed.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Apache-Cassandra">Apache Cassandra<a class="anchor-link" href="#Apache-Cassandra">&#182;</a></h3><ul>
+<li>A quorum-replicated key-value store supporting tunable consistency with optional, full write availability.</li>
+</ul>
+<h4 id="Data-Model">Data Model<a class="anchor-link" href="#Data-Model">&#182;</a></h4><ul>
+<li><strong>Keyspace</strong>: A namespace for column families.</li>
+<li><strong>Column Family</strong>: A table of columns consisting of a name, a value, and a timestamp.</li>
+<li><strong>Row Key</strong>: A mandatory key that uniquely identifies each row.</li>
+<li><strong>Sparse-Column Storage</strong>: For a given row, only the columns present are stored; i.e., NULL values are ignored.</li>
+<li>Supports Hash Indices.</li>
+<li>No Joins or Foreign Keys.</li>
+</ul>
+<h4 id="Consistency">Consistency<a class="anchor-link" href="#Consistency">&#182;</a></h4><ul>
+<li><strong>ONE</strong>: $N_{R} / N_{W} = 1$.</li>
+<li><strong>ANY</strong>: For writes only, like <em>ONE</em>, but uses hinted handoff if needed.</li>
+<li><strong>TWO</strong>: $N_{R} / N_{W} = 2$.</li>
+<li><strong>THREE</strong>: $N_{R} / N_{W} = 3$.</li>
+<li><strong>QUORUM</strong>: $N_{R} / N_{W} = \text{Ceiling}[(N + 1) / 2]$.</li>
+<li><strong>ALL</strong>: $N_{R} / N_{W} = N$.</li>
+<li><strong>LOCAL_ONE</strong> / <strong>LOCAL_QUORUM</strong>: Like <em>ONE</em> / <em>QUORUM</em>, but the subset of replicas is chosen from the local data center only.</li>
+<li><strong>EACH_QUORUM</strong>: For writes only, writes to a quorum in each data center.</li>
+</ul>
+<h4 id="Puts">Puts<a class="anchor-link" href="#Puts">&#182;</a></h4><ul>
+<li>A <em>PUT</em> operation is executed on behalf of a client by a <strong>coordinator</strong>.</li>
+<li>The coordinator broadcasts the update to all replicas of a row.</li>
+<li>The consistency level determines only how many acknowledgments the coordinator waits for.</li>
+</ul>
+<h4 id="Gets">Gets<a class="anchor-link" href="#Gets">&#182;</a></h4><ul>
+<li>A <em>GET</em> operation is executed on behalf of a client by a <strong>coordinator</strong>.</li>
+<li>The coordinator broadcasts the read to all replicas of a row using the following kinds of requests.<ol>
+<li><strong>Digest Read Request</strong>: Retrieves data from the closest replica.</li>
+<li><strong>Digest Request</strong>: Retrieves a hash of the data from the remaining replicas; the coordinator waits for at least $N_{R} - 1$ of these to respond.</li>
+<li><strong>Background Read Repair Request</strong>: Sent if a disrepancy is detected among the hashes reported by different replicas, tells the replica to obtain the latest value.</li>
+</ol>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
     </div>
   </div>
 </body>
