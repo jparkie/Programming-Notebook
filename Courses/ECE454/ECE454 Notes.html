@@ -13174,7 +13174,7 @@ div#notebook {
 <h3 id="Middleware">Middleware<a class="anchor-link" href="#Middleware">&#182;</a></h3><ul>
 <li><strong>Middleware</strong>: A layer of software that separates applications from the underlying platforms.<ul>
 <li>Supports Heterogeneous Computers/Networks.</li>
-<li><em>e.g.</em>: Communication, Transactions, Service Composition, Reliability.</li>
+<li>e.g.: Communication, Transactions, Service Composition, Reliability.</li>
 <li><strong>Single-System View</strong></li>
 </ul>
 </li>
@@ -14879,6 +14879,134 @@ class Reducer
 <li><strong>Tumbling Time Windows</strong>: Which are special non-overlapping case of hopping time windows; the hop equals the size.</li>
 <li><strong>Sliding Windows</strong>: Which slide continuously over the time axis, used only for joins.</li>
 <li><strong>Session Windows</strong>: Which aggregate data by period of activity; new windows are created once a period of inactivity exceeds a certain length.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Clocks">Clocks<a class="anchor-link" href="#Clocks">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Motivations">Motivations<a class="anchor-link" href="#Motivations">&#182;</a></h3><ul>
+<li>Clocks are instruments used to measure time, so a lack of synchronization among clocks in a distributed system can result in unclear ordering of events.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Calendars">Calendars<a class="anchor-link" href="#Calendars">&#182;</a></h3><h4 id="Roman-Calendar">Roman Calendar<a class="anchor-link" href="#Roman-Calendar">&#182;</a></h4><ul>
+<li>The <strong>Roman calendar</strong> is a lunar calendar with months of 29 or 30 days.</li>
+<li>The original Roman calendar had only 10 months, with winter days unallocated.</li>
+<li>Reforms such as adding two extra months were later introduced, but the calendar remained difficult to align with seasons, since it is a lunar calendar.</li>
+</ul>
+<h4 id="Julian-Calendar">Julian Calendar<a class="anchor-link" href="#Julian-Calendar">&#182;</a></h4><ul>
+<li>The <strong>Julian calendar</strong> was the first solar calendar.</li>
+<li>Introduced in 45 BC, the calendar improved on the Roman calendar, such as by adding the concept of a leap year.</li>
+</ul>
+<h4 id="Gregorian-Calendar">Gregorian Calendar<a class="anchor-link" href="#Gregorian-Calendar">&#182;</a></h4><ul>
+<li>The <strong>Gregorian calendar</strong> is the most widely used calendar in the world.</li>
+<li>Introduced in 1582, its main improvement over the Julian calendar is measuring leap years far more accurately.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Timekeeping-Standards">Timekeeping Standards<a class="anchor-link" href="#Timekeeping-Standards">&#182;</a></h3><ul>
+<li><strong>Solar Day</strong>: The interval between two consecutive transits of the sun;this is not constant.</li>
+<li><strong>TAI</strong> (<em>Temps Atomique International</em>): International time scale based on the average of multiple Cesium 133 atomic clocks.</li>
+<li><strong>UTC</strong> (<em>Coordinated Universal Time</em>): The world's primary time standard. Based on TAI, UTC uses leap seconds at irregular intervals to compensate for the Earth's slowing rotation.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Limitations-of-Atomic-Clocks">Limitations of Atomic Clocks<a class="anchor-link" href="#Limitations-of-Atomic-Clocks">&#182;</a></h3><ul>
+<li>Although atomic clocks are the most accurate timekeeping devices known, they are limited by relativistic time dilation.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Definitions">Definitions<a class="anchor-link" href="#Definitions">&#182;</a></h3><ul>
+<li>Let $C(t)$ denote the value of a clock $C$ at a reference time $t$.</li>
+<li><strong>Clock Skew</strong> of $C$ relative to $t$ is $\frac{dC}{dt} - 1$.</li>
+<li><strong>Offset</strong> of $C$ relative to $t$ is $C(t) - t$.</li>
+<li><strong>Maximum Drift Rate</strong> of $C$ is a constant $\rho$ such that $1 - \rho \le \frac{dC}{dt} \le 1 + \rho$.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Network-Time-Protocol-(NTP)">Network Time Protocol (NTP)<a class="anchor-link" href="#Network-Time-Protocol-(NTP)">&#182;</a></h3><p><img src="images/Clocks_1.png" alt="NTP Timing Diagram"></p>
+<ul>
+<li><strong>NTP</strong>: A common time synchronization protocol for computers over variable-latency data networks.</li>
+</ul>
+<ol>
+<li>The offset of $B$ relative to $A$ is estimated as:
+$$\theta = \frac{(T_{2} - T_{1}) + (T_{3} - T_{4})}{2}$$</li>
+<li>The one-way network delay between $A$ and $B$ is estimated as:
+$$\delta = \frac{(T_{4} - T{1}) - (T_{3} - T_{2})}{2}$$</li>
+<li>NTP collects multiple $(\theta, \delta)$ pairs and uses the minimum value of $\delta$ as the best estimate of the delay.</li>
+<li>The corresponding $\theta$ is taken as the most reliable estimate of the offset.</li>
+</ol>
+<h4 id="Clock-Strata">Clock Strata<a class="anchor-link" href="#Clock-Strata">&#182;</a></h4><ul>
+<li>A reference clock, such as an atomic clock, is said to operate at <em>stratum 0</em>.</li>
+<li>A computer at <em>stratum 1</em> has its time controlled by a stratum 0 device.</li>
+<li>A computer at <em>stratum 2</em> has its time controlled by a stratum 1 device.</li>
+<li>Computers may only adjust the time of computers at greater strata, and when adjusting, must make sure time does not appear to flow backwards.</li>
+</ul>
+<h4 id="Clock-Accuracy">Clock Accuracy<a class="anchor-link" href="#Clock-Accuracy">&#182;</a></h4><ul>
+<li>NTP accuracy is typically measured in 10s of milliseconds.</li>
+<li>PTP accuracy is typically measured in 100s of nanoseconds by leveraging hardware timestamping.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Logical-Clocks">Logical Clocks<a class="anchor-link" href="#Logical-Clocks">&#182;</a></h3><ul>
+<li>In the absence of tightly synchronized clocks, processes can still agree on a meaningful partial order of events following the "happens-before" relation.</li>
+</ul>
+<h4 id="Lamport-Clocks">Lamport Clocks<a class="anchor-link" href="#Lamport-Clocks">&#182;</a></h4><ol>
+<li>Before executing an event, process $P_{i}$ increments its own counter $C_{i} = C_{i} + 1$.</li>
+<li>When $P_{i}$ sends a message $m$ to $P_{j}$, it tags $m$ with a timestamp $ts(m)$ equal to $C_{i}$.</li>
+<li>When $P_{j}$ receives a message $m$ from $P_{i}$, it adjusts its counter to $C_{j} = \max(C_{j}, ts(m)) + 1$.</li>
+</ol>
+<ul>
+<li>Lamport clocks ensure the "happens-before" relation: $a \to b \implies C(a) &lt; C(b)$.</li>
+<li>However, Lamport clocks do not ensure the causality relation: $C(a) &lt; C(b) \implies a \to b$.</li>
+</ul>
+<h4 id="Vector-Clocks">Vector Clocks<a class="anchor-link" href="#Vector-Clocks">&#182;</a></h4><ol>
+<li>Before executing an event, process $P_{i}$ increments its own counter $VC_{i}[i] = VC_{i}[i] + 1$.</li>
+<li>When $P_{i}$ sends a message $m$ to $P_{j}$, it tags $m$ with a vector timestamp $ts(m)$ equal to $VC_{i}$.</li>
+<li>When $P_{j}$ receives a message $m$ from $P_{i}$, it adjusts its counter to $VC_{j}[k] = \max(VC_{j}[k], ts(m)[k]) + 1, \forall k$.</li>
+</ol>
+<ul>
+<li>Vector clocks ensure the "happens-before" relation and the causality relation: $a \to b \Leftrightarrow C(a) &lt; C(b)$.</li>
 </ul>
 
 </div>
