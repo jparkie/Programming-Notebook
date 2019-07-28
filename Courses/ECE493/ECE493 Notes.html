@@ -15337,7 +15337,7 @@ $$
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Deep-Reinforcement-Learning-">Deep Reinforcement Learning <span name="S06" /><a class="anchor-link" href="#Deep-Reinforcement-Learning-">&#182;</a></h2>
+<h2 id="Reinforcement-Learning-">Reinforcement Learning <span name="S06" /><a class="anchor-link" href="#Reinforcement-Learning-">&#182;</a></h2>
 </div>
 </div>
 </div>
@@ -15562,7 +15562,7 @@ $$b(a \mid s) &gt; 0 \implies \pi(a \mid s) &gt; 0, \forall a \in \mathcal{A}, s
 <div class="text_cell_render border-box-sizing rendered_html">
 <h4 id="Importance-Sampling---How-do-you-calculate-state-value-function-using-importance-sampling?">Importance Sampling - How do you calculate state-value function using importance sampling?<a class="anchor-link" href="#Importance-Sampling---How-do-you-calculate-state-value-function-using-importance-sampling?">&#182;</a></h4><ul>
 <li><strong>Importance Sampling Ratio</strong>: A relative probability of the trajectory under the two policies.
-$$p_{t : T - 1} = \prod_{k = t}^{T - 1} \frac{\pi(A_{k} \mid S_{k})}{b(A_{k} \mid S_{k})}$$
+$$\rho_{t : T - 1} = \prod_{k = t}^{T - 1} \frac{\pi(A_{k} \mid S_{k})}{b(A_{k} \mid S_{k})}$$
 $$\mathbb{E}\left[ \frac{\pi(A_{k} \mid S_{k})}{b(A_{k} \mid S_{k})} \right] = 1$$</li>
 </ul>
 
@@ -15675,6 +15675,18 @@ $$V(S_{t}) \gets V(S_{t}) + \alpha \left( R_{t + 1} + \gamma \cdot V(S_{t + 1}) 
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Expected-SARSA---N/A">Expected SARSA - N/A<a class="anchor-link" href="#Expected-SARSA---N/A">&#182;</a></h4>$$
+\begin{aligned}
+Q(S_{t}, A_{t}) &amp;= Q(S_{t}, A_{t}) + \alpha \left[ R_{t + 1} + \gamma \cdot \mathbb{E}[Q(S_{t + 1}, A_{t + 1}) \mid S_{t + 1}] - Q(S_{t}, A_{t}) \right] \\
+Q(S_{t}, A_{t}) &amp;= Q(S_{t}, A_{t}) + \alpha \left[ R_{t + 1} + \gamma \cdot \sum_{a} \pi(a \mid S_{t + 1})Q(S_{t + 1}, a) - Q(S_{t}, A_{t}) \right]
+\end{aligned}
+$$
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h4 id="SARSA-vs.-Q-Learning---What-are-the-similarities-and-differences-between-SARSA-and-Q-Learning?">SARSA vs. Q-Learning - What are the similarities and differences between SARSA and Q-Learning?<a class="anchor-link" href="#SARSA-vs.-Q-Learning---What-are-the-similarities-and-differences-between-SARSA-and-Q-Learning?">&#182;</a></h4><h5 id="SARSA">SARSA<a class="anchor-link" href="#SARSA">&#182;</a></h5><ul>
 <li><em>On-Policy</em></li>
 <li><em>Chooses Action, Sees Result</em></li>
@@ -15686,6 +15698,82 @@ $$V(S_{t}) \gets V(S_{t}) + \alpha \left( R_{t + 1} + \gamma \cdot V(S_{t + 1}) 
 <li><em>Chooses Action, Sees Result</em></li>
 <li><em>Update It's Value Function With Different Action</em></li>
 <li><em>No Guarantee Convergence</em></li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Multi-Step-Reinforcement-Learning-">Multi-Step Reinforcement Learning <span name="S06-04" /><a class="anchor-link" href="#Multi-Step-Reinforcement-Learning-">&#182;</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Unified-View-of-Reinforcement-Learning---How-are-MC-and-TD-methods-of-reinforcement-learning-related?">Unified View of Reinforcement Learning - How are MC and TD methods of reinforcement learning related?<a class="anchor-link" href="#Unified-View-of-Reinforcement-Learning---How-are-MC-and-TD-methods-of-reinforcement-learning-related?">&#182;</a></h4><p><img src="images/MS_RL_1.png" alt="Unified View of Reinforcement Learning"></p>
+<ul>
+<li><strong>MC</strong>: $n = \infty$-Steps of Predictions.<ul>
+<li>$G_{t} = R_{t + 1} + \gamma \cdot R_{t + 2} + \gamma^{2} \cdot R_{t + 3} + ... + \gamma^{T - t - 1} \cdot R_{T}$</li>
+</ul>
+</li>
+<li><strong>TD</strong>: $n = 1$-Steps of Predictions.<ul>
+<li>$G_{t : t + 1} = R_{t + 1} + \gamma \cdot V_{t}(S_{t + 1})$</li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="$n$-Step-TD---How-do-you-use-$n$-step-TD-to-perform-prediction?">$n$-Step TD - How do you use $n$-step TD to perform prediction?<a class="anchor-link" href="#$n$-Step-TD---How-do-you-use-$n$-step-TD-to-perform-prediction?">&#182;</a></h4><p><img src="images/MS_RL_2.png" alt="n-Step TD Algorithm"></p>
+<ul>
+<li><strong>$n$-Step Return</strong> (<em>Forwards</em>): $G_{t : t + n} = R_{t + 1} + \gamma \cdot R_{t + 2} + ... + \gamma^{n - 1} \cdot R_{t + n} + \gamma^{n} \cdot V_{t + n - 1}(S_{t + n})$</li>
+<li><strong>$n$-Step TD</strong> (<em>Backwards</em>): $V_{t + n}(S_{t}) = V_{t + n - 1}(S_{t}) + \alpha \left[ G_{t : t + n} - V_{t + n - 1}(S_{t}) \right]$</li>
+<li><strong>Important Note 1</strong>: The last $n$ states must be kept in memory.</li>
+<li><strong>Important Note 2</strong>: Actual learning is delayed by $n$ steps.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="On-Policy-$n$-Step-Control---How-does-the-$n$-step-method-change-on-policy-control-methods?">On-Policy $n$-Step Control - How does the $n$-step method change on-policy control methods?<a class="anchor-link" href="#On-Policy-$n$-Step-Control---How-does-the-$n$-step-method-change-on-policy-control-methods?">&#182;</a></h4><h5 id="$n$-Step-SARSA">$n$-Step SARSA<a class="anchor-link" href="#$n$-Step-SARSA">&#182;</a></h5>$$
+\begin{aligned}
+G_{t : t + n} &amp;= R_{t + 1} + \gamma \cdot R_{t + 2} + ... + \gamma^{n - 1} \cdot R_{t + n} + \gamma^{n} \cdot Q_{t + n - 1}(S_{t + n}, A_{t + n}) \\
+Q_{t + n}(S_{t}, A_{t}) &amp;= Q_{t + n - 1}(S_{t}, A_{t}) + \alpha \left[ G_{t : t + n} - Q_{t + n - 1}(S_{t}, A_{t}) \right]
+\end{aligned}
+$$<h5 id="$n$-Step-Expected-SARSA">$n$-Step Expected SARSA<a class="anchor-link" href="#$n$-Step-Expected-SARSA">&#182;</a></h5>$$
+\begin{aligned}
+G_{t : t + n} &amp;= R_{t + 1} + \gamma \cdot R_{t + 2} + ... + \gamma^{n - 1} \cdot R_{t + n} + \gamma^{n} \cdot \mathbb{E}[Q_{t + n - 1}(S_{t + n}, A_{t + n}) \mid S_{t + n}] \\
+G_{t : t + n} &amp;= R_{t + 1} + \gamma \cdot R_{t + 2} + ... + \gamma^{n - 1} \cdot R_{t + n} + \gamma^{n} \cdot \sum_{a} \pi(a \mid S_{t + n})Q_{t + n - 1}(S_{t + n}, a) \\
+Q_{t + n}(S_{t}, A_{t}) &amp;= Q_{t + n - 1}(S_{t}, A_{t}) + \alpha \left[ G_{t : t + n} - Q_{t + n - 1}(S_{t}, A_{t}) \right]
+\end{aligned}
+$$
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Off-Policy-$n$-Step-Control---How-does-the-$n$-step-method-change-off-policy-control-methods?">Off-Policy $n$-Step Control - How does the $n$-step method change off-policy control methods?<a class="anchor-link" href="#Off-Policy-$n$-Step-Control---How-does-the-$n$-step-method-change-off-policy-control-methods?">&#182;</a></h4><h5 id="Importance-Sampling-Ratio">Importance-Sampling Ratio<a class="anchor-link" href="#Importance-Sampling-Ratio">&#182;</a></h5>$$\rho_{t : h} = \prod_{k = t}^{\min(h, T - 1)} \frac{\pi(A_{k} \mid S_{k})}{b(A_{k} \mid S_{k})}$$<h5 id="Off-Policy-$n$-Step-TD">Off-Policy $n$-Step TD<a class="anchor-link" href="#Off-Policy-$n$-Step-TD">&#182;</a></h5><p>$V_{t + n}(S_{t}) = V_{t + n - 1}(S_{t}) + \alpha \rho_{t : t + n - 1} \left[ G_{t : t + n} - V_{t + n - 1}(S_{t}) \right]$</p>
+<ul>
+<li>Where $G_{t : t + n}$ is previously defined.</li>
+</ul>
+<h5 id="Off-Policy-$n$-Step-SARSA">Off-Policy $n$-Step SARSA<a class="anchor-link" href="#Off-Policy-$n$-Step-SARSA">&#182;</a></h5><p>$Q_{t + n}(S_{t}, A_{t}) = Q_{t + n - 1}(S_{t}, A_{t}) + \alpha \rho_{t + 1 : t + n - 1} \left[ G_{t : t + n} - Q_{t + n - 1}(S_{t}, A_{t}) \right]$</p>
+<ul>
+<li>Where $G_{t : t + n}$ is previously defined.</li>
+</ul>
+<h5 id="Off-Policy-$n$-Step-Expected-SARSA">Off-Policy $n$-Step Expected SARSA<a class="anchor-link" href="#Off-Policy-$n$-Step-Expected-SARSA">&#182;</a></h5><p>$Q_{t + n}(S_{t}, A_{t}) = Q_{t + n - 1}(S_{t}, A_{t}) + \alpha \rho_{t + 1 : t + n - 2} \left[ G_{t : t + n} - Q_{t + n - 1}(S_{t}, A_{t}) \right]$</p>
+<ul>
+<li>Where $G_{t : t + n}$ is previously defined.</li>
 </ul>
 
 </div>
