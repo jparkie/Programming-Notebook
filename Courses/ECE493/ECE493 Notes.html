@@ -15779,6 +15779,83 @@ $$
 </div>
 </div>
 </div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="$\lambda$-Return---What-is-$\lambda$-return?">$\lambda$-Return - What is $\lambda$-return?<a class="anchor-link" href="#$\lambda$-Return---What-is-$\lambda$-return?">&#182;</a></h4><ul>
+<li><strong>$\lambda$-Return</strong>: The return from averaging all $n$-step backups with $\lambda^{n - 1}$ weights.
+$$R_{t}^{\lambda} = (1 - \lambda) \sum_{n = 1}^{\infty} \lambda^{n - 1} R_{t}^{(n)}$$
+$$\Delta V_{t}(s_t) = \alpha \left[ R_{t}^{\lambda} - V_{t}(s_{t}) \right]$$</li>
+<li>If $\lambda = 1$, TD$(1)$ is MC.</li>
+<li>If $\lambda = 1$, TD$(0)$ is TD$(0)$.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Eligibility-Trace---How-do-you-use-eligibility-traces-to-compute-TD$(\lambda)$?">Eligibility Trace - How do you use eligibility traces to compute TD$(\lambda)$?<a class="anchor-link" href="#Eligibility-Trace---How-do-you-use-eligibility-traces-to-compute-TD$(\lambda)$?">&#182;</a></h4><ul>
+<li><strong>Eligibility Trace</strong>: A backward view mechanism for implementing TD$(\lambda)$ by decaying all traces by $\gamma \lambda$ and increment the race for the current state by 1, and accumulating the trace.
+$$
+e_{t}(s) =
+\begin{cases}
+\gamma \lambda e_{t - 1}(s) &amp;\text{if } s \ne s_{t} \\
+\gamma \lambda e_{t - 1}(s) + 1 &amp;\text{if } s = s_{t}
+\end{cases}
+$$
+$$\delta_{t} = r_{t + 1} + \gamma V_{t}(s_{t + 1}) - V_{t}(s_{t})$$
+$$V_{t + 1}(s) = V_{t}(s) + \alpha \delta_{t} e_{t}(s)$$</li>
+<li><strong>Important Note</strong>: Although TD$(1)$ is MC, TD$(1)$ executes incrementally and online.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Online-Tabular-TD$(\lambda)$-Algorithm---How-does-$\lambda$-extend-TD-for-prediction?">Online Tabular TD$(\lambda)$ Algorithm - How does $\lambda$ extend TD for prediction?<a class="anchor-link" href="#Online-Tabular-TD$(\lambda)$-Algorithm---How-does-$\lambda$-extend-TD-for-prediction?">&#182;</a></h4><p><img src="images/MS_RL_4.png" alt="Online Tabular TD$(\lambda)$ Algorithm"></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="SARSA$(\lambda)$-Algorithm---How-does-$\lambda$-extend-SARSA-for-on-policy-control?">SARSA$(\lambda)$ Algorithm - How does $\lambda$ extend SARSA for on-policy control?<a class="anchor-link" href="#SARSA$(\lambda)$-Algorithm---How-does-$\lambda$-extend-SARSA-for-on-policy-control?">&#182;</a></h4><p><img src="images/MS_RL_3.png" alt="SARSA$(\lambda)$ Algorithm"></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Watkin's-Q$(\lambda)$-Algorithm---How-does-Watkin's-algorithm-achieve-off-policy-control?">Watkin's Q$(\lambda)$ Algorithm - How does Watkin's algorithm achieve off-policy control?<a class="anchor-link" href="#Watkin's-Q$(\lambda)$-Algorithm---How-does-Watkin's-algorithm-achieve-off-policy-control?">&#182;</a></h4><p><img src="images/MS_RL_5.png" alt="Watkin&#39;s Q$(\lambda)$ Algorithm"></p>
+<ol>
+<li>Zero out eligibility trace after a non-greedy action.</li>
+<li>Take the maximum when backing up at the first non-greedy choice.</li>
+</ol>
+$$
+e_{t}(s, a) =
+\begin{cases}
+\gamma \lambda e_{t - 1}(s, a) + 1 &amp;\text{if } s = s_{t}, a = a_{t}, Q_{t - 1}(s_{t}, a_{t}) = \max_{a} Q_{t - 1}(s_{t}, a) \\
+0 &amp;\text{if } Q_{t - 1}(s_{t}, a_{t}) \ne \max_{a} Q_{t - 1}(s_{t}, a) \\
+\gamma \lambda e_{t - 1}(s, a) &amp;\text{otherwise}
+\end{cases}
+$$$$\delta_{t} = r_{t + 1} + \gamma \max_{a'} Q_{t}(s_{t + 1}, a') - Q_{t}(s_{t}, a_{t})$$$$Q_{t + 1}(s, a) = Q_{t}(s, a) + \alpha \delta_{t} e_{t}(s, a)$$<h5 id="Peng's-Q$(\lambda)$-Variant">Peng's Q$(\lambda)$ Variant<a class="anchor-link" href="#Peng's-Q$(\lambda)$-Variant">&#182;</a></h5><ol>
+<li>Never zero out eligibility trace after a non-greedy action.</li>
+<li>Take the maximum when backing up at the last non-greedy choice.</li>
+</ol>
+<h5 id="Naive-Q$(\lambda)$-Variant">Naive Q$(\lambda)$ Variant<a class="anchor-link" href="#Naive-Q$(\lambda)$-Variant">&#182;</a></h5><ol>
+<li>Never zero out eligibility trace after a non-greedy action.</li>
+<li>Take the maximum when backing up at current action.</li>
+</ol>
+
+</div>
+</div>
+</div>
     </div>
   </div>
 </body>
