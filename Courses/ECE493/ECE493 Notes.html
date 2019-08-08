@@ -15856,6 +15856,142 @@ $$$$\delta_{t} = r_{t + 1} + \gamma \max_{a'} Q_{t}(s_{t + 1}, a') - Q_{t}(s_{t}
 </div>
 </div>
 </div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Value-Function-Approximation-">Value Function Approximation <span name="S06-05" /><a class="anchor-link" href="#Value-Function-Approximation-">&#182;</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Motivation---Why-does-value-function-approximation-exist?">Motivation - Why does value function approximation exist?<a class="anchor-link" href="#Motivation---Why-does-value-function-approximation-exist?">&#182;</a></h4><ul>
+<li><strong>Goal</strong>: How do you represent a value function for a very large MDP whose states and/or actions cannot be all stored in memory inside a lookup table?</li>
+<li><strong>Approach</strong>: Estimate the value function with function approximation, generalizing from known states to unknown states and updating parameter $\pmb{w}$ using MC or TD learning.
+$$
+\begin{aligned}
+\hat{v}(s, \pmb{w}) &amp;\approx v_{\pi}(s) \\
+\hat{q}(s, a, \pmb{w}) &amp;\approx q_{\pi}(s, a) \\
+\end{aligned}
+$$</li>
+</ul>
+<h5 id="Differentiable-Function-Approximators">Differentiable Function Approximators<a class="anchor-link" href="#Differentiable-Function-Approximators">&#182;</a></h5><ul>
+<li>Linear Combination of Features</li>
+<li>Neural Network</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Gradient-Descent---What-is-gradient-descent?">Gradient Descent - What is gradient descent?<a class="anchor-link" href="#Gradient-Descent---What-is-gradient-descent?">&#182;</a></h4><ul>
+<li>Let $J(\pmb{w})$ be a differentiable function of parameter vector $\pmb{w}$.</li>
+<li>The <strong>gradient</strong> of $J(\pmb{w})$ is the following.
+$$
+\nabla_{\pmb{w}} J(\pmb{w}) =
+\left(
+\begin{array}{c}
+\frac{\partial J(\pmb{w})}{\partial \pmb{w}_{1}} \\
+\vdots \\
+\frac{\partial J(\pmb{w})}{\partial \pmb{w}_{n}}
+\end{array}
+\right)
+$$</li>
+<li><strong>Gradient Descent</strong>: Adjust $\pmb{w}$ in the direction of the negative gradient to find a local minimum of $J(\pmb{w})$.
+$$\Delta \pmb{w} = -\frac{1}{2} \alpha \nabla_{\pmb{w}} J(\pmb{w})$$<ul>
+<li>Where $\alpha$ is a step-size parameter.</li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Stochastic-Gradient-Descent---How-do-you-use-stochastic-gradient-descent-to-approximate-the-value-function?">Stochastic Gradient Descent - How do you use stochastic gradient descent to approximate the value function?<a class="anchor-link" href="#Stochastic-Gradient-Descent---How-do-you-use-stochastic-gradient-descent-to-approximate-the-value-function?">&#182;</a></h4><ol>
+<li>Find a parameter vector $\pmb{w}$ minimising mean-squared error between the <em>approximate value function</em> $\hat{v}(s, \pmb{w})$ and the <em>true value function</em> $v_{\pi}(s)$.
+$$J(\pmb{w}) = \mathbb{E}_{\pi}\left[ \left( v_{\pi}(S) - \hat{v}(S, \pmb{w}) \right)^{2} \right]$$</li>
+<li>A gradient descent finds a local minimum of $J(\pmb{w})$ such that the parameter vector $\pmb{w}$ has the approximate value function close to the true value function.
+$$\Delta \pmb{w} = \alpha \mathbb{E}_{\pi}\left[ \left( v_{\pi}(S) - \hat{v}(S, \pmb{w}) \right) \nabla_{\pmb{w}} \hat{v}(S, \pmb{w}) \right]$$</li>
+<li>Stochastic gradient descent samples the gradient.
+$$\Delta \pmb{w} = \alpha \left( v_{\pi}(S) - \hat{v}(S, \pmb{w}) \right) \nabla_{\pmb{w}} \hat{v}(S, \pmb{w})$$</li>
+</ol>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Linear-Value-Function-Approximation---What-is-one-approximate-value-function-representation?">Linear Value Function Approximation - What is one approximate value function representation?<a class="anchor-link" href="#Linear-Value-Function-Approximation---What-is-one-approximate-value-function-representation?">&#182;</a></h4><h5 id="Linear-Combination-of-Features">Linear Combination of Features<a class="anchor-link" href="#Linear-Combination-of-Features">&#182;</a></h5>$$\hat{v}(S, \pmb{w}) = \pmb{x}(S)^{T} \pmb{w} = \sum_{j = 1}^{n} \pmb{x}_{j}(S) \pmb{w}_{j}$$<ul>
+<li>Where $\pmb{x}$ is a feature vector constructed from the original perceptron, the Least-Mean-Square (LMS) algorithm, Support Vector Machines (SVMs), or etc....</li>
+</ul>
+<h5 id="Properties">Properties<a class="anchor-link" href="#Properties">&#182;</a></h5><ol>
+<li>The objective function is quadratic in parameters $\pmb{w}$:
+$$J(\pmb{w}) = \mathbb{E}_{\pi}\left[ \left( v_{\pi}(S) - \pmb{x}(S)^{T} \pmb{w} \right)^{2} \right]$$</li>
+<li>The stochastic gradient descent converges on the <strong>GLOBAL OPTIMUM</strong>.</li>
+<li>The update rule is simple:
+$$
+\begin{aligned}
+\nabla_{\pmb{w}} \hat{v}(S, \pmb{w}) &amp;= \pmb{x}(S) \\
+\Delta \pmb{w} &amp;= \alpha \left( v_{\pi}(S) - \hat{v}(S, \pmb{w}) \right) \pmb{x}(S) \\
+\text{Update} &amp;= \text{Step-Size} \times \text{Prediction Error} \times \text{Feature Value}
+\end{aligned}
+$$</li>
+</ol>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Incremental-Prediction-Algorithms---How-do-you-substitute-the-true-value-function-$v_{\pi}(s)$-in-linear-value-function-approximation?">Incremental Prediction Algorithms - How do you substitute the true value function $v_{\pi}(s)$ in linear value function approximation?<a class="anchor-link" href="#Incremental-Prediction-Algorithms---How-do-you-substitute-the-true-value-function-$v_{\pi}(s)$-in-linear-value-function-approximation?">&#182;</a></h4><ul>
+<li>For MC, the substitute is the return $G_{t}$.
+$$\Delta \pmb{w} = \alpha \left( G_{t} - \hat{v}(S_{t}, w) \right) \nabla_{\pmb{w}} \hat{v}(S_{t}, \pmb{w})$$</li>
+<li>For TD$(0)$, the substitute is the TD target $R_{t + 1} + \gamma \cdot \hat{v}(S_{t + 1}, \pmb{w})$.
+$$\Delta \pmb{w} = \alpha \left( R_{t + 1} + \gamma \cdot \hat{v}(S_{t + 1}, \pmb{w}) - \hat{v}(S_{t}, w) \right) \nabla_{\pmb{w}} \hat{v}(S_{t}, \pmb{w})$$</li>
+<li>For TD$(\lambda)$, the substitute is the $\lambda$-return $G_{t}^{\lambda}$.
+$$\Delta \pmb{w} = \alpha \left( G_{t}^{\lambda} - \hat{v}(S_{t}, w) \right) \nabla_{\pmb{w}} \hat{v}(S_{t}, \pmb{w})$$</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Gradient-MC---N/A">Gradient MC - N/A<a class="anchor-link" href="#Gradient-MC---N/A">&#182;</a></h4><p><img src="images/VA_1.png" alt="Gradient MC"></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Gradient-TD---N/A">Gradient TD - N/A<a class="anchor-link" href="#Gradient-TD---N/A">&#182;</a></h4><p><img src="images/VA_2.png" alt="Gradient TD"></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Gradient-On-Policy-Control---N/A">Gradient On-Policy Control - N/A<a class="anchor-link" href="#Gradient-On-Policy-Control---N/A">&#182;</a></h4><h5 id="Learning-Rule">Learning Rule<a class="anchor-link" href="#Learning-Rule">&#182;</a></h5>$$\pmb{w}_{t + 1} = \pmb{w}_{t} + \alpha \left[ U_{t} - \hat{q}(S_{t}, A_{t}, \pmb{w}_{t}) \right] \nabla \hat{q}(S_{t}, A_{t}, \pmb{w}_{t})$$<ol>
+<li><strong>MC</strong>: $U_{t} = G_{t}$</li>
+<li><strong>SARSA</strong>: $U_{t} = R_{t + 1} + \gamma \cdot \hat{q}(S_{t + 1}, A_{t + 1}, \pmb{w}_{t})$</li>
+<li><strong>Expected SARSA</strong>: $U_{t} = R_{t + 1} + \gamma \cdot \sum_{\alpha} \pi(\alpha \mid S_{t + 1}) \hat{q}(S_{t + 1}, \alpha, \pmb{w}_{t})$</li>
+</ol>
+<h5 id="Example">Example<a class="anchor-link" href="#Example">&#182;</a></h5><p><img src="images/VA_3.png" alt="Gradient On-Policy Control"></p>
+
+</div>
+</div>
+</div>
     </div>
   </div>
 </body>
