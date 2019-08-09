@@ -15992,6 +15992,218 @@ $$\Delta \pmb{w} = \alpha \left( G_{t}^{\lambda} - \hat{v}(S_{t}, w) \right) \na
 </div>
 </div>
 </div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Deep-Reinforcement-Learning-">Deep Reinforcement Learning <span name="S07" /><a class="anchor-link" href="#Deep-Reinforcement-Learning-">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Introduction-to-Neural-Networks-">Introduction to Neural Networks <span name="S07-01" /><a class="anchor-link" href="#Introduction-to-Neural-Networks-">&#182;</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Neural-Networks---What-is-a-neural-network?">Neural Networks - What is a neural network?<a class="anchor-link" href="#Neural-Networks---What-is-a-neural-network?">&#182;</a></h4><ul>
+<li>A <strong>neural network</strong> connects many nonlinear (classically logistic/sigmoid) units together into a network to learn $f : \pmb{X} \to \pmb{Y}$.<ul>
+<li>Where $f$ is a non-linear function.</li>
+<li>Where $\pmb{X}$ is a vector of continuous/discrete variables.</li>
+<li>Where $\pmb{Y}$ is a vector of continuous/discrete variables.</li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Three-Layer-Neural-Network---What-are-the-three-layers-in-a-basic-neural-network?">Three Layer Neural Network - What are the three layers in a basic neural network?<a class="anchor-link" href="#Three-Layer-Neural-Network---What-are-the-three-layers-in-a-basic-neural-network?">&#182;</a></h4><p><img src="images/NN_1.jpg" alt="Neural Network"></p>
+<ol>
+<li><strong>Input Layer</strong>: Each input unit collects one feature/dimension of the vector data and passes it to the (first) hidden layer.</li>
+<li><strong>Hidden Layer</strong>: Each hidden unit computes a weighted sum of all the units from the input later (or any previous layer) and passes it through a <em>nonlinear activation function</em>.
+$$y_{j} = f(net_{j})$$</li>
+<li><strong>Output Layer</strong>: Each output unit computes a weighted sum of all the hidden units and passes it through a (possibly nonlinear) <em>threshold function</em>.
+$$z_{k} = f(net_{k})$$</li>
+</ol>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Properties-of-Neural-Networks---What-are-the-properties-of-neural-networks?">Properties of Neural Networks - What are the properties of neural networks?<a class="anchor-link" href="#Properties-of-Neural-Networks---What-are-the-properties-of-neural-networks?">&#182;</a></h4><ul>
+<li>Given a large enough layer of hidden units (or multiple layers), a NN can represent any function.<ul>
+<li>Too few units, the network will be under-parameterized and will not be able to learn complex functions.</li>
+<li>Too many units, the network will be over-parameterized and will not be forced to learn a generlizable model.</li>
+</ul>
+</li>
+<li>Connections between the units of all layers can be forward, backward, or both.</li>
+<li>Each unit can be fully or partially connected.</li>
+<li>Each unit has an activation function and a set of weighted connections.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Nonlinear-Activation-Function---What-is-a-nonlinear-activation-function?">Nonlinear Activation Function - What is a nonlinear activation function?<a class="anchor-link" href="#Nonlinear-Activation-Function---What-is-a-nonlinear-activation-function?">&#182;</a></h4><p><img src="images/NN_2.png" alt="Nonlinear Activation Functions"></p>
+<ul>
+<li>A hidden unit emits an output that is a <strong>nonlinear activation function</strong> of its net activation.
+$$y_{j} = f(net_{j}) = f \left( \sum_{i = 0}^{d} x_{i} w_{ji} \right)$$<ul>
+<li>Where $i$ indexes the input units.</li>
+<li>Where $j$ indexes the hidden units.</li>
+<li>Where $w_{ji}$ denotes the synaptic weights.</li>
+<li>Outputs are thresholded through a nonlinear activation function.</li>
+</ul>
+</li>
+<li><strong>Rectified Linear Units</strong> (<em>ReLU</em>): The standard nonlinear activation function: $y_{j} = \max(0, net_{j})$.<ul>
+<li>Easily distinguishes strong signals.</li>
+<li>Values are mostly zero.</li>
+<li>Derivative is mostly zero.</li>
+<li>Does not easily saturate compared to the sigmoid function.</li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Backpropagation-Algorithm---How-does-the-backpropagation-algorithm-iteratively-compute-the-gradient-to-update-network-weights?">Backpropagation Algorithm - How does the backpropagation algorithm iteratively compute the gradient to update network weights?<a class="anchor-link" href="#Backpropagation-Algorithm---How-does-the-backpropagation-algorithm-iteratively-compute-the-gradient-to-update-network-weights?">&#182;</a></h4><ul>
+<li><strong>Important Idea</strong>: Minimize the loss function (mean-squared errors) on training examples.</li>
+</ul>
+<ol>
+<li><strong>Forward Propagation</strong>: Input the training data to the network and compute outputs.</li>
+<li>Compute output unit errors.
+$$\delta_{k}' = o_{k}' (1 - o_{k}') (y_{k}' - o_{k}')$$</li>
+<li>Compute hidden unit errors.
+$$\delta_{h}' = o_{h}' (1 - o_{h}') \sum_{k} w_{h,k} \delta_{k}'$$</li>
+<li>Update network weights.
+$$w_{i,j} = w_{i,j} + \Delta w_{i,j}' = w_{i,j} + \eta\delta_{j}'o_{i}'$$</li>
+</ol>
+<ul>
+<li>Where $y$ is the target output of a unit.</li>
+<li>Where $o$ is the actual output of a unit.</li>
+<li>Where $\eta$ is the training rate.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Convolutional-Neural-Network---What-is-a-CNN?">Convolutional Neural Network - What is a CNN?<a class="anchor-link" href="#Convolutional-Neural-Network---What-is-a-CNN?">&#182;</a></h4><ul>
+<li><strong>Convolutional Neural Network</strong> (<em>CNN</em>): A neural network that uses convolution in place of general matrix multiplication in at least one of its layers.</li>
+</ul>
+<h5 id="Additional-Properties">Additional Properties<a class="anchor-link" href="#Additional-Properties">&#182;</a></h5><ol>
+<li>Sparse Connectivity.</li>
+<li>Parameter Sharing.</li>
+<li>Equivariant Representations.</li>
+</ol>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Deep-Q-Networks-(DQN)-">Deep Q-Networks (DQN) <span name="S07-02" /><a class="anchor-link" href="#Deep-Q-Networks-(DQN)-">&#182;</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Motivation---What-are-the-stability-issues-with-naive-deep-Q-learning?">Motivation - What are the stability issues with naive deep Q-learning?<a class="anchor-link" href="#Motivation---What-are-the-stability-issues-with-naive-deep-Q-learning?">&#182;</a></h4><ul>
+<li>A naive deep Q-learning approximates the action-value function by using a deep Q-network. However, it suffers from divergent and oscillating behavior.<ol>
+<li>As data is sequential, the successive samples are correlated and not i.i.d., yet NNs require i.i.d. samples.</li>
+<li>Accordingly, the learned policy may oscillate with slight changes to Q-values.</li>
+<li>Finally, the scales of rewards and Q-values are unknown such that naive deep Q-learning gradients can be unstable when backpropagated.</li>
+</ol>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Overview---What-is-a-DQN?">Overview - What is a DQN?<a class="anchor-link" href="#Overview---What-is-a-DQN?">&#182;</a></h4><ol>
+<li><em>Use Experience Replay</em>:<ul>
+<li>Provides i.i.d. samples.</li>
+</ul>
+</li>
+<li><em>Freeze Target Q-Network</em>:<ul>
+<li>Avoids oscillations.</li>
+</ul>
+</li>
+<li><em>Clip Rewards / Normalize Network to Sensible Range</em>:<ul>
+<li>Stabilizes gradients.</li>
+</ul>
+</li>
+</ol>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Experience-Replay---How-does-experience-replay-remove-correlations-to-provide-i.i.d.-samples?">Experience Replay - How does experience replay remove correlations to provide i.i.d. samples?<a class="anchor-link" href="#Experience-Replay---How-does-experience-replay-remove-correlations-to-provide-i.i.d.-samples?">&#182;</a></h4><ul>
+<li><strong>Important Idea</strong>: To remove correlations, sample from the agent's own experience.</li>
+</ul>
+<ol>
+<li>Take action $a_{t}$ according to $\epsilon$-greedy policy.</li>
+<li>Store the transition $(s_{t}, a_{t}, r_{t + 1}, s_{t + 1})$ in the agent's replay memory $\mathcal{D}$.</li>
+<li>Sample a random mini-batch of transitions $(s, a, r, s')$ from $\mathcal{D}$.</li>
+<li>Optimise the mean squared error between the Q-network and the Q-learning targets.
+$$\mathcal{L}(\pmb{w}) = \mathbb{E}_{s, a, r, s' \sim \mathcal{D}}\left[ \left( r + \gamma \cdot \max_{a'} Q(s', a', \pmb{w}) - Q(s, a, \pmb{w}) \right)^{2} \right]$$</li>
+</ol>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Frozen/Fixed-Target-Q-Network---How-does-freezing/fixing-the-target-Q-network-avoid-oscillations?">Frozen/Fixed Target Q-Network - How does freezing/fixing the target Q-network avoid oscillations?<a class="anchor-link" href="#Frozen/Fixed-Target-Q-Network---How-does-freezing/fixing-the-target-Q-network-avoid-oscillations?">&#182;</a></h4><ul>
+<li><strong>Important Idea</strong>: To avoid oscillations, freeze/fix parameters used in the Q-learning target.</li>
+</ul>
+<ol>
+<li>Compute the Q-learning targets with respect to the old, frozen/fixed parameters $\pmb{w}^{-}$.
+$$r + \gamma \cdot \max_{a'} Q(s', a', \pmb{w}^{-})$$</li>
+<li>Optimise the mean squared error between the Q-network and the Q-learning targets.
+$$\mathcal{L}(\pmb{w}) = \mathbb{E}_{s, a, r, s' \sim \mathcal{D}}\left[ \left( r + \gamma \cdot \max_{a'} Q(s', a', \pmb{w}^{-}) - Q(s, a, \pmb{w}) \right)^{2} \right]$$</li>
+<li>Periodically, update the frozen/fixed parameters: $\pmb{w}^{-} \gets \pmb{w}$.</li>
+</ol>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Clip-Rewards---How-does-clipping-rewards-stabilize-gradients?">Clip Rewards - How does clipping rewards stabilize gradients?<a class="anchor-link" href="#Clip-Rewards---How-does-clipping-rewards-stabilize-gradients?">&#182;</a></h4><ul>
+<li><strong>Important Idea</strong>: To stabilize gradients, DQN clips rewards to a sensible range of $[-1, +1]$ such that Q-values can never become too large, ensuring that gradients are well-conditioned.</li>
+</ul>
+
+</div>
+</div>
+</div>
     </div>
   </div>
 </body>
