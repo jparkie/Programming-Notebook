@@ -13828,17 +13828,15 @@ div#notebook {
 <li><em>Primarily: Restart Failed Tasks</em><ol>
 <li>Individual <em>TaskTrackers</em> periodically emit a heartbeat to the <em>JobTracker</em>.</li>
 <li>If a <em>TaskTracker</em> fails to emit a heartbeat to the <em>JobTracker</em>, the <em>JobTracker</em> assumes that the <em>TaskTracker</em> crashed.</li>
-<li>If the failed node was mapping, then other <em>TaskTrackers</em> will be asked to re-execute all the map tasks previously run by the failed <em>TaskTracker</em>.</li>
-</ol>
-<ul>
+<li>If the failed node was mapping, then other <em>TaskTrackers</em> will be asked to re-execute all the map tasks previously run by the failed <em>TaskTracker</em>.<ul>
 <li><em>Must be Side-Effect Free</em></li>
 </ul>
-<ol>
-<li>If the failed node was reducing, then other <em>TaskTrackers</em> will be asked to re-execute all reduce tasks that were in progress on the failed <em>TaskTracker</em>.</li>
-</ol>
-<ul>
+</li>
+<li>If the failed node was reducing, then other <em>TaskTrackers</em> will be asked to re-execute all reduce tasks that were in progress on the failed <em>TaskTracker</em>.<ul>
 <li><em>Must be Side-Effect Free</em></li>
 </ul>
+</li>
+</ol>
 </li>
 <li><em>Secondarily: Speculative Execution</em><ul>
 <li>If some <strong>straggler</strong> nodes rate limit the rest of the program, Hadoop will schedule redundant copies of remaining tasks across several nodes which do not have other work to perform.</li>
@@ -14171,7 +14169,7 @@ class Reducer
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Eventual-Consistency">Eventual Consistency<a class="anchor-link" href="#Eventual-Consistency">&#182;</a></h3><ul>
-<li>If no updates take palce for a long time, all replicas will gradually become consistent.</li>
+<li>If no updates take place for a long time, all replicas will gradually become consistent.</li>
 <li>Allows different processes to observe write operations taking effect in different orders, even when these write operations are related by "causally precedes" or "happens before".</li>
 </ul>
 
@@ -14233,7 +14231,7 @@ class Reducer
 <li>Let $N_{W}$ be the size of the write quorum.</li>
 <li>Let $N_{R}$ be the size of the read quorum.</li>
 <li>The following two rules must be satisfied:<ol>
-<li>$N_{R} + N_{E} &gt; N$; Read and write quorums must overlap.</li>
+<li>$N_{R} + N_{W} &gt; N$; Read and write quorums must overlap.</li>
 <li>$N_{W} + N_{W} &gt; N$; Two write quorums must overlap.</li>
 </ol>
 </li>
@@ -14395,7 +14393,7 @@ class Reducer
 <h4 id="Properties">Properties<a class="anchor-link" href="#Properties">&#182;</a></h4><ul>
 <li><strong>Safety Property 1 (Agreement)</strong>: Two calls to <code>decide()</code> never return different values.</li>
 <li><strong>Safety Property 2 (Validity)</strong>: If a process calls <code>decide()</code> with response <code>v</code>, then some process invoked a call to <code>propose(v)</code>.</li>
-<li><strong>Liveness Property</strong>: If a process calls <code>propse(v)</code> or <code>decide()</code> and does not fail, then this call eventually terminates.</li>
+<li><strong>Liveness Property</strong>: If a process calls <code>propose(v)</code> or <code>decide()</code> and does not fail, then this call eventually terminates.</li>
 </ul>
 <h4 id="Variations">Variations<a class="anchor-link" href="#Variations">&#182;</a></h4><p><img src="images/Fault_Tolerance_2.png" alt="Circumstances Under Which Distributed Consensus Can Be Reached"></p>
 <ol>
@@ -14925,7 +14923,7 @@ class Reducer
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Timekeeping-Standards">Timekeeping Standards<a class="anchor-link" href="#Timekeeping-Standards">&#182;</a></h3><ul>
-<li><strong>Solar Day</strong>: The interval between two consecutive transits of the sun;this is not constant.</li>
+<li><strong>Solar Day</strong>: The interval between two consecutive transits of the sun; this is not constant.</li>
 <li><strong>TAI</strong> (<em>Temps Atomique International</em>): International time scale based on the average of multiple Cesium 133 atomic clocks.</li>
 <li><strong>UTC</strong> (<em>Coordinated Universal Time</em>): The world's primary time standard. Based on TAI, UTC uses leap seconds at irregular intervals to compensate for the Earth's slowing rotation.</li>
 </ul>
@@ -14994,7 +14992,8 @@ $$\delta = \frac{(T_{4} - T{1}) - (T_{3} - T_{2})}{2}$$</li>
 <h4 id="Lamport-Clocks">Lamport Clocks<a class="anchor-link" href="#Lamport-Clocks">&#182;</a></h4><ol>
 <li>Before executing an event, process $P_{i}$ increments its own counter $C_{i} = C_{i} + 1$.</li>
 <li>When $P_{i}$ sends a message $m$ to $P_{j}$, it tags $m$ with a timestamp $ts(m)$ equal to $C_{i}$.</li>
-<li>When $P_{j}$ receives a message $m$ from $P_{i}$, it adjusts its counter to $C_{j} = \max(C_{j}, ts(m)) + 1$.</li>
+<li>When $P_{j}$ receives a message $m$ from $P_{i}$, it adjusts its counter to $C_{j} = \max(C_{j}, ts(m))$.</li>
+<li>$P_{j}$ increments $C_{j}$ before delivering the message to the application.</li>
 </ol>
 <ul>
 <li>Lamport clocks ensure the "happens-before" relation: $a \to b \implies C(a) &lt; C(b)$.</li>
@@ -15004,6 +15003,7 @@ $$\delta = \frac{(T_{4} - T{1}) - (T_{3} - T_{2})}{2}$$</li>
 <li>Before executing an event, process $P_{i}$ increments its own counter $VC_{i}[i] = VC_{i}[i] + 1$.</li>
 <li>When $P_{i}$ sends a message $m$ to $P_{j}$, it tags $m$ with a vector timestamp $ts(m)$ equal to $VC_{i}$.</li>
 <li>When $P_{j}$ receives a message $m$ from $P_{i}$, it adjusts its counter to $VC_{j}[k] = \max(VC_{j}[k], ts(m)[k]) + 1, \forall k$.</li>
+<li>$P_{j}$ increments $VC_{j}[j]$ before delivering the message to the application.</li>
 </ol>
 <ul>
 <li>Vector clocks ensure the "happens-before" relation and the causality relation: $a \to b \Leftrightarrow C(a) &lt; C(b)$.</li>
@@ -15119,7 +15119,7 @@ $$\delta = \frac{(T_{4} - T{1}) - (T_{3} - T_{2})}{2}$$</li>
 <h4 id="Gets">Gets<a class="anchor-link" href="#Gets">&#182;</a></h4><ul>
 <li>A <em>GET</em> operation is executed on behalf of a client by a <strong>coordinator</strong>.</li>
 <li>The coordinator broadcasts the read to all replicas of a row using the following kinds of requests.<ol>
-<li><strong>Digest Read Request</strong>: Retrieves data from the closest replica.</li>
+<li><strong>Direct Read Request</strong>: Retrieves data from the closest replica.</li>
 <li><strong>Digest Request</strong>: Retrieves a hash of the data from the remaining replicas; the coordinator waits for at least $N_{R} - 1$ of these to respond.</li>
 <li><strong>Background Read Repair Request</strong>: Sent if a disrepancy is detected among the hashes reported by different replicas, tells the replica to obtain the latest value.</li>
 </ol>
@@ -15128,6 +15128,19 @@ $$\delta = \frac{(T_{4} - T{1}) - (T_{3} - T_{2})}{2}$$</li>
 
 </div>
 </div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-Java"><pre><span></span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
 </div>
     </div>
   </div>
