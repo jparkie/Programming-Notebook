@@ -16204,6 +16204,153 @@ $$\mathcal{L}(\pmb{w}) = \mathbb{E}_{s, a, r, s' \sim \mathcal{D}}\left[ \left( 
 </div>
 </div>
 </div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Policy-Gradient-">Policy Gradient <span name="S07-03" /><a class="anchor-link" href="#Policy-Gradient-">&#182;</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Motivation---Why-should-you-approximate-policies-versus-action-values?">Motivation - Why should you approximate policies versus action-values?<a class="anchor-link" href="#Motivation---Why-should-you-approximate-policies-versus-action-values?">&#182;</a></h4><h5 id="Advantages">Advantages<a class="anchor-link" href="#Advantages">&#182;</a></h5><ul>
+<li><em>Better Convergence Properties</em></li>
+<li><em>High-Dimensional Action Spaces</em></li>
+<li><em>Continuous Action Spaces</em></li>
+<li><em>Stochastic Policies; e.g., Rock-Paper-Scissors</em></li>
+</ul>
+<h5 id="Disadvantages">Disadvantages<a class="anchor-link" href="#Disadvantages">&#182;</a></h5><ul>
+<li><em>Typically, Converge Local Optimum vs. Global Optimum</em></li>
+<li><em>Typically, Inefficient Policy Evaluation</em></li>
+<li><em>Typically, High Variance Policy Evaluation</em></li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Policy-Objective-Functions---What-policy-objective-functions-can-be-used-for-a-given-type-of-environment?">Policy Objective Functions - What policy objective functions can be used for a given type of environment?<a class="anchor-link" href="#Policy-Objective-Functions---What-policy-objective-functions-can-be-used-for-a-given-type-of-environment?">&#182;</a></h4><ul>
+<li><strong>Goal</strong>: Given a policy $\pi(a \mid s, \pmb{\theta})$ with parameters $\pmb{\theta}$, find best $\pmb{\theta}$.</li>
+<li><strong>Episodic Environments</strong>: <em>Use Start Value</em>.
+$$J_{1}(\pmb{\theta}) = V_{\pi}(s_{1}) = \mathbb{E}_{\pi}[v_{1}]$$</li>
+<li><strong>Continuing Environments</strong>:<ul>
+<li><em>Use Average Value</em>.
+$$J_{avV}(\pmb{\theta}) = \sum_{s} d^{\pi}(s) V^{\pi}(s)$$</li>
+<li><em>Use Average Reward Per Time-Step.</em>
+$$J_{avR}(\pmb{\theta}) = \sum_{s} d^{\pi}(s) \sum_{a} \pi(a \mid s, \pmb{\theta}) \mathcal{R}_{s}^{a}$$</li>
+<li>Where $d^{\pi}(s)$ is the stationary distribution of Markov chain for $\pi_{\pmb{\theta}}$.</li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Policy-Gradient---How-does-policy-gradient-algorithms-achieve-policy-based-reinforcement-learning?">Policy Gradient - How does policy gradient algorithms achieve policy based reinforcement learning?<a class="anchor-link" href="#Policy-Gradient---How-does-policy-gradient-algorithms-achieve-policy-based-reinforcement-learning?">&#182;</a></h4><ul>
+<li><strong>Important Idea</strong>: *Policy Based Reinforcement Learning = Finding $\pmb{\theta}$ That Maximises $J(\pmb{\theta})$.</li>
+<li><strong>Policy gradient algorithms</strong> search for a local maximum in $J(\pmb{\theta})$ by ascending the gradient of the policy, with respect to parameters $\pmb{\theta}$.
+$$\Delta\pmb{\theta} = \alpha \nabla_{\pmb{\theta}} J(\pmb{\theta})$$<ul>
+<li>Where $\alpha$ is a step-size parameter.</li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Policy-Gradient-Theorem---How-do-you-compute-the-policy-gradient-analytically?">Policy Gradient Theorem - How do you compute the policy gradient analytically?<a class="anchor-link" href="#Policy-Gradient-Theorem---How-do-you-compute-the-policy-gradient-analytically?">&#182;</a></h4><h5 id="Likelihood-Ratios">Likelihood Ratios<a class="anchor-link" href="#Likelihood-Ratios">&#182;</a></h5>$$
+\begin{aligned}
+\nabla_{\pmb{\theta}} \pi(a \mid s, \pmb{\theta}) &amp;= \pi(a \mid s, \pmb{\theta}) \frac{\nabla_{\pmb{\theta}} \pi(a \mid s, \pmb{\theta}) }{\pi(a \mid s, \pmb{\theta})} \\
+&amp;= \pi(a \mid s, \pmb{\theta}) \nabla_{\pmb{\theta}} \log \pi(a \mid s, \pmb{\theta})
+\end{aligned}
+$$<h5 id="Softmax-Policy-(Popular)">Softmax Policy (<em>Popular</em>)<a class="anchor-link" href="#Softmax-Policy-(Popular)">&#182;</a></h5><ol>
+<li>Weight actions using a linear combination of features $\phi(s, a)^{T} \pmb{\theta}$.</li>
+<li>Accordingly, the probability of an action is proportional to its exponentiated weight.
+$$\pi(a \mid s, \pmb{\theta}) \propto \exp(\phi(s, a)^{T} \pmb{\theta})$$</li>
+<li>Thus, the <em>score function</em> is the following.
+$$\nabla_{\pmb{\theta}} \log \pi(a \mid s, \pmb{\theta}) = \phi(s, a) - \mathbb{E}_{\pi}[\phi(s, \ast)]$$</li>
+</ol>
+<h5 id="Gaussian-Policy-(Continuous)">Gaussian Policy (<em>Continuous</em>)<a class="anchor-link" href="#Gaussian-Policy-(Continuous)">&#182;</a></h5><ol>
+<li>Let the mean be a linear combination of state features $\mu(s) = \phi(s)^{T} \pmb{\theta}$.</li>
+<li>Let the variance be fixed/parameterised $\sigma^{2}$.</li>
+<li>Accordingly, an action is a Gaussian random variable.
+$$a \sim \mathcal{N}(\mu(s), \sigma^{2})$$</li>
+<li>Thus, the <em>score function</em> is the following.
+$$\nabla_{\pmb{\theta}} \log \pi(a \mid s, \pmb{\theta}) = \frac{(a - \mu(s)) \phi(s)}{\sigma^{2}}$$</li>
+</ol>
+<h5 id="Theorem">Theorem<a class="anchor-link" href="#Theorem">&#182;</a></h5><ul>
+<li>For any differentiable policy $\pi(a \mid s, \pmb{\theta})$ and for any of the policy objective functions $J = J_{1}$, $J_{avR}$, or $\frac{1}{1 - \gamma} J_{avV}$, the policy gradient is the following.
+$$\nabla_{\pmb{\theta}} J(\pmb{\theta}) = \mathbb{E}_{\pi}\left[ \nabla_{\pmb{\theta}} \log \pi(a \mid s, \pmb{\theta}) \cdot Q^{\pi_{\pmb{\theta}}}(s, a) \right]$$</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Monte-Carlo-Policy-Gradient-(REINFORCE)---How-does-REINFORCE-apply-the-policy-gradient-theorem?">Monte-Carlo Policy Gradient (REINFORCE) - How does REINFORCE apply the policy gradient theorem?<a class="anchor-link" href="#Monte-Carlo-Policy-Gradient-(REINFORCE)---How-does-REINFORCE-apply-the-policy-gradient-theorem?">&#182;</a></h4><p><img src="images/PG_1.png" alt="REINFORCE Algorithm"></p>
+<ul>
+<li>It updates parameters using stochastic gradient ascent.</li>
+<li>It uses the return $v_{t}$ as an unbiased sample of $Q^{\pi_{\pmb{\theta}}}(s_{t}, a_{t})$.</li>
+<li><strong>Problem</strong>: The Monte-Carlo policy gradient has high variance.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Monte-Carlo-Policy-Gradient-(REINFORCE-with-Baseline)---N/A">Monte-Carlo Policy Gradient (REINFORCE with Baseline) - N/A<a class="anchor-link" href="#Monte-Carlo-Policy-Gradient-(REINFORCE-with-Baseline)---N/A">&#182;</a></h4><p><img src="images/PG_2.png" alt="REINFORCE with Baseline Algorithm"></p>
+<ul>
+<li><strong>Important Note</strong>: <em>Faster.</em></li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Actor-Critic-Architecture---How-does-the-actor-critic-archiecture-reduce-variance-in-Monte-Carlo-policy-gradient-algorithms?">Actor-Critic Architecture - How does the actor-critic archiecture reduce variance in Monte-Carlo policy gradient algorithms?<a class="anchor-link" href="#Actor-Critic-Architecture---How-does-the-actor-critic-archiecture-reduce-variance-in-Monte-Carlo-policy-gradient-algorithms?">&#182;</a></h4><p><img src="images/PG_3.png" alt="Actor-Critic Architecture"></p>
+<ul>
+<li>Actor-critic methods consist of two models, which may optionally share parameters.<ol>
+<li><strong>Critic</strong>: Updates the action-value function parameters $\pmb{w}$.</li>
+<li><strong>Actor</strong>: Updates policy parameters $\pmb{\theta}$, in the direction suggested by the critic.</li>
+</ol>
+</li>
+</ul>
+<h5 id="Actor-Critic-Formulas">Actor-Critic Formulas<a class="anchor-link" href="#Actor-Critic-Formulas">&#182;</a></h5><p><img src="images/PG_4.png" alt="Actor-Critic Formulas"></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Actor-Critic-Policy-Gradient-Algorithm---N/A">Actor-Critic Policy Gradient Algorithm - N/A<a class="anchor-link" href="#Actor-Critic-Policy-Gradient-Algorithm---N/A">&#182;</a></h4><p><img src="images/PG_5.png" alt="Actor-Critic Policy Gradient Algorithm"></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Actor-Critic-Policy-Gradient-with-Eligibility-Traces-Algorithm---N/A">Actor-Critic Policy Gradient with Eligibility Traces Algorithm - N/A<a class="anchor-link" href="#Actor-Critic-Policy-Gradient-with-Eligibility-Traces-Algorithm---N/A">&#182;</a></h4><p><img src="images/PG_6.png" alt="Actor-Critic Policy Gradient with Eligibility Traces Algorithm"></p>
+
+</div>
+</div>
+</div>
     </div>
   </div>
 </body>
