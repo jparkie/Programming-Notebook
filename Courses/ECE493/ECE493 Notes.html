@@ -15787,7 +15787,13 @@ $$
 $$R_{t}^{\lambda} = (1 - \lambda) \sum_{n = 1}^{\infty} \lambda^{n - 1} R_{t}^{(n)}$$
 $$\Delta V_{t}(s_t) = \alpha \left[ R_{t}^{\lambda} - V_{t}(s_{t}) \right]$$</li>
 <li>If $\lambda = 1$, TD$(1)$ is MC.</li>
-<li>If $\lambda = 1$, TD$(0)$ is TD$(0)$.</li>
+<li>If $\lambda = 0$, TD$(0)$ is TD$(0)$.</li>
+<li>If episodic, $\lambda$-return can be expressed by the following.
+$$R_{t}^{\lambda} = (1 - \lambda) \sum_{n = 1}^{T - t - 1} \lambda^{n - 1} R_{t}^{(n)} +  \lambda^{T - t - 1} R_{t}$$<ul>
+<li>Where the first term represents the return until termination.</li>
+<li>Where the second term represents the return after termination.</li>
+</ul>
+</li>
 </ul>
 
 </div>
@@ -15797,7 +15803,7 @@ $$\Delta V_{t}(s_t) = \alpha \left[ R_{t}^{\lambda} - V_{t}(s_{t}) \right]$$</li
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h4 id="Eligibility-Trace---How-do-you-use-eligibility-traces-to-compute-TD$(\lambda)$?">Eligibility Trace - How do you use eligibility traces to compute TD$(\lambda)$?<a class="anchor-link" href="#Eligibility-Trace---How-do-you-use-eligibility-traces-to-compute-TD$(\lambda)$?">&#182;</a></h4><ul>
-<li><strong>Eligibility Trace</strong>: A backward view mechanism for implementing TD$(\lambda)$ by decaying all traces by $\gamma \lambda$ and increment the race for the current state by 1, and accumulating the trace.
+<li><strong>Eligibility Trace</strong>: A backward view mechanism for implementing TD$(\lambda)$ by decaying all traces by $\gamma \lambda$ and increment the trace for the current state by 1, and accumulating the trace.
 $$
 e_{t}(s) =
 \begin{cases}
