@@ -13161,7 +13161,7 @@ div#notebook {
 <li><strong>Simple Reflex Agents</strong>: Follow a lookup-table approach; needs fully observable environment.</li>
 <li><strong>Model-Based Reflex Agents</strong>: Add state information to handle partially observable environments.</li>
 <li><strong>Goal-Based Agents</strong>: Add concept of goals to help choose actions.</li>
-<li><strong>Utility-Based Agents</strong>: Add utility to decide "good" or "bad" when face with conflicting goals.</li>
+<li><strong>Utility-Based Agents</strong>: Add utility to decide "good" or "bad" when faced with conflicting goals.</li>
 <li><strong>Learning Agents</strong>: Add ability to learn from experience to improve performance.</li>
 </ul>
 
@@ -14397,7 +14397,7 @@ $$\frac{\frac{\tau_{i, j}^{\alpha}}{d_{i, j}^{\beta}}}{\sum_{n \in N_{i}} \frac{
 <li>In each step, the amount of pheromone on the trail is evaporated (i.e. $\tau = \tau \cdot (1 - p)$).</li>
 <li>In each step, the amount of pheromone on the trail is increased if ants choose the trail (i.e. $\tau = \tau + \Delta\tau$).<ul>
 <li><strong>Ant Density Model</strong>: Where a constant value is added.</li>
-<li><strong>Ant Quality Model</strong>: Where a constant is divided by the edge length.</li>
+<li><strong>Ant Quantity Model</strong>: Where a constant is divided by the edge length.</li>
 <li><strong>Online Delayed Model</strong>: Where an ant first builds a solution, then traces its path backwards and adds pheromone based on the solution quality.</li>
 </ul>
 </li>
@@ -14712,7 +14712,7 @@ $$<ul>
 <li>Produces the sequence of swaps that could transform one position to the other.</li>
 </ul>
 <h4 id="Multiplying-a-Velocity-by-a-Constant">Multiplying a Velocity by a Constant<a class="anchor-link" href="#Multiplying-a-Velocity-by-a-Constant">&#182;</a></h4><ul>
-<li>Change the length of the velocity vector (number of swaps) accoding to the constant $c$:<ul>
+<li>Change the length of the velocity vector (number of swaps) according to the constant $c$:<ul>
 <li>If $c = 0$, the length is set to zero.</li>
 <li>If $c &lt; 1$, the velocity is truncated.</li>
 <li>If $c &gt; 1$, the velocity is augmented.</li>
