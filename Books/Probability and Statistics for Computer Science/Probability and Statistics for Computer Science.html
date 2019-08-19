@@ -14409,7 +14409,7 @@ $$P\left(\left\{a \le \frac{X - \mu}{\sigma} \le b\right\}\right) \to \Phi(b) - 
 <li>The expected value of this random variable is the population mean.</li>
 </ul>
 <h4 id="Expressions-for-Mean-and-Variance-of-the-Sample-Mean">Expressions for Mean and Variance of the Sample Mean<a class="anchor-link" href="#Expressions-for-Mean-and-Variance-of-the-Sample-Mean">&#182;</a></h4><ul>
-<li>Let $X^{(N)}$ for the mean of $N$ samples.
+<li>Let $X^{(N)}$ be a random variable for the mean of $N$ samples $x_i$.
 $$
 \begin{align}
 \mathbb{E}[X^{(N)}] &amp;= \text{popmean}(\{X\}) \\
@@ -14449,7 +14449,7 @@ $$</li>
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Confidence-Interval-for-a-Population-Mean">Confidence Interval for a Population Mean<a class="anchor-link" href="#Confidence-Interval-for-a-Population-Mean">&#182;</a></h3><ul>
-<li>Choose some fraction $f$. A $f$ confidence interval for a population mean is an interval constructed using the sample mean.</li>
+<li>Choose some fraction $f$; a $f$ confidence interval for a population mean is an interval constructed using the sample mean.</li>
 <li>It has the property that for that fraction $f$ of all samples, the population mean will lie inside the interval constructed from each sample's mean.</li>
 </ul>
 
@@ -14547,6 +14547,29 @@ $$T = \frac{\text{mean}(\{x\}) - \text{popmean}(\{X\})}{\text{stderr}(\{x\})}$$<
 <li>Compute $b$ such that for a t-random variable, $P(\{T \ge b\}) = a$.</li>
 </ol>
 <h4 id="Confidence-Interval">Confidence Interval<a class="anchor-link" href="#Confidence-Interval">&#182;</a></h4>$$[\text{mean}(\{x\}) - b\cdot\text{stderr}(\{x\}), \text{mean}(\{x\}) + b\cdot\text{stderr}(\{x\})]$$
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Estimating-Standard-Error-of-Any-Statistic---The-Bootstrap">Estimating Standard Error of Any Statistic - The Bootstrap<a class="anchor-link" href="#Estimating-Standard-Error-of-Any-Statistic---The-Bootstrap">&#182;</a></h3><ul>
+<li><strong>Goal</strong>: Estimate the standard error for a statistic $S$ evaluated on a dataset of $N$ items $\{x\}$.</li>
+</ul>
+<ol>
+<li>Compute $r$ bootstrap replicates of the dataset. Write the $i$'th replicate $\{x\}_i$. Obtain each by:<ol>
+<li>Building a uniform probability distribution on the numbers $1, ..., N$.</li>
+<li>Drawing $N$ independent samples from this distribution. Write $s(i)$ for the $i$'th such sample.</li>
+<li>Building a new dataset $\{x_{s(1)}, ..., x_{s(N)}\}$.</li>
+</ol>
+</li>
+<li>For each replicate, compute $S(\{x\}_i)$.</li>
+<li>Compute the statistic $\bar{S}$.
+$$\bar{S} = \frac{\sum_{i} S(\{x\}_i)}{r}$$</li>
+<li>Estimate the standard error for $S$.
+$$\text{stderr}(\{S\}) = \sqrt{\frac{\sum_{i} \left[ S(\{x\}_i) - \bar{S} \right]^2}{r - 1}}$$</li>
+</ol>
+
 </div>
 </div>
 </div>
