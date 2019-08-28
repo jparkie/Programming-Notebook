@@ -13958,6 +13958,9 @@ $$</li>
 </ol>
 </li>
 </ul>
+<h4 id="See-Also">See Also<a class="anchor-link" href="#See-Also">&#182;</a></h4><blockquote><p>Walck, Christian. “Hand-book on statistical distributions for experimentalists.” (2007).</p>
+<p>Leemis, Lawrence M and Jacquelyn T. Mcqueston. “Univariate Distribution Relationships.” (2008).</p>
+</blockquote>
 
 </div>
 </div>
@@ -14242,38 +14245,6 @@ $$\text{var}(X) = \frac{1}{\lambda^2}$$</li>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Continuous-Gamma-Distribution">Continuous Gamma Distribution<a class="anchor-link" href="#Continuous-Gamma-Distribution">&#182;</a></h3><p><em><a href="https://en.wikipedia.org/wiki/Gamma_distribution">See Also: Wikipedia</a></em></p>
-<p><img src="images/Gamma_PDF.gif" alt="Continuous Gamma Distribution"></p>
-<h4 id="Properties-of-Continuous-Gamma-Distribution">Properties of Continuous Gamma Distribution<a class="anchor-link" href="#Properties-of-Continuous-Gamma-Distribution">&#182;</a></h4><ul>
-<li>$\Gamma(x)$ is the <a href="https://en.wikipedia.org/wiki/Gamma_function">gamma function</a>.<ul>
-<li>The gamma function is a generalization of a factorial:
-$$\Gamma(\alpha) = (\alpha - 1)\Gamma(\alpha - 1)$$</li>
-</ul>
-</li>
-<li>$\gamma(s, x)$ is the <a href="https://en.wikipedia.org/wiki/Incomplete_gamma_function">lower incomplete gamma function</a></li>
-<li><strong>Parameters</strong>: $\alpha$, $\beta$<ul>
-<li>Where $\alpha &gt; 0$</li>
-<li>Where $\beta &gt; 0$</li>
-<li>Where $\alpha$ is the shape</li>
-<li>Where $\beta$ is the rate</li>
-</ul>
-</li>
-<li><strong>PDF</strong>:
-$$p(x) = \frac{\beta^\alpha}{\Gamma(\alpha)} x^{\alpha - 1} e^{-\beta x}$$</li>
-<li><strong>CDF</strong>:
-$$F(x) = \frac{1}{\Gamma(\alpha)} \gamma(\alpha, \beta x)$$</li>
-<li><strong>Mean</strong>:
-$$\text{mean}(X) = \frac{\alpha}{\beta}$$</li>
-<li><strong>Variance</strong>:
-$$\text{var}(X) = \frac{\alpha}{\beta^2}$$</li>
-</ul>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Continuous-Weibull-Distribution">Continuous Weibull Distribution<a class="anchor-link" href="#Continuous-Weibull-Distribution">&#182;</a></h3><p><em><a href="https://en.wikipedia.org/wiki/Weibull_distribution">See Also: Wikipedia</a></em></p>
 <p><img src="images/Weibull_PDF.gif" alt="Continuous Weibull Distribution"></p>
 <h4 id="Properties-of-Continuous-Weibull-Distribution">Properties of Continuous Weibull Distribution<a class="anchor-link" href="#Properties-of-Continuous-Weibull-Distribution">&#182;</a></h4><ul>
@@ -14341,7 +14312,45 @@ $$\text{iqr}(X) = 2\gamma$$</li>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Continuous-Gamma-Distribution">Continuous Gamma Distribution<a class="anchor-link" href="#Continuous-Gamma-Distribution">&#182;</a></h3><p><em><a href="https://en.wikipedia.org/wiki/Gamma_distribution">See Also: Wikipedia</a></em></p>
+<ul>
+<li>A conjugate prior for many continuous distributions.</li>
+</ul>
+<p><img src="images/Gamma_PDF.gif" alt="Continuous Gamma Distribution"></p>
+<h4 id="Properties-of-Continuous-Gamma-Distribution">Properties of Continuous Gamma Distribution<a class="anchor-link" href="#Properties-of-Continuous-Gamma-Distribution">&#182;</a></h4><ul>
+<li>$\Gamma(x)$ is the <a href="https://en.wikipedia.org/wiki/Gamma_function">gamma function</a>.<ul>
+<li>The gamma function is a generalization of a factorial:
+$$\Gamma(\alpha) = (\alpha - 1)\Gamma(\alpha - 1)$$</li>
+</ul>
+</li>
+<li>$\gamma(s, x)$ is the <a href="https://en.wikipedia.org/wiki/Incomplete_gamma_function">lower incomplete gamma function</a></li>
+<li><strong>Parameters</strong>: $\alpha$, $\beta$<ul>
+<li>Where $\alpha &gt; 0$</li>
+<li>Where $\beta &gt; 0$</li>
+<li>Where $\alpha$ is the shape</li>
+<li>Where $\beta$ is the rate</li>
+</ul>
+</li>
+<li><strong>PDF</strong>:
+$$p(x) = \frac{\beta^\alpha}{\Gamma(\alpha)} x^{\alpha - 1} e^{-\beta x}$$</li>
+<li><strong>CDF</strong>:
+$$F(x) = \frac{1}{\Gamma(\alpha)} \gamma(\alpha, \beta x)$$</li>
+<li><strong>Mean</strong>:
+$$\text{mean}(X) = \frac{\alpha}{\beta}$$</li>
+<li><strong>Variance</strong>:
+$$\text{var}(X) = \frac{\alpha}{\beta^2}$$</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Continuous-Beta-Distribution">Continuous Beta Distribution<a class="anchor-link" href="#Continuous-Beta-Distribution">&#182;</a></h3><p><em><a href="https://en.wikipedia.org/wiki/Beta_distribution">See Also: Wikipedia</a></em></p>
+<ul>
+<li>A conjugate prior for many discrete distributions.</li>
+</ul>
 <p><img src="images/Beta_PDF.gif" alt="Continuous Beta Distribution"></p>
 <h4 id="Properties-of-Continuous-Beta-Distribution">Properties of Continuous Beta Distribution<a class="anchor-link" href="#Properties-of-Continuous-Beta-Distribution">&#182;</a></h4><ul>
 <li>$B(\alpha, \beta) = \frac{\Gamma(\alpha)\Gamma(\beta)}{\Gamma(\alpha + \beta)}$</li>
