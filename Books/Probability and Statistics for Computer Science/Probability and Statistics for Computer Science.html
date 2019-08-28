@@ -14573,6 +14573,244 @@ $$\text{stderr}(\{S\}) = \sqrt{\frac{\sum_{i} \left[ S(\{x\}_i) - \bar{S} \right
 </div>
 </div>
 </div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="7.-The-Significance-of-Evidence">7. The Significance of Evidence<a class="anchor-link" href="#7.-The-Significance-of-Evidence">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Significance">Significance<a class="anchor-link" href="#Significance">&#182;</a></h3><ul>
+<li>The <strong>significance</strong> of the evidence against a hypothesis can be assessed by finding what fraction of samples would give sample means like the one observed from the evidence if the hypothesis is true.</li>
+<li>The <strong>test statistic</strong> is a random variable calculated from the sample data and used in a hypothesis test.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="p-Values">p-Values<a class="anchor-link" href="#p-Values">&#182;</a></h3><ul>
+<li>The <strong>p-value</strong> represents the fraction of samples that would give a more extreme value of the test statistic than that observed, if the hypothesis was true.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="p-Value-and-The-Null-Hypothesis">p-Value and The Null Hypothesis<a class="anchor-link" href="#p-Value-and-The-Null-Hypothesis">&#182;</a></h3><ul>
+<li>The <strong>null hypothesis</strong> is a general statement or default position that there is no relationship between two measured phenomena.</li>
+<li>A small p-value means that very few samples would display more extreme behavior than what was observed, if the null hypothesis is true.</li>
+<li>A small p-value means that, to believe our null hypothesis, we are forced to believe we have an extremely odd sample.</li>
+<li>Formally, the p-value is described as an assessment of the significance of the evidence against the null hypothesis.</li>
+<li>The p-value is smaller when the evidence against the null hypothesis is stronger; decide a threshold ($0.05\%$) for how small a p-value can be to reject the null hypothesis.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Generalized-Tests-of-Significance">Generalized Tests of Significance<a class="anchor-link" href="#Generalized-Tests-of-Significance">&#182;</a></h3><ol>
+<li>Determine a statistic which can be used to test the particular proposition you have in mind.<ol>
+<li>This statistic needs to depend on your data.</li>
+<li>This statistic needs to depend on your hypothesis.</li>
+<li>This statistic needs to have a known distribution under sampling variation.</li>
+</ol>
+</li>
+<li>Compute the value of this statistic.</li>
+<li>Look at the distribution to determine what fraction of samples would have a more extreme value.</li>
+<li>If this fraction is small, the evidence suggests your hypothesis isn't true.</li>
+</ol>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="The-T-Test-of-Significance-for-a-Hypothesized-Mean">The T-Test of Significance for a Hypothesized Mean<a class="anchor-link" href="#The-T-Test-of-Significance-for-a-Hypothesized-Mean">&#182;</a></h3><ul>
+<li>Let the initial hypothesis be that the population has a known mean: $\mu$.</li>
+<li>Let $\{x\}$ be the sample.</li>
+<li>Let $N$ be the sample size.</li>
+</ul>
+<ol>
+<li>Compute the sample mean: $\text{mean}(\{x\})$.</li>
+<li>Estimate the standard error.
+$$\text{stderr}(\{x\}) = \frac{\text{stdunbiased}(\{x\})}{\sqrt{N}}$$</li>
+<li>Compute the test statistic.
+$$s = \frac{\mu - \text{mean}(\{x\})}{\text{stderr}(\{x\})}$$</li>
+<li>Compute the p-value.</li>
+</ol>
+<ul>
+<li>The p-value summarizes the extent to which the data contradicts the hypothesis.</li>
+<li>A small p-value implies that, if the hypothesis is true, the sample is very unusual.</li>
+<li>The smaller the p-value, the more strongly the evidence contradicts the hypothesis.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Computing-a-Two-Sided-p-Value-for-a-T-Test">Computing a Two-Sided p-Value for a T-Test<a class="anchor-link" href="#Computing-a-Two-Sided-p-Value-for-a-T-Test">&#182;</a></h3><ul>
+<li>Evaluate the following:
+$$p = (1 - f) = 1 - \int_{-\lvert s \rvert}^{\lvert s \rvert} p_t(u; N - 1) du = P(\{S &gt; \lvert s \rvert\}) \cup P(\{S &lt; -\lvert s \rvert\})$$</li>
+<li>Where $p_t(u; N - 1)$ is the probability density of a t-distribution.</li>
+<li>If $N &gt; 30$, it is enough to replace $p_t$ with the density of a standard normal distribution.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Computing-a-One-Sided-p-Value-for-a-T-Test---Not-Recommended">Computing a One-Sided p-Value for a T-Test - <em>Not Recommended</em><a class="anchor-link" href="#Computing-a-One-Sided-p-Value-for-a-T-Test---Not-Recommended">&#182;</a></h3><ul>
+<li>Evaluate either of the following:
+$$
+\begin{aligned}
+p &amp;= P(\{S &gt; \lvert s \rvert\}) \\
+p &amp;= P(\{S &lt; -\lvert s \rvert\})
+\end{aligned}
+$$</li>
+<li>Where $p_t(u; N - 1)$ is the probability density of a t-distribution.</li>
+<li>If $N &gt; 30$, it is enough to replace $p_t$ with the density of a standard normal distribution.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Sums-and-Differences-of-Normal-Random-Variables">Sums and Differences of Normal Random Variables<a class="anchor-link" href="#Sums-and-Differences-of-Normal-Random-Variables">&#182;</a></h3><ul>
+<li>Let $X_1$ be a normal random variable with mean $\mu_1$ and standard deviation $\sigma_1$.</li>
+<li>Let $X_2$ be a normal random variable with mean $\mu_2$ and standard deviation $\sigma_2$.</li>
+<li>Let $X_1$ and $X_2$ be independent.</li>
+</ul>
+<ol>
+<li>For any constant $c_1 \ne 0$, $c_1 X_1$ is a normal random variable with mean $c_1 \mu_1$ and standard deviation $c_1 \sigma_1$.</li>
+<li>For any constant $c_2$, $X_1 + c_2$ is a normal random variable with mean $\mu_1 + c_2$ and standard deviation $\sigma_1$.</li>
+<li>$X_1 + X_2$ is a normal random variable with mean $\mu_1 + \mu_2$ and standard deviation $\sqrt{\sigma^2_1 + \sigma^2_2}$.</li>
+</ol>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Testing-Whether-Two-Populations-Have-the-Same-Mean,-for-Known-Population-Standard-Deviations">Testing Whether Two Populations Have the Same Mean, for Known Population Standard Deviations<a class="anchor-link" href="#Testing-Whether-Two-Populations-Have-the-Same-Mean,-for-Known-Population-Standard-Deviations">&#182;</a></h3><ul>
+<li>The initial hypothesis is that the populations have the same, unknown, mean.</li>
+<li>Let $\{x\}$ be the sample of the first population.</li>
+<li>Let $\{y\}$ be the sample of the second population.</li>
+<li>Let $k_x$ be the sample size of the first population.</li>
+<li>Let $k_y$ be the sample size of the second population.</li>
+</ul>
+<ol>
+<li>Compute the sample means for each population, $\text{mean}(\{x\})$ and $\text{mean}(\{y\})$.</li>
+<li>Compute the standard error for the difference between the means.
+$$s_{ed} = \sqrt{\frac{\text{popsd}(\{X\})}{k_x} + \frac{\text{popsd}(\{Y\})}{k_y}}$$</li>
+<li>Compute the value of the test statistic.
+$$s = \frac{\text{mean}(\{x\}) - \text{mean}(\{y\})}{s_{ed}}$$</li>
+<li>Compute the p-value using the normal distribution.</li>
+</ol>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Testing-Whether-Two-Populations-Have-the-Same-Mean,-for-Same,-Unknown-Population-Standard-Deviations">Testing Whether Two Populations Have the Same Mean, for Same, Unknown Population Standard Deviations<a class="anchor-link" href="#Testing-Whether-Two-Populations-Have-the-Same-Mean,-for-Same,-Unknown-Population-Standard-Deviations">&#182;</a></h3><ul>
+<li>The initial hypothesis is that the populations have the same, unknown, mean.</li>
+<li>Let $\{x\}$ be the sample of the first population.</li>
+<li>Let $\{y\}$ be the sample of the second population.</li>
+<li>Let $k_x$ be the sample size of the first population.</li>
+<li>Let $k_y$ be the sample size of the second population.</li>
+</ul>
+<ol>
+<li>Compute the sample means for each population, $\text{mean}(\{x\})$ and $\text{mean}(\{y\})$.</li>
+<li>Compute the standard error for the difference between the means.
+$$s_{ed} = \sqrt{\left( \frac{\text{std}(\{x\})^2 (k_x - 1) + \text{std}(\{y\})^2 (k_y - 1)}{k_x + k_y - 2} \right) \left( \frac{k_x k_y}{k_x + k_y} \right)}$$</li>
+<li>Compute the value of the test statistic.
+$$s = \frac{\text{mean}(\{x\}) - \text{mean}(\{y\})}{s_{ed}}$$</li>
+<li>Compute the p-value using the t-distribution with the following number of degrees of freedom:
+$$N = k_x + k_y - 2$$</li>
+</ol>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Testing-Whether-Two-Populations-Have-the-Same-Mean,-for-Different,-Unknown-Population-Standard-Deviations">Testing Whether Two Populations Have the Same Mean, for Different, Unknown Population Standard Deviations<a class="anchor-link" href="#Testing-Whether-Two-Populations-Have-the-Same-Mean,-for-Different,-Unknown-Population-Standard-Deviations">&#182;</a></h3><ul>
+<li>The initial hypothesis is that the populations have the same, unknown, mean.</li>
+<li>Let $\{x\}$ be the sample of the first population.</li>
+<li>Let $\{y\}$ be the sample of the second population.</li>
+<li>Let $k_x$ be the sample size of the first population.</li>
+<li>Let $k_y$ be the sample size of the second population.</li>
+</ul>
+<ol>
+<li>Compute the sample means for each population, $\text{mean}(\{x\})$ and $\text{mean}(\{y\})$.</li>
+<li>Compute the standard error for the difference between the means.
+$$s_{ed} = \sqrt{\frac{\text{stdunbiased}(\{x\})^2}{k_x} + \frac{\text{stdunbiased}(\{y\})^2}{k_y}}$$</li>
+<li>Compute the value of the test statistic.
+$$s = \frac{\text{mean}(\{x\}) - \text{mean}(\{y\})}{s_{ed}}$$</li>
+<li>Compute the p-value using the t-distribution with the following number of degrees of freedom:
+$$N = \frac{\left( \frac{\text{stdunbiased}(\{x\})^2}{k_x} + \frac{\text{stdunbiased}(\{y\})^2}{k_y} \right)^2}{\frac{\left[ \frac{\text{stdunbiased}(\{x\})^2}{k_x} \right]^2}{k_x - 1} + \frac{\left[ \frac{\text{stdunbiased}(\{y\})^2}{k_y} \right]^2}{k_y - 1}}$$</li>
+</ol>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="The-F-Test-of-Significance-for-Equality-of-Variance">The F-Test of Significance for Equality of Variance<a class="anchor-link" href="#The-F-Test-of-Significance-for-Equality-of-Variance">&#182;</a></h3><ul>
+<li>Given two datasets $\{x\}$ of $N_x$ items and $\{y\}$ of $N_y$ items, assess the significance of evidence against the hypothesis that the populations represented by these two datasets have the same variance.</li>
+<li>Assume that the alternative hypothesis is that the population represented by $\{x\}$ has the larger variance.</li>
+</ul>
+<ol>
+<li>Compute the value of the test statistic.
+$$F = \frac{\text{stdunbiased}(\{x\})^2}{\text{stdunbiased}(\{y\})^2}$$</li>
+<li>Compute the p-value using the f-distribution with the following numbers of degrees of freedom:
+$$\{ N_x - 1, N_y - 1 \}$$</li>
+</ol>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="The-$\chi^2$-Test-of-Significance-of-Fit-to-a-Model">The $\chi^2$-Test of Significance of Fit to a Model<a class="anchor-link" href="#The-$\chi^2$-Test-of-Significance-of-Fit-to-a-Model">&#182;</a></h3><ul>
+<li>The model consists of $k$ disjoint events $\mathcal{E}_1, ..., \mathcal{E}_k$ which cover the space of outcomes and the probability $P(\mathcal{E})$ of each event.</li>
+<li>The model has $p$ unknown parameters.</li>
+</ul>
+<ol>
+<li>Perform $N$ experiments and record the number of times each event occurs in the experiments.</li>
+<li>The theoretical frequency of the $i$'th event for this experiment is $NP(\mathcal{E})$.</li>
+<li>Write $f_o(\mathcal{E}_i)$ for the observed frequency of event $i$ and $f_t(\mathcal{E}_i)$ for the theoretical frequency of the event under the null hypothesis.</li>
+<li>Compute the value of the test statistic.
+$$C = \sum_i \frac{\left(f_o(\mathcal{E}_i) - f_t(\mathcal{E}_i) \right)^2}{f_t(\mathcal{E}_i)}$$</li>
+<li>Compute the p-value using the $\chi^2$-distribution with the following number of degrees of freedom:
+$$N = k - p - 1$$</li>
+</ol>
+
+</div>
+</div>
+</div>
     </div>
   </div>
 </body>
