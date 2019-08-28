@@ -14794,7 +14794,8 @@ $$N = \frac{\left( \frac{\text{stdunbiased}(\{x\})^2}{k_x} + \frac{\text{stdunbi
 <li>Compute the value of the test statistic.
 $$F = \frac{\text{stdunbiased}(\{x\})^2}{\text{stdunbiased}(\{y\})^2}$$</li>
 <li>Compute the p-value using the f-distribution with the following numbers of degrees of freedom:
-$$\{ N_x - 1, N_y - 1 \}$$</li>
+$$\{ N_x - 1, N_y - 1 \}$$
+$$p = \int_F^\infty p_f(u; N_x - 1, N_y - 1) du$$</li>
 </ol>
 
 </div>
@@ -14814,9 +14815,116 @@ $$\{ N_x - 1, N_y - 1 \}$$</li>
 <li>Compute the value of the test statistic.
 $$C = \sum_i \frac{\left(f_o(\mathcal{E}_i) - f_t(\mathcal{E}_i) \right)^2}{f_t(\mathcal{E}_i)}$$</li>
 <li>Compute the p-value using the $\chi^2$-distribution with the following number of degrees of freedom:
-$$N = k - p - 1$$</li>
+$$N = k - p - 1$$
+$$p = \int_C^\infty p_{\chi^2}(u; k - p - 1) du$$</li>
 </ol>
 
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="8.-Experiments">8. Experiments<a class="anchor-link" href="#8.-Experiments">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Overview">Overview<a class="anchor-link" href="#Overview">&#182;</a></h3><ul>
+<li><strong>Background</strong>: An experiment tries to evaluate the effects of one or more treatments.<ol>
+<li>Allocate subjects to groups at random, so that each group looks similar.</li>
+<li>Apply the treatments at different levels to different groups.</li>
+<li>Observe whether the groups are different after the treatments.</li>
+</ol>
+</li>
+<li><strong>Goal</strong>: How do you determine whether the differences between groups are due to the treatments?</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Evaluating-Whether-a-Treatment-Has-Significant-Effects-with-a-One-Way-ANOVA-for-Balanced-Experiments">Evaluating Whether a Treatment Has Significant Effects with a One-Way ANOVA for Balanced Experiments<a class="anchor-link" href="#Evaluating-Whether-a-Treatment-Has-Significant-Effects-with-a-One-Way-ANOVA-for-Balanced-Experiments">&#182;</a></h3><ol>
+<li>Choose $L$ levels of treatment.</li>
+<li>Randomize $LG$ subjects into $L$ treatment groups of $G$ subjects each.</li>
+<li>Teach each subject, and record the results.</li>
+</ol>
+<h4 id="Terminology">Terminology<a class="anchor-link" href="#Terminology">&#182;</a></h4><ul>
+<li><em>Value for $j$'th Subject in $i$'th Treatment Level Group</em>:
+$$x_{ij}$$</li>
+<li><em>Overall Mean</em>:
+$$\hat{\mu} = \frac{\sum_{ij} x_{ij}}{GL}$$</li>
+<li><em>$i$'th Group Mean</em>:
+$$\hat{\mu}_i = \frac{\sum_{j} x_{ij}}{G}$$</li>
+<li><em>Sum of Squares Within Group (i.e. Errors)</em>:
+$$SS_W = \sum_{ij} \left( x_{ij} - \hat{\mu}_i \right)^2$$</li>
+<li><em>Sum of Squares Between Group (i.e. Errors)</em>:
+$$SS_B = G \left[ \sum_{i} \left( \hat{\mu} - \hat{\mu}_i \right)^2 \right]$$</li>
+<li><em>Mean Squares Within Group (i.e. Residual Variation)</em>:
+$$MS_W = \frac{SS_W}{L(G - 1)}$$</li>
+<li><em>Mean Squares Between Group (i.e. Treatment Variation)</em>:
+$$MS_B = \frac{SS_B}{L - 1}$$</li>
+<li><em>Value of F-Statistic</em>:
+$$F = \frac{MS_B}{MS_W}$$</li>
+<li><em>p-Value</em>:
+$$\{ L - 1, L(G - 1) \}$$
+$$p = \int_F^\infty p_f(u; L - 1, L(G - 1)) du$$</li>
+</ul>
+<h4 id="Construction">Construction<a class="anchor-link" href="#Construction">&#182;</a></h4><table>
+<thead><tr>
+<th>&nbsp;</th>
+<th>Deg. of Freedom</th>
+<th>Sum Sq.</th>
+<th>Mean Sq.</th>
+<th>F Value</th>
+<th>Pr(&gt;F)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Treatment</td>
+<td>$L - 1$</td>
+<td>$SS_B$</td>
+<td>$MS_B$</td>
+<td>$\frac{MS_B}{MS_W}$</td>
+<td>p-value</td>
+</tr>
+<tr>
+<td>Residuals</td>
+<td>$L(G - 1)$</td>
+<td>$SS_W$</td>
+<td>$MS_W$</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="Interpretation">Interpretation<a class="anchor-link" href="#Interpretation">&#182;</a></h4><ul>
+<li>If the p-value is small enough, then only an extremly unlikely set of samples could explain the difference between the levels of treatment as sampling error; it is more likely the treatment has an effect.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Unbalanced-Experiments">Unbalanced Experiments<a class="anchor-link" href="#Unbalanced-Experiments">&#182;</a></h3><ul>
+<li><strong>Balanced Experiments</strong>: Each group has the same number of subjects.</li>
+<li><strong>Unbalanced Experiments</strong>: Each group has a different number of subjects.</li>
+</ul>
+<h4 id="Unbalanced-Residual-Variation">Unbalanced Residual Variation<a class="anchor-link" href="#Unbalanced-Residual-Variation">&#182;</a></h4><ul>
+<li>Assume $i$'th group has $G_i$ subjects.</li>
+<li><em>Degrees of Freedom</em>: $\sum_i G_i - L$</li>
+</ul>
+$$MS_W = \frac{1}{L} \sum_j \left[ \frac{\sum_i (x_{ij} - \hat{\mu}_i)^2}{G_i - 1} \right]$$<h4 id="Unbalanced-Treatment-Variation">Unbalanced Treatment Variation<a class="anchor-link" href="#Unbalanced-Treatment-Variation">&#182;</a></h4><ul>
+<li>Assume $i$'th group has $G_i$ subjects.</li>
+<li><em>Degrees of Freedom</em>: $L - 1$</li>
+</ul>
+$$MS_B = \frac{\sum_i G_i (\hat{\mu}_{i} - \hat{\mu})^2}{L - 1}$$
 </div>
 </div>
 </div>
