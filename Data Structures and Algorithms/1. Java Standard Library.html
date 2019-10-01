@@ -13125,25 +13125,197 @@ div#notebook {
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Java&#8482;-Platform,-Standard-Edition-8-API-Specification">Java&#8482; Platform, Standard Edition 8 API Specification<a class="anchor-link" href="#Java&#8482;-Platform,-Standard-Edition-8-API-Specification">&#182;</a></h2><ul>
-<li><a href="https://docs.oracle.com/javase/7/docs/api/java/util/ArrayDeque.html">ArrayDeque</a></li>
-<li><a href="https://docs.oracle.com/javase/8/docs/api/java/util/ArrayList.html">ArrayList</a></li>
-<li><a href="https://docs.oracle.com/javase/8/docs/api/java/util/Arrays.html">Arrays</a></li>
-<li><a href="https://docs.oracle.com/javase/8/docs/api/java/math/BigInteger.html">BigInteger</a></li>
-<li><a href="https://docs.oracle.com/javase/8/docs/api/java/util/BitSet.html">BitSet</a></li>
-<li><a href="https://docs.oracle.com/javase/8/docs/api/java/util/Collections.html">Collections</a></li>
-<li><a href="https://docs.oracle.com/javase/8/docs/api/java/util/DoubleSummaryStatistics.html">DoubleSummaryStatistics</a></li>
-<li><a href="https://docs.oracle.com/javase/8/docs/api/java/util/HashMap.html">HashMap</a></li>
-<li><a href="https://docs.oracle.com/javase/8/docs/api/java/util/HashSet.html">HashSet</a></li>
-<li><a href="https://docs.oracle.com/javase/8/docs/api/java/util/LinkedList.html">LinkedList</a></li>
-<li><a href="https://docs.oracle.com/javase/8/docs/api/java/util/LongSummaryStatistics.html">LongSummaryStatistics</a></li>
-<li><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Math.html">Math</a></li>
-<li><a href="https://docs.oracle.com/javase/8/docs/api/java/security/MessageDigest.html">MessageDigest</a></li>
-<li><a href="https://docs.oracle.com/javase/8/docs/api/java/util/PriorityQueue.html">PriorityQueue</a></li>
-<li><a href="https://docs.oracle.com/javase/8/docs/api/java/util/Scanner.html">Scanner</a></li>
-<li><a href="https://docs.oracle.com/javase/8/docs/api/java/util/Stack.html">Stack</a></li>
-<li><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/StringBuffer.html">StringBuffer</a></li>
-<li><a href="https://docs.oracle.com/javase/8/docs/api/java/util/TreeMap.html">TreeMap</a></li>
-<li><a href="https://docs.oracle.com/javase/8/docs/api/java/util/TreeSet.html">TreeSet</a></li>
+<li><a href="https://docs.oracle.com/javase/7/docs/api/java/util/ArrayDeque.html">ArrayDeque</a><ul>
+<li><code>offer(E e)</code> - Inserts the specified element at the end of this deque.</li>
+<li><code>poll()</code> - Retrieves and removes the head of the queue represented by this deque.</li>
+<li><code>peekFirst()</code> - Retrieves, but does not remove, the first element of this deque, or returns null if this deque is empty.</li>
+<li><code>push(E e)</code> - Pushes an element onto the stack represented by this deque.</li>
+<li><code>pop()</code> - Pops an element from the stack represented by this deque.</li>
+<li><code>peekLast()</code> - Retrieves, but does not remove, the last element of this deque, or returns null if this deque is empty.</li>
+</ul>
+</li>
+<li><a href="https://docs.oracle.com/javase/8/docs/api/java/util/ArrayList.html">ArrayList</a><ul>
+<li><code>add(E e)</code> - Appends the specified element to the end of this list.</li>
+<li><code>add(int index, E element)</code> - Inserts the specified element at the specified position in this list.</li>
+<li><code>get(int index)</code> - Returns the element at the specified position in this list.</li>
+<li><code>remove(int index)</code> - Removes the element at the specified position in this list.</li>
+<li><code>set(int index, E element)</code> - Replaces the element at the specified position in this list with the specified element.</li>
+<li><code>subList(int fromIndex, int toIndex)</code> - Returns a view of the portion of this list between the specified fromIndex, inclusive, and toIndex, exclusive.</li>
+</ul>
+</li>
+<li><a href="https://docs.oracle.com/javase/8/docs/api/java/util/Arrays.html">Arrays</a><ul>
+<li><code>asList(T... a)</code> - Returns a fixed-size list backed by the specified array.</li>
+<li><code>binarySearch(int[] a, int key)</code> - Searches the specified array of ints for the specified value using the binary search algorithm.</li>
+<li><code>binarySearch(int[] a, int fromIndex, int toIndex, int key)</code> - Searches a range of the specified array of ints for the specified value using the binary search algorithm.</li>
+<li><code>copyOf(int[] original, int newLength)</code> - Copies the specified array, truncating or padding with zeros (if necessary) so the copy has the specified length.</li>
+<li><code>copyOfRange(int[] original, int from, int to)</code> - Copies the specified range of the specified array into a new array.</li>
+<li><code>equals(int[] a, int[] a2)</code> - Returns true if the two specified arrays of ints are equal to one another.</li>
+<li><code>fill(int[] a, int val)</code> - Assigns the specified int value to each element of the specified array of ints.</li>
+<li><code>fill(int[] a, int fromIndex, int toIndex, int val)</code> - Assigns the specified int value to each element of the specified range of the specified array of ints.</li>
+<li><code>hashCode(int[] a)</code> - Returns a hash code based on the contents of the specified array.</li>
+<li><code>sort(int[] a)</code> - Sorts the specified array into ascending numerical order.</li>
+<li><code>sort(int[] a, int fromIndex, int toIndex)</code> - Sorts the specified range of the array into ascending order.</li>
+<li><code>toString(int[] a)</code> - Returns a string representation of the contents of the specified array.</li>
+</ul>
+</li>
+<li><a href="https://docs.oracle.com/javase/8/docs/api/java/math/BigInteger.html">BigInteger</a><ul>
+<li><code>gcd(BigInteger val)</code> - Returns a <code>BigInteger</code> whose value is the greatest common divisor of <code>abs(this)</code> and <code>abs(val)</code>.</li>
+<li><code>isProbablePrime(int certainty)</code> - Returns true if this <code>BigInteger</code> is probably prime, false if it's definitely composite.</li>
+<li><code>nextProbablePrime()</code> - Returns the first integer greater than this BigInteger that is probably prime.</li>
+</ul>
+</li>
+<li><a href="https://docs.oracle.com/javase/8/docs/api/java/util/BitSet.html">BitSet</a><ul>
+<li><code>cardinality()</code> - Returns the number of bits set to true in this <code>BitSet</code>.</li>
+<li><code>clear(int bitIndex)</code> - Sets the bit specified by the index to false.</li>
+<li><code>flip(int bitIndex)</code> - Sets the bit at the specified index to the complement of its current value.</li>
+<li><code>get(int bitIndex)</code> - Returns the value of the bit with the specified index.</li>
+<li><code>nextClearBit(int fromIndex)</code> - Returns the index of the first bit that is set to false that occurs on or after the specified starting index.</li>
+<li><code>nextSetBit(int fromIndex)</code> - Returns the index of the first bit that is set to true that occurs on or after the specified starting index.</li>
+<li><code>previousClearBit(int fromIndex)</code> - Returns the index of the nearest bit that is set to false that occurs on or before the specified starting index.</li>
+<li><code>previousSetBit(int fromIndex)</code> - Returns the index of the nearest bit that is set to true that occurs on or before the specified starting index.</li>
+<li><code>set(int bitIndex)</code> - Sets the bit at the specified index to true.</li>
+</ul>
+</li>
+<li><a href="https://docs.oracle.com/javase/8/docs/api/java/util/Collections.html">Collections</a><ul>
+<li><code>binarySearch(List&lt;? extends Comparable&lt;? super T&gt;&gt; list, T key)</code> - Searches the specified list for the specified object using the binary search algorithm.</li>
+<li><code>copy(List&lt;? super T&gt; dest, List&lt;? extends T&gt; src)</code> - Copies all of the elements from one list into another.</li>
+<li><code>disjoint(Collection&lt;?&gt; c1, Collection&lt;?&gt; c2)</code> - Returns true if the two specified collections have no elements in common.</li>
+<li><code>fill(List&lt;? super T&gt; list, T obj)</code> - Replaces all of the elements of the specified list with the specified element.</li>
+<li><code>frequency(Collection&lt;?&gt; c, Object o)</code> - Returns the number of elements in the specified collection equal to the specified object.</li>
+<li><code>indexOfSubList(List&lt;?&gt; source, List&lt;?&gt; target)</code> - Returns the starting position of the first occurrence of the specified target list within the specified source list, or -1 if there is no such occurrence.</li>
+<li><code>lastIndexOfSubList(List&lt;?&gt; source, List&lt;?&gt; target)</code> - Returns the starting position of the last occurrence of the specified target list within the specified source list, or -1 if there is no such occurrence.</li>
+<li><code>max(Collection&lt;? extends T&gt; coll, Comparator&lt;? super T&gt; comp)</code> - Returns the maximum element of the given collection, according to the order induced by the specified comparator.</li>
+<li><code>min(Collection&lt;? extends T&gt; coll, Comparator&lt;? super T&gt; comp)</code> - Returns the minimum element of the given collection, according to the order induced by the specified comparator.</li>
+<li><code>reverse(List&lt;?&gt; list)</code> - Reverses the order of the elements in the specified list.</li>
+<li><code>rotate(List&lt;?&gt; list, int distance)</code>- Rotates the elements in the specified list by the specified distance.</li>
+<li><code>shuffle(List&lt;?&gt; list)</code> - Randomly permutes the specified list using a default source of randomness.</li>
+<li><code>sort(List&lt;T&gt; list, Comparator&lt;? super T&gt; c)</code> - Sorts the specified list according to the order induced by the specified comparator.</li>
+<li><code>swap(List&lt;?&gt; list, int i, int j)</code> - Swaps the elements at the specified positions in the specified list.</li>
+</ul>
+</li>
+<li><a href="https://docs.oracle.com/javase/8/docs/api/java/util/DoubleSummaryStatistics.html">DoubleSummaryStatistics</a><ul>
+<li><code>accept(double value)</code> - Records another value into the summary information.</li>
+<li><code>combine(DoubleSummaryStatistics other)</code> - Combines the state of another <code>DoubleSummaryStatistics</code> into this one.</li>
+<li><code>getAverage()</code> - Returns the arithmetic mean of values recorded, or zero if no values have been recorded.</li>
+<li><code>getCount()</code> - Return the count of values recorded.</li>
+<li><code>getMax()</code> - Returns the maximum recorded value, <code>Double.NaN</code> if any recorded value was <code>NaN</code> or <code>Double.NEGATIVE_INFINITY</code> if no values were recorded.</li>
+<li><code>getMin()</code> - Returns the minimum recorded value, <code>Double.NaN</code> if any recorded value was <code>NaN</code> or <code>Double.POSITIVE_INFINITY</code> if no values were recorded.</li>
+<li><code>getSum()</code> - Returns the sum of values recorded, or zero if no values have been recorded.</li>
+</ul>
+</li>
+<li><a href="https://docs.oracle.com/javase/8/docs/api/java/util/HashMap.html">HashMap</a><ul>
+<li><code>containsKey(Object key)</code> - Returns true if this map contains a mapping for the specified key.</li>
+<li><code>get(Object key)</code> - Returns the value to which the specified key is mapped, or null if this map contains no mapping for the key.</li>
+<li><code>put(K key, V value)</code> - Associates the specified value with the specified key in this map.</li>
+<li><code>remove(Object key)</code> - Removes the mapping for the specified key from this map if present.</li>
+</ul>
+</li>
+<li><a href="https://docs.oracle.com/javase/8/docs/api/java/util/HashSet.html">HashSet</a><ul>
+<li><code>add(E e)</code> - Adds the specified element to this set if it is not already present.</li>
+<li><code>addAll(Collection&lt;? extends E&gt; c)</code> - Adds all of the elements in the specified collection to this set if they're not already present.</li>
+<li><code>contains(Object o)</code> - Returns true if this set contains the specified element.</li>
+<li><code>containsAll(Collection&lt;?&gt; c)</code> - Returns true if this set contains all of the elements of the specified collection.</li>
+<li><code>remove(Object o)</code> - Removes the specified element from this set if it is present.</li>
+<li><code>removeAll(Collection&lt;?&gt; c)</code> - Removes from this set all of its elements that are contained in the specified collection.</li>
+<li><code>retainAll(Collection&lt;?&gt; c)</code> - Retains only the elements in this set that are contained in the specified collection.</li>
+<li><code>size()</code> - Returns the number of elements in this set (its cardinality).</li>
+</ul>
+</li>
+<li><a href="https://docs.oracle.com/javase/8/docs/api/java/util/LinkedList.html">LinkedList</a><ul>
+<li><code>addFirst(E e)</code> - Inserts the specified element at the beginning of this list.</li>
+<li><code>addLast(E e)</code> - Appends the specified element to the end of this list.</li>
+<li><code>getFirst()</code> - Returns the first element in this list.</li>
+<li><code>getLast()</code> - Returns the last element in this list.</li>
+<li><code>removeFirst()</code> - Removes and returns the first element from this list.</li>
+<li><code>removeLast()</code> - Removes and returns the last element from this list.</li>
+<li><code>descendingIterator()</code> - Returns an iterator over the elements in this deque in reverse sequential order.</li>
+<li><code>iterator()</code> - Returns an iterator over elements of type <code>T</code>.</li>
+</ul>
+</li>
+<li><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Math.html">Math</a><ul>
+<li><code>abs(double a)</code> - Returns the absolute value of a double value.</li>
+<li><code>ceil(double a)</code> - Returns the smallest (closest to negative infinity) double value that is greater than or equal to the argument and is equal to a mathematical integer.</li>
+<li><code>floor(double a)</code> - Returns the largest (closest to positive infinity) double value that is less than or equal to the argument and is equal to a mathematical integer.</li>
+<li><code>max(double a, double b)</code> - Returns the greater of two double values.</li>
+<li><code>min(double a, double b)</code> - Returns the smaller of two double values.</li>
+<li><code>random()</code> - Returns a double value with a positive sign, greater than or equal to 0.0 and less than 1.0.</li>
+<li><code>round(double a)</code> - Returns the closest long to the argument, with ties rounding to positive infinity.</li>
+<li><code>signum(double d)</code> - Returns the signum function of the argument; zero if the argument is zero, 1.0 if the argument is greater than zero, -1.0 if the argument is less than zero.</li>
+</ul>
+</li>
+<li><a href="https://docs.oracle.com/javase/8/docs/api/java/util/Objects.html">Objects</a><ul>
+<li><code>compare(T a, T b, Comparator&lt;? super T&gt; c)</code> - Returns 0 if the arguments are identical and <code>c.compare(a, b)</code> otherwise.</li>
+<li><code>deepEquals(Object a, Object b)</code> - Returns true if the arguments are deeply equal to each other and false otherwise.</li>
+<li><code>equals(Object a, Object b)</code> - Returns true if the arguments are equal to each other and false otherwise.</li>
+<li><code>hash(Object... values)</code> - Generates a hash code for a sequence of input values.</li>
+</ul>
+</li>
+<li><a href="https://docs.oracle.com/javase/8/docs/api/java/util/PriorityQueue.html">PriorityQueue</a><ul>
+<li><code>offer(E e)</code> - Inserts the specified element into this priority queue.</li>
+<li><code>peek()</code> - Retrieves, but does not remove, the head of this queue, or returns null if this queue is empty.</li>
+<li><code>poll()</code> - Retrieves and removes the head of this queue, or returns null if this queue is empty.</li>
+</ul>
+</li>
+<li><a href="https://docs.oracle.com/javase/8/docs/api/java/util/Scanner.html">Scanner</a><ul>
+<li><code>findInLine(String pattern)</code> - Attempts to find the next occurrence of a pattern constructed from the specified string, ignoring delimiters.</li>
+<li><code>hasNext(String pattern)</code> - Returns true if the next token matches the pattern constructed from the specified string.</li>
+<li><code>next(String pattern)</code> - Returns the next token if it matches the pattern constructed from the specified string.</li>
+<li><code>skip(String pattern)</code> - Skips input that matches a pattern constructed from the specified string.</li>
+<li><code>useDelimiter(String pattern)</code> - Sets this scanner's delimiting pattern to a pattern constructed from the specified string.</li>
+</ul>
+</li>
+<li><a href="https://docs.oracle.com/javase/8/docs/api/java/util/Stack.html">Stack</a><ul>
+<li><code>peek()</code> - Looks at the object at the top of this stack without removing it from the stack.</li>
+<li><code>pop()</code> - Removes the object at the top of this stack and returns that object as the value of this function.</li>
+<li><code>push(E item)</code> - Pushes an item onto the top of this stack.</li>
+</ul>
+</li>
+<li><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/StringBuffer.html">StringBuffer</a><ul>
+<li><code>append(CharSequence s)</code> - Appends the specified <code>CharSequence</code> to this character sequence.</li>
+<li><code>delete(int start, int end)</code> - Removes the characters in a substring of this sequence.</li>
+<li><code>indexOf(String str, int fromIndex)</code> - Returns the index within this string of the first occurrence of the specified substring, starting at the specified index.</li>
+<li><code>insert(int dstOffset, CharSequence s, int start, int end)</code> - Inserts a subsequence of the specified <code>CharSequence</code> into this sequence.</li>
+<li><code>reverse()</code> - Causes this character sequence to be replaced by the reverse of the sequence.</li>
+<li><code>substring(int start, int end)</code> - Returns a new string that contains a subsequence of characters currently contained in this sequence.</li>
+<li><code>toString()</code> - Returns a string representing the data in this sequence.</li>
+</ul>
+</li>
+<li><a href="https://docs.oracle.com/javase/8/docs/api/java/util/TreeMap.html">TreeMap</a><ul>
+<li><code>containsKey(Object key)</code> - Returns true if this map contains a mapping for the specified key.</li>
+<li><code>get(Object key)</code> - Returns the value to which the specified key is mapped, or null if this map contains no mapping for the key.</li>
+<li><code>put(K key, V value)</code> - Associates the specified value with the specified key in this map.</li>
+<li><code>remove(Object key)</code> - Removes the mapping for the specified key from this map if present.</li>
+<li><code>ceilingEntry(K key)</code> - Returns a key-value mapping associated with the least key greater than or equal to the given key, or null if there is no such key.</li>
+<li><code>floorEntry(K key)</code> - Returns a key-value mapping associated with the greatest key less than or equal to the given key, or null if there is no such key.</li>
+<li><code>firstEntry()</code> - Returns a key-value mapping associated with the least key in this map, or null if the map is empty.</li>
+<li><code>lastEntry()</code> - Returns a key-value mapping associated with the greatest key in this map, or null if the map is empty.</li>
+<li><code>higherEntry(K key)</code> - Returns a key-value mapping associated with the least key strictly greater than the given key, or null if there is no such key.</li>
+<li><code>lowerEntry(K key)</code> - Returns a key-value mapping associated with the greatest key strictly less than the given key, or null if there is no such key.</li>
+<li><code>headMap(K toKey, boolean inclusive)</code> - Returns a view of the portion of this map whose keys are less than (or equal to, if inclusive is true) <code>toKey</code>.</li>
+<li><code>tailMap(K fromKey, boolean inclusive)</code> - Returns a view of the portion of this map whose keys are greater than (or equal to, if inclusive is true) <code>fromKey</code>.</li>
+<li><code>subMap(K fromKey, boolean fromInclusive, K toKey, boolean toInclusive)</code> - Returns a view of the portion of this map whose keys range from <code>fromKey</code> to <code>toKey</code>.</li>
+</ul>
+</li>
+<li><a href="https://docs.oracle.com/javase/8/docs/api/java/util/TreeSet.html">TreeSet</a><ul>
+<li><code>add(E e)</code> - Adds the specified element to this set if it is not already present.</li>
+<li><code>addAll(Collection&lt;? extends E&gt; c)</code> - Adds all of the elements in the specified collection to this set if they're not already present.</li>
+<li><code>contains(Object o)</code> - Returns true if this set contains the specified element.</li>
+<li><code>containsAll(Collection&lt;?&gt; c)</code> - Returns true if this set contains all of the elements of the specified collection.</li>
+<li><code>remove(Object o)</code> - Removes the specified element from this set if it is present.</li>
+<li><code>removeAll(Collection&lt;?&gt; c)</code> - Removes from this set all of its elements that are contained in the specified collection.</li>
+<li><code>retainAll(Collection&lt;?&gt; c)</code> - Retains only the elements in this set that are contained in the specified collection.</li>
+<li><code>size()</code> - Returns the number of elements in this set (its cardinality).</li>
+<li><code>ceiling(E e)</code> - Returns the least element in this set greater than or equal to the given element, or null if there is no such element.</li>
+<li><code>floor(E e)</code> - Returns the greatest element in this set less than or equal to the given element, or null if there is no such element.</li>
+<li><code>first()</code> - Returns the first (lowest) element currently in this set.</li>
+<li><code>last()</code> - Returns the last (highest) element currently in this set.</li>
+<li><code>higher(E e)</code> - Returns the least element in this set strictly greater than the given element, or null if there is no such element.</li>
+<li><code>lower(E e)</code> - Returns the greatest element in this set strictly less than the given element, or null if there is no such element.</li>
+<li><code>headSet(E toElement, boolean inclusive)</code> - Returns a view of the portion of this set whose elements are less than (or equal to, if inclusive is true) <code>toElement</code>.</li>
+<li><code>tailSet(E fromElement, boolean inclusive)</code> - Returns a view of the portion of this set whose elements are greater than (or equal to, if inclusive is true) <code>fromElement</code>.</li>
+<li><code>subSet(E fromElement, boolean fromInclusive, E toElement, boolean toInclusive)</code> - Returns a view of the portion of this set whose elements range from <code>fromElement</code> to <code>toElement</code>.</li>
+</ul>
+</li>
 </ul>
 
 </div>
