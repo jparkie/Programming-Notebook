@@ -13203,7 +13203,7 @@ div#notebook {
         <span class="k">return</span> <span class="k">new</span> <span class="n">Iterable</span><span class="o">&lt;</span><span class="n">Candidate</span><span class="o">&gt;()</span> <span class="o">{</span>
             <span class="nd">@Override</span>
             <span class="kd">public</span> <span class="n">Iterator</span><span class="o">&lt;</span><span class="n">Candidate</span><span class="o">&gt;</span> <span class="nf">iterator</span><span class="o">()</span> <span class="o">{</span>
-                <span class="k">return</span> <span class="k">new</span> <span class="n">Iterator</span><span class="o">&lt;&gt;()</span> <span class="o">{</span>
+                <span class="k">return</span> <span class="k">new</span> <span class="n">Iterator</span><span class="o">&lt;</span><span class="n">Candidate</span><span class="o">&gt;()</span> <span class="o">{</span>
                     <span class="nd">@Override</span>
                     <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">hasNext</span><span class="o">()</span> <span class="o">{</span>
                         <span class="k">throw</span> <span class="k">new</span> <span class="n">UnsupportedOperationException</span><span class="o">();</span>
@@ -13231,16 +13231,15 @@ div#notebook {
 
 <div class="output_area">
 
-    <div class="prompt"></div>
+    <div class="prompt output_prompt">Out[1]:</div>
 
 
-<div class="output_subarea output_text output_error">
-<pre>
-<span class="ansi-red-intense-fg ansi-bold">ERROR: java.lang.IllegalStateException: cannot infer type arguments for java.util.Iterator&lt;E&gt;</span>
-<span class="ansi-red-intense-fg ansi-bold">  reason: cannot use &#39;&lt;&gt;&#39; with anonymous inner classes</span>
-<span class="ansi-red-intense-fg ansi-bold"> return new Iterator&lt;&gt;() {</span>
-<span class="ansi-red-intense-fg ansi-bold">            ^         ^     </span></pre>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>backtracking.pseudocode.Backtracking</pre>
 </div>
+
 </div>
 
 </div>
