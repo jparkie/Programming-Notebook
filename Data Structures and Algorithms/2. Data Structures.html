@@ -13132,6 +13132,23 @@ div#notebook {
 <li><a href="https://docs.oracle.com/javase/8/docs/api/java/util/ArrayList.html">ArrayList</a></li>
 <li><a href="https://docs.oracle.com/javase/8/docs/api/java/util/Arrays.html">Arrays</a></li>
 </ul>
+<h3 id="Advice">Advice<a class="anchor-link" href="#Advice">&#182;</a></h3><ul>
+<li>Array problems often have simple brute-force solutions that have $O(n)$ space complexity, but subtler solutions use the array itself to reduce space complexity to $O(1)$.</li>
+<li>Filling an array from the front is slow, so see if it's possible to write values from the back.</li>
+<li>Instead of deleting an entry (which requires moving all entries to its right), consider overwriting it with a tombstone.</li>
+<li>Be comfortable with writing code that operates on subarrays.</li>
+<li>Don't worry about preserving the integrity of the array (sortedness, etc...) until it's time to return.</li>
+<li>A one-pass, range query algorithm can be generalized with <em>start</em>, <em>current</em>, and <em>end</em> indices of which each index is updated per cases qualifying the range.</li>
+<li>A several-pass algorithm although slower than a one-pass algorithm still has $O(n)$ time complexity.</li>
+</ul>
+<h3 id="Square-Root-Optimization---&quot;Poor-Man's-Logarithm&quot;">Square Root Optimization - "Poor Man's Logarithm"<a class="anchor-link" href="#Square-Root-Optimization---&quot;Poor-Man's-Logarithm&quot;">&#182;</a></h3><h4 id="Background">Background<a class="anchor-link" href="#Background">&#182;</a></h4><ul>
+<li>In the study of time complexity, $O(\log{n}) \ll O(\sqrt{n}) \ll O(n)$.</li>
+<li>Although for a sufficiently large $n$, $O(\log{n}) \ll O(\sqrt{n})$, for $n \le 10^6$, in practice, $O(\log{n}) \approx O(\sqrt{n})$ because of the physical overhead of conditionally executing the recurrence-tree, lower bound of an $O(\log{n})$ process.</li>
+</ul>
+<h4 id="Optimization">Optimization<a class="anchor-link" href="#Optimization">&#182;</a></h4><ol>
+<li>Parition an array of $n$ elements into blocks of size $\sqrt{n}$ and maintain an auxiliary data structure that summarizes the elements inside each block.</li>
+<li>Execute an $O(\sqrt{n})$ process by sequentially traversing the auxiliary data structure.</li>
+</ol>
 
 </div>
 </div>
@@ -13152,6 +13169,12 @@ div#notebook {
 <li><a href="https://docs.oracle.com/javase/8/docs/api/java/util/Collections.html">Collections</a></li>
 <li><a href="https://docs.oracle.com/javase/8/docs/api/java/util/LinkedList.html">LinkedList</a></li>
 </ul>
+<h3 id="Advice">Advice<a class="anchor-link" href="#Advice">&#182;</a></h3><ul>
+<li>List problems often have simple brute-force solutions that have $O(n)$ space complexity, but subtler solutions use the array itself to reduce space complexity to $O(1)$.</li>
+<li>Consider using a sentinel to reduce edge cases such as checking empty lists.</li>
+<li>Algorithms operating on lists often benefit from using two iterators, one ahead of the other, or one advancing quicker than the other.</li>
+<li>A $k$-ary tree can be represented as a left-child right-sibling binary tree, a doubly chained tree.</li>
+</ul>
 
 </div>
 </div>
@@ -13171,6 +13194,13 @@ div#notebook {
 <h3 id="See-Also">See Also<a class="anchor-link" href="#See-Also">&#182;</a></h3><ul>
 <li><a href="https://docs.oracle.com/javase/8/docs/api/java/util/Stack.html">Stack</a></li>
 </ul>
+<h3 id="Advice">Advice<a class="anchor-link" href="#Advice">&#182;</a></h3><ul>
+<li>Stacks are ideal for implementing non-trivial parsing.</li>
+<li>A <code>Push</code> is ideal for transitioning from a parent context to a child context.</li>
+<li>A <code>Pop</code> is ideal for transitioning from a child context to a parent context.</li>
+<li>When performing a depth-first search using a stack, it never halts for infinite-depth. It finds any path to the goal, but it has polynomial space complexity.</li>
+<li>To prevent infinite recursion using a stack, consider depth-limiting or iterative deepening the recursion.</li>
+</ul>
 
 </div>
 </div>
@@ -13189,6 +13219,11 @@ div#notebook {
 </ul>
 <h3 id="See-Also">See Also<a class="anchor-link" href="#See-Also">&#182;</a></h3><ul>
 <li><a href="https://docs.oracle.com/javase/7/docs/api/java/util/ArrayDeque.html">ArrayDeque</a></li>
+</ul>
+<h3 id="Advice">Advice<a class="anchor-link" href="#Advice">&#182;</a></h3><ul>
+<li>Queues are ideal for implementing non-trivial traversals.</li>
+<li><code>Enqueue</code> and <code>Dequeue</code> are ideal for circularly transitioning through sibling contexts. </li>
+<li>When performing a breadth-first search using a queue, it always halts for infinite-depth. It finds the shortest path to the goal, but it has exponential space complexity.</li>
 </ul>
 
 </div>
@@ -13224,6 +13259,14 @@ div#notebook {
 <li><a href="https://docs.oracle.com/javase/8/docs/api/java/util/HashMap.html">HashMap</a></li>
 <li><a href="https://docs.oracle.com/javase/8/docs/api/java/util/TreeMap.html">TreeMap</a></li>
 </ul>
+<h3 id="Advice">Advice<a class="anchor-link" href="#Advice">&#182;</a></h3><ul>
+<li>A hash-based dictionary is ideal for partitioning using prefixes, suffixes, fingerprints, and signatures.</li>
+<li>A tree-based dictionary is ideal for classifying using comparators as decision processes.</li>
+<li>If you need a multi-map, consider your access patterns before having the values of your dictionary be contained in a list, a set, or a tree.</li>
+<li>Some problems need a combination of a hash-based dictionary and a tree-based dictionary. Specifically, a hash-based dictionary can index into the entries of a tree-based dictionary.</li>
+<li>Consider using a sentinel to reduce edge cases.</li>
+<li>When representing ranges in a tree-based dictionary, consider having each entry be a partition, and have negative and positive infinities as sentinels.</li>
+</ul>
 
 </div>
 </div>
@@ -13242,6 +13285,9 @@ div#notebook {
 </ul>
 <h3 id="See-Also">See Also<a class="anchor-link" href="#See-Also">&#182;</a></h3><ul>
 <li><a href="https://docs.oracle.com/javase/8/docs/api/java/util/PriorityQueue.html">PriorityQueue</a></li>
+</ul>
+<h3 id="Advice">Advice<a class="anchor-link" href="#Advice">&#182;</a></h3><ul>
+<li>N/A.</li>
 </ul>
 
 </div>
@@ -13266,6 +13312,9 @@ div#notebook {
 <h3 id="See-Also">See Also<a class="anchor-link" href="#See-Also">&#182;</a></h3><ul>
 <li><a href="https://docs.oracle.com/javase/8/docs/api/java/util/HashSet.html">HashSet</a></li>
 <li><a href="https://docs.oracle.com/javase/8/docs/api/java/util/TreeSet.html">TreeSet</a></li>
+</ul>
+<h3 id="Advice">Advice<a class="anchor-link" href="#Advice">&#182;</a></h3><ul>
+<li>N/A.</li>
 </ul>
 
 </div>
