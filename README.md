@@ -21,9 +21,12 @@ A collection of [BeakerX](http://beakerx.com/) IPython notebooks and PDFs about 
 	- [Database System Concepts](http://jacobpark.me/Programming-Notebook/Books/Database%20System%20Concepts/Database%20System%20Concepts.html)
 	- [Probability and Statistics for Computer Science](http://jacobpark.me/Programming-Notebook/Books/Probability%20and%20Statistics%20for%20Computer%20Science/Probability%20and%20Statistics%20for%20Computer%20Science.html)
 - **Courses**
-	- [ECE454 - Distributed Computing](http://jacobpark.me/Programming-Notebook/Courses/ECE454/ECE454%20Notes.html)
-	- [ECE457A - Cooperative and Adaptive Algorithms](http://jacobpark.me/Programming-Notebook/Courses/ECE457A/ECE457A%20Notes.html)
-	- [ECE493 - Probabilistic Reasoning and Decision Making](http://jacobpark.me/Programming-Notebook/Courses/ECE493/ECE493%20Notes.html)
+	- [ECE 405 - Introduction to Quantum Mechanics](http://jacobpark.me/Programming-Notebook/Courses/ECE405/ECE405%20Notes.html)
+	- [ECE 453 - Software Testing, Quality Assurance, and Maintenance](http://jacobpark.me/Programming-Notebook/Courses/ECE453/ECE453%20Notes.html)
+	- [ECE 454 - Distributed Computing](http://jacobpark.me/Programming-Notebook/Courses/ECE454/ECE454%20Notes.html)
+	- [ECE 457A - Cooperative and Adaptive Algorithms](http://jacobpark.me/Programming-Notebook/Courses/ECE457A/ECE457A%20Notes.html)
+	- [ECE 493 - Probabilistic Reasoning and Decision Making](http://jacobpark.me/Programming-Notebook/Courses/ECE493/ECE493%20Notes.html)
+	- [RS 121 - Philosophy of Evil](http://jacobpark.me/Programming-Notebook/Courses/RS121/RS121%20Notes.html)
 - **Data Structures and Algorithms**
 	- [1\. Java Standard Library](http://jacobpark.me/Programming-Notebook/Data%20Structures%20and%20Algorithms/1.%20Java%20Standard%20Library.html)
 	- [2\. Data Structures](http://jacobpark.me/Programming-Notebook/Data%20Structures%20and%20Algorithms/2.%20Data%20Structures.html)
