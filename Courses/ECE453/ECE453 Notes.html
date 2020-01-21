@@ -13630,6 +13630,213 @@ $$
 </div>
 </div>
 </div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Graphs-as-Models-of-Computation">Graphs as Models of Computation<a class="anchor-link" href="#Graphs-as-Models-of-Computation">&#182;</a></h3><ul>
+<li>A <strong>computation tree</strong> represents all possible executions of a system.<ul>
+<li><em>Node</em>: The state of the system represented by the valuation of all the variables.</li>
+<li><em>Problem</em>: For many computations, the trees are too large.</li>
+</ul>
+</li>
+<li>A <strong>control flow graph</strong> represents the flow of execution in the program $G = (N, E, S, T)$.<ul>
+<li>where $N$ is the nodes representing executable instructions.</li>
+<li>where $E$ is the edges representing the potential transfer of control.</li>
+<li>where $S$ is a designated start node.</li>
+<li>where $T$ is a designated terminal node.</li>
+</ul>
+</li>
+<li>An <strong>infeasible path</strong> is a path that does not correspond with an execution sequence.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Structural-Coverage">Structural Coverage<a class="anchor-link" href="#Structural-Coverage">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Testing">Testing<a class="anchor-link" href="#Testing">&#182;</a></h3><ul>
+<li><strong>Static Testing</strong> $\implies$ <em>Compile Time</em>:<ul>
+<li><em>Static Analysis</em></li>
+<li><em>Code Inspection</em></li>
+<li><em>Code Walk-Through</em></li>
+</ul>
+</li>
+<li><strong>Dynamic Testing</strong> $\implies$ <em>Run Time</em>:<ul>
+<li><em>Black-Box Testing</em></li>
+<li><em>White-Box Testing</em></li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Test-Case">Test Case<a class="anchor-link" href="#Test-Case">&#182;</a></h3><ul>
+<li><strong>Test Case</strong>: <em>Input Values, Expected Results, Prefix Values, Postfix Values, Dependency Values.</em></li>
+<li><strong>Test Set</strong>: <em>A Set of Test Cases.</em></li>
+<li><strong>Expected Results</strong>: The results that will be produced when executing the test if and only if the program satisfies its intended behavior.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Test-Requirement">Test Requirement<a class="anchor-link" href="#Test-Requirement">&#182;</a></h3><ul>
+<li><strong>Test Requirement</strong>: A specific element of a software artifact that a test case must satisfy or cover.<ul>
+<li><em>Denoted $TR$</em></li>
+</ul>
+</li>
+</ul>
+<h4 id="Examples">Examples<a class="anchor-link" href="#Examples">&#182;</a></h4><ol>
+<li>Functional (Black Box, Specification-Based)</li>
+<li>Structural (White Box)</li>
+<li>Model-Based</li>
+<li>Fault-Based</li>
+</ol>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Coverage-Criterion">Coverage Criterion<a class="anchor-link" href="#Coverage-Criterion">&#182;</a></h3><ul>
+<li><strong>Coverage Criterion</strong>: A rule or collection of rules that impose test requirements on a test set.<ul>
+<li><em>Generates $TR$</em></li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Adequacy-Criteria">Adequacy Criteria<a class="anchor-link" href="#Adequacy-Criteria">&#182;</a></h3><ul>
+<li><strong>Adequacy Criterion</strong>: Set of Test Requirements.</li>
+<li>A test suite satisfies an adequacy criterion if:<ul>
+<li>All the tests succeed.</li>
+<li>Every test requirement in the criterion is satisfied by at least one of the test cases in the test suite.</li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Coverage-Criteria">Coverage Criteria<a class="anchor-link" href="#Coverage-Criteria">&#182;</a></h3><blockquote><p>Basic Coverage $\implies$ Advanced Coverage</p>
+</blockquote>
+<ol>
+<li>Line</li>
+<li>Statement</li>
+<li>Function</li>
+<li>Branch</li>
+<li>Decision/Condition</li>
+<li>Modified Decision/Condition</li>
+<li>Path</li>
+<li>Loop</li>
+<li>Mutation</li>
+</ol>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Coverage-Level">Coverage Level<a class="anchor-link" href="#Coverage-Level">&#182;</a></h3><ul>
+<li>Given a set of test requirements $TR$,</li>
+<li>Given a test set $T$,</li>
+<li>The <strong>coverage level</strong> is the ratio of the number of test requirements satisfied by $T$ to the size of $TR$.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Unit-Testing">Unit Testing<a class="anchor-link" href="#Unit-Testing">&#182;</a></h3><ul>
+<li>A <strong>unit test</strong> exercises a unit of functionality to test its behavior.</li>
+<li>A <strong>unit test framework</strong> provides a standard mechanism for....<ol>
+<li>Specifying a Test (Setup, Execution, Expected Result, Teardown).</li>
+<li>Executing a Test.</li>
+<li>Generating Test Reports.</li>
+</ol>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Designing-for-Testing">Designing for Testing<a class="anchor-link" href="#Designing-for-Testing">&#182;</a></h3><ul>
+<li>Factor the program into meaningful units.</li>
+<li>Each unit should have a well defined specification.<ul>
+<li>What are legal inputs?</li>
+<li>What are legal outputs?</li>
+<li>How inputs and outputs are passed around?</li>
+</ul>
+</li>
+<li>Avoid monolithic design that reads standard input and writes standard output.</li>
+<li>Additional functionality specifically for testing/debugging purposes.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Subsumption">Subsumption<a class="anchor-link" href="#Subsumption">&#182;</a></h3><ul>
+<li><strong>Criteria Subsumption</strong>: A test criterion $C_{1}$ subsumes $C_{2}$ if and only if every set of test cases satisfies $C_{1}$ also satisfies $C_{2}$.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Syntactical-and-Semantic-Reachability">Syntactical and Semantic Reachability<a class="anchor-link" href="#Syntactical-and-Semantic-Reachability">&#182;</a></h3><ul>
+<li>A node $n$ is <strong>syntactically</strong> reachable from $m$ if there exists a path from $m$ to $n$.</li>
+<li>A node $n$ is <strong>semantically</strong> reachhable if one of the paths from $n$ to $n$ can be reached on some input.</li>
+<li><strong>Syntactic Reachability</strong>: Control Flow Graph.</li>
+<li><strong>Semantic Reachability</strong>: Undecidable.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Reachability">Reachability<a class="anchor-link" href="#Reachability">&#182;</a></h3><ul>
+<li>Let $reach_{G}(X)$ denote the sub-graph of $G$ that is syntactically reachable from $X$, where $X$ is either a node, an edge, a set of nodes, or a set of edges.</li>
+</ul>
+
+</div>
+</div>
+</div>
     </div>
   </div>
 </body>
