@@ -13195,16 +13195,6 @@ $$</li>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Postulate-1">Postulate 1<a class="anchor-link" href="#Postulate-1">&#182;</a></h3><ul>
-<li>The state of a quantum mechanical system, including all the information you can know about it, is represented mathematically by a normalized ket $\ket{\psi}$.</li>
-</ul>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Stern-Gerlach-Device">Stern-Gerlach Device<a class="anchor-link" href="#Stern-Gerlach-Device">&#182;</a></h3><p><img src="images/F01_2.png" alt="Stern-Gerlach Device"></p>
 <ul>
 <li><strong>Analyzer</strong>: A Stern-Gerlach device labeled with the axis along which the magnetic field is oriented.</li>
@@ -13345,14 +13335,23 @@ $$
 \end{aligned}
 $$</li>
 </ul>
-
+<h4 id="Cartesian-Axes">Cartesian Axes<a class="anchor-link" href="#Cartesian-Axes">&#182;</a></h4>$$
+\begin{aligned}
+\ket{+} &amp;= \ket{+}\\
+\ket{-} &amp;= \ket{-}\\
+\ket{+}_{x} &amp;= \frac{1}{\sqrt{2}}\left[ \ket{+} + \ket{-} \right]\\
+\ket{-}_{x} &amp;= \frac{1}{\sqrt{2}}\left[ \ket{+} - \ket{-} \right]\\
+\ket{+}_{y} &amp;= \frac{1}{\sqrt{2}}\left[ \ket{+} + i\ket{-} \right]\\
+\ket{-}_{y} &amp;= \frac{1}{\sqrt{2}}\left[ \ket{+} - i\ket{-} \right]
+\end{aligned}
+$$
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Postulate-4-(Spin-1/2-System)">Postulate 4 (Spin-1/2 System)<a class="anchor-link" href="#Postulate-4-(Spin-1/2-System)">&#182;</a></h3><ul>
+<h3 id="Probability-in-Spin-1/2-System">Probability in Spin-1/2 System<a class="anchor-link" href="#Probability-in-Spin-1/2-System">&#182;</a></h3><ul>
 <li>The probability of obtaining the value $\pm\frac{\hbar}{2}$ in a measurement of the observable $S_{z}$ on a system in the state $\ket{\psi}$ is the following.
 $$P_{\pm} = \amp{\braket{\pm}{\psi}}$$<ul>
 <li>where $\ket{\pm}$ is the basis ket of $S_{z}$ corresponding to the result $\pm\frac{\hbar}{2}$.</li>
@@ -13427,9 +13426,68 @@ $$
 \end{aligned}
 $$</li>
 <li>Using the observation that the kets $\ket{+}_{x}$ and $\ket{-}_{x}$ are orthogonal, the following can be derived.
+$$e^{i\alpha} = -e^{i\beta}$$</li>
+<li>Accordingly, let $\alpha = 0 \implies e^{i\alpha} = 1 \land e^{i\beta} = -1$.
 $$
-e^{i\alpha} = -e^{i\beta}
+\begin{aligned}
+\ket{+}_{x} &amp;= \frac{1}{\sqrt{2}}\left[ \ket{+} + \ket{-} \right]\\
+\ket{-}_{x} &amp;= \frac{1}{\sqrt{2}}\left[ \ket{+} - \ket{-} \right]
+\end{aligned}
 $$</li>
+</ol>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Matrix-Notation">Matrix Notation<a class="anchor-link" href="#Matrix-Notation">&#182;</a></h3>$$
+\begin{aligned}
+\ket{+} &amp;= \begin{pmatrix}1 \\ 0\end{pmatrix}\\
+\ket{-} &amp;= \begin{pmatrix}0 \\ 1\end{pmatrix}\\
+\ket{+}_{x} &amp;= \frac{1}{\sqrt{2}}\begin{pmatrix}1 \\ 1\end{pmatrix}\\
+\ket{-}_{x} &amp;= \frac{1}{\sqrt{2}}\begin{pmatrix}1 \\ -1\end{pmatrix}\\
+\ket{+}_{x} &amp;= \frac{1}{\sqrt{2}}\begin{pmatrix}1 \\ i\end{pmatrix}\\
+\ket{-}_{x} &amp;= \frac{1}{\sqrt{2}}\begin{pmatrix}1 \\ -i\end{pmatrix}\\
+\ket{\psi} &amp;= \begin{pmatrix}a \\ b\end{pmatrix}\\
+\bra{\psi} &amp;= \left(a^{*} \quad b^{*}\right)
+\end{aligned}
+$$
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="General-Quantum-Systems">General Quantum Systems<a class="anchor-link" href="#General-Quantum-Systems">&#182;</a></h3><p><img src="images/F01_15.png" alt="General Quantum Mechanical Measurement"></p>
+$$
+\begin{aligned}
+\braket{a_{i}}{a_{j}} &amp;= \delta_{ij} \quad \text{orthonormality}\\
+\ket{\psi} &amp;= \sum_{i} \braket{a_{i}}{\psi}\ket{a_{i}} \quad \text{completeness}\\
+\delta_{ij} &amp;= \begin{cases}0 &amp; i \ne j \\ 1 &amp; i = j\end{cases}\\
+\mathcal{P}_{a_{n}} &amp;= \amp{\braket{a_{n}}{\psi_{in}}}
+\end{aligned}
+$$
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Postulates-of-Quantum-Mechanics">Postulates of Quantum Mechanics<a class="anchor-link" href="#Postulates-of-Quantum-Mechanics">&#182;</a></h3><ol>
+<li>The state of a quantum mechanical system, including all the information you can know about it, is represented mathematically by a normalized ket $\ket{\psi}$.</li>
+<li>A physical observable is represented mathematically by an operator $A$ that acts on kets.</li>
+<li>The only possible result of a measurement of an observable is one of the eigenvalues $a_{n}$ of the corresponding operator $A$.</li>
+<li>The probability of obtaining the eigenvalue $a_{n}$ in a measurement of the observable $A$ on the system in the state $\ket{\psi}$ is:
+$$\mathcal{P}_{a_{n}} = \amp{\braket{a_{n}}{\psi}}$$<ul>
+<li>where $\ket{a_{n}}$ is the normalized eigenvector of $A$ corresponding to the eigenvalue $a_{n}$.</li>
+</ul>
+</li>
+<li>After a measurement of $A$ that yields the result $a_{n}$, the quantum system is in a new state that is the normalized projection of the original system ket onto the ket (or kets) corresponding to the result of the measurement:
+$$\ket{\psi'} = \frac{P_{n}\ket{\psi}}{\sqrt{\braket{\psi}{P_{n} \vert \psi}}}$$</li>
+<li>The time evolution of a quantum system is determined by the Hamiltonian or total energy operator $H(t)$ through a Schrodinger equation:
+$$i\hbar\frac{d}{dt}\ket{\psi(t)} = H(t)\ket{\psi(t)}$$</li>
 </ol>
 
 </div>
