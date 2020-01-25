@@ -13127,7 +13127,9 @@ div#notebook {
 <li>$\newcommand{\bra}[1]{\langle{#1}\rvert}$ <code>$\bra{+}$</code>: $\bra{+}$</li>
 <li>$\newcommand{\ket}[1]{\lvert{#1}\rangle}$ <code>$\ket{+}$</code>: $\ket{+}$</li>
 <li>$\newcommand{\braket}[2]{\langle{#1}\vert{#2}\rangle}$ <code>$\braket{+}{+}$</code>: $\braket{+}{+}$</li>
+<li>$\newcommand{\sandwich}[3]{\langle{#1}\vert{#2}\vert{#3}\rangle}$ <code>$\sandwich{+}{A}{+}$</code>: $\sandwich{+}{A}{+}$</li>
 <li>$\newcommand{\amp}[1]{{\lvert{#1}\rvert}^{2}}$ <code>$\amp{\braket{\pm}{\psi}}$</code>: $\amp{\braket{\pm}{\psi}}$</li>
+<li>$\newcommand{\det}[1]{\text{det}\lvert{#1}\rvert}$ <code>$\det{A - \lambda I}$</code>: $\det{A - \lambda I}$</li>
 </ul>
 
 </div>
@@ -13485,9 +13487,115 @@ $$\mathcal{P}_{a_{n}} = \amp{\braket{a_{n}}{\psi}}$$<ul>
 </ul>
 </li>
 <li>After a measurement of $A$ that yields the result $a_{n}$, the quantum system is in a new state that is the normalized projection of the original system ket onto the ket (or kets) corresponding to the result of the measurement:
-$$\ket{\psi'} = \frac{P_{n}\ket{\psi}}{\sqrt{\braket{\psi}{P_{n} \vert \psi}}}$$</li>
+$$\ket{\psi'} = \frac{P_{n}\ket{\psi}}{\sqrt{\sandwich{\psi}{P_{n}}{\psi}}}$$</li>
 <li>The time evolution of a quantum system is determined by the Hamiltonian or total energy operator $H(t)$ through a Schrodinger equation:
 $$i\hbar\frac{d}{dt}\ket{\psi(t)} = H(t)\ket{\psi(t)}$$</li>
+</ol>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Operators-and-Measurement">Operators and Measurement<a class="anchor-link" href="#Operators-and-Measurement">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Operators,-Eigenvalues,-and-Eigenvectors">Operators, Eigenvalues, and Eigenvectors<a class="anchor-link" href="#Operators,-Eigenvalues,-and-Eigenvectors">&#182;</a></h3><ul>
+<li>An <strong>operator</strong> is a mathematical object that acts or operates on a ket and transforms it into a new ket: $A\ket{\psi} = \ket{\phi}$.</li>
+<li>An ket that is not changed by an operator, except for a possible multiplicative constant, is $A\ket{\psi} = a\ket{\psi}$.<ul>
+<li>where $A$ is the operator.</li>
+<li>where $\ket{\psi}$ is the eigenvector.</li>
+<li>where $a$ is the eigenvalue.</li>
+</ul>
+</li>
+<li>In an <strong>eigenvalue equation</strong>, the <em>observable</em> is represented by an operator, the eigenvalue is one of the possible measurement results of the observable, and the eigenvector is the ket corresponding to the chosen eigenvalue of the operator.</li>
+<li><strong>Important Note 1</strong>: An operator is always diagonal in its own basis.</li>
+<li><strong>Important Note 2</strong>: Eigenvectors are unit vectors in their own basis.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Matrices">Matrices<a class="anchor-link" href="#Matrices">&#182;</a></h3><h4 id="Matrix-Addition">Matrix Addition<a class="anchor-link" href="#Matrix-Addition">&#182;</a></h4>$$C_{ij} = A_{ij} + B_{ij}$$$$A + B = \begin{pmatrix}a &amp; b\\ c &amp; d\end{pmatrix} + \begin{pmatrix}e &amp; f\\ g &amp; h\end{pmatrix} = \begin{pmatrix}a + e &amp; b + f\\ c + g &amp; d + h\end{pmatrix}$$<h4 id="Matrix-Multiplication">Matrix Multiplication<a class="anchor-link" href="#Matrix-Multiplication">&#182;</a></h4>$$C_{ij} = \sum^{n}_{k = 1} A_{ik} B_{kj}$$$$AB = \begin{pmatrix}a &amp; b\\ c &amp; d\end{pmatrix} \begin{pmatrix}e &amp; f\\ g &amp; h\end{pmatrix} = \begin{pmatrix}ae + bg &amp; af + bh\\ ce + dg &amp; cf + dh \end{pmatrix}$$<ul>
+<li>To find the matrix element $C_{ij}$ in the $i$th row and $j$th column of $C$, that the scalar product of the $i$th row of $A$ and the $j$th column of $B$.</li>
+</ul>
+<h4 id="Determinant-of-a-Matrix">Determinant of a Matrix<a class="anchor-link" href="#Determinant-of-a-Matrix">&#182;</a></h4>$$\det{A} = \begin{vmatrix}a &amp; b\\ c &amp; d\end{vmatrix} = ad - bc$$
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Matrix-Representation-of-Operators">Matrix Representation of Operators<a class="anchor-link" href="#Matrix-Representation-of-Operators">&#182;</a></h3>$$
+\begin{aligned}
+A &amp;= \begin{pmatrix}a &amp; b\\ c &amp; d\end{pmatrix}\\
+A\ket{+} &amp;= \begin{pmatrix}a &amp; b\\ c &amp; d\end{pmatrix} \begin{pmatrix}1 \\ 0\end{pmatrix} = \begin{pmatrix}a \\ c\end{pmatrix}\\
+\sandwich{+}{A}{+} &amp;= \begin{pmatrix}1 &amp; 0\end{pmatrix} \begin{pmatrix}a \\ c\end{pmatrix} = a\\
+A &amp;= \begin{pmatrix}\sandwich{+}{A}{+} &amp; \sandwich{+}{A}{-}\\ \sandwich{-}{A}{+} &amp; \sandwich{-}{A}{-}\end{pmatrix}\\
+\sandwich{\text{bra}}{\text{OPERATOR}}{\text{ket}} &amp;= \sandwich{\text{row}}{\text{OPERATOR}}{\text{column}}
+\end{aligned}
+$$
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Diagonalization-of-Operators">Diagonalization of Operators<a class="anchor-link" href="#Diagonalization-of-Operators">&#182;</a></h3><ol>
+<li>Experimental Results $+$ Eigenvalue Equation $\implies$ Matrix Representation.</li>
+<li>Matrix Represenation $\implies$ Theoretical Results.</li>
+</ol>
+<h4 id="General-Operator-in-Two-State-System">General Operator in Two-State System<a class="anchor-link" href="#General-Operator-in-Two-State-System">&#182;</a></h4>$$
+\begin{aligned}
+A\ket{a_{n}} &amp;= a_{n}\ket{a_{n}}\\
+A\ket{a_{n}} &amp;= \begin{pmatrix}A_{11} &amp; A_{12}\\ A_{21} &amp; A_{22}\end{pmatrix} \begin{pmatrix}c_{n1} \\ c_{n2}\end{pmatrix} = a_{n}\begin{pmatrix}c_{n1} \\ c_{n2}\end{pmatrix}\\
+\end{aligned}
+$$<ul>
+<li>where $A$ is the operator.</li>
+<li>where $a_{n}$ is the corresponding eigenvalue.</li>
+<li>where $\ket{a_{n}}$ is the corresponding eigenvector.</li>
+<li>where $c_{n1}$ and $c_{n2}$ are the unknown coefficients of the eigenvector $\ket{a_{n}}$ for the eigenvalue $a_{n}$.</li>
+</ul>
+<blockquote><p>Solve for the eigenvalues and eigenvectors by solving $\det{A - \lambda I} = 0$.</p>
+</blockquote>
+<h4 id="Two-State-System-Operators/Eigenvectors">Two-State System Operators/Eigenvectors<a class="anchor-link" href="#Two-State-System-Operators/Eigenvectors">&#182;</a></h4><p><img src="images/F02_38.png" alt="Two-State System Operators/Eigenvectors"></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="New-Operators:-Spin-Component-in-a-General-Direction">New Operators: Spin Component in a General Direction<a class="anchor-link" href="#New-Operators:-Spin-Component-in-a-General-Direction">&#182;</a></h3><p><img src="images/F02_3.png" alt="Spin Component in a General Direction"></p>
+<ol>
+<li>Let $S_{n}$ be the operator for th spin component along a general direction $\mathbf{\hat{n}}$.</li>
+<li>Let $\mathbf{\hat{n}}$ be a unit vector specified by the polar and azimuthal angles $\theta$ and $\phi$.
+$$\mathbf{\hat{n}} = \mathbf{\hat{i}}\sin{\theta}\cos{\phi} + \mathbf{\hat{j}}\sin{\theta}\sin{\phi} + \mathbf{\hat{k}}\cos{\theta}$$</li>
+<li>The spin component along this direction is obtained by projecting the spin vector $\mathbf{S}$ onto this new unit vector.
+$$
+\begin{aligned}
+S_{n} &amp;= \mathbf{S \cdot \hat{n}} = S_{x}\sin{\theta}\cos{\phi} + S_{y}\sin{\theta}\sin{\phi} + S_{z}\cos{\theta}\\
+S_{n} &amp;= \frac{\hbar}{2}\begin{pmatrix}\cos{\theta} &amp; \sin{\theta}e^{-i\phi}\\ \sin{\theta}e^{i\phi} &amp; -\cos{\theta} \end{pmatrix}
+\end{aligned}
+$$</li>
+<li><strong>Eigenvalues</strong>: $\pm\frac{\hbar}{2}$</li>
+<li><strong>Eigenvectors</strong>:
+$$
+\begin{aligned}
+\ket{+}_{n} &amp;= \cos{\frac{\theta}{2}}\ket{+} + \sin{\frac{\theta}{2}}e^{i\phi}\ket{-}\\
+\ket{-}_{n} &amp;= \sin{\frac{\theta}{2}}\ket{+} - \cos{\frac{\theta}{2}}e^{i\phi}\ket{-}
+\end{aligned}
+$$</li>
+<li><strong>General State</strong>:
+$$\ket{\psi} = \lvert{a}\rvert\ket{+} + \sqrt{1 - {\lvert{a}\rvert}^{2}}e^{i\phi}\ket{-}$$</li>
 </ol>
 
 </div>
