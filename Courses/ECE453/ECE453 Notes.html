@@ -13744,13 +13744,31 @@ $$
 <h3 id="Coverage-Criteria">Coverage Criteria<a class="anchor-link" href="#Coverage-Criteria">&#182;</a></h3><blockquote><p>Basic Coverage $\implies$ Advanced Coverage</p>
 </blockquote>
 <ol>
-<li>Line</li>
-<li>Statement</li>
+<li>Line<ul>
+<li><strong>Adequacy Criterion</strong>: Each source code line must be executed at least once.</li>
+<li><strong>Coverage</strong>: The percentage of source code lines executed.</li>
+</ul>
+</li>
+<li>Statement<ul>
+<li><strong>Adequacy Criterion</strong>: Each statement (or node in the CFG) must be executed at least once.</li>
+<li><strong>Coverage</strong>: The percentage of statements executed.</li>
+</ul>
+</li>
 <li>Function</li>
-<li>Branch</li>
+<li>Branch<ul>
+<li><strong>Adequacy Criterion</strong>: Each branch/decision, (or edge in the CFG) must be executed at least once.</li>
+<li><strong>Coverage</strong>: The percentage of edges executed.</li>
+<li><strong>Test Case</strong>: $O(n)$, where $n$ is the number of conditions.</li>
+</ul>
+</li>
 <li>Decision/Condition</li>
 <li>Modified Decision/Condition</li>
-<li>Path</li>
+<li>Path<ul>
+<li><strong>Adequancy Criterion</strong>: Each path in the CFG must be executed at lease once.</li>
+<li><strong>Coverage</strong>: The percentage of paths executed.</li>
+<li><strong>Test Case</strong>: $O(2^{n})$, where $n$ is the number of conditions.</li>
+</ul>
+</li>
 <li>Loop</li>
 <li>Mutation</li>
 </ol>
@@ -13832,6 +13850,150 @@ $$
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Reachability">Reachability<a class="anchor-link" href="#Reachability">&#182;</a></h3><ul>
 <li>Let $reach_{G}(X)$ denote the sub-graph of $G$ that is syntactically reachable from $X$, where $X$ is either a node, an edge, a set of nodes, or a set of edges.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Connect-Test-Cases-and-Test-Paths">Connect Test Cases and Test Paths<a class="anchor-link" href="#Connect-Test-Cases-and-Test-Paths">&#182;</a></h3><ul>
+<li>A $path_{G}$ is a mapping from test cases to test paths.
+$$path(T) = \{path(t) \mid t \in T\}$$</li>
+<li>A test case has at least one test path.<ul>
+<li><strong>Deterministic</strong>: One Test Path.</li>
+<li><strong>Nondeterministic</strong>: Many Test Paths.</li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Node,-Edge,-Edge-Pair-Coverage">Node, Edge, Edge-Pair Coverage<a class="anchor-link" href="#Node,-Edge,-Edge-Pair-Coverage">&#182;</a></h3><ul>
+<li><strong>Node Coverage (NC)</strong>: $TR$ contains each reachable node in $G$.<ul>
+<li><em>~Statement Coverage.</em></li>
+</ul>
+</li>
+<li><strong>Edge Coverage (EC)</strong>: $TR$ contains each reachable path of length up to $1$, inclusive, in $G$.<ul>
+<li><em>~Branch Coverage.</em></li>
+</ul>
+</li>
+<li><strong>Edge-Pair Coverage (EPC)</strong>: $TR$ contains each reachable path of length up to $2$, inclusive, in $G$.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Simple-Path">Simple Path<a class="anchor-link" href="#Simple-Path">&#182;</a></h3><ul>
+<li>A path is <strong>simple</strong> if no node appears more than once in the path, except that the first and the last nodes may be the same.</li>
+</ul>
+<h4 id="Properties">Properties<a class="anchor-link" href="#Properties">&#182;</a></h4><ul>
+<li>No Internal Loops.</li>
+<li>Possibly Bounded Length.</li>
+<li>Possible Create Any Path = Composition of Simple Paths.</li>
+<li>Many Simple Paths Exist.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Prime-Path">Prime Path<a class="anchor-link" href="#Prime-Path">&#182;</a></h3><ul>
+<li>A path is <strong>prime</strong> if it is simple and does not appear as a proper subpath of any other simple path.</li>
+<li><strong>Prime Path Coverage (PPC)</strong>: $TR$ contains each prime path in $G$.<ul>
+<li><em>Problem</em>: A prime path may be infeasible yet contains feasible simple paths.</li>
+</ul>
+</li>
+<li><strong>Complete Path Coverage (CPC)</strong>: $TR$ contains all paths in $G$.</li>
+<li><strong>Specified Path Coverage (SPC)</strong>: $TR$ contains a specified set $S$ of paths.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Graph-Coverage-Criteria-Subsumption">Graph Coverage Criteria Subsumption<a class="anchor-link" href="#Graph-Coverage-Criteria-Subsumption">&#182;</a></h3><ol>
+<li><em>Complete Path Coverage (CPC)</em> &gt; <em>Prime Path Coverage (PPC)</em> &gt; <em>Edge Coverage (EC)</em> &gt; <em>Node Coverage (NC)</em></li>
+<li><em>Complete Path Coverage (CPC)</em> &gt; <em>Edge-Pair Coverage (EPC)</em> &gt; <em>Edge Coverage (EC)</em> &gt; <em>Node Coverage (NC)</em></li>
+</ol>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Logic-Coverage">Logic Coverage<a class="anchor-link" href="#Logic-Coverage">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Decisions">Decisions<a class="anchor-link" href="#Decisions">&#182;</a></h3><ul>
+<li><strong>Decisions</strong>: A logical expression in a program.<ul>
+<li>$P$ is a set of decisions (predicates) of the program.</li>
+</ul>
+</li>
+<li><strong>Conditions</strong>: The leaves of a decision.<ul>
+<li>$C_{p}$ is a set of conditions (atomic predicates) constructing a predicate $p$.</li>
+<li>$C$ is the set of all conditions in all of the decisions in $P$.
+$$C_{p} = \{c \mid c \in p\}$$
+$$C = \cup_{p \in P} C_{p}$$</li>
+</ul>
+</li>
+<li><strong>Logical Operators</strong>: Connect conditions to construct a decision.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Decision,-Condition,-Combinatorial-Coverage">Decision, Condition, Combinatorial Coverage<a class="anchor-link" href="#Decision,-Condition,-Combinatorial-Coverage">&#182;</a></h3><ul>
+<li><strong>Decision Coverage (DC)</strong>: For each $p \in P$, $TR$ contains two requirements.<ol>
+<li>$p$ evaluates to true.</li>
+<li>$p$ evaluates to false.</li>
+</ol>
+<ul>
+<li><em>~Edge Coverage.</em></li>
+</ul>
+</li>
+<li><strong>Condition Coverage (CC)</strong>: For each $c \in C$, $TR$ contains two requirements.<ol>
+<li>$c$ evaluates to true.</li>
+<li>$c$ evaluates to false.</li>
+</ol>
+</li>
+<li><strong>Combinatorial Coverage (CoC) / Multiple Condition Coverage</strong>: For each $p \in P$, $TR$ has test requirements for the conditions in $C_{p}$ to evaluate to each possible combination of truth values.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Active-Condition-Coverage">Active Condition Coverage<a class="anchor-link" href="#Active-Condition-Coverage">&#182;</a></h3><ul>
+<li>An <strong>active condition</strong> focuses on each condition that affects the final decision.<ul>
+<li><em>Active Conditions = Major Conditions.</em></li>
+<li><em>Non-Active Conditions = Minor Conditions.</em></li>
+</ul>
+</li>
+<li><strong>Determination</strong>: A major condition <em>determines</em> a decision with certain minor conditions.</li>
+<li><strong>Active Condition Coverage (ACC)</strong>: For each $p \in P$ and making each condition $c_{i} \in C_{p}$ major, choose assignments for minor conditions $c_{j}$, $j \ne i$ such that $c_{i}$ determines $p$.</li>
 </ul>
 
 </div>
