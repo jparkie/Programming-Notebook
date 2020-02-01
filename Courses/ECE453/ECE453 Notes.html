@@ -13999,6 +13999,133 @@ $$C = \cup_{p \in P} C_{p}$$</li>
 </div>
 </div>
 </div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Automated-Test-Case-Generation:-Address-Sanitizer">Automated Test-Case Generation: Address Sanitizer<a class="anchor-link" href="#Automated-Test-Case-Generation:-Address-Sanitizer">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Automated-Test-Case-Generation">Automated Test-Case Generation<a class="anchor-link" href="#Automated-Test-Case-Generation">&#182;</a></h3><ol>
+<li><strong>Black Box</strong>: Random Test Cases.</li>
+<li><strong>Grey Box</strong>: Coverage Guidance.</li>
+<li><strong>White Box</strong>: Symbolic Reasoning.</li>
+</ol>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Valgrind">Valgrind<a class="anchor-link" href="#Valgrind">&#182;</a></h3><ul>
+<li>An instrumentation framework for dynamic analysis tools that interprets a program using a synthetic CPU.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Memory-Access-Instrumentation">Memory Access Instrumentation<a class="anchor-link" href="#Memory-Access-Instrumentation">&#182;</a></h3><ul>
+<li>The compiler instruments each <em>STORE</em> and <em>LOAD</em> instruction with a check whether the memory being accessed is accessible.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Memory-Mapping-and-Alignment">Memory Mapping and Alignment<a class="anchor-link" href="#Memory-Mapping-and-Alignment">&#182;</a></h3><ul>
+<li><em>Virutal Memory</em> $\implies$ <em>Mem</em> + <em>Shadow</em><ul>
+<li><strong>Mem</strong>: Normal Application Memory.</li>
+<li><strong>Shadow</strong>: Metadata Memory about Main Memory.</li>
+</ul>
+</li>
+<li>Poisoning a byte address of <em>Mem</em> requires writing a special value to its corresponding descriptor in <em>Shadow</em>.</li>
+<li>Because most processors align memory using 8 bytes (i.e., <em>QWORDS</em>), <em>AddressSanitizer</em> maps each 8 bytes of <em>Mem</em> into 1 byte of <em>Shadow</em>.<ul>
+<li>If all 8 bytes are accessible, $\text{Shadow} = 0$.</li>
+<li>If all 8 bytes are inaccessible, $\text{Shadow} &lt; 0$.</li>
+<li>If the first $k$ bytes are only accessible, $\text{Shadow} = k$.</li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Redzones">Redzones<a class="anchor-link" href="#Redzones">&#182;</a></h3><ul>
+<li><strong>Redzones</strong> are markers that mark boundaries of allocated memory segments on the heap.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Automated-Test-Case-Generation:-Fuzzing">Automated Test-Case Generation: Fuzzing<a class="anchor-link" href="#Automated-Test-Case-Generation:-Fuzzing">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Fuzzing">Fuzzing<a class="anchor-link" href="#Fuzzing">&#182;</a></h3><ul>
+<li>A set of automated testing techniques that tries to identify abnormal program behaviors by evaluation of how the tested program responds to various inputs.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Challenges">Challenges<a class="anchor-link" href="#Challenges">&#182;</a></h3><ol>
+<li><strong>Inputs</strong>: Input Files or Byte Arrays</li>
+<li><strong>Detecting Abnormal Behavior</strong>: Crashes, User-Defined Assertions, Hang Time, Memory Allocations</li>
+<li><strong>Ensuring Progression</strong>: Program Counter, Lines of Source Code, Statements, Control Flow Graph, Functions, ....<ul>
+<li>i.e., Coverage Feedback</li>
+</ul>
+</li>
+<li><strong>Generating Interesting Inputs</strong>: Bit Flips, Byte Flips, Byte Swaps, Byte Rotates, Arithmetic, Known Inputs, Composition, ....</li>
+<li><strong>Speed</strong>: Fork After Initialization, Use Cheaper Resources, Many Inputs for Single Process, ....</li>
+</ol>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="SMT-Solver-Z3">SMT Solver Z3<a class="anchor-link" href="#SMT-Solver-Z3">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Satisfiability-Modulo-Theory-(SMT)">Satisfiability Modulo Theory (SMT)<a class="anchor-link" href="#Satisfiability-Modulo-Theory-(SMT)">&#182;</a></h3><ul>
+<li><strong>Satisfiability</strong>: The problem of determining whether a formula $F$ has a model.<ul>
+<li>If $F$ is <strong>propositional</strong>, a model is a truth assignment to Boolean variables.</li>
+<li>If $F$ is <strong>first-order formula</strong>, a model assigns values to variables and interpretation to all the function and predicate symbols.</li>
+</ul>
+</li>
+<li><strong>SAT Solvers</strong>: Check satisfiability of propositional formulas.</li>
+<li><strong>SMT Solvers</strong>: Check satisfiability of formulas in a decidable first-order theory.</li>
+</ul>
+
+</div>
+</div>
+</div>
     </div>
   </div>
 </body>
