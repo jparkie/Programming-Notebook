@@ -13127,6 +13127,7 @@ div#notebook {
 <li>$\newcommand{\bra}[1]{\langle{#1}\rvert}$ <code>$\bra{+}$</code>: $\bra{+}$</li>
 <li>$\newcommand{\ket}[1]{\lvert{#1}\rangle}$ <code>$\ket{+}$</code>: $\ket{+}$</li>
 <li>$\newcommand{\braket}[2]{\langle{#1}\vert{#2}\rangle}$ <code>$\braket{+}{+}$</code>: $\braket{+}{+}$</li>
+<li>$\newcommand{\ketbra}[2]{\lvert{#1}\rangle\langle{#2}\rvert}$ <code>$\ketbra{+}{+}$</code>: $\ketbra{+}{+}$</li>
 <li>$\newcommand{\sandwich}[3]{\langle{#1}\vert{#2}\vert{#3}\rangle}$ <code>$\sandwich{+}{A}{+}$</code>: $\sandwich{+}{A}{+}$</li>
 <li>$\newcommand{\amp}[1]{{\lvert{#1}\rvert}^{2}}$ <code>$\amp{\braket{\pm}{\psi}}$</code>: $\amp{\braket{\pm}{\psi}}$</li>
 <li>$\newcommand{\det}[1]{\text{det}\lvert{#1}\rvert}$ <code>$\det{A - \lambda I}$</code>: $\det{A - \lambda I}$</li>
@@ -13360,7 +13361,7 @@ $$P_{\pm} = \amp{\braket{\pm}{\psi}}$$<ul>
 <li>where $\amp{\braket{\pm}{\psi}}$ is the probability amplitude.</li>
 </ul>
 </li>
-<li><em>Note: $\braket{out}{in} = \braket{in}{out}^{</em>}$.*</li>
+<li>$\braket{out}{in} = \braket{in}{out}^{*}$</li>
 </ul>
 
 </div>
@@ -13596,6 +13597,92 @@ $$
 $$</li>
 <li><strong>General State</strong>:
 $$\ket{\psi} = \lvert{a}\rvert\ket{+} + \sqrt{1 - {\lvert{a}\rvert}^{2}}e^{i\phi}\ket{-}$$</li>
+</ol>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Hermitian-Operators">Hermitian Operators<a class="anchor-link" href="#Hermitian-Operators">&#182;</a></h3><ul>
+<li><strong>Hermitian Adjoint of $A$</strong>: The operator $A^{\dagger}$ is the transposition-and-complex-conjugation of $A$.
+$$
+\begin{aligned}
+\ket{\phi} &amp;= A\ket{\psi}\\
+\braket{\phi}{\beta} &amp;= \braket{\beta}{\phi}^{*}\\
+\sandwich{\psi}{A^{+}}{\beta} &amp;= \sandwich{\beta}{A}{\psi}^{*}
+\end{aligned}
+$$</li>
+<li>If an operator $A \iff A^{\dagger}$, then $\bra{\phi} = \bra{\psi}A \iff \ket{\phi} = A\ket{\psi}$.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Projection-Operators">Projection Operators<a class="anchor-link" href="#Projection-Operators">&#182;</a></h3><ul>
+<li><strong>Identity Operator</strong>: $\ketbra{+}{+} + \ketbra{-}{-} = I$</li>
+<li><strong>Projection Operator,+</strong>: $P_{+} = \ketbra{+}{+} = \begin{pmatrix}1 &amp; 0\\ 0 &amp; 0\end{pmatrix}$</li>
+<li><strong>Projection Operator,-</strong>: $P_{-} = \ketbra{-}{-} = \begin{pmatrix}0 &amp; 0\\ 0 &amp; 1\end{pmatrix}$</li>
+<li>When a projection operator for a particular eigenstate acts on a state $\ket{\psi}$, it produces a new ket that is aligned along the eigenstate and has a magnitude equal to the amplitude (including the phase) for the state $\ket{\psi}$ to be in that eigenstate.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Analysis-of-Experiments-3-and-4">Analysis of Experiments 3 and 4<a class="anchor-link" href="#Analysis-of-Experiments-3-and-4">&#182;</a></h3><p><img src="images/F02_7.png" alt="Experiments 4a, 4b, 4c"></p>
+<ul>
+<li><strong>Important Note 1</strong>: The total probability is the product of the individual probabilities of each measurement: second analyzer and third analyzer.</li>
+<li><strong>Important Note 2</strong>: The product of individual probabilities is read right to left.</li>
+</ul>
+<h4 id="Figure-2.7(a)">Figure 2.7(a)<a class="anchor-link" href="#Figure-2.7(a)">&#182;</a></h4><ol>
+<li><strong>Upper Positive Probability</strong>: $\mathcal{P}_{\text{upper},+} = \amp{\braket{+}{+}_{x}} \amp{{}_{x}\braket{+}{+}}$<ol>
+<li><em>Second Analyzer</em>: $S_{x} = +\hbar/2 \implies \amp{{}_{x}\braket{+}{+}}$</li>
+<li><em>Third Analyzer</em>: $S_{z} = +\hbar/2 \implies \amp{\braket{+}{+}_{x}}$</li>
+</ol>
+</li>
+<li><strong>Upper Negative Probability</strong>: $\mathcal{P}_{\text{upper},-} = \amp{\braket{-}{+}_{x}} \amp{{}_{x}\braket{+}{+}}$<ol>
+<li><em>Second Analyzer</em>: $S_{x} = +\hbar/2 \implies \amp{{}_{x}\braket{+}{+}}$</li>
+<li><em>Third Analyzer</em>: $S_{z} = -\hbar/2 \implies \amp{\braket{-}{+}_{x}}$</li>
+</ol>
+</li>
+<li><strong>Lower Positive Probability</strong>: $\mathcal{P}_{\text{lower},+} = \amp{\braket{+}{-}_{x}} \amp{{}_{x}\braket{-}{+}}$<ol>
+<li><em>Second Analyzer</em>: $S_{x} = -\hbar/2 \implies \amp{{}_{x}\braket{-}{+}}$</li>
+<li><em>Third Analyzer</em>: $S_{z} = +\hbar/2 \implies \amp{\braket{+}{-}_{x}}$</li>
+</ol>
+</li>
+<li><strong>Lower Negative Probability</strong>: $\mathcal{P}_{\text{lower},-} = \amp{\braket{-}{-}_{x}} \amp{{}_{x}\braket{-}{+}}$<ol>
+<li><em>Second Analyzer</em>: $S_{x} = -\hbar/2 \implies \amp{{}_{x}\braket{-}{+}}$</li>
+<li><em>Third Analyzer</em>: $S_{z} = -\hbar/2 \implies \amp{\braket{-}{-}_{x}}$</li>
+</ol>
+</li>
+</ol>
+<h4 id="Figure-2.7(b)">Figure 2.7(b)<a class="anchor-link" href="#Figure-2.7(b)">&#182;</a></h4><blockquote><p>Input State of Third Analyzer* $\iff$ Output State of Second Analyzer</p>
+</blockquote>
+<ol>
+<li>The output state of the second analyzer is aligned along the sum of the two projection operators for each port.
+$$\ket{\psi_{2}} = \frac{(P_{+x} + P_{-x})\ket{+}}{\sqrt{\sandwich{+}{(P_{+x} + P_{-x})}{+}}}$$</li>
+<li>The sum of the two projection operators, $P_{+x} + P_{-x}$, is the identity operator, so the denominator is one.
+$$\ket{\psi_{2}} = \ket{+}_{x}{}_{x}\braket{+}{+} + \ket{-}_{x}{}_{x}\braket{-}{+}$$</li>
+<li>Thus, the input state of the third analyzer is the coherent superposition of the eigenstates of the second analyzer.
+$$
+\begin{aligned}
+\mathcal{P}_{+} &amp;= \amp{\braket{+}{\psi_{2}}}\\
+&amp;= \amp{\braket{+}{+}_{x}{}_{x}\braket{+}{+} + \braket{+}{-}_{x}{}_{x}\braket{-}{+}}\\
+&amp;= \mathcal{P}_{\text{upper},+} + \mathcal{P}_{\text{lower},+} + \text{Interference}\\
+\mathcal{P}_{-} &amp;= \amp{\braket{-}{\psi_{2}}}\\
+&amp;= \amp{\braket{-}{+}_{x}{}_{x}\braket{+}{+} + \braket{-}{-}_{x}{}_{x}\braket{-}{+}}\\
+&amp;= \mathcal{P}_{\text{upper},-} + \mathcal{P}_{\text{lower},-} + \text{Interference}
+\end{aligned}
+$$</li>
+<li>The interference arises from the nature of the superposition of states that enter the third analyzer.</li>
+<li>If no measurement is made on the intermediate state, then we add amplitudes and then square to find the probability, while if an intermediate measurement is performed (i.e., watching), then we square the amplitudes first and then add to find the probability. One is the square of a sum and the other is the sum of squares, and only the former exhibits interference.</li>
 </ol>
 
 </div>
