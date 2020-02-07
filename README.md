@@ -25,6 +25,7 @@ A collection of [BeakerX](http://beakerx.com/) IPython notebooks and PDFs about 
 	- [ECE 453 - Software Testing, Quality Assurance, and Maintenance](http://jacobpark.me/Programming-Notebook/Courses/ECE453/ECE453%20Notes.html)
 	- [ECE 454 - Distributed Computing](http://jacobpark.me/Programming-Notebook/Courses/ECE454/ECE454%20Notes.html)
 	- [ECE 457A - Cooperative and Adaptive Algorithms](http://jacobpark.me/Programming-Notebook/Courses/ECE457A/ECE457A%20Notes.html)
+	- [ECE 459 - Programming for Performance](http://jacobpark.me/Programming-Notebook/Courses/ECE459/ECE459%20Notes.html)
 	- [ECE 493 - Probabilistic Reasoning and Decision Making](http://jacobpark.me/Programming-Notebook/Courses/ECE493/ECE493%20Notes.html)
 	- [RS 121 - Philosophy of Evil](http://jacobpark.me/Programming-Notebook/Courses/RS121/RS121%20Notes.html)
 - **Data Structures and Algorithms**
