@@ -14126,6 +14126,114 @@ $$C = \cup_{p \in P} C_{p}$$</li>
 </div>
 </div>
 </div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Symbolic-Execution">Symbolic Execution<a class="anchor-link" href="#Symbolic-Execution">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Symbolic-Execution-High-Level-Algorithm">Symbolic Execution High-Level Algorithm<a class="anchor-link" href="#Symbolic-Execution-High-Level-Algorithm">&#182;</a></h3><ol>
+<li>Execute Program with Symbolic Inputs.</li>
+<li>Fork Execution at Each Branch.</li>
+<li>Record Branching Conditions.</li>
+<li>Decide Path Feasibility with Constraint Solver.</li>
+<li>Generates Test Cases with Constraint Solver.</li>
+</ol>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Symbolic-Execution">Symbolic Execution<a class="anchor-link" href="#Symbolic-Execution">&#182;</a></h3><ul>
+<li><strong>Symbolic Execution</strong>: A static analysis of programs by tracking symbolic values.</li>
+<li><strong>Symbolic Path Condition</strong>: A path condition for a path $P$ is a formula $PC$ such that $PC$ is satisfiable if and only if $P$ is executable.</li>
+<li>The forking of the execution at each branch allows constraints to be built that characterize conditions for executing paths, and the effects of the execution on program state.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Symbolic-State">Symbolic State<a class="anchor-link" href="#Symbolic-State">&#182;</a></h3><ul>
+<li>A <strong>symbolic state</strong> is a pair $S = (Env, PC)$, where ...<ul>
+<li>$Env = L \to E$ is an <strong>environment</strong> that maps program variables to symbolic expressions (first-order logic terms).</li>
+<li>$PC$ is a <strong>path condition</strong> that is a first-order logic formula.</li>
+</ul>
+</li>
+<li>A concrete state $M : L \to Z$ satisfies a symbolic state $S = (Env, PC)$ if and only if ...
+$$M |= (Env, PC) \text{ iff } \left( (\land_{v \in L} M(v) = Env(v)) \land PC \text{ is } SAT \right)$$</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Functional-Representation-of-an-Executable-Component">Functional Representation of an Executable Component<a class="anchor-link" href="#Functional-Representation-of-an-Executable-Component">&#182;</a></h3><ul>
+<li>A symbolic execution creates a functional representation of a path in a CFG.</li>
+<li>$D[P_{i}]$ is the domain for a path $P_{i}$ that represents the inputs that force the program to take the path.</li>
+<li>$C[P_{i}]$ is the computation for a path $P_{i}$ that represents the result of executing the path.</li>
+<li>A program $P$ is composed of partial functions representing the executable paths: $P = \{P_{1}, ..., P_{r}\}$ where $P_{i} : X_{i} \to Y$.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Finding-Bugs-with-Symbolic-Execution">Finding Bugs with Symbolic Execution<a class="anchor-link" href="#Finding-Bugs-with-Symbolic-Execution">&#182;</a></h3><ol>
+<li>Enumerate Paths with Symbolic Execution.</li>
+<li>Translate Any Safety Property to Reachability (Assertions).</li>
+<li>Treat Assertions as Error Conditions.</li>
+</ol>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Dynamic-Symbolic-Execution">Dynamic Symbolic Execution<a class="anchor-link" href="#Dynamic-Symbolic-Execution">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Dynamic-Symbolic-Execution">Dynamic Symbolic Execution<a class="anchor-link" href="#Dynamic-Symbolic-Execution">&#182;</a></h3><ol>
+<li>Execute the program with a concrete state and a symbolic state in parallel.</li>
+<li>Generate a new concrete state using a constraint solver.</li>
+</ol>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="EXE-Algorithm">EXE Algorithm<a class="anchor-link" href="#EXE-Algorithm">&#182;</a></h3><p><em>See Slides 6 to 21 in Dynamic Symbolic Execution.</em></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="DART-Algorithm">DART Algorithm<a class="anchor-link" href="#DART-Algorithm">&#182;</a></h3><p><em>See Slides 22 to 64 in Dynamic Symbolic Execution.</em></p>
+
+</div>
+</div>
+</div>
     </div>
   </div>
 </body>
