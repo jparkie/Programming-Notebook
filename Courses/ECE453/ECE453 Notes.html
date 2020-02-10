@@ -14234,6 +14234,177 @@ $$M |= (Env, PC) \text{ iff } \left( (\land_{v \in L} M(v) = Env(v)) \land PC \t
 </div>
 </div>
 </div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Semantics-of-Symbolic-Execution">Semantics of Symbolic Execution<a class="anchor-link" href="#Semantics-of-Symbolic-Execution">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Notation">Notation<a class="anchor-link" href="#Notation">&#182;</a></h3><ul>
+<li>$L$ is a set of program variables.</li>
+<li>$q$ is a concrete state that maps program variables $L$ to integers $\mathbb{Z}$.</li>
+<li>$Q : L \to \mathbb{Z}$ is the set of all states.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Symbolic-States-and-Path-Conditions">Symbolic States and Path Conditions<a class="anchor-link" href="#Symbolic-States-and-Path-Conditions">&#182;</a></h3><ul>
+<li>A <strong>symbolic state</strong> $q$ is a map from program variables to symbolic expressions.</li>
+<li>A <strong>path condition</strong> $pc$ is a formula over symbolic expressions.</li>
+<li>A <strong>judgment</strong> in symbolic execution has the following form.
+$$\langle s, q, pc \rangle \Downarrow q', pc'$$<ul>
+<li>where $s$ is the <strong>Program Statement</strong>.</li>
+<li>where $q$ is the <strong>Input Symbolic Environment</strong>.</li>
+<li>where $q'$ is the <strong>Output Symbolic Environment</strong>.</li>
+<li>where $pc$ is the <strong>Input Path Condition</strong>.</li>
+<li>where $pc'$ is the <strong>Output Path Condition</strong>.</li>
+</ul>
+</li>
+<li>A path condition $pc'$ is <strong>satisfiable</strong> if and only if there is a concrete input state $c$ and concrete output state $c'$ such that $s$ started in state $c$ reaches $c'$, i.e., $\langle s, c \rangle \Downarrow c'$</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Symbolic-Semantics-for-WHILE:-Expressions">Symbolic Semantics for WHILE: Expressions<a class="anchor-link" href="#Symbolic-Semantics-for-WHILE:-Expressions">&#182;</a></h3>$$
+\begin{aligned}
+&amp;\frac{}{\langle n, q \rangle \Downarrow n} n \in \mathbb{Z} \\[1em]
+&amp;\frac{}{\langle v, q \rangle \Downarrow q(v)} v \in L \\[1em]
+&amp;\frac{\langle a_{1}, q \rangle \Downarrow n_{1} \quad \langle a_{2}, q \rangle \Downarrow n_{2}}{\langle a_{1} + a_{2}, q \rangle \Downarrow \text{Plus}(n_{1}, n_{2})} \\[1em]
+&amp;\frac{\langle a_{1}, q \rangle \Downarrow n_{1} \quad \langle a_{2}, q \rangle \Downarrow n_{2}}{\langle a_{1} * a_{2}, q \rangle \Downarrow \text{Times}(n_{1}, n_{2})} \\[1em]
+&amp;\frac{\langle a_{1}, q \rangle \Downarrow n_{1} \quad \langle a_{2}, q \rangle \Downarrow n_{2}}{\langle a_{1} &lt; a_{2}, q \rangle \Downarrow \text{Lt}(n_{1}, n_{2})} \\[1em]
+&amp;\frac{\langle a_{1}, q \rangle \Downarrow n_{1} \quad \langle a_{2}, q \rangle \Downarrow n_{2}}{\langle a_{1} &gt; a_{2}, q \rangle \Downarrow 
+\text{Gt}(n_{1}, n_{2})} \\[1em]
+&amp;\frac{\langle b_{1}, q \rangle \Downarrow r_{1} \quad \langle b_{2}, q \rangle \Downarrow r_{2}}{\langle b_{1} \land b_{2}, q \rangle \Downarrow \text{And}(r_{1}, r_{2})} \\[1em]
+&amp;\frac{\langle b_{1}, q \rangle \Downarrow r_{1} \quad \langle b_{2}, q \rangle \Downarrow r_{2}}{\langle b_{1} \lor b_{2}, q \rangle \Downarrow \text{Or}(r_{1}, r_{2})} \\[1em]
+\end{aligned}
+$$
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Symbolic-Semantics-for-WHILE:-Statements">Symbolic Semantics for WHILE: Statements<a class="anchor-link" href="#Symbolic-Semantics-for-WHILE:-Statements">&#182;</a></h3>$$
+\begin{aligned}
+&amp;\frac{}{\langle \text{skip}, q, pc \rangle \Downarrow q, pc} \\[1em]
+&amp;\frac{}{\langle \text{print_state}, q, pc \rangle \Downarrow q, pc} \\[1em]
+&amp;\frac{\langle s_{1}, q, pc \rangle \Downarrow q'', pc'' \quad \langle s_{2}, q'', pc'' \rangle \Downarrow q', pc'}{\langle s_{1} \text{ ; } s_{2}, q, pc \rangle \Downarrow q', pc'} \\[1em]
+&amp;\frac{\langle e, q \rangle \Downarrow r}{\langle x := e, q, pc \rangle \Downarrow q[x := r], pc} \\[1em]
+&amp;\frac{R \text{ is a fresh symbolic constant}}{\langle \text{havoc } x, q, pc \rangle \Downarrow q[x := R], pc} \\[1em]
+&amp;\frac{\langle b, q \rangle \Downarrow r \quad pc \land r \text{ is SAT } \quad \langle s_{1}, q, pc \land r \rangle \Downarrow q', pc'}{\langle \text{if } b \text{ then } s_{1} \text{ else } s_{2}, q, pc \rangle \Downarrow q', pc'} \\[1em]
+&amp;\frac{\langle b, q \rangle \Downarrow r \quad pc \land \lnot r \text{ is SAT } \quad \langle s_{2}, q, pc \land \lnot r \rangle \Downarrow q', pc'}{\langle \text{if } b \text{ then } s_{1} \text{ else } s_{2}, q, pc \rangle \Downarrow q', pc'} \\[1em]
+&amp;\frac{\langle b, q \rangle \Downarrow r \quad pc \land \lnot r \text{ is SAT}}{\langle \text{while } b \text{ do } s, q, pc \rangle \Downarrow q, pc \land \lnot r}\\[1em]
+&amp;\frac{\langle b, q \rangle \Downarrow r \quad pc \land r \text{ is SAT } \quad \langle s \text{ ; while } b \text{ do } s, q, pc \land r \rangle \Downarrow q', pc'}{\langle \text{while } b \text{ do } s, q, pc \rangle \Downarrow q', pc'}\\[1em]
+\end{aligned}
+$$
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Concolic-Semantics-for-WHILE:-Notation">Concolic Semantics for WHILE: Notation<a class="anchor-link" href="#Concolic-Semantics-for-WHILE:-Notation">&#182;</a></h3><ul>
+<li>$Sym(L)$ are the symbolic program variables.</li>
+<li>$Con(L)$ are the concrete program variables.</li>
+<li>A <strong>concolic state</strong> is a triple: $q = \langle c, s, pc \rangle$.<ul>
+<li>where $con(q) = c$ is the <strong>Concrete State</strong>.</li>
+<li>where $sym(q) = s$ is the <strong>Symbolic State</strong>.</li>
+<li>where $pc(q) = pc$ is the <strong>Path Condition</strong>.</li>
+</ul>
+</li>
+<li>Every variable $v \in sym(q)$ has a <strong>concrete shadow</strong> $con(q)(v)$; i.e., concrete state can evaluate all variables.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Equivalence-of-Concrete-States">Equivalence of Concrete States<a class="anchor-link" href="#Equivalence-of-Concrete-States">&#182;</a></h3><ul>
+<li>Two concrete states $c_{1}$ and $c_{2}$ are equivalent, $c_{1} \equiv_{con} c_{2}$, whenever they agree on concrete variables:
+$$c_{1} \equiv_{con} c_{2} \iff \forall a \in Con(L) \cdot c_{1}(a) = c_{2}(a)$$</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Containment-of-Concrete-States">Containment of Concrete States<a class="anchor-link" href="#Containment-of-Concrete-States">&#182;</a></h3><ul>
+<li>$c \models \langle s, pc \rangle$ means that concrete $c$ is contained in symbolic $\langle s, pc \rangle$.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Concolic-Semantics-of-Expressions">Concolic Semantics of Expressions<a class="anchor-link" href="#Concolic-Semantics-of-Expressions">&#182;</a></h3><ul>
+<li>Expressions that do not depend on symbolic variables are evaluated concretely.</li>
+<li>Expressions that depend on symbolic variables are evaluated symbolically (i.e. AST).</li>
+</ul>
+$$\frac{con(a) \quad \langle a, con(q) \rangle \Downarrow v}{\langle a, q \rangle \Downarrow v}$$$$\frac{sym(a) \quad \langle a, sym(q) \rangle \Downarrow v}{\langle a, q \rangle \Downarrow v}$$
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Concolic-Semantics-of-Simple-Statements">Concolic Semantics of Simple Statements<a class="anchor-link" href="#Concolic-Semantics-of-Simple-Statements">&#182;</a></h3><ul>
+<li>For most statements, the semantics are extended by applying both symbolic and concrete operational semantics in parallel.</li>
+<li>The last pre-condition ensures that the concrete and symbolic states are chosen consistently.</li>
+</ul>
+$$\frac{\langle s, con(q) \rangle \Downarrow c \quad \langle s, sym(q), pc(q) \rangle \Downarrow s', pc' \quad c \models \langle s', pc' \rangle}{\langle s, q \rangle \Downarrow \langle c, s', pc' \rangle}$$
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Concolic-Semantics-of-Assignment">Concolic Semantics of Assignment<a class="anchor-link" href="#Concolic-Semantics-of-Assignment">&#182;</a></h3><ul>
+<li>Assignment of values to concrete variables is limited to concrete values only.</li>
+<li><em>Impossible</em>: To assign symbolic variables to concrete variables.</li>
+</ul>
+$$\frac{\langle e, q \rangle \Downarrow n \quad con(x) \quad n \in \mathbb{Z}}{\langle x := e, q \rangle \Downarrow q[x := n]}$$
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Concolic-Semantics-of-If-Statement">Concolic Semantics of If-Statement<a class="anchor-link" href="#Concolic-Semantics-of-If-Statement">&#182;</a></h3><ul>
+<li>At an if-statement, concolic execution can chose to switch to the branch that is not consistent with current concrete state, as long as the concrete state can be adjusted.</li>
+</ul>
+$$\frac{\langle b, con(q) \rangle \Downarrow \text{true} \quad \langle b, q \rangle \Downarrow r \quad pc(q) \land \lnot r \text{ is SAT } \quad c \models \langle sym(q), pc(q) \land \lnot r \rangle \quad c \equiv_{con} con(q) \quad \langle s_{2}, \langle c, sym(q), pc(q) \land \lnot r \rangle \rangle \Downarrow q'}{\langle \text{if } b \text{ then } s_{1} \text{ else } s_{2}, q \rangle \Downarrow q'}$$
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Concolic-Semantics-of-Concretization">Concolic Semantics of Concretization<a class="anchor-link" href="#Concolic-Semantics-of-Concretization">&#182;</a></h3><ul>
+<li><strong>Concretization</strong> turns symbolic variables into the values of their concrete shadows. The choice of concretization is captured in a concretization constraints in the path condition.</li>
+<li>If $x$ is a symbolic variable with symbolic value $r$ and it is currently shadowed concretely by a concrete value $n$, then its value can be concretized to $n$ as long as the path condition is updated with $r = n$ to reflect the concretization.</li>
+</ul>
+$$\frac{sym(x) \quad \langle x, con(q) \rangle \Downarrow n \quad \langle x, sym(q) \rangle \Downarrow r \quad \langle s, \langle con(q), sym(q)[x := n], pc(q) \land r = n \rangle \rangle \Downarrow q'}{\langle s, q \rangle \Downarrow q'}$$
+</div>
+</div>
+</div>
     </div>
   </div>
 </body>
