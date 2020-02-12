@@ -27,7 +27,6 @@ A collection of [BeakerX](http://beakerx.com/) IPython notebooks and PDFs about 
 	- [ECE 457A - Cooperative and Adaptive Algorithms](http://jacobpark.me/Programming-Notebook/Courses/ECE457A/ECE457A%20Notes.html)
 	- [ECE 459 - Programming for Performance](http://jacobpark.me/Programming-Notebook/Courses/ECE459/ECE459%20Notes.html)
 	- [ECE 493 - Probabilistic Reasoning and Decision Making](http://jacobpark.me/Programming-Notebook/Courses/ECE493/ECE493%20Notes.html)
-	- [RS 121 - Philosophy of Evil](http://jacobpark.me/Programming-Notebook/Courses/RS121/RS121%20Notes.html)
 - **Data Structures and Algorithms**
 	- [1\. Java Standard Library](http://jacobpark.me/Programming-Notebook/Data%20Structures%20and%20Algorithms/1.%20Java%20Standard%20Library.html)
 	- [2\. Data Structures](http://jacobpark.me/Programming-Notebook/Data%20Structures%20and%20Algorithms/2.%20Data%20Structures.html)
