@@ -13695,7 +13695,7 @@ $$\text{Speed-Up} = \cfrac{1}{\frac{f_{1}}{S_{f_{1}}} + \frac{f_{2}}{S_{f_{2}}} 
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Working-with-Threads">Working with Threads<a class="anchor-link" href="#Working-with-Threads">&#182;</a></h3><p><em>See Lecture 6 - Working with Threads for pthreads.</em></p>
+<h2 id="Working-with-Threads">Working with Threads<a class="anchor-link" href="#Working-with-Threads">&#182;</a></h2><p><em>See Lecture 6 - Working with Threads for pthreads.</em></p>
 
 </div>
 </div>
@@ -13772,7 +13772,7 @@ $$\text{Speed-Up} = \cfrac{1}{\frac{f_{1}}{S_{f_{1}}} + \frac{f_{2}}{S_{f_{2}}} 
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Asynchronous-I/O">Asynchronous I/O<a class="anchor-link" href="#Asynchronous-I/O">&#182;</a></h3><p><em>See Lecture 8 - Asynchronous I/O for cURL.</em></p>
+<h2 id="Asynchronous-I/O">Asynchronous I/O<a class="anchor-link" href="#Asynchronous-I/O">&#182;</a></h2><p><em>See Lecture 8 - Asynchronous I/O for cURL.</em></p>
 
 </div>
 </div>
@@ -13780,7 +13780,7 @@ $$\text{Speed-Up} = \cfrac{1}{\frac{f_{1}}{S_{f_{1}}} + \frac{f_{2}}{S_{f_{2}}} 
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Of-Asgard-Hel">Of Asgard Hel<a class="anchor-link" href="#Of-Asgard-Hel">&#182;</a></h3><p><em>See Lecture 9 - Of Asgard Hel for Valgrind.</em></p>
+<h2 id="Of-Asgard-Hel">Of Asgard Hel<a class="anchor-link" href="#Of-Asgard-Hel">&#182;</a></h2><p><em>See Lecture 9 - Of Asgard Hel for Valgrind.</em></p>
 
 </div>
 </div>
@@ -14050,7 +14050,7 @@ $$\text{result} := \text{operand}_{1} \text{ operator } \text{operand}_{2}$$</li
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="OpenMP">OpenMP<a class="anchor-link" href="#OpenMP">&#182;</a></h3><p><em>See Lecture 13 - OpenMP for OpenMP.</em></p>
+<h2 id="OpenMP">OpenMP<a class="anchor-link" href="#OpenMP">&#182;</a></h2><p><em>See Lecture 13 - OpenMP for OpenMP.</em></p>
 
 </div>
 </div>
@@ -14058,7 +14058,204 @@ $$\text{result} := \text{operand}_{1} \text{ operator } \text{operand}_{2}$$</li
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="OpenMP-Tasks">OpenMP Tasks<a class="anchor-link" href="#OpenMP-Tasks">&#182;</a></h3><p><em>See Lecture 14 - OpenMP Tasks for OpenMP Tasks.</em></p>
+<h2 id="OpenMP-Tasks">OpenMP Tasks<a class="anchor-link" href="#OpenMP-Tasks">&#182;</a></h2><p><em>See Lecture 14 - OpenMP Tasks for OpenMP Tasks.</em></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Memory-Consistency">Memory Consistency<a class="anchor-link" href="#Memory-Consistency">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="OpenMP-Memory-Model">OpenMP Memory Model<a class="anchor-link" href="#OpenMP-Memory-Model">&#182;</a></h3><ul>
+<li><strong>Relaxed-Consistency, Shared-Memory Model</strong>:<ul>
+<li>All threads share a single store called <em>memory</em> which is not representative of RAM.</li>
+<li>Each thread can have its own temporary view of memory.</li>
+<li>Each thread's temporary view of memory is not required to be consistent with memory.</li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Flush-Directive">Flush Directive<a class="anchor-link" href="#Flush-Directive">&#182;</a></h3><ul>
+<li>As updates from one thread may not be seen by the other, OpenMP's <strong>flush</strong> directive makes a thread's temporary view of memory consistent with the main memory, by enforcing an order on the memory operations of the variables.
+<pre><code>#pragma omp flush [(list)]</code></pre>
+<ul>
+<li>Where the <strong>flush-set</strong> is the variables in the list.</li>
+<li>A flush directive can be reordered by the compiler, so all relevant variables must be provided in the flush-set.</li>
+</ul>
+</li>
+</ul>
+<h4 id="Ordering-Rules">Ordering Rules<a class="anchor-link" href="#Ordering-Rules">&#182;</a></h4><ol>
+<li>All read/write operations on the flush-set which happen before the flush complete before the flush executes.</li>
+<li>All read/write operations on the flush-set which happen after the flush complete after the flush executes.</li>
+<li>Flushes with overlapping flush-sets can not be reordered.</li>
+</ol>
+<h4 id="Implicit-Flush---Yes">Implicit Flush - Yes<a class="anchor-link" href="#Implicit-Flush---Yes">&#182;</a></h4><p><em>See Lecture 15 - Memory Consistency.</em></p>
+<h4 id="Implicit-Flush---No">Implicit Flush - No<a class="anchor-link" href="#Implicit-Flush---No">&#182;</a></h4><p><em>See Lecture 15 - Memory Consistency.</em></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Common-Performance-Issues-in-OpenMP">Common Performance Issues in OpenMP<a class="anchor-link" href="#Common-Performance-Issues-in-OpenMP">&#182;</a></h3><ol>
+<li>Unnecessary Flushing.</li>
+<li>Using Critical Sections/Locks vs. Atomics.</li>
+<li>Unnecessary Concurrent-Memory-Writing Protection.<ul>
+<li>Local Thread Variables.</li>
+<li>Single/Master Access.</li>
+</ul>
+</li>
+<li>Too Much Work in Critical Secitons.</li>
+<li>Too Many Entries into Critical Sections.</li>
+</ol>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Memory-Consistency-Models">Memory Consistency Models<a class="anchor-link" href="#Memory-Consistency-Models">&#182;</a></h3><ul>
+<li><strong>Reordering</strong>: A compiler or a processor may reorder non-interfering memory operations within a thread to speed-up code.</li>
+<li><strong>Sequential Consistency</strong>: No Reordering of Loads/Stores.</li>
+<li><strong>Sequential Consistency for Datarace-Free Programs</strong>: No Data Races.</li>
+<li><strong>Relaxed Consistency</strong>: Loads Reordered After Loads/Stores + Stores Reordered After Loads/Stores.</li>
+<li><strong>Weak Consistency</strong>: Any Reordering is Possible.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Memory-Barriers">Memory Barriers<a class="anchor-link" href="#Memory-Barriers">&#182;</a></h3><ul>
+<li>A <strong>memory barrier</strong> or <strong>fence</strong> prevents reordering or ensures that memory operations become visible in the right order.</li>
+<li>A memory barrier ensures that no access occuring after the barrier becomes visible to the system until after all accesses before the barrier become visible.</li>
+</ul>
+<h4 id="x86-Memory-Barriers">x86 Memory Barriers<a class="anchor-link" href="#x86-Memory-Barriers">&#182;</a></h4><ul>
+<li><code>mfence</code>: All loads and stores before the barrier become visible before any loads and stores after the barrier become visible.</li>
+<li><code>sfence</code>: All stores before the barrier become visible before all stores after the barrier become visible.</li>
+<li><code>lfence</code>: All loads before the barrier become visible before all loads after the barrier become visible.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="C/C++-11-Memory-Model">C/C++ 11 Memory Model<a class="anchor-link" href="#C/C++-11-Memory-Model">&#182;</a></h3><ul>
+<li><em>Before 11</em>: No Multi-Threaded Abstract Machine w/ Concurrency Primitives.</li>
+<li><em>After 11</em>: Yes Multi-Threaded Abstract Machine w/ Concurrency Primitives.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Dependencies-and-Speculation">Dependencies and Speculation<a class="anchor-link" href="#Dependencies-and-Speculation">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Dependencies">Dependencies<a class="anchor-link" href="#Dependencies">&#182;</a></h3><ul>
+<li>A <strong>dependency</strong> prevents parallelization when the computation $XY$ produces a different result from the computation $YX$.<ul>
+<li><strong>Loop-Carried Dependency</strong>: An iteration depends on the result of the previous iteration.</li>
+<li><strong>Memory-Carried Dependency</strong>: The result of a computation depends on the order in which two memory accesses occur.</li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Critical-Paths">Critical Paths<a class="anchor-link" href="#Critical-Paths">&#182;</a></h3><ul>
+<li>A <strong>critical path</strong> is the minimum amount of time to complete a task, taking dependencies into account.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Speculative-Execution">Speculative Execution<a class="anchor-link" href="#Speculative-Execution">&#182;</a></h3><ul>
+<li>A thread can be initialized to compute a result that may or may not be needed.<ul>
+<li><em>No-Speculation</em>: $T = T_{1} + p T_{2}$</li>
+<li><em>Yes-Speculation</em>: $T = \max(T_{1}, T_{2}) + S$</li>
+<li>Where $S$ is the synchronization overhead.</li>
+<li>Where $p$ is the probability of executing $T_{2}$.</li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Value-Speculation">Value Speculation<a class="anchor-link" href="#Value-Speculation">&#182;</a></h3><ul>
+<li>If there is a true dependency between the result of a computation and its successor and the result is predictable, speculatively execute the successor based on the predicted result.<ul>
+<li><em>No-Speculation</em>: $T = T_{1} + T_{2}$</li>
+<li><em>Yes-Speculation</em>: $T = \max(T_{1}, T_{2}) + S + p T_{2}$</li>
+<li>Where $S$ is the synchronization overhead.</li>
+<li>Where $p$ is the probability of the predicted result being incorrect.</li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="When-Can-We-Speculate?">When Can We Speculate?<a class="anchor-link" href="#When-Can-We-Speculate?">&#182;</a></h3><ul>
+<li>No Inter-Calls between Computation 1 and Computation 2.</li>
+<li>Computation 2 Cannot Depend on Modified Values from Computation 1.</li>
+<li>Computation 1 Must Be Deterministic.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Software-Transactional-Memory">Software Transactional Memory<a class="anchor-link" href="#Software-Transactional-Memory">&#182;</a></h3><ul>
+<li><strong>Software Transactional Memory</strong>: All the code within an atomic block executes completely, or aborts/rolls back in the event of a conflict with another transaction.</li>
+</ul>
+<h4 id="Advantages">Advantages<a class="anchor-link" href="#Advantages">&#182;</a></h4><ul>
+<li>Simple.</li>
+</ul>
+<h4 id="Disadvantage">Disadvantage<a class="anchor-link" href="#Disadvantage">&#182;</a></h4><ul>
+<li>Impossible to Rollback I/O.</li>
+<li>Difficulty with Nested Transactions.</li>
+<li>Transaction Size Limits.</li>
+</ul>
 
 </div>
 </div>
