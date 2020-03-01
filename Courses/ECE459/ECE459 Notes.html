@@ -13240,7 +13240,7 @@ div#notebook {
 <li>An instruction may need the result of a previous instruction.</li>
 <li>Multiple instructions can conflict over CPU resources.</li>
 <li>A fetch may be unable to identify the next instruction because of a branch.</li>
-<li>If a branch was mispredicted, the pipeline much be flushed.</li>
+<li>If a branch was mispredicted, the pipeline must be flushed.</li>
 </ol>
 
 </div>
@@ -13902,7 +13902,7 @@ $$\text{Speed-Up} = \cfrac{1}{\frac{f_{1}}{S_{f_{1}}} + \frac{f_{2}}{S_{f_{2}}} 
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Lock-Convoy-Mitigations">Lock Convoy Mitigations<a class="anchor-link" href="#Lock-Convoy-Mitigations">&#182;</a></h3><ol>
 <li><strong>Sleep</strong>: If the threads not in the lock convoy call <code>sleep()</code> frequently, then the threads in the lock convoy have an increased probability to make progress.</li>
-<li><strong>Sharing</strong>: If the program benefits from the use of reader-writer locks, then by sharing these locks, the threads in the lock convoy would contend with eachother less.</li>
+<li><strong>Sharing</strong>: If the program benefits from the use of reader-writer locks, then by sharing these locks, the threads in the lock convoy would contend with each other less.</li>
 <li><strong>Caching</strong>: If the threads in the lock convoy contend such that they can access a critical section guarding shared data, caching the shared data to reduce the critical section would improve throughput.</li>
 <li><strong>Try-Lock</strong>: A try-lock synchronization primitive continually tries to acquire the lock, and if it fails, then it yields the CPU to some other thread.<ul>
 <li>The use of a spin limit allows low priority threads to execute in a critical section; the threads can recover from contention without creating a convoy.</li>
@@ -14038,7 +14038,7 @@ $$\text{result} := \text{operand}_{1} \text{ operator } \text{operand}_{2}$$</li
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Automatic-Parallelization-Tips">Automatic Parallelization Tips<a class="anchor-link" href="#Automatic-Parallelization-Tips">&#182;</a></h3><ol>
 <li>Have a recognized loop style, e.g. for-loops with constant bounds.</li>
-<li>Have no dependencies between data ccessed in loop bodies for each iteration.</li>
+<li>Have no dependencies between data accessed in loop bodies for each iteration.</li>
 <li>Not conditionally change scalar variables read after the loop terminates, or change any scalar variable across iterations.</li>
 <li>Have enough work in the loop body to make parallelization profitable.</li>
 <li>Inline pure functions or convert functions to macros.</li>
