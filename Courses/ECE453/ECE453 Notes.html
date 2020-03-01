@@ -14405,6 +14405,563 @@ $$\frac{sym(x) \quad \langle x, con(q) \rangle \Downarrow n \quad \langle x, sym
 </div>
 </div>
 </div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Propositional-Logic">Propositional Logic<a class="anchor-link" href="#Propositional-Logic">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Syntax-of-Propositional-Logic">Syntax of Propositional Logic<a class="anchor-link" href="#Syntax-of-Propositional-Logic">&#182;</a></h3><ul>
+<li>An <strong>atomic formula</strong> has the form $A_{i}$ where $i = 1, 2, 3, ...$.</li>
+</ul>
+<h4 id="Formulas">Formulas<a class="anchor-link" href="#Formulas">&#182;</a></h4><ol>
+<li>All atomic formulas are formulas.</li>
+<li><strong>Negation</strong>: For every formula $F$, ${\lnot}F$ is a formula.</li>
+<li><strong>Disjunction</strong> (<em>Or</em>): For all formulas $F$ and $G$, $(F \lor G)$ is a formula.</li>
+<li><strong>Conjunction</strong> (<em>And</em>): For all formulas $F$ and $G$, $(F \land G)$ is a formula.</li>
+<li><strong>Subformula</strong>: Any formula $F$ which occurs in another formula $G$.</li>
+</ol>
+<h4 id="Syntax">Syntax<a class="anchor-link" href="#Syntax">&#182;</a></h4>$$
+\begin{aligned}
+\text{truth_symbol} &amp;::= \top \text{ (true) } \mid \bot \text{ (false) }\\[1em]
+\text{variable} &amp;::= p, q, r, ...\\[1em]
+\text{atom} &amp;::= \text{truth_symbol} \mid \text{variable}\\[1em]
+\text{literal} &amp;::= \text{atom} \mid {\lnot}\text{atom}\\[1em]
+\text{formula} &amp;::= \text{literal} \,\mid\\
+&amp;{\lnot}\text{formula} \,\mid\\
+&amp;\text{formula} \land \text{formula}\,\mid\\
+&amp;\text{formula} \lor \text{formula}\,\mid\\
+&amp;\text{formula} \to \text{formula}\,\mid\\
+&amp;\text{formula} \leftrightarrow \text{formula}
+\end{aligned}
+$$
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Semantics-of-Propositional-Logic">Semantics of Propositional Logic<a class="anchor-link" href="#Semantics-of-Propositional-Logic">&#182;</a></h3><ul>
+<li><strong>Truth Values</strong>: The elements of the set $\{0, 1\}$.</li>
+<li><strong>Assignment</strong>: A function $\mathcal{A} : \mathbf{D} \to \{0, 1\}$, where $\mathbf{D}$ is any subset of the atomic formulas.</li>
+<li>Given an assignment $\mathcal{A}$, it can be extended to the function $\mathcal{A'} : \mathbf{E} \to \{0, 1\}$, where $\mathbf{E} \supseteq \mathbf{D}$ is the set of formulas that can be built using only the atomic formulas from $\mathbf{D}$.</li>
+</ul>
+<h4 id="Semantics">Semantics<a class="anchor-link" href="#Semantics">&#182;</a></h4><ol>
+<li>For every atomic formula $A_{i} \in \mathbf{D}$, $\mathcal{A'}(A_{i}) = \mathcal{A}(A_{i})$.</li>
+<li>$\mathcal{A'}((F \land G)) = \begin{cases}1, &amp;\text{if } \mathcal{A'}(F) = 1 \text{ and } \mathcal{A'}(G) = 1 \\ 0, &amp;\text{otherwise}\end{cases}$</li>
+<li>$\mathcal{A'}((F \lor G)) = \begin{cases}1, &amp;\text{if } \mathcal{A'}(F) = 1 \text{ or } \mathcal{A'}(G) = 1 \\ 0, &amp;\text{otherwise}\end{cases}$</li>
+<li>$\mathcal{A'}({\lnot}F) = \begin{cases}1, &amp;\text{if } \mathcal{A'}(F) = 0 \\ 0, &amp;\text{otherwise}\end{cases}$</li>
+<li>$\mathcal{A'}((F \to G)) = {\lnot}F \lor G$</li>
+<li>$\mathcal{A'}((F \leftrightarrow G)) = ({\lnot}F \lor G) \land (F \lor {\lnot}G)$</li>
+</ol>
+<h4 id="Truth-Tables">Truth Tables<a class="anchor-link" href="#Truth-Tables">&#182;</a></h4><table>
+<thead><tr>
+<th style="text-align:center">$\mathcal{A}(F)$</th>
+<th style="text-align:center">$\mathcal{A}({\lnot}G)$</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">$0$</td>
+<td style="text-align:center">$1$</td>
+</tr>
+<tr>
+<td style="text-align:center">$1$</td>
+<td style="text-align:center">$0$</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead><tr>
+<th style="text-align:center">$\mathcal{A}(F)$</th>
+<th style="text-align:center">$\mathcal{A}(G)$</th>
+<th style="text-align:center">$\mathcal{A}((F \land G))$</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">$0$</td>
+<td style="text-align:center">$0$</td>
+<td style="text-align:center">$0$</td>
+</tr>
+<tr>
+<td style="text-align:center">$0$</td>
+<td style="text-align:center">$1$</td>
+<td style="text-align:center">$0$</td>
+</tr>
+<tr>
+<td style="text-align:center">$1$</td>
+<td style="text-align:center">$0$</td>
+<td style="text-align:center">$0$</td>
+</tr>
+<tr>
+<td style="text-align:center">$1$</td>
+<td style="text-align:center">$1$</td>
+<td style="text-align:center">$1$</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead><tr>
+<th style="text-align:center">$\mathcal{A}(F)$</th>
+<th style="text-align:center">$\mathcal{A}(G)$</th>
+<th style="text-align:center">$\mathcal{A}((F \lor G))$</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">$0$</td>
+<td style="text-align:center">$0$</td>
+<td style="text-align:center">$0$</td>
+</tr>
+<tr>
+<td style="text-align:center">$0$</td>
+<td style="text-align:center">$1$</td>
+<td style="text-align:center">$1$</td>
+</tr>
+<tr>
+<td style="text-align:center">$1$</td>
+<td style="text-align:center">$0$</td>
+<td style="text-align:center">$1$</td>
+</tr>
+<tr>
+<td style="text-align:center">$1$</td>
+<td style="text-align:center">$1$</td>
+<td style="text-align:center">$1$</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead><tr>
+<th style="text-align:center">$\mathcal{A}(F)$</th>
+<th style="text-align:center">$\mathcal{A}(G)$</th>
+<th style="text-align:center">$\mathcal{A}((F \to G))$</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">$0$</td>
+<td style="text-align:center">$0$</td>
+<td style="text-align:center">$1$</td>
+</tr>
+<tr>
+<td style="text-align:center">$0$</td>
+<td style="text-align:center">$1$</td>
+<td style="text-align:center">$1$</td>
+</tr>
+<tr>
+<td style="text-align:center">$1$</td>
+<td style="text-align:center">$0$</td>
+<td style="text-align:center">$0$</td>
+</tr>
+<tr>
+<td style="text-align:center">$1$</td>
+<td style="text-align:center">$1$</td>
+<td style="text-align:center">$1$</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead><tr>
+<th style="text-align:center">$\mathcal{A}(F)$</th>
+<th style="text-align:center">$\mathcal{A}(G)$</th>
+<th style="text-align:center">$\mathcal{A}((F \leftrightarrow G))$</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">$0$</td>
+<td style="text-align:center">$0$</td>
+<td style="text-align:center">$1$</td>
+</tr>
+<tr>
+<td style="text-align:center">$0$</td>
+<td style="text-align:center">$1$</td>
+<td style="text-align:center">$0$</td>
+</tr>
+<tr>
+<td style="text-align:center">$1$</td>
+<td style="text-align:center">$0$</td>
+<td style="text-align:center">$0$</td>
+</tr>
+<tr>
+<td style="text-align:center">$1$</td>
+<td style="text-align:center">$1$</td>
+<td style="text-align:center">$1$</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Induction-on-the-Formula-Structure">Induction on the Formula Structure<a class="anchor-link" href="#Induction-on-the-Formula-Structure">&#182;</a></h3><blockquote><p>Prove a statement $S$ for every formula $F$.</p>
+</blockquote>
+<ol>
+<li><em>Induction Base</em>: Show that $S$ holds for every atomic formula $A_{i}$.</li>
+<li><em>Induction Step</em>: Show under the induction hypothesis that $S$ holds for arbitrary, but fixed formulas $F$ and $G$, it follows that $S$ also holds for ${\lnot}F$, $(F \land G)$, and $(F \lor G)$.</li>
+</ol>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Suitable-Assignment,-Model,-Satisfiable,-Valid">Suitable Assignment, Model, Satisfiable, Valid<a class="anchor-link" href="#Suitable-Assignment,-Model,-Satisfiable,-Valid">&#182;</a></h3><ul>
+<li>If an assignment $\mathcal{A}$ is defined for every atomic formula $A_{i}$ occurring in a formula $F$, then $\mathcal{A}$ is called <strong>suitable</strong> for $F$.</li>
+<li>If an assignment $\mathcal{A}$ is suitable for a formula $F$, and if $\mathcal{A}(F) = 1$, then $F$ <strong>holds</strong> under the assignment $\mathcal{A}$; $\mathcal{A}$ is a <strong>model</strong> for F.<ul>
+<li>$\mathcal{A} \models F$</li>
+<li>$\mathcal{A} \not\models F$.</li>
+</ul>
+</li>
+<li>A formula $F$ is <strong>satisfiable</strong> if $F$ has at least one model, else $F$ is called <strong>unsatisfiable</strong>/<strong>contradictory</strong>.</li>
+<li>A formula $F$ is <strong>valid</strong> (or a <strong>tautology</strong>) if every suitable assignment for $F$ is a model for $F$.<ul>
+<li>$\models F$</li>
+<li>$\not\models F$</li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Validity-and-Unsatisfiability-Theorem">Validity and Unsatisfiability Theorem<a class="anchor-link" href="#Validity-and-Unsatisfiability-Theorem">&#182;</a></h3><ul>
+<li>A formula $F$ is valid if and only if ${\lnot}F$ is unsatisfiable.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Satisfiability-with-a-Truth-Table">Satisfiability with a Truth Table<a class="anchor-link" href="#Satisfiability-with-a-Truth-Table">&#182;</a></h3><ul>
+<li>A formula $F$ with $n$ atomic sub-formulas has $2^{n}$ suitable assignments.<ul>
+<li>$F$ is satisfiable if and only if there is at least once entry with $1$ in the output.</li>
+<li>$F$ is valid if and only if all the entries are $1$ in the output.</li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Equivalence">Equivalence<a class="anchor-link" href="#Equivalence">&#182;</a></h3><ul>
+<li>Two formulas $F$ and $G$ are <strong>semantically equivalent</strong> if for every assignment $\mathcal{A}$ that is suitable for both $F$ and $G$, $\mathcal{A}(F) = \mathcal{A}(G)$, denoted $F \equiv G$.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Substitution-Theorem">Substitution Theorem<a class="anchor-link" href="#Substitution-Theorem">&#182;</a></h3><ol>
+<li>Let $F$ and $G$ be equivalent formulas.</li>
+<li>Let $H$ be a formula with an occurrence of $F$ as subformula.</li>
+<li>Then $H$ is equivalent to $H'$ where $H'$ is a formula obtained from $H$ by substituting an occurence of subformula $F$ by $G$.</li>
+</ol>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="General-Theorems">General Theorems<a class="anchor-link" href="#General-Theorems">&#182;</a></h3><blockquote><p>For all formulas $F$, $G$, and $H$, the following equivalences hold.</p>
+</blockquote>
+<h4 id="Idempotency">Idempotency<a class="anchor-link" href="#Idempotency">&#182;</a></h4>$$
+\begin{aligned}
+(F \land F) &amp;\equiv F\\
+(F \lor F) &amp;\equiv F
+\end{aligned}
+$$<h4 id="Commutativity">Commutativity<a class="anchor-link" href="#Commutativity">&#182;</a></h4>$$
+\begin{aligned}
+(F \land G) &amp;\equiv (G \land F)\\
+(F \lor G) &amp;\equiv (G \lor F)
+\end{aligned}
+$$<h4 id="Associativity">Associativity<a class="anchor-link" href="#Associativity">&#182;</a></h4>$$
+\begin{aligned}
+((F \land G) \land H) &amp;\equiv (F \land (G \land H))\\
+((F \lor G) \lor H) &amp;\equiv (F \lor (G \lor H))
+\end{aligned}
+$$<h4 id="Absorption">Absorption<a class="anchor-link" href="#Absorption">&#182;</a></h4>$$
+\begin{aligned}
+(F \land (F \lor G)) &amp;\equiv F\\
+(F \lor (F \land G)) &amp;\equiv F
+\end{aligned}
+$$<h4 id="Distributivity">Distributivity<a class="anchor-link" href="#Distributivity">&#182;</a></h4>$$
+\begin{aligned}
+(F \land (G \lor H)) &amp;\equiv ((F \land G) \lor (F \land H))\\
+(F \lor (G \land H)) &amp;\equiv ((F \lor G) \land (F \lor H))\\
+\end{aligned}
+$$<h4 id="Double-Negation">Double Negation<a class="anchor-link" href="#Double-Negation">&#182;</a></h4>$${\lnot}{\lnot}F \equiv F$$<h4 id="deMorgan's-Laws">deMorgan's Laws<a class="anchor-link" href="#deMorgan's-Laws">&#182;</a></h4>$$
+\begin{aligned}
+{\lnot}(F \land G) &amp;\equiv ({\lnot}F \lor {\lnot}G)\\
+{\lnot}(F \lor G) &amp;\equiv ({\lnot}F \land {\lnot}G)
+\end{aligned}
+$$<h4 id="Tautology-Laws">Tautology Laws<a class="anchor-link" href="#Tautology-Laws">&#182;</a></h4>$$
+\begin{aligned}
+(F \lor G) &amp;\equiv F &amp;\text{ if } F \text{ is a tautology}\\
+(F \land G) &amp;\equiv G &amp;\text{ if } F \text{ is a tautology}\\
+\end{aligned}
+$$<h4 id="Unsatisfiability-Laws">Unsatisfiability Laws<a class="anchor-link" href="#Unsatisfiability-Laws">&#182;</a></h4>$$
+\begin{aligned}
+(F \lor G) &amp;\equiv G &amp;\text{ if } G \text{ is unsatisfiable}\\
+(F \land G) &amp;\equiv F &amp;\text{ if } F \text{ is unsatisfiable}\\
+\end{aligned}
+$$
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Normal-Forms">Normal Forms<a class="anchor-link" href="#Normal-Forms">&#182;</a></h3><ul>
+<li>A <strong>literal</strong> is an atomic formula or the negation of an atomic formula.</li>
+<li>A formula $F$ is in <strong>conjunctive normal form (CNF)</strong> if it is a conjunction of disjunctions of literals.
+$$F = \left( \bigwedge^{n}_{i = 1}\left( \bigvee{m_{i}}_{j = 1} L_{i,j} \right) \right)$$<ul>
+<li>where $L_{i,j} \in \{A_{1}, A_{2}, ...\} \cup \{{\lnot}A_{1}, {\lnot}A_{2}, ...\}$</li>
+</ul>
+</li>
+<li>A formula $F$ is in <strong>disjunctive normal form (DNF)</strong> if it is a disjunction of conjunctions of literals.
+$$F = \left( \bigvee^{n}_{i = 1}\left( \bigwedge{m_{i}}_{j = 1} L_{i,j} \right) \right)$$<ul>
+<li>where $L_{i,j} \in \{A_{1}, A_{2}, ...\} \cup \{{\lnot}A_{1}, {\lnot}A_{2}, ...\}$</li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Normal-Form-Theorem">Normal Form Theorem<a class="anchor-link" href="#Normal-Form-Theorem">&#182;</a></h3><ul>
+<li>For every formula $F$ there is an equivalent formula $F_{1}$ in CNF and an equivalent formula $F_{2}$ in DNF.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Propositional-Resolution">Propositional Resolution<a class="anchor-link" href="#Propositional-Resolution">&#182;</a></h3>$$
+\frac{C \lor p \quad D \lor {\lnot}p}{C \lor D}
+$$<ul>
+<li>Given $(C, p)$ and $(D, {\lnot}p)$ that contain a literal $p$ of different polarity, create a new clause by taking the union of literals in $C$ and $D$.<ul>
+<li><strong>Premise</strong>: $C \lor p$</li>
+<li><strong>Pivot</strong>: $D \lor {\lnot}p$</li>
+<li><strong>Resolvent</strong>: $C \lor D$</li>
+</ul>
+</li>
+</ul>
+<h4 id="Unsatisfiable-Resolution">Unsatisfiable Resolution<a class="anchor-link" href="#Unsatisfiable-Resolution">&#182;</a></h4>$$
+\frac{p \quad {\lnot}p}{\perp}
+$$
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Resolution-Lemma">Resolution Lemma<a class="anchor-link" href="#Resolution-Lemma">&#182;</a></h3><ol>
+<li>Let $F$ be a CNF formula.</li>
+<li>Let $R$ be a resolvent of two clauses $X$ and $Y$ in $F$.</li>
+<li>Then, $F \cup \{R\}$ is equivalent to $F$.</li>
+</ol>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Proof-System">Proof System<a class="anchor-link" href="#Proof-System">&#182;</a></h3>$$P_{1}, ..., P_{n} \vdash C$$<ul>
+<li>An inference rule is a tuple $(P_{1}, ..., P_{n}, C)$.<ul>
+<li>Where $P_{1}, ..., P_{n}, C$ are formulas.</li>
+<li>Where $P_{i}$ is a <strong>premise</strong>.</li>
+<li>Where $C$ is a <strong>conclusion</strong>.</li>
+</ul>
+</li>
+<li>A <strong>proof system</strong> $P$ is a collection of inference rules.</li>
+<li>A proof in a proof system $P$ is a tree (or a DAG) such that nodes are labeled by formulas, and for each node $n$, $(\text{parents}(n), n)$ is an inference rule in $P$.<blockquote><p><strong>Propositional Resolution System = Sound Proof System</strong></p>
+</blockquote>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Entailment-and-Derivation">Entailment and Derivation<a class="anchor-link" href="#Entailment-and-Derivation">&#182;</a></h3><ul>
+<li>A set of formulas $F$ <strong>entails</strong> a set of formulas $G$ if and only if every model of $F$ is a model of $G$.
+$$F \models G$$</li>
+<li>A formula $G$ is <strong>derivable</strong> from a formula $F$ by a proof system $P$ if there exists a proof whose leaves are labeled by formulas in $F$ and the root is labeled by $G$.
+$$F \vdash_{P} G$$</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Soundness-and-Completeness">Soundness and Completeness<a class="anchor-link" href="#Soundness-and-Completeness">&#182;</a></h3><ul>
+<li>A proof system $P$ is <strong>sound</strong> if and only if....
+$$(F \vdash_{P} G) \implies (F \models G)$$</li>
+<li>A proof system $P$ is <strong>complete</strong> if and only if....
+$$(F \models G) \implies (F \vdash_{P} G)$$</li>
+</ul>
+<blockquote><p><strong>Propositional Resolution = Sound + Complete</strong></p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="First-Order-Logic-(FOL)">First Order Logic (FOL)<a class="anchor-link" href="#First-Order-Logic-(FOL)">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Syntax-of-First-Order-Logic">Syntax of First Order Logic<a class="anchor-link" href="#Syntax-of-First-Order-Logic">&#182;</a></h3><ul>
+<li>A <strong>variable</strong> is of the form $x_{i}$.</li>
+<li>A <strong>predicate symbol</strong> is of the form $P^{k}_{i}$.</li>
+<li>A <strong>function symbol</strong> is of the form $f^{k}_{i}$.</li>
+<li>A <strong>signature</strong> $\Sigma$ is a finite set of predicate symbols, function symbols, and an arity function $\Sigma \to N$.</li>
+<li>$i = 1, 2, 3, ...$ is the <strong>distinguishability index</strong>.</li>
+<li>$k = 0, 1, 2, ...$ is the arity.</li>
+</ul>
+<h4 id="Syntax-of-Terms">Syntax of Terms<a class="anchor-link" href="#Syntax-of-Terms">&#182;</a></h4>$$
+\begin{aligned}
+t \in T ::=\,
+&amp;v &amp;v \in V\\
+&amp;f(t_{1}, ..., t_{n}) &amp;f \in \Sigma_{F}, t_{1}, ..., t_{n} \in T
+\end{aligned}
+$$<h4 id="Syntax-of-Atomic-Formulas">Syntax of Atomic Formulas<a class="anchor-link" href="#Syntax-of-Atomic-Formulas">&#182;</a></h4>$$
+\begin{aligned}
+a \in \text{Atoms} ::=\,
+&amp;P(t_{1}, ..., t_{n}) &amp;P \in \Sigma_{P}, t_{1}, ..., t_{n} \in T
+\end{aligned}
+$$<h4 id="Syntax-of-Literals">Syntax of Literals<a class="anchor-link" href="#Syntax-of-Literals">&#182;</a></h4>$$
+\begin{aligned}
+l \in \text{Literals} ::=\,
+&amp;a \mid {\lnot}a &amp;a \in \text{Atoms}
+\end{aligned}
+$$<h4 id="Syntax-of-Quantifier-Free-Formulas">Syntax of Quantifier Free Formulas<a class="anchor-link" href="#Syntax-of-Quantifier-Free-Formulas">&#182;</a></h4>$$
+\begin{aligned}
+\phi \in \text{QFF} ::=\,
+&amp;a \in \text{Atoms} &amp;\text{Atoms}\\
+&amp;{\lnot}\phi &amp;\text{Negations}\\
+&amp;\phi \leftrightarrow \phi' &amp;\text{Bi-Implications}\\
+&amp;\phi \land \phi' &amp;\text{Conjunction}\\
+&amp;\phi \lor \phi' &amp;\text{Disjunction}\\
+&amp;\phi \to \phi' &amp;\text{Implication}
+\end{aligned}
+$$<h4 id="Syntax-of-First-Order-Formulas">Syntax of First-Order Formulas<a class="anchor-link" href="#Syntax-of-First-Order-Formulas">&#182;</a></h4>$$
+\begin{aligned}
+\phi ::=\,
+&amp;\phi \in \text{QFF} &amp; ...\\
+&amp;\forall x . \phi &amp;\text{Universal Quantifier}\\
+&amp;\exists x . \phi &amp;\text{Existential Quantifier}
+\end{aligned}
+$$<ul>
+<li><strong>Free</strong>: A variable in a formula not bound by a quantifier.</li>
+<li><strong>Sentence</strong>: A first-order formula with no free variables.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Semantics-of-First-Order-Logic">Semantics of First Order Logic<a class="anchor-link" href="#Semantics-of-First-Order-Logic">&#182;</a></h3><ul>
+<li>A <strong>structure</strong> is a pair $\mathcal{A} = (U_{\mathcal{A}}, I_{\mathcal{A}})$.</li>
+<li>$U_{\mathcal{A}}$ is an arbitrary, non-empty set called the <strong>domain</strong>.</li>
+<li>$I_{\mathcal{A}}$ is an <strong>interpretation</strong> / <strong>mapping</strong> that maps....<ul>
+<li>Each $k$-ary predicate symbol $P$ to a $k$-ary predicate symbol on $U_{\mathcal{A}}$ (if $I_{\mathcal{A}}$ is defined on $P$).</li>
+<li>Each $k$-ary function symbol $f$ to a $k$-ary function on $U_{\mathcal{A}}$ (if $I_{\mathcal{A}}$ is defined on $f$).</li>
+<li>Each variable $x$ to an element of $U_{\mathcal{A}}$ (if $I_{\mathcal{A}}$ is defined on $x$).</li>
+</ul>
+</li>
+<li>A structure $\mathcal{A}$ is <strong>suitable</strong> for $F$ if $I_{\mathcal{A}}$ is defined for all predicate symbols, function symbols, and variables that occur free in $F$.<ul>
+<li>$P^{\mathcal{A}} = I_{\mathcal{A}}(P)$</li>
+<li>$f^{\mathcal{A}} = I_{\mathcal{A}}(f)$</li>
+<li>$x^{\mathcal{A}} = I_{\mathcal{A}}(x)$</li>
+</ul>
+</li>
+<li>If for a formula $F$ and a suitable structure $\mathcal{A}$, $\mathcal{A}(F) = 1$, then $\mathcal{A}$ is a <strong>model</strong> for $F$, denoted $\mathcal{A} \models F$.</li>
+<li>If every suitable structure for a formula $F$ is a model for $F$, then $F$ is <strong>valid</strong>, denoted $\models F$.</li>
+<li>If there is at least one model for a formula $F$, then $F$ is called <strong>satisfiable</strong>.</li>
+</ul>
+<h4 id="Semantics">Semantics<a class="anchor-link" href="#Semantics">&#182;</a></h4><ul>
+<li>Let $\mathcal{A}(t)$ denote the value of the term $t$ occurring in $F$ under the structure $\mathcal{A}$.</li>
+<li>Let $\mathcal{A}(F)$ denote the truth-value of the formula $F$ under the structure $\mathcal{A}$.</li>
+</ul>
+<ol>
+<li><strong>Variables</strong>: If $t$ is a variable, then $\mathcal{A}(t) = x^{\mathcal{A}}$</li>
+<li><strong>Functions</strong>: If $t$ is a function, $\mathcal{A}(t) = f^{\mathcal{A}}(\mathcal{A}(t_{1}), ..., \mathcal{A}(t_{k}))$</li>
+<li><strong>Predicates</strong>: If $F$ is a predicate,
+$$\mathcal{A}(F) = \begin{cases}1 &amp; \text{if } (\mathcal{A}(t_{1}), ..., \mathcal{A}(t_{k})) \in P^{\mathcal{A}}\\ 0 &amp; \text{otherwise} \end{cases}$$</li>
+<li><strong>Negation</strong>: If $F$ has the form $F = {\lnot}G$,
+$$\mathcal{A}(F) = \begin{cases}1 &amp; \text{if } \mathcal{A}(G) = 0\\ 0 &amp; \text{otherwise} \end{cases}$$</li>
+<li><strong>Conjunction</strong>: If $F$ has the form $F = (G \land H)$,
+$$\mathcal{A}(F) = \begin{cases}1 &amp; \text{if } \mathcal{A}(G) = 1 \text{ and } \mathcal{A}(H) = 1\\ 0 &amp; \text{otherwise} \end{cases}$$</li>
+<li><strong>Disjunction</strong>: If $F$ has the form $F = (G \lor H)$,
+$$\mathcal{A}(F) = \begin{cases}1 &amp; \text{if } \mathcal{A}(G) = 1 \text{ or } \mathcal{A}(H) = 1\\ 0 &amp; \text{otherwise} \end{cases}$$</li>
+<li><strong>Universal</strong>: If $F$ has the form $F = \forall x . G$,
+$$\mathcal{A}(F) = \begin{cases}1 &amp; \text{if for all } u \in U_{\mathcal{A}}, \mathcal{A}_{[x := u]}(G) = 1\\ 0 &amp; \text{otherwise} \end{cases}$$</li>
+<li><strong>Existential</strong>: If $F$ has the form $F = \exists x . G$,
+$$\mathcal{A}(F) = \begin{cases}1 &amp; \text{if there exists some } u \in U_{\mathcal{A}}, \mathcal{A}_{[x := u]}(G) = 1\\ 0 &amp; \text{otherwise} \end{cases}$$</li>
+</ol>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Inference-Rules-for-First-Order-Logic">Inference Rules for First Order Logic<a class="anchor-link" href="#Inference-Rules-for-First-Order-Logic">&#182;</a></h3><ul>
+<li>Let $\vdash A$ denote when $A$ can be inferred from basic axioms.</li>
+<li>Let $B \vdash A$ denote when $A$ can be inferred from $B$.</li>
+</ul>
+$$
+\frac{A \quad B}{A \land B}\\[1em]
+\frac{A}{A \lor B}\\[1em]
+\frac{B}{A \lor B}\\[1em]
+\frac{A \to B \quad A}{B}\\[1em]
+\frac{A[x := e]}{\exists x . A}\\[1em]
+\frac{\forall x . A}{A[x := e]}\\[1em]
+\frac{A[x := a]}{\forall x . A} \, \text{fresh}(a)\\[1em]
+\frac{A \vdash B}{A \to B}\\[1em]
+\frac{\vdash \exists x . A \quad A[x := a] \vdash B}{\vdash B} \, \text{fresh}(a)\\[1em]
+$$
+</div>
+</div>
+</div>
     </div>
   </div>
 </body>
