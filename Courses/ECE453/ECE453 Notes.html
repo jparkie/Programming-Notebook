@@ -14839,6 +14839,103 @@ $$(F \models G) \implies (F \vdash_{P} G)$$</li>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Semantic-Arguments-for-Propositional-Logic">Semantic Arguments for Propositional Logic<a class="anchor-link" href="#Semantic-Arguments-for-Propositional-Logic">&#182;</a></h3><ol>
+<li>Assume there exists a falsifying interpretation $\mathcal{A}$ such that $\mathcal{A} \not\models F$.</li>
+<li>Apply the semantic definitions of the logical connectives in the form of proof rules.
+$$\frac{\text{Premises}}{\text{Deductions}}$$<ul>
+<li>If any proof rule has multiple independent deductions, denoted $\mid$, then fork the proof for each case.</li>
+</ul>
+</li>
+<li>If there are contradictions, then $F$ is valid.</li>
+<li>If there are no contradictions, then $F$ is invalid.</li>
+</ol>
+<h4 id="Proof-Rules-of-Negation">Proof Rules of Negation<a class="anchor-link" href="#Proof-Rules-of-Negation">&#182;</a></h4>$$
+\begin{aligned}
+\mathcal{A} &amp;\models {\lnot}F\\
+\hline
+\mathcal{A} &amp;\not\models F
+\end{aligned}
+\quad
+\begin{aligned}
+\mathcal{A} &amp;\not\models {\lnot}F\\
+\hline
+\mathcal{A} &amp;\models F
+\end{aligned}
+$$<h4 id="Proof-Rules-of-Conjunction">Proof Rules of Conjunction<a class="anchor-link" href="#Proof-Rules-of-Conjunction">&#182;</a></h4>$$
+\begin{aligned}
+\mathcal{A} &amp;\models F \land G\\
+\hline
+\mathcal{A} &amp;\models F\\
+\mathcal{A} &amp;\models G
+\end{aligned}
+\quad
+\begin{aligned}
+\mathcal{A} \not\models F \land G\\
+\hline
+\mathcal{A} \not\models F \mid \mathcal{A} \not\models G
+\end{aligned}
+$$<h4 id="Proof-Rules-of-Disjunction">Proof Rules of Disjunction<a class="anchor-link" href="#Proof-Rules-of-Disjunction">&#182;</a></h4>$$
+\begin{aligned}
+\mathcal{A} \models F \lor G\\
+\hline
+\mathcal{A} \models F \mid \mathcal{A} \models G
+\end{aligned}
+\quad
+\begin{aligned}
+\mathcal{A} &amp;\not\models F \lor G\\
+\hline
+\mathcal{A} &amp;\not\models F\\
+\mathcal{A} &amp;\not\models G
+\end{aligned}
+$$<h4 id="Proof-Rules-of-Implication">Proof Rules of Implication<a class="anchor-link" href="#Proof-Rules-of-Implication">&#182;</a></h4>$$
+\begin{aligned}
+\mathcal{A} \models F \to G\\
+\hline
+\mathcal{A} \not\models F \mid \mathcal{A} \models G
+\end{aligned}
+\quad
+\begin{aligned}
+\mathcal{A} &amp;\not\models F \to G\\
+\hline
+\mathcal{A} &amp;\models F\\
+\mathcal{A} &amp;\not\models G
+\end{aligned}
+$$<h4 id="Proof-Rules-of-Bi-Implication">Proof Rules of Bi-Implication<a class="anchor-link" href="#Proof-Rules-of-Bi-Implication">&#182;</a></h4>$$
+\begin{aligned}
+\mathcal{A} \models F \leftrightarrow G\\
+\hline
+\mathcal{A} \models F \land G \mid \mathcal{A} \not\models F \lor G
+\end{aligned}
+\quad
+\begin{aligned}
+\mathcal{A} \not\models F \leftrightarrow G\\
+\hline
+\mathcal{A} \models F \land {\lnot}G \mid \mathcal{A} \models {\lnot}F \lor G
+\end{aligned}
+$$<h4 id="Proof-Rule-of-Contradiction">Proof Rule of Contradiction<a class="anchor-link" href="#Proof-Rule-of-Contradiction">&#182;</a></h4><ul>
+<li>A contradiction occurs when following the other proof rules results in the claim that an assignment $\mathcal{A}$ both satisfies a formula $F$ and does not satisfy $F$.</li>
+</ul>
+$$
+\begin{aligned}
+\mathcal{A} &amp;\models F\\
+\mathcal{A} &amp;\not\models F\\
+\hline
+\mathcal{A} &amp;\models \bot
+\end{aligned}
+$$<h4 id="Proof-Rule-of--Modus-Ponens">Proof Rule of  Modus Ponens<a class="anchor-link" href="#Proof-Rule-of--Modus-Ponens">&#182;</a></h4>$$
+\begin{aligned}
+\mathcal{A} &amp;\models F\\
+\mathcal{A} &amp;\models F \to G\\
+\hline
+\mathcal{A} &amp;\models G
+\end{aligned}
+$$
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="First-Order-Logic-(FOL)">First Order Logic (FOL)<a class="anchor-link" href="#First-Order-Logic-(FOL)">&#182;</a></h2>
 </div>
 </div>
@@ -14947,6 +15044,7 @@ $$\mathcal{A}(F) = \begin{cases}1 &amp; \text{if there exists some } u \in U_{\m
 <h3 id="Inference-Rules-for-First-Order-Logic">Inference Rules for First Order Logic<a class="anchor-link" href="#Inference-Rules-for-First-Order-Logic">&#182;</a></h3><ul>
 <li>Let $\vdash A$ denote when $A$ can be inferred from basic axioms.</li>
 <li>Let $B \vdash A$ denote when $A$ can be inferred from $B$.</li>
+<li>Let $\text{fresh}(a)$ denote some $a$ that has not been previously used in the proof.</li>
 </ul>
 $$
 \frac{A \quad B}{A \land B}\\[1em]
@@ -14958,6 +15056,64 @@ $$
 \frac{A[x := a]}{\forall x . A} \, \text{fresh}(a)\\[1em]
 \frac{A \vdash B}{A \to B}\\[1em]
 \frac{\vdash \exists x . A \quad A[x := a] \vdash B}{\vdash B} \, \text{fresh}(a)\\[1em]
+$$
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Semantic-Arguments-for-First-Order-Logic">Semantic Arguments for First Order Logic<a class="anchor-link" href="#Semantic-Arguments-for-First-Order-Logic">&#182;</a></h3><p><em>See Semantic Arguments for Propositional Logic.</em></p>
+<h4 id="Proof-Rules-for-Universal-Quantification">Proof Rules for Universal Quantification<a class="anchor-link" href="#Proof-Rules-for-Universal-Quantification">&#182;</a></h4>$$
+\begin{aligned}
+\mathcal{A} &amp;\models \forall x . F\\
+\hline
+\mathcal{A}[x := v] &amp;\models F
+\end{aligned}
+\,
+\text{for any}
+\,
+v \in U_{\mathcal{A}}
+\quad
+\begin{aligned}
+\mathcal{A} &amp;\not\models \forall x . F\\
+\hline
+\mathcal{A}[x := v] &amp;\not\models F
+\end{aligned}
+\,
+\text{for a fresh}
+\,
+v \in U_{\mathcal{A}}
+$$<h4 id="Proof-Rules-for-Existential-Quantification">Proof Rules for Existential Quantification<a class="anchor-link" href="#Proof-Rules-for-Existential-Quantification">&#182;</a></h4>$$
+\begin{aligned}
+\mathcal{A} &amp;\models \exists x . F\\
+\hline
+\mathcal{A}[x := v] &amp;\models F
+\end{aligned}
+\,
+\text{for a fresh}
+\,
+v \in U_{\mathcal{A}}
+\quad
+\begin{aligned}
+\mathcal{A} &amp;\not\models \exists x . F\\
+\hline
+\mathcal{A}[x := v] &amp;\not\models F
+\end{aligned}
+\,
+\text{for any}
+\,
+v \in U_{\mathcal{A}}
+$$<h4 id="Proof-Rule-for-Contradiction">Proof Rule for Contradiction<a class="anchor-link" href="#Proof-Rule-for-Contradiction">&#182;</a></h4><ul>
+<li>A contradiction exists if two variants of the original structure $\mathcal{A}$ disagree on the truth value of an $n$-ary predicate $p$ for a given tuple of domain values.</li>
+</ul>
+$$
+\begin{aligned}
+\mathcal{B} : \mathcal{A}[...] &amp;\models p(s_{1}, ..., s_{n})\\
+\mathcal{C} : \mathcal{A}[...] &amp;\not\models p(t_{1}, ..., t_{n}) \text{ for } i \in \{1, ..., n\}, \alpha_{\mathcal{B}}[s_{i}] = \alpha_{\mathcal{C}}[t_{i}]\\
+\hline
+\mathcal{A} &amp;\models \bot
+\end{aligned}
 $$
 </div>
 </div>
