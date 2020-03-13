@@ -14955,7 +14955,7 @@ $$
 \begin{aligned}
 t \in T ::=\,
 &amp;v &amp;v \in V\\
-&amp;f(t_{1}, ..., t_{n}) &amp;f \in \Sigma_{F}, t_{1}, ..., t_{n} \in T
+&amp;{\mid} f(t_{1}, ..., t_{n}) &amp;f \in \Sigma_{F}, t_{1}, ..., t_{n} \in T
 \end{aligned}
 $$<h4 id="Syntax-of-Atomic-Formulas">Syntax of Atomic Formulas<a class="anchor-link" href="#Syntax-of-Atomic-Formulas">&#182;</a></h4>$$
 \begin{aligned}
@@ -14971,18 +14971,18 @@ $$<h4 id="Syntax-of-Quantifier-Free-Formulas">Syntax of Quantifier Free Formulas
 \begin{aligned}
 \phi \in \text{QFF} ::=\,
 &amp;a \in \text{Atoms} &amp;\text{Atoms}\\
-&amp;{\lnot}\phi &amp;\text{Negations}\\
-&amp;\phi \leftrightarrow \phi' &amp;\text{Bi-Implications}\\
-&amp;\phi \land \phi' &amp;\text{Conjunction}\\
-&amp;\phi \lor \phi' &amp;\text{Disjunction}\\
-&amp;\phi \to \phi' &amp;\text{Implication}
+&amp;{\mid} {\lnot}\phi &amp;\text{Negations}\\
+&amp;{\mid} \phi \leftrightarrow \phi' &amp;\text{Bi-Implications}\\
+&amp;{\mid} \phi \land \phi' &amp;\text{Conjunction}\\
+&amp;{\mid} \phi \lor \phi' &amp;\text{Disjunction}\\
+&amp;{\mid} \phi \to \phi' &amp;\text{Implication}
 \end{aligned}
 $$<h4 id="Syntax-of-First-Order-Formulas">Syntax of First-Order Formulas<a class="anchor-link" href="#Syntax-of-First-Order-Formulas">&#182;</a></h4>$$
 \begin{aligned}
 \phi ::=\,
 &amp;\phi \in \text{QFF} &amp; ...\\
-&amp;\forall x . \phi &amp;\text{Universal Quantifier}\\
-&amp;\exists x . \phi &amp;\text{Existential Quantifier}
+&amp;{\mid} \forall x \cdot \phi &amp;\text{Universal Quantifier}\\
+&amp;{\mid} \exists x \cdot \phi &amp;\text{Existential Quantifier}
 \end{aligned}
 $$<ul>
 <li><strong>Free</strong>: A variable in a formula not bound by a quantifier.</li>
@@ -15051,11 +15051,11 @@ $$
 \frac{A}{A \lor B}\\[1em]
 \frac{B}{A \lor B}\\[1em]
 \frac{A \to B \quad A}{B}\\[1em]
-\frac{A[x := e]}{\exists x . A}\\[1em]
-\frac{\forall x . A}{A[x := e]}\\[1em]
-\frac{A[x := a]}{\forall x . A} \, \text{fresh}(a)\\[1em]
+\frac{A[x := e]}{\exists x \cdot A}\\[1em]
+\frac{\forall x \cdot A}{A[x := e]}\\[1em]
+\frac{A[x := a]}{\forall x \cdot A} \, \text{fresh}(a)\\[1em]
 \frac{A \vdash B}{A \to B}\\[1em]
-\frac{\vdash \exists x . A \quad A[x := a] \vdash B}{\vdash B} \, \text{fresh}(a)\\[1em]
+\frac{\vdash \exists x \cdot A \quad A[x := a] \vdash B}{\vdash B} \, \text{fresh}(a)\\[1em]
 $$
 </div>
 </div>
@@ -15115,6 +15115,126 @@ $$
 \mathcal{A} &amp;\models \bot
 \end{aligned}
 $$
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Theories">Theories<a class="anchor-link" href="#Theories">&#182;</a></h3><ul>
+<li>A <strong>theory</strong> $T$ is a set of deductively closed sentences.<ul>
+<li><em>Consistent: $\bot \not\in T$</em></li>
+</ul>
+</li>
+<li>A theory $T$ is the class of all models of $T$.</li>
+<li><strong>Deductive Closure</strong>: $DC(\Gamma)$ is the deductive closure of a set of sentences $\Gamma$.<ul>
+<li>$DC(T) = T$</li>
+</ul>
+</li>
+<li><strong>$T$-Satisfiable</strong>: A formula $\phi(x)$ is $T$-satisfiable in a theory $T$ if there is a model of $DC(T \cup \exists x \cdot \phi(x))$.<ul>
+<li>$M \models_{T} \phi(x)$</li>
+</ul>
+</li>
+<li><strong>$T$-Validity</strong>: A formula $\phi(x)$ is $T$-valid in a theory $T$ if $\forall x \cdot \phi(x) \in T$.<ul>
+<li>$\models_{T} \phi(x)$</li>
+</ul>
+</li>
+<li><strong>Fragment</strong>: A restricted subset of formulae of a theory $T$.</li>
+<li><strong>Decidable</strong>: A theory $T$ is decidable if $T$-validity is decidable for every formula $F$ of $T$.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Theory-of-Equality-($T_{E}$)">Theory of Equality ($T_{E}$)<a class="anchor-link" href="#Theory-of-Equality-($T_{E}$)">&#182;</a></h3><h4 id="Signature">Signature<a class="anchor-link" href="#Signature">&#182;</a></h4>$$
+\Sigma_{E} = \{ =, a, b, c, ..., A, B, C, ... \}
+$$<h4 id="Axioms">Axioms<a class="anchor-link" href="#Axioms">&#182;</a></h4><ol>
+<li><strong>Reflexivity</strong>: $\forall x \cdot x = x$</li>
+<li><strong>Symmetry</strong>: $\forall x, y \cdot x = y \to y = x$</li>
+<li><strong>Transitivity</strong>: $\forall x, y, z \cdot x = y \land y = z \to x = z$</li>
+<li><strong>Congruence</strong>: $\forall x_{1}, ..., x_{n}, y_{1}, ..., y_{n} \cdot \land_{i} x_{i} = y_{i} \to f(x_{1}, ..., x_{n}) = f(y_{1}, ..., y_{n})$</li>
+<li><strong>Equivalence</strong>: $\forall x_{1}, ..., x_{n}, y_{1}, ..., y_{n} \cdot \land_{i} x_{i} = y_{i} \to \left( P(x_{1}, ..., x_{n}) \leftrightarrow P(y_{1}, ..., y_{n}) \right)$</li>
+</ol>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Theory-of-Peano-Arithmetic-($T_{PA}$)(Natural-Number)">Theory of Peano Arithmetic ($T_{PA}$)(Natural Number)<a class="anchor-link" href="#Theory-of-Peano-Arithmetic-($T_{PA}$)(Natural-Number)">&#182;</a></h3><h4 id="Signature">Signature<a class="anchor-link" href="#Signature">&#182;</a></h4>$$
+\Sigma_{PA} = \{ 0, 1, +, *, = \}
+$$<h4 id="Axioms">Axioms<a class="anchor-link" href="#Axioms">&#182;</a></h4><ul>
+<li>Axioms for $T_{E}$</li>
+</ul>
+<ol>
+<li><strong>Zero</strong>: $\forall x \cdot \lnot (x + 1 = 0)$</li>
+<li><strong>Successor</strong>: $\forall x, y \cdot x + 1 = y + 1 \to x = y$</li>
+<li><strong>Induction</strong>: $F(0) \land (\forall x \cdot F(x) \to F(x + 1)) \to \forall x \cdot F(x)$</li>
+<li><strong>Plus Zero</strong>: $\forall x \cdot x + 0 = x$</li>
+<li><strong>Plus Successor</strong>: $\forall x, y \cdot x + (y + 1) = (x + y) + 1$</li>
+<li><strong>Times Zero</strong>: $\forall x \cdot x * 0 = 0$</li>
+<li><strong>Times Successor</strong>: $\forall x, y \cdot x * (y + 1) = x * y + x$</li>
+</ol>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Theory-of-Presburger-Arithmetic-($T_{PA}$)">Theory of Presburger Arithmetic ($T_{PA}$)<a class="anchor-link" href="#Theory-of-Presburger-Arithmetic-($T_{PA}$)">&#182;</a></h3><h4 id="Signature">Signature<a class="anchor-link" href="#Signature">&#182;</a></h4>$$
+\Sigma_{PA} = \{ 0, 1, +, = \}
+$$<h4 id="Axioms">Axioms<a class="anchor-link" href="#Axioms">&#182;</a></h4><ul>
+<li>Axioms for $T_{E}$</li>
+</ul>
+<ol>
+<li><strong>Zero</strong>: $\forall x \cdot \lnot (x + 1 = 0)$</li>
+<li><strong>Successor</strong>: $\forall x, y \cdot x + 1 = y + 1 \to x = y$</li>
+<li><strong>Induction</strong>: $F(0) \land (\forall x \cdot F(x) \to F(x + 1)) \to \forall x \cdot F(x)$</li>
+<li><strong>Plus Zero</strong>: $\forall x \cdot x + 0 = x$</li>
+<li><strong>Plus Successor</strong>: $\forall x, y \cdot x + (y + 1) = (x + y) + 1$</li>
+</ol>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="McCarthy-Theory-of-Arrays-($T_{A}$)">McCarthy Theory of Arrays ($T_{A}$)<a class="anchor-link" href="#McCarthy-Theory-of-Arrays-($T_{A}$)">&#182;</a></h3><h4 id="Signature">Signature<a class="anchor-link" href="#Signature">&#182;</a></h4>$$
+\Sigma_{A} = \{ \text{read}, \text{write}, = \}
+$$<ul>
+<li>$\text{read}(a, i)$ reads an array $a$ at the index $i$.</li>
+<li>$\text{write}(a, i, v)$ writes a value $v$ to the index $i$ of array $a$, and returns a new array.</li>
+</ul>
+<h4 id="Axioms">Axioms<a class="anchor-link" href="#Axioms">&#182;</a></h4><ul>
+<li><strong>Congruence</strong>: $\forall a, i, j \cdot i = j \to \text{read}(a, i) = \text{read}(a, j)$</li>
+<li><strong>Read-Over-Write 1</strong>: $\forall a, v, i, j \cdot i = j \to \text{read}(\text{write}(a, i, v), j) = v$</li>
+<li><strong>Read-Over-Write 2</strong>: $\forall a, v, i, j \cdot i \ne j \to \text{read}(\text{write}(a, i, v), j) = \text{read}(a, j)$</li>
+<li><strong>Extensionality</strong>: $a = b \leftrightarrow \forall i \cdot \text{read}(a, i) = \text{read}(b, i)$</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Completeness,-Compactness,-Incompleteness">Completeness, Compactness, Incompleteness<a class="anchor-link" href="#Completeness,-Compactness,-Incompleteness">&#182;</a></h3><ul>
+<li><strong>Gödel Completeness Theorem of FOL</strong>: Any first-order formula that is true in all models of a theory, must be logically deducible from that theory, and vice versa.</li>
+<li><strong>Gödel Compactness Theorem</strong>:A FOL theory $G$ is SAT if and only if every finite subset $G'$ of $G$ is SAT.</li>
+<li><strong>Incompleteness of FOL Theories</strong>:<ul>
+<li>A theory is <strong>consistent</strong> if it is impossible to prove both $p$ and ${\lnot}p$ for any sentence $p$ in the signature of the theory.</li>
+<li>A theory is <strong>complete</strong> if for every sentence $p$ it includes either $p$ or ${\lnot}p$.</li>
+<li>There are FOL theories that are consistent but incomplete.</li>
+</ul>
+</li>
+</ul>
+
 </div>
 </div>
 </div>
