@@ -15238,6 +15238,69 @@ $$<ul>
 </div>
 </div>
 </div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="SAT">SAT<a class="anchor-link" href="#SAT">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="SAT-Solving-by-Resolution">SAT Solving by Resolution<a class="anchor-link" href="#SAT-Solving-by-Resolution">&#182;</a></h3><ol>
+<li>Assume that the input formula $F$ is in CNF.</li>
+<li>Pick two clauses $C_{1}$ and $C_{2}$ in $F$ that can be resolved.</li>
+<li>If the resolvent $C$ is an empty clause, return UNSAT.</li>
+<li>Otherwise, add $C$ to $F$ and go to Step 1.</li>
+<li>If no new clauses can be resolved, return SAT.</li>
+</ol>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="DPLL">DPLL<a class="anchor-link" href="#DPLL">&#182;</a></h3><ul>
+<li><strong>Inspiration</strong>: <em>Resolution-Based Search + Case Splitting on Decision</em></li>
+<li><strong>Idea</strong>: Incrementally builds a satisfying truth assignment $M$ for the input CNF formula $F$.<ul>
+<li><em>Grow by Deduction</em></li>
+<li><em>Grow by Guessing + Backtracking</em></li>
+</ul>
+</li>
+<li><em>See Decision Procedures: An Algorithmic Point of View, Second Edition - Chapter 2.</em></li>
+</ul>
+<h4 id="Rules">Rules<a class="anchor-link" href="#Rules">&#182;</a></h4><ol>
+<li>$\cfrac{F}{F,p \mid F, {\lnot}p}$, split $p$ and ${\lnot}p$ are not in $F$.</li>
+<li>$\cfrac{F, C \lor l, {\lnot}l}{F, C, {\lnot}l}$ Unit Propagation</li>
+</ol>
+<h4 id="Pure-Literals">Pure Literals<a class="anchor-link" href="#Pure-Literals">&#182;</a></h4><ul>
+<li><strong>Pure</strong>: A literal that occurs only positively or negatively.</li>
+<li><strong>Pure Literal Rule</strong>: Clauses containing pure literals can be removed from the formula.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="DPLL-Procedure-($DPLL(F)$)">DPLL Procedure ($DPLL(F)$)<a class="anchor-link" href="#DPLL-Procedure-($DPLL(F)$)">&#182;</a></h3><ol>
+<li>Apply unit propagation.</li>
+<li>If conflict identified, return UNSAT.</li>
+<li>Apply the pure literal rule.</li>
+<li>If $F$ is satisfied, return SAT.</li>
+<li>Select decision variable $x$:<ul>
+<li>If $DPLL(F \land x) = \text{SAT}$, return SAT.</li>
+<li>Else, return $DPLL(F \land {\lnot}x)$.</li>
+</ul>
+</li>
+</ol>
+
+</div>
+</div>
+</div>
     </div>
   </div>
 </body>
