@@ -15047,15 +15047,17 @@ $$\mathcal{A}(F) = \begin{cases}1 &amp; \text{if there exists some } u \in U_{\m
 <li>Let $\text{fresh}(a)$ denote some $a$ that has not been previously used in the proof.</li>
 </ul>
 $$
-\frac{A \quad B}{A \land B}\\[1em]
-\frac{A}{A \lor B}\\[1em]
-\frac{B}{A \lor B}\\[1em]
-\frac{A \to B \quad A}{B}\\[1em]
-\frac{A[x := e]}{\exists x \cdot A}\\[1em]
-\frac{\forall x \cdot A}{A[x := e]}\\[1em]
-\frac{A[x := a]}{\forall x \cdot A} \, \text{fresh}(a)\\[1em]
-\frac{A \vdash B}{A \to B}\\[1em]
-\frac{\vdash \exists x \cdot A \quad A[x := a] \vdash B}{\vdash B} \, \text{fresh}(a)\\[1em]
+\begin{aligned}
+&amp;\frac{\vdash A \quad \vdash B}{\vdash A \land B}\\[1em]
+&amp;\frac{\vdash A}{\vdash A \lor B}\\[1em]
+&amp;\frac{\vdash B}{\vdash A \lor B}\\[1em]
+&amp;\frac{\vdash A \to B \quad \vdash A}{\vdash B}\\[1em]
+&amp;\frac{\vdash A[x := e]}{\vdash \exists x \cdot A}\\[1em]
+&amp;\frac{\vdash \forall x \cdot A}{\vdash A[x := e]}\\[1em]
+&amp;\frac{\vdash A[x := a]}{\vdash \forall x \cdot A} \, \text{fresh}(a)\\[1em]
+&amp;\frac{\vdash A \vdash B}{\vdash A \to B}\\[1em]
+&amp;\frac{\vdash \exists x \cdot A \quad \vdash A[x := a] \vdash B}{\vdash B} \, \text{fresh}(a)
+\end{aligned}
 $$
 </div>
 </div>
@@ -15298,6 +15300,90 @@ $$<ul>
 </li>
 </ol>
 
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Hoare-Logic">Hoare Logic<a class="anchor-link" href="#Hoare-Logic">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="WHILE-Language-Hoare-Assertions">WHILE Language Hoare Assertions<a class="anchor-link" href="#WHILE-Language-Hoare-Assertions">&#182;</a></h3>$$\{A\} c \{B\}$$<ul>
+<li><strong>Equivalent</strong>: If $A$ holds in state $q$ and $q \to q'$, then $B$ holds in $q'$.</li>
+<li>Where $A$ is a the <strong>pre-condition</strong>.</li>
+<li>Where $B$ is a the <strong>post-condition</strong>.</li>
+<li>Where $c$ is some computation.</li>
+</ul>
+<h4 id="Partial-Correctness-Assertion-(Not-Imply-Termination)">Partial Correctness Assertion (<em>Not Imply Termination</em>)<a class="anchor-link" href="#Partial-Correctness-Assertion-(Not-Imply-Termination)">&#182;</a></h4>$$\{A\} c \{B\}$$<ul>
+<li>If $A$ holds in state $q$ and there exists $q'$ such that $q \to q'$, then $B$ holds in $q'$.</li>
+</ul>
+<h4 id="Total-Correctness-Assertion-(Imply-Termination)">Total Correctness Assertion (<em>Imply Termination</em>)<a class="anchor-link" href="#Total-Correctness-Assertion-(Imply-Termination)">&#182;</a></h4>$$[A] c [B]$$<ul>
+<li>If $A$ holds in state $q$, then there exists $q'$ such that $q \to q'$ and $B$ holds in $q'$.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Semantics-of-Hoare-Assertions">Semantics of Hoare Assertions<a class="anchor-link" href="#Semantics-of-Hoare-Assertions">&#182;</a></h3><ul>
+<li>Let $q \models A$ denote that the assertion $A$ holds in a given state $q$.</li>
+</ul>
+$$
+\begin{aligned}
+q \models \text{true} &amp; \text{Always}\\
+q \models e_{1} = e_{2} &amp; \text{ iff } \langle e_{1}, q \rangle \Downarrow = \langle e_{2}, q \rangle \Downarrow\\
+q \models e_{1} \ge e_{2} &amp; \text{ iff } \langle e_{1}, q \rangle \Downarrow \ge \langle e_{2}, q \rangle \Downarrow\\
+q \models A_{1} \land A_{2} &amp; \text{ iff } q \models A_{1} \text{ and } a \models A_{2}\\
+q \models A_{1} \lor A_{2} &amp; \text{ iff } q \models A_{1} \text{ or } a \models A_{2}\\
+q \models A_{1} \implies A_{2} &amp; \text{ iff } q \models A_{1} \text{ implies } a \models A_{2}\\
+q \models \forall x \cdot A &amp; \text{ iff } \forall n \in \mathbb{Z} \cdot q[x := n] \models A\\
+q \models \exists x \cdot A &amp; \text{ iff } \exists n \in \mathbb{Z} \cdot q[x := n] \models A
+\end{aligned}
+$$
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Semantics-of-Hoare-Triples">Semantics of Hoare Triples<a class="anchor-link" href="#Semantics-of-Hoare-Triples">&#182;</a></h3><h4 id="Partial-Correctness-Assertion">Partial Correctness Assertion<a class="anchor-link" href="#Partial-Correctness-Assertion">&#182;</a></h4>$$
+\models \{A\} c \{B\} \text{ iff } \forall q \in Q \cdot \forall q' \in Q \cdot q \models A \land q \to^{c} q' \implies q' \models B
+$$<h4 id="Total-Correctness-Assertion">Total Correctness Assertion<a class="anchor-link" href="#Total-Correctness-Assertion">&#182;</a></h4>$$
+\models [A] c [B] \text{ iff } \forall q \in Q \cdot q \models A \implies \exists q' \in Q \cdot q \to^{c} q' \land  q' \models B
+$$
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Inference-Rules-for-Hoare-Triples">Inference Rules for Hoare Triples<a class="anchor-link" href="#Inference-Rules-for-Hoare-Triples">&#182;</a></h3><ul>
+<li>Let $\vdash \{A\} c \{B\}$ denote that the Hoare Triple can be derived using inference rules.</li>
+</ul>
+<h4 id="Rule-of-Consequence">Rule of Consequence<a class="anchor-link" href="#Rule-of-Consequence">&#182;</a></h4><ul>
+<li><em>Strengthen Pre-Condition</em></li>
+<li><em>Weaken Post-Condition</em></li>
+</ul>
+$$
+\begin{aligned}
+&amp;\cfrac{\vdash A' \implies A \quad \{A\} c \{B\} \quad \vdash B \implies B'}{\{A'\} c \{B'\}} \, \text{Conseq}
+\end{aligned}
+$$<h4 id="Rules-for-WHILE">Rules for WHILE<a class="anchor-link" href="#Rules-for-WHILE">&#182;</a></h4>$$
+\begin{aligned}
+&amp;\vdash \{A\} \text{skip} \{A\}\\[1em]
+&amp;\vdash \{A[x := e]\} x := e \{A\}\\[1em]
+&amp;\cfrac{\vdash \{A\} s_{1} \{B\} \quad \vdash \{B\} s_{2} \{C\}}{\vdash \{A\} s_{1} \text{ ; } s_{2} \{C\}}\\[1em]
+&amp;\cfrac{\vdash \{A \land b\} s_{1} \{B\} \quad \vdash \{A \land \lnot b\} s_{2} \{B\}}{\vdash \{A\} \text{ if } b \text{ then } s_{1} \text{ else } s_{2} \{B\}}\\[1em]
+&amp;\cfrac{\vdash \{I \land b\} s \{I\}}{\vdash \{I\} \text{ while } b \text{ do } s \{I \land \lnot b\}}\\[1em]
+\end{aligned}
+$$
 </div>
 </div>
 </div>
