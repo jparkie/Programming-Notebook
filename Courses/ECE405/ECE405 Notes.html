@@ -13750,6 +13750,174 @@ $$\mathbf{S}^{2} = S_{x}^{2} + S_{y}^{2} + S_{z}^{2} = \frac{3}{4}\hbar^{2}\math
 </div>
 </div>
 </div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Schr&#246;dinger-Time-Evolution">Schr&#246;dinger Time Evolution<a class="anchor-link" href="#Schr&#246;dinger-Time-Evolution">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Schr&#246;dinger-Equation">Schr&#246;dinger Equation<a class="anchor-link" href="#Schr&#246;dinger-Equation">&#182;</a></h3><ul>
+<li>The time evolution of a quantim system is determined by the Hamiltonian or total energy operator $H(t)$ through the Schrödinger equation.
+$$i\hbar\frac{d}{dt}\ket{\psi(t)} = H(t)\ket{\psi(t)}$$</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Hamiltonian-Operator-($H$)">Hamiltonian Operator ($H$)<a class="anchor-link" href="#Hamiltonian-Operator-($H$)">&#182;</a></h3><ol>
+<li>$H$ is an observable.</li>
+<li>$H$ is a Hermitian operator.</li>
+<li>$\ket{E_{n}}$ is the energy eigenvectors of $H$.</li>
+<li>$H\ket{E_{n}} = E_{n}\ket{E_{n}}$ is the energy eigenvalue equation of $H$.</li>
+<li>The energy eigenvectors of $H$ form a complete basis, <strong>energy basis</strong>.
+$$
+\begin{aligned}
+\ket{\psi(t)} &amp;= \sum_{n} c_{n}(t) \ket{E_{n}}\\
+\braket{E_{k}}{E_{n}} &amp;= \delta_{kn}
+\end{aligned}
+$$<ul>
+<li>Where $c_{n}(t)$ are the <strong>expansion coefficients</strong> that contain the time dependence of a general state $\ket{\psi}$.</li>
+</ul>
+</li>
+<li>The energy eigenstates of $H$ are <strong>stationary states</strong>, if a system begins and remains in that state.</li>
+</ol>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Time-Independent-Hamiltonian-($H$)">Time-Independent Hamiltonian ($H$)<a class="anchor-link" href="#Time-Independent-Hamiltonian-($H$)">&#182;</a></h3><ul>
+<li>The time evolution of an original state vector under the action of the time-independent Hamiltonian $H$ is the following.
+$$
+\begin{aligned}
+\ket{\psi(0)} &amp;= \sum_{n} c_{n} \ket{E_{n}}\\
+\ket{\psi(t)} &amp;= \sum_{n} c_{n} e^{-i E_{n} t / \hbar} \ket{E_{n}}
+\end{aligned}
+$$<ul>
+<li>Where $e^{-i E_{n} t / \hbar}$ is the complex exponential, <strong>phase factor</strong> for the eigenstate $E_{n}$.</li>
+</ul>
+</li>
+</ul>
+<h4 id="No-Input-Superposition-/-No-Ouput-Superposition">No Input Superposition / No Ouput Superposition<a class="anchor-link" href="#No-Input-Superposition-/-No-Ouput-Superposition">&#182;</a></h4><ol>
+<li>Let $\ket{\psi(0)} = \ket{E_1}$ be the initial input state.</li>
+<li>Let $\ket{\psi(t)} = e^{-i E_{1} t / \hbar} \ket{E_{1}}$ be the time evolution of the initial input state.</li>
+<li>Let $A$ be the output observable whose eigenstate correspond to the eigenvalue $a_{1}$.</li>
+</ol>
+$$
+\begin{aligned}
+\mathcal{P}_{a_{1}} &amp;= \amp{\braket{a_{1}}{\psi(t)}}\\
+&amp;= \amp{\sandwich{a_{1}}{e^{-i E_{1} t / \hbar}}{E_{1}}}\\
+&amp;= \amp{\braket{a_{1}}{E_{1}}}
+\end{aligned}
+$$<ul>
+<li><strong>Observation</strong>: The probability is time independent and is equal to the probability at the initial time.</li>
+</ul>
+<h4 id="Input-Superposition-/-No-Output-Superposition">Input Superposition / No Output Superposition<a class="anchor-link" href="#Input-Superposition-/-No-Output-Superposition">&#182;</a></h4><ol>
+<li>Let $\ket{\psi(0)} = c_{1}\ket{E_1} + c_{2}\ket{E_2}$ be the initial input state.</li>
+<li>Let $\ket{\psi(t)} = c_{1}e^{-i E_{1} t / \hbar} \ket{E_{1}} + c_{2}e^{-i E_{2} t / \hbar} \ket{E_{2}}$ be the time evolution of the initial input state.</li>
+<li>Let $A$ be the output observable whose eigenstate correspond to the eigenvalue $a_{1}$ such that $\ket{a_{1}} = \alpha_{1}\ket{E_{1}}$.</li>
+</ol>
+$$
+\begin{aligned}
+\mathcal{P}_{a_{1}} &amp;= \amp{\braket{a_{1}}{\psi(t)}}\\
+&amp;= \amp{\alpha_{1}^{*}\bra{E_{1}}\left[ c_{1}e^{-i E_{1} t / \hbar} \ket{E_{1}} + c_{2}e^{-i E_{2} t / \hbar} \ket{E_{2}} \right]}\\
+&amp;= \amp{\alpha_{1}}\amp{c_{1}}
+\end{aligned}
+$$<ul>
+<li><strong>Observation</strong>: The probability is time independent and is equal to the probability at the initial time.</li>
+</ul>
+<h4 id="Input-Superposition-/-Output-Superposition">Input Superposition / Output Superposition<a class="anchor-link" href="#Input-Superposition-/-Output-Superposition">&#182;</a></h4><ol>
+<li>Let $\ket{\psi(0)} = c_{1}\ket{E_1} + c_{2}\ket{E_2}$ be the initial input state.</li>
+<li>Let $\ket{\psi(t)} = c_{1}e^{-i E_{1} t / \hbar} \ket{E_{1}} + c_{2}e^{-i E_{2} t / \hbar} \ket{E_{2}}$ be the time evolution of the initial input state.</li>
+<li>Let $A$ be the output observable whose eigenstate correspond to the eigenvalue $a_{1}$ such that $\ket{a_{1}} = \alpha_{1}\ket{E_{1}} + \alpha_{2}\ket{E_{2}}$.</li>
+</ol>
+$$
+\begin{aligned}
+\mathcal{P}_{a_{1}} &amp;= \amp{\braket{a_{1}}{\psi(t)}}\\
+&amp;= \amp{\left[ \alpha_{1}^{*}\bra{E_{1}} + \alpha_{2}^{*}\bra{E_{2}} \right] \left[ c_{1}e^{-i E_{1} t / \hbar} \ket{E_{1}} + c_{2}e^{-i E_{2} t / \hbar} \ket{E_{2}} \right]}\\
+&amp;= \amp{\alpha_{1}^{*}c_{1}e^{-i E_{1} t / \hbar} + \alpha_{2}^{*}c_{2}e^{-i E_{2} t / \hbar}}\\
+&amp;= \amp{e^{-i E_{1} t / \hbar}}\amp{\alpha_{1}^{*}c_{1} + \alpha_{2}^{*}c_{2}e^{-i (E_{2} - E_{1}) t / \hbar}}\\
+&amp;= \amp{\alpha_{1}}\amp{c_{1}} + \amp{\alpha_{2}}\amp{c_{2}} + 2\text{Re}\left( \alpha_{1}c_{1}^{*}\alpha_{2}c_{2}^{*}e^{-i (E_{2} - E_{1}) t / \hbar} \right)
+\end{aligned}
+$$<ul>
+<li><strong>Observation</strong>: The probability is time dependent because of the different time-evolution phases of the two components of $\ket{\psi(t)}$.</li>
+</ul>
+<h4 id="Bohr-Frequency">Bohr Frequency<a class="anchor-link" href="#Bohr-Frequency">&#182;</a></h4><ul>
+<li>The time dependence is determined by the difference of the energies of the two states involved in the superposition.
+$$\omega_{21} = \frac{E_{2} - E_{1}}{\hbar}$$</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Solving-Problems-with-Time-Independent-Hamiltonian-($H$)">Solving Problems with Time-Independent Hamiltonian ($H$)<a class="anchor-link" href="#Solving-Problems-with-Time-Independent-Hamiltonian-($H$)">&#182;</a></h3><blockquote><p>Given a Hamiltonian $H$ and an initial state $\ket{\psi(0)}$, what is the probability that the eigenvalue $a_{j}$ of the observable $A$ is measured at time $t$?</p>
+</blockquote>
+<ol>
+<li>Diagonalize $H$ by finding the eigenvalues $E_{n}$ and eigenvectors $\ket{E_{n}}$.</li>
+<li>Write $\ket{\psi(0)}$ in terms of the energy eigenstates $\ket{E_{n}}$.</li>
+<li>Multiply each eigenstate coefficient by $e^{-i E_{n} t / \hbar}$ to get $\ket{\psi(t)}$.</li>
+<li>Calculate the probability $\mathcal{P}_{a_{j}} = \amp{\braket{a_{j}}{\psi(t)}}$.</li>
+</ol>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Spin-Precession">Spin Precession<a class="anchor-link" href="#Spin-Precession">&#182;</a></h3><ul>
+<li>The Hamiltonian of a spin-1/2 system is the following.
+$$H = \frac{e}{m_{e}} \mathbf{S} \cdot \mathbf{B}$$</li>
+<li><strong>Larmor Precession</strong>: The precession of a spin vector around a magnetic field.</li>
+<li><strong>Larmor Frequency</strong>: The frequency of precession of a spin vector around a magnetic field.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Uniform-Magnetic-Field-in-$z$-Direction">Uniform Magnetic Field in $z$-Direction<a class="anchor-link" href="#Uniform-Magnetic-Field-in-$z$-Direction">&#182;</a></h3><h4 id="Operator">Operator<a class="anchor-link" href="#Operator">&#182;</a></h4>$$
+\begin{aligned}
+H &amp;= \omega_{0} S_{z}\\
+H &amp;= \frac{\hbar\omega_{0}}{2} \begin{pmatrix}1 &amp; 0\\0 &amp; -1\end{pmatrix}
+\end{aligned}
+$$<ul>
+<li>Where $\omega_{0} = \frac{e B_{0}}{m_{e}}$.</li>
+</ul>
+<h4 id="Eigenvalue-Equations">Eigenvalue Equations<a class="anchor-link" href="#Eigenvalue-Equations">&#182;</a></h4>$$
+\begin{aligned}
+H\ket{+} &amp;= \omega_{0}S_{z}\ket{+} = \frac{\hbar\omega_{0}}{2}\ket{+} = E_{+}\ket{+}\\
+H\ket{-} &amp;= \omega_{0}S_{z}\ket{-} = -\frac{\hbar\omega_{0}}{2}\ket{+} = E_{-}\ket{-}\\
+E_{+} &amp;= \frac{\hbar\omega_{0}}{2}\\
+E_{-} &amp;= -\frac{\hbar\omega_{0}}{2}\\
+\ket{E_{+}} &amp;= \ket{+}\\
+\ket{E_{-}} &amp;= \ket{-}
+\end{aligned}
+$$<h4 id="Spin-Components-Expectations">Spin Components Expectations<a class="anchor-link" href="#Spin-Components-Expectations">&#182;</a></h4>$$
+\ket{\psi(0)} = \ket{+}_{n} = \cos{\frac{\theta}{2}}\ket{+} + \sin{\frac{\theta}{2}}e^{i\phi}\ket{-} \implies\\
+\begin{aligned}
+\avg{S_{z}} &amp;= \sandwich{\psi(t)}{S_{z}}{\psi(t)} = \frac{\hbar}{2}\cos\theta\\
+\avg{S_{y}} &amp;= \sandwich{\psi(t)}{S_{y}}{\psi(t)} = \frac{\hbar}{2}\sin\theta\sin(\phi + \omega_{0}t)\\
+\avg{S_{x}} &amp;= \sandwich{\psi(t)}{S_{x}}{\psi(t)} = \frac{\hbar}{2}\sin\theta\cos(\phi + \omega_{0}t)
+\end{aligned}
+$$
+</div>
+</div>
+</div>
     </div>
   </div>
 </body>
