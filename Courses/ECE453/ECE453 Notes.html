@@ -15383,7 +15383,29 @@ $$<h4 id="Rules-for-WHILE">Rules for WHILE<a class="anchor-link" href="#Rules-fo
 &amp;\cfrac{\vdash \{A \land b\} s_{1} \{B\} \quad \vdash \{A \land \lnot b\} s_{2} \{B\}}{\vdash \{A\} \text{ if } b \text{ then } s_{1} \text{ else } s_{2} \{B\}}\\[1em]
 &amp;\cfrac{\vdash \{I \land b\} s \{I\}}{\vdash \{I\} \text{ while } b \text{ do } s \{I \land \lnot b\}}\\[1em]
 \end{aligned}
+$$<h4 id="Alternative-Rules-for-WHILE">Alternative Rules for WHILE<a class="anchor-link" href="#Alternative-Rules-for-WHILE">&#182;</a></h4>$$
+\begin{aligned}
+&amp;\vdash \{A\} x := e \{\exists x_{0} \cdot x = e[x := x_{0}] \land A[x := x_{0}]\}\\[1em]
+&amp;\cfrac{\vdash I \land b \implies C \quad \vdash \{C\} c \{I\} \quad \vdash I \land {\lnot}b \implies B}{\vdash \{I\} \text{ while } b \text{ do } c \{B\}}\\[1em]
+\end{aligned}
 $$
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Inductive-Loop-Invariants-Rule-for-WHILE">Inductive Loop Invariants Rule for WHILE<a class="anchor-link" href="#Inductive-Loop-Invariants-Rule-for-WHILE">&#182;</a></h3>$$
+\cfrac{\vdash \text{Pre} \implies \text{Inv} \quad \vdash \{\text{Inv} \land b\} s \{\text{Inv}\} \quad \vdash \text{Inv} \land {\lnot}b \implies \text{Post}}{\{\text{Pre}\} \text{ while } b \text{ do } s \{\text{Post}\}}
+$$<ul>
+<li><em>Inv</em> is an <strong>inductive loop invariant</strong> if the following conditions hold.<ol>
+<li><strong>Initiation</strong>: True before the loop.</li>
+<li><strong>Consecution</strong>: Preserved executing the body.</li>
+<li><strong>Safety</strong>: True after the loop.</li>
+</ol>
+</li>
+</ul>
+
 </div>
 </div>
 </div>
