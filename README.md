@@ -39,6 +39,7 @@ A collection of [BeakerX](http://beakerx.com/) IPython notebooks and PDFs about 
 	- [9\. Bit Hacks](http://jacobpark.me/Programming-Notebook/Data%20Structures%20and%20Algorithms/9.%20Bit%20Hacks.html)
 - [**Papers**](https://github.com/jparkie/Programming-Notebook/tree/master/Papers)
 - **Programming Languages**
+	- [C99](http://jacobpark.me/Programming-Notebook/Programming%20Languages/C99.html)
 	- [Java](http://jacobpark.me/Programming-Notebook/Programming%20Languages/Java.html)
 	- [Python 3](http://jacobpark.me/Programming-Notebook/Programming%20Languages/Python%203.html)
 	- [Scala](http://jacobpark.me/Programming-Notebook/Programming%20Languages/Scala.html)
