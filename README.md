@@ -8,6 +8,7 @@ A collection of [BeakerX](http://beakerx.com/) IPython notebooks and PDFs about 
 - **Books**: A collection of detailed notes regarding various books in STEM which I have read.
 - **Courses**: A collection of notes from my senior year in ECE at the University of Waterloo.
 - **Data Structures and Algorithms**: A collection of detailed notes regarding *Data Structures and Algorithms* when preparing for a technical interview in Java.
+- **Databases**: A collection of detailed notes regarding *DBMSs*.
 - **Papers**: A collection of papers and surveys of various topics in STEM which I have read.
 - **Programming Languages**: A reference to documentation, development, testing, and productionizing, given a programming language.
 - **References**: A reference of various topics in STEM each with a hyperlink to an article introducing it.
@@ -37,6 +38,8 @@ A collection of [BeakerX](http://beakerx.com/) IPython notebooks and PDFs about 
 	- [7\. Graphs](http://jacobpark.me/Programming-Notebook/Data%20Structures%20and%20Algorithms/7.%20Graphs.html)
 	- [8\. Trees](http://jacobpark.me/Programming-Notebook/Data%20Structures%20and%20Algorithms/8.%20Trees.html)
 	- [9\. Bit Hacks](http://jacobpark.me/Programming-Notebook/Data%20Structures%20and%20Algorithms/9.%20Bit%20Hacks.html)
+- **Databases**
+	- [Architecture of a Database System](http://jacobpark.me/Programming-Notebook/Databases/Architecture%20of%20a%20Database%20System/Architecture%20of%20a%20Database%20System.html)
 - [**Papers**](https://github.com/jparkie/Programming-Notebook/tree/master/Papers)
 - **Programming Languages**
 	- [C99](http://jacobpark.me/Programming-Notebook/Programming%20Languages/C99.html)
