@@ -40,6 +40,7 @@ A collection of [BeakerX](http://beakerx.com/) IPython notebooks and PDFs about 
 	- [9\. Bit Hacks](http://jacobpark.me/Programming-Notebook/Data%20Structures%20and%20Algorithms/9.%20Bit%20Hacks.html)
 - **Databases**
 	- [Architecture of a Database System](http://jacobpark.me/Programming-Notebook/Databases/Architecture%20of%20a%20Database%20System/Architecture%20of%20a%20Database%20System.html)
+	- [PostgreSQL](http://jacobpark.me/Programming-Notebook/Databases/PostgreSQL/PostgreSQL%2012.html)
 - [**Papers**](https://github.com/jparkie/Programming-Notebook/tree/master/Papers)
 - **Programming Languages**
 	- [C99](http://jacobpark.me/Programming-Notebook/Programming%20Languages/C99.html)
