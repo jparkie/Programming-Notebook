@@ -13143,6 +13143,7 @@ div#notebook {
 <ul>
 <li><a href="https://www.postgresql.org/">Website</a></li>
 <li><a href="https://www.postgresql.org/docs/12/index.html">PostgreSQL 12 Documentation</a></li>
+<li><a href="https://www.postgresql.org/docs/12/source.html">Coding Conventions</a></li>
 <li><a href="https://wiki.postgresql.org/wiki/FAQ">General FAQs</a></li>
 <li><a href="https://wiki.postgresql.org/wiki/Developer_FAQ">Developer FAQs</a></li>
 <li><a href="https://wiki.postgresql.org/wiki/Development_information">Developer Wiki</a></li>
@@ -13151,6 +13152,8 @@ div#notebook {
 <li><a href="https://www.postgresql.org/list/pgsql-hackers/">PostgreSQL Developer Mailing List: pgsql-hackers</a></li>
 <li><a href="https://doxygen.postgresql.org/">Doxygen Documentation</a></li>
 <li><a href="https://coverage.postgresql.org/">LCOV Coverage</a></li>
+<li><a href="https://www.postgresql.org/list/pgsql-bugs/">Bug List</a></li>
+<li><a href="https://wiki.postgresql.org/wiki/Todo">TODO List</a></li>
 <li><a href="http://www.interdb.jp/pg/index.html">The Internals of PostgreSQL</a></li>
 </ul>
 
@@ -13259,7 +13262,7 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Backend-READMEs">Backend READMEs<a class="anchor-link" href="#Backend-READMEs">&#182;</a></h3><ul>
+<h3 id="READMEs">READMEs<a class="anchor-link" href="#READMEs">&#182;</a></h3><ul>
 <li><a href="https://github.com/postgres/postgres/tree/REL_12_3/src/backend/access/brin/README">/src/backend/access/brin/README</a></li>
 <li><a href="https://github.com/postgres/postgres/tree/REL_12_3/src/backend/access/gin/README">/src/backend/access/gin/README</a></li>
 <li><a href="https://github.com/postgres/postgres/tree/REL_12_3/src/backend/access/gist/README">/src/backend/access/gist/README</a></li>
@@ -13305,9 +13308,134 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Backend-Flowchart">Backend Flowchart<a class="anchor-link" href="#Backend-Flowchart">&#182;</a></h3><ul>
+<h3 id="Flowchart">Flowchart<a class="anchor-link" href="#Flowchart">&#182;</a></h3><ul>
 <li><a href="https://www.postgresql.org/developer/backend/">Backend Flowchart: Diagram</a></li>
 <li><a href="https://wiki.postgresql.org/wiki/Backend_flowchart">Backend Flowchart: Index</a></li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Commons">Commons<a class="anchor-link" href="#Commons">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Header-Files">Header Files<a class="anchor-link" href="#Header-Files">&#182;</a></h3><ul>
+<li><a href="https://github.com/postgres/postgres/blob/REL_12_3/src/include/c.h">/src/include/c.h</a> - <em>Functional C Definitions</em>.</li>
+<li><a href="https://github.com/postgres/postgres/blob/REL_12_3/src/include/postgres.h">/src/include/postgres.h</a> - <em>Primary Server-Side Commons</em>.</li>
+<li><a href="https://github.com/postgres/postgres/blob/REL_12_3/src/include/postgres_fe.h">/src/include/postgres_fe.h</a> - <em>Primary Client-Side Commons</em>.</li>
+<li><a href="https://github.com/postgres/postgres/blob/REL_12_3/src/include/postgres_ext.h">/src/include/postgres_ext.h</a> - <em>Everywhere Commons</em>.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Functional-C-Definitions:-c.h">Functional C Definitions: <code>c.h</code><a class="anchor-link" href="#Functional-C-Definitions:-c.h">&#182;</a></h3><h4 id="C-Standard-Library">C Standard Library<a class="anchor-link" href="#C-Standard-Library">&#182;</a></h4><ul>
+<li><a href="https://en.cppreference.com/w/c/error">#include &lt;assert.h&gt;</a></li>
+<li><a href="https://en.cppreference.com/w/c/error">#include &lt;errno.h&gt;</a></li>
+<li><a href="https://en.cppreference.com/w/c/locale">#include &lt;locale.h&gt;</a></li>
+<li><a href="https://en.cppreference.com/w/c/variadic">#include &lt;stdarg.h&gt;</a></li>
+<li><a href="https://en.cppreference.com/w/c/types">#include &lt;stddef.h&gt;</a></li>
+<li><a href="https://en.cppreference.com/w/c/types/integer">#include &lt;stdint.h&gt;</a></li>
+<li><a href="https://en.cppreference.com/w/c/io">#include &lt;stdio.h&gt;</a></li>
+<li><a href="https://en.cppreference.com/w/c/program">#include &lt;stdlib.h&gt;</a></li>
+<li><a href="https://en.cppreference.com/w/c/string/byte">#include &lt;string.h&gt;</a></li>
+<li><a href="https://pubs.opengroup.org/onlinepubs/007908775/xsh/systypes.h.html">#include &lt;sys/types.h&gt;</a></li>
+</ul>
+<h4 id="Standard-Types">Standard Types<a class="anchor-link" href="#Standard-Types">&#182;</a></h4><ul>
+<li><code>bool</code> - A Boolean type with <code>true</code> and <code>false</code> literal macros.</li>
+<li><code>int8</code> - An exact 8-bit signed integer type.</li>
+<li><code>int16</code> - An exact 16-bit signed integer type.</li>
+<li><code>int32</code> - An exact 32-bit signed integer type.</li>
+<li><code>int64</code> - An exact 64-bit signed integer type.</li>
+<li><code>int128</code> - An exact 128-bit signed integer type.</li>
+<li><code>uint8</code> - An exact 8-bit unsigned integer type.</li>
+<li><code>uint16</code> - An exact 16-bit unsigned integer type.</li>
+<li><code>uint32</code> - An exact 32-bit unsigned integer type.</li>
+<li><code>uint64</code> - An exact 64-bit unsigned integer type.</li>
+<li><code>uint128</code> - An exact 128-bit unsigned integer type.</li>
+<li><code>bits8</code> - A minimum 8-bit bitwise type.</li>
+<li><code>bits16</code> - A minimum 16-bit bitwise type.</li>
+<li><code>bits32</code> - A minimum 32-bit bitwise type.</li>
+<li><code>float4</code> - A minimum 4-byte floating-point decimal type.</li>
+<li><code>float8</code> - A minimum 8-byte floating-point decimal type.</li>
+<li><code>Pointer</code> - A type representing the address of any memory resident object.</li>
+<li><code>Size</code> - A type representing the size of any memory resident object.</li>
+<li><code>Index</code> - A type representing an index into any memory resident array; a <code>Index</code> is nonnegative.</li>
+<li><code>Offset</code> - A type representing an offset into any memory resident array; a <code>Offset</code> may be negative.</li>
+</ul>
+<h4 id="PostgreSQL-Types">PostgreSQL Types<a class="anchor-link" href="#PostgreSQL-Types">&#182;</a></h4><ul>
+<li><code>RegProcedure</code> - An <em>Object Identifer</em> type representing a function with arguments, per PostgreSQL's ADTs.</li>
+<li><code>TransactionId</code> - A 32-bit unsigned integer type representing a unique identifier per transaction.</li>
+<li><code>LocalTransactionId</code> - A 32-bit unsigned integer type representing a unique identifier per local transaction.</li>
+<li><code>SubTransactionId</code> - A 32-bit unsigned integer type representing a unique identifier per subtransaction.</li>
+<li><code>MultiXactId</code> - A 32-bit unsigned integer type representing a unique identifier per <em>multixact</em> (i.e., <em>Row Locking by Multiple Transactions</em>).</li>
+<li><code>MultiXactOffset</code> - A 32-bit unsigned integer type representing a unique offset to distinguish each transaction within a <em>multixact</em>.</li>
+<li><code>CommandId</code> - A 32-bit unsigned integer type representing a INSERT/DELETE ordering within a transaction.</li>
+</ul>
+<h4 id="Assertions">Assertions<a class="anchor-link" href="#Assertions">&#182;</a></h4><ul>
+<li><code>#define Assert(condition)</code> - A run-time general assertion; this assertion creates a trap with <code>errorType = "FailedAssertion"</code>.</li>
+<li><code>#define AssertMacro(p)</code> - A run-time macro assertion; this assertion creates a trap with <code>errorType = "FailedAssertion"</code>.</li>
+<li><code>#define AssertArg(condition)</code> - A run-time argument assertion; this assertion creates a trap with <code>errorType = "BadArgument"</code>.</li>
+<li><code>#define AssertState(condition)</code> - A run-time state assertion; this assertion creates a trap with <code>errorType = "BadState"</code>.</li>
+<li><code>#define AssertPointerAlignment(ptr, bndr)</code> - A run-time assertion that checks that <code>ptr</code> is <code>bndr</code> aligned; this assertion creates a trap with <code>errorType = "UnalignedPointer"</code>.</li>
+<li><code>#define StaticAssertStmt(condition, errmessage)</code> - A compile-time assertion statement.</li>
+<li><code>#define StaticAssertExpr(condition, errmessage)</code> - A compile-time assertion expression.</li>
+<li><code>#define AssertVariableIsOfType(varname, typename)</code> - A compile-time assertion statement that checks that a variable has the specified type.</li>
+<li><code>#define AssertVariableIsOfTypeMacro(varname, typename)</code> - A compile-time assertion expression that checks that a variable has the specified type.</li>
+</ul>
+<h4 id="General-Macros">General Macros<a class="anchor-link" href="#General-Macros">&#182;</a></h4><ul>
+<li><code>#define Max(x, y)</code> - Returns the maximum of two numbers.</li>
+<li><code>#define Min(x, y)</code> - Returns the minimum of two numbers.</li>
+<li><code>#define Abs(x)</code> - Return the absolute value of the argument.</li>
+<li><code>#define StrNCpy(dst,src,len)</code> - See <a href="https://en.cppreference.com/w/c/string/byte/strncpy"><code>strncpy()</code></a>; this method macro guarantees that the result string will be null-terminated.</li>
+<li><code>#define MemSet(start, val, len)</code> - See <a href="https://en.cppreference.com/w/c/string/byte/memset"><code>memset()</code></a>; this method macro is faster than its standard library counterpart.</li>
+<li><code>#define MemSetAligned(start, val, len)</code> - See <a href="https://en.cppreference.com/w/c/string/byte/memset"><code>memset()</code></a>; this method macro omits the test to see if <code>start</code> is word-aligned.</li>
+<li><code>#define FLOAT4_FITS_IN_INT16(num)</code> - Checks whether a 4-byte floating-point decimal fits in a 16-bit signed integer range.</li>
+<li><code>#define FLOAT4_FITS_IN_INT32(num)</code> - Checks whether a 4-byte floating-point decimal fits in a 32-bit signed integer range.</li>
+<li><code>#define FLOAT4_FITS_IN_INT64(num)</code> - Checks whether a 4-byte floating-point decimal fits in a 64-bit signed integer range.</li>
+<li><code>#define FLOAT8_FITS_IN_INT16(num)</code> - Checks whether a 8-byte floating-point decimal fits in a 16-bit signed integer range.</li>
+<li><code>#define FLOAT8_FITS_IN_INT32(num)</code> - Checks whether a 8-byte floating-point decimal fits in a 32-bit signed integer range.</li>
+<li><code>#define FLOAT8_FITS_IN_INT64(num)</code> - Checks whether a 8-byte floating-point decimal fits in a 64-bit signed integer range.</li>
+</ul>
+<h4 id="Miscellaneous">Miscellaneous<a class="anchor-link" href="#Miscellaneous">&#182;</a></h4><ul>
+<li><code>PGAlignedBlock</code> - A type representing an aligned <code>BLCKSZ</code>-sized buffer.</li>
+<li><code>PGAlignedXLogBlock</code> - A type representing an aligned <code>XLOG_BLCK</code>-sized buffer.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Server-Side:-postgres.h">Server-Side: <code>postgres.h</code><a class="anchor-link" href="#Server-Side:-postgres.h">&#182;</a></h3><p>TODO.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Client-Side:-postgres_fe.h">Client-Side: <code>postgres_fe.h</code><a class="anchor-link" href="#Client-Side:-postgres_fe.h">&#182;</a></h3><p>TODO.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Everywhere:-postgres_ext.h">Everywhere: <code>postgres_ext.h</code><a class="anchor-link" href="#Everywhere:-postgres_ext.h">&#182;</a></h3><h4 id="PostgreSQL-Types">PostgreSQL Types<a class="anchor-link" href="#PostgreSQL-Types">&#182;</a></h4><ul>
+<li><code>Oid</code> - An <em>Object Identifier</em>.</li>
 </ul>
 
 </div>
