@@ -13133,6 +13133,64 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Jupyter">Jupyter<a class="anchor-link" href="#Jupyter">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-SQL"><pre><span></span><span class="o">%%</span><span class="n">HTML</span>
+<span class="o">&lt;</span><span class="n">style</span><span class="o">&gt;</span>
+<span class="k">table</span> <span class="err">{</span>
+    <span class="n">width</span><span class="p">:</span> <span class="mi">100</span><span class="o">%</span><span class="p">;</span>
+<span class="err">}</span>
+<span class="n">tr</span> <span class="n">th</span><span class="p">:</span><span class="k">first</span><span class="o">-</span><span class="n">child</span><span class="p">,</span> <span class="n">tr</span> <span class="n">td</span><span class="p">:</span><span class="k">first</span><span class="o">-</span><span class="n">child</span> <span class="err">{</span>
+    <span class="n">width</span><span class="p">:</span> <span class="mi">25</span><span class="o">%</span><span class="p">;</span>
+    <span class="k">min</span><span class="o">-</span><span class="n">width</span><span class="p">:</span> <span class="mi">25</span><span class="o">%</span><span class="p">;</span>
+    <span class="k">max</span><span class="o">-</span><span class="n">width</span><span class="p">:</span> <span class="mi">25</span><span class="o">%</span><span class="p">;</span>
+<span class="err">}</span>
+<span class="o">&lt;/</span><span class="n">style</span><span class="o">&gt;</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[3]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<html><style>
+table {
+    width: 100%;
+}
+tr th:first-child, tr td:first-child {
+    width: 25%;
+    min-width: 25%;
+    max-width: 25%;
+}
+</style></html>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Documentation">Documentation<a class="anchor-link" href="#Documentation">&#182;</a></h2>
 </div>
 </div>
@@ -13170,20 +13228,76 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<ul>
-<li><a href="pdfs/PostgreSQL%20Internals%20Through%20Pictures.pdf">Bruce Momjian's PostgreSQL Internals Through Pictures</a> - <a href="https://www.youtube.com/watch?v=JFh22atXTRQ">Video</a>.</li>
-<li><a href="pdfs/Explaining%20the%20Postgres%20Query%20Optimizer">Bruce Momjian's Explaining the Postgres Query Optimizer</a> - <a href="https://www.youtube.com/watch?v=xqTNceHxkIo">Video</a>.</li>
-<li><a href="pdfs/MVCC%20Unmasked.pdf">Bruce Momjian's MVCC Unmasked</a> - <a href="https://www.youtube.com/watch?v=sq_aO34SWZc">Video</a>.</li>
-<li><a href="pdfs/Unlocking%20the%20Postgres%20Lock%20Manager.pdf">Bruce Momjian's Unlocking the Postgres Lock Manager</a> - <a href="https://www.youtube.com/watch?v=s3ee0nuDDqs">Video</a>.</li>
-<li><a href="pdfs/Inside%20PostgreSQL%20Shared%20Memory.pdf">Bruce Momjian's Inside PostgreSQL Shared Memory</a> - <a href="https://www.youtube.com/watch?v=BNDjonm7s7I">Video</a>.</li>
-<li><a href="pdfs/PostgreSQL%20Performance%20Tuning.pdf">Bruce Momjian's PostgreSQL Performance Tuning</a> - <a href="https://www.youtube.com/watch?v=xqTNceHxkIo">Video</a>.</li>
-<li><a href="pdfs/Will%20Postgres%20Live%20Forever%3F.pdf">Bruce Momjian's Will Postgres Live Forever?</a> - <a href="https://www.youtube.com/watch?v=-uqa36qVAZc">Video</a>.</li>
-<li><a href="pdfs/Introduction%20to%20Memory%20Contexts.pdf">Chris Travers's Introduction to Memory Contexts</a> - <a href="https://www.youtube.com/watch?v=tP2pHbKz2R0">Video</a>.</li>
-<li><a href="pdfs/Intro%20to%20Postgres%20Planner%20Hacking.pdf">Melanie Plageman's Intro to Postgres Planner Hacking</a> - <a href="https://www.youtube.com/watch?v=j7UPVU5UCV4">Video</a>.</li>
-<li><em>Peter Eisentraut's How does PostgreSQL actually work?</em> - <a href="https://www.youtube.com/watch?v=zkEhX0yOL3k">Video</a>.</li>
-<li><a href="pdfs/Hacking%20PostgreSQL.pdf">Stephen Frost's Hacking PostgreSQL</a> - <a href="https://www.youtube.com/watch?v=51yez5gBFmI">Video</a>.</li>
-<li><a href="pdfs/Parallelism%20in%20PostgreSQL%2011.pdf">Thomas Munro's Parallelism in PostgreSQL 11</a> - <a href="https://www.youtube.com/watch?v=jWIOZzezbb8">Video</a>.</li>
-</ul>
+<table>
+<thead><tr>
+<th style="text-align:right">Presenter</th>
+<th style="text-align:left">Slides</th>
+<th style="text-align:left">Videos</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right">Bruce Momjian</td>
+<td style="text-align:left"><a href="pdfs/PostgreSQL%20Internals%20Through%20Pictures.pdf">PostgreSQL Internals Through Pictures</a></td>
+<td style="text-align:left"><a href="https://www.youtube.com/watch?v=JFh22atXTRQ">YouTube</a></td>
+</tr>
+<tr>
+<td style="text-align:right">Bruce Momjian</td>
+<td style="text-align:left"><a href="pdfs/Explaining%20the%20Postgres%20Query%20Optimizer">Explaining the Postgres Query Optimizer</a></td>
+<td style="text-align:left"><a href="https://www.youtube.com/watch?v=xqTNceHxkIo">YouTube</a></td>
+</tr>
+<tr>
+<td style="text-align:right">Bruce Momjian</td>
+<td style="text-align:left"><a href="pdfs/MVCC%20Unmasked.pdf">MVCC Unmasked</a></td>
+<td style="text-align:left"><a href="https://www.youtube.com/watch?v=sq_aO34SWZc">YouTube</a></td>
+</tr>
+<tr>
+<td style="text-align:right">Bruce Momjian</td>
+<td style="text-align:left"><a href="pdfs/Unlocking%20the%20Postgres%20Lock%20Manager.pdf">Unlocking the Postgres Lock Manager</a></td>
+<td style="text-align:left"><a href="https://www.youtube.com/watch?v=s3ee0nuDDqs">YouTube</a></td>
+</tr>
+<tr>
+<td style="text-align:right">Bruce Momjian</td>
+<td style="text-align:left"><a href="pdfs/Inside%20PostgreSQL%20Shared%20Memory.pdf">Inside PostgreSQL Shared Memory</a></td>
+<td style="text-align:left"><a href="https://www.youtube.com/watch?v=BNDjonm7s7I">YouTube</a></td>
+</tr>
+<tr>
+<td style="text-align:right">Bruce Momjian</td>
+<td style="text-align:left"><a href="pdfs/PostgreSQL%20Performance%20Tuning.pdf">PostgreSQL Performance Tuning</a></td>
+<td style="text-align:left"><a href="https://www.youtube.com/watch?v=xqTNceHxkIo">YouTube</a></td>
+</tr>
+<tr>
+<td style="text-align:right">Bruce Momjian</td>
+<td style="text-align:left"><a href="pdfs/Will%20Postgres%20Live%20Forever%3F.pdf">Will Postgres Live Forever?</a></td>
+<td style="text-align:left"><a href="https://www.youtube.com/watch?v=-uqa36qVAZc">YouTube</a></td>
+</tr>
+<tr>
+<td style="text-align:right">Chris Travers</td>
+<td style="text-align:left"><a href="pdfs/Introduction%20to%20Memory%20Contexts.pdf">Introduction to Memory Contexts</a></td>
+<td style="text-align:left"><a href="https://www.youtube.com/watch?v=tP2pHbKz2R0">YouTube</a></td>
+</tr>
+<tr>
+<td style="text-align:right">Melanie Plageman</td>
+<td style="text-align:left"><a href="pdfs/Intro%20to%20Postgres%20Planner%20Hacking.pdf">Intro to Postgres Planner Hacking</a></td>
+<td style="text-align:left"><a href="https://www.youtube.com/watch?v=j7UPVU5UCV4">YouTube</a></td>
+</tr>
+<tr>
+<td style="text-align:right">Peter Eisentraut</td>
+<td style="text-align:left"><em>How does PostgreSQL actually work?</em></td>
+<td style="text-align:left"><a href="https://www.youtube.com/watch?v=zkEhX0yOL3k">YouTube</a></td>
+</tr>
+<tr>
+<td style="text-align:right">Stephen Frost</td>
+<td style="text-align:left"><a href="pdfs/Hacking%20PostgreSQL.pdf">Hacking PostgreSQL</a></td>
+<td style="text-align:left"><a href="https://www.youtube.com/watch?v=51yez5gBFmI">YouTube</a></td>
+</tr>
+<tr>
+<td style="text-align:right">Thomas Munro</td>
+<td style="text-align:left"><a href="pdfs/Parallelism%20in%20PostgreSQL%2011.pdf">Parallelism in PostgreSQL 11</a></td>
+<td style="text-align:left"><a href="https://www.youtube.com/watch?v=jWIOZzezbb8">YouTube</a></td>
+</tr>
+</tbody>
+</table>
 
 </div>
 </div>
@@ -13198,56 +13312,223 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Root-Directories---/">Root Directories - <code>/</code><a class="anchor-link" href="#Root-Directories---/">&#182;</a></h3><ul>
-<li><a href="https://github.com/postgres/postgres/tree/REL_12_3/config">/config</a> - This directory contains the configuration files (<code>*.m4</code>) for building PostgreSQL.</li>
-<li><a href="https://github.com/postgres/postgres/tree/REL_12_3/contrib">/contrib</a> - This directory contains the source codes of extensions, tools, and utilities separate from the core of PostgreSQL.</li>
-<li><a href="https://github.com/postgres/postgres/tree/REL_12_3/doc">/doc</a> - This directory contains the documentation files (<code>*.sgml</code>) for building the documentation of PostgreSQL.</li>
-<li><a href="https://github.com/postgres/postgres/tree/REL_12_3/src">/src</a> - This directory contains the source codes of the core of PostgreSQL.</li>
-</ul>
-<h3 id="Source-Directories---/src">Source Directories - <code>/src</code><a class="anchor-link" href="#Source-Directories---/src">&#182;</a></h3><ul>
-<li><a href="https://github.com/postgres/postgres/tree/REL_12_3/src/backend">/src/backend</a> - This directory contains the source codes of the server of PostgreSQL.</li>
-<li><a href="https://github.com/postgres/postgres/tree/REL_12_3/src/bin">/src/bin</a> - This directory contains the source codes of the binaries that DBAs use to administer and to monitor installations of PostgreSQL.</li>
-<li><a href="https://github.com/postgres/postgres/tree/REL_12_3/src/common">/src/common</a> - This directory contains the source codes common to PostgreSQL's <em>Backend</em> and <em>Frontend</em>.</li>
-<li><a href="https://github.com/postgres/postgres/tree/REL_12_3/src/fe_utils">/src/fe_utils</a> - This directory contains the source codes auxiliary to PostgreSQL's <em>Frontend Utilities</em>.</li>
-<li><a href="https://github.com/postgres/postgres/tree/REL_12_3/src/include">/src/include</a> - This directory contains the header files (<code>*.h</code>) of PostgreSQL's <em>Backend</em>.</li>
-<li><a href="https://github.com/postgres/postgres/tree/REL_12_3/src/interfaces">/src/interfaces</a> - This directory contains the source codes of the clients of PostgreSQL: <a href="https://www.postgresql.org/docs/12/libpq.html">libpq</a> and <a href="https://www.postgresql.org/docs/12/ecpg.html">ECPG</a>.</li>
-<li><a href="https://github.com/postgres/postgres/tree/REL_12_3/src/makefiles">/src/makefiles</a> - This directory contains the <code>make</code> files (<code>Makefile.*</code>) for building PostgreSQL on various platforms.</li>
-<li><a href="https://github.com/postgres/postgres/tree/REL_12_3/src/pl">/src/pl</a> - This directory contains the source codes of <em>Procedural Languages</em> supported by PostgreSQL: <a href="https://www.postgresql.org/docs/12/plpgsql.html">PL/pgSQL</a>, <a href="https://www.postgresql.org/docs/12/pltcl.html">PL/Tcl</a>, <a href="https://www.postgresql.org/docs/12/plperl.html">PL/Perl</a>, and <a href="https://www.postgresql.org/docs/12/plpython.html">PL/Python</a>.</li>
-<li><a href="https://github.com/postgres/postgres/tree/REL_12_3/src/port">/src/port</a> - This directory contains the source codes of the special-behavior functions required to port PostgreSQL to various platforms.</li>
-<li><a href="https://github.com/postgres/postgres/tree/REL_12_3/src/template">/src/template</a> - This directory contains the template files for configuring the PostgreSQL source tree for various platforms: <a href="https://github.com/postgres/postgres/blob/REL_12_3/configure"><code>configure</code></a>.</li>
-<li><a href="https://github.com/postgres/postgres/tree/REL_12_3/src/test">/src/test</a> - This directory contains the source codes of the testing infrastructure of PostgreSQL.</li>
-<li><a href="https://github.com/postgres/postgres/tree/REL_12_3/src/timezone">/src/timezone</a> - This directory contains the source codes of PostgreSQL's fork of IANA's <a href="https://www.iana.org/time-zones">Time Zone Database</a>.</li>
-<li><a href="https://github.com/postgres/postgres/tree/REL_12_3/src/tools">/src/tools</a> - This directory contains the Perl/Shell scripts intended to assist contributors.</li>
-<li><a href="https://github.com/postgres/postgres/tree/REL_12_3/src/tutorial">/src/tutorial</a> - This directory contains the SQL scripts for <a href="https://www.postgresql.org/docs/12/tutorial.html">PostgreSQL 12's Tutorial</a>.</li>
-</ul>
-<h3 id="Backend-Directories---/src/backend">Backend Directories - <code>/src/backend</code><a class="anchor-link" href="#Backend-Directories---/src/backend">&#182;</a></h3><ul>
-<li><a href="https://github.com/postgres/postgres/tree/REL_12_3/src/backend/access">/src/backend/access</a> - This directory contains the source codes related to the <em>Access Methods</em> of PostgreSQL: <a href="https://www.postgresql.org/docs/12/tableam.html">Table Access Method Interface Definition</a> and <a href="https://www.postgresql.org/docs/12/indexam.html">Index Access Method Interface Definition</a>.</li>
-<li><a href="https://github.com/postgres/postgres/tree/REL_12_3/src/backend/bootstrap">/src/backend/bootstrap</a> - This directory contains the source codes related to <a href="https://www.postgresql.org/docs/12/app-initdb.html"><code>initdb</code></a>.</li>
-<li><a href="https://github.com/postgres/postgres/tree/REL_12_3/src/backend/catalog">/src/backend/catalog</a> - This directory contains the source codes related to reading and writing the catalogs of PostgreSQL: <a href="https://www.postgresql.org/docs/12/catalogs.html">System Catalogs</a>.</li>
-<li><a href="https://github.com/postgres/postgres/tree/REL_12_3/src/backend/commands">/src/backend/commands</a> - This directory contains the source codes related to user-level DDL statements: <a href="https://www.postgresql.org/docs/12/sql-commands.html">SQL Commands</a>.</li>
-<li><a href="https://github.com/postgres/postgres/tree/REL_12_3/src/backend/executor">/src/backend/executor</a> - This directory contains the source codes related to the <em>Query Executor</em> of PostgreSQL: <a href="https://www.postgresql.org/docs/12/executor.html">Executor</a>.</li>
-<li><a href="https://github.com/postgres/postgres/tree/REL_12_3/src/backend/foreign">/src/backend/foreign</a> - This directory contains the source codes related to the <em>Foreign Data Wrappers API</em> of PostgreSQL: <a href="https://www.postgresql.org/docs/12/postgres-fdw.html">postgres_fdw</a>.</li>
-<li><a href="https://github.com/postgres/postgres/tree/REL_12_3/src/backend/jit">/src/backend/jit</a> - This directory contains the source codes related to the <em>Just-In-Time Compilation</em> infrastructure of PostgreSQL: <a href="https://www.postgresql.org/docs/12/jit.html">Just-in-Time Compilation (JIT)</a>.</li>
-<li><a href="https://github.com/postgres/postgres/tree/REL_12_3/src/backend/lib">/src/backend/lib</a> - This directory contains the source codes of general purpose data structures available anywhere in <code>/src/backend</code>.</li>
-<li><a href="https://github.com/postgres/postgres/tree/REL_12_3/src/backend/libpq">/src/backend/libpq</a> - This directory contains the source codes related to the <em>Frontend/Backend Protocol</em> of PostgreSQL: <a href="https://www.postgresql.org/docs/12/connect-estab.html">How Connections Are Established</a> and <a href="https://www.postgresql.org/docs/12/protocol.html">Frontend/Backend Protocol</a> .</li>
-<li><a href="https://github.com/postgres/postgres/tree/REL_12_3/src/backend/main">/src/backend/main</a> - This directory contains the source codes related to the <code>main()</code> entrypoint of a <code>postgres</code>-affiliated process.</li>
-<li><a href="https://github.com/postgres/postgres/tree/REL_12_3/src/backend/nodes">/src/backend/nodes</a> - This directory contains the source codes related to the <em>Nodes</em> infrastructure of PostgreSQL.</li>
-<li><a href="https://github.com/postgres/postgres/tree/REL_12_3/src/backend/optimizer">/src/backend/optimizer</a> - This directory contains the source codes related to the <em>Query Optimizer</em> of PostgreSQL: <a href="https://www.postgresql.org/docs/12/planner-optimizer.html">Planner/Optimizer</a> and <a href="https://www.postgresql.org/docs/12/geqo.html">Genetic Query Optimizer</a>.</li>
-<li><a href="https://github.com/postgres/postgres/tree/REL_12_3/src/backend/parser">/src/backend/parser</a> - This directory contains the source codes related to the <em>SQL Parser</em> of PostgreSQL: <a href="https://www.postgresql.org/docs/12/parser-stage.html">The Parser Stage</a>.</li>
-<li><a href="https://github.com/postgres/postgres/tree/REL_12_3/src/backend/partitioning">/src/backend/partitioning</a> - This directory contains the source codes related to <em>Declarative Partitioning</em> in PostgreSQL: <a href="https://www.postgresql.org/docs/12/ddl-partitioning.html">Table Partitioning</a>.</li>
-<li><a href="https://github.com/postgres/postgres/tree/REL_12_3/src/backend/po">/src/backend/po</a> - This directory contains the translation files (<code>*.po</code>) for translating the <em>Backend</em> messages of PostgreSQL: <a href="https://www.postgresql.org/docs/12/nls.html">Native Language Support</a>.</li>
-<li><a href="https://github.com/postgres/postgres/tree/REL_12_3/src/backend/port">/src/backend/port</a> - This directory contains the source codes related to <em>Backend</em>-specific, special-behavior functions required to port PostgreSQL to various platforms.</li>
-<li><a href="https://github.com/postgres/postgres/tree/REL_12_3/src/backend/postmaster">/src/backend/postmaster</a> - This directory contains the source codes related to the <em>Dispatcher</em> of PostgreSQL: <a href="https://www.postgresql.org/docs/12/app-postmaster.html"><code>postmaster</code></a>.</li>
-<li><a href="https://github.com/postgres/postgres/tree/REL_12_3/src/backend/regex">/src/backend/regex</a> - This directory contains the source codes related to regular expressions.</li>
-<li><a href="https://github.com/postgres/postgres/tree/REL_12_3/src/backend/replication">/src/backend/replication</a> - This directory contains the source codes related to the <em>Write-Ahead-Log Replication</em> of PostgreSQL: <a href="https://www.postgresql.org/docs/12/warm-standby.html">Log-Shipping Standby Servers</a>.</li>
-<li><a href="https://github.com/postgres/postgres/tree/REL_12_3/src/backend/rewrite">/src/backend/rewrite</a> - This directory contains the source codes related to the <em>Query Rewriter</em> of PostgreSQL: <a href="https://www.postgresql.org/docs/12/rule-system.html">The PostgreSQL Rule System</a>.</li>
-<li><a href="https://github.com/postgres/postgres/tree/REL_12_3/src/backend/snowball">/src/backend/snowball</a> - This directory contains the source codes related to <em>Snowball Stemming</em>: <a href="https://www.postgresql.org/docs/12/textsearch-dictionaries.html#TEXTSEARCH-SNOWBALL-DICTIONARY">Dictionaries: Snowball Dictionary</a>.</li>
-<li><a href="https://github.com/postgres/postgres/tree/REL_12_3/src/backend/statistics">/src/backend/statistics</a> - This directory contains the source codes related to the <em>Optimizer Statistics Gathering</em> of PostgreSQL: <a href="https://www.postgresql.org/docs/12/planner-stats.html">Statistics Used by the Planner</a> and <a href="https://www.postgresql.org/docs/12/planner-stats-details.html">How the Planner Uses Statistics</a>.</li>
-<li><a href="https://github.com/postgres/postgres/tree/REL_12_3/src/backend/storage">/src/backend/storage</a> - This directory contains the source codes related to the <em>Transactional Storage Manager</em>: <a href="https://www.postgresql.org/docs/12/storage.html">Database Physical Storage</a>.</li>
-<li><a href="https://github.com/postgres/postgres/tree/REL_12_3/src/backend/tcop">/src/backend/tcop</a> - This directory contains the source codes related to <em>Traffic Cop</em> which dispatches requests on behalf of the <code>postgres</code> process to the <em>SQL Parser</em>, <em>Query Optimizer</em>, <em>Query Executor</em>, and <em>Commands</em> of PostgreSQL.</li>
-<li><a href="https://github.com/postgres/postgres/tree/REL_12_3/src/backend/tsearch">/src/backend/tsearch</a> - This directory contains the source codes related to <em>Full-Text Search</em> of PostgreSQL: <a href="https://www.postgresql.org/docs/12/textsearch.html">Full Text Search</a>.</li>
-<li><a href="https://github.com/postgres/postgres/tree/REL_12_3/src/backend/utils">/src/backend/utils</a> - This directory contains the source codes related to various <em>Backend</em> utilities such as <a href="https://github.com/postgres/postgres/tree/REL_12_3/src/backend/utils/adt"><em>Abstract Data Types</em></a>, <a href="https://github.com/postgres/postgres/tree/REL_12_3/src/backend/utils/cache"><em>Caches</em></a>, <a href="https://github.com/postgres/postgres/tree/REL_12_3/src/backend/utils/error"><em>Error Handling</em></a>, <a href="https://github.com/postgres/postgres/tree/REL_12_3/src/backend/utils/fmgr"><em>Function Manager</em></a>, <a href="https://github.com/postgres/postgres/tree/REL_12_3/src/backend/utils/hash"><em>Hashing</em></a>, <a href="https://github.com/postgres/postgres/tree/REL_12_3/src/backend/utils/init"><em>Global Variables</em></a>, <a href="https://github.com/postgres/postgres/tree/REL_12_3/src/backend/utils/mb"><em>Strings</em></a>, <a href="https://github.com/postgres/postgres/tree/REL_12_3/src/backend/utils/misc"><em>GUCs</em></a>, <a href="https://github.com/postgres/postgres/tree/REL_12_3/src/backend/utils/mmgr"><em>Memory Contexts</em></a>, <a href="https://github.com/postgres/postgres/tree/REL_12_3/src/backend/utils/resowner"><em>Resource Owners</em></a>, <a href="https://github.com/postgres/postgres/tree/REL_12_3/src/backend/utils/sort"><em>Sorting</em></a>, and <a href="https://github.com/postgres/postgres/tree/REL_12_3/src/backend/utils/time"><em>Tuple Timestamps</em></a>.</li>
-</ul>
+<h3 id="Root-Directories---/">Root Directories - <code>/</code><a class="anchor-link" href="#Root-Directories---/">&#182;</a></h3><table>
+<thead><tr>
+<th style="text-align:right">Directory</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right"><a href="https://github.com/postgres/postgres/tree/REL_12_3/config">/config</a></td>
+<td style="text-align:left">This directory contains the configuration files (<code>*.m4</code>) for building PostgreSQL.</td>
+</tr>
+<tr>
+<td style="text-align:right"><a href="https://github.com/postgres/postgres/tree/REL_12_3/contrib">/contrib</a></td>
+<td style="text-align:left">This directory contains the source codes of extensions, tools, and utilities separate from the core of PostgreSQL.</td>
+</tr>
+<tr>
+<td style="text-align:right"><a href="https://github.com/postgres/postgres/tree/REL_12_3/doc">/doc</a></td>
+<td style="text-align:left">This directory contains the documentation files (<code>*.sgml</code>) for building the documentation of PostgreSQL.</td>
+</tr>
+<tr>
+<td style="text-align:right"><a href="https://github.com/postgres/postgres/tree/REL_12_3/src">/src</a></td>
+<td style="text-align:left">This directory contains the source codes of the core of PostgreSQL.</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Source-Directories---/src">Source Directories - <code>/src</code><a class="anchor-link" href="#Source-Directories---/src">&#182;</a></h3><table>
+<thead><tr>
+<th style="text-align:right">Directory</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right"><a href="https://github.com/postgres/postgres/tree/REL_12_3/src/backend">/src/backend</a></td>
+<td style="text-align:left">This directory contains the source codes of the server of PostgreSQL.</td>
+</tr>
+<tr>
+<td style="text-align:right"><a href="https://github.com/postgres/postgres/tree/REL_12_3/src/bin">/src/bin</a></td>
+<td style="text-align:left">This directory contains the source codes of the binaries that DBAs use to administer and to monitor installations of PostgreSQL.</td>
+</tr>
+<tr>
+<td style="text-align:right"><a href="https://github.com/postgres/postgres/tree/REL_12_3/src/common">/src/common</a></td>
+<td style="text-align:left">This directory contains the source codes common to PostgreSQL's <em>Backend</em> and <em>Frontend</em>.</td>
+</tr>
+<tr>
+<td style="text-align:right"><a href="https://github.com/postgres/postgres/tree/REL_12_3/src/fe_utils">/src/fe_utils</a></td>
+<td style="text-align:left">This directory contains the source codes auxiliary to PostgreSQL's <em>Frontend Utilities</em>.</td>
+</tr>
+<tr>
+<td style="text-align:right"><a href="https://github.com/postgres/postgres/tree/REL_12_3/src/include">/src/include</a></td>
+<td style="text-align:left">This directory contains the header files (<code>*.h</code>) of PostgreSQL's <em>Backend</em>.</td>
+</tr>
+<tr>
+<td style="text-align:right"><a href="https://github.com/postgres/postgres/tree/REL_12_3/src/interfaces">/src/interfaces</a></td>
+<td style="text-align:left">This directory contains the source codes of the clients of PostgreSQL: <a href="https://www.postgresql.org/docs/12/libpq.html">libpq</a> and <a href="https://www.postgresql.org/docs/12/ecpg.html">ECPG</a>.</td>
+</tr>
+<tr>
+<td style="text-align:right"><a href="https://github.com/postgres/postgres/tree/REL_12_3/src/makefiles">/src/makefiles</a></td>
+<td style="text-align:left">This directory contains the <code>make</code> files (<code>Makefile.*</code>) for building PostgreSQL on various platforms.</td>
+</tr>
+<tr>
+<td style="text-align:right"><a href="https://github.com/postgres/postgres/tree/REL_12_3/src/pl">/src/pl</a></td>
+<td style="text-align:left">This directory contains the source codes of <em>Procedural Languages</em> supported by PostgreSQL: <a href="https://www.postgresql.org/docs/12/plpgsql.html">PL/pgSQL</a>, <a href="https://www.postgresql.org/docs/12/pltcl.html">PL/Tcl</a>, <a href="https://www.postgresql.org/docs/12/plperl.html">PL/Perl</a>, and <a href="https://www.postgresql.org/docs/12/plpython.html">PL/Python</a>.</td>
+</tr>
+<tr>
+<td style="text-align:right"><a href="https://github.com/postgres/postgres/tree/REL_12_3/src/port">/src/port</a></td>
+<td style="text-align:left">This directory contains the source codes of the special-behavior functions required to port PostgreSQL to various platforms.</td>
+</tr>
+<tr>
+<td style="text-align:right"><a href="https://github.com/postgres/postgres/tree/REL_12_3/src/template">/src/template</a></td>
+<td style="text-align:left">This directory contains the template files for configuring the PostgreSQL source tree for various platforms: <a href="https://github.com/postgres/postgres/blob/REL_12_3/configure"><code>configure</code></a>.</td>
+</tr>
+<tr>
+<td style="text-align:right"><a href="https://github.com/postgres/postgres/tree/REL_12_3/src/test">/src/test</a></td>
+<td style="text-align:left">This directory contains the source codes of the testing infrastructure of PostgreSQL.</td>
+</tr>
+<tr>
+<td style="text-align:right"><a href="https://github.com/postgres/postgres/tree/REL_12_3/src/timezone">/src/timezone</a></td>
+<td style="text-align:left">This directory contains the source codes of PostgreSQL's fork of IANA's <a href="https://www.iana.org/time-zones">Time Zone Database</a>.</td>
+</tr>
+<tr>
+<td style="text-align:right"><a href="https://github.com/postgres/postgres/tree/REL_12_3/src/tools">/src/tools</a></td>
+<td style="text-align:left">This directory contains the Perl/Shell scripts intended to assist contributors.</td>
+</tr>
+<tr>
+<td style="text-align:right"><a href="https://github.com/postgres/postgres/tree/REL_12_3/src/tutorial">/src/tutorial</a></td>
+<td style="text-align:left">This directory contains the SQL scripts for <a href="https://www.postgresql.org/docs/12/tutorial.html">PostgreSQL 12's Tutorial</a>.</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Backend-Directories---/src/backend">Backend Directories - <code>/src/backend</code><a class="anchor-link" href="#Backend-Directories---/src/backend">&#182;</a></h3><table>
+<thead><tr>
+<th style="text-align:right">Directory</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right"><a href="https://github.com/postgres/postgres/tree/REL_12_3/src/backend/access">/src/backend/access</a></td>
+<td style="text-align:left">This directory contains the source codes related to the <em>Access Methods</em> of PostgreSQL: <a href="https://www.postgresql.org/docs/12/tableam.html">Table Access Method Interface Definition</a> and <a href="https://www.postgresql.org/docs/12/indexam.html">Index Access Method Interface Definition</a>.</td>
+</tr>
+<tr>
+<td style="text-align:right"><a href="https://github.com/postgres/postgres/tree/REL_12_3/src/backend/bootstrap">/src/backend/bootstrap</a></td>
+<td style="text-align:left">This directory contains the source codes related to <a href="https://www.postgresql.org/docs/12/app-initdb.html"><code>initdb</code></a>.</td>
+</tr>
+<tr>
+<td style="text-align:right"><a href="https://github.com/postgres/postgres/tree/REL_12_3/src/backend/catalog">/src/backend/catalog</a></td>
+<td style="text-align:left">This directory contains the source codes related to reading and writing the catalogs of PostgreSQL: <a href="https://www.postgresql.org/docs/12/catalogs.html">System Catalogs</a>.</td>
+</tr>
+<tr>
+<td style="text-align:right"><a href="https://github.com/postgres/postgres/tree/REL_12_3/src/backend/commands">/src/backend/commands</a></td>
+<td style="text-align:left">This directory contains the source codes related to user-level DDL statements: <a href="https://www.postgresql.org/docs/12/sql-commands.html">SQL Commands</a>.</td>
+</tr>
+<tr>
+<td style="text-align:right"><a href="https://github.com/postgres/postgres/tree/REL_12_3/src/backend/executor">/src/backend/executor</a></td>
+<td style="text-align:left">This directory contains the source codes related to the <em>Query Executor</em> of PostgreSQL: <a href="https://www.postgresql.org/docs/12/executor.html">Executor</a>.</td>
+</tr>
+<tr>
+<td style="text-align:right"><a href="https://github.com/postgres/postgres/tree/REL_12_3/src/backend/foreign">/src/backend/foreign</a></td>
+<td style="text-align:left">This directory contains the source codes related to the <em>Foreign Data Wrappers API</em> of PostgreSQL: <a href="https://www.postgresql.org/docs/12/postgres-fdw.html">postgres_fdw</a>.</td>
+</tr>
+<tr>
+<td style="text-align:right"><a href="https://github.com/postgres/postgres/tree/REL_12_3/src/backend/jit">/src/backend/jit</a></td>
+<td style="text-align:left">This directory contains the source codes related to the <em>Just-In-Time Compilation</em> infrastructure of PostgreSQL: <a href="https://www.postgresql.org/docs/12/jit.html">Just-in-Time Compilation (JIT)</a>.</td>
+</tr>
+<tr>
+<td style="text-align:right"><a href="https://github.com/postgres/postgres/tree/REL_12_3/src/backend/lib">/src/backend/lib</a></td>
+<td style="text-align:left">This directory contains the source codes of general purpose data structures available anywhere in <code>/src/backend</code>.</td>
+</tr>
+<tr>
+<td style="text-align:right"><a href="https://github.com/postgres/postgres/tree/REL_12_3/src/backend/libpq">/src/backend/libpq</a></td>
+<td style="text-align:left">This directory contains the source codes related to the <em>Frontend/Backend Protocol</em> of PostgreSQL: <a href="https://www.postgresql.org/docs/12/connect-estab.html">How Connections Are Established</a> and <a href="https://www.postgresql.org/docs/12/protocol.html">Frontend/Backend Protocol</a> .</td>
+</tr>
+<tr>
+<td style="text-align:right"><a href="https://github.com/postgres/postgres/tree/REL_12_3/src/backend/main">/src/backend/main</a></td>
+<td style="text-align:left">This directory contains the source codes related to the <code>main()</code> entrypoint of a <code>postgres</code>-affiliated process.</td>
+</tr>
+<tr>
+<td style="text-align:right"><a href="https://github.com/postgres/postgres/tree/REL_12_3/src/backend/nodes">/src/backend/nodes</a></td>
+<td style="text-align:left">This directory contains the source codes related to the <em>Nodes</em> infrastructure of PostgreSQL.</td>
+</tr>
+<tr>
+<td style="text-align:right"><a href="https://github.com/postgres/postgres/tree/REL_12_3/src/backend/optimizer">/src/backend/optimizer</a></td>
+<td style="text-align:left">This directory contains the source codes related to the <em>Query Optimizer</em> of PostgreSQL: <a href="https://www.postgresql.org/docs/12/planner-optimizer.html">Planner/Optimizer</a> and <a href="https://www.postgresql.org/docs/12/geqo.html">Genetic Query Optimizer</a>.</td>
+</tr>
+<tr>
+<td style="text-align:right"><a href="https://github.com/postgres/postgres/tree/REL_12_3/src/backend/parser">/src/backend/parser</a></td>
+<td style="text-align:left">This directory contains the source codes related to the <em>SQL Parser</em> of PostgreSQL: <a href="https://www.postgresql.org/docs/12/parser-stage.html">The Parser Stage</a>.</td>
+</tr>
+<tr>
+<td style="text-align:right"><a href="https://github.com/postgres/postgres/tree/REL_12_3/src/backend/partitioning">/src/backend/partitioning</a></td>
+<td style="text-align:left">This directory contains the source codes related to <em>Declarative Partitioning</em> in PostgreSQL: <a href="https://www.postgresql.org/docs/12/ddl-partitioning.html">Table Partitioning</a>.</td>
+</tr>
+<tr>
+<td style="text-align:right"><a href="https://github.com/postgres/postgres/tree/REL_12_3/src/backend/po">/src/backend/po</a></td>
+<td style="text-align:left">This directory contains the translation files (<code>*.po</code>) for translating the <em>Backend</em> messages of PostgreSQL: <a href="https://www.postgresql.org/docs/12/nls.html">Native Language Support</a>.</td>
+</tr>
+<tr>
+<td style="text-align:right"><a href="https://github.com/postgres/postgres/tree/REL_12_3/src/backend/port">/src/backend/port</a></td>
+<td style="text-align:left">This directory contains the source codes related to <em>Backend</em>-specific, special-behavior functions required to port PostgreSQL to various platforms.</td>
+</tr>
+<tr>
+<td style="text-align:right"><a href="https://github.com/postgres/postgres/tree/REL_12_3/src/backend/postmaster">/src/backend/postmaster</a></td>
+<td style="text-align:left">This directory contains the source codes related to the <em>Dispatcher</em> of PostgreSQL: <a href="https://www.postgresql.org/docs/12/app-postmaster.html"><code>postmaster</code></a>.</td>
+</tr>
+<tr>
+<td style="text-align:right"><a href="https://github.com/postgres/postgres/tree/REL_12_3/src/backend/regex">/src/backend/regex</a></td>
+<td style="text-align:left">This directory contains the source codes related to regular expressions.</td>
+</tr>
+<tr>
+<td style="text-align:right"><a href="https://github.com/postgres/postgres/tree/REL_12_3/src/backend/replication">/src/backend/replication</a></td>
+<td style="text-align:left">This directory contains the source codes related to the <em>Write-Ahead-Log Replication</em> of PostgreSQL: <a href="https://www.postgresql.org/docs/12/warm-standby.html">Log-Shipping Standby Servers</a>.</td>
+</tr>
+<tr>
+<td style="text-align:right"><a href="https://github.com/postgres/postgres/tree/REL_12_3/src/backend/rewrite">/src/backend/rewrite</a></td>
+<td style="text-align:left">This directory contains the source codes related to the <em>Query Rewriter</em> of PostgreSQL: <a href="https://www.postgresql.org/docs/12/rule-system.html">The PostgreSQL Rule System</a>.</td>
+</tr>
+<tr>
+<td style="text-align:right"><a href="https://github.com/postgres/postgres/tree/REL_12_3/src/backend/snowball">/src/backend/snowball</a></td>
+<td style="text-align:left">This directory contains the source codes related to <em>Snowball Stemming</em>: <a href="https://www.postgresql.org/docs/12/textsearch-dictionaries.html#TEXTSEARCH-SNOWBALL-DICTIONARY">Dictionaries: Snowball Dictionary</a>.</td>
+</tr>
+<tr>
+<td style="text-align:right"><a href="https://github.com/postgres/postgres/tree/REL_12_3/src/backend/statistics">/src/backend/statistics</a></td>
+<td style="text-align:left">This directory contains the source codes related to the <em>Optimizer Statistics Gathering</em> of PostgreSQL: <a href="https://www.postgresql.org/docs/12/planner-stats.html">Statistics Used by the Planner</a> and <a href="https://www.postgresql.org/docs/12/planner-stats-details.html">How the Planner Uses Statistics</a>.</td>
+</tr>
+<tr>
+<td style="text-align:right"><a href="https://github.com/postgres/postgres/tree/REL_12_3/src/backend/storage">/src/backend/storage</a></td>
+<td style="text-align:left">This directory contains the source codes related to the <em>Transactional Storage Manager</em>: <a href="https://www.postgresql.org/docs/12/storage.html">Database Physical Storage</a>.</td>
+</tr>
+<tr>
+<td style="text-align:right"><a href="https://github.com/postgres/postgres/tree/REL_12_3/src/backend/tcop">/src/backend/tcop</a></td>
+<td style="text-align:left">This directory contains the source codes related to <em>Traffic Cop</em> which dispatches requests on behalf of the <code>postgres</code> process to the <em>SQL Parser</em>, <em>Query Optimizer</em>, <em>Query Executor</em>, and <em>Commands</em> of PostgreSQL.</td>
+</tr>
+<tr>
+<td style="text-align:right"><a href="https://github.com/postgres/postgres/tree/REL_12_3/src/backend/tsearch">/src/backend/tsearch</a></td>
+<td style="text-align:left">This directory contains the source codes related to <em>Full-Text Search</em> of PostgreSQL: <a href="https://www.postgresql.org/docs/12/textsearch.html">Full Text Search</a>.</td>
+</tr>
+<tr>
+<td style="text-align:right"><a href="https://github.com/postgres/postgres/tree/REL_12_3/src/backend/utils">/src/backend/utils</a></td>
+<td style="text-align:left">This directory contains the source codes related to various <em>Backend</em> utilities such as <a href="https://github.com/postgres/postgres/tree/REL_12_3/src/backend/utils/adt"><em>Abstract Data Types</em></a>, <a href="https://github.com/postgres/postgres/tree/REL_12_3/src/backend/utils/cache"><em>Caches</em></a>, <a href="https://github.com/postgres/postgres/tree/REL_12_3/src/backend/utils/error"><em>Error Handling</em></a>, <a href="https://github.com/postgres/postgres/tree/REL_12_3/src/backend/utils/fmgr"><em>Function Manager</em></a>, <a href="https://github.com/postgres/postgres/tree/REL_12_3/src/backend/utils/hash"><em>Hashing</em></a>, <a href="https://github.com/postgres/postgres/tree/REL_12_3/src/backend/utils/init"><em>Global Variables</em></a>, <a href="https://github.com/postgres/postgres/tree/REL_12_3/src/backend/utils/mb"><em>Strings</em></a>, <a href="https://github.com/postgres/postgres/tree/REL_12_3/src/backend/utils/misc"><em>GUCs</em></a>, <a href="https://github.com/postgres/postgres/tree/REL_12_3/src/backend/utils/mmgr"><em>Memory Contexts</em></a>, <a href="https://github.com/postgres/postgres/tree/REL_12_3/src/backend/utils/resowner"><em>Resource Owners</em></a>, <a href="https://github.com/postgres/postgres/tree/REL_12_3/src/backend/utils/sort"><em>Sorting</em></a>, and <a href="https://github.com/postgres/postgres/tree/REL_12_3/src/backend/utils/time"><em>Tuple Timestamps</em></a>.</td>
+</tr>
+</tbody>
+</table>
 
 </div>
 </div>
@@ -13351,65 +13632,724 @@ div#notebook {
 <li><a href="https://en.cppreference.com/w/c/string/byte">#include &lt;string.h&gt;</a></li>
 <li><a href="https://pubs.opengroup.org/onlinepubs/007908775/xsh/systypes.h.html">#include &lt;sys/types.h&gt;</a></li>
 </ul>
-<h4 id="Standard-Types">Standard Types<a class="anchor-link" href="#Standard-Types">&#182;</a></h4><ul>
-<li><code>bool</code> - A Boolean type with <code>true</code> and <code>false</code> literal macros.</li>
-<li><code>int8</code> - An exact 8-bit signed integer type.</li>
-<li><code>int16</code> - An exact 16-bit signed integer type.</li>
-<li><code>int32</code> - An exact 32-bit signed integer type.</li>
-<li><code>int64</code> - An exact 64-bit signed integer type.</li>
-<li><code>int128</code> - An exact 128-bit signed integer type.</li>
-<li><code>uint8</code> - An exact 8-bit unsigned integer type.</li>
-<li><code>uint16</code> - An exact 16-bit unsigned integer type.</li>
-<li><code>uint32</code> - An exact 32-bit unsigned integer type.</li>
-<li><code>uint64</code> - An exact 64-bit unsigned integer type.</li>
-<li><code>uint128</code> - An exact 128-bit unsigned integer type.</li>
-<li><code>bits8</code> - A minimum 8-bit bitwise type.</li>
-<li><code>bits16</code> - A minimum 16-bit bitwise type.</li>
-<li><code>bits32</code> - A minimum 32-bit bitwise type.</li>
-<li><code>float4</code> - A minimum 4-byte floating-point decimal type.</li>
-<li><code>float8</code> - A minimum 8-byte floating-point decimal type.</li>
-<li><code>Pointer</code> - A type representing the address of any memory resident object.</li>
-<li><code>Size</code> - A type representing the size of any memory resident object.</li>
-<li><code>Index</code> - A type representing an index into any memory resident array; a <code>Index</code> is nonnegative.</li>
-<li><code>Offset</code> - A type representing an offset into any memory resident array; a <code>Offset</code> may be negative.</li>
+<h4 id="Standard-Types">Standard Types<a class="anchor-link" href="#Standard-Types">&#182;</a></h4><table>
+<thead><tr>
+<th style="text-align:right">Type</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right"><code>bool</code></td>
+<td style="text-align:left">A Boolean type with <code>true</code> and <code>false</code> literal macros.</td>
+</tr>
+<tr>
+<td style="text-align:right"><code>int8</code></td>
+<td style="text-align:left">An exact 8-bit signed integer type.</td>
+</tr>
+<tr>
+<td style="text-align:right"><code>int16</code></td>
+<td style="text-align:left">An exact 16-bit signed integer type.</td>
+</tr>
+<tr>
+<td style="text-align:right"><code>int32</code></td>
+<td style="text-align:left">An exact 32-bit signed integer type.</td>
+</tr>
+<tr>
+<td style="text-align:right"><code>int64</code></td>
+<td style="text-align:left">An exact 64-bit signed integer type.</td>
+</tr>
+<tr>
+<td style="text-align:right"><code>int128</code></td>
+<td style="text-align:left">An exact 128-bit signed integer type.</td>
+</tr>
+<tr>
+<td style="text-align:right"><code>uint8</code></td>
+<td style="text-align:left">An exact 8-bit unsigned integer type.</td>
+</tr>
+<tr>
+<td style="text-align:right"><code>uint16</code></td>
+<td style="text-align:left">An exact 16-bit unsigned integer type.</td>
+</tr>
+<tr>
+<td style="text-align:right"><code>uint32</code></td>
+<td style="text-align:left">An exact 32-bit unsigned integer type.</td>
+</tr>
+<tr>
+<td style="text-align:right"><code>uint64</code></td>
+<td style="text-align:left">An exact 64-bit unsigned integer type.</td>
+</tr>
+<tr>
+<td style="text-align:right"><code>uint128</code></td>
+<td style="text-align:left">An exact 128-bit unsigned integer type.</td>
+</tr>
+<tr>
+<td style="text-align:right"><code>bits8</code></td>
+<td style="text-align:left">A minimum 8-bit bitwise type.</td>
+</tr>
+<tr>
+<td style="text-align:right"><code>bits16</code></td>
+<td style="text-align:left">A minimum 16-bit bitwise type.</td>
+</tr>
+<tr>
+<td style="text-align:right"><code>bits32</code></td>
+<td style="text-align:left">A minimum 32-bit bitwise type.</td>
+</tr>
+<tr>
+<td style="text-align:right"><code>float4</code></td>
+<td style="text-align:left">A minimum 4-byte floating-point decimal type.</td>
+</tr>
+<tr>
+<td style="text-align:right"><code>float8</code></td>
+<td style="text-align:left">A minimum 8-byte floating-point decimal type.</td>
+</tr>
+<tr>
+<td style="text-align:right"><code>Pointer</code></td>
+<td style="text-align:left">A type representing the address of any memory resident object.</td>
+</tr>
+<tr>
+<td style="text-align:right"><code>Size</code></td>
+<td style="text-align:left">A type representing the size of any memory resident object.</td>
+</tr>
+<tr>
+<td style="text-align:right"><code>Index</code></td>
+<td style="text-align:left">A type representing an index into any memory resident array; a <code>Index</code> is nonnegative.</td>
+</tr>
+<tr>
+<td style="text-align:right"><code>Offset</code></td>
+<td style="text-align:left">A type representing an offset into any memory resident array; a <code>Offset</code> may be negative.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="System-Types">System Types<a class="anchor-link" href="#System-Types">&#182;</a></h4><table>
+<thead><tr>
+<th style="text-align:right">Type</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right"><code>RegProcedure</code></td>
+<td style="text-align:left">An <em>Object Identifier</em> type representing a function with arguments, per PostgreSQL's ADTs.</td>
+</tr>
+<tr>
+<td style="text-align:right"><code>TransactionId</code></td>
+<td style="text-align:left">A 32-bit unsigned integer type representing a unique identifier per transaction.</td>
+</tr>
+<tr>
+<td style="text-align:right"><code>LocalTransactionId</code></td>
+<td style="text-align:left">A 32-bit unsigned integer type representing a unique identifier per local transaction.</td>
+</tr>
+<tr>
+<td style="text-align:right"><code>SubTransactionId</code></td>
+<td style="text-align:left">A 32-bit unsigned integer type representing a unique identifier per subtransaction.</td>
+</tr>
+<tr>
+<td style="text-align:right"><code>MultiXactId</code></td>
+<td style="text-align:left">A 32-bit unsigned integer type representing a unique identifier per <em>multixact</em> (i.e., <em>Row Locking by Multiple Transactions</em>).</td>
+</tr>
+<tr>
+<td style="text-align:right"><code>MultiXactOffset</code></td>
+<td style="text-align:left">A 32-bit unsigned integer type representing a unique offset to distinguish each transaction within a <em>multixact</em>.</td>
+</tr>
+<tr>
+<td style="text-align:right"><code>CommandId</code></td>
+<td style="text-align:left">A 32-bit unsigned integer type representing a INSERT/DELETE ordering within a transaction.</td>
+</tr>
+<tr>
+<td style="text-align:right"><code>Name</code></td>
+<td style="text-align:left">A C-string null-padded to exactly <code>NAMEDATALEN</code> bytes representing a <em>Name</em>; the <code>char*</code> value is accessible through <code>#define NameStr(name)</code>.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="System-Method-Macros">System Method Macros<a class="anchor-link" href="#System-Method-Macros">&#182;</a></h4><table>
+<thead><tr>
+<th style="text-align:right">Macro</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right">[<code>bool</code>]<br/><strong><code>BoolIsValid()</code></strong><br/>[<code>boolean</code>] <code>boolean</code></td>
+<td style="text-align:left">Checks if <code>boolean</code> is a valid Boolean.</td>
+</tr>
+<tr>
+<td style="text-align:right">[<code>bool</code>]<br/><strong><code>PointerIsValid()</code></strong><br/>[<code>const void*</code>] <code>pointer</code></td>
+<td style="text-align:left">Checks if <code>pointer</code> is a valid pointer.</td>
+</tr>
+<tr>
+<td style="text-align:right">[<code>bool</code>]<br/><strong><code>OidIsValid()</code></strong><br/>[<code>Oid</code>] <code>objectId</code></td>
+<td style="text-align:left">Checks if <code>objectId</code> is a valid <em>Object Identifier</em>.</td>
+</tr>
+<tr>
+<td style="text-align:right">[<code>bool</code>]<br/><strong><code>RegProcedureIsValid()</code></strong><br/>[<code>RegProcedure</code>] <code>p</code></td>
+<td style="text-align:left">Checks if <code>p</code> is a valid procedure.</td>
+</tr>
+<tr>
+<td style="text-align:right">[<code>bool</code>]<br/><strong><code>PointerIsAligned()</code></strong><br/>[<code>uintptr_t</code>] <code>pointer</code>,<br/>[<em>Identifier</em>] <code>type</code></td>
+<td style="text-align:left">Checks if <code>pointer</code> is properly aligned to point to <code>type</code>.</td>
+</tr>
+<tr>
+<td style="text-align:right">[<code>void*</code>]<br/><strong><code>OffsetToPointer()</code></strong><br/>[<code>void*</code>] <code>base</code>,<br/>[<code>uint32</code>] <code>offset</code></td>
+<td style="text-align:left">Offsets <code>base</code> by <code>offset</code>.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="Offset,-Length,-and-Alignment-Method-Macros">Offset, Length, and Alignment Method Macros<a class="anchor-link" href="#Offset,-Length,-and-Alignment-Method-Macros">&#182;</a></h4><table>
+<thead><tr>
+<th style="text-align:right">Macro</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right">[<code>Offset</code>]<br/><strong><code>offsetof()</code></strong><br/>[<em>Identifier</em>] <code>type</code>,<br/>[<em>Identifier</em>] <code>field</code></td>
+<td style="text-align:left">Returns the offset of a structure/union field within that structure/union.</td>
+</tr>
+<tr>
+<td style="text-align:right">[<code>Size</code>]<br/><strong><code>lengthof()</code></strong><br/>[<code>_ ## *</code>] <code>array</code></td>
+<td style="text-align:left">Returns the number of elements in an array.</td>
+</tr>
+<tr>
+<td style="text-align:right">[<code>Size</code>]<br/><strong><code>SHORTALIGN()</code></strong><br/>[<code>Size</code>] <code>LEN</code></td>
+<td style="text-align:left">Align <code>LEN</code> to fit <code>short = 2?</code>-byte values.</td>
+</tr>
+<tr>
+<td style="text-align:right">[<code>Size</code>]<br/><strong><code>INTALIGN()</code></strong><br/>[<code>Size</code>] <code>LEN</code></td>
+<td style="text-align:left">Align <code>LEN</code> to fit <code>int = 4?</code>-byte values.</td>
+</tr>
+<tr>
+<td style="text-align:right">[<code>Size</code>]<br/><strong><code>LONGALIGN()</code></strong><br/>[<code>Size</code>] <code>LEN</code></td>
+<td style="text-align:left">Align <code>LEN</code> to fit <code>long = 4?</code>-byte values.</td>
+</tr>
+<tr>
+<td style="text-align:right">[<code>Size</code>]<br/><strong><code>DOUBLEALIGN()</code></strong><br/>[<code>Size</code>] <code>LEN</code></td>
+<td style="text-align:left">Align <code>LEN</code> to fit <code>double = 8?</code>-byte values.</td>
+</tr>
+<tr>
+<td style="text-align:right">[<code>Size</code>]<br/><strong><code>MAXALIGN()</code></strong><br/>[<code>Size</code>] <code>LEN</code></td>
+<td style="text-align:left">Align <code>LEN</code> to fit <code>MAXIMUM_ALIGNOF = 8?</code>-byte values.</td>
+</tr>
+<tr>
+<td style="text-align:right">[<code>Size</code>]<br/><strong><code>BUFFERALIGN()</code></strong><br/>[<code>Size</code>] <code>LEN</code></td>
+<td style="text-align:left">Align <code>LEN</code> to fit <code>ALIGNOF_BUFFER = 32?</code>-byte values.</td>
+</tr>
+<tr>
+<td style="text-align:right">[<code>Size</code>]<br/><strong><code>CACHELINEALIGN()</code></strong><br/>[<code>Size</code>] <code>LEN</code></td>
+<td style="text-align:left">Align <code>LEN</code> to fit <code>PG_CACHE_LINE_SIZE = 128?</code>-byte values.</td>
+</tr>
+<tr>
+<td style="text-align:right">[<code>Size</code>]<br/><strong><code>SHORTALIGN_DOWN()</code></strong><br/>[<code>Size</code>] <code>LEN</code></td>
+<td style="text-align:left">Align <code>LEN</code> to fit <code>short = 2?</code>-byte values, by rounding down.</td>
+</tr>
+<tr>
+<td style="text-align:right">[<code>Size</code>]<br/><strong><code>INTALIGN_DOWN()</code></strong><br/>[<code>Size</code>] <code>LEN</code></td>
+<td style="text-align:left">Align <code>LEN</code> to fit <code>int = 4?</code>-byte values, by rounding down.</td>
+</tr>
+<tr>
+<td style="text-align:right">[<code>Size</code>]<br/><strong><code>LONGALIGN_DOWN()</code></strong><br/>[<code>Size</code>] <code>LEN</code></td>
+<td style="text-align:left">Align <code>LEN</code> to fit <code>long = 4?</code>-byte values, by rounding down.</td>
+</tr>
+<tr>
+<td style="text-align:right">[<code>Size</code>]<br/><strong><code>DOUBLEALIGN_DOWN()</code></strong><br/>[<code>Size</code>] <code>LEN</code></td>
+<td style="text-align:left">Align <code>LEN</code> to fit <code>double = 8?</code>-byte values, by rounding down.</td>
+</tr>
+<tr>
+<td style="text-align:right">[<code>Size</code>]<br/><strong><code>MAXALIGN_DOWN()</code></strong><br/>[<code>Size</code>] <code>LEN</code></td>
+<td style="text-align:left">Align <code>LEN</code> to fit <code>MAXIMUM_ALIGNOF = 8?</code>-byte values, by rounding down.</td>
+</tr>
+<tr>
+<td style="text-align:right">[<code>Size</code>]<br/><strong><code>BUFFERALIGN_DOWN()</code></strong><br/>[<code>Size</code>] <code>LEN</code></td>
+<td style="text-align:left">Align <code>LEN</code> to fit <code>ALIGNOF_BUFFER = 32?</code>-byte values, by rounding down.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="Assertions">Assertions<a class="anchor-link" href="#Assertions">&#182;</a></h4><table>
+<thead><tr>
+<th style="text-align:right">Macro</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right">[<em>Trap</em>]<br/><strong><code>Assert()</code></strong><br/>[<em>Scalar Expression</em>] <code>condition</code></td>
+<td style="text-align:left">A run-time general assertion; this assertion creates a trap with <code>errorType = \"FailedAssertion\"</code>.</td>
+</tr>
+<tr>
+<td style="text-align:right">[<em>Trap</em>]<br/><strong><code>AssertMacro()</code></strong><br/>[<em>Macro</em>] <code>p</code></td>
+<td style="text-align:left">A run-time macro assertion; this assertion creates a trap with <code>errorType = \"FailedAssertion\"</code>.</td>
+</tr>
+<tr>
+<td style="text-align:right">[<em>Trap</em>]<br/><strong><code>AssertArg()</code></strong><br/>[<em>Scalar Expression</em>] <code>condition</code></td>
+<td style="text-align:left">A run-time argument assertion; this assertion creates a trap with <code>errorType = \"BadArgument\"</code>.</td>
+</tr>
+<tr>
+<td style="text-align:right">[<em>Trap</em>]<br/><strong><code>AssertState()</code></strong><br/>[<em>Scalar Expression</em>] <code>condition</code></td>
+<td style="text-align:left">A run-time state assertion; this assertion creates a trap with <code>errorType = \"BadState\"</code>.</td>
+</tr>
+<tr>
+<td style="text-align:right">[<em>Trap</em>]<br/><strong><code>AssertPointerAlignment()</code></strong><br/>[<code>Pointer</code>] <code>ptr</code>,<br/>[<code>uintptr_t</code>] <code>bndr</code></td>
+<td style="text-align:left">A run-time assertion that checks that <code>ptr</code> is <code>bndr</code> aligned; this assertion creates a trap with <code>errorType = \"UnalignedPointer\"</code>.</td>
+</tr>
+<tr>
+<td style="text-align:right">[<em>Compiler Error</em>]<br/><strong><code>StaticAssertStmt()</code></strong><br/>[<em>Scalar Expression</em>] <code>condition</code>,<br/>[<em>String Literal</em>] <code>errmessage</code></td>
+<td style="text-align:left">A compile-time assertion statement.</td>
+</tr>
+<tr>
+<td style="text-align:right">[<em>Compiler Error</em>]<br/><strong><code>StaticAssertExpr()</code></strong><br/>[<em>Scalar Expression</em>] <code>condition</code>,<br/>[<em>String Literal</em>] <code>errmessage</code></td>
+<td style="text-align:left">A compile-time assertion expression.</td>
+</tr>
+<tr>
+<td style="text-align:right">[<em>Compiler Error</em>]<br/><strong><code>AssertVariableIsOfType()</code></strong><br/>[<em>Identifier</em>] <code>varname</code>,<br/>[<em>Identifier</em>] <code>typename</code></td>
+<td style="text-align:left">A compile-time assertion statement that checks that a variable has the specified type.</td>
+</tr>
+<tr>
+<td style="text-align:right">[<em>Compiler Error</em>]<br/><strong><code>AssertVariableIsOfTypeMacro()</code></strong><br/>[<em>Identifier</em>] <code>varname</code>,<br/>[<em>Identifier</em>] <code>typename</code></td>
+<td style="text-align:left">A compile-time assertion expression that checks that a variable has the specified type.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="General-Macros">General Macros<a class="anchor-link" href="#General-Macros">&#182;</a></h4><table>
+<thead><tr>
+<th style="text-align:right">Macro</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right">[<em>Number</em>]<br/><strong><code>Max()</code></strong><br/>[<em>Number</em>] <code>x</code>,<br/>[<em>Number</em>] <code>y</code></td>
+<td style="text-align:left">Returns the maximum of two numbers.</td>
+</tr>
+<tr>
+<td style="text-align:right">[<em>Number</em>]<br/><strong><code>Min()</code></strong><br/>[<em>Number</em>] <code>x</code>,<br/>[<em>Number</em>] <code>y</code></td>
+<td style="text-align:left">Returns the minimum of two numbers.</td>
+</tr>
+<tr>
+<td style="text-align:right">[<em>Number</em>]<br/><strong><code>Abs()</code></strong><br/>[<em>Number</em>] <code>x</code></td>
+<td style="text-align:left">Return the absolute value of the argument.</td>
+</tr>
+<tr>
+<td style="text-align:right"><strong><code>StrNCpy()</code></strong><br/>[<code>Pointer</code>] <code>dst</code>,<br/>[<code>Pointer</code>] <code>src</code>,<br/>[<code>Size</code>] <code>len</code></td>
+<td style="text-align:left">See <a href="https://en.cppreference.com/w/c/string/byte/strncpy"><code>strncpy()</code></a>; this method macro guarantees that the result string will be null-terminated.</td>
+</tr>
+<tr>
+<td style="text-align:right"><strong><code>MemSet()</code></strong><br/>[<code>Pointer</code>] <code>start</code>,<br/>[<code>bits8</code>] <code>val</code>,<br/>[<code>Size</code>] <code>len</code></td>
+<td style="text-align:left">See <a href="https://en.cppreference.com/w/c/string/byte/memset"><code>memset()</code></a>; this method macro is faster than its standard library counterpart.</td>
+</tr>
+<tr>
+<td style="text-align:right"><strong><code>MemSetAligned()</code></strong><br/>[<code>Pointer</code>] <code>start</code>,<br/>[<code>bits8</code>] <code>val</code>,<br/>[<code>Size</code>] <code>len</code></td>
+<td style="text-align:left">See <a href="https://en.cppreference.com/w/c/string/byte/memset"><code>memset()</code></a>; this method macro omits the test to see if <code>start</code> is word-aligned.</td>
+</tr>
+<tr>
+<td style="text-align:right">[<code>bool</code>]<br/><strong><code>FLOAT4_FITS_IN_INT16()</code></strong><br/>[<code>float4</code>] <code>num</code></td>
+<td style="text-align:left">Checks whether a 4-byte floating-point decimal fits in a 16-bit signed integer range.</td>
+</tr>
+<tr>
+<td style="text-align:right">[<code>bool</code>]<br/><strong><code>FLOAT4_FITS_IN_INT32()</code></strong><br/>[<code>float4</code>] <code>num</code></td>
+<td style="text-align:left">Checks whether a 4-byte floating-point decimal fits in a 32-bit signed integer range.</td>
+</tr>
+<tr>
+<td style="text-align:right">[<code>bool</code>]<br/><strong><code>FLOAT4_FITS_IN_INT64()</code></strong><br/>[<code>float4</code>] <code>num</code></td>
+<td style="text-align:left">Checks whether a 4-byte floating-point decimal fits in a 64-bit signed integer range.</td>
+</tr>
+<tr>
+<td style="text-align:right">[<code>bool</code>]<br/><strong><code>FLOAT8_FITS_IN_INT16()</code></strong><br/>[<code>float8</code>] <code>num</code></td>
+<td style="text-align:left">Checks whether a 8-byte floating-point decimal fits in a 16-bit signed integer range.</td>
+</tr>
+<tr>
+<td style="text-align:right">[<code>bool</code>]<br/><strong><code>FLOAT8_FITS_IN_INT32()</code></strong><br/>[<code>float8</code>] <code>num</code></td>
+<td style="text-align:left">Checks whether a 8-byte floating-point decimal fits in a 32-bit signed integer range.</td>
+</tr>
+<tr>
+<td style="text-align:right">[<code>bool</code>]<br/><strong><code>FLOAT8_FITS_IN_INT64()</code></strong><br/>[<code>float8</code>] <code>num</code></td>
+<td style="text-align:left">Checks whether a 8-byte floating-point decimal fits in a 64-bit signed integer range.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="Miscellaneous-Types">Miscellaneous Types<a class="anchor-link" href="#Miscellaneous-Types">&#182;</a></h4><table>
+<thead><tr>
+<th style="text-align:right">Type</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right"><code>PGAlignedBlock</code></td>
+<td style="text-align:left">A type representing an aligned <code>BLCKSZ</code>-sized buffer.</td>
+</tr>
+<tr>
+<td style="text-align:right"><code>PGAlignedXLogBlock</code></td>
+<td style="text-align:left">A type representing an aligned <code>XLOG_BLCK</code>-sized buffer.</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Server-Side:-postgres.h">Server-Side: <code>postgres.h</code><a class="anchor-link" href="#Server-Side:-postgres.h">&#182;</a></h3><ul>
+<li><a href="https://www.postgresql.org/docs/12/storage-toast.html">TOAST</a>: <em>The Oversized-Attribute Storage Technique</em>.</li>
 </ul>
-<h4 id="PostgreSQL-Types">PostgreSQL Types<a class="anchor-link" href="#PostgreSQL-Types">&#182;</a></h4><ul>
-<li><code>RegProcedure</code> - An <em>Object Identifer</em> type representing a function with arguments, per PostgreSQL's ADTs.</li>
-<li><code>TransactionId</code> - A 32-bit unsigned integer type representing a unique identifier per transaction.</li>
-<li><code>LocalTransactionId</code> - A 32-bit unsigned integer type representing a unique identifier per local transaction.</li>
-<li><code>SubTransactionId</code> - A 32-bit unsigned integer type representing a unique identifier per subtransaction.</li>
-<li><code>MultiXactId</code> - A 32-bit unsigned integer type representing a unique identifier per <em>multixact</em> (i.e., <em>Row Locking by Multiple Transactions</em>).</li>
-<li><code>MultiXactOffset</code> - A 32-bit unsigned integer type representing a unique offset to distinguish each transaction within a <em>multixact</em>.</li>
-<li><code>CommandId</code> - A 32-bit unsigned integer type representing a INSERT/DELETE ordering within a transaction.</li>
+<h4 id="Includes">Includes<a class="anchor-link" href="#Includes">&#182;</a></h4><ul>
+<li><a href="https://github.com/postgres/postgres/blob/REL_12_3/src/include/c.h">#include "c.h"</a></li>
+<li><a href="https://github.com/postgres/postgres/blob/REL_12_3/src/include/utils/elog.h">#include "utils/elog.h"</a></li>
+<li><a href="https://github.com/postgres/postgres/blob/REL_12_3/src/include/utils/palloc.h">#include "utils/palloc.h"</a></li>
 </ul>
-<h4 id="Assertions">Assertions<a class="anchor-link" href="#Assertions">&#182;</a></h4><ul>
-<li><code>#define Assert(condition)</code> - A run-time general assertion; this assertion creates a trap with <code>errorType = "FailedAssertion"</code>.</li>
-<li><code>#define AssertMacro(p)</code> - A run-time macro assertion; this assertion creates a trap with <code>errorType = "FailedAssertion"</code>.</li>
-<li><code>#define AssertArg(condition)</code> - A run-time argument assertion; this assertion creates a trap with <code>errorType = "BadArgument"</code>.</li>
-<li><code>#define AssertState(condition)</code> - A run-time state assertion; this assertion creates a trap with <code>errorType = "BadState"</code>.</li>
-<li><code>#define AssertPointerAlignment(ptr, bndr)</code> - A run-time assertion that checks that <code>ptr</code> is <code>bndr</code> aligned; this assertion creates a trap with <code>errorType = "UnalignedPointer"</code>.</li>
-<li><code>#define StaticAssertStmt(condition, errmessage)</code> - A compile-time assertion statement.</li>
-<li><code>#define StaticAssertExpr(condition, errmessage)</code> - A compile-time assertion expression.</li>
-<li><code>#define AssertVariableIsOfType(varname, typename)</code> - A compile-time assertion statement that checks that a variable has the specified type.</li>
-<li><code>#define AssertVariableIsOfTypeMacro(varname, typename)</code> - A compile-time assertion expression that checks that a variable has the specified type.</li>
-</ul>
-<h4 id="General-Macros">General Macros<a class="anchor-link" href="#General-Macros">&#182;</a></h4><ul>
-<li><code>#define Max(x, y)</code> - Returns the maximum of two numbers.</li>
-<li><code>#define Min(x, y)</code> - Returns the minimum of two numbers.</li>
-<li><code>#define Abs(x)</code> - Return the absolute value of the argument.</li>
-<li><code>#define StrNCpy(dst,src,len)</code> - See <a href="https://en.cppreference.com/w/c/string/byte/strncpy"><code>strncpy()</code></a>; this method macro guarantees that the result string will be null-terminated.</li>
-<li><code>#define MemSet(start, val, len)</code> - See <a href="https://en.cppreference.com/w/c/string/byte/memset"><code>memset()</code></a>; this method macro is faster than its standard library counterpart.</li>
-<li><code>#define MemSetAligned(start, val, len)</code> - See <a href="https://en.cppreference.com/w/c/string/byte/memset"><code>memset()</code></a>; this method macro omits the test to see if <code>start</code> is word-aligned.</li>
-<li><code>#define FLOAT4_FITS_IN_INT16(num)</code> - Checks whether a 4-byte floating-point decimal fits in a 16-bit signed integer range.</li>
-<li><code>#define FLOAT4_FITS_IN_INT32(num)</code> - Checks whether a 4-byte floating-point decimal fits in a 32-bit signed integer range.</li>
-<li><code>#define FLOAT4_FITS_IN_INT64(num)</code> - Checks whether a 4-byte floating-point decimal fits in a 64-bit signed integer range.</li>
-<li><code>#define FLOAT8_FITS_IN_INT16(num)</code> - Checks whether a 8-byte floating-point decimal fits in a 16-bit signed integer range.</li>
-<li><code>#define FLOAT8_FITS_IN_INT32(num)</code> - Checks whether a 8-byte floating-point decimal fits in a 32-bit signed integer range.</li>
-<li><code>#define FLOAT8_FITS_IN_INT64(num)</code> - Checks whether a 8-byte floating-point decimal fits in a 64-bit signed integer range.</li>
-</ul>
-<h4 id="Miscellaneous">Miscellaneous<a class="anchor-link" href="#Miscellaneous">&#182;</a></h4><ul>
-<li><code>PGAlignedBlock</code> - A type representing an aligned <code>BLCKSZ</code>-sized buffer.</li>
-<li><code>PGAlignedXLogBlock</code> - A type representing an aligned <code>XLOG_BLCK</code>-sized buffer.</li>
+<h4 id="Variable-Length-Data-Types">Variable-Length Data Types<a class="anchor-link" href="#Variable-Length-Data-Types">&#182;</a></h4><table>
+<thead><tr>
+<th style="text-align:right">Type</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right"><code>varlena</code></td>
+<td style="text-align:left">The variable-length type inherited by all <em>TOAST</em>-able types.</td>
+</tr>
+<tr>
+<td style="text-align:right"><code>varattrib_4b</code></td>
+<td style="text-align:left">A variable-length type representing the 4-byte length header of a <code>varlena</code> object that may have been <em>TOASTed</em>.</td>
+</tr>
+<tr>
+<td style="text-align:right"><code>varattrib_1b</code></td>
+<td style="text-align:left">A variable-length type representing the 1-byte length header of a <code>varlena</code> object that may have been <em>TOASTed</em>.</td>
+</tr>
+<tr>
+<td style="text-align:right"><code>varattrib_1b_e</code></td>
+<td style="text-align:left">A variable-length type representing the 1-byte length header, with an additional identifying tag byte, of a <code>varlena</code> object that may have been <em>TOASTed</em>.</td>
+</tr>
+<tr>
+<td style="text-align:right"><code>bytea</code></td>
+<td style="text-align:left">A variable-length type representing a byte array.</td>
+</tr>
+<tr>
+<td style="text-align:right"><code>text</code></td>
+<td style="text-align:left">A variable-length type representing a SQL <code>TEXT</code> type.</td>
+</tr>
+<tr>
+<td style="text-align:right"><code>BpChar</code></td>
+<td style="text-align:left">A variable-length type representing a SQL <code>CHAR(n)</code> type.</td>
+</tr>
+<tr>
+<td style="text-align:right"><code>VarChar</code></td>
+<td style="text-align:left">A variable-length type representing a SQL <code>VARCHAR(n)</code> type.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="Variable-Length-Constant-Macros">Variable-Length Constant Macros<a class="anchor-link" href="#Variable-Length-Constant-Macros">&#182;</a></h4><table>
+<thead><tr>
+<th style="text-align:right">Macro</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right"><code>VARHDRSZ</code></td>
+<td style="text-align:left">The header size of a <code>varlena</code>.</td>
+</tr>
+<tr>
+<td style="text-align:right"><code>VARHDRSZ_SHORT</code></td>
+<td style="text-align:left">The header size of a <code>varattrib_1b</code>.</td>
+</tr>
+<tr>
+<td style="text-align:right"><code>VARHDRSZ_EXTERNAL</code></td>
+<td style="text-align:left">The header size of a <code>varattrib_1b_e</code>.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="Aligned-Variable-Length-Method-Macros">Aligned Variable-Length Method Macros<a class="anchor-link" href="#Aligned-Variable-Length-Method-Macros">&#182;</a></h4><table>
+<thead><tr>
+<th style="text-align:right">Macro</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right">[<code>char*</code>]<br/><strong><code>VARDATA()</code></strong><br/>[<code>varattrib_4b*</code>] <code>PTR</code></td>
+<td style="text-align:left">Returns a pointer to the start of <code>varlena</code> 4-byte aligned data.</td>
+</tr>
+<tr>
+<td style="text-align:right">[<code>uint32</code>]<br/><strong><code>VARSIZE()</code></strong><br/>[<code>varattrib_4b*</code>] <code>PTR</code></td>
+<td style="text-align:left">Returns the size, in bytes, of <code>varlena</code> 4-byte aligned data.</td>
+</tr>
+<tr>
+<td style="text-align:right">[<code>char*</code>]<br/><strong><code>VARDATA_SHORT()</code></strong><br/>[<code>varattrib_1b*</code>] <code>PTR</code></td>
+<td style="text-align:left">Returns a pointer to the start of <code>varlena</code> 1-byte aligned data.</td>
+</tr>
+<tr>
+<td style="text-align:right">[<code>uint32</code>]<br/><strong><code>VARSIZE_SHORT()</code></strong><br/>[<code>varattrib_1b*</code>] <code>PTR</code></td>
+<td style="text-align:left">Returns the size, in bytes, of <code>varlena</code> 1-byte aligned data.</td>
+</tr>
+<tr>
+<td style="text-align:right">[<code>vartag_external</code>]<br/><strong><code>VARTAG_EXTERNAL()</code></strong><br/>[<code>varattrib_1b_e</code>] <code>PTR</code></td>
+<td style="text-align:left">Returns the type tag of an external <em>TOAST Pointer</em>.</td>
+</tr>
+<tr>
+<td style="text-align:right">[<code>char*</code>]<br/><strong><code>VARDATA_EXTERNAL()</code></strong><br/>[<code>varattrib_1b_e</code>] <code>PTR</code></td>
+<td style="text-align:left">Returns a pointer to the start of an external <em>TOAST Pointer</em>.</td>
+</tr>
+<tr>
+<td style="text-align:right">[<code>uint32</code>]<br/><strong><code>VARSIZE_EXTERNAL()</code></strong><br/>[<code>varattrib_1b_e</code>] <code>PTR</code></td>
+<td style="text-align:left">Returns the size, in bytes, of an external <em>TOAST Pointer</em>.</td>
+</tr>
+<tr>
+<td style="text-align:right">[<code>bool</code>]<br/><strong><code>VARATT_IS_EXTERNAL()</code></strong><br/>[<code>varattrib_1b_e</code>] <code>PTR</code></td>
+<td style="text-align:left">Checks whether a <code>varlena</code> is an external <em>TOAST Pointer</em>.</td>
+</tr>
+<tr>
+<td style="text-align:right">[<code>bool</code>]<br/><strong><code>VARATT_IS_EXTERNAL_ONDISK()</code></strong><br/>[<code>varattrib_1b_e</code>] <code>PTR</code></td>
+<td style="text-align:left">Checks whether a <code>varlena</code> is an external <em>TOAST Pointer</em> to on-disk data.</td>
+</tr>
+<tr>
+<td style="text-align:right">[<code>bool</code>]<br/><strong><code>VARATT_IS_EXTERNAL_INDIRECT()</code></strong><br/>[<code>varattrib_1b_e</code>] <code>PTR</code></td>
+<td style="text-align:left">Checks whether a <code>varlena</code> is an external <em>TOAST Pointer</em> to in-memory, indirect data.</td>
+</tr>
+<tr>
+<td style="text-align:right">[<code>bool</code>]<br/><strong><code>VARATT_IS_EXTERNAL_EXPANDED_RO()</code></strong><br/>[<code>varattrib_1b_e</code>] <code>PTR</code></td>
+<td style="text-align:left">Checks whether a <code>varlena</code> is an external <em>TOAST Pointer</em> to in-memory, expanded, read-only data.</td>
+</tr>
+<tr>
+<td style="text-align:right">[<code>bool</code>]<br/><strong><code>VARATT_IS_EXTERNAL_EXPANDED_RW()</code></strong><br/>[<code>varattrib_1b_e</code>] <code>PTR</code></td>
+<td style="text-align:left">Checks whether a <code>varlena</code> is an external <em>TOAST Pointer</em> to in-memory, expanded, read-write data.</td>
+</tr>
+<tr>
+<td style="text-align:right">[<code>bool</code>]<br/><strong><code>VARATT_IS_EXTERNAL_EXPANDED()</code></strong><br/>[<code>varattrib_1b_e</code>] <code>PTR</code></td>
+<td style="text-align:left">Checks whether a <code>varlena</code> is an external <em>TOAST Pointer</em> to in-memory, expanded data.</td>
+</tr>
+<tr>
+<td style="text-align:right">[<code>bool</code>]<br/><strong><code>VARATT_IS_EXTERNAL_NON_EXPANDED()</code></strong><br/>[<code>varattrib_1b_e</code>] <code>PTR</code></td>
+<td style="text-align:left">Checks whether a <code>varlena</code> is an external <em>TOAST Pointer</em> to in-memory, non-expanded data.</td>
+</tr>
+<tr>
+<td style="text-align:right">[<code>bool</code>]<br/><strong><code>VARATT_IS_COMPRESSED()</code></strong><br/>[<code>varattrib_ ## T*</code>] <code>PTR</code></td>
+<td style="text-align:left">Checks whether a <code>varlena</code> is compressed.</td>
+</tr>
+<tr>
+<td style="text-align:right">[<code>bool</code>]<br/><strong><code>VARATT_IS_SHORT()</code></strong><br/>[<code>varattrib_ ## T*</code>] <code>PTR</code></td>
+<td style="text-align:left">Checks whether a <code>varlena</code> is short.</td>
+</tr>
+<tr>
+<td style="text-align:right">[<code>bool</code>]<br/><strong><code>VARATT_IS_EXTENDED()</code></strong><br/>[<code>varattrib_ ## T*</code>] <code>PTR</code></td>
+<td style="text-align:left">Checks whether a <code>varlena</code> can be detoasted by calling <code>PG_DETOAST_DATUM()</code>.</td>
+</tr>
+<tr>
+<td style="text-align:right"><strong><code>SET_VARSIZE()</code></strong><br/>[<code>varattrib_4b*</code>] <code>PTR</code>,<br/>[<code>uint32</code>] <code>len</code></td>
+<td style="text-align:left">Sets the size, in bytes, of <code>varlena</code> data.</td>
+</tr>
+<tr>
+<td style="text-align:right"><strong><code>SET_VARSIZE_SHORT()</code></strong><br/>[<code>varattrib_1b*</code>] <code>PTR</code>,<br/>[<code>uint8</code>] <code>len</code></td>
+<td style="text-align:left">Sets the size, in bytes, of <code>varlena</code> short data.</td>
+</tr>
+<tr>
+<td style="text-align:right"><strong><code>SET_VARSIZE_COMPRESSED()</code></strong><br/>[<code>varattrib_4b*</code>] <code>PTR</code>,<br/>[<code>uint32</code>] <code>len</code></td>
+<td style="text-align:left">Sets the size, in bytes, of <code>varlena</code> compressed data.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="Oblivious-Variable-Length-Method-Macros">Oblivious Variable-Length Method Macros<a class="anchor-link" href="#Oblivious-Variable-Length-Method-Macros">&#182;</a></h4><table>
+<thead><tr>
+<th style="text-align:right">Macro</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right">[<code>char*</code>]<br/><strong><code>VARDATA_ANY()</code></strong><br/>[<code>varattrib_ ## T*</code>] <code>PTR</code></td>
+<td style="text-align:left">Returns a pointer to the start of <code>varlena</code> 4-byte or 1-byte aligned data.</td>
+</tr>
+<tr>
+<td style="text-align:right">[<code>uint32</code>]<br/><strong><code>VARSIZE_ANY()</code></strong><br/>[<code>varattrib_ ## T*</code>] <code>PTR</code></td>
+<td style="text-align:left">Returns the size, in bytes, of <code>varlena</code> 4-byte or 1-byte aligned data.</td>
+</tr>
+<tr>
+<td style="text-align:right">[<code>uint32</code>]<br/><strong><code>VARSIZE_ANY_EXHDR()</code></strong><br/>[<code>varattrib_ ## T*</code>] <code>PTR</code></td>
+<td style="text-align:left">Returns the size, in bytes, of <code>varlena</code> 4-byte or 1-byte aligned data, excluding the header.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="Datum-Types">Datum Types<a class="anchor-link" href="#Datum-Types">&#182;</a></h4><table>
+<thead><tr>
+<th style="text-align:right">Type</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right"><code>Datum</code></td>
+<td style="text-align:left">A type representing a pass-by-value type or a pass-by-reference type; <code>typedef uintptr_t Datum</code>.</td>
+</tr>
+<tr>
+<td style="text-align:right"><code>NullableDatum</code></td>
+<td style="text-align:left">A type representing an nullable <code>Datum</code>.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="Datum-Method-Macros">Datum Method Macros<a class="anchor-link" href="#Datum-Method-Macros">&#182;</a></h4><table>
+<thead><tr>
+<th style="text-align:right">Macro</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right">[<code>bool</code>]<br/><strong><code>DatumGetBool()</code></strong><br/>[<code>Datum</code>] <code>X</code></td>
+<td style="text-align:left">Returns Boolean value of a <code>Datum</code>.</td>
+</tr>
+<tr>
+<td style="text-align:right">[<code>Datum</code>]<br/><strong><code>BoolGetDatum()</code></strong><br/>[<code>bool</code>] <code>X</code></td>
+<td style="text-align:left">Returns the <code>Datum</code> representation for a Boolean.</td>
+</tr>
+<tr>
+<td style="text-align:right">[<code>char</code>]<br/><strong><code>DatumGetChar()</code></strong><br/>[<code>Datum</code>] <code>X</code></td>
+<td style="text-align:left">Returns character value of a <code>Datum</code>.</td>
+</tr>
+<tr>
+<td style="text-align:right">[<code>Datum</code>]<br/><strong><code>CharGetDatum()</code></strong><br/>[<code>char</code>] <code>X</code></td>
+<td style="text-align:left">Returns the <code>Datum</code> representation for a character.</td>
+</tr>
+<tr>
+<td style="text-align:right">[<code>Datum</code>]<br/><strong><code>Int8GetDatum()</code></strong><br/>[<code>int8</code>] <code>X</code></td>
+<td style="text-align:left">Returns the <code>Datum</code> representation for an 8-bit integer.</td>
+</tr>
+<tr>
+<td style="text-align:right">[<code>uint8</code>]<br/><strong><code>DatumGetUInt8()</code></strong><br/>[<code>Datum</code>] <code>X</code></td>
+<td style="text-align:left">Returns 8-bit unsigned integer value of a <code>Datum</code>.</td>
+</tr>
+<tr>
+<td style="text-align:right">[<code>Datum</code>]<br/><strong><code>UInt8GetDatum()</code></strong><br/>[<code>uint8</code>] <code>X</code></td>
+<td style="text-align:left">Returns the <code>Datum</code> representation for an 8-bit unsigned integer.</td>
+</tr>
+<tr>
+<td style="text-align:right">[<code>int16</code>]<br/><strong><code>DatumGetInt16()</code></strong><br/>[<code>Datum</code>] <code>X</code></td>
+<td style="text-align:left">Returns 16-bit integer value of a <code>Datum</code>.</td>
+</tr>
+<tr>
+<td style="text-align:right">[<code>Datum</code>]<br/><strong><code>Int16GetDatum()</code></strong><br/>[<code>int16</code>] <code>X</code></td>
+<td style="text-align:left">Returns the <code>Datum</code> representation for a 16-bit integer.</td>
+</tr>
+<tr>
+<td style="text-align:right">[<code>uint16</code>]<br/><strong><code>DatumGetUInt16()</code></strong><br/>[<code>Datum</code>] <code>X</code></td>
+<td style="text-align:left">Returns 16-bit unsigned integer value of a <code>Datum</code>.</td>
+</tr>
+<tr>
+<td style="text-align:right">[<code>Datum</code>]<br/><strong><code>UInt16GetDatum()</code></strong><br/>[<code>uint16</code>] <code>X</code></td>
+<td style="text-align:left">Returns the <code>Datum</code> representation for a 16-bit unsigned integer.</td>
+</tr>
+<tr>
+<td style="text-align:right">[<code>int32</code>]<br/><strong><code>DatumGetInt32()</code></strong><br/>[<code>Datum</code>] <code>X</code></td>
+<td style="text-align:left">Returns 32-bit integer value of a <code>Datum</code>.</td>
+</tr>
+<tr>
+<td style="text-align:right">[<code>Datum</code>]<br/><strong><code>Int32GetDatum()</code></strong><br/>[<code>int32</code>] <code>X</code></td>
+<td style="text-align:left">Returns the <code>Datum</code> representation for a 32-bit integer.</td>
+</tr>
+<tr>
+<td style="text-align:right">[<code>uint32</code>]<br/><strong><code>DatumGetUInt32()</code></strong><br/>[<code>Datum</code>] <code>X</code></td>
+<td style="text-align:left">Returns 32-bit unsigned integer value of a <code>Datum</code>.</td>
+</tr>
+<tr>
+<td style="text-align:right">[<code>Datum</code>]<br/><strong><code>UInt32GetDatum()</code></strong><br/>[<code>uint32</code>] <code>X</code></td>
+<td style="text-align:left">Returns the <code>Datum</code> representation for a 32-bit unsigned integer.</td>
+</tr>
+<tr>
+<td style="text-align:right">[<code>Oid</code>]<br/><strong><code>DatumGetObjectId()</code></strong><br/>[<code>Datum</code>] <code>X</code></td>
+<td style="text-align:left">Returns <em>Object Identifier</em> value of a <code>Datum</code>.</td>
+</tr>
+<tr>
+<td style="text-align:right">[<code>Datum</code>]<br/><strong><code>ObjectIdGetDatum()</code></strong><br/>[<code>Oid</code>] <code>X</code></td>
+<td style="text-align:left">Returns the <code>Datum</code> representation for an <em>Object Identifier</em>.</td>
+</tr>
+<tr>
+<td style="text-align:right">[<code>TransactionId</code>]<br/><strong><code>DatumGetTransactionId()</code></strong><br/>[<code>Datum</code>] <code>X</code></td>
+<td style="text-align:left">Returns <em>Transaction Identifier</em> value of a <code>Datum</code>.</td>
+</tr>
+<tr>
+<td style="text-align:right">[<code>Datum</code>]<br/><strong><code>TransactionIdGetDatum()</code></strong><br/>[<code>TransactionId</code>] <code>X</code></td>
+<td style="text-align:left">Returns the <code>Datum</code> representation for a <em>Transaction Identifier</em>.</td>
+</tr>
+<tr>
+<td style="text-align:right">[<code>Datum</code>]<br/><strong><code>MultiXactIdGetDatum()</code></strong><br/>[<code>MultiXactId</code>] <code>X</code></td>
+<td style="text-align:left">Returns the <code>Datum</code> representation for a <em>MultiXact Identifier</em>.</td>
+</tr>
+<tr>
+<td style="text-align:right">[<code>CommandId</code>]<br/><strong><code>DatumGetCommandId()</code></strong><br/>[<code>Datum</code>] <code>X</code></td>
+<td style="text-align:left">Returns <em>Command Identifier</em> value of a <code>Datum</code>.</td>
+</tr>
+<tr>
+<td style="text-align:right">[<code>Datum</code>]<br/><strong><code>CommandIdGetDatum()</code></strong><br/>[<code>CommandId</code>] <code>X</code></td>
+<td style="text-align:left">Returns the <code>Datum</code> representation for a <em>Command Identifier</em>.</td>
+</tr>
+<tr>
+<td style="text-align:right">[<code>Pointer</code>]<br/><strong><code>DatumGetPointer()</code></strong><br/>[<code>Datum</code>] <code>X</code></td>
+<td style="text-align:left">Returns pointer value of a <code>Datum</code>.</td>
+</tr>
+<tr>
+<td style="text-align:right">[<code>Datum</code>]<br/><strong><code>PointerGetDatum()</code></strong><br/>[<code>Pointer</code>] <code>X</code></td>
+<td style="text-align:left">Returns the <code>Datum</code> representation for a pointer.</td>
+</tr>
+<tr>
+<td style="text-align:right">[<code>char*</code>]<br/><strong><code>DatumGetCString()</code></strong><br/>[<code>Datum</code>] <code>X</code></td>
+<td style="text-align:left">Returns null-terminated string value of a <code>Datum</code>.</td>
+</tr>
+<tr>
+<td style="text-align:right">[<code>Datum</code>]<br/><strong><code>CStringGetDatum()</code></strong><br/>[<code>char*</code>] <code>X</code></td>
+<td style="text-align:left">Returns the <code>Datum</code> representation for a null-terminated string.</td>
+</tr>
+<tr>
+<td style="text-align:right">[<code>Name</code>]<br/><strong><code>DatumGetName()</code></strong><br/>[<code>Datum</code>] <code>X</code></td>
+<td style="text-align:left">Returns name value of a <code>Datum</code>.</td>
+</tr>
+<tr>
+<td style="text-align:right">[<code>Datum</code>]<br/><strong><code>NameGetDatum()</code></strong><br/>[<code>Name</code>] <code>X</code></td>
+<td style="text-align:left">Returns the <code>Datum</code> representation for a pass-by-reference name.</td>
+</tr>
+<tr>
+<td style="text-align:right">[<code>int64</code>]<br/><strong><code>DatumGetInt64()</code></strong><br/>[<code>Datum</code>] <code>X</code></td>
+<td style="text-align:left">Returns 64-bit integer value of a <code>Datum</code>.</td>
+</tr>
+<tr>
+<td style="text-align:right">[<code>Datum</code>]<br/><strong><code>Int64GetDatum()</code></strong><br/>[<code>int64</code>] <code>X</code></td>
+<td style="text-align:left">Returns the <code>Datum</code> representation for a 64-bit integer.</td>
+</tr>
+<tr>
+<td style="text-align:right">[<code>uint64</code>]<br/><strong><code>DatumGetUInt64()</code></strong><br/>[<code>Datum</code>] <code>X</code></td>
+<td style="text-align:left">Returns 64-bit unsigned integer value of a <code>Datum</code>.</td>
+</tr>
+<tr>
+<td style="text-align:right">[<code>Datum</code>]<br/><strong><code>UInt64GetDatum()</code></strong><br/>[<code>uint64</code>] <code>X</code></td>
+<td style="text-align:left">Returns the <code>Datum</code> representation for a 64-bit unsigned integer.</td>
+</tr>
+<tr>
+<td style="text-align:right">[<code>float4</code>]<br/><strong><code>DatumGetFloat4()</code></strong><br/>[<code>Datum</code>] <code>X</code></td>
+<td style="text-align:left">Returns 4-byte floating-point value of a <code>Datum</code>.</td>
+</tr>
+<tr>
+<td style="text-align:right">[<code>Datum</code>]<br/><strong><code>Float4GetDatum()</code></strong><br/>[<code>float4</code>] <code>X</code></td>
+<td style="text-align:left">Returns the <code>Datum</code> representation for a 4-byte floating-point.</td>
+</tr>
+<tr>
+<td style="text-align:right">[<code>float8</code>]<br/><strong><code>DatumGetFloat8()</code></strong><br/>[<code>Datum</code>] <code>X</code></td>
+<td style="text-align:left">Returns 8-byte floating-point value of a <code>Datum</code>.</td>
+</tr>
+<tr>
+<td style="text-align:right">[<code>Datum</code>]<br/><strong><code>Float8GetDatum()</code></strong><br/>[<code>float8</code>] <code>X</code></td>
+<td style="text-align:left">Returns the <code>Datum</code> representation for a 8-byte floating-point.</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Client-Side:-postgres_fe.h">Client-Side: <code>postgres_fe.h</code><a class="anchor-link" href="#Client-Side:-postgres_fe.h">&#182;</a></h3><h4 id="Includes">Includes<a class="anchor-link" href="#Includes">&#182;</a></h4><ul>
+<li><a href="https://github.com/postgres/postgres/blob/REL_12_3/src/include/c.h">#include "c.h"</a></li>
+<li><a href="https://github.com/postgres/postgres/blob/REL_12_3/src/include/common/fe_memutils.h">#include "common/fe_memutils.h"</a></li>
 </ul>
 
 </div>
@@ -13418,25 +14358,22 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Server-Side:-postgres.h">Server-Side: <code>postgres.h</code><a class="anchor-link" href="#Server-Side:-postgres.h">&#182;</a></h3><p>TODO.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Client-Side:-postgres_fe.h">Client-Side: <code>postgres_fe.h</code><a class="anchor-link" href="#Client-Side:-postgres_fe.h">&#182;</a></h3><p>TODO.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Everywhere:-postgres_ext.h">Everywhere: <code>postgres_ext.h</code><a class="anchor-link" href="#Everywhere:-postgres_ext.h">&#182;</a></h3><h4 id="PostgreSQL-Types">PostgreSQL Types<a class="anchor-link" href="#PostgreSQL-Types">&#182;</a></h4><ul>
-<li><code>Oid</code> - An <em>Object Identifier</em>.</li>
+<h3 id="Everywhere:-postgres_ext.h">Everywhere: <code>postgres_ext.h</code><a class="anchor-link" href="#Everywhere:-postgres_ext.h">&#182;</a></h3><h4 id="Includes">Includes<a class="anchor-link" href="#Includes">&#182;</a></h4><ul>
+<li><a href="https://github.com/postgres/postgres/blob/REL_12_3/src/include/pg_config_ext.h.in">#include "pg_config_ext.h"</a></li>
 </ul>
+<h4 id="PostgreSQL-Types">PostgreSQL Types<a class="anchor-link" href="#PostgreSQL-Types">&#182;</a></h4><table>
+<thead><tr>
+<th style="text-align:right">Type</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right"><code>Oid</code></td>
+<td style="text-align:left">A type representing an <em>Object Identifier</em>.</td>
+</tr>
+</tbody>
+</table>
 
 </div>
 </div>
