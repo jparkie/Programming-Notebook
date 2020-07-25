@@ -13174,8 +13174,8 @@ div#notebook {
 <li><a href="#6-9-0-1_Knapsack_Algorithm">0-1 Knapsack Algorithm: <code>knapsack.h</code></a></li>
 <li><a href="#6-10-Pairing_Heap">Pairing Heap: <code>pairingheap.h</code></a></li>
 <li><a href="#6-11-Red-Black_Tree">Red-Black Tree: <code>rbtree.h</code></a></li>
-<li><a href="#6-12-Macro-Generated_Simple_Hash_Table">Macro-Generated, Simple Hash Table: <code>simplehash.h</code></a></li>
-<li><a href="#6-13-Extensible_String">Extensible String: <code>stringinfo.h</code></a></li>
+<li><a href="#6-12-Extensible_String">Extensible String: <code>stringinfo.h</code></a></li>
+<li><a href="#6-13-Macro-Generated_Simple_Hash_Table">Macro-Generated, Simple Hash Table: <code>simplehash.h</code></a></li>
 </ol>
 </li>
 <li><a href="#7-Shared_Components_and_Utilities">Shared Components and Utilities</a><ol>
@@ -14466,8 +14466,8 @@ tr th:first-child, tr td:first-child {
 <li><a href="https://github.com/postgres/postgres/blob/REL_12_3/src/include/lib/knapsack.h">#include "lib/knapsack.h"</a> - <em>0-1 Knapsack Algorithm</em>.</li>
 <li><a href="https://github.com/postgres/postgres/blob/REL_12_3/src/include/lib/pairingheap.h">#include "lib/pairingheap.h"</a> - <em>Pairing Heap</em>.</li>
 <li><a href="https://github.com/postgres/postgres/blob/REL_12_3/src/include/lib/rbtree.h">#include "lib/rbtree.h"</a> - <em>Red-Black Tree</em></li>
-<li><a href="https://github.com/postgres/postgres/blob/REL_12_3/src/include/lib/simplehash.h">#include "lib/simplehash.h"</a> - <em>Macro-Generated, Simple Hash Table</em>.</li>
 <li><a href="https://github.com/postgres/postgres/blob/REL_12_3/src/include/lib/stringinfo.h">#include "lib/stringinfo.h"</a> - <em>Extensible String</em>.</li>
+<li><a href="https://github.com/postgres/postgres/blob/REL_12_3/src/include/lib/simplehash.h">#include "lib/simplehash.h"</a> - <em>Macro-Generated, Simple Hash Table</em>.</li>
 </ul>
 
 </div>
@@ -14566,7 +14566,7 @@ $$</p>
 <span class="nf">binaryheap_reset</span><span class="p">(</span>
     <span class="n">binaryheap</span> <span class="o">*</span><span class="n">heap</span><span class="p">);</span>
 </pre></div>
-<blockquote><p>Resets the binary heap, retaining its parameters from <code>binaryheap_allocate()</code>.</p>
+<blockquote><p>Resets the specified binary heap, retaining its parameters from <code>binaryheap_allocate()</code>.</p>
 <p>&nbsp;
 <strong>Parameters</strong>
 <br/></p>
@@ -14580,7 +14580,7 @@ $$</p>
 <span class="nf">binaryheap_free</span><span class="p">(</span>
     <span class="n">binaryheap</span> <span class="o">*</span><span class="n">heap</span><span class="p">);</span>
 </pre></div>
-<blockquote><p>Frees the binary heap.</p>
+<blockquote><p>Frees the specified binary heap.</p>
 <p>&nbsp;
 <strong>Parameters</strong>
 <br/></p>
@@ -14595,9 +14595,11 @@ $$</p>
     <span class="n">binaryheap</span> <span class="o">*</span><span class="n">heap</span><span class="p">,</span>
     <span class="n">Datum</span> <span class="n">d</span><span class="p">);</span>
 </pre></div>
-<blockquote><p>Inserts the specified <code>Datum</code> element into the binary heap, without preserving the <em>heap property</em>. Accordingly, <code>binaryheap_build()</code> must be invoked before calling any other subsequent methods.
+<blockquote><p>Inserts the specified <code>Datum</code> element into the specified binary heap, without preserving the <em>heap property</em>.
 <br/>
-<strong>Time Complexity: $O(1)$</strong></p>
+<strong>Time Complexity: $O(1)$</strong>
+<br/>
+<strong>Warning</strong>: <code>binaryheap_build()</code> must be invoked before calling any other subsequent methods.</p>
 <p>&nbsp;
 <strong>Parameters</strong>
 <br/></p>
@@ -14612,7 +14614,7 @@ $$</p>
 <span class="nf">binaryheap_build</span><span class="p">(</span>
     <span class="n">binaryheap</span> <span class="o">*</span><span class="n">heap</span><span class="p">);</span>
 </pre></div>
-<blockquote><p>Builds the binary heap to satisfy the <em>heap property</em>.
+<blockquote><p>Builds the specified binary heap to satisfy the <em>heap property</em>.
 <br/>
 <strong>Time Complexity: $O(n)$</strong></p>
 <p>&nbsp;
@@ -14629,7 +14631,7 @@ $$</p>
     <span class="n">binaryheap</span> <span class="o">*</span><span class="n">heap</span><span class="p">,</span>
     <span class="n">Datum</span> <span class="n">d</span><span class="p">);</span>
 </pre></div>
-<blockquote><p>Inserts the specified <code>Datum</code> element into the binary heap, while preserving the <em>heap property</em>.
+<blockquote><p>Inserts the specified <code>Datum</code> element into the specified binary heap, while preserving the <em>heap property</em>.
 <br/>
 <strong>Time Complexity: $O(\log n)$</strong></p>
 <p>&nbsp;
@@ -14646,7 +14648,7 @@ $$</p>
 <span class="nf">binaryheap_first</span><span class="p">(</span>
     <span class="n">binaryheap</span> <span class="o">*</span><span class="n">heap</span><span class="p">);</span>
 </pre></div>
-<blockquote><p>Retrieves, but does not remove, the root <code>Datum</code> element of the binary heap.
+<blockquote><p>Retrieves, but does not remove, the root <code>Datum</code> element of the specified binary heap.
 <br/>
 <strong>Time Complexity: $O(1)$</strong></p>
 <p>&nbsp;
@@ -14659,7 +14661,7 @@ $$</p>
 <strong>Returns</strong>
 <br/></p>
 <ul>
-<li>The root <code>Datum</code> element of the binary heap.</li>
+<li>The root <code>Datum</code> element of the specified binary heap.</li>
 </ul>
 </blockquote>
 <hr/>
@@ -14668,7 +14670,7 @@ $$</p>
 <span class="nf">binaryheap_remove_first</span><span class="p">(</span>
     <span class="n">binaryheap</span> <span class="o">*</span><span class="n">heap</span><span class="p">);</span>
 </pre></div>
-<blockquote><p>Retrieves and removes the root <code>Datum</code> element of the binary heap.
+<blockquote><p>Retrieves and removes the root <code>Datum</code> element of the specified binary heap.
 <br/>
 <strong>Time Complexity: $O(\log n)$</strong></p>
 <p>&nbsp;
@@ -14681,7 +14683,7 @@ $$</p>
 <strong>Returns</strong>
 <br/></p>
 <ul>
-<li>The root <code>Datum</code> element of the binary heap.</li>
+<li>The root <code>Datum</code> element of the specified binary heap.</li>
 </ul>
 </blockquote>
 <hr/>
@@ -14691,7 +14693,7 @@ $$</p>
     <span class="n">binaryheap</span> <span class="o">*</span><span class="n">heap</span><span class="p">,</span>
     <span class="n">Datum</span> <span class="n">d</span><span class="p">);</span>
 </pre></div>
-<blockquote><p>Replace the root <code>Datum</code> element of the binary heap with the specified <code>Datum</code> element, while preserving the <em>heap property</em>.
+<blockquote><p>Replace the root <code>Datum</code> element of the specified binary heap with the specified <code>Datum</code> element, while preserving the <em>heap property</em>.
 <br/>
 <strong>Time Complexity: $O(\log n)$</strong></p>
 <p>&nbsp;
@@ -14712,7 +14714,7 @@ $$</p>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:right">[<code>bool</code>]<br/><strong><code>binaryheap_empty()</code></strong><br/>[<code>binaryheap</code>] <code>h</code></td>
+<td style="text-align:right">[<code>bool</code>]<br/><strong><code>binaryheap_empty()</code></strong><br/>[<code>binaryheap *</code>] <code>h</code></td>
 <td style="text-align:left">Checks whether <code>h</code> is empty.</td>
 </tr>
 </tbody>
@@ -14868,7 +14870,7 @@ $$</p>
 <span class="nf">bloom_free</span><span class="p">(</span>
     <span class="n">bloom_filter</span> <span class="o">*</span><span class="n">filter</span><span class="p">);</span>
 </pre></div>
-<blockquote><p>Frees the Bloom filter.</p>
+<blockquote><p>Frees the specified Bloom filter.</p>
 <p>&nbsp;
 <strong>Parameters</strong>
 <br/></p>
@@ -14884,7 +14886,7 @@ $$</p>
     <span class="kt">unsigned</span> <span class="kt">char</span> <span class="o">*</span><span class="n">elem</span><span class="p">,</span>
     <span class="kt">size_t</span> <span class="n">len</span><span class="p">);</span>
 </pre></div>
-<blockquote><p>Adds the specified element into the Bloom filter.</p>
+<blockquote><p>Adds the specified element into the specified Bloom filter.</p>
 <p>&nbsp;
 <strong>Parameters</strong>
 <br/></p>
@@ -14902,8 +14904,8 @@ $$</p>
     <span class="kt">unsigned</span> <span class="kt">char</span> <span class="o">*</span><span class="n">elem</span><span class="p">,</span>
     <span class="kt">size_t</span> <span class="n">len</span><span class="p">);</span>
 </pre></div>
-<blockquote><p>Returns <code>true</code> for a true negative if the element is definitely not in the Bloom filter.
-Otherwise, returns <code>false</code> for a true positive or a false positive if the element is probably in the Bloom filter.</p>
+<blockquote><p>Returns <code>true</code> for a true negative if the element is definitely not in the specified Bloom filter.
+Otherwise, returns <code>false</code> for a true positive or a false positive if the element is probably in the specified Bloom filter.</p>
 <p>&nbsp;
 <strong>Parameters</strong>
 <br/></p>
@@ -14926,7 +14928,7 @@ Otherwise, returns <code>false</code> for a true positive or a false positive if
 <span class="nf">bloom_prop_bits_set</span><span class="p">(</span>
     <span class="n">bloom_filter</span> <span class="o">*</span><span class="n">filter</span><span class="p">);</span>
 </pre></div>
-<blockquote><p>Calculates the proportion of set bits to unset bits in the Bloom filter.</p>
+<blockquote><p>Calculates the proportion of set bits to unset bits in the specified Bloom filter.</p>
 <p>&nbsp;
 <strong>Parameters</strong>
 <br/></p>
@@ -15077,7 +15079,7 @@ $$</p>
 <span class="nf">dshash_detach</span><span class="p">(</span>
     <span class="n">dshash_table</span> <span class="o">*</span><span class="n">hash_table</span><span class="p">);</span>
 </pre></div>
-<blockquote><p>Detach this process from an existing concurrent hash table.
+<blockquote><p>Detach this process from the existing specified concurrent hash table.
 <br/>
 <strong>Warning</strong>: This method frees all process-local memory associated with the concurrent hash table.
 Call <code>dshash_destroy()</code> to release shared memory back to the concurrent hash table's <em>Dynamic Shared Area</em>.</p>
@@ -15094,7 +15096,7 @@ Call <code>dshash_destroy()</code> to release shared memory back to the concurre
 <span class="nf">dshash_destroy</span><span class="p">(</span>
     <span class="n">dshash_table</span> <span class="o">*</span><span class="n">hash_table</span><span class="p">);</span>
 </pre></div>
-<blockquote><p>Destroys a concurrent hash table.
+<blockquote><p>Destroys the specified concurrent hash table.
 <br/>
 <strong>Warning</strong>: This method releases all shared memory acquired by the concurrent hash table from its <em>Dynamic Shared Area</em>.
 Call <code>dshash_detach()</code> on all processes attached to the concurrent hash table before calling this method.</p>
@@ -15122,7 +15124,7 @@ Call <code>dshash_detach()</code> on all processes attached to the concurrent ha
 <strong>Returns</strong>
 <br/></p>
 <ul>
-<li>A handle to the concurrent hash table.</li>
+<li>A handle to the specified concurrent hash table.</li>
 </ul>
 </blockquote>
 <hr/>
@@ -15185,7 +15187,7 @@ If the key is not found, then <code>found</code> is set to <code>false</code> an
     <span class="n">dshash_table</span> <span class="o">*</span><span class="n">hash_table</span><span class="p">,</span>
     <span class="k">const</span> <span class="kt">void</span> <span class="o">*</span><span class="n">key</span><span class="p">);</span>
 </pre></div>
-<blockquote><p>Remove an entry by the specified key.</p>
+<blockquote><p>Removes an entry by the specified key.</p>
 <p>&nbsp;
 <strong>Parameters</strong>
 <br/></p>
@@ -15208,7 +15210,7 @@ If the key is not found, then <code>found</code> is set to <code>false</code> an
     <span class="n">dshash_table</span> <span class="o">*</span><span class="n">hash_table</span><span class="p">,</span>
     <span class="kt">void</span> <span class="o">*</span><span class="n">entry</span><span class="p">);</span>
 </pre></div>
-<blockquote><p>Remove the specified entry.
+<blockquote><p>Removes the specified entry.
 <br/>
 <strong>Warning</strong>: The specified entry must have been obtained by calling <code>dshash_find()</code> or <code>dshash_find_or_insert()</code>.</p>
 <p>&nbsp;
@@ -15257,20 +15259,6 @@ If the key is not found, then <code>found</code> is set to <code>false</code> an
     <span class="kt">void</span> <span class="o">*</span><span class="n">arg</span><span class="p">);</span>
 </pre></div>
 <blockquote><p>A default hash function using <code>tag_hash()</code>.</p>
-</blockquote>
-<hr/>
-
-<div class="highlight"><pre><span></span><span class="k">extern</span> <span class="kt">void</span>
-<span class="nf">dshash_dump</span><span class="p">(</span>
-    <span class="n">dshash_table</span> <span class="o">*</span><span class="n">hash_table</span><span class="p">);</span>
-</pre></div>
-<blockquote><p>Print debugging information about the internal state of the specified concurrent hash table to <code>stderr</code>.</p>
-<p>&nbsp;
-<strong>Parameters</strong>
-<br/></p>
-<ul>
-<li><code>hash_table</code> - The concurrent hash table upon which to invoke.</li>
-</ul>
 </blockquote>
 <hr/>
 
@@ -15353,7 +15341,7 @@ If the key is not found, then <code>found</code> is set to <code>false</code> an
 <span class="nf">freeHyperLogLog</span><span class="p">(</span>
     <span class="n">hyperLogLogState</span> <span class="o">*</span><span class="n">cState</span><span class="p">);</span>
 </pre></div>
-<blockquote><p>Frees the HyperLogLog.
+<blockquote><p>Frees the specified HyperLogLog.
 <br/>
 <strong>Warning</strong>: This method frees resources internal to <code>hyperLogLogState</code>, not <code>hyperLogLogState</code> itself.</p>
 <p>&nbsp;
@@ -15370,7 +15358,7 @@ If the key is not found, then <code>found</code> is set to <code>false</code> an
     <span class="n">hyperLogLogState</span> <span class="o">*</span><span class="n">cState</span><span class="p">,</span>
     <span class="n">uint32</span> <span class="n">hash</span><span class="p">);</span>
 </pre></div>
-<blockquote><p>Adds the specified hash value into the HyperLogLog.</p>
+<blockquote><p>Adds the specified hash value into the specified HyperLogLog.</p>
 <p>&nbsp;
 <strong>Parameters</strong>
 <br/></p>
@@ -15385,7 +15373,7 @@ If the key is not found, then <code>found</code> is set to <code>false</code> an
 <span class="nf">estimateHyperLogLog</span><span class="p">(</span>
     <span class="n">hyperLogLogState</span> <span class="o">*</span><span class="n">cState</span><span class="p">);</span>
 </pre></div>
-<blockquote><p>Estimates the cardinality of the HyperLogLog.</p>
+<blockquote><p>Estimates the cardinality of the specified HyperLogLog.</p>
 <p>&nbsp;
 <strong>Parameters</strong>
 <br/></p>
@@ -15396,7 +15384,7 @@ If the key is not found, then <code>found</code> is set to <code>false</code> an
 <strong>Returns</strong>
 <br/></p>
 <ul>
-<li>An estimate of the cardinality of the HyperLogLog.</li>
+<li>An estimate of the cardinality of the specified HyperLogLog.</li>
 </ul>
 </blockquote>
 <hr/>
@@ -15412,29 +15400,663 @@ If the key is not found, then <code>found</code> is set to <code>false</code> an
 <h3 id="Inline-Linked-List:-ilist.h">Inline Linked List: <a href="https://github.com/postgres/postgres/blob/REL_12_3/src/include/lib/ilist.h"><code>ilist.h</code></a><a name="6-7-Inline_Linked_List" /><a class="anchor-link" href="#Inline-Linked-List:-ilist.h">&#182;</a></h3><ul>
 <li><a href="https://en.wikipedia.org/w/index.php?title=Linked_list&amp;oldid=967104710">Wikipedia: Linked list</a>.</li>
 </ul>
+<h5 id="Working-with-Doubly-Linked-Lists">Working with Doubly Linked Lists<a class="anchor-link" href="#Working-with-Doubly-Linked-Lists">&#182;</a></h5><ol>
+<li>To create a doubly linked list, inline a <code>dlist_node</code> in a structure.</li>
+<li>To interface with the doubly linked list, call the various <code>dlist_ ## T</code> methods.</li>
+<li>To access the encapsulating structure associated with a specified <code>dlist_node</code>, call the <code>dlist_container()</code> method macro.</li>
+</ol>
+<h5 id="Working-with-Singly-Linked-Lists">Working with Singly Linked Lists<a class="anchor-link" href="#Working-with-Singly-Linked-Lists">&#182;</a></h5><ol>
+<li>To create a singly linked list, inline a <code>slist_node</code> in a structure.</li>
+<li>To interface with the singly linked list, call the various <code>slist_ ## T</code> methods.</li>
+<li>To access the encapsulating structure associated with a specified <code>slist_node</code>, call the <code>slist_container()</code> method macro.</li>
+</ol>
 <h4 id="Constants">Constants<a class="anchor-link" href="#Constants">&#182;</a></h4><p><em>N/A</em>.</p>
 <h4 id="Enumerations">Enumerations<a class="anchor-link" href="#Enumerations">&#182;</a></h4><p><em>N/A</em>.</p>
 <h4 id="Types">Types<a class="anchor-link" href="#Types">&#182;</a></h4><p><em>N/A</em>.</p>
-<h4 id="Structures">Structures<a class="anchor-link" href="#Structures">&#182;</a></h4><p>TODO.</p>
-<h4 id="Methods">Methods<a class="anchor-link" href="#Methods">&#182;</a></h4><div class="highlight"><pre><span></span><span class="n">TODO</span><span class="p">.</span>
+<h4 id="Structures">Structures<a class="anchor-link" href="#Structures">&#182;</a></h4><h5 id="dlist_node---Doubly-Linked-List-Node"><code>dlist_node</code> - Doubly Linked List Node<a class="anchor-link" href="#dlist_node---Doubly-Linked-List-Node">&#182;</a></h5><table>
+<thead><tr>
+<th style="text-align:right">Field</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right"><code>dlist_node *prev</code></td>
+<td style="text-align:left">A pointer to the previous node in a doubly linked list.</td>
+</tr>
+<tr>
+<td style="text-align:right"><code>dlist_node *next</code></td>
+<td style="text-align:left">A pointer to the next node in a doubly linked list.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="dlist_head---Doubly-Linked-List-Head"><code>dlist_head</code> - Doubly Linked List Head<a class="anchor-link" href="#dlist_head---Doubly-Linked-List-Head">&#182;</a></h5><table>
+<thead><tr>
+<th style="text-align:right">Field</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right"><code>dlist_node *head</code></td>
+<td style="text-align:left">A pointer to the head node in a circular, doubly linked list.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="dlist_iter---Doubly-Linked-List-Immutable-Iterator"><code>dlist_iter</code> - Doubly Linked List Immutable Iterator<a class="anchor-link" href="#dlist_iter---Doubly-Linked-List-Immutable-Iterator">&#182;</a></h5><table>
+<thead><tr>
+<th style="text-align:right">Field</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right"><code>dlist_node *cur</code></td>
+<td style="text-align:left">A pointer to the current node in an immutable iterator of a circular, doubly linked list.</td>
+</tr>
+<tr>
+<td style="text-align:right"><code>dlist_node *end</code></td>
+<td style="text-align:left">A pointer to the last node in an immutable iterator of a circular, doubly linked list.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="dlist_mutable_iter---Doubly-Linked-List-Mutable-Iterator"><code>dlist_mutable_iter</code> - Doubly Linked List Mutable Iterator<a class="anchor-link" href="#dlist_mutable_iter---Doubly-Linked-List-Mutable-Iterator">&#182;</a></h5><table>
+<thead><tr>
+<th style="text-align:right">Field</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right"><code>dlist_node *cur</code></td>
+<td style="text-align:left">A pointer to the current node in a mutable iterator of a circular, doubly linked list.</td>
+</tr>
+<tr>
+<td style="text-align:right"><code>dlist_node *next</code></td>
+<td style="text-align:left">A pointer to the next node in a mutable iterator of a circular, doubly linked list.</td>
+</tr>
+<tr>
+<td style="text-align:right"><code>dlist_node *end</code></td>
+<td style="text-align:left">A pointer to the last node in a mutable iterator of a circular, doubly linked list.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="slist_node---Singly-Linked-List-Node"><code>slist_node</code> - Singly Linked List Node<a class="anchor-link" href="#slist_node---Singly-Linked-List-Node">&#182;</a></h5><table>
+<thead><tr>
+<th style="text-align:right">Field</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right"><code>slist_node *next</code></td>
+<td style="text-align:left">A pointer to the next node in a singly linked list.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="slist_head---Singly-Linked-List-Head"><code>slist_head</code> - Singly Linked List Head<a class="anchor-link" href="#slist_head---Singly-Linked-List-Head">&#182;</a></h5><table>
+<thead><tr>
+<th style="text-align:right">Field</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right"><code>slist_node *head</code></td>
+<td style="text-align:left">A pointer to the head node in a singly linked list.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="slist_iter---Singly-Linked-List-Immutable-Iterator"><code>slist_iter</code> - Singly Linked List Immutable Iterator<a class="anchor-link" href="#slist_iter---Singly-Linked-List-Immutable-Iterator">&#182;</a></h5><table>
+<thead><tr>
+<th style="text-align:right">Field</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right"><code>slist_node *cur</code></td>
+<td style="text-align:left">A pointer to the current node in an immutable iterator of a singly linked list.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="slist_mutable_iter---Singly-Linked-List-Mutable-Iterator"><code>slist_mutable_iter</code> - Singly Linked List Mutable Iterator<a class="anchor-link" href="#slist_mutable_iter---Singly-Linked-List-Mutable-Iterator">&#182;</a></h5><table>
+<thead><tr>
+<th style="text-align:right">Field</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right"><code>slist_node *cur</code></td>
+<td style="text-align:left">A pointer to the current node in a mutable iterator of a singly linked list.</td>
+</tr>
+<tr>
+<td style="text-align:right"><code>slist_node *next</code></td>
+<td style="text-align:left">A pointer to the next node in a mutable iterator of a singly linked list.</td>
+</tr>
+<tr>
+<td style="text-align:right"><code>slist_node *prev</code></td>
+<td style="text-align:left">A pointer to the previous node in a mutable iterator of a singly linked list.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="Methods">Methods<a class="anchor-link" href="#Methods">&#182;</a></h4><div class="highlight"><pre><span></span><span class="k">static</span> <span class="kr">inline</span> <span class="kt">void</span>
+<span class="nf">dlist_init</span><span class="p">(</span>
+    <span class="n">dlist_head</span> <span class="o">*</span><span class="n">head</span><span class="p">);</span>
 </pre></div>
-<blockquote><p>TODO.</p>
+<blockquote><p>Initialize the doubly linked list.</p>
 <p>&nbsp;
 <strong>Parameters</strong>
 <br/></p>
 <ul>
-<li><code>TODO</code> - TODO.</li>
+<li><code>head</code> - The doubly linked list's head upon which to invoke.</li>
+</ul>
+</blockquote>
+<hr/>
+
+<div class="highlight"><pre><span></span><span class="k">static</span> <span class="kr">inline</span> <span class="kt">bool</span>
+<span class="nf">dlist_is_empty</span><span class="p">(</span>
+    <span class="n">dlist_head</span> <span class="o">*</span><span class="n">head</span><span class="p">);</span>
+</pre></div>
+<blockquote><p>Checks if the specified doubly linked list is empty.</p>
+<p>&nbsp;
+<strong>Parameters</strong>
+<br/></p>
+<ul>
+<li><code>head</code> - The doubly linked list's head upon which to invoke.</li>
 </ul>
 <p>&nbsp;
 <strong>Returns</strong>
 <br/></p>
 <ul>
-<li>TODO.</li>
+<li><code>true</code> if the doubly linked is empty.</li>
+<li><code>false</code> if the doubly linked is not empty.</li>
 </ul>
 </blockquote>
 <hr/>
 
-<h4 id="Macros">Macros<a class="anchor-link" href="#Macros">&#182;</a></h4><p>TODO.</p>
+<div class="highlight"><pre><span></span><span class="k">static</span> <span class="kr">inline</span> <span class="kt">void</span>
+<span class="nf">dlist_push_head</span><span class="p">(</span>
+    <span class="n">dlist_head</span> <span class="o">*</span><span class="n">head</span><span class="p">,</span>
+    <span class="n">dlist_node</span> <span class="o">*</span><span class="n">node</span><span class="p">);</span>
+</pre></div>
+<blockquote><p>Prepends the specified doubly linked list node to the start of the specified doubly linked list.</p>
+<p>&nbsp;
+<strong>Parameters</strong>
+<br/></p>
+<ul>
+<li><code>head</code> - The doubly linked list's head upon which to invoke.</li>
+<li><code>node</code> - The doubly linked list node to prepend.</li>
+</ul>
+</blockquote>
+<hr/>
+
+<div class="highlight"><pre><span></span><span class="k">static</span> <span class="kr">inline</span> <span class="kt">void</span>
+<span class="nf">dlist_push_tail</span><span class="p">(</span>
+    <span class="n">dlist_head</span> <span class="o">*</span><span class="n">head</span><span class="p">,</span>
+    <span class="n">dlist_node</span> <span class="o">*</span><span class="n">node</span><span class="p">);</span>
+</pre></div>
+<blockquote><p>Appends the specified doubly linked list node to the end of the specified doubly linked list.</p>
+<p>&nbsp;
+<strong>Parameters</strong>
+<br/></p>
+<ul>
+<li><code>head</code> - The doubly linked list's head upon which to invoke.</li>
+<li><code>node</code> - The doubly linked list node to append.</li>
+</ul>
+</blockquote>
+<hr/>
+
+<div class="highlight"><pre><span></span><span class="k">static</span> <span class="kr">inline</span> <span class="kt">void</span>
+<span class="nf">dlist_insert_after</span><span class="p">(</span>
+    <span class="n">dlist_node</span> <span class="o">*</span><span class="n">after</span><span class="p">,</span>
+    <span class="n">dlist_node</span> <span class="o">*</span><span class="n">node</span><span class="p">);</span>
+</pre></div>
+<blockquote><p>Appends the specified doubly linked list node after the specified doubly linked list node.</p>
+<p>&nbsp;
+<strong>Parameters</strong>
+<br/></p>
+<ul>
+<li><code>after</code> - The doubly linked list node from which to append after.</li>
+<li><code>node</code> - The doubly linked list node to append.</li>
+</ul>
+</blockquote>
+<hr/>
+
+<div class="highlight"><pre><span></span><span class="k">static</span> <span class="kr">inline</span> <span class="kt">void</span>
+<span class="nf">dlist_insert_before</span><span class="p">(</span>
+    <span class="n">dlist_node</span> <span class="o">*</span><span class="n">before</span><span class="p">,</span>
+    <span class="n">dlist_node</span> <span class="o">*</span><span class="n">node</span><span class="p">);</span>
+</pre></div>
+<blockquote><p>Prepends the specified doubly linked list node before the specified doubly linked list node.</p>
+<p>&nbsp;
+<strong>Parameters</strong>
+<br/></p>
+<ul>
+<li><code>before</code> - The doubly linked list node from which to prepend before.</li>
+<li><code>node</code> - The doubly linked list node to prepend.</li>
+</ul>
+</blockquote>
+<hr/>
+
+<div class="highlight"><pre><span></span><span class="k">static</span> <span class="kr">inline</span> <span class="kt">void</span>
+<span class="nf">dlist_delete</span><span class="p">(</span>
+    <span class="n">dlist_node</span> <span class="o">*</span><span class="n">node</span><span class="p">);</span>
+</pre></div>
+<blockquote><p>Delete the specified doubly linked list node.</p>
+<p>&nbsp;
+<strong>Parameters</strong>
+<br/></p>
+<ul>
+<li><code>node</code> - The doubly linked list node to delete.</li>
+</ul>
+</blockquote>
+<hr/>
+
+<div class="highlight"><pre><span></span><span class="k">static</span> <span class="kr">inline</span> <span class="n">dlist_node</span> <span class="o">*</span>
+<span class="nf">dlist_pop_head_node</span><span class="p">(</span>
+    <span class="n">dlist_head</span> <span class="o">*</span><span class="n">head</span><span class="p">);</span>
+</pre></div>
+<blockquote><p>Retrieves and removes the head of the specified doubly linked list.</p>
+<p>&nbsp;
+<strong>Parameters</strong>
+<br/></p>
+<ul>
+<li><code>head</code> - The doubly linked list's head upon which to invoke.</li>
+</ul>
+<p>&nbsp;
+<strong>Returns</strong>
+<br/></p>
+<ul>
+<li>The doubly linked list's head.</li>
+</ul>
+</blockquote>
+<div class="highlight"><pre><span></span><span class="k">static</span> <span class="kr">inline</span> <span class="kt">void</span>
+<span class="nf">dlist_move_head</span><span class="p">(</span>
+    <span class="n">dlist_head</span> <span class="o">*</span><span class="n">head</span><span class="p">,</span>
+    <span class="n">dlist_node</span> <span class="o">*</span><span class="n">node</span><span class="p">);</span>
+</pre></div>
+<blockquote><p>Move the specified doubly linked list node to the head of the specified doubly linked list.</p>
+<p>&nbsp;
+<strong>Parameters</strong>
+<br/></p>
+<ul>
+<li><code>head</code> - The doubly linked list's head upon which to invoke.</li>
+<li><code>node</code> - The doubly linked list node to move.</li>
+</ul>
+</blockquote>
+<div class="highlight"><pre><span></span><span class="k">static</span> <span class="kr">inline</span> <span class="kt">bool</span>
+<span class="nf">dlist_has_next</span><span class="p">(</span>
+    <span class="n">dlist_head</span> <span class="o">*</span><span class="n">head</span><span class="p">,</span>
+    <span class="n">dlist_node</span> <span class="o">*</span><span class="n">node</span><span class="p">);</span>
+</pre></div>
+<blockquote><p>Checks whether the specified doubly linked list node has a following node in the specified doubly linked list.</p>
+<p>&nbsp;
+<strong>Parameters</strong>
+<br/></p>
+<ul>
+<li><code>head</code> - The doubly linked list's head upon which to invoke.</li>
+<li><code>node</code> - The doubly linked list node to check for a following node.</li>
+</ul>
+<p>&nbsp;
+<strong>Returns</strong>
+<br/></p>
+<ul>
+<li><code>true</code> if the doubly linked list node has a following node.</li>
+<li><code>false</code> if the doubly linked list node does not have a following node.</li>
+</ul>
+</blockquote>
+<hr/>
+
+<div class="highlight"><pre><span></span><span class="k">static</span> <span class="kr">inline</span> <span class="kt">bool</span>
+<span class="nf">dlist_has_prev</span><span class="p">(</span>
+    <span class="n">dlist_head</span> <span class="o">*</span><span class="n">head</span><span class="p">,</span>
+    <span class="n">dlist_node</span> <span class="o">*</span><span class="n">node</span><span class="p">);</span>
+</pre></div>
+<blockquote><p>Checks whether the specified doubly linked list node has a preceding node in the specified doubly linked list.</p>
+<p>&nbsp;
+<strong>Parameters</strong>
+<br/></p>
+<ul>
+<li><code>head</code> - The doubly linked list's head upon which to invoke.</li>
+<li><code>node</code> - The doubly linked list node to check for a preceding node.</li>
+</ul>
+<p>&nbsp;
+<strong>Returns</strong>
+<br/></p>
+<ul>
+<li><code>true</code> if the doubly linked list node has a preceding node.</li>
+<li><code>false</code> if the doubly linked list node does not have a preceding node.</li>
+</ul>
+</blockquote>
+<hr/>
+
+<div class="highlight"><pre><span></span><span class="k">static</span> <span class="kr">inline</span> <span class="n">dlist_node</span> <span class="o">*</span>
+<span class="nf">dlist_next_node</span><span class="p">(</span>
+    <span class="n">dlist_head</span> <span class="o">*</span><span class="n">head</span><span class="p">,</span>
+    <span class="n">dlist_node</span> <span class="o">*</span><span class="n">node</span><span class="p">);</span>
+</pre></div>
+<blockquote><p>Returns the node following the specified doubly linked list node.</p>
+<p>&nbsp;
+<strong>Parameters</strong>
+<br/></p>
+<ul>
+<li><code>head</code> - The doubly linked list's head upon which to invoke.</li>
+<li><code>node</code> - The doubly linked list node from which a following node should be returned.</li>
+</ul>
+<p>&nbsp;
+<strong>Returns</strong>
+<br/></p>
+<ul>
+<li>The node following the specified doubly linked list node.</li>
+</ul>
+</blockquote>
+<hr/>
+
+<div class="highlight"><pre><span></span><span class="k">static</span> <span class="kr">inline</span> <span class="n">dlist_node</span> <span class="o">*</span>
+<span class="nf">dlist_prev_node</span><span class="p">(</span>
+    <span class="n">dlist_head</span> <span class="o">*</span><span class="n">head</span><span class="p">,</span>
+    <span class="n">dlist_node</span> <span class="o">*</span><span class="n">node</span><span class="p">);</span>
+</pre></div>
+<blockquote><p>Returns the node preceding the specified doubly linked list node.</p>
+<p>&nbsp;
+<strong>Parameters</strong>
+<br/></p>
+<ul>
+<li><code>head</code> - The doubly linked list's head upon which to invoke.</li>
+<li><code>node</code> - The doubly linked list node from which a preceding node should be returned.</li>
+</ul>
+<p>&nbsp;
+<strong>Returns</strong>
+<br/></p>
+<ul>
+<li>The node preceding the specified doubly linked list node.</li>
+</ul>
+</blockquote>
+<hr/>
+
+<div class="highlight"><pre><span></span><span class="k">static</span> <span class="kr">inline</span> <span class="n">dlist_node</span> <span class="o">*</span>
+<span class="nf">dlist_head_node</span><span class="p">(</span>
+    <span class="n">dlist_head</span> <span class="o">*</span><span class="n">head</span><span class="p">);</span>
+</pre></div>
+<blockquote><p>Returns the first doubly linked list node in the specified doubly linked list.</p>
+<p>&nbsp;
+<strong>Parameters</strong>
+<br/></p>
+<ul>
+<li><code>head</code> - The doubly linked list's head upon which to invoke.</li>
+</ul>
+<p>&nbsp;
+<strong>Returns</strong>
+<br/></p>
+<ul>
+<li>The first doubly linked list node in the specified doubly linked list.</li>
+</ul>
+</blockquote>
+<hr/>
+
+<div class="highlight"><pre><span></span><span class="k">static</span> <span class="kr">inline</span> <span class="n">dlist_node</span> <span class="o">*</span>
+<span class="nf">dlist_tail_node</span><span class="p">(</span>
+    <span class="n">dlist_head</span> <span class="o">*</span><span class="n">head</span><span class="p">);</span>
+</pre></div>
+<blockquote><p>Returns the last doubly linked list node in the specified doubly linked list.</p>
+<p>&nbsp;
+<strong>Parameters</strong>
+<br/></p>
+<ul>
+<li><code>head</code> - The doubly linked list's head upon which to invoke.</li>
+</ul>
+<p>&nbsp;
+<strong>Returns</strong>
+<br/></p>
+<ul>
+<li>The last doubly linked list node in the specified doubly linked list.</li>
+</ul>
+</blockquote>
+<hr/>
+
+<div class="highlight"><pre><span></span><span class="k">static</span> <span class="kr">inline</span> <span class="kt">void</span>
+<span class="nf">slist_init</span><span class="p">(</span>
+    <span class="n">slist_head</span> <span class="o">*</span><span class="n">head</span><span class="p">);</span>
+</pre></div>
+<blockquote><p>Initialize the singly linked list.</p>
+<p>&nbsp;
+<strong>Parameters</strong>
+<br/></p>
+<ul>
+<li><code>head</code> - The singly linked list's head upon which to invoke.</li>
+</ul>
+</blockquote>
+<hr/>
+
+<div class="highlight"><pre><span></span><span class="k">static</span> <span class="kr">inline</span> <span class="kt">bool</span>
+<span class="nf">slist_is_empty</span><span class="p">(</span>
+    <span class="n">slist_head</span> <span class="o">*</span><span class="n">head</span><span class="p">);</span>
+</pre></div>
+<blockquote><p>Checks if the specified singly linked list is empty.</p>
+<p>&nbsp;
+<strong>Parameters</strong>
+<br/></p>
+<ul>
+<li><code>head</code> - The singly linked list's head upon which to invoke.</li>
+</ul>
+<p>&nbsp;
+<strong>Returns</strong>
+<br/></p>
+<ul>
+<li><code>true</code> if the singly linked is empty.</li>
+<li><code>false</code> if the singly linked is not empty.</li>
+</ul>
+</blockquote>
+<hr/>
+
+<div class="highlight"><pre><span></span><span class="k">static</span> <span class="kr">inline</span> <span class="kt">void</span>
+<span class="nf">slist_push_head</span><span class="p">(</span>
+    <span class="n">slist_head</span> <span class="o">*</span><span class="n">head</span><span class="p">,</span>
+    <span class="n">slist_node</span> <span class="o">*</span><span class="n">node</span><span class="p">);</span>
+</pre></div>
+<blockquote><p>Prepends the specified singly linked list node to the start of the specified singly linked list.</p>
+<p>&nbsp;
+<strong>Parameters</strong>
+<br/></p>
+<ul>
+<li><code>head</code> - The singly linked list's head upon which to invoke.</li>
+<li><code>node</code> - The singly linked list node to prepend.</li>
+</ul>
+</blockquote>
+<hr/>
+
+<div class="highlight"><pre><span></span><span class="k">static</span> <span class="kr">inline</span> <span class="kt">void</span>
+<span class="nf">slist_insert_after</span><span class="p">(</span>
+    <span class="n">slist_node</span> <span class="o">*</span><span class="n">after</span><span class="p">,</span>
+    <span class="n">slist_node</span> <span class="o">*</span><span class="n">node</span><span class="p">);</span>
+</pre></div>
+<blockquote><p>Appends the specified singly linked list node after the specified singly linked list node.</p>
+<p>&nbsp;
+<strong>Parameters</strong>
+<br/></p>
+<ul>
+<li><code>after</code> - The singly linked list node from which to append after.</li>
+<li><code>node</code> - The singly linked list node to append.</li>
+</ul>
+</blockquote>
+<hr/>
+
+<div class="highlight"><pre><span></span><span class="k">extern</span> <span class="kt">void</span>
+<span class="nf">slist_delete</span><span class="p">(</span>
+    <span class="n">slist_head</span> <span class="o">*</span><span class="n">head</span><span class="p">,</span>
+    <span class="n">slist_node</span> <span class="o">*</span><span class="n">node</span><span class="p">);</span>
+</pre></div>
+<blockquote><p>Delete the specified singly linked list node from the specified singly linked list node.
+<br/>
+<strong>Time Complexity</strong>: $O(n)$</p>
+<p>&nbsp;
+<strong>Parameters</strong>
+<br/></p>
+<ul>
+<li><code>head</code> - The singly linked list's head upon which to invoke.</li>
+<li><code>node</code> - The singly linked list node to delete.</li>
+</ul>
+</blockquote>
+<hr/>
+
+<div class="highlight"><pre><span></span><span class="k">static</span> <span class="kr">inline</span> <span class="n">slist_node</span> <span class="o">*</span>
+<span class="nf">slist_pop_head_node</span><span class="p">(</span>
+    <span class="n">slist_head</span> <span class="o">*</span><span class="n">head</span><span class="p">);</span>
+</pre></div>
+<blockquote><p>Retrieves and removes the head of the specified singly linked list.</p>
+<p>&nbsp;
+<strong>Parameters</strong>
+<br/></p>
+<ul>
+<li><code>head</code> - The singly linked list's head upon which to invoke.</li>
+</ul>
+<p>&nbsp;
+<strong>Returns</strong>
+<br/></p>
+<ul>
+<li>The singly linked list's head..</li>
+</ul>
+</blockquote>
+<hr/>
+
+<div class="highlight"><pre><span></span><span class="k">static</span> <span class="kr">inline</span> <span class="kt">bool</span>
+<span class="nf">slist_has_next</span><span class="p">(</span>
+    <span class="n">slist_head</span> <span class="o">*</span><span class="n">head</span><span class="p">,</span>
+    <span class="n">slist_node</span> <span class="o">*</span><span class="n">node</span><span class="p">);</span>
+</pre></div>
+<blockquote><p>Checks whether the specified singly linked list node has a following node in the specified singly linked list.</p>
+<p>&nbsp;
+<strong>Parameters</strong>
+<br/></p>
+<ul>
+<li><code>head</code> - The singly linked list's head upon which to invoke.</li>
+<li><code>node</code> - The singly linked list node to check for a following node.</li>
+</ul>
+<p>&nbsp;
+<strong>Returns</strong>
+<br/></p>
+<ul>
+<li><code>true</code> if the singly linked list node has a following node.</li>
+<li><code>false</code> if the singly linked list node does not have a following node.</li>
+</ul>
+</blockquote>
+<hr/>
+
+<div class="highlight"><pre><span></span><span class="k">static</span> <span class="kr">inline</span> <span class="n">slist_node</span> <span class="o">*</span>
+<span class="nf">slist_next_node</span><span class="p">(</span>
+    <span class="n">slist_head</span> <span class="o">*</span><span class="n">head</span><span class="p">,</span>
+    <span class="n">slist_node</span> <span class="o">*</span><span class="n">node</span><span class="p">);</span>
+</pre></div>
+<blockquote><p>Returns the node following the specified singly linked list node.</p>
+<p>&nbsp;
+<strong>Parameters</strong>
+<br/></p>
+<ul>
+<li><code>head</code> - The singly linked list's head upon which to invoke.</li>
+<li><code>node</code> - The singly linked list node from which a following node should be returned.</li>
+</ul>
+<p>&nbsp;
+<strong>Returns</strong>
+<br/></p>
+<ul>
+<li>The node following the specified singly linked list node.</li>
+</ul>
+</blockquote>
+<hr/>
+
+<div class="highlight"><pre><span></span><span class="k">static</span> <span class="kr">inline</span> <span class="n">slist_node</span> <span class="o">*</span>
+<span class="nf">slist_head_node</span><span class="p">(</span>
+    <span class="n">slist_head</span> <span class="o">*</span><span class="n">head</span><span class="p">);</span>
+</pre></div>
+<blockquote><p>Returns the first singly linked list node in the specified singly linked list.</p>
+<p>&nbsp;
+<strong>Parameters</strong>
+<br/></p>
+<ul>
+<li><code>head</code> - The singly linked list's head upon which to invoke.</li>
+</ul>
+<p>&nbsp;
+<strong>Returns</strong>
+<br/></p>
+<ul>
+<li>The first singly linked list node in the specified singly linked list.</li>
+</ul>
+</blockquote>
+<hr/>
+
+<div class="highlight"><pre><span></span><span class="k">static</span> <span class="kr">inline</span> <span class="kt">void</span>
+<span class="nf">slist_delete_current</span><span class="p">(</span>
+    <span class="n">slist_mutable_iter</span> <span class="o">*</span><span class="n">iter</span><span class="p">);</span>
+</pre></div>
+<blockquote><p>Delete the current singly linked list node to which the specified singly linked list mutable iterator points.</p>
+<p>&nbsp;
+<strong>Parameters</strong>
+<br/></p>
+<ul>
+<li><code>iter</code> - The singly linked list mutable iterator.</li>
+</ul>
+</blockquote>
+<hr/>
+
+<h4 id="Macros">Macros<a class="anchor-link" href="#Macros">&#182;</a></h4><table>
+<thead><tr>
+<th style="text-align:right">Macro</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right">[<code>dlist_head</code>]<br/><strong><code>DLIST_STATIC_INIT()</code></strong><br/>[<code>dlist_head</code>] <code>name</code></td>
+<td style="text-align:left">Statically initialize <code>name</code> as a doubly linked list.</td>
+</tr>
+<tr>
+<td style="text-align:right">[<code>type *</code>]<br/><strong><code>dlist_container()</code></strong><br/>[<em>Identifier</em>] <code>type</code>,<br/>[<em>Identifier</em>] <code>membername</code>,<br/>[<code>dlist_node *</code>] <code>ptr</code></td>
+<td style="text-align:left">Return the encapsulating structure of <code>type</code> where <code>membername</code> is the <code>dlist_node</code> pointed by <code>ptr</code>.</td>
+</tr>
+<tr>
+<td style="text-align:right">[<code>type *</code>]<br/><strong><code>dlist_head_element()</code></strong><br/>[<em>Identifier</em>] <code>type</code>,<br/>[<em>Identifier</em>] <code>membername</code>,<br/>[<code>dlist_head *</code>] <code>lhead</code></td>
+<td style="text-align:left">Returns a pointer to the first element (the encapsulating structure of <code>type</code> where <code>membername</code> is the <code>dlist_node</code>) in the doubly linked list.</td>
+</tr>
+<tr>
+<td style="text-align:right">[<code>type *</code>]<br/><strong><code>dlist_tail_element()</code></strong><br/>[<em>Identifier</em>] <code>type</code>,<br/>[<em>Identifier</em>] <code>membername</code>,<br/>[<code>dlist_head *</code>] <code>lhead</code></td>
+<td style="text-align:left">Returns a pointer to the last element (the encapsulating structure of <code>type</code> where <code>membername</code> is the <code>dlist_node</code>) in the doubly linked list.</td>
+</tr>
+<tr>
+<td style="text-align:right">[<code>void</code>]<br/><strong><code>dlist_foreach()</code></strong><br/>[<code>dlist_iter</code>] <code>iter</code>,<br/>[<code>dlist_head *</code>] <code>lhead</code></td>
+<td style="text-align:left">Forward through the doubly linked list pointed by <code>lhead</code> while storing state in <code>iter</code> and disallowing mutations.</td>
+</tr>
+<tr>
+<td style="text-align:right">[<code>void</code>]<br/><strong><code>dlist_foreach_modify()</code></strong><br/>[<code>dlist_mutable_iter</code>] <code>iter</code>,<br/>[<code>dlist_head *</code>] <code>lhead</code></td>
+<td style="text-align:left">Forward through the doubly linked list pointed by <code>lhead</code> while storing state in <code>iter</code> and allowing mutations.</td>
+</tr>
+<tr>
+<td style="text-align:right">[<code>void</code>]<br/><strong><code>dlist_reverse_foreach()</code></strong><br/>[<code>dlist_iter</code>] <code>iter</code>,<br/>[<code>dlist_head *</code>] <code>lhead</code></td>
+<td style="text-align:left">Reverse through the doubly linked list pointed by <code>lhead</code> while storing state in <code>iter</code> and disallowing mutations.</td>
+</tr>
+<tr>
+<td style="text-align:right">[<code>slist_head</code>]<br/><strong><code>SLIST_STATIC_INIT()</code></strong><br/>[<code>slist_head</code>] <code>name</code></td>
+<td style="text-align:left">Statically initialize <code>name</code> as a singly linked list.</td>
+</tr>
+<tr>
+<td style="text-align:right">[<code>type *</code>]<br/><strong><code>slist_container()</code></strong><br/>[<em>Identifier</em>] <code>type</code>,<br/>[<em>Identifier</em>] <code>membername</code>,<br/>[<code>slist_node *</code>] <code>ptr</code></td>
+<td style="text-align:left">Return the encapsulating structure of <code>type</code> where <code>membername</code> is the <code>slist_node</code> pointed by <code>ptr</code>.</td>
+</tr>
+<tr>
+<td style="text-align:right">[<code>type *</code>]<br/><strong><code>slist_head_element()</code></strong><br/>[<em>Identifier</em>] <code>type</code>,<br/>[<em>Identifier</em>] <code>membername</code>,<br/>[<code>slist_head *</code>] <code>lhead</code></td>
+<td style="text-align:left">eturns a pointer to the first element (the encapsulating structure of <code>type</code> where <code>membername</code> is the <code>slist_node</code>) in the singly linked list.</td>
+</tr>
+<tr>
+<td style="text-align:right">[<code>void</code>]<br/><strong><code>slist_foreach()</code></strong><br/>[<code>slist_iter</code>] <code>iter</code>,<br/>[<code>slist_head *</code>] <code>lhead</code></td>
+<td style="text-align:left">Forward through the singly linked list pointed by <code>lhead</code> while storing state in <code>iter</code> and disallowing mutations.</td>
+</tr>
+<tr>
+<td style="text-align:right">[<code>void</code>]<br/><strong><code>slist_foreach_modify()</code></strong><br/>[<code>slist_mutable_iter</code>] <code>iter</code>,<br/>[<code>slist_head *</code>] <code>lhead</code></td>
+<td style="text-align:left">Forward through the singly linked list pointed by <code>lhead</code> while storing state in <code>iter</code> and allowing mutations.</td>
+</tr>
+</tbody>
+</table>
 
 </div>
 </div>
@@ -15445,29 +16067,151 @@ If the key is not found, then <code>found</code> is set to <code>false</code> an
 <h3 id="Integer-Set:-integerset.h">Integer Set: <a href="https://github.com/postgres/postgres/blob/REL_12_3/src/include/lib/integerset.h"><code>integerset.h</code></a><a name="6-8-Integer_Set" /><a class="anchor-link" href="#Integer-Set:-integerset.h">&#182;</a></h3><ul>
 <li><a href="https://en.wikipedia.org/w/index.php?title=Set_(abstract_data_type">Wikipedia: Set (abstract data type)</a>&amp;oldid=958494281).</li>
 </ul>
-<h4 id="Constants">Constants<a class="anchor-link" href="#Constants">&#182;</a></h4><p>TODO.</p>
-<h4 id="Enumerations">Enumerations<a class="anchor-link" href="#Enumerations">&#182;</a></h4><p>TODO.</p>
-<h4 id="Types">Types<a class="anchor-link" href="#Types">&#182;</a></h4><p>TODO.</p>
-<h4 id="Structures">Structures<a class="anchor-link" href="#Structures">&#182;</a></h4><p>TODO.</p>
-<h4 id="Methods">Methods<a class="anchor-link" href="#Methods">&#182;</a></h4><div class="highlight"><pre><span></span><span class="n">TODO</span><span class="p">.</span>
+<h4 id="Constants">Constants<a class="anchor-link" href="#Constants">&#182;</a></h4><p><em>N/A</em>.</p>
+<h4 id="Enumerations">Enumerations<a class="anchor-link" href="#Enumerations">&#182;</a></h4><p><em>N/A</em>.</p>
+<h4 id="Types">Types<a class="anchor-link" href="#Types">&#182;</a></h4><div class="highlight"><pre><span></span><span class="k">typedef</span> <span class="k">struct</span> <span class="n">IntegerSet</span> <span class="n">IntegerSet</span><span class="p">;</span>
 </pre></div>
-<blockquote><p>TODO.</p>
+<blockquote><p>A set of integers.</p>
+</blockquote>
+<hr/>
+
+<h4 id="Structures">Structures<a class="anchor-link" href="#Structures">&#182;</a></h4><p><em>N/A</em>.</p>
+<h4 id="Methods">Methods<a class="anchor-link" href="#Methods">&#182;</a></h4><div class="highlight"><pre><span></span><span class="k">extern</span> <span class="n">IntegerSet</span> <span class="o">*</span>
+<span class="nf">intset_create</span><span class="p">(</span><span class="kt">void</span><span class="p">);</span>
+</pre></div>
+<blockquote><p>Allocate an empty integer set.</p>
+<p>&nbsp;
+<strong>Returns</strong>
+<br/></p>
+<ul>
+<li>The integer set.</li>
+</ul>
+</blockquote>
+<hr/>
+
+<div class="highlight"><pre><span></span><span class="k">extern</span> <span class="kt">void</span>
+<span class="nf">intset_add_member</span><span class="p">(</span>
+    <span class="n">IntegerSet</span> <span class="o">*</span><span class="n">intset</span><span class="p">,</span>
+    <span class="n">uint64</span> <span class="n">x</span><span class="p">);</span>
+</pre></div>
+<blockquote><p>Inserts the specified integer into the specified integer set.
+<br/>
+<strong>Warning</strong>: The integers inserted into the integer set must be monotonically increasing.
+<br/>
+<strong>Warning</strong>: <code>intset_begin_iterate()</code> cannot be called before calling this method.</p>
 <p>&nbsp;
 <strong>Parameters</strong>
 <br/></p>
 <ul>
-<li><code>TODO</code> - TODO.</li>
+<li><code>intset</code> - The integer set upon which to invoke.</li>
+<li><code>x</code> - The integer to insert.</li>
+</ul>
+</blockquote>
+<hr/>
+
+<div class="highlight"><pre><span></span><span class="k">extern</span> <span class="kt">bool</span>
+<span class="nf">intset_is_member</span><span class="p">(</span>
+    <span class="n">IntegerSet</span> <span class="o">*</span><span class="n">intset</span><span class="p">,</span>
+    <span class="n">uint64</span> <span class="n">x</span><span class="p">);</span>
+</pre></div>
+<blockquote><p>Checks whether the specified integer is a member of the specified integer set.</p>
+<p>&nbsp;
+<strong>Parameters</strong>
+<br/></p>
+<ul>
+<li><code>intset</code> - The integer set upon which to invoke.</li>
+<li><code>x</code> - The integer to check.</li>
 </ul>
 <p>&nbsp;
 <strong>Returns</strong>
 <br/></p>
 <ul>
-<li>TODO.</li>
+<li><code>true</code> if the specified integer is a member.</li>
+<li><code>false</code> if the specified integer is not a member.</li>
 </ul>
 </blockquote>
 <hr/>
 
-<h4 id="Macros">Macros<a class="anchor-link" href="#Macros">&#182;</a></h4><p>TODO.</p>
+<div class="highlight"><pre><span></span><span class="k">extern</span> <span class="n">uint64</span>
+<span class="nf">intset_num_entries</span><span class="p">(</span>
+    <span class="n">IntegerSet</span> <span class="o">*</span><span class="n">intset</span><span class="p">);</span>
+</pre></div>
+<blockquote><p>Returns the number of entries in the specified integer set.</p>
+<p>&nbsp;
+<strong>Parameters</strong>
+<br/></p>
+<ul>
+<li><code>intset</code> - The integer set upon which to invoke.</li>
+</ul>
+<p>&nbsp;
+<strong>Returns</strong>
+<br/></p>
+<ul>
+<li>The number of entries in the specified integer set.</li>
+</ul>
+</blockquote>
+<hr/>
+
+<div class="highlight"><pre><span></span><span class="k">extern</span> <span class="n">uint64</span>
+<span class="nf">intset_memory_usage</span><span class="p">(</span>
+    <span class="n">IntegerSet</span> <span class="o">*</span><span class="n">intset</span><span class="p">);</span>
+</pre></div>
+<blockquote><p>Returns the amount of memory, in bytes, allocated by the specified integer set.</p>
+<p>&nbsp;
+<strong>Parameters</strong>
+<br/></p>
+<ul>
+<li><code>intset</code> - The integer set upon which to invoke.</li>
+</ul>
+<p>&nbsp;
+<strong>Returns</strong>
+<br/></p>
+<ul>
+<li>The amount of memory, in bytes, allocated by the specified integer set.</li>
+</ul>
+</blockquote>
+<hr/>
+
+<div class="highlight"><pre><span></span><span class="k">extern</span> <span class="kt">void</span>
+<span class="nf">intset_begin_iterate</span><span class="p">(</span>
+    <span class="n">IntegerSet</span> <span class="o">*</span><span class="n">intset</span><span class="p">);</span>
+</pre></div>
+<blockquote><p>Initializes an in-order scan of all the elements in the specified integer set.</p>
+<p>&nbsp;
+<strong>Parameters</strong>
+<br/></p>
+<ul>
+<li><code>intset</code> - The integer set upon which to invoke.</li>
+</ul>
+</blockquote>
+<hr/>
+
+<div class="highlight"><pre><span></span><span class="k">extern</span> <span class="kt">bool</span>
+<span class="nf">intset_iterate_next</span><span class="p">(</span>
+    <span class="n">IntegerSet</span> <span class="o">*</span><span class="n">intset</span><span class="p">,</span>
+    <span class="n">uint64</span> <span class="o">*</span><span class="n">next</span><span class="p">);</span>
+</pre></div>
+<blockquote><p>Seek the next integer in the integer set.
+<br/>
+<strong>Warning</strong>: Call <code>intset_begin_iterate()</code> before calling this method.</p>
+<p>&nbsp;
+<strong>Parameters</strong>
+<br/></p>
+<ul>
+<li><code>intset</code> - The integer set upon which to invoke.</li>
+<li><code>next</code> - A pointer to an integer which will be updated with the next integer in the integer set.</li>
+</ul>
+<p>&nbsp;
+<strong>Returns</strong>
+<br/></p>
+<ul>
+<li><code>true</code> if there are remaining elements in the specified integer set.</li>
+<li><code>false</code> if there are no remaining elements in the specified integer set.</li>
+</ul>
+</blockquote>
+<hr/>
+
+<h4 id="Macros">Macros<a class="anchor-link" href="#Macros">&#182;</a></h4><p><em>N/A</em>.</p>
 
 </div>
 </div>
@@ -15478,29 +16222,37 @@ If the key is not found, then <code>found</code> is set to <code>false</code> an
 <h3 id="0-1-Knapsack-Algorithm:-knapsack.h">0-1 Knapsack Algorithm: <a href="https://github.com/postgres/postgres/blob/REL_12_3/src/include/lib/knapsack.h"><code>knapsack.h</code></a><a name="6-9-0-1_Knapsack_Algorithm" /><a class="anchor-link" href="#0-1-Knapsack-Algorithm:-knapsack.h">&#182;</a></h3><ul>
 <li><a href="https://en.wikipedia.org/w/index.php?title=Knapsack_problem&amp;oldid=964567563">Wikipedia: Knapsack problem</a>.</li>
 </ul>
-<h4 id="Constants">Constants<a class="anchor-link" href="#Constants">&#182;</a></h4><p>TODO.</p>
-<h4 id="Enumerations">Enumerations<a class="anchor-link" href="#Enumerations">&#182;</a></h4><p>TODO.</p>
-<h4 id="Types">Types<a class="anchor-link" href="#Types">&#182;</a></h4><p>TODO.</p>
-<h4 id="Structures">Structures<a class="anchor-link" href="#Structures">&#182;</a></h4><p>TODO.</p>
-<h4 id="Methods">Methods<a class="anchor-link" href="#Methods">&#182;</a></h4><div class="highlight"><pre><span></span><span class="n">TODO</span><span class="p">.</span>
+<h4 id="Constants">Constants<a class="anchor-link" href="#Constants">&#182;</a></h4><p><em>N/A</em>.</p>
+<h4 id="Enumerations">Enumerations<a class="anchor-link" href="#Enumerations">&#182;</a></h4><p><em>N/A</em>.</p>
+<h4 id="Types">Types<a class="anchor-link" href="#Types">&#182;</a></h4><p><em>N/A</em>.</p>
+<h4 id="Structures">Structures<a class="anchor-link" href="#Structures">&#182;</a></h4><p><em>N/A</em>.</p>
+<h4 id="Methods">Methods<a class="anchor-link" href="#Methods">&#182;</a></h4><div class="highlight"><pre><span></span><span class="k">extern</span> <span class="n">Bitmapset</span> <span class="o">*</span>
+<span class="nf">DiscreteKnapsack</span><span class="p">(</span>
+    <span class="kt">int</span> <span class="n">max_weight</span><span class="p">,</span>
+    <span class="kt">int</span> <span class="n">num_items</span><span class="p">,</span>
+    <span class="kt">int</span> <span class="o">*</span><span class="n">item_weights</span><span class="p">,</span>
+    <span class="kt">double</span> <span class="o">*</span><span class="n">item_values</span><span class="p">);</span>
 </pre></div>
-<blockquote><p>TODO.</p>
+<blockquote><p>Returns a bitmap of the indexes of the items chosen for the <em>0-1 Knapsack</em>.</p>
 <p>&nbsp;
 <strong>Parameters</strong>
 <br/></p>
 <ul>
-<li><code>TODO</code> - TODO.</li>
+<li><code>max_weight</code> - The maximum weight constraining the solution.</li>
+<li><code>num_itmes</code> - The number of items to consider for the solution.</li>
+<li><code>item_weights</code> - The weight of the items to minimize for the solution.</li>
+<li><code>item_values</code> - The value of the items to maximize for the solution. This parameter can be <code>NULL</code>; the weights will all be assumed to be 1.</li>
 </ul>
 <p>&nbsp;
 <strong>Returns</strong>
 <br/></p>
 <ul>
-<li>TODO.</li>
+<li>A bitmap of the indexes of the items chosen for the <em>0-1 Knapsack</em>.</li>
 </ul>
 </blockquote>
 <hr/>
 
-<h4 id="Macros">Macros<a class="anchor-link" href="#Macros">&#182;</a></h4><p>TODO.</p>
+<h4 id="Macros">Macros<a class="anchor-link" href="#Macros">&#182;</a></h4><p><em>N/A</em>.</p>
 
 </div>
 </div>
@@ -15511,29 +16263,224 @@ If the key is not found, then <code>found</code> is set to <code>false</code> an
 <h3 id="Pairing-Heap:-pairingheap.h">Pairing Heap: <a href="https://github.com/postgres/postgres/blob/REL_12_3/src/include/lib/pairingheap.h"><code>pairingheap.h</code></a><a name="6-10-Pairing_Heap" /><a class="anchor-link" href="#Pairing-Heap:-pairingheap.h">&#182;</a></h3><ul>
 <li><a href="https://en.wikipedia.org/w/index.php?title=Pairing_heap&amp;oldid=967633665">Wikipedia: Pairing heap</a>.</li>
 </ul>
-<h4 id="Constants">Constants<a class="anchor-link" href="#Constants">&#182;</a></h4><p>TODO.</p>
-<h4 id="Enumerations">Enumerations<a class="anchor-link" href="#Enumerations">&#182;</a></h4><p>TODO.</p>
-<h4 id="Types">Types<a class="anchor-link" href="#Types">&#182;</a></h4><p>TODO.</p>
-<h4 id="Structures">Structures<a class="anchor-link" href="#Structures">&#182;</a></h4><p>TODO.</p>
-<h4 id="Methods">Methods<a class="anchor-link" href="#Methods">&#182;</a></h4><div class="highlight"><pre><span></span><span class="n">TODO</span><span class="p">.</span>
+<h5 id="Working-with-Pairing-Heaps">Working with Pairing Heaps<a class="anchor-link" href="#Working-with-Pairing-Heaps">&#182;</a></h5><ol>
+<li>To create a pairing heap, inline a <code>pairingheap_node</code> in a structure.</li>
+<li>To interface with the pairing heap, call the various <code>pairingheap_ ## T</code> methods and method macros.</li>
+<li>To access the encapsulating structure associated with a specified <code>pairingheap_node</code>, call the <code>pairingheap_container()</code> or the <code>pairingheap_const_container()</code> method macros.</li>
+</ol>
+<h4 id="Constants">Constants<a class="anchor-link" href="#Constants">&#182;</a></h4><p><em>N/A</em>.</p>
+<h4 id="Enumerations">Enumerations<a class="anchor-link" href="#Enumerations">&#182;</a></h4><p><em>N/A</em>.</p>
+<h4 id="Types">Types<a class="anchor-link" href="#Types">&#182;</a></h4><div class="highlight"><pre><span></span><span class="k">typedef</span> <span class="nf">int</span> <span class="p">(</span><span class="o">*</span><span class="n">pairingheap_comparator</span><span class="p">)</span> <span class="p">(</span><span class="k">const</span> <span class="n">pairingheap_node</span> <span class="o">*</span><span class="n">a</span><span class="p">,</span> <span class="k">const</span> <span class="n">pairingheap_node</span> <span class="o">*</span><span class="n">b</span><span class="p">,</span> <span class="kt">void</span> <span class="o">*</span><span class="n">arg</span><span class="p">);</span>
 </pre></div>
-<blockquote><p>TODO.</p>
+<blockquote><p>A comparison function, which imposes a total ordering on some collection of objects.
+<br/>
+For a <strong>max-heap</strong>, a comparison function must hold the following properties.
+$$
+\begin{cases}
+a &lt; b \iff&amp; \text{Comparator} &lt; 0\\
+a &gt; b \iff&amp; \text{Comparator} &gt; 0\\
+a = b \iff&amp; \text{Comparator} = 0
+\end{cases}
+$$
+<br/>
+For a <strong>min-heap</strong>, a comparison function must hold the following properties.
+$$
+\begin{cases}
+a &lt; b \iff&amp; \text{Comparator} &gt; 0\\
+a &gt; b \iff&amp; \text{Comparator} &lt; 0\\
+a = b \iff&amp; \text{Comparator} = 0
+\end{cases}
+$$</p>
+</blockquote>
+<hr/>
+
+<h4 id="Structures">Structures<a class="anchor-link" href="#Structures">&#182;</a></h4><h5 id="pairingheap_node"><code>pairingheap_node</code><a class="anchor-link" href="#pairingheap_node">&#182;</a></h5><table>
+<thead><tr>
+<th style="text-align:right">Field</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right"><code>struct pairingheap_node *first_child</code></td>
+<td style="text-align:left">The first child of this pairing heap node.</td>
+</tr>
+<tr>
+<td style="text-align:right"><code>struct pairingheap_node *next_sibling</code></td>
+<td style="text-align:left">The next child of this pairing heap node.</td>
+</tr>
+<tr>
+<td style="text-align:right"><code>struct pairingheap_node *prev_or_parent</code></td>
+<td style="text-align:left">The previous child or parent of this pairing heap node.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="pairingheap"><code>pairingheap</code><a class="anchor-link" href="#pairingheap">&#182;</a></h5><table>
+<thead><tr>
+<th style="text-align:right">Field</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right"><code>pairingheap_comparator ph_compare</code></td>
+<td style="text-align:left">The comparison function used by this pairing heap to define the <em>heap property</em>.</td>
+</tr>
+<tr>
+<td style="text-align:right"><code>void *ph_arg</code></td>
+<td style="text-align:left">A user-provided context argument for the comparison function.</td>
+</tr>
+<tr>
+<td style="text-align:right"><code>pairingheap_node *ph_root</code></td>
+<td style="text-align:left">The root pairing heap node of this pairing heap.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="Methods">Methods<a class="anchor-link" href="#Methods">&#182;</a></h4><div class="highlight"><pre><span></span><span class="k">extern</span> <span class="n">pairingheap</span> <span class="o">*</span>
+<span class="nf">pairingheap_allocate</span><span class="p">(</span>
+    <span class="n">pairingheap_comparator</span> <span class="n">compare</span><span class="p">,</span>
+    <span class="kt">void</span> <span class="o">*</span><span class="n">arg</span><span class="p">);</span>
+</pre></div>
+<blockquote><p>Allocates a pairing heap that orders its elements according to the specified comparator and argument.</p>
 <p>&nbsp;
 <strong>Parameters</strong>
 <br/></p>
 <ul>
-<li><code>TODO</code> - TODO.</li>
+<li><code>compare</code> - The comparator that will be used to order this pairing heap.</li>
+<li><code>arg</code> - The argument that will be supplied to invocations of <code>compare</code>.</li>
 </ul>
 <p>&nbsp;
 <strong>Returns</strong>
 <br/></p>
 <ul>
-<li>TODO.</li>
+<li>The pairing heap.</li>
 </ul>
 </blockquote>
 <hr/>
 
-<h4 id="Macros">Macros<a class="anchor-link" href="#Macros">&#182;</a></h4><p>TODO.</p>
+<div class="highlight"><pre><span></span><span class="k">extern</span> <span class="kt">void</span>
+<span class="nf">pairingheap_free</span><span class="p">(</span>
+    <span class="n">pairingheap</span> <span class="o">*</span><span class="n">heap</span><span class="p">);</span>
+</pre></div>
+<blockquote><p>Frees the specified pairing heap.</p>
+<p>&nbsp;
+<strong>Parameters</strong>
+<br/></p>
+<ul>
+<li><code>heap</code> - The pairing heap upon which to invoke.</li>
+</ul>
+</blockquote>
+<hr/>
+
+<div class="highlight"><pre><span></span><span class="k">extern</span> <span class="kt">void</span>
+<span class="nf">pairingheap_add</span><span class="p">(</span>
+    <span class="n">pairingheap</span> <span class="o">*</span><span class="n">heap</span><span class="p">,</span>
+    <span class="n">pairingheap_node</span> <span class="o">*</span><span class="n">node</span><span class="p">);</span>
+</pre></div>
+<blockquote><p>Inserts the specified pairing heap node into the specified pairing heap, while preserving the <em>heap property</em>.
+<br/>
+<strong>Time Complexity</strong>: $O(1)$</p>
+<p>&nbsp;
+<strong>Parameters</strong>
+<br/></p>
+<ul>
+<li><code>heap</code> - The pairing heap upon which to invoke.</li>
+<li><code>node</code> - The pairing heap node to insert.</li>
+</ul>
+</blockquote>
+<hr/>
+
+<div class="highlight"><pre><span></span><span class="k">extern</span> <span class="n">pairingheap_node</span> <span class="o">*</span>
+<span class="nf">pairingheap_first</span><span class="p">(</span>
+    <span class="n">pairingheap</span> <span class="o">*</span><span class="n">heap</span><span class="p">);</span>
+</pre></div>
+<blockquote><p>Retrieves, but does not remove, the root pairing heap node of the specified pairing heap.
+<br/>
+<strong>Time Complexity</strong>: $O(1)$</p>
+<p>&nbsp;
+<strong>Parameters</strong>
+<br/></p>
+<ul>
+<li><code>heap</code> - The pairing heap upon which to invoke.</li>
+</ul>
+<p>&nbsp;
+<strong>Returns</strong>
+<br/></p>
+<ul>
+<li>The root pairing heap node of the specified pairing heap.</li>
+</ul>
+</blockquote>
+<hr/>
+
+<div class="highlight"><pre><span></span><span class="k">extern</span> <span class="n">pairingheap_node</span> <span class="o">*</span>
+<span class="nf">pairingheap_remove_first</span><span class="p">(</span>
+    <span class="n">pairingheap</span> <span class="o">*</span><span class="n">heap</span><span class="p">);</span>
+</pre></div>
+<blockquote><p>Retrieves and removes the root pairing node of the specified pairing heap.
+<br/>
+<strong>Time Complexity</strong>: $O(\log n)$</p>
+<p>&nbsp;
+<strong>Parameters</strong>
+<br/></p>
+<ul>
+<li><code>heap</code> - The pairing heap upon which to invoke.</li>
+</ul>
+<p>&nbsp;
+<strong>Returns</strong>
+<br/></p>
+<ul>
+<li>The root pairing heap node of the specified pairing heap.</li>
+</ul>
+</blockquote>
+<hr/>
+
+<div class="highlight"><pre><span></span><span class="k">extern</span> <span class="kt">void</span>
+<span class="nf">pairingheap_remove</span><span class="p">(</span>
+    <span class="n">pairingheap</span> <span class="o">*</span><span class="n">heap</span><span class="p">,</span>
+    <span class="n">pairingheap_node</span> <span class="o">*</span><span class="n">node</span><span class="p">);</span>
+</pre></div>
+<blockquote><p>Removes the specified pairing heap node from the specified pairing heap.
+<br/>
+<strong>Time Complexity</strong>: $O(\log n)$</p>
+<p>&nbsp;
+<strong>Parameters</strong>
+<br/></p>
+<ul>
+<li><code>heap</code> - The pairing heap upon which to invoke.</li>
+<li><code>node</code> - The pairing heap node to remove.</li>
+</ul>
+</blockquote>
+<hr/>
+
+<h4 id="Macros">Macros<a class="anchor-link" href="#Macros">&#182;</a></h4><table>
+<thead><tr>
+<th style="text-align:right">Macro</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right">[<code>type *</code>]<br/><strong><code>pairingheap_container()</code></strong><br/>[<em>Identifier</em>] <code>type</code>,<br/>[<em>Identifier</em>] <code>membername</code>,<br/>[<code>pairingheap_node *</code>] <code>ptr</code></td>
+<td style="text-align:left">Return the encapsulating structure of type where <code>membername</code> is the <code>pairingheap_node</code> pointed by <code>ptr</code>.</td>
+</tr>
+<tr>
+<td style="text-align:right">[<code>const type *</code>]<br/><strong><code>pairingheap_const_container()</code></strong><br/>[<em>Identifier</em>] <code>type</code>,<br/>[<em>Identifier</em>] <code>membername</code>,<br/>[<code>const pairingheap_node *</code>] <code>ptr</code></td>
+<td style="text-align:left">Return the encapsulating structure of type where <code>membername</code> is the <code>pairingheap_node</code> pointed by <code>ptr</code>.</td>
+</tr>
+<tr>
+<td style="text-align:right">[<code>void</code>]<br/><strong><code>pairingheap_reset()</code></strong><br/>[<code>pairingheap *</code>] <code>h</code></td>
+<td style="text-align:left">Resets <code>h</code>, retaining its parameters from <code>pairingheap_allocate()</code>.</td>
+</tr>
+<tr>
+<td style="text-align:right">[<code>bool</code>]<br/><strong><code>pairingheap_is_empty()</code></strong><br/>[<code>pairingheap *</code>] <code>h</code></td>
+<td style="text-align:left">Checks whether <code>h</code> is empty.</td>
+</tr>
+<tr>
+<td style="text-align:right">[<code>bool</code>]<br/><strong><code>pairingheap_is_singular()</code></strong><br/>[<code>pairingheap *</code>] <code>h</code></td>
+<td style="text-align:left">Checks whether <code>h</code> has exactly one node.</td>
+</tr>
+</tbody>
+</table>
 
 </div>
 </div>
@@ -15544,29 +16491,271 @@ If the key is not found, then <code>found</code> is set to <code>false</code> an
 <h3 id="Red-Black-Tree:-rbtree.h">Red-Black Tree: <a href="https://github.com/postgres/postgres/blob/REL_12_3/src/include/lib/rbtree.h"><code>rbtree.h</code></a><a name="6-11-Red-Black_Tree" /><a class="anchor-link" href="#Red-Black-Tree:-rbtree.h">&#182;</a></h3><ul>
 <li><a href="https://en.wikipedia.org/w/index.php?title=Red%E2%80%93black_tree&amp;oldid=968852038">Wikipedia: Red–black tree</a>.</li>
 </ul>
-<h4 id="Constants">Constants<a class="anchor-link" href="#Constants">&#182;</a></h4><p>TODO.</p>
-<h4 id="Enumerations">Enumerations<a class="anchor-link" href="#Enumerations">&#182;</a></h4><p>TODO.</p>
-<h4 id="Types">Types<a class="anchor-link" href="#Types">&#182;</a></h4><p>TODO.</p>
-<h4 id="Structures">Structures<a class="anchor-link" href="#Structures">&#182;</a></h4><p>TODO.</p>
-<h4 id="Methods">Methods<a class="anchor-link" href="#Methods">&#182;</a></h4><div class="highlight"><pre><span></span><span class="n">TODO</span><span class="p">.</span>
+<h5 id="Working-with-Red-Black-Trees">Working with Red-Black Trees<a class="anchor-link" href="#Working-with-Red-Black-Trees">&#182;</a></h5><ol>
+<li>To create a red-black tree node, inline a <code>RBTNode</code> as the <strong>FIRST FIELD</strong> in a structure.</li>
+<li>To interface with the red-black tree, call the various <code>rbt_ ## T</code> methods.</li>
+</ol>
+<h4 id="Constants">Constants<a class="anchor-link" href="#Constants">&#182;</a></h4><p><em>N/A</em>.</p>
+<h4 id="Enumerations">Enumerations<a class="anchor-link" href="#Enumerations">&#182;</a></h4><h5 id="RBTOrderControl"><code>RBTOrderControl</code><a class="anchor-link" href="#RBTOrderControl">&#182;</a></h5><table>
+<thead><tr>
+<th style="text-align:right">Enum</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right"><code>LeftRightWalk</code></td>
+<td style="text-align:left">An in-order tree iteration ordering: <em>Left Child</em>, <em>Node</em>, <em>Right Child</em>.</td>
+</tr>
+<tr>
+<td style="text-align:right"><code>RightLeftWalk</code></td>
+<td style="text-align:left">A reverse in-order tree iteration ordering: <em>Right Child</em>, <em>Node</em>, <em>Left Child</em>.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="Types">Types<a class="anchor-link" href="#Types">&#182;</a></h4><div class="highlight"><pre><span></span><span class="k">typedef</span> <span class="k">struct</span> <span class="n">RBTree</span> <span class="n">RBTree</span><span class="p">;</span>
 </pre></div>
-<blockquote><p>TODO.</p>
+<blockquote><p>A red-black binary search tree.</p>
+</blockquote>
+<hr/>
+
+<div class="highlight"><pre><span></span><span class="k">typedef</span> <span class="nf">int</span> <span class="p">(</span><span class="o">*</span><span class="n">rbt_comparator</span><span class="p">)</span> <span class="p">(</span><span class="k">const</span> <span class="n">RBTNode</span> <span class="o">*</span><span class="n">a</span><span class="p">,</span> <span class="k">const</span> <span class="n">RBTNode</span> <span class="o">*</span><span class="n">b</span><span class="p">,</span> <span class="kt">void</span> <span class="o">*</span><span class="n">arg</span><span class="p">);</span>
+</pre></div>
+<blockquote><p>A comparison function, which imposes a total ordering on some collection of keys.
+<br/>
+A comparison function must hold the following properties.
+$$
+\begin{cases}
+a &lt; b \iff&amp; \text{Comparator} &lt; 0\\
+a &gt; b \iff&amp; \text{Comparator} &gt; 0\\
+a = b \iff&amp; \text{Comparator} = 0
+\end{cases}
+$$</p>
+</blockquote>
+<hr/>
+
+<div class="highlight"><pre><span></span><span class="k">typedef</span> <span class="nf">void</span> <span class="p">(</span><span class="o">*</span><span class="n">rbt_combiner</span><span class="p">)</span> <span class="p">(</span><span class="n">RBTNode</span> <span class="o">*</span><span class="n">existing</span><span class="p">,</span> <span class="k">const</span> <span class="n">RBTNode</span> <span class="o">*</span><span class="n">newdata</span><span class="p">,</span> <span class="kt">void</span> <span class="o">*</span><span class="n">arg</span><span class="p">);</span>
+</pre></div>
+<blockquote><p>A combine function that merges an existing red-black tree node with a new red-black tree node.</p>
+</blockquote>
+<hr/>
+
+<div class="highlight"><pre><span></span><span class="k">typedef</span> <span class="n">RBTNode</span> <span class="o">*</span><span class="p">(</span><span class="o">*</span><span class="n">rbt_allocfunc</span><span class="p">)</span> <span class="p">(</span><span class="kt">void</span> <span class="o">*</span><span class="n">arg</span><span class="p">);</span>
+</pre></div>
+<blockquote><p>An allocate function for a new red-black tree node.</p>
+</blockquote>
+<hr/>
+
+<div class="highlight"><pre><span></span><span class="k">typedef</span> <span class="nf">void</span> <span class="p">(</span><span class="o">*</span><span class="n">rbt_freefunc</span><span class="p">)</span> <span class="p">(</span><span class="n">RBTNode</span> <span class="o">*</span><span class="n">x</span><span class="p">,</span> <span class="kt">void</span> <span class="o">*</span><span class="n">arg</span><span class="p">);</span>
+</pre></div>
+<blockquote><p>A free function for an old red-black tree node.</p>
+</blockquote>
+<hr/>
+
+<h4 id="Structures">Structures<a class="anchor-link" href="#Structures">&#182;</a></h4><h5 id="RBTNode"><code>RBTNode</code><a class="anchor-link" href="#RBTNode">&#182;</a></h5><table>
+<thead><tr>
+<th style="text-align:right">Field</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right"><code>char color</code></td>
+<td style="text-align:left">The color of this red-black tree node: <em>Red</em> or <em>Black</em>.</td>
+</tr>
+<tr>
+<td style="text-align:right"><code>struct RBTNode *left</code></td>
+<td style="text-align:left">The left child of this red-black tree node.</td>
+</tr>
+<tr>
+<td style="text-align:right"><code>struct RBTNode *right</code></td>
+<td style="text-align:left">The right child of this red-black tree node.</td>
+</tr>
+<tr>
+<td style="text-align:right"><code>struct RBTNode *parent</code></td>
+<td style="text-align:left">The parent of this red-black tree node.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="RBTreeIterator"><code>RBTreeIterator</code><a class="anchor-link" href="#RBTreeIterator">&#182;</a></h5><table>
+<thead><tr>
+<th style="text-align:right">Field</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right"><code>RBTree *rbt</code></td>
+<td style="text-align:left">The red-black tree backing this iterator.</td>
+</tr>
+<tr>
+<td style="text-align:right"><code>RBTNode *(*iterate) (RBTreeIterator *iter)</code></td>
+<td style="text-align:left">The iteration function used by this iterator.</td>
+</tr>
+<tr>
+<td style="text-align:right"><code>RBTNode *last_visited</code></td>
+<td style="text-align:left">A pointer to the last visited red-black tree node.</td>
+</tr>
+<tr>
+<td style="text-align:right"><code>bool is_over</code></td>
+<td style="text-align:left">A flag indicating whether the iterator is finished.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="Methods">Methods<a class="anchor-link" href="#Methods">&#182;</a></h4><div class="highlight"><pre><span></span><span class="k">extern</span> <span class="n">RBTree</span> <span class="o">*</span>
+<span class="nf">rbt_create</span><span class="p">(</span>
+    <span class="n">Size</span> <span class="n">node_size</span><span class="p">,</span>
+    <span class="n">rbt_comparator</span> <span class="n">comparator</span><span class="p">,</span>
+    <span class="n">rbt_combiner</span> <span class="n">combiner</span><span class="p">,</span>
+    <span class="n">rbt_allocfunc</span> <span class="n">allocfunc</span><span class="p">,</span>
+    <span class="n">rbt_freefunc</span> <span class="n">freefunc</span><span class="p">,</span>
+    <span class="kt">void</span> <span class="o">*</span><span class="n">arg</span><span class="p">);</span>
+</pre></div>
+<blockquote><p>Allocates an empty red-black tree with the specified comparator, combiner, allocate, and free functions and argument.</p>
 <p>&nbsp;
 <strong>Parameters</strong>
 <br/></p>
 <ul>
-<li><code>TODO</code> - TODO.</li>
+<li><code>node_size</code> - The size of the red-black tree node. It must be greater than <code>sizeof(RBTNode)</code>.</li>
+<li><code>comparator</code> - The comparator that will be used to order this red-black tree.</li>
+<li><code>combiner</code> - The combiner that will be used to merge this red-black tree with a new red-black tree.</li>
+<li><code>allocfunc</code> - The allocate function used to allocate a new red-black tree node.</li>
+<li><code>freefunc</code> - The free function used to free an old red-black tree node.</li>
+<li><code>arg</code> - The argument that will be supplied to invocations of all the callback functions.</li>
 </ul>
 <p>&nbsp;
 <strong>Returns</strong>
 <br/></p>
 <ul>
-<li>TODO.</li>
+<li>The red-black tree.</li>
 </ul>
 </blockquote>
 <hr/>
 
-<h4 id="Macros">Macros<a class="anchor-link" href="#Macros">&#182;</a></h4><p>TODO.</p>
+<div class="highlight"><pre><span></span><span class="k">extern</span> <span class="n">RBTNode</span> <span class="o">*</span>
+<span class="nf">rbt_find</span><span class="p">(</span>
+    <span class="n">RBTree</span> <span class="o">*</span><span class="n">rbt</span><span class="p">,</span>
+    <span class="k">const</span> <span class="n">RBTNode</span> <span class="o">*</span><span class="n">data</span><span class="p">);</span>
+</pre></div>
+<blockquote><p>Search for the specified data in the specified red-black tree.</p>
+<p>&nbsp;
+<strong>Parameters</strong>
+<br/></p>
+<ul>
+<li><code>rbt</code> - The red-black tree upon which to invoke.</li>
+<li><code>data</code> - The data for which to search. The <code>RBTNode</code> fields do not need to be valid.</li>
+</ul>
+<p>&nbsp;
+<strong>Returns</strong>
+<br/></p>
+<ul>
+<li>A pointer to a red-black tree node if one can be found with the specified data.</li>
+<li><code>NULL</code> if no red-black tree node can be found with the specified data.</li>
+</ul>
+</blockquote>
+<hr/>
+
+<div class="highlight"><pre><span></span><span class="k">extern</span> <span class="n">RBTNode</span> <span class="o">*</span>
+<span class="nf">rbt_leftmost</span><span class="p">(</span>
+    <span class="n">RBTree</span> <span class="o">*</span><span class="n">rbt</span><span class="p">);</span>
+</pre></div>
+<blockquote><p>Returns the leftmost (smallest) red-black tree node.</p>
+<p>&nbsp;
+<strong>Parameters</strong>
+<br/></p>
+<ul>
+<li><code>rbt</code> - The red-black tree upon which to invoke.</li>
+</ul>
+<p>&nbsp;
+<strong>Returns</strong>
+<br/></p>
+<ul>
+<li>A pointer to the leftmost red-black tree node if one can be found.</li>
+<li><code>NULL</code> if no leftmost red-black tree node can be found.</li>
+</ul>
+</blockquote>
+<hr/>
+
+<div class="highlight"><pre><span></span><span class="k">extern</span> <span class="n">RBTNode</span> <span class="o">*</span>
+<span class="nf">rbt_insert</span><span class="p">(</span>
+    <span class="n">RBTree</span> <span class="o">*</span><span class="n">rbt</span><span class="p">,</span>
+    <span class="k">const</span> <span class="n">RBTNode</span> <span class="o">*</span><span class="n">data</span><span class="p">,</span>
+    <span class="kt">bool</span> <span class="o">*</span><span class="n">isNew</span><span class="p">);</span>
+</pre></div>
+<blockquote><p>Inserts the specified data into the specified red-black tree.</p>
+<p>&nbsp;
+<strong>Parameters</strong>
+<br/></p>
+<ul>
+<li><code>rbt</code> - The red-black tree upon which to invoke.</li>
+<li><code>data</code> - The data for which to insert. The <code>RBTNode</code> fields do not need to be valid.</li>
+<li><code>isNew</code> - An output flag indicating whether the returned pointer references an existing or newly created red-black tree node.</li>
+</ul>
+<p>&nbsp;
+<strong>Returns</strong>
+<br/></p>
+<ul>
+<li>A pointer to an existing or newly created red-black tree node.</li>
+</ul>
+</blockquote>
+<hr/>
+
+<div class="highlight"><pre><span></span><span class="k">extern</span> <span class="kt">void</span>
+<span class="nf">rbt_delete</span><span class="p">(</span>
+    <span class="n">RBTree</span> <span class="o">*</span><span class="n">rbt</span><span class="p">,</span>
+    <span class="n">RBTNode</span> <span class="o">*</span><span class="n">node</span><span class="p">);</span>
+</pre></div>
+<blockquote><p>Removes the specified red-black tree node.</p>
+<p>&nbsp;
+<strong>Parameters</strong>
+<br/></p>
+<ul>
+<li><code>rbt</code> - The red-black tree upon which to invoke.</li>
+<li><code>node</code> - The red-black tree node to delete.</li>
+</ul>
+</blockquote>
+<hr/>
+
+<div class="highlight"><pre><span></span><span class="k">extern</span> <span class="kt">void</span>
+<span class="nf">rbt_begin_iterate</span><span class="p">(</span>
+    <span class="n">RBTree</span> <span class="o">*</span><span class="n">rbt</span><span class="p">,</span>
+    <span class="n">RBTOrderControl</span> <span class="n">ctrl</span><span class="p">,</span>
+    <span class="n">RBTreeIterator</span> <span class="o">*</span><span class="n">iter</span><span class="p">);</span>
+</pre></div>
+<blockquote><p>Initializes a traversal of the specified red-black tree.</p>
+<p>&nbsp;
+<strong>Parameters</strong>
+<br/></p>
+<ul>
+<li><code>rbt</code> - The red-black tree upon which to invoke.</li>
+<li><code>ctrl</code> - The ordering by which the traversal should be executed.</li>
+<li><code>iter</code> - The red-black tree iterator state backing the traversal.</li>
+</ul>
+</blockquote>
+<hr/>
+
+<div class="highlight"><pre><span></span><span class="k">extern</span> <span class="n">RBTNode</span> <span class="o">*</span>
+<span class="nf">rbt_iterate</span><span class="p">(</span>
+    <span class="n">RBTreeIterator</span> <span class="o">*</span><span class="n">iter</span><span class="p">);</span>
+</pre></div>
+<blockquote><p>Returns the next red-black tree node according to the specified red-black tree iterator.</p>
+<p>&nbsp;
+<strong>Parameters</strong>
+<br/></p>
+<ul>
+<li><code>iter</code> - The red-black iterator state backing the traversal.</li>
+</ul>
+<p>&nbsp;
+<strong>Returns</strong>
+<br/></p>
+<ul>
+<li>A pointer to the next red-black tree node if one can be found.</li>
+<li><code>NULL</code> if no next red-black tree node can be found.</li>
+</ul>
+</blockquote>
+<hr/>
+
+<h4 id="Macros">Macros<a class="anchor-link" href="#Macros">&#182;</a></h4><p><em>N/A</em>.</p>
 
 </div>
 </div>
@@ -15574,65 +16763,586 @@ If the key is not found, then <code>found</code> is set to <code>false</code> an
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Macro-Generated,-Simple-Hash-Table:-simplehash.h">Macro-Generated, Simple Hash Table: <a href="https://github.com/postgres/postgres/blob/REL_12_3/src/include/lib/simplehash.h"><code>simplehash.h</code></a><a name="6-12-Macro-Generated_Simple_Hash_Table" /><a class="anchor-link" href="#Macro-Generated,-Simple-Hash-Table:-simplehash.h">&#182;</a></h3><ul>
-<li><a href="https://en.wikipedia.org/w/index.php?title=Hash_table&amp;oldid=967104555">Wikipedia: Hash table</a>.</li>
-</ul>
-<h4 id="Constants">Constants<a class="anchor-link" href="#Constants">&#182;</a></h4><p>TODO.</p>
-<h4 id="Enumerations">Enumerations<a class="anchor-link" href="#Enumerations">&#182;</a></h4><p>TODO.</p>
-<h4 id="Types">Types<a class="anchor-link" href="#Types">&#182;</a></h4><p>TODO.</p>
-<h4 id="Structures">Structures<a class="anchor-link" href="#Structures">&#182;</a></h4><p>TODO.</p>
-<h4 id="Methods">Methods<a class="anchor-link" href="#Methods">&#182;</a></h4><div class="highlight"><pre><span></span><span class="n">TODO</span><span class="p">.</span>
-</pre></div>
-<blockquote><p>TODO.</p>
-<p>&nbsp;
-<strong>Parameters</strong>
-<br/></p>
-<ul>
-<li><code>TODO</code> - TODO.</li>
-</ul>
-<p>&nbsp;
-<strong>Returns</strong>
-<br/></p>
-<ul>
-<li>TODO.</li>
-</ul>
-</blockquote>
-<hr/>
-
-<h4 id="Macros">Macros<a class="anchor-link" href="#Macros">&#182;</a></h4><p>TODO.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Extensible-String:-stringinfo.h">Extensible String: <a href="https://github.com/postgres/postgres/blob/REL_12_3/src/include/lib/stringinfo.h"><code>stringinfo.h</code></a><a name="6-13-Extensible_String" /><a class="anchor-link" href="#Extensible-String:-stringinfo.h">&#182;</a></h3><ul>
+<h3 id="Extensible-String:-stringinfo.h">Extensible String: <a href="https://github.com/postgres/postgres/blob/REL_12_3/src/include/lib/stringinfo.h"><code>stringinfo.h</code></a><a name="6-12-Extensible_String" /><a class="anchor-link" href="#Extensible-String:-stringinfo.h">&#182;</a></h3><ul>
 <li><a href="https://en.wikipedia.org/w/index.php?title=String_(computer_science">Wikipedia: String (computer science)</a>&amp;oldid=968175773).</li>
 </ul>
-<h4 id="Constants">Constants<a class="anchor-link" href="#Constants">&#182;</a></h4><p>TODO.</p>
-<h4 id="Enumerations">Enumerations<a class="anchor-link" href="#Enumerations">&#182;</a></h4><p>TODO.</p>
-<h4 id="Types">Types<a class="anchor-link" href="#Types">&#182;</a></h4><p>TODO.</p>
-<h4 id="Structures">Structures<a class="anchor-link" href="#Structures">&#182;</a></h4><p>TODO.</p>
-<h4 id="Methods">Methods<a class="anchor-link" href="#Methods">&#182;</a></h4><div class="highlight"><pre><span></span><span class="n">TODO</span><span class="p">.</span>
+<h4 id="Constants">Constants<a class="anchor-link" href="#Constants">&#182;</a></h4><p><em>N/A</em>.</p>
+<h4 id="Enumerations">Enumerations<a class="anchor-link" href="#Enumerations">&#182;</a></h4><p><em>N/A</em>.</p>
+<h4 id="Types">Types<a class="anchor-link" href="#Types">&#182;</a></h4><div class="highlight"><pre><span></span><span class="k">typedef</span> <span class="n">StringInfoData</span> <span class="o">*</span><span class="n">StringInfo</span><span class="p">;</span>
 </pre></div>
-<blockquote><p>TODO.</p>
+<blockquote><p>A pointer type to an extensible string.</p>
+</blockquote>
+<hr/>
+
+<h4 id="Structures">Structures<a class="anchor-link" href="#Structures">&#182;</a></h4><h5 id="StringInfoData"><code>StringInfoData</code><a class="anchor-link" href="#StringInfoData">&#182;</a></h5><table>
+<thead><tr>
+<th style="text-align:right">Field</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right"><code>char *data</code></td>
+<td style="text-align:left">The current buffer allocated for this extensible string.</td>
+</tr>
+<tr>
+<td style="text-align:right"><code>int len</code></td>
+<td style="text-align:left">The current length, in bytes, of this extensible string.</td>
+</tr>
+<tr>
+<td style="text-align:right"><code>int maxLen</code></td>
+<td style="text-align:left">The max length, in bytes, of this extensible string, currently bounded by the buffer size.</td>
+</tr>
+<tr>
+<td style="text-align:right"><code>int cursor</code></td>
+<td style="text-align:left">An internal state used by methods related to an extensible string.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="Methods">Methods<a class="anchor-link" href="#Methods">&#182;</a></h4><div class="highlight"><pre><span></span><span class="k">extern</span> <span class="n">StringInfo</span>
+<span class="nf">makeStringInfo</span><span class="p">(</span><span class="kt">void</span><span class="p">);</span>
+</pre></div>
+<blockquote><p>Allocates an empty extensible string.</p>
+<p>&nbsp;
+<strong>Returns</strong>
+<br/></p>
+<ul>
+<li>The extensible string.</li>
+</ul>
+</blockquote>
+<hr/>
+
+<div class="highlight"><pre><span></span><span class="k">extern</span> <span class="kt">void</span>
+<span class="nf">initStringInfo</span><span class="p">(</span>
+    <span class="n">StringInfo</span> <span class="n">str</span><span class="p">);</span>
+</pre></div>
+<blockquote><p>Initializes an <code>undefined</code> extensible string to be empty.</p>
 <p>&nbsp;
 <strong>Parameters</strong>
 <br/></p>
 <ul>
-<li><code>TODO</code> - TODO.</li>
+<li><code>str</code> - The extensible string upon which to invoke.</li>
+</ul>
+</blockquote>
+<hr/>
+
+<div class="highlight"><pre><span></span><span class="k">extern</span> <span class="kt">void</span>
+<span class="nf">resetStringInfo</span><span class="p">(</span>
+    <span class="n">StringInfo</span> <span class="n">str</span><span class="p">);</span>
+</pre></div>
+<blockquote><p>Resets the specified extensible string.</p>
+<p>&nbsp;
+<strong>Parameters</strong>
+<br/></p>
+<ul>
+<li><code>str</code> - The extensible string upon which to invoke.</li>
+</ul>
+</blockquote>
+<hr/>
+
+<div class="highlight"><pre><span></span><span class="k">extern</span> <span class="kt">void</span>
+<span class="nf">appendStringInfo</span><span class="p">(</span>
+    <span class="n">StringInfo</span> <span class="n">str</span><span class="p">,</span>
+    <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">fmt</span><span class="p">,...)</span> <span class="n">pg_attribute_printf</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span>
+</pre></div>
+<blockquote><p>Appends the specified formatted string to the specified extensible string.
+<br/>
+<strong>Warning</strong>: If the specified extensible string does not have enough memory, then it will allocate more memory.</p>
+<p>&nbsp;
+<strong>Parameters</strong>
+<br/></p>
+<ul>
+<li><code>str</code> - The extensible string upon which to invoke.</li>
+<li><code>fmt, ...</code> - An <code>sprintf</code>-style format string and arguments.</li>
+</ul>
+</blockquote>
+<hr/>
+
+<div class="highlight"><pre><span></span><span class="k">extern</span> <span class="kt">int</span>
+<span class="nf">appendStringInfoVA</span><span class="p">(</span>
+    <span class="n">StringInfo</span> <span class="n">str</span><span class="p">,</span>
+    <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">fmt</span><span class="p">,</span>
+    <span class="kt">va_list</span> <span class="n">args</span><span class="p">)</span> <span class="n">pg_attribute_printf</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+</pre></div>
+<blockquote><p>Appends the specified formatted string to the specified extensible string.
+<br/>
+<strong>Warning</strong>: If the specified extensible string does not have enough memory, then it will not allocate more memory.</p>
+<p>&nbsp;
+<strong>Parameters</strong>
+<br/></p>
+<ul>
+<li><code>str</code> - The extensible string upon which to invoke.</li>
+<li><code>fmt, ...</code> - An <code>sprintf</code>-style format string.</li>
+<li><code>args</code> - The arguments for the format string.</li>
 </ul>
 <p>&nbsp;
 <strong>Returns</strong>
 <br/></p>
 <ul>
-<li>TODO.</li>
+<li>$0$ if the specified format string was appended.</li>
+<li>$&gt;0$ if the specified format string was not appended because of insufficient memory. The returned value is an estimate of the required additional memory.</li>
 </ul>
 </blockquote>
 <hr/>
 
-<h4 id="Macros">Macros<a class="anchor-link" href="#Macros">&#182;</a></h4><p>TODO.</p>
+<div class="highlight"><pre><span></span><span class="k">extern</span> <span class="kt">void</span>
+<span class="nf">appendStringInfoString</span><span class="p">(</span>
+    <span class="n">StringInfo</span> <span class="n">str</span><span class="p">,</span>
+    <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">s</span><span class="p">);</span>
+</pre></div>
+<blockquote><p>Appends the specified null-terminated string to the specified extensible string.</p>
+<p>&nbsp;
+<strong>Parameters</strong>
+<br/></p>
+<ul>
+<li><code>str</code> - The extensible string upon which to invoke.</li>
+<li><code>s</code> - The null-terminated string to append.</li>
+</ul>
+</blockquote>
+<hr/>
+
+<div class="highlight"><pre><span></span><span class="k">extern</span> <span class="kt">void</span>
+<span class="nf">appendStringInfoChar</span><span class="p">(</span>
+    <span class="n">StringInfo</span> <span class="n">str</span><span class="p">,</span>
+    <span class="kt">char</span> <span class="n">ch</span><span class="p">);</span>
+</pre></div>
+<blockquote><p>Appends the specified character to the specified extensible string.</p>
+<p>&nbsp;
+<strong>Parameters</strong>
+<br/></p>
+<ul>
+<li><code>str</code> - The extensible string upon which to invoke.</li>
+<li><code>ch</code> - The character to append.</li>
+</ul>
+</blockquote>
+<hr/>
+
+<div class="highlight"><pre><span></span><span class="k">extern</span> <span class="kt">void</span>
+<span class="nf">appendStringInfoSpaces</span><span class="p">(</span>
+    <span class="n">StringInfo</span> <span class="n">str</span><span class="p">,</span>
+    <span class="kt">int</span> <span class="n">count</span><span class="p">);</span>
+</pre></div>
+<blockquote><p>Appends the specified number of spaces to the specified extensible string.</p>
+<p>&nbsp;
+<strong>Parameters</strong>
+<br/></p>
+<ul>
+<li><code>str</code> - The extensible string upon which to invoke.</li>
+<li><code>count</code> - The number of spaces to append.</li>
+</ul>
+</blockquote>
+<hr/>
+
+<div class="highlight"><pre><span></span><span class="k">extern</span> <span class="kt">void</span>
+<span class="nf">appendBinaryStringInfo</span><span class="p">(</span>
+    <span class="n">StringInfo</span> <span class="n">str</span><span class="p">,</span>
+    <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">data</span><span class="p">,</span>
+    <span class="kt">int</span> <span class="n">datalen</span><span class="p">);</span>
+</pre></div>
+<blockquote><p>Appends an arbitrary binary string to the specified extensible string.</p>
+<p>&nbsp;
+<strong>Parameters</strong>
+<br/></p>
+<ul>
+<li><code>str</code> - The extensible string upon which to invoke.</li>
+<li><code>data</code> - The arbitrary binary string to append.</li>
+<li><code>datalen</code> - The length of the arbitrary binary string.</li>
+</ul>
+</blockquote>
+<hr/>
+
+<div class="highlight"><pre><span></span><span class="k">extern</span> <span class="kt">void</span>
+<span class="nf">appendBinaryStringInfoNT</span><span class="p">(</span>
+    <span class="n">StringInfo</span> <span class="n">str</span><span class="p">,</span>
+    <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">data</span><span class="p">,</span>
+    <span class="kt">int</span> <span class="n">datalen</span><span class="p">);</span>
+</pre></div>
+<blockquote><p>Appends an arbitrary binary string to the specified extensible string.
+<br/>
+<strong>Warning</strong>: This method does not ensure that a trailing null-byte exists.</p>
+<p>&nbsp;
+<strong>Parameters</strong>
+<br/></p>
+<ul>
+<li><code>str</code> - The extensible string upon which to invoke.</li>
+<li><code>data</code> - The arbitrary binary string to append.</li>
+<li><code>datalen</code> - The length of the arbitrary binary string.</li>
+</ul>
+</blockquote>
+<hr/>
+
+<div class="highlight"><pre><span></span><span class="k">extern</span> <span class="kt">void</span>
+<span class="nf">enlargeStringInfo</span><span class="p">(</span>
+    <span class="n">StringInfo</span> <span class="n">str</span><span class="p">,</span>
+    <span class="kt">int</span> <span class="n">needed</span><span class="p">);</span>
+</pre></div>
+<blockquote><p>Enlarges the specified extensible string's buffer by the specified number of bytes.</p>
+<p>&nbsp;
+<strong>Parameters</strong>
+<br/></p>
+<ul>
+<li><code>str</code> - The extensible string upon which to invoke.</li>
+<li><code>needed</code> - The number of bytes needed.</li>
+</ul>
+</blockquote>
+<hr/>
+
+<h4 id="Macros">Macros<a class="anchor-link" href="#Macros">&#182;</a></h4><table>
+<thead><tr>
+<th style="text-align:right">Macro</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right">[<code>void</code>]<br/><strong><code>appendStringInfoCharMacro()</code></strong><br/>[<code>StringInfo</code>] <code>str</code>,<br/>[<code>char</code>] <code>ch</code></td>
+<td style="text-align:left">Appends <code>ch</code> to <code>str</code>, minimizing function calls, yet requiring multiple evaluations of <code>str</code>.</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Macro-Generated,-Simple-Hash-Table:-simplehash.h">Macro-Generated, Simple Hash Table: <a href="https://github.com/postgres/postgres/blob/REL_12_3/src/include/lib/simplehash.h"><code>simplehash.h</code></a><a name="6-13-Macro-Generated_Simple_Hash_Table" /><a class="anchor-link" href="#Macro-Generated,-Simple-Hash-Table:-simplehash.h">&#182;</a></h3><ul>
+<li><a href="https://en.wikipedia.org/w/index.php?title=Hash_table&amp;oldid=967104555">Wikipedia: Hash table</a>.</li>
+</ul>
+<h5 id="Working-with-Macro-Generated,-Simple-Hash-Tables">Working with Macro-Generated, Simple Hash Tables<a class="anchor-link" href="#Working-with-Macro-Generated,-Simple-Hash-Tables">&#182;</a></h5><ol>
+<li>To generate a simple hash table for a specified type, declare all the relevant <code>#define</code> macros and the final <code>#include "lib/simplehash.h"</code> macro.</li>
+<li>To interface with the simple hash table, call the various <code>SH_PREFIX ## _T</code> methods.</li>
+</ol>
+<h4 id="Constants">Constants<a class="anchor-link" href="#Constants">&#182;</a></h4><p><em>N/A</em>.</p>
+<h4 id="Enumerations">Enumerations<a class="anchor-link" href="#Enumerations">&#182;</a></h4><h5 id="SH_PREFIX-##-_status"><code>SH_PREFIX ## _status</code><a class="anchor-link" href="#SH_PREFIX-##-_status">&#182;</a></h5><table>
+<thead><tr>
+<th style="text-align:right">Enum</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right"><code>SH_PREFIX ## _EMPTY</code></td>
+<td style="text-align:left">An internal flag indicating whether a bucket is empty.</td>
+</tr>
+<tr>
+<td style="text-align:right"><code>SH_PREFIX ## _IN_USE</code></td>
+<td style="text-align:left">An internal flag indicating whether a bucket is in use.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="Types">Types<a class="anchor-link" href="#Types">&#182;</a></h4><p><em>N/A</em>.</p>
+<h4 id="Structures">Structures<a class="anchor-link" href="#Structures">&#182;</a></h4><h5 id="SH_PREFIX-##-_hash"><code>SH_PREFIX ## _hash</code><a class="anchor-link" href="#SH_PREFIX-##-_hash">&#182;</a></h5><table>
+<thead><tr>
+<th style="text-align:right">Field</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right"><code>uint64 size</code></td>
+<td style="text-align:left">The maximum number of buckets currently allocated.</td>
+</tr>
+<tr>
+<td style="text-align:right"><code>uint32 members</code></td>
+<td style="text-align:left">The current number of buckets currently in use.</td>
+</tr>
+<tr>
+<td style="text-align:right"><code>uint32 sizemask</code></td>
+<td style="text-align:left">An internal mask for bucket and size calculations.</td>
+</tr>
+<tr>
+<td style="text-align:right"><code>uint32 grow_threshold</code></td>
+<td style="text-align:left">An internal threshold after which the hash table is grown.</td>
+</tr>
+<tr>
+<td style="text-align:right"><code>SH_ELEMENT_TYPE *data</code></td>
+<td style="text-align:left">The buckets backing this hash table.</td>
+</tr>
+<tr>
+<td style="text-align:right"><code>MemoryContext ctx</code></td>
+<td style="text-align:left">The memory context backing this hash table.</td>
+</tr>
+<tr>
+<td style="text-align:right"><code>void *private_data</code></td>
+<td style="text-align:left">A user-defined data to be stored with this hash table.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="SH_PREFIX-##-_iterator"><code>SH_PREFIX ## _iterator</code><a class="anchor-link" href="#SH_PREFIX-##-_iterator">&#182;</a></h5><table>
+<thead><tr>
+<th style="text-align:right">Field</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right"><code>uint32 cur</code></td>
+<td style="text-align:left">An index to the current element in an immutable iterator of a hash table.</td>
+</tr>
+<tr>
+<td style="text-align:right"><code>uint32 end</code></td>
+<td style="text-align:left">An index to the last element in an immutable iterator of a hash table.</td>
+</tr>
+<tr>
+<td style="text-align:right"><code>bool done</code></td>
+<td style="text-align:left">A flag indicating whether the iterator is finished.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="Methods">Methods<a class="anchor-link" href="#Methods">&#182;</a></h4><div class="highlight"><pre><span></span><span class="n">SH_SCOPE</span> <span class="n">SH_PREFIX</span> <span class="err">##</span> <span class="n">_hash</span> <span class="o">*</span>
+<span class="n">SH_PREFIX</span> <span class="err">##</span> <span class="n">_create</span><span class="p">(</span>
+    <span class="n">MemoryContext</span> <span class="n">ctx</span><span class="p">,</span>
+    <span class="n">uint32</span> <span class="n">nelements</span><span class="p">,</span>
+    <span class="kt">void</span> <span class="o">*</span><span class="n">private_data</span><span class="p">);</span>
+</pre></div>
+<blockquote><p>Allocates an empty hash table with the specified initial capacity, memory context, and argument.</p>
+<p>&nbsp;
+<strong>Parameters</strong>
+<br/></p>
+<ul>
+<li><code>ctx</code> - The memory context backing this hash table.</li>
+<li><code>nelements</code> - The initial capacity of this hash table.</li>
+<li><code>private_data</code> - A user-defined data to be stored with this hash table.</li>
+</ul>
+<p>&nbsp;
+<strong>Returns</strong>
+<br/></p>
+<ul>
+<li>The hash table.</li>
+</ul>
+</blockquote>
+<hr/>
+
+<div class="highlight"><pre><span></span><span class="n">SH_SCOPE</span> <span class="kt">void</span>
+<span class="n">SH_PREFIX</span> <span class="err">##</span> <span class="n">_destroy</span><span class="p">(</span>
+    <span class="n">SH_PREFIX</span> <span class="err">##</span> <span class="n">_hash</span> <span class="o">*</span><span class="n">tb</span><span class="p">);</span>
+</pre></div>
+<blockquote><p>Destroys the specified hash table.</p>
+<p>&nbsp;
+<strong>Parameters</strong>
+<br/></p>
+<ul>
+<li><code>tb</code> - The hash table upon which to invoke.</li>
+</ul>
+</blockquote>
+<hr/>
+
+<div class="highlight"><pre><span></span><span class="n">SH_SCOPE</span> <span class="kt">void</span>
+<span class="n">SH_PREFIX</span> <span class="err">##</span> <span class="n">_reset</span><span class="p">(</span>
+    <span class="n">SH_PREFIX</span> <span class="err">##</span> <span class="n">_hash</span> <span class="o">*</span><span class="n">tb</span><span class="p">);</span>
+</pre></div>
+<blockquote><p>Resets the specified hash table, retaining its parameters from <code>SH_PREFIX ## _create()</code>.</p>
+<p>&nbsp;
+<strong>Parameters</strong>
+<br/></p>
+<ul>
+<li><code>tb</code> - The hash table upon which to invoke.</li>
+</ul>
+</blockquote>
+<hr/>
+
+<div class="highlight"><pre><span></span><span class="n">SH_SCOPE</span> <span class="kt">void</span>
+<span class="n">SH_PREFIX</span> <span class="err">##</span> <span class="n">_grow</span><span class="p">(</span>
+    <span class="n">SH_PREFIX</span> <span class="err">##</span> <span class="n">_hash</span> <span class="o">*</span><span class="n">tb</span><span class="p">,</span>
+    <span class="n">uint32</span> <span class="n">newsize</span><span class="p">);</span>
+</pre></div>
+<blockquote><p>Increases the size of the specified hash table to support the specified number of buckets.</p>
+<p>&nbsp;
+<strong>Parameters</strong>
+<br/></p>
+<ul>
+<li><code>tb</code> - The hash table upon which to invoke.</li>
+<li><code>newsize</code> - The minimum number of buckets the hash table should support.</li>
+</ul>
+</blockquote>
+<hr/>
+
+<div class="highlight"><pre><span></span><span class="n">SH_SCOPE</span> <span class="n">SH_ELEMENT_TYPE</span> <span class="o">*</span>
+<span class="n">SH_PREFIX</span> <span class="err">##</span> <span class="n">_insert</span><span class="p">(</span>
+    <span class="n">SH_PREFIX</span> <span class="err">##</span> <span class="n">_hash</span> <span class="o">*</span><span class="n">tb</span><span class="p">,</span>
+    <span class="n">SH_KEY_TYPE</span> <span class="n">key</span><span class="p">,</span>
+    <span class="kt">bool</span> <span class="o">*</span><span class="n">found</span><span class="p">);</span>
+</pre></div>
+<blockquote><p>Inserts the specified key into the specified hash table.</p>
+<p>&nbsp;
+<strong>Parameters</strong>
+<br/></p>
+<ul>
+<li><code>tb</code> - The hash table upon which to invoke.</li>
+<li><code>key</code> - The key to insert.</li>
+<li><code>found</code> - An output flag indicating whether the key already exists.</li>
+</ul>
+<p>&nbsp;
+<strong>Returns</strong>
+<br/></p>
+<ul>
+<li>A pointer to a hash table entry for the specified key.</li>
+</ul>
+</blockquote>
+<hr/>
+
+<div class="highlight"><pre><span></span><span class="n">SH_SCOPE</span> <span class="n">SH_ELEMENT_TYPE</span> <span class="o">*</span>
+<span class="n">SH_PREFIX</span> <span class="err">##</span> <span class="n">_lookup</span><span class="p">(</span>
+    <span class="n">SH_PREFIX</span> <span class="err">##</span> <span class="n">_hash</span> <span class="o">*</span><span class="n">tb</span><span class="p">,</span>
+    <span class="n">SH_KEY_TYPE</span> <span class="n">key</span><span class="p">);</span>
+</pre></div>
+<blockquote><p>Retrieves a hash table entry for the specified key.</p>
+<p>&nbsp;
+<strong>Parameters</strong>
+<br/></p>
+<ul>
+<li><code>tb</code> - The hash table upon which to invoke.</li>
+<li><code>key</code> - The key for which to retrieve.</li>
+</ul>
+<p>&nbsp;
+<strong>Returns</strong>
+<br/></p>
+<ul>
+<li>A pointer to a hash table entry if one can be found with the specified key.</li>
+<li><code>NULL</code> if no hash table entry can be found with the specified key.</li>
+</ul>
+</blockquote>
+<hr/>
+
+<div class="highlight"><pre><span></span><span class="n">SH_SCOPE</span> <span class="kt">bool</span>
+<span class="n">SH_PREFIX</span> <span class="err">##</span> <span class="n">_delete</span><span class="p">(</span>
+    <span class="n">SH_PREFIX</span> <span class="err">##</span> <span class="n">_hash</span> <span class="o">*</span><span class="n">tb</span><span class="p">,</span>
+    <span class="n">SH_KEY_TYPE</span> <span class="n">key</span><span class="p">);</span>
+</pre></div>
+<blockquote><p>Removes a hash table entry by the specified key.</p>
+<p>&nbsp;
+<strong>Parameters</strong>
+<br/></p>
+<ul>
+<li><code>tb</code> - The hash table upon which to invoke.</li>
+<li><code>key</code> - The key for which to remove.</li>
+</ul>
+<p>&nbsp;
+<strong>Returns</strong>
+<br/></p>
+<ul>
+<li><code>true</code> if a hash table entry was deleted with the specified key.</li>
+<li><code>false</code> if a hash table entry was not deleted with the specified key.</li>
+</ul>
+</blockquote>
+<hr/>
+
+<div class="highlight"><pre><span></span><span class="n">SH_SCOPE</span> <span class="kt">void</span>
+<span class="n">SH_PREFIX</span> <span class="err">##</span> <span class="n">_start_iterate</span><span class="p">(</span>
+    <span class="n">SH_PREFIX</span> <span class="err">##</span> <span class="n">_hash</span> <span class="o">*</span><span class="n">tb</span><span class="p">,</span>
+    <span class="n">SH_PREFIX</span> <span class="err">##</span> <span class="n">_iterator</span> <span class="o">*</span><span class="n">iter</span><span class="p">);</span>
+</pre></div>
+<blockquote><p>Initializes a backwards scan of the specified hash table.</p>
+<p>&nbsp;
+<strong>Parameters</strong>
+<br/></p>
+<ul>
+<li><code>tb</code> - The hash table upon which to invoke.</li>
+<li><code>iter</code> - The hash table iterator state backing the iteration.</li>
+</ul>
+</blockquote>
+<hr/>
+
+<div class="highlight"><pre><span></span><span class="n">SH_SCOPE</span> <span class="kt">void</span>
+<span class="n">SH_PREFIX</span> <span class="err">##</span> <span class="n">_start_iterate_at</span><span class="p">(</span>
+    <span class="n">SH_PREFIX</span> <span class="err">##</span> <span class="n">_hash</span> <span class="o">*</span><span class="n">tb</span><span class="p">,</span>
+    <span class="n">SH_PREFIX</span> <span class="err">##</span> <span class="n">_iterator</span> <span class="o">*</span><span class="n">iter</span><span class="p">,</span>
+    <span class="n">uint32</span> <span class="n">at</span><span class="p">);</span>
+</pre></div>
+<blockquote><p>Initializes a backwards scan of the specified hash table at the specified bucket index.</p>
+<p>&nbsp;
+<strong>Parameters</strong>
+<br/></p>
+<ul>
+<li><code>tb</code> - The hash table upon which to invoke.</li>
+<li><code>iter</code> - The hash table iterator state backing the iteration.</li>
+<li><code>at</code> - The bucket index at which the iteration should start.</li>
+</ul>
+</blockquote>
+<hr/>
+
+<div class="highlight"><pre><span></span><span class="n">SH_SCOPE</span> <span class="n">SH_ELEMENT_TYPE</span> <span class="o">*</span>
+<span class="n">SH_PREFIX</span> <span class="err">##</span> <span class="n">_iterate</span><span class="p">(</span>
+    <span class="n">SH_PREFIX</span> <span class="err">##</span> <span class="n">_hash</span> <span class="o">*</span><span class="n">tb</span><span class="p">,</span>
+    <span class="n">SH_PREFIX</span> <span class="err">##</span> <span class="n">_iterator</span> <span class="o">*</span><span class="n">iter</span><span class="p">);</span>
+</pre></div>
+<blockquote><p>Returns the next in-use bucket according to the specified hash table iterator.</p>
+<p>&nbsp;
+<strong>Parameters</strong>
+<br/></p>
+<ul>
+<li><code>tb</code> - The hash table upon which to invoke.</li>
+<li><code>iter</code> - The hash table iterator state backing the iteration.</li>
+</ul>
+<p>&nbsp;
+<strong>Returns</strong>
+<br/></p>
+<ul>
+<li>A pointer to a hash table entry if one can be found.</li>
+<li><code>NULL</code> if no hash table entry can be found.</li>
+</ul>
+</blockquote>
+<hr/>
+
+<h4 id="Macros">Macros<a class="anchor-link" href="#Macros">&#182;</a></h4><table>
+<thead><tr>
+<th style="text-align:right">Macro</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right"><code>#define SH_USE_NONDEFAULT_ALLOCATOR</code></td>
+<td style="text-align:left"><strong>Optional</strong>: If defined, no hash table element allocator functions are defined. Thus, the user must supply their own.</td>
+</tr>
+<tr>
+<td style="text-align:right"><code>#define SH_PREFIX</code></td>
+<td style="text-align:left"><strong>Required</strong>: The prefix for all generated symbol names for the hash table.</td>
+</tr>
+<tr>
+<td style="text-align:right"><code>#define SH_ELEMENT_TYPE</code></td>
+<td style="text-align:left"><strong>Required</strong>: The type of contained elements.</td>
+</tr>
+<tr>
+<td style="text-align:right"><code>#define SH_KEY_TYPE</code></td>
+<td style="text-align:left"><strong>Required</strong>: The type of contained keys.</td>
+</tr>
+<tr>
+<td style="text-align:right"><code>#define SH_KEY</code></td>
+<td style="text-align:left"><strong>Required</strong>: The name of the field in <code>SH_ELEMENT_TYPE</code> containing the key.</td>
+</tr>
+<tr>
+<td style="text-align:right"><code>#define SH_EQUAL(tb, a, b)</code></td>
+<td style="text-align:left"><strong>Required</strong>: Compares the hash table keys <code>a</code> and <code>b</code>.</td>
+</tr>
+<tr>
+<td style="text-align:right"><code>#define SH_HASH_KEY(tb, key)</code></td>
+<td style="text-align:left"><strong>Required</strong>: Generates the hash for the hash table key <code>key</code>.</td>
+</tr>
+<tr>
+<td style="text-align:right"><code>#define SH_STORE_HASH</code></td>
+<td style="text-align:left"><strong>Optional</strong>: If defined, stores the hash of a key in the field of its associated element.</td>
+</tr>
+<tr>
+<td style="text-align:right"><code>#define SH_GET_HASH(tb, a)</code></td>
+<td style="text-align:left"><strong>Optional</strong>: If defined, retrieves the hash of a key from the field of its associated element.</td>
+</tr>
+<tr>
+<td style="text-align:right"><code>#define SH_SCOPE</code></td>
+<td style="text-align:left"><strong>Required</strong>: When defined, configures the scope in which function declarations reside.</td>
+</tr>
+<tr>
+<td style="text-align:right"><code>#define SH_DECLARE</code></td>
+<td style="text-align:left"><strong>Required</strong>: When defined, hash table function prototypes and type declarations are generated.</td>
+</tr>
+<tr>
+<td style="text-align:right"><code>#define SH_DEFINE</code></td>
+<td style="text-align:left"><strong>Required</strong>: When defined, hash table function definitions are generated.</td>
+</tr>
+</tbody>
+</table>
 
 </div>
 </div>
