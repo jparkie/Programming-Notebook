@@ -13139,15 +13139,15 @@ div#notebook {
 
     <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">insertionSort</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">S</span><span class="o">)</span> <span class="o">{</span>
         <span class="c1">// For every element,</span>
-        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">S</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">index</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">index</span> <span class="o">&lt;</span> <span class="n">S</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">index</span><span class="o">++)</span> <span class="o">{</span>
             <span class="cm">/*</span>
 <span class="cm">             * Sink the element leftwards to the head </span>
 <span class="cm">             * such that the array is sorted.</span>
 <span class="cm">             */</span>
-            <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="n">i</span><span class="o">;</span> <span class="n">j</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">S</span><span class="o">[</span><span class="n">j</span><span class="o">]</span> <span class="o">&lt;</span> <span class="n">S</span><span class="o">[</span><span class="n">j</span> <span class="o">-</span> <span class="mi">1</span><span class="o">];</span> <span class="n">j</span><span class="o">--)</span> <span class="o">{</span>
-                <span class="kt">int</span> <span class="n">temp</span> <span class="o">=</span> <span class="n">S</span><span class="o">[</span><span class="n">j</span><span class="o">];</span>
-                <span class="n">S</span><span class="o">[</span><span class="n">j</span><span class="o">]</span> <span class="o">=</span> <span class="n">S</span><span class="o">[</span><span class="n">j</span> <span class="o">-</span> <span class="mi">1</span><span class="o">];</span>
-                <span class="n">S</span><span class="o">[</span><span class="n">j</span> <span class="o">-</span> <span class="mi">1</span><span class="o">]</span> <span class="o">=</span> <span class="n">temp</span><span class="o">;</span>
+            <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">subIndex</span> <span class="o">=</span> <span class="n">index</span><span class="o">;</span> <span class="n">subIndex</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">S</span><span class="o">[</span><span class="n">subIndex</span><span class="o">]</span> <span class="o">&lt;</span> <span class="n">S</span><span class="o">[</span><span class="n">subIndex</span> <span class="o">-</span> <span class="mi">1</span><span class="o">];</span> <span class="n">subIndex</span><span class="o">--)</span> <span class="o">{</span>
+                <span class="kd">final</span> <span class="kt">int</span> <span class="n">temporary</span> <span class="o">=</span> <span class="n">S</span><span class="o">[</span><span class="n">subIndex</span><span class="o">];</span>
+                <span class="n">S</span><span class="o">[</span><span class="n">subIndex</span><span class="o">]</span> <span class="o">=</span> <span class="n">S</span><span class="o">[</span><span class="n">subIndex</span> <span class="o">-</span> <span class="mi">1</span><span class="o">];</span>
+                <span class="n">S</span><span class="o">[</span><span class="n">subIndex</span> <span class="o">-</span> <span class="mi">1</span><span class="o">]</span> <span class="o">=</span> <span class="n">temporary</span><span class="o">;</span>
             <span class="o">}</span>
         <span class="o">}</span>
     <span class="o">}</span>
@@ -13251,56 +13251,55 @@ div#notebook {
     <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">mergeSort</span><span class="o">(</span>
         <span class="kt">int</span><span class="o">[]</span> <span class="n">S</span><span class="o">,</span> 
         <span class="kt">int</span><span class="o">[]</span> <span class="n">buffer</span><span class="o">,</span> 
-        <span class="kt">int</span> <span class="n">lowIndex</span><span class="o">,</span> 
-        <span class="kt">int</span> <span class="n">highIndex</span>
+        <span class="kt">int</span> <span class="n">headIndex</span><span class="o">,</span> 
+        <span class="kt">int</span> <span class="n">tailIndex</span>
     <span class="o">)</span> <span class="o">{</span>
-        <span class="k">if</span> <span class="o">(</span><span class="n">highIndex</span> <span class="o">&lt;=</span> <span class="n">lowIndex</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">headIndex</span> <span class="o">&gt;=</span> <span class="n">tailIndex</span><span class="o">)</span> <span class="o">{</span>
             <span class="k">return</span><span class="o">;</span>
         <span class="o">}</span>
         
-        <span class="kt">int</span> <span class="n">midpoint</span> <span class="o">=</span> <span class="n">lowIndex</span> <span class="o">+</span> <span class="o">(</span><span class="n">highIndex</span> <span class="o">-</span> <span class="n">lowIndex</span><span class="o">)</span> <span class="o">/</span> <span class="mi">2</span><span class="o">;</span>
-        
-        <span class="n">mergeSort</span><span class="o">(</span><span class="n">S</span><span class="o">,</span> <span class="n">buffer</span><span class="o">,</span> <span class="n">lowIndex</span><span class="o">,</span> <span class="n">midpoint</span><span class="o">);</span>
-        <span class="n">mergeSort</span><span class="o">(</span><span class="n">S</span><span class="o">,</span> <span class="n">buffer</span><span class="o">,</span> <span class="n">midpoint</span> <span class="o">+</span> <span class="mi">1</span><span class="o">,</span> <span class="n">highIndex</span><span class="o">);</span>
-        <span class="n">merge</span><span class="o">(</span><span class="n">S</span><span class="o">,</span> <span class="n">buffer</span><span class="o">,</span> <span class="n">lowIndex</span><span class="o">,</span> <span class="n">midpoint</span><span class="o">,</span> <span class="n">highIndex</span><span class="o">);</span>
+        <span class="kd">final</span> <span class="kt">int</span> <span class="n">medianIndex</span> <span class="o">=</span> <span class="n">headIndex</span> <span class="o">+</span> <span class="o">(</span><span class="n">tailIndex</span> <span class="o">-</span> <span class="n">headIndex</span><span class="o">)</span> <span class="o">/</span> <span class="mi">2</span><span class="o">;</span>
+        <span class="n">mergeSort</span><span class="o">(</span><span class="n">S</span><span class="o">,</span> <span class="n">buffer</span><span class="o">,</span> <span class="n">headIndex</span><span class="o">,</span> <span class="n">medianIndex</span><span class="o">);</span>
+        <span class="n">mergeSort</span><span class="o">(</span><span class="n">S</span><span class="o">,</span> <span class="n">buffer</span><span class="o">,</span> <span class="n">medianIndex</span> <span class="o">+</span> <span class="mi">1</span><span class="o">,</span> <span class="n">tailIndex</span><span class="o">);</span>
+        <span class="n">merge</span><span class="o">(</span><span class="n">S</span><span class="o">,</span> <span class="n">buffer</span><span class="o">,</span> <span class="n">headIndex</span><span class="o">,</span> <span class="n">medianIndex</span><span class="o">,</span> <span class="n">tailIndex</span><span class="o">);</span>
     <span class="o">}</span>
     
     <span class="kd">private</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">merge</span><span class="o">(</span>
         <span class="kt">int</span><span class="o">[]</span> <span class="n">S</span><span class="o">,</span> 
         <span class="kt">int</span><span class="o">[]</span> <span class="n">buffer</span><span class="o">,</span> 
-        <span class="kt">int</span> <span class="n">lowIndex</span><span class="o">,</span> 
-        <span class="kt">int</span> <span class="n">midpoint</span><span class="o">,</span> 
-        <span class="kt">int</span> <span class="n">highIndex</span>
+        <span class="kt">int</span> <span class="n">headIndex</span><span class="o">,</span> 
+        <span class="kt">int</span> <span class="n">medianIndex</span><span class="o">,</span> 
+        <span class="kt">int</span> <span class="n">tailIndex</span>
     <span class="o">)</span> <span class="o">{</span>
         <span class="c1">// Copy the left and the right slices into buffer.</span>
-        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">index</span> <span class="o">=</span> <span class="n">lowIndex</span><span class="o">;</span> <span class="n">index</span> <span class="o">&lt;=</span> <span class="n">highIndex</span><span class="o">;</span> <span class="n">index</span><span class="o">++)</span> <span class="o">{</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">index</span> <span class="o">=</span> <span class="n">headIndex</span><span class="o">;</span> <span class="n">index</span> <span class="o">&lt;=</span> <span class="n">tailIndex</span><span class="o">;</span> <span class="n">index</span><span class="o">++)</span> <span class="o">{</span>
             <span class="n">buffer</span><span class="o">[</span><span class="n">index</span><span class="o">]</span> <span class="o">=</span> <span class="n">S</span><span class="o">[</span><span class="n">index</span><span class="o">];</span>
         <span class="o">}</span>
         
-        <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">lowIndex</span><span class="o">;</span>
-        <span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="n">midpoint</span> <span class="o">+</span> <span class="mi">1</span><span class="o">;</span>
-        <span class="kt">int</span> <span class="n">k</span> <span class="o">=</span> <span class="n">lowIndex</span><span class="o">;</span>
+        <span class="kt">int</span> <span class="n">lowerIndex</span> <span class="o">=</span> <span class="n">headIndex</span><span class="o">;</span>
+        <span class="kt">int</span> <span class="n">upperIndex</span> <span class="o">=</span> <span class="n">medianIndex</span> <span class="o">+</span> <span class="mi">1</span><span class="o">;</span>
+        <span class="kt">int</span> <span class="n">index</span> <span class="o">=</span> <span class="n">headIndex</span><span class="o">;</span>
         
         <span class="cm">/*</span>
 <span class="cm">         * Take the minimum of the left and the right slice </span>
 <span class="cm">         * until one is empty.</span>
 <span class="cm">         */</span>
-        <span class="k">while</span> <span class="o">(</span><span class="n">i</span> <span class="o">&lt;=</span> <span class="n">midpoint</span> <span class="o">&amp;&amp;</span> <span class="n">j</span> <span class="o">&lt;=</span> <span class="n">highIndex</span><span class="o">)</span> <span class="o">{</span>
-            <span class="k">if</span> <span class="o">(</span><span class="n">buffer</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">&lt;=</span> <span class="n">buffer</span><span class="o">[</span><span class="n">j</span><span class="o">])</span> <span class="o">{</span>
-                <span class="n">S</span><span class="o">[</span><span class="n">k</span><span class="o">++]</span> <span class="o">=</span> <span class="n">buffer</span><span class="o">[</span><span class="n">i</span><span class="o">++];</span>
+        <span class="k">while</span> <span class="o">(</span><span class="n">lowerIndex</span> <span class="o">&lt;=</span> <span class="n">medianIndex</span> <span class="o">&amp;&amp;</span> <span class="n">upperIndex</span> <span class="o">&lt;=</span> <span class="n">tailIndex</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">buffer</span><span class="o">[</span><span class="n">lowerIndex</span><span class="o">]</span> <span class="o">&lt;=</span> <span class="n">buffer</span><span class="o">[</span><span class="n">upperIndex</span><span class="o">])</span> <span class="o">{</span>
+                <span class="n">S</span><span class="o">[</span><span class="n">index</span><span class="o">++]</span> <span class="o">=</span> <span class="n">buffer</span><span class="o">[</span><span class="n">lowerIndex</span><span class="o">++];</span>
             <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
-                <span class="n">S</span><span class="o">[</span><span class="n">k</span><span class="o">++]</span> <span class="o">=</span> <span class="n">buffer</span><span class="o">[</span><span class="n">j</span><span class="o">++];</span>
+                <span class="n">S</span><span class="o">[</span><span class="n">index</span><span class="o">++]</span> <span class="o">=</span> <span class="n">buffer</span><span class="o">[</span><span class="n">upperIndex</span><span class="o">++];</span>
             <span class="o">}</span>
         <span class="o">}</span>
         
         <span class="c1">// Flush the left slice.</span>
-        <span class="k">while</span> <span class="o">(</span><span class="n">i</span> <span class="o">&lt;=</span> <span class="n">midpoint</span><span class="o">)</span> <span class="o">{</span>
-            <span class="n">S</span><span class="o">[</span><span class="n">k</span><span class="o">++]</span> <span class="o">=</span> <span class="n">buffer</span><span class="o">[</span><span class="n">i</span><span class="o">++];</span>
+        <span class="k">while</span> <span class="o">(</span><span class="n">lowerIndex</span> <span class="o">&lt;=</span> <span class="n">medianIndex</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">S</span><span class="o">[</span><span class="n">index</span><span class="o">++]</span> <span class="o">=</span> <span class="n">buffer</span><span class="o">[</span><span class="n">lowerIndex</span><span class="o">++];</span>
         <span class="o">}</span>
         
         <span class="c1">// Flush the right slice.</span>
-        <span class="k">while</span> <span class="o">(</span><span class="n">j</span> <span class="o">&lt;=</span> <span class="n">highIndex</span><span class="o">)</span> <span class="o">{</span>
-            <span class="n">S</span><span class="o">[</span><span class="n">k</span><span class="o">++]</span> <span class="o">=</span> <span class="n">buffer</span><span class="o">[</span><span class="n">j</span><span class="o">++];</span>
+        <span class="k">while</span> <span class="o">(</span><span class="n">upperIndex</span> <span class="o">&lt;=</span> <span class="n">tailIndex</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">S</span><span class="o">[</span><span class="n">index</span><span class="o">++]</span> <span class="o">=</span> <span class="n">buffer</span><span class="o">[</span><span class="n">upperIndex</span><span class="o">++];</span>
         <span class="o">}</span>
     <span class="o">}</span>
     
@@ -13401,14 +13400,14 @@ div#notebook {
 
 <span class="kd">class</span> <span class="nc">QuickSort</span> <span class="o">{</span>
     
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">quickSort</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">S</span><span class="o">,</span> <span class="kt">int</span> <span class="n">lowIndex</span><span class="o">,</span> <span class="kt">int</span> <span class="n">highIndex</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">if</span> <span class="o">(</span><span class="n">highIndex</span> <span class="o">&lt;=</span> <span class="n">lowIndex</span><span class="o">)</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">quickSort</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">S</span><span class="o">,</span> <span class="kt">int</span> <span class="n">headIndex</span><span class="o">,</span> <span class="kt">int</span> <span class="n">tailIndex</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">headIndex</span> <span class="o">&gt;=</span> <span class="n">tailIndex</span><span class="o">)</span> <span class="o">{</span>
             <span class="k">return</span><span class="o">;</span>
         <span class="o">}</span>
         
-        <span class="kt">int</span> <span class="n">pivot</span> <span class="o">=</span> <span class="n">partition</span><span class="o">(</span><span class="n">S</span><span class="o">,</span> <span class="n">lowIndex</span><span class="o">,</span> <span class="n">highIndex</span><span class="o">);</span>
-        <span class="n">quickSort</span><span class="o">(</span><span class="n">S</span><span class="o">,</span> <span class="n">lowIndex</span><span class="o">,</span> <span class="n">pivot</span> <span class="o">-</span> <span class="mi">1</span><span class="o">);</span>
-        <span class="n">quickSort</span><span class="o">(</span><span class="n">S</span><span class="o">,</span> <span class="n">pivot</span> <span class="o">+</span> <span class="mi">1</span><span class="o">,</span> <span class="n">highIndex</span><span class="o">);</span>
+        <span class="kd">final</span> <span class="kt">int</span> <span class="n">pivotIndex</span> <span class="o">=</span> <span class="n">partition</span><span class="o">(</span><span class="n">S</span><span class="o">,</span> <span class="n">headIndex</span><span class="o">,</span> <span class="n">tailIndex</span><span class="o">);</span>
+        <span class="n">quickSort</span><span class="o">(</span><span class="n">S</span><span class="o">,</span> <span class="n">headIndex</span><span class="o">,</span> <span class="n">pivotIndex</span> <span class="o">-</span> <span class="mi">1</span><span class="o">);</span>
+        <span class="n">quickSort</span><span class="o">(</span><span class="n">S</span><span class="o">,</span> <span class="n">pivotIndex</span> <span class="o">+</span> <span class="mi">1</span><span class="o">,</span> <span class="n">tailIndex</span><span class="o">);</span>
     <span class="o">}</span>
     
     <span class="cm">/*</span>
@@ -13418,53 +13417,43 @@ div#notebook {
 <span class="cm">     * All elements after the sentinel should be greater </span>
 <span class="cm">     * than the sentinel.</span>
 <span class="cm">     */</span>
-    <span class="kd">private</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">partition</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">S</span><span class="o">,</span> <span class="kt">int</span> <span class="n">lowIndex</span><span class="o">,</span> <span class="kt">int</span> <span class="n">highIndex</span><span class="o">)</span> <span class="o">{</span>
-        <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">lowIndex</span><span class="o">;</span>
-        <span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="n">highIndex</span> <span class="o">+</span> <span class="mi">1</span><span class="o">;</span>
-        
+    <span class="kd">private</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">partition</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">S</span><span class="o">,</span> <span class="kt">int</span> <span class="n">headIndex</span><span class="o">,</span> <span class="kt">int</span> <span class="n">tailIndex</span><span class="o">)</span> <span class="o">{</span>
         <span class="c1">// Choose the head as the sentinel.</span>
-        <span class="kt">int</span> <span class="n">sentinel</span> <span class="o">=</span> <span class="n">S</span><span class="o">[</span><span class="n">lowIndex</span><span class="o">];</span>
-        
+        <span class="kd">final</span> <span class="kt">int</span> <span class="n">sentinel</span> <span class="o">=</span> <span class="n">S</span><span class="o">[</span><span class="n">headIndex</span><span class="o">];</span>
+
+        <span class="kt">int</span> <span class="n">lowerIndex</span> <span class="o">=</span> <span class="n">headIndex</span><span class="o">;</span>
+        <span class="kt">int</span> <span class="n">upperIndex</span> <span class="o">=</span> <span class="n">tailIndex</span> <span class="o">+</span> <span class="mi">1</span><span class="o">;</span>
         <span class="k">while</span> <span class="o">(</span><span class="kc">true</span><span class="o">)</span> <span class="o">{</span>
             <span class="cm">/*</span>
-<span class="cm">             * Find the first element starting up from low index </span>
+<span class="cm">             * Find the first element starting up from lower index </span>
 <span class="cm">             * that is greater than the sentinel.</span>
 <span class="cm">             */</span>
-            <span class="k">while</span> <span class="o">(</span><span class="n">S</span><span class="o">[++</span><span class="n">i</span><span class="o">]</span> <span class="o">&lt;</span> <span class="n">sentinel</span><span class="o">)</span> <span class="o">{</span>
-                <span class="k">if</span> <span class="o">(</span><span class="n">i</span> <span class="o">==</span> <span class="n">highIndex</span><span class="o">)</span> <span class="o">{</span>
-                    <span class="k">break</span><span class="o">;</span>
-                <span class="o">}</span>
-            <span class="o">}</span>
+            <span class="k">while</span> <span class="o">(</span><span class="n">S</span><span class="o">[++</span><span class="n">lowerIndex</span><span class="o">]</span> <span class="o">&lt;</span> <span class="n">sentinel</span> <span class="o">&amp;&amp;</span> <span class="n">lowerIndex</span> <span class="o">&lt;</span> <span class="n">tailIndex</span><span class="o">);</span>
             
             <span class="cm">/*</span>
-<span class="cm">             * Find the first element starting down from high index </span>
-<span class="cm">             * that is less than the sentinel.</span>
+<span class="cm">             * Find the first element starting down from upper index </span>
+<span class="cm">             * that is lesser than the sentinel.</span>
 <span class="cm">             */</span>
-            <span class="k">while</span> <span class="o">(</span><span class="n">S</span><span class="o">[--</span><span class="n">j</span><span class="o">]</span> <span class="o">&gt;</span> <span class="n">sentinel</span><span class="o">)</span> <span class="o">{</span>
-                <span class="k">if</span> <span class="o">(</span><span class="n">j</span> <span class="o">==</span> <span class="n">lowIndex</span><span class="o">)</span> <span class="o">{</span>
-                    <span class="k">break</span><span class="o">;</span>
-                <span class="o">}</span>
-            <span class="o">}</span>
+            <span class="k">while</span> <span class="o">(</span><span class="n">S</span><span class="o">[--</span><span class="n">upperIndex</span><span class="o">]</span> <span class="o">&gt;</span> <span class="n">sentinel</span> <span class="o">&amp;&amp;</span> <span class="n">upperIndex</span> <span class="o">&gt;</span> <span class="n">headIndex</span><span class="o">);</span>
             
-            <span class="k">if</span> <span class="o">(</span><span class="n">i</span> <span class="o">&gt;=</span> <span class="n">j</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">lowerIndex</span> <span class="o">&gt;=</span> <span class="n">upperIndex</span><span class="o">)</span> <span class="o">{</span>
                 <span class="k">break</span><span class="o">;</span>
             <span class="o">}</span>
             
             <span class="cm">/*</span>
-<span class="cm">             * Swap an element less than the sentinel with </span>
+<span class="cm">             * Swap an element lesser than the sentinel with </span>
 <span class="cm">             * an element greater than the sentinel.</span>
 <span class="cm">             */</span>
-            <span class="kt">int</span> <span class="n">temp</span> <span class="o">=</span> <span class="n">S</span><span class="o">[</span><span class="n">i</span><span class="o">];</span>
-            <span class="n">S</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">S</span><span class="o">[</span><span class="n">j</span><span class="o">];</span>
-            <span class="n">S</span><span class="o">[</span><span class="n">j</span><span class="o">]</span> <span class="o">=</span> <span class="n">temp</span><span class="o">;</span>
+            <span class="kd">final</span> <span class="kt">int</span> <span class="n">temporary</span> <span class="o">=</span> <span class="n">S</span><span class="o">[</span><span class="n">lowerIndex</span><span class="o">];</span>
+            <span class="n">S</span><span class="o">[</span><span class="n">lowerIndex</span><span class="o">]</span> <span class="o">=</span> <span class="n">S</span><span class="o">[</span><span class="n">upperIndex</span><span class="o">];</span>
+            <span class="n">S</span><span class="o">[</span><span class="n">upperIndex</span><span class="o">]</span> <span class="o">=</span> <span class="n">temporary</span><span class="o">;</span>
         <span class="o">}</span>
         
         <span class="c1">// Swap sentinel to its pivot location.</span>
-        <span class="kt">int</span> <span class="n">temp</span> <span class="o">=</span> <span class="n">S</span><span class="o">[</span><span class="n">lowIndex</span><span class="o">];</span>
-        <span class="n">S</span><span class="o">[</span><span class="n">lowIndex</span><span class="o">]</span> <span class="o">=</span> <span class="n">S</span><span class="o">[</span><span class="n">j</span><span class="o">];</span>
-        <span class="n">S</span><span class="o">[</span><span class="n">j</span><span class="o">]</span> <span class="o">=</span> <span class="n">temp</span><span class="o">;</span>
+        <span class="n">S</span><span class="o">[</span><span class="n">headIndex</span><span class="o">]</span> <span class="o">=</span> <span class="n">S</span><span class="o">[</span><span class="n">upperIndex</span><span class="o">];</span>
+        <span class="n">S</span><span class="o">[</span><span class="n">upperIndex</span><span class="o">]</span> <span class="o">=</span> <span class="n">sentinel</span><span class="o">;</span>
         
-        <span class="k">return</span> <span class="n">j</span><span class="o">;</span>
+        <span class="k">return</span> <span class="n">upperIndex</span><span class="o">;</span>
     <span class="o">}</span>
     
 <span class="o">}</span>
@@ -13564,8 +13553,8 @@ div#notebook {
 <span class="kd">class</span> <span class="nc">CountingSort</span> <span class="o">{</span>
     
     <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">countingSort</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">S</span><span class="o">,</span> <span class="kt">int</span> <span class="n">cardinality</span><span class="o">)</span> <span class="o">{</span>
-        <span class="kt">int</span><span class="o">[]</span> <span class="n">counts</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">cardinality</span><span class="o">];</span>
-        <span class="kt">int</span><span class="o">[]</span> <span class="n">buffer</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">S</span><span class="o">.</span><span class="na">length</span><span class="o">];</span>
+        <span class="kd">final</span> <span class="kt">int</span><span class="o">[]</span> <span class="n">counts</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">cardinality</span><span class="o">];</span>
+        <span class="kd">final</span> <span class="kt">int</span><span class="o">[]</span> <span class="n">buffer</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">S</span><span class="o">.</span><span class="na">length</span><span class="o">];</span>
         
         <span class="c1">// Count all distinct elements in S.</span>
         <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">index</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">index</span> <span class="o">&lt;</span> <span class="n">S</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">index</span><span class="o">++)</span> <span class="o">{</span>
@@ -13715,8 +13704,8 @@ div#notebook {
     <span class="o">}</span>
     
     <span class="kd">private</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">countingSort</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">S</span><span class="o">,</span> <span class="kt">int</span> <span class="n">exp</span><span class="o">)</span> <span class="o">{</span>
-        <span class="kt">int</span><span class="o">[]</span> <span class="n">counts</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="mi">10</span><span class="o">];</span>
-        <span class="kt">int</span><span class="o">[]</span> <span class="n">buffer</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">S</span><span class="o">.</span><span class="na">length</span><span class="o">];</span>
+        <span class="kd">final</span> <span class="kt">int</span><span class="o">[]</span> <span class="n">counts</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="mi">10</span><span class="o">];</span>
+        <span class="kd">final</span> <span class="kt">int</span><span class="o">[]</span> <span class="n">buffer</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">S</span><span class="o">.</span><span class="na">length</span><span class="o">];</span>
         
         <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">index</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">index</span> <span class="o">&lt;</span> <span class="n">S</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">index</span><span class="o">++)</span> <span class="o">{</span>
             <span class="n">counts</span><span class="o">[(</span><span class="n">S</span><span class="o">[</span><span class="n">index</span><span class="o">]</span> <span class="o">/</span> <span class="n">exp</span><span class="o">)</span> <span class="o">%</span> <span class="mi">10</span><span class="o">]++;</span>
@@ -13834,18 +13823,18 @@ div#notebook {
 
     <span class="c1">// Classic:</span>
     <span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">binarySearch</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">S</span><span class="o">,</span> <span class="kt">int</span> <span class="n">key</span><span class="o">)</span> <span class="o">{</span>
-        <span class="kt">int</span> <span class="n">lowIndex</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
-        <span class="kt">int</span> <span class="n">highIndex</span> <span class="o">=</span> <span class="n">S</span><span class="o">.</span><span class="na">length</span> <span class="o">-</span> <span class="mi">1</span><span class="o">;</span>
+        <span class="kt">int</span> <span class="n">headIndex</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+        <span class="kt">int</span> <span class="n">tailIndex</span> <span class="o">=</span> <span class="n">S</span><span class="o">.</span><span class="na">length</span> <span class="o">-</span> <span class="mi">1</span><span class="o">;</span>
 
-        <span class="k">while</span> <span class="o">(</span><span class="n">lowIndex</span> <span class="o">&lt;=</span> <span class="n">highIndex</span><span class="o">)</span> <span class="o">{</span>
-            <span class="kt">int</span> <span class="n">midpoint</span> <span class="o">=</span> <span class="n">lowIndex</span> <span class="o">+</span> <span class="o">(</span><span class="n">highIndex</span> <span class="o">-</span> <span class="n">lowIndex</span><span class="o">)</span> <span class="o">/</span> <span class="mi">2</span><span class="o">;</span>
+        <span class="k">while</span> <span class="o">(</span><span class="n">headIndex</span> <span class="o">&lt;=</span> <span class="n">tailIndex</span><span class="o">)</span> <span class="o">{</span>
+            <span class="kd">final</span> <span class="kt">int</span> <span class="n">medianIndex</span> <span class="o">=</span> <span class="n">headIndex</span> <span class="o">+</span> <span class="o">(</span><span class="n">tailIndex</span> <span class="o">-</span> <span class="n">headIndex</span><span class="o">)</span> <span class="o">/</span> <span class="mi">2</span><span class="o">;</span>
 
-            <span class="k">if</span> <span class="o">(</span><span class="n">key</span> <span class="o">&lt;</span> <span class="n">S</span><span class="o">[</span><span class="n">midpoint</span><span class="o">])</span> <span class="o">{</span>
-                <span class="n">highIndex</span> <span class="o">=</span> <span class="n">midpoint</span> <span class="o">-</span> <span class="mi">1</span><span class="o">;</span>
-            <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">key</span> <span class="o">&gt;</span> <span class="n">S</span><span class="o">[</span><span class="n">midpoint</span><span class="o">])</span> <span class="o">{</span>
-                <span class="n">lowIndex</span> <span class="o">=</span> <span class="n">midpoint</span> <span class="o">+</span> <span class="mi">1</span><span class="o">;</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">key</span> <span class="o">&lt;</span> <span class="n">S</span><span class="o">[</span><span class="n">medianIndex</span><span class="o">])</span> <span class="o">{</span>
+                <span class="n">tailIndex</span> <span class="o">=</span> <span class="n">medianIndex</span> <span class="o">-</span> <span class="mi">1</span><span class="o">;</span>
+            <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">key</span> <span class="o">&gt;</span> <span class="n">S</span><span class="o">[</span><span class="n">medianIndex</span><span class="o">])</span> <span class="o">{</span>
+                <span class="n">headIndex</span> <span class="o">=</span> <span class="n">medianIndex</span> <span class="o">+</span> <span class="mi">1</span><span class="o">;</span>
             <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
-                <span class="k">return</span> <span class="n">midpoint</span><span class="o">;</span>
+                <span class="k">return</span> <span class="n">medianIndex</span><span class="o">;</span>
             <span class="o">}</span>
         <span class="o">}</span>
 
@@ -13855,15 +13844,15 @@ div#notebook {
     <span class="c1">// Alternative:</span>
     <span class="c1">// Advantage: Returns where key should be inserted.</span>
     <span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">alternativeSearch</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">S</span><span class="o">,</span> <span class="kt">int</span> <span class="n">key</span><span class="o">)</span> <span class="o">{</span>
-        <span class="kt">int</span> <span class="n">k</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+        <span class="kt">int</span> <span class="n">index</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
         
         <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">offset</span> <span class="o">=</span> <span class="n">S</span><span class="o">.</span><span class="na">length</span> <span class="o">/</span> <span class="mi">2</span><span class="o">;</span> <span class="n">offset</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="o">;</span> <span class="n">offset</span> <span class="o">/=</span> <span class="mi">2</span><span class="o">)</span> <span class="o">{</span>
-            <span class="k">while</span> <span class="o">((</span><span class="n">k</span> <span class="o">+</span> <span class="n">offset</span><span class="o">)</span> <span class="o">&lt;</span> <span class="n">S</span><span class="o">.</span><span class="na">length</span> <span class="o">&amp;&amp;</span> <span class="n">S</span><span class="o">[</span><span class="n">k</span> <span class="o">+</span> <span class="n">offset</span><span class="o">]</span> <span class="o">&lt;=</span> <span class="n">key</span><span class="o">)</span> <span class="o">{</span>
-                <span class="n">k</span> <span class="o">+=</span> <span class="n">offset</span><span class="o">;</span>
+            <span class="k">while</span> <span class="o">((</span><span class="n">index</span> <span class="o">+</span> <span class="n">offset</span><span class="o">)</span> <span class="o">&lt;</span> <span class="n">S</span><span class="o">.</span><span class="na">length</span> <span class="o">&amp;&amp;</span> <span class="n">S</span><span class="o">[</span><span class="n">index</span> <span class="o">+</span> <span class="n">offset</span><span class="o">]</span> <span class="o">&lt;=</span> <span class="n">key</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">index</span> <span class="o">+=</span> <span class="n">offset</span><span class="o">;</span>
             <span class="o">}</span>
         <span class="o">}</span>
         
-        <span class="k">return</span> <span class="n">k</span><span class="o">;</span>
+        <span class="k">return</span> <span class="n">index</span><span class="o">;</span>
     <span class="o">}</span>
 
 <span class="o">}</span>
