@@ -1,16 +1,91 @@
 <!DOCTYPE html>
 <html>
 <head><meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>PostgreSQL 12</title>
+<title>PostgreSQL 12</title><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<style type="text/css">
+  pre { line-height: 125%; }
+td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+span.linenos { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+td.linenos .special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+.highlight .hll { background-color: #ffffcc }
+.highlight { background: #f8f8f8; }
+.highlight .c { color: #3D7B7B; font-style: italic } /* Comment */
+.highlight .err { border: 1px solid #FF0000 } /* Error */
+.highlight .k { color: #008000; font-weight: bold } /* Keyword */
+.highlight .o { color: #666666 } /* Operator */
+.highlight .ch { color: #3D7B7B; font-style: italic } /* Comment.Hashbang */
+.highlight .cm { color: #3D7B7B; font-style: italic } /* Comment.Multiline */
+.highlight .cp { color: #9C6500 } /* Comment.Preproc */
+.highlight .cpf { color: #3D7B7B; font-style: italic } /* Comment.PreprocFile */
+.highlight .c1 { color: #3D7B7B; font-style: italic } /* Comment.Single */
+.highlight .cs { color: #3D7B7B; font-style: italic } /* Comment.Special */
+.highlight .gd { color: #A00000 } /* Generic.Deleted */
+.highlight .ge { font-style: italic } /* Generic.Emph */
+.highlight .gr { color: #E40000 } /* Generic.Error */
+.highlight .gh { color: #000080; font-weight: bold } /* Generic.Heading */
+.highlight .gi { color: #008400 } /* Generic.Inserted */
+.highlight .go { color: #717171 } /* Generic.Output */
+.highlight .gp { color: #000080; font-weight: bold } /* Generic.Prompt */
+.highlight .gs { font-weight: bold } /* Generic.Strong */
+.highlight .gu { color: #800080; font-weight: bold } /* Generic.Subheading */
+.highlight .gt { color: #0044DD } /* Generic.Traceback */
+.highlight .kc { color: #008000; font-weight: bold } /* Keyword.Constant */
+.highlight .kd { color: #008000; font-weight: bold } /* Keyword.Declaration */
+.highlight .kn { color: #008000; font-weight: bold } /* Keyword.Namespace */
+.highlight .kp { color: #008000 } /* Keyword.Pseudo */
+.highlight .kr { color: #008000; font-weight: bold } /* Keyword.Reserved */
+.highlight .kt { color: #B00040 } /* Keyword.Type */
+.highlight .m { color: #666666 } /* Literal.Number */
+.highlight .s { color: #BA2121 } /* Literal.String */
+.highlight .na { color: #687822 } /* Name.Attribute */
+.highlight .nb { color: #008000 } /* Name.Builtin */
+.highlight .nc { color: #0000FF; font-weight: bold } /* Name.Class */
+.highlight .no { color: #880000 } /* Name.Constant */
+.highlight .nd { color: #AA22FF } /* Name.Decorator */
+.highlight .ni { color: #717171; font-weight: bold } /* Name.Entity */
+.highlight .ne { color: #CB3F38; font-weight: bold } /* Name.Exception */
+.highlight .nf { color: #0000FF } /* Name.Function */
+.highlight .nl { color: #767600 } /* Name.Label */
+.highlight .nn { color: #0000FF; font-weight: bold } /* Name.Namespace */
+.highlight .nt { color: #008000; font-weight: bold } /* Name.Tag */
+.highlight .nv { color: #19177C } /* Name.Variable */
+.highlight .ow { color: #AA22FF; font-weight: bold } /* Operator.Word */
+.highlight .w { color: #bbbbbb } /* Text.Whitespace */
+.highlight .mb { color: #666666 } /* Literal.Number.Bin */
+.highlight .mf { color: #666666 } /* Literal.Number.Float */
+.highlight .mh { color: #666666 } /* Literal.Number.Hex */
+.highlight .mi { color: #666666 } /* Literal.Number.Integer */
+.highlight .mo { color: #666666 } /* Literal.Number.Oct */
+.highlight .sa { color: #BA2121 } /* Literal.String.Affix */
+.highlight .sb { color: #BA2121 } /* Literal.String.Backtick */
+.highlight .sc { color: #BA2121 } /* Literal.String.Char */
+.highlight .dl { color: #BA2121 } /* Literal.String.Delimiter */
+.highlight .sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
+.highlight .s2 { color: #BA2121 } /* Literal.String.Double */
+.highlight .se { color: #AA5D1F; font-weight: bold } /* Literal.String.Escape */
+.highlight .sh { color: #BA2121 } /* Literal.String.Heredoc */
+.highlight .si { color: #A45A77; font-weight: bold } /* Literal.String.Interpol */
+.highlight .sx { color: #008000 } /* Literal.String.Other */
+.highlight .sr { color: #A45A77 } /* Literal.String.Regex */
+.highlight .s1 { color: #BA2121 } /* Literal.String.Single */
+.highlight .ss { color: #19177C } /* Literal.String.Symbol */
+.highlight .bp { color: #008000 } /* Name.Builtin.Pseudo */
+.highlight .fm { color: #0000FF } /* Name.Function.Magic */
+.highlight .vc { color: #19177C } /* Name.Variable.Class */
+.highlight .vg { color: #19177C } /* Name.Variable.Global */
+.highlight .vi { color: #19177C } /* Name.Variable.Instance */
+.highlight .vm { color: #19177C } /* Name.Variable.Magic */
+.highlight .il { color: #666666 } /* Literal.Number.Integer.Long */
+  </style>
 
 
 
 <style type="text/css">
-    /*!
+/*!
 *
 * Twitter Bootstrap
 *
@@ -12944,120 +13019,7 @@ ul.typeahead-list  > li > a.pull-right {
 .terminal-app #terminado-container {
   margin-top: 20px;
 }
-/*# sourceMappingURL=style.min.css.map */
-    </style>
-<style type="text/css">
-    .highlight .hll { background-color: #ffffcc }
-.highlight  { background: #f8f8f8; }
-.highlight .c { color: #408080; font-style: italic } /* Comment */
-.highlight .err { border: 1px solid #FF0000 } /* Error */
-.highlight .k { color: #008000; font-weight: bold } /* Keyword */
-.highlight .o { color: #666666 } /* Operator */
-.highlight .ch { color: #408080; font-style: italic } /* Comment.Hashbang */
-.highlight .cm { color: #408080; font-style: italic } /* Comment.Multiline */
-.highlight .cp { color: #BC7A00 } /* Comment.Preproc */
-.highlight .cpf { color: #408080; font-style: italic } /* Comment.PreprocFile */
-.highlight .c1 { color: #408080; font-style: italic } /* Comment.Single */
-.highlight .cs { color: #408080; font-style: italic } /* Comment.Special */
-.highlight .gd { color: #A00000 } /* Generic.Deleted */
-.highlight .ge { font-style: italic } /* Generic.Emph */
-.highlight .gr { color: #FF0000 } /* Generic.Error */
-.highlight .gh { color: #000080; font-weight: bold } /* Generic.Heading */
-.highlight .gi { color: #00A000 } /* Generic.Inserted */
-.highlight .go { color: #888888 } /* Generic.Output */
-.highlight .gp { color: #000080; font-weight: bold } /* Generic.Prompt */
-.highlight .gs { font-weight: bold } /* Generic.Strong */
-.highlight .gu { color: #800080; font-weight: bold } /* Generic.Subheading */
-.highlight .gt { color: #0044DD } /* Generic.Traceback */
-.highlight .kc { color: #008000; font-weight: bold } /* Keyword.Constant */
-.highlight .kd { color: #008000; font-weight: bold } /* Keyword.Declaration */
-.highlight .kn { color: #008000; font-weight: bold } /* Keyword.Namespace */
-.highlight .kp { color: #008000 } /* Keyword.Pseudo */
-.highlight .kr { color: #008000; font-weight: bold } /* Keyword.Reserved */
-.highlight .kt { color: #B00040 } /* Keyword.Type */
-.highlight .m { color: #666666 } /* Literal.Number */
-.highlight .s { color: #BA2121 } /* Literal.String */
-.highlight .na { color: #7D9029 } /* Name.Attribute */
-.highlight .nb { color: #008000 } /* Name.Builtin */
-.highlight .nc { color: #0000FF; font-weight: bold } /* Name.Class */
-.highlight .no { color: #880000 } /* Name.Constant */
-.highlight .nd { color: #AA22FF } /* Name.Decorator */
-.highlight .ni { color: #999999; font-weight: bold } /* Name.Entity */
-.highlight .ne { color: #D2413A; font-weight: bold } /* Name.Exception */
-.highlight .nf { color: #0000FF } /* Name.Function */
-.highlight .nl { color: #A0A000 } /* Name.Label */
-.highlight .nn { color: #0000FF; font-weight: bold } /* Name.Namespace */
-.highlight .nt { color: #008000; font-weight: bold } /* Name.Tag */
-.highlight .nv { color: #19177C } /* Name.Variable */
-.highlight .ow { color: #AA22FF; font-weight: bold } /* Operator.Word */
-.highlight .w { color: #bbbbbb } /* Text.Whitespace */
-.highlight .mb { color: #666666 } /* Literal.Number.Bin */
-.highlight .mf { color: #666666 } /* Literal.Number.Float */
-.highlight .mh { color: #666666 } /* Literal.Number.Hex */
-.highlight .mi { color: #666666 } /* Literal.Number.Integer */
-.highlight .mo { color: #666666 } /* Literal.Number.Oct */
-.highlight .sa { color: #BA2121 } /* Literal.String.Affix */
-.highlight .sb { color: #BA2121 } /* Literal.String.Backtick */
-.highlight .sc { color: #BA2121 } /* Literal.String.Char */
-.highlight .dl { color: #BA2121 } /* Literal.String.Delimiter */
-.highlight .sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
-.highlight .s2 { color: #BA2121 } /* Literal.String.Double */
-.highlight .se { color: #BB6622; font-weight: bold } /* Literal.String.Escape */
-.highlight .sh { color: #BA2121 } /* Literal.String.Heredoc */
-.highlight .si { color: #BB6688; font-weight: bold } /* Literal.String.Interpol */
-.highlight .sx { color: #008000 } /* Literal.String.Other */
-.highlight .sr { color: #BB6688 } /* Literal.String.Regex */
-.highlight .s1 { color: #BA2121 } /* Literal.String.Single */
-.highlight .ss { color: #19177C } /* Literal.String.Symbol */
-.highlight .bp { color: #008000 } /* Name.Builtin.Pseudo */
-.highlight .fm { color: #0000FF } /* Name.Function.Magic */
-.highlight .vc { color: #19177C } /* Name.Variable.Class */
-.highlight .vg { color: #19177C } /* Name.Variable.Global */
-.highlight .vi { color: #19177C } /* Name.Variable.Instance */
-.highlight .vm { color: #19177C } /* Name.Variable.Magic */
-.highlight .il { color: #666666 } /* Literal.Number.Integer.Long */
-    </style>
-<style type="text/css">
-    
-/* Temporary definitions which will become obsolete with Notebook release 5.0 */
-.ansi-black-fg { color: #3E424D; }
-.ansi-black-bg { background-color: #3E424D; }
-.ansi-black-intense-fg { color: #282C36; }
-.ansi-black-intense-bg { background-color: #282C36; }
-.ansi-red-fg { color: #E75C58; }
-.ansi-red-bg { background-color: #E75C58; }
-.ansi-red-intense-fg { color: #B22B31; }
-.ansi-red-intense-bg { background-color: #B22B31; }
-.ansi-green-fg { color: #00A250; }
-.ansi-green-bg { background-color: #00A250; }
-.ansi-green-intense-fg { color: #007427; }
-.ansi-green-intense-bg { background-color: #007427; }
-.ansi-yellow-fg { color: #DDB62B; }
-.ansi-yellow-bg { background-color: #DDB62B; }
-.ansi-yellow-intense-fg { color: #B27D12; }
-.ansi-yellow-intense-bg { background-color: #B27D12; }
-.ansi-blue-fg { color: #208FFB; }
-.ansi-blue-bg { background-color: #208FFB; }
-.ansi-blue-intense-fg { color: #0065CA; }
-.ansi-blue-intense-bg { background-color: #0065CA; }
-.ansi-magenta-fg { color: #D160C4; }
-.ansi-magenta-bg { background-color: #D160C4; }
-.ansi-magenta-intense-fg { color: #A03196; }
-.ansi-magenta-intense-bg { background-color: #A03196; }
-.ansi-cyan-fg { color: #60C6C8; }
-.ansi-cyan-bg { background-color: #60C6C8; }
-.ansi-cyan-intense-fg { color: #258F8F; }
-.ansi-cyan-intense-bg { background-color: #258F8F; }
-.ansi-white-fg { color: #C5C1B4; }
-.ansi-white-bg { background-color: #C5C1B4; }
-.ansi-white-intense-fg { color: #A1A6B2; }
-.ansi-white-intense-bg { background-color: #A1A6B2; }
-
-.ansi-bold { font-weight: bold; }
-
-    </style>
-
-
+/*# sourceMappingURL=style.min.css.map */</style>
 <style type="text/css">
 /* Overrides of notebook CSS for static HTML export */
 body {
@@ -13069,44 +13031,55 @@ div#notebook {
   overflow: visible;
   border-top: none;
 }@media print {
+  body {
+    margin: 0;
+  }
   div.cell {
     display: block;
     page-break-inside: avoid;
-  } 
-  div.output_wrapper { 
-    display: block;
-    page-break-inside: avoid; 
   }
-  div.output { 
+  div.output_wrapper {
     display: block;
-    page-break-inside: avoid; 
+    page-break-inside: avoid;
+  }
+  div.output {
+    display: block;
+    page-break-inside: avoid;
   }
 }
 </style>
-
-<!-- Custom stylesheet, it must be in the same directory as the html file -->
-<link rel="stylesheet" href="custom.css">
-
-<!-- Loading mathjax macro -->
 <!-- Load mathjax -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS_HTML"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS_CHTML-full,Safe"> </script>
     <!-- MathJax configuration -->
     <script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ['$','$'], ["\\(","\\)"] ],
-            displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
-            processEscapes: true,
-            processEnvironments: true
-        },
-        // Center justify equations in code and markdown cells. Elsewhere
-        // we use CSS to left justify single line equations in code cells.
-        displayAlign: 'center',
-        "HTML-CSS": {
-            styles: {'.MathJax_Display': {"margin": 0}},
-            linebreaks: { automatic: true }
+    init_mathjax = function() {
+        if (window.MathJax) {
+        // MathJax loaded
+            MathJax.Hub.Config({
+                TeX: {
+                    equationNumbers: {
+                    autoNumber: "AMS",
+                    useLabelIds: true
+                    }
+                },
+                tex2jax: {
+                    inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+                    displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+                    processEscapes: true,
+                    processEnvironments: true
+                },
+                displayAlign: 'center',
+                CommonHTML: {
+                    linebreaks: { 
+                    automatic: true 
+                    }
+                }
+            });
+        
+            MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
         }
-    });
+    }
+    init_mathjax();
     </script>
     <!-- End of mathjax configuration --></head>
 <body>
@@ -13205,17 +13178,17 @@ div#notebook {
 <div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-SQL"><pre><span></span><span class="o">%%</span><span class="n">HTML</span>
-<span class="o">&lt;</span><span class="n">style</span><span class="o">&gt;</span>
-<span class="k">table</span> <span class="err">{</span>
-    <span class="n">width</span><span class="p">:</span> <span class="mi">100</span><span class="o">%</span><span class="p">;</span>
-<span class="err">}</span>
-<span class="n">tr</span> <span class="n">th</span><span class="p">:</span><span class="k">first</span><span class="o">-</span><span class="n">child</span><span class="p">,</span> <span class="n">tr</span> <span class="n">td</span><span class="p">:</span><span class="k">first</span><span class="o">-</span><span class="n">child</span> <span class="err">{</span>
-    <span class="n">width</span><span class="p">:</span> <span class="mi">25</span><span class="o">%</span><span class="p">;</span>
-    <span class="k">min</span><span class="o">-</span><span class="n">width</span><span class="p">:</span> <span class="mi">25</span><span class="o">%</span><span class="p">;</span>
-    <span class="k">max</span><span class="o">-</span><span class="n">width</span><span class="p">:</span> <span class="mi">25</span><span class="o">%</span><span class="p">;</span>
-<span class="err">}</span>
-<span class="o">&lt;/</span><span class="n">style</span><span class="o">&gt;</span>
+<div class=" highlight hl-SQL"><pre><span></span><span class="o">%%</span><span class="n">HTML</span><span class="w"></span>
+<span class="o">&lt;</span><span class="n">style</span><span class="o">&gt;</span><span class="w"></span>
+<span class="k">table</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">width</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="o">%</span><span class="p">;</span><span class="w"></span>
+<span class="err">}</span><span class="w"></span>
+<span class="n">tr</span><span class="w"> </span><span class="n">th</span><span class="p">:</span><span class="k">first</span><span class="o">-</span><span class="n">child</span><span class="p">,</span><span class="w"> </span><span class="n">tr</span><span class="w"> </span><span class="n">td</span><span class="p">:</span><span class="k">first</span><span class="o">-</span><span class="n">child</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">width</span><span class="p">:</span><span class="w"> </span><span class="mi">25</span><span class="o">%</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">min</span><span class="o">-</span><span class="n">width</span><span class="p">:</span><span class="w"> </span><span class="mi">25</span><span class="o">%</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">max</span><span class="o">-</span><span class="n">width</span><span class="p">:</span><span class="w"> </span><span class="mi">25</span><span class="o">%</span><span class="p">;</span><span class="w"></span>
+<span class="err">}</span><span class="w"></span>
+<span class="o">&lt;/</span><span class="n">style</span><span class="o">&gt;</span><span class="w"></span>
 </pre></div>
 
     </div>
@@ -13232,8 +13205,7 @@ div#notebook {
 
 
 
-<div class="output_html rendered_html output_subarea output_execute_result">
-<html><style>
+<div class="output_html rendered_html output_subarea output_execute_result"><html><style>
 table {
     width: 100%;
 }
@@ -13242,8 +13214,7 @@ tr th:first-child, tr td:first-child {
     min-width: 25%;
     max-width: 25%;
 }
-</style></html>
-</div>
+</style></html></div>
 
 </div>
 
@@ -13331,7 +13302,7 @@ tr th:first-child, tr td:first-child {
 </tr>
 <tr>
 <td style="text-align:right">Bruce Momjian</td>
-<td style="text-align:left"><a href="pdfs/Will%20Postgres%20Live%20Forever%3F.pdf">Will Postgres Live Forever?</a></td>
+<td style="text-align:left"><a href="pdfs/Will%20Postgres%20Live%20Forever.pdf">Will Postgres Live Forever</a></td>
 <td style="text-align:left"><a href="https://www.youtube.com/watch?v=-uqa36qVAZc">YouTube</a></td>
 </tr>
 <tr>
@@ -14487,7 +14458,7 @@ tr th:first-child, tr td:first-child {
 </ul>
 <h4 id="Constants">Constants<a class="anchor-link" href="#Constants">&#182;</a></h4><p><em>N/A</em>.</p>
 <h4 id="Enumerations">Enumerations<a class="anchor-link" href="#Enumerations">&#182;</a></h4><p><em>N/A</em>.</p>
-<h4 id="Types">Types<a class="anchor-link" href="#Types">&#182;</a></h4><div class="highlight"><pre><span></span><span class="k">typedef</span> <span class="nf">int</span> <span class="p">(</span><span class="o">*</span><span class="n">binaryheap_comparator</span><span class="p">)</span> <span class="p">(</span><span class="n">Datum</span> <span class="n">a</span><span class="p">,</span> <span class="n">Datum</span> <span class="n">b</span><span class="p">,</span> <span class="kt">void</span> <span class="o">*</span><span class="n">arg</span><span class="p">);</span>
+<h4 id="Types">Types<a class="anchor-link" href="#Types">&#182;</a></h4><div class="highlight"><pre><span></span><span class="k">typedef</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="p">(</span><span class="o">*</span><span class="n">binaryheap_comparator</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="n">Datum</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">Datum</span><span class="w"> </span><span class="n">b</span><span class="p">,</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">arg</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 <blockquote><p>A comparison function, which imposes a total ordering on some collection of objects.
 <br/>
@@ -14544,11 +14515,11 @@ $$</p>
 </tr>
 </tbody>
 </table>
-<h4 id="Methods">Methods<a class="anchor-link" href="#Methods">&#182;</a></h4><div class="highlight"><pre><span></span><span class="k">extern</span> <span class="n">binaryheap</span> <span class="o">*</span>
-<span class="nf">binaryheap_allocate</span><span class="p">(</span>
-    <span class="kt">int</span> <span class="n">capacity</span><span class="p">,</span>
-    <span class="n">binaryheap_comparator</span> <span class="n">compare</span><span class="p">,</span>
-    <span class="kt">void</span> <span class="o">*</span><span class="n">arg</span><span class="p">);</span>
+<h4 id="Methods">Methods<a class="anchor-link" href="#Methods">&#182;</a></h4><div class="highlight"><pre><span></span><span class="k">extern</span><span class="w"> </span><span class="n">binaryheap</span><span class="w"> </span><span class="o">*</span><span class="w"></span>
+<span class="nf">binaryheap_allocate</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">capacity</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">binaryheap_comparator</span><span class="w"> </span><span class="n">compare</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">arg</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 <blockquote><p>Allocates a binary heap with the specified capacity that orders its elements according to the specified comparator and argument.</p>
 <p>&nbsp;
@@ -14568,9 +14539,9 @@ $$</p>
 </blockquote>
 <hr/>
 
-<div class="highlight"><pre><span></span><span class="k">extern</span> <span class="kt">void</span>
-<span class="nf">binaryheap_reset</span><span class="p">(</span>
-    <span class="n">binaryheap</span> <span class="o">*</span><span class="n">heap</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><span class="k">extern</span><span class="w"> </span><span class="kt">void</span><span class="w"></span>
+<span class="nf">binaryheap_reset</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">binaryheap</span><span class="w"> </span><span class="o">*</span><span class="n">heap</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 <blockquote><p>Resets the specified binary heap, retaining its parameters from <code>binaryheap_allocate()</code>.</p>
 <p>&nbsp;
@@ -14582,9 +14553,9 @@ $$</p>
 </blockquote>
 <hr/>
 
-<div class="highlight"><pre><span></span><span class="k">extern</span> <span class="kt">void</span>
-<span class="nf">binaryheap_free</span><span class="p">(</span>
-    <span class="n">binaryheap</span> <span class="o">*</span><span class="n">heap</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><span class="k">extern</span><span class="w"> </span><span class="kt">void</span><span class="w"></span>
+<span class="nf">binaryheap_free</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">binaryheap</span><span class="w"> </span><span class="o">*</span><span class="n">heap</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 <blockquote><p>Frees the specified binary heap.</p>
 <p>&nbsp;
@@ -14596,10 +14567,10 @@ $$</p>
 </blockquote>
 <hr/>
 
-<div class="highlight"><pre><span></span><span class="k">extern</span> <span class="kt">void</span>
-<span class="nf">binaryheap_add_unordered</span><span class="p">(</span>
-    <span class="n">binaryheap</span> <span class="o">*</span><span class="n">heap</span><span class="p">,</span>
-    <span class="n">Datum</span> <span class="n">d</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><span class="k">extern</span><span class="w"> </span><span class="kt">void</span><span class="w"></span>
+<span class="nf">binaryheap_add_unordered</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">binaryheap</span><span class="w"> </span><span class="o">*</span><span class="n">heap</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">Datum</span><span class="w"> </span><span class="n">d</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 <blockquote><p>Inserts the specified <code>Datum</code> element into the specified binary heap, without preserving the <em>heap property</em>.
 <br/>
@@ -14616,9 +14587,9 @@ $$</p>
 </blockquote>
 <hr/>
 
-<div class="highlight"><pre><span></span><span class="k">extern</span> <span class="kt">void</span>
-<span class="nf">binaryheap_build</span><span class="p">(</span>
-    <span class="n">binaryheap</span> <span class="o">*</span><span class="n">heap</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><span class="k">extern</span><span class="w"> </span><span class="kt">void</span><span class="w"></span>
+<span class="nf">binaryheap_build</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">binaryheap</span><span class="w"> </span><span class="o">*</span><span class="n">heap</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 <blockquote><p>Builds the specified binary heap to satisfy the <em>heap property</em>.
 <br/>
@@ -14632,10 +14603,10 @@ $$</p>
 </blockquote>
 <hr/>
 
-<div class="highlight"><pre><span></span><span class="k">extern</span> <span class="kt">void</span>
-<span class="nf">binaryheap_add</span><span class="p">(</span>
-    <span class="n">binaryheap</span> <span class="o">*</span><span class="n">heap</span><span class="p">,</span>
-    <span class="n">Datum</span> <span class="n">d</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><span class="k">extern</span><span class="w"> </span><span class="kt">void</span><span class="w"></span>
+<span class="nf">binaryheap_add</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">binaryheap</span><span class="w"> </span><span class="o">*</span><span class="n">heap</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">Datum</span><span class="w"> </span><span class="n">d</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 <blockquote><p>Inserts the specified <code>Datum</code> element into the specified binary heap, while preserving the <em>heap property</em>.
 <br/>
@@ -14650,9 +14621,9 @@ $$</p>
 </blockquote>
 <hr/>
 
-<div class="highlight"><pre><span></span><span class="k">extern</span> <span class="n">Datum</span>
-<span class="nf">binaryheap_first</span><span class="p">(</span>
-    <span class="n">binaryheap</span> <span class="o">*</span><span class="n">heap</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><span class="k">extern</span><span class="w"> </span><span class="n">Datum</span><span class="w"></span>
+<span class="nf">binaryheap_first</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">binaryheap</span><span class="w"> </span><span class="o">*</span><span class="n">heap</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 <blockquote><p>Retrieves, but does not remove, the root <code>Datum</code> element of the specified binary heap.
 <br/>
@@ -14672,9 +14643,9 @@ $$</p>
 </blockquote>
 <hr/>
 
-<div class="highlight"><pre><span></span><span class="k">extern</span> <span class="n">Datum</span>
-<span class="nf">binaryheap_remove_first</span><span class="p">(</span>
-    <span class="n">binaryheap</span> <span class="o">*</span><span class="n">heap</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><span class="k">extern</span><span class="w"> </span><span class="n">Datum</span><span class="w"></span>
+<span class="nf">binaryheap_remove_first</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">binaryheap</span><span class="w"> </span><span class="o">*</span><span class="n">heap</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 <blockquote><p>Retrieves and removes the root <code>Datum</code> element of the specified binary heap.
 <br/>
@@ -14694,10 +14665,10 @@ $$</p>
 </blockquote>
 <hr/>
 
-<div class="highlight"><pre><span></span><span class="k">extern</span> <span class="kt">void</span>
-<span class="nf">binaryheap_replace_first</span><span class="p">(</span>
-    <span class="n">binaryheap</span> <span class="o">*</span><span class="n">heap</span><span class="p">,</span>
-    <span class="n">Datum</span> <span class="n">d</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><span class="k">extern</span><span class="w"> </span><span class="kt">void</span><span class="w"></span>
+<span class="nf">binaryheap_replace_first</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">binaryheap</span><span class="w"> </span><span class="o">*</span><span class="n">heap</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">Datum</span><span class="w"> </span><span class="n">d</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 <blockquote><p>Replace the root <code>Datum</code> element of the specified binary heap with the specified <code>Datum</code> element, while preserving the <em>heap property</em>.
 <br/>
@@ -14771,11 +14742,11 @@ $$</p>
 </tr>
 </tbody>
 </table>
-<h4 id="Methods">Methods<a class="anchor-link" href="#Methods">&#182;</a></h4><div class="highlight"><pre><span></span><span class="k">extern</span> <span class="n">BipartiteMatchState</span> <span class="o">*</span>
-<span class="nf">BipartiteMatch</span><span class="p">(</span>
-    <span class="kt">int</span> <span class="n">u_size</span><span class="p">,</span>
-    <span class="kt">int</span> <span class="n">v_size</span><span class="p">,</span>
-    <span class="kt">short</span> <span class="o">**</span><span class="n">adjacency</span><span class="p">);</span>
+<h4 id="Methods">Methods<a class="anchor-link" href="#Methods">&#182;</a></h4><div class="highlight"><pre><span></span><span class="k">extern</span><span class="w"> </span><span class="n">BipartiteMatchState</span><span class="w"> </span><span class="o">*</span><span class="w"></span>
+<span class="nf">BipartiteMatch</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">u_size</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">v_size</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="kt">short</span><span class="w"> </span><span class="o">**</span><span class="n">adjacency</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 <blockquote><p>Computes the maximum cardinality matching for the specified graph.</p>
 <p>&nbsp;
@@ -14795,9 +14766,9 @@ $$</p>
 </blockquote>
 <hr/>
 
-<div class="highlight"><pre><span></span><span class="k">extern</span> <span class="kt">void</span>
-<span class="nf">BipartiteMatchFree</span><span class="p">(</span>
-    <span class="n">BipartiteMatchState</span> <span class="o">*</span><span class="n">state</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><span class="k">extern</span><span class="w"> </span><span class="kt">void</span><span class="w"></span>
+<span class="nf">BipartiteMatchFree</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">BipartiteMatchState</span><span class="w"> </span><span class="o">*</span><span class="n">state</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 <blockquote><p>Frees the state returned by <code>BipartiteMatch()</code>.</p>
 <p>&nbsp;
@@ -14848,11 +14819,11 @@ $$</p>
 </tr>
 </tbody>
 </table>
-<h4 id="Methods">Methods<a class="anchor-link" href="#Methods">&#182;</a></h4><div class="highlight"><pre><span></span><span class="k">extern</span> <span class="n">bloom_filter</span> <span class="o">*</span>
-<span class="nf">bloom_create</span><span class="p">(</span>
-    <span class="n">int64</span> <span class="n">total_elems</span><span class="p">,</span>
-    <span class="kt">int</span> <span class="n">bloom_work_mem</span><span class="p">,</span>
-    <span class="n">uint64</span> <span class="n">seed</span><span class="p">);</span>
+<h4 id="Methods">Methods<a class="anchor-link" href="#Methods">&#182;</a></h4><div class="highlight"><pre><span></span><span class="k">extern</span><span class="w"> </span><span class="n">bloom_filter</span><span class="w"> </span><span class="o">*</span><span class="w"></span>
+<span class="nf">bloom_create</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">int64</span><span class="w"> </span><span class="n">total_elems</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">bloom_work_mem</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">uint64</span><span class="w"> </span><span class="n">seed</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 <blockquote><p>Allocates a Bloom filter with an expected false positive rate of ~2% relative to the specified total number of elements and the specified working memory limit, using the specified seed for its hash functions.</p>
 <p>&nbsp;
@@ -14872,9 +14843,9 @@ $$</p>
 </blockquote>
 <hr/>
 
-<div class="highlight"><pre><span></span><span class="k">extern</span> <span class="kt">void</span>
-<span class="nf">bloom_free</span><span class="p">(</span>
-    <span class="n">bloom_filter</span> <span class="o">*</span><span class="n">filter</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><span class="k">extern</span><span class="w"> </span><span class="kt">void</span><span class="w"></span>
+<span class="nf">bloom_free</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">bloom_filter</span><span class="w"> </span><span class="o">*</span><span class="n">filter</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 <blockquote><p>Frees the specified Bloom filter.</p>
 <p>&nbsp;
@@ -14886,11 +14857,11 @@ $$</p>
 </blockquote>
 <hr/>
 
-<div class="highlight"><pre><span></span><span class="k">extern</span> <span class="kt">void</span>
-<span class="nf">bloom_add_element</span><span class="p">(</span>
-    <span class="n">bloom_filter</span> <span class="o">*</span><span class="n">filter</span><span class="p">,</span>
-    <span class="kt">unsigned</span> <span class="kt">char</span> <span class="o">*</span><span class="n">elem</span><span class="p">,</span>
-    <span class="kt">size_t</span> <span class="n">len</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><span class="k">extern</span><span class="w"> </span><span class="kt">void</span><span class="w"></span>
+<span class="nf">bloom_add_element</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">bloom_filter</span><span class="w"> </span><span class="o">*</span><span class="n">filter</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">elem</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="kt">size_t</span><span class="w"> </span><span class="n">len</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 <blockquote><p>Adds the specified element into the specified Bloom filter.</p>
 <p>&nbsp;
@@ -14904,11 +14875,11 @@ $$</p>
 </blockquote>
 <hr/>
 
-<div class="highlight"><pre><span></span><span class="k">extern</span> <span class="kt">bool</span>
-<span class="nf">bloom_lacks_element</span><span class="p">(</span>
-    <span class="n">bloom_filter</span> <span class="o">*</span><span class="n">filter</span><span class="p">,</span>
-    <span class="kt">unsigned</span> <span class="kt">char</span> <span class="o">*</span><span class="n">elem</span><span class="p">,</span>
-    <span class="kt">size_t</span> <span class="n">len</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><span class="k">extern</span><span class="w"> </span><span class="kt">bool</span><span class="w"></span>
+<span class="nf">bloom_lacks_element</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">bloom_filter</span><span class="w"> </span><span class="o">*</span><span class="n">filter</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">elem</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="kt">size_t</span><span class="w"> </span><span class="n">len</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 <blockquote><p>Returns <code>true</code> for a true negative if the element is definitely not in the specified Bloom filter.
 Otherwise, returns <code>false</code> for a true positive or a false positive if the element is probably in the specified Bloom filter.</p>
@@ -14930,9 +14901,9 @@ Otherwise, returns <code>false</code> for a true positive or a false positive if
 </blockquote>
 <hr/>
 
-<div class="highlight"><pre><span></span><span class="k">extern</span> <span class="kt">double</span>
-<span class="nf">bloom_prop_bits_set</span><span class="p">(</span>
-    <span class="n">bloom_filter</span> <span class="o">*</span><span class="n">filter</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><span class="k">extern</span><span class="w"> </span><span class="kt">double</span><span class="w"></span>
+<span class="nf">bloom_prop_bits_set</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">bloom_filter</span><span class="w"> </span><span class="o">*</span><span class="n">filter</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 <blockquote><p>Calculates the proportion of set bits to unset bits in the specified Bloom filter.</p>
 <p>&nbsp;
@@ -14963,25 +14934,25 @@ Otherwise, returns <code>false</code> for a true positive or a false positive if
 </ul>
 <h4 id="Constants">Constants<a class="anchor-link" href="#Constants">&#182;</a></h4><p><em>N/A</em>.</p>
 <h4 id="Enumerations">Enumerations<a class="anchor-link" href="#Enumerations">&#182;</a></h4><p><em>N/A</em>.</p>
-<h4 id="Types">Types<a class="anchor-link" href="#Types">&#182;</a></h4><div class="highlight"><pre><span></span><span class="k">typedef</span> <span class="k">struct</span> <span class="n">dshash_table</span> <span class="n">dshash_table</span><span class="p">;</span>
+<h4 id="Types">Types<a class="anchor-link" href="#Types">&#182;</a></h4><div class="highlight"><pre><span></span><span class="k">typedef</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">dshash_table</span><span class="w"> </span><span class="n">dshash_table</span><span class="p">;</span><span class="w"></span>
 </pre></div>
 <blockquote><p>A dynamic shared memory concurrent hash table.</p>
 </blockquote>
 <hr/>
 
-<div class="highlight"><pre><span></span><span class="k">typedef</span> <span class="n">dsa_pointer</span> <span class="n">dshash_table_handle</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><span class="k">typedef</span><span class="w"> </span><span class="n">dsa_pointer</span><span class="w"> </span><span class="n">dshash_table_handle</span><span class="p">;</span><span class="w"></span>
 </pre></div>
 <blockquote><p>A handle for a <code>dshash_table</code> which can be shared with other processes.</p>
 </blockquote>
 <hr/>
 
-<div class="highlight"><pre><span></span><span class="k">typedef</span> <span class="n">uint32</span> <span class="n">dshash_hash</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><span class="k">typedef</span><span class="w"> </span><span class="n">uint32</span><span class="w"> </span><span class="n">dshash_hash</span><span class="p">;</span><span class="w"></span>
 </pre></div>
 <blockquote><p>A type representing the hash values used in a <code>dshash_table</code>.</p>
 </blockquote>
 <hr/>
 
-<div class="highlight"><pre><span></span><span class="k">typedef</span> <span class="nf">int</span> <span class="p">(</span><span class="o">*</span><span class="n">dshash_compare_function</span><span class="p">)</span> <span class="p">(</span><span class="k">const</span> <span class="kt">void</span> <span class="o">*</span><span class="n">a</span><span class="p">,</span> <span class="k">const</span> <span class="kt">void</span> <span class="o">*</span><span class="n">b</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">size</span><span class="p">,</span> <span class="kt">void</span> <span class="o">*</span><span class="n">arg</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><span class="k">typedef</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="p">(</span><span class="o">*</span><span class="n">dshash_compare_function</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">b</span><span class="p">,</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">size</span><span class="p">,</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">arg</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 <blockquote><p>A comparison function, which imposes a total ordering on some collection of keys.
 <br/>
@@ -14996,7 +14967,7 @@ $$</p>
 </blockquote>
 <hr/>
 
-<div class="highlight"><pre><span></span><span class="k">typedef</span> <span class="nf">dshash_hash</span> <span class="p">(</span><span class="o">*</span><span class="n">dshash_hash_function</span><span class="p">)</span> <span class="p">(</span><span class="k">const</span> <span class="kt">void</span> <span class="o">*</span><span class="n">v</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">size</span><span class="p">,</span> <span class="kt">void</span> <span class="o">*</span><span class="n">arg</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><span class="k">typedef</span><span class="w"> </span><span class="n">dshash_hash</span><span class="w"> </span><span class="p">(</span><span class="o">*</span><span class="n">dshash_hash_function</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">v</span><span class="p">,</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">size</span><span class="p">,</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">arg</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 <blockquote><p>A hash function, which computes the hash values of keys.</p>
 </blockquote>
@@ -15031,11 +15002,11 @@ $$</p>
 </tr>
 </tbody>
 </table>
-<h4 id="Methods">Methods<a class="anchor-link" href="#Methods">&#182;</a></h4><div class="highlight"><pre><span></span><span class="k">extern</span> <span class="n">dshash_table</span> <span class="o">*</span>
-<span class="nf">dshash_create</span><span class="p">(</span>
-    <span class="n">dsa_area</span> <span class="o">*</span><span class="n">area</span><span class="p">,</span>
-    <span class="k">const</span> <span class="n">dshash_parameters</span> <span class="o">*</span><span class="n">params</span><span class="p">,</span>
-    <span class="kt">void</span> <span class="o">*</span><span class="n">arg</span><span class="p">);</span>
+<h4 id="Methods">Methods<a class="anchor-link" href="#Methods">&#182;</a></h4><div class="highlight"><pre><span></span><span class="k">extern</span><span class="w"> </span><span class="n">dshash_table</span><span class="w"> </span><span class="o">*</span><span class="w"></span>
+<span class="nf">dshash_create</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">dsa_area</span><span class="w"> </span><span class="o">*</span><span class="n">area</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">dshash_parameters</span><span class="w"> </span><span class="o">*</span><span class="n">params</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">arg</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 <blockquote><p>Creates a concurrent hash table backed by the specified <em>Dynamic Shared Area</em>, with the specified parameters and argument.</p>
 <p>&nbsp;
@@ -15055,12 +15026,12 @@ $$</p>
 </blockquote>
 <hr/>
 
-<div class="highlight"><pre><span></span><span class="k">extern</span> <span class="n">dshash_table</span> <span class="o">*</span>
-<span class="nf">dshash_attach</span><span class="p">(</span>
-    <span class="n">dsa_area</span> <span class="o">*</span><span class="n">area</span><span class="p">,</span>
-    <span class="k">const</span> <span class="n">dshash_parameters</span> <span class="o">*</span><span class="n">params</span><span class="p">,</span>
-    <span class="n">dshash_table_handle</span> <span class="n">handle</span><span class="p">,</span>
-    <span class="kt">void</span> <span class="o">*</span><span class="n">arg</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><span class="k">extern</span><span class="w"> </span><span class="n">dshash_table</span><span class="w"> </span><span class="o">*</span><span class="w"></span>
+<span class="nf">dshash_attach</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">dsa_area</span><span class="w"> </span><span class="o">*</span><span class="n">area</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">dshash_parameters</span><span class="w"> </span><span class="o">*</span><span class="n">params</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">dshash_table_handle</span><span class="w"> </span><span class="n">handle</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">arg</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 <blockquote><p>Attach this process to an existing concurrent hash table backed by the specified <em>Dynamic Shared Area</em>, with the specified parameters and argument, using the specified handle.</p>
 <p>&nbsp;
@@ -15081,9 +15052,9 @@ $$</p>
 </blockquote>
 <hr/>
 
-<div class="highlight"><pre><span></span><span class="k">extern</span> <span class="kt">void</span>
-<span class="nf">dshash_detach</span><span class="p">(</span>
-    <span class="n">dshash_table</span> <span class="o">*</span><span class="n">hash_table</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><span class="k">extern</span><span class="w"> </span><span class="kt">void</span><span class="w"></span>
+<span class="nf">dshash_detach</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">dshash_table</span><span class="w"> </span><span class="o">*</span><span class="n">hash_table</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 <blockquote><p>Detach this process from the existing specified concurrent hash table.
 <br/>
@@ -15098,9 +15069,9 @@ Call <code>dshash_destroy()</code> to release shared memory back to the concurre
 </blockquote>
 <hr/>
 
-<div class="highlight"><pre><span></span><span class="k">extern</span> <span class="kt">void</span>
-<span class="nf">dshash_destroy</span><span class="p">(</span>
-    <span class="n">dshash_table</span> <span class="o">*</span><span class="n">hash_table</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><span class="k">extern</span><span class="w"> </span><span class="kt">void</span><span class="w"></span>
+<span class="nf">dshash_destroy</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">dshash_table</span><span class="w"> </span><span class="o">*</span><span class="n">hash_table</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 <blockquote><p>Destroys the specified concurrent hash table.
 <br/>
@@ -15115,9 +15086,9 @@ Call <code>dshash_detach()</code> on all processes attached to the concurrent ha
 </blockquote>
 <hr/>
 
-<div class="highlight"><pre><span></span><span class="k">extern</span> <span class="n">dshash_table_handle</span>
-<span class="nf">dshash_get_hash_table_handle</span><span class="p">(</span>
-    <span class="n">dshash_table</span> <span class="o">*</span><span class="n">hash_table</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><span class="k">extern</span><span class="w"> </span><span class="n">dshash_table_handle</span><span class="w"></span>
+<span class="nf">dshash_get_hash_table_handle</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">dshash_table</span><span class="w"> </span><span class="o">*</span><span class="n">hash_table</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 <blockquote><p>Returns a handle that can be used by other processes to attach to the specified concurrent hash table.</p>
 <p>&nbsp;
@@ -15135,11 +15106,11 @@ Call <code>dshash_detach()</code> on all processes attached to the concurrent ha
 </blockquote>
 <hr/>
 
-<div class="highlight"><pre><span></span><span class="k">extern</span> <span class="kt">void</span> <span class="o">*</span>
-<span class="nf">dshash_find</span><span class="p">(</span>
-    <span class="n">dshash_table</span> <span class="o">*</span><span class="n">hash_table</span><span class="p">,</span>
-    <span class="k">const</span> <span class="kt">void</span> <span class="o">*</span><span class="n">key</span><span class="p">,</span>
-    <span class="kt">bool</span> <span class="n">exclusive</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><span class="k">extern</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="w"></span>
+<span class="nf">dshash_find</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">dshash_table</span><span class="w"> </span><span class="o">*</span><span class="n">hash_table</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">key</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">exclusive</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 <blockquote><p>Returns a pointer to an entry if one can be found with the specified key.
 <br/>
@@ -15162,11 +15133,11 @@ Call <code>dshash_detach()</code> on all processes attached to the concurrent ha
 </blockquote>
 <hr/>
 
-<div class="highlight"><pre><span></span><span class="k">extern</span> <span class="kt">void</span> <span class="o">*</span>
-<span class="nf">dshash_find_or_insert</span><span class="p">(</span>
-    <span class="n">dshash_table</span> <span class="o">*</span><span class="n">hash_table</span><span class="p">,</span>
-    <span class="k">const</span> <span class="kt">void</span> <span class="o">*</span><span class="n">key</span><span class="p">,</span>
-    <span class="kt">bool</span> <span class="o">*</span><span class="n">found</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><span class="k">extern</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="w"></span>
+<span class="nf">dshash_find_or_insert</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">dshash_table</span><span class="w"> </span><span class="o">*</span><span class="n">hash_table</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">key</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="o">*</span><span class="n">found</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 <blockquote><p>Returns a pointer to an exclusively locked entry which must be released with <code>dshash_release_lock()</code>.
 If the key is found, then <code>found</code> is set to <code>true</code> and a pointer to the existing entry is returned.
@@ -15188,10 +15159,10 @@ If the key is not found, then <code>found</code> is set to <code>false</code> an
 </blockquote>
 <hr/>
 
-<div class="highlight"><pre><span></span><span class="k">extern</span> <span class="kt">bool</span>
-<span class="nf">dshash_delete_key</span><span class="p">(</span>
-    <span class="n">dshash_table</span> <span class="o">*</span><span class="n">hash_table</span><span class="p">,</span>
-    <span class="k">const</span> <span class="kt">void</span> <span class="o">*</span><span class="n">key</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><span class="k">extern</span><span class="w"> </span><span class="kt">bool</span><span class="w"></span>
+<span class="nf">dshash_delete_key</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">dshash_table</span><span class="w"> </span><span class="o">*</span><span class="n">hash_table</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">key</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 <blockquote><p>Removes an entry by the specified key.</p>
 <p>&nbsp;
@@ -15211,10 +15182,10 @@ If the key is not found, then <code>found</code> is set to <code>false</code> an
 </blockquote>
 <hr/>
 
-<div class="highlight"><pre><span></span><span class="k">extern</span> <span class="kt">void</span>
-<span class="nf">dshash_delete_entry</span><span class="p">(</span>
-    <span class="n">dshash_table</span> <span class="o">*</span><span class="n">hash_table</span><span class="p">,</span>
-    <span class="kt">void</span> <span class="o">*</span><span class="n">entry</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><span class="k">extern</span><span class="w"> </span><span class="kt">void</span><span class="w"></span>
+<span class="nf">dshash_delete_entry</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">dshash_table</span><span class="w"> </span><span class="o">*</span><span class="n">hash_table</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">entry</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 <blockquote><p>Removes the specified entry.
 <br/>
@@ -15229,10 +15200,10 @@ If the key is not found, then <code>found</code> is set to <code>false</code> an
 </blockquote>
 <hr/>
 
-<div class="highlight"><pre><span></span><span class="k">extern</span> <span class="kt">void</span>
-<span class="nf">dshash_release_lock</span><span class="p">(</span>
-    <span class="n">dshash_table</span> <span class="o">*</span><span class="n">hash_table</span><span class="p">,</span>
-    <span class="kt">void</span> <span class="o">*</span><span class="n">entry</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><span class="k">extern</span><span class="w"> </span><span class="kt">void</span><span class="w"></span>
+<span class="nf">dshash_release_lock</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">dshash_table</span><span class="w"> </span><span class="o">*</span><span class="n">hash_table</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">entry</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 <blockquote><p>Releases the lock held for the specified entry.
 <br/>
@@ -15247,22 +15218,22 @@ If the key is not found, then <code>found</code> is set to <code>false</code> an
 </blockquote>
 <hr/>
 
-<div class="highlight"><pre><span></span><span class="k">extern</span> <span class="kt">int</span>
-<span class="nf">dshash_memcmp</span><span class="p">(</span>
-    <span class="k">const</span> <span class="kt">void</span> <span class="o">*</span><span class="n">a</span><span class="p">,</span>
-    <span class="k">const</span> <span class="kt">void</span> <span class="o">*</span><span class="n">b</span><span class="p">,</span>
-    <span class="kt">size_t</span> <span class="n">size</span><span class="p">,</span>
-    <span class="kt">void</span> <span class="o">*</span><span class="n">arg</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><span class="k">extern</span><span class="w"> </span><span class="kt">int</span><span class="w"></span>
+<span class="nf">dshash_memcmp</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">a</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">b</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="kt">size_t</span><span class="w"> </span><span class="n">size</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">arg</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 <blockquote><p>A default comparison function using <code>memcmp()</code>.</p>
 </blockquote>
 <hr/>
 
-<div class="highlight"><pre><span></span><span class="k">extern</span> <span class="n">dshash_hash</span>
-<span class="nf">dshash_memhash</span><span class="p">(</span>
-    <span class="k">const</span> <span class="kt">void</span> <span class="o">*</span><span class="n">v</span><span class="p">,</span>
-    <span class="kt">size_t</span> <span class="n">size</span><span class="p">,</span>
-    <span class="kt">void</span> <span class="o">*</span><span class="n">arg</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><span class="k">extern</span><span class="w"> </span><span class="n">dshash_hash</span><span class="w"></span>
+<span class="nf">dshash_memhash</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">v</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="kt">size_t</span><span class="w"> </span><span class="n">size</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">arg</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 <blockquote><p>A default hash function using <code>tag_hash()</code>.</p>
 </blockquote>
@@ -15311,10 +15282,10 @@ If the key is not found, then <code>found</code> is set to <code>false</code> an
 </tr>
 </tbody>
 </table>
-<h4 id="Methods">Methods<a class="anchor-link" href="#Methods">&#182;</a></h4><div class="highlight"><pre><span></span><span class="k">extern</span> <span class="kt">void</span>
-<span class="nf">initHyperLogLog</span><span class="p">(</span>
-    <span class="n">hyperLogLogState</span> <span class="o">*</span><span class="n">cState</span><span class="p">,</span>
-    <span class="n">uint8</span> <span class="n">bwidth</span><span class="p">);</span>
+<h4 id="Methods">Methods<a class="anchor-link" href="#Methods">&#182;</a></h4><div class="highlight"><pre><span></span><span class="k">extern</span><span class="w"> </span><span class="kt">void</span><span class="w"></span>
+<span class="nf">initHyperLogLog</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">hyperLogLogState</span><span class="w"> </span><span class="o">*</span><span class="n">cState</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">uint8</span><span class="w"> </span><span class="n">bwidth</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 <blockquote><p>Initializes a HyperLogLog with the specified register bit width.</p>
 <p>&nbsp;
@@ -15327,10 +15298,10 @@ If the key is not found, then <code>found</code> is set to <code>false</code> an
 </blockquote>
 <hr/>
 
-<div class="highlight"><pre><span></span><span class="k">extern</span> <span class="kt">void</span>
-<span class="nf">initHyperLogLogError</span><span class="p">(</span>
-    <span class="n">hyperLogLogState</span> <span class="o">*</span><span class="n">cState</span><span class="p">,</span>
-    <span class="kt">double</span> <span class="n">error</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><span class="k">extern</span><span class="w"> </span><span class="kt">void</span><span class="w"></span>
+<span class="nf">initHyperLogLogError</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">hyperLogLogState</span><span class="w"> </span><span class="o">*</span><span class="n">cState</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">error</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 <blockquote><p>Initializes a HyperLogLog with the specified error rate.</p>
 <p>&nbsp;
@@ -15343,9 +15314,9 @@ If the key is not found, then <code>found</code> is set to <code>false</code> an
 </blockquote>
 <hr/>
 
-<div class="highlight"><pre><span></span><span class="k">extern</span> <span class="kt">void</span>
-<span class="nf">freeHyperLogLog</span><span class="p">(</span>
-    <span class="n">hyperLogLogState</span> <span class="o">*</span><span class="n">cState</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><span class="k">extern</span><span class="w"> </span><span class="kt">void</span><span class="w"></span>
+<span class="nf">freeHyperLogLog</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">hyperLogLogState</span><span class="w"> </span><span class="o">*</span><span class="n">cState</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 <blockquote><p>Frees the specified HyperLogLog.
 <br/>
@@ -15359,10 +15330,10 @@ If the key is not found, then <code>found</code> is set to <code>false</code> an
 </blockquote>
 <hr/>
 
-<div class="highlight"><pre><span></span><span class="k">extern</span> <span class="kt">void</span>
-<span class="nf">addHyperLogLog</span><span class="p">(</span>
-    <span class="n">hyperLogLogState</span> <span class="o">*</span><span class="n">cState</span><span class="p">,</span>
-    <span class="n">uint32</span> <span class="n">hash</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><span class="k">extern</span><span class="w"> </span><span class="kt">void</span><span class="w"></span>
+<span class="nf">addHyperLogLog</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">hyperLogLogState</span><span class="w"> </span><span class="o">*</span><span class="n">cState</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">uint32</span><span class="w"> </span><span class="n">hash</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 <blockquote><p>Adds the specified hash value into the specified HyperLogLog.</p>
 <p>&nbsp;
@@ -15375,9 +15346,9 @@ If the key is not found, then <code>found</code> is set to <code>false</code> an
 </blockquote>
 <hr/>
 
-<div class="highlight"><pre><span></span><span class="k">extern</span> <span class="kt">double</span>
-<span class="nf">estimateHyperLogLog</span><span class="p">(</span>
-    <span class="n">hyperLogLogState</span> <span class="o">*</span><span class="n">cState</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><span class="k">extern</span><span class="w"> </span><span class="kt">double</span><span class="w"></span>
+<span class="nf">estimateHyperLogLog</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">hyperLogLogState</span><span class="w"> </span><span class="o">*</span><span class="n">cState</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 <blockquote><p>Estimates the cardinality of the specified HyperLogLog.</p>
 <p>&nbsp;
@@ -15547,9 +15518,9 @@ If the key is not found, then <code>found</code> is set to <code>false</code> an
 </tr>
 </tbody>
 </table>
-<h4 id="Methods">Methods<a class="anchor-link" href="#Methods">&#182;</a></h4><div class="highlight"><pre><span></span><span class="k">static</span> <span class="kr">inline</span> <span class="kt">void</span>
-<span class="nf">dlist_init</span><span class="p">(</span>
-    <span class="n">dlist_head</span> <span class="o">*</span><span class="n">head</span><span class="p">);</span>
+<h4 id="Methods">Methods<a class="anchor-link" href="#Methods">&#182;</a></h4><div class="highlight"><pre><span></span><span class="k">static</span><span class="w"> </span><span class="kr">inline</span><span class="w"> </span><span class="kt">void</span><span class="w"></span>
+<span class="nf">dlist_init</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">dlist_head</span><span class="w"> </span><span class="o">*</span><span class="n">head</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 <blockquote><p>Initialize the doubly linked list.</p>
 <p>&nbsp;
@@ -15561,9 +15532,9 @@ If the key is not found, then <code>found</code> is set to <code>false</code> an
 </blockquote>
 <hr/>
 
-<div class="highlight"><pre><span></span><span class="k">static</span> <span class="kr">inline</span> <span class="kt">bool</span>
-<span class="nf">dlist_is_empty</span><span class="p">(</span>
-    <span class="n">dlist_head</span> <span class="o">*</span><span class="n">head</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><span class="k">static</span><span class="w"> </span><span class="kr">inline</span><span class="w"> </span><span class="kt">bool</span><span class="w"></span>
+<span class="nf">dlist_is_empty</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">dlist_head</span><span class="w"> </span><span class="o">*</span><span class="n">head</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 <blockquote><p>Checks if the specified doubly linked list is empty.</p>
 <p>&nbsp;
@@ -15582,10 +15553,10 @@ If the key is not found, then <code>found</code> is set to <code>false</code> an
 </blockquote>
 <hr/>
 
-<div class="highlight"><pre><span></span><span class="k">static</span> <span class="kr">inline</span> <span class="kt">void</span>
-<span class="nf">dlist_push_head</span><span class="p">(</span>
-    <span class="n">dlist_head</span> <span class="o">*</span><span class="n">head</span><span class="p">,</span>
-    <span class="n">dlist_node</span> <span class="o">*</span><span class="n">node</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><span class="k">static</span><span class="w"> </span><span class="kr">inline</span><span class="w"> </span><span class="kt">void</span><span class="w"></span>
+<span class="nf">dlist_push_head</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">dlist_head</span><span class="w"> </span><span class="o">*</span><span class="n">head</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">dlist_node</span><span class="w"> </span><span class="o">*</span><span class="n">node</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 <blockquote><p>Prepends the specified doubly linked list node to the start of the specified doubly linked list.</p>
 <p>&nbsp;
@@ -15598,10 +15569,10 @@ If the key is not found, then <code>found</code> is set to <code>false</code> an
 </blockquote>
 <hr/>
 
-<div class="highlight"><pre><span></span><span class="k">static</span> <span class="kr">inline</span> <span class="kt">void</span>
-<span class="nf">dlist_push_tail</span><span class="p">(</span>
-    <span class="n">dlist_head</span> <span class="o">*</span><span class="n">head</span><span class="p">,</span>
-    <span class="n">dlist_node</span> <span class="o">*</span><span class="n">node</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><span class="k">static</span><span class="w"> </span><span class="kr">inline</span><span class="w"> </span><span class="kt">void</span><span class="w"></span>
+<span class="nf">dlist_push_tail</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">dlist_head</span><span class="w"> </span><span class="o">*</span><span class="n">head</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">dlist_node</span><span class="w"> </span><span class="o">*</span><span class="n">node</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 <blockquote><p>Appends the specified doubly linked list node to the end of the specified doubly linked list.</p>
 <p>&nbsp;
@@ -15614,10 +15585,10 @@ If the key is not found, then <code>found</code> is set to <code>false</code> an
 </blockquote>
 <hr/>
 
-<div class="highlight"><pre><span></span><span class="k">static</span> <span class="kr">inline</span> <span class="kt">void</span>
-<span class="nf">dlist_insert_after</span><span class="p">(</span>
-    <span class="n">dlist_node</span> <span class="o">*</span><span class="n">after</span><span class="p">,</span>
-    <span class="n">dlist_node</span> <span class="o">*</span><span class="n">node</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><span class="k">static</span><span class="w"> </span><span class="kr">inline</span><span class="w"> </span><span class="kt">void</span><span class="w"></span>
+<span class="nf">dlist_insert_after</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">dlist_node</span><span class="w"> </span><span class="o">*</span><span class="n">after</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">dlist_node</span><span class="w"> </span><span class="o">*</span><span class="n">node</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 <blockquote><p>Appends the specified doubly linked list node after the specified doubly linked list node.</p>
 <p>&nbsp;
@@ -15630,10 +15601,10 @@ If the key is not found, then <code>found</code> is set to <code>false</code> an
 </blockquote>
 <hr/>
 
-<div class="highlight"><pre><span></span><span class="k">static</span> <span class="kr">inline</span> <span class="kt">void</span>
-<span class="nf">dlist_insert_before</span><span class="p">(</span>
-    <span class="n">dlist_node</span> <span class="o">*</span><span class="n">before</span><span class="p">,</span>
-    <span class="n">dlist_node</span> <span class="o">*</span><span class="n">node</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><span class="k">static</span><span class="w"> </span><span class="kr">inline</span><span class="w"> </span><span class="kt">void</span><span class="w"></span>
+<span class="nf">dlist_insert_before</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">dlist_node</span><span class="w"> </span><span class="o">*</span><span class="n">before</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">dlist_node</span><span class="w"> </span><span class="o">*</span><span class="n">node</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 <blockquote><p>Prepends the specified doubly linked list node before the specified doubly linked list node.</p>
 <p>&nbsp;
@@ -15646,9 +15617,9 @@ If the key is not found, then <code>found</code> is set to <code>false</code> an
 </blockquote>
 <hr/>
 
-<div class="highlight"><pre><span></span><span class="k">static</span> <span class="kr">inline</span> <span class="kt">void</span>
-<span class="nf">dlist_delete</span><span class="p">(</span>
-    <span class="n">dlist_node</span> <span class="o">*</span><span class="n">node</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><span class="k">static</span><span class="w"> </span><span class="kr">inline</span><span class="w"> </span><span class="kt">void</span><span class="w"></span>
+<span class="nf">dlist_delete</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">dlist_node</span><span class="w"> </span><span class="o">*</span><span class="n">node</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 <blockquote><p>Delete the specified doubly linked list node.</p>
 <p>&nbsp;
@@ -15660,9 +15631,9 @@ If the key is not found, then <code>found</code> is set to <code>false</code> an
 </blockquote>
 <hr/>
 
-<div class="highlight"><pre><span></span><span class="k">static</span> <span class="kr">inline</span> <span class="n">dlist_node</span> <span class="o">*</span>
-<span class="nf">dlist_pop_head_node</span><span class="p">(</span>
-    <span class="n">dlist_head</span> <span class="o">*</span><span class="n">head</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><span class="k">static</span><span class="w"> </span><span class="kr">inline</span><span class="w"> </span><span class="n">dlist_node</span><span class="w"> </span><span class="o">*</span><span class="w"></span>
+<span class="nf">dlist_pop_head_node</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">dlist_head</span><span class="w"> </span><span class="o">*</span><span class="n">head</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 <blockquote><p>Retrieves and removes the head of the specified doubly linked list.</p>
 <p>&nbsp;
@@ -15678,10 +15649,10 @@ If the key is not found, then <code>found</code> is set to <code>false</code> an
 <li>The doubly linked list's head.</li>
 </ul>
 </blockquote>
-<div class="highlight"><pre><span></span><span class="k">static</span> <span class="kr">inline</span> <span class="kt">void</span>
-<span class="nf">dlist_move_head</span><span class="p">(</span>
-    <span class="n">dlist_head</span> <span class="o">*</span><span class="n">head</span><span class="p">,</span>
-    <span class="n">dlist_node</span> <span class="o">*</span><span class="n">node</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><span class="k">static</span><span class="w"> </span><span class="kr">inline</span><span class="w"> </span><span class="kt">void</span><span class="w"></span>
+<span class="nf">dlist_move_head</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">dlist_head</span><span class="w"> </span><span class="o">*</span><span class="n">head</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">dlist_node</span><span class="w"> </span><span class="o">*</span><span class="n">node</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 <blockquote><p>Move the specified doubly linked list node to the head of the specified doubly linked list.</p>
 <p>&nbsp;
@@ -15692,10 +15663,10 @@ If the key is not found, then <code>found</code> is set to <code>false</code> an
 <li><code>node</code> - The doubly linked list node to move.</li>
 </ul>
 </blockquote>
-<div class="highlight"><pre><span></span><span class="k">static</span> <span class="kr">inline</span> <span class="kt">bool</span>
-<span class="nf">dlist_has_next</span><span class="p">(</span>
-    <span class="n">dlist_head</span> <span class="o">*</span><span class="n">head</span><span class="p">,</span>
-    <span class="n">dlist_node</span> <span class="o">*</span><span class="n">node</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><span class="k">static</span><span class="w"> </span><span class="kr">inline</span><span class="w"> </span><span class="kt">bool</span><span class="w"></span>
+<span class="nf">dlist_has_next</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">dlist_head</span><span class="w"> </span><span class="o">*</span><span class="n">head</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">dlist_node</span><span class="w"> </span><span class="o">*</span><span class="n">node</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 <blockquote><p>Checks whether the specified doubly linked list node has a following node in the specified doubly linked list.</p>
 <p>&nbsp;
@@ -15715,10 +15686,10 @@ If the key is not found, then <code>found</code> is set to <code>false</code> an
 </blockquote>
 <hr/>
 
-<div class="highlight"><pre><span></span><span class="k">static</span> <span class="kr">inline</span> <span class="kt">bool</span>
-<span class="nf">dlist_has_prev</span><span class="p">(</span>
-    <span class="n">dlist_head</span> <span class="o">*</span><span class="n">head</span><span class="p">,</span>
-    <span class="n">dlist_node</span> <span class="o">*</span><span class="n">node</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><span class="k">static</span><span class="w"> </span><span class="kr">inline</span><span class="w"> </span><span class="kt">bool</span><span class="w"></span>
+<span class="nf">dlist_has_prev</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">dlist_head</span><span class="w"> </span><span class="o">*</span><span class="n">head</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">dlist_node</span><span class="w"> </span><span class="o">*</span><span class="n">node</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 <blockquote><p>Checks whether the specified doubly linked list node has a preceding node in the specified doubly linked list.</p>
 <p>&nbsp;
@@ -15738,10 +15709,10 @@ If the key is not found, then <code>found</code> is set to <code>false</code> an
 </blockquote>
 <hr/>
 
-<div class="highlight"><pre><span></span><span class="k">static</span> <span class="kr">inline</span> <span class="n">dlist_node</span> <span class="o">*</span>
-<span class="nf">dlist_next_node</span><span class="p">(</span>
-    <span class="n">dlist_head</span> <span class="o">*</span><span class="n">head</span><span class="p">,</span>
-    <span class="n">dlist_node</span> <span class="o">*</span><span class="n">node</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><span class="k">static</span><span class="w"> </span><span class="kr">inline</span><span class="w"> </span><span class="n">dlist_node</span><span class="w"> </span><span class="o">*</span><span class="w"></span>
+<span class="nf">dlist_next_node</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">dlist_head</span><span class="w"> </span><span class="o">*</span><span class="n">head</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">dlist_node</span><span class="w"> </span><span class="o">*</span><span class="n">node</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 <blockquote><p>Returns the node following the specified doubly linked list node.</p>
 <p>&nbsp;
@@ -15760,10 +15731,10 @@ If the key is not found, then <code>found</code> is set to <code>false</code> an
 </blockquote>
 <hr/>
 
-<div class="highlight"><pre><span></span><span class="k">static</span> <span class="kr">inline</span> <span class="n">dlist_node</span> <span class="o">*</span>
-<span class="nf">dlist_prev_node</span><span class="p">(</span>
-    <span class="n">dlist_head</span> <span class="o">*</span><span class="n">head</span><span class="p">,</span>
-    <span class="n">dlist_node</span> <span class="o">*</span><span class="n">node</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><span class="k">static</span><span class="w"> </span><span class="kr">inline</span><span class="w"> </span><span class="n">dlist_node</span><span class="w"> </span><span class="o">*</span><span class="w"></span>
+<span class="nf">dlist_prev_node</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">dlist_head</span><span class="w"> </span><span class="o">*</span><span class="n">head</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">dlist_node</span><span class="w"> </span><span class="o">*</span><span class="n">node</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 <blockquote><p>Returns the node preceding the specified doubly linked list node.</p>
 <p>&nbsp;
@@ -15782,9 +15753,9 @@ If the key is not found, then <code>found</code> is set to <code>false</code> an
 </blockquote>
 <hr/>
 
-<div class="highlight"><pre><span></span><span class="k">static</span> <span class="kr">inline</span> <span class="n">dlist_node</span> <span class="o">*</span>
-<span class="nf">dlist_head_node</span><span class="p">(</span>
-    <span class="n">dlist_head</span> <span class="o">*</span><span class="n">head</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><span class="k">static</span><span class="w"> </span><span class="kr">inline</span><span class="w"> </span><span class="n">dlist_node</span><span class="w"> </span><span class="o">*</span><span class="w"></span>
+<span class="nf">dlist_head_node</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">dlist_head</span><span class="w"> </span><span class="o">*</span><span class="n">head</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 <blockquote><p>Returns the first doubly linked list node in the specified doubly linked list.</p>
 <p>&nbsp;
@@ -15802,9 +15773,9 @@ If the key is not found, then <code>found</code> is set to <code>false</code> an
 </blockquote>
 <hr/>
 
-<div class="highlight"><pre><span></span><span class="k">static</span> <span class="kr">inline</span> <span class="n">dlist_node</span> <span class="o">*</span>
-<span class="nf">dlist_tail_node</span><span class="p">(</span>
-    <span class="n">dlist_head</span> <span class="o">*</span><span class="n">head</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><span class="k">static</span><span class="w"> </span><span class="kr">inline</span><span class="w"> </span><span class="n">dlist_node</span><span class="w"> </span><span class="o">*</span><span class="w"></span>
+<span class="nf">dlist_tail_node</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">dlist_head</span><span class="w"> </span><span class="o">*</span><span class="n">head</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 <blockquote><p>Returns the last doubly linked list node in the specified doubly linked list.</p>
 <p>&nbsp;
@@ -15822,9 +15793,9 @@ If the key is not found, then <code>found</code> is set to <code>false</code> an
 </blockquote>
 <hr/>
 
-<div class="highlight"><pre><span></span><span class="k">static</span> <span class="kr">inline</span> <span class="kt">void</span>
-<span class="nf">slist_init</span><span class="p">(</span>
-    <span class="n">slist_head</span> <span class="o">*</span><span class="n">head</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><span class="k">static</span><span class="w"> </span><span class="kr">inline</span><span class="w"> </span><span class="kt">void</span><span class="w"></span>
+<span class="nf">slist_init</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">slist_head</span><span class="w"> </span><span class="o">*</span><span class="n">head</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 <blockquote><p>Initialize the singly linked list.</p>
 <p>&nbsp;
@@ -15836,9 +15807,9 @@ If the key is not found, then <code>found</code> is set to <code>false</code> an
 </blockquote>
 <hr/>
 
-<div class="highlight"><pre><span></span><span class="k">static</span> <span class="kr">inline</span> <span class="kt">bool</span>
-<span class="nf">slist_is_empty</span><span class="p">(</span>
-    <span class="n">slist_head</span> <span class="o">*</span><span class="n">head</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><span class="k">static</span><span class="w"> </span><span class="kr">inline</span><span class="w"> </span><span class="kt">bool</span><span class="w"></span>
+<span class="nf">slist_is_empty</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">slist_head</span><span class="w"> </span><span class="o">*</span><span class="n">head</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 <blockquote><p>Checks if the specified singly linked list is empty.</p>
 <p>&nbsp;
@@ -15857,10 +15828,10 @@ If the key is not found, then <code>found</code> is set to <code>false</code> an
 </blockquote>
 <hr/>
 
-<div class="highlight"><pre><span></span><span class="k">static</span> <span class="kr">inline</span> <span class="kt">void</span>
-<span class="nf">slist_push_head</span><span class="p">(</span>
-    <span class="n">slist_head</span> <span class="o">*</span><span class="n">head</span><span class="p">,</span>
-    <span class="n">slist_node</span> <span class="o">*</span><span class="n">node</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><span class="k">static</span><span class="w"> </span><span class="kr">inline</span><span class="w"> </span><span class="kt">void</span><span class="w"></span>
+<span class="nf">slist_push_head</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">slist_head</span><span class="w"> </span><span class="o">*</span><span class="n">head</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">slist_node</span><span class="w"> </span><span class="o">*</span><span class="n">node</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 <blockquote><p>Prepends the specified singly linked list node to the start of the specified singly linked list.</p>
 <p>&nbsp;
@@ -15873,10 +15844,10 @@ If the key is not found, then <code>found</code> is set to <code>false</code> an
 </blockquote>
 <hr/>
 
-<div class="highlight"><pre><span></span><span class="k">static</span> <span class="kr">inline</span> <span class="kt">void</span>
-<span class="nf">slist_insert_after</span><span class="p">(</span>
-    <span class="n">slist_node</span> <span class="o">*</span><span class="n">after</span><span class="p">,</span>
-    <span class="n">slist_node</span> <span class="o">*</span><span class="n">node</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><span class="k">static</span><span class="w"> </span><span class="kr">inline</span><span class="w"> </span><span class="kt">void</span><span class="w"></span>
+<span class="nf">slist_insert_after</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">slist_node</span><span class="w"> </span><span class="o">*</span><span class="n">after</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">slist_node</span><span class="w"> </span><span class="o">*</span><span class="n">node</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 <blockquote><p>Appends the specified singly linked list node after the specified singly linked list node.</p>
 <p>&nbsp;
@@ -15889,10 +15860,10 @@ If the key is not found, then <code>found</code> is set to <code>false</code> an
 </blockquote>
 <hr/>
 
-<div class="highlight"><pre><span></span><span class="k">extern</span> <span class="kt">void</span>
-<span class="nf">slist_delete</span><span class="p">(</span>
-    <span class="n">slist_head</span> <span class="o">*</span><span class="n">head</span><span class="p">,</span>
-    <span class="n">slist_node</span> <span class="o">*</span><span class="n">node</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><span class="k">extern</span><span class="w"> </span><span class="kt">void</span><span class="w"></span>
+<span class="nf">slist_delete</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">slist_head</span><span class="w"> </span><span class="o">*</span><span class="n">head</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">slist_node</span><span class="w"> </span><span class="o">*</span><span class="n">node</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 <blockquote><p>Delete the specified singly linked list node from the specified singly linked list node.
 <br/>
@@ -15907,9 +15878,9 @@ If the key is not found, then <code>found</code> is set to <code>false</code> an
 </blockquote>
 <hr/>
 
-<div class="highlight"><pre><span></span><span class="k">static</span> <span class="kr">inline</span> <span class="n">slist_node</span> <span class="o">*</span>
-<span class="nf">slist_pop_head_node</span><span class="p">(</span>
-    <span class="n">slist_head</span> <span class="o">*</span><span class="n">head</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><span class="k">static</span><span class="w"> </span><span class="kr">inline</span><span class="w"> </span><span class="n">slist_node</span><span class="w"> </span><span class="o">*</span><span class="w"></span>
+<span class="nf">slist_pop_head_node</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">slist_head</span><span class="w"> </span><span class="o">*</span><span class="n">head</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 <blockquote><p>Retrieves and removes the head of the specified singly linked list.</p>
 <p>&nbsp;
@@ -15927,10 +15898,10 @@ If the key is not found, then <code>found</code> is set to <code>false</code> an
 </blockquote>
 <hr/>
 
-<div class="highlight"><pre><span></span><span class="k">static</span> <span class="kr">inline</span> <span class="kt">bool</span>
-<span class="nf">slist_has_next</span><span class="p">(</span>
-    <span class="n">slist_head</span> <span class="o">*</span><span class="n">head</span><span class="p">,</span>
-    <span class="n">slist_node</span> <span class="o">*</span><span class="n">node</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><span class="k">static</span><span class="w"> </span><span class="kr">inline</span><span class="w"> </span><span class="kt">bool</span><span class="w"></span>
+<span class="nf">slist_has_next</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">slist_head</span><span class="w"> </span><span class="o">*</span><span class="n">head</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">slist_node</span><span class="w"> </span><span class="o">*</span><span class="n">node</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 <blockquote><p>Checks whether the specified singly linked list node has a following node in the specified singly linked list.</p>
 <p>&nbsp;
@@ -15950,10 +15921,10 @@ If the key is not found, then <code>found</code> is set to <code>false</code> an
 </blockquote>
 <hr/>
 
-<div class="highlight"><pre><span></span><span class="k">static</span> <span class="kr">inline</span> <span class="n">slist_node</span> <span class="o">*</span>
-<span class="nf">slist_next_node</span><span class="p">(</span>
-    <span class="n">slist_head</span> <span class="o">*</span><span class="n">head</span><span class="p">,</span>
-    <span class="n">slist_node</span> <span class="o">*</span><span class="n">node</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><span class="k">static</span><span class="w"> </span><span class="kr">inline</span><span class="w"> </span><span class="n">slist_node</span><span class="w"> </span><span class="o">*</span><span class="w"></span>
+<span class="nf">slist_next_node</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">slist_head</span><span class="w"> </span><span class="o">*</span><span class="n">head</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">slist_node</span><span class="w"> </span><span class="o">*</span><span class="n">node</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 <blockquote><p>Returns the node following the specified singly linked list node.</p>
 <p>&nbsp;
@@ -15972,9 +15943,9 @@ If the key is not found, then <code>found</code> is set to <code>false</code> an
 </blockquote>
 <hr/>
 
-<div class="highlight"><pre><span></span><span class="k">static</span> <span class="kr">inline</span> <span class="n">slist_node</span> <span class="o">*</span>
-<span class="nf">slist_head_node</span><span class="p">(</span>
-    <span class="n">slist_head</span> <span class="o">*</span><span class="n">head</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><span class="k">static</span><span class="w"> </span><span class="kr">inline</span><span class="w"> </span><span class="n">slist_node</span><span class="w"> </span><span class="o">*</span><span class="w"></span>
+<span class="nf">slist_head_node</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">slist_head</span><span class="w"> </span><span class="o">*</span><span class="n">head</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 <blockquote><p>Returns the first singly linked list node in the specified singly linked list.</p>
 <p>&nbsp;
@@ -15992,9 +15963,9 @@ If the key is not found, then <code>found</code> is set to <code>false</code> an
 </blockquote>
 <hr/>
 
-<div class="highlight"><pre><span></span><span class="k">static</span> <span class="kr">inline</span> <span class="kt">void</span>
-<span class="nf">slist_delete_current</span><span class="p">(</span>
-    <span class="n">slist_mutable_iter</span> <span class="o">*</span><span class="n">iter</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><span class="k">static</span><span class="w"> </span><span class="kr">inline</span><span class="w"> </span><span class="kt">void</span><span class="w"></span>
+<span class="nf">slist_delete_current</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">slist_mutable_iter</span><span class="w"> </span><span class="o">*</span><span class="n">iter</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 <blockquote><p>Delete the current singly linked list node to which the specified singly linked list mutable iterator points.</p>
 <p>&nbsp;
@@ -16075,15 +16046,15 @@ If the key is not found, then <code>found</code> is set to <code>false</code> an
 </ul>
 <h4 id="Constants">Constants<a class="anchor-link" href="#Constants">&#182;</a></h4><p><em>N/A</em>.</p>
 <h4 id="Enumerations">Enumerations<a class="anchor-link" href="#Enumerations">&#182;</a></h4><p><em>N/A</em>.</p>
-<h4 id="Types">Types<a class="anchor-link" href="#Types">&#182;</a></h4><div class="highlight"><pre><span></span><span class="k">typedef</span> <span class="k">struct</span> <span class="n">IntegerSet</span> <span class="n">IntegerSet</span><span class="p">;</span>
+<h4 id="Types">Types<a class="anchor-link" href="#Types">&#182;</a></h4><div class="highlight"><pre><span></span><span class="k">typedef</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">IntegerSet</span><span class="w"> </span><span class="n">IntegerSet</span><span class="p">;</span><span class="w"></span>
 </pre></div>
 <blockquote><p>A set of integers.</p>
 </blockquote>
 <hr/>
 
 <h4 id="Structures">Structures<a class="anchor-link" href="#Structures">&#182;</a></h4><p><em>N/A</em>.</p>
-<h4 id="Methods">Methods<a class="anchor-link" href="#Methods">&#182;</a></h4><div class="highlight"><pre><span></span><span class="k">extern</span> <span class="n">IntegerSet</span> <span class="o">*</span>
-<span class="nf">intset_create</span><span class="p">(</span><span class="kt">void</span><span class="p">);</span>
+<h4 id="Methods">Methods<a class="anchor-link" href="#Methods">&#182;</a></h4><div class="highlight"><pre><span></span><span class="k">extern</span><span class="w"> </span><span class="n">IntegerSet</span><span class="w"> </span><span class="o">*</span><span class="w"></span>
+<span class="nf">intset_create</span><span class="p">(</span><span class="kt">void</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 <blockquote><p>Allocate an empty integer set.</p>
 <p>&nbsp;
@@ -16095,10 +16066,10 @@ If the key is not found, then <code>found</code> is set to <code>false</code> an
 </blockquote>
 <hr/>
 
-<div class="highlight"><pre><span></span><span class="k">extern</span> <span class="kt">void</span>
-<span class="nf">intset_add_member</span><span class="p">(</span>
-    <span class="n">IntegerSet</span> <span class="o">*</span><span class="n">intset</span><span class="p">,</span>
-    <span class="n">uint64</span> <span class="n">x</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><span class="k">extern</span><span class="w"> </span><span class="kt">void</span><span class="w"></span>
+<span class="nf">intset_add_member</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">IntegerSet</span><span class="w"> </span><span class="o">*</span><span class="n">intset</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">uint64</span><span class="w"> </span><span class="n">x</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 <blockquote><p>Inserts the specified integer into the specified integer set.
 <br/>
@@ -16115,10 +16086,10 @@ If the key is not found, then <code>found</code> is set to <code>false</code> an
 </blockquote>
 <hr/>
 
-<div class="highlight"><pre><span></span><span class="k">extern</span> <span class="kt">bool</span>
-<span class="nf">intset_is_member</span><span class="p">(</span>
-    <span class="n">IntegerSet</span> <span class="o">*</span><span class="n">intset</span><span class="p">,</span>
-    <span class="n">uint64</span> <span class="n">x</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><span class="k">extern</span><span class="w"> </span><span class="kt">bool</span><span class="w"></span>
+<span class="nf">intset_is_member</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">IntegerSet</span><span class="w"> </span><span class="o">*</span><span class="n">intset</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">uint64</span><span class="w"> </span><span class="n">x</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 <blockquote><p>Checks whether the specified integer is a member of the specified integer set.</p>
 <p>&nbsp;
@@ -16138,9 +16109,9 @@ If the key is not found, then <code>found</code> is set to <code>false</code> an
 </blockquote>
 <hr/>
 
-<div class="highlight"><pre><span></span><span class="k">extern</span> <span class="n">uint64</span>
-<span class="nf">intset_num_entries</span><span class="p">(</span>
-    <span class="n">IntegerSet</span> <span class="o">*</span><span class="n">intset</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><span class="k">extern</span><span class="w"> </span><span class="n">uint64</span><span class="w"></span>
+<span class="nf">intset_num_entries</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">IntegerSet</span><span class="w"> </span><span class="o">*</span><span class="n">intset</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 <blockquote><p>Returns the number of entries in the specified integer set.</p>
 <p>&nbsp;
@@ -16158,9 +16129,9 @@ If the key is not found, then <code>found</code> is set to <code>false</code> an
 </blockquote>
 <hr/>
 
-<div class="highlight"><pre><span></span><span class="k">extern</span> <span class="n">uint64</span>
-<span class="nf">intset_memory_usage</span><span class="p">(</span>
-    <span class="n">IntegerSet</span> <span class="o">*</span><span class="n">intset</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><span class="k">extern</span><span class="w"> </span><span class="n">uint64</span><span class="w"></span>
+<span class="nf">intset_memory_usage</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">IntegerSet</span><span class="w"> </span><span class="o">*</span><span class="n">intset</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 <blockquote><p>Returns the amount of memory, in bytes, allocated by the specified integer set.</p>
 <p>&nbsp;
@@ -16178,9 +16149,9 @@ If the key is not found, then <code>found</code> is set to <code>false</code> an
 </blockquote>
 <hr/>
 
-<div class="highlight"><pre><span></span><span class="k">extern</span> <span class="kt">void</span>
-<span class="nf">intset_begin_iterate</span><span class="p">(</span>
-    <span class="n">IntegerSet</span> <span class="o">*</span><span class="n">intset</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><span class="k">extern</span><span class="w"> </span><span class="kt">void</span><span class="w"></span>
+<span class="nf">intset_begin_iterate</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">IntegerSet</span><span class="w"> </span><span class="o">*</span><span class="n">intset</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 <blockquote><p>Initializes an in-order scan of all the elements in the specified integer set.</p>
 <p>&nbsp;
@@ -16192,10 +16163,10 @@ If the key is not found, then <code>found</code> is set to <code>false</code> an
 </blockquote>
 <hr/>
 
-<div class="highlight"><pre><span></span><span class="k">extern</span> <span class="kt">bool</span>
-<span class="nf">intset_iterate_next</span><span class="p">(</span>
-    <span class="n">IntegerSet</span> <span class="o">*</span><span class="n">intset</span><span class="p">,</span>
-    <span class="n">uint64</span> <span class="o">*</span><span class="n">next</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><span class="k">extern</span><span class="w"> </span><span class="kt">bool</span><span class="w"></span>
+<span class="nf">intset_iterate_next</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">IntegerSet</span><span class="w"> </span><span class="o">*</span><span class="n">intset</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">uint64</span><span class="w"> </span><span class="o">*</span><span class="n">next</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 <blockquote><p>Seek the next integer in the integer set.
 <br/>
@@ -16232,12 +16203,12 @@ If the key is not found, then <code>found</code> is set to <code>false</code> an
 <h4 id="Enumerations">Enumerations<a class="anchor-link" href="#Enumerations">&#182;</a></h4><p><em>N/A</em>.</p>
 <h4 id="Types">Types<a class="anchor-link" href="#Types">&#182;</a></h4><p><em>N/A</em>.</p>
 <h4 id="Structures">Structures<a class="anchor-link" href="#Structures">&#182;</a></h4><p><em>N/A</em>.</p>
-<h4 id="Methods">Methods<a class="anchor-link" href="#Methods">&#182;</a></h4><div class="highlight"><pre><span></span><span class="k">extern</span> <span class="n">Bitmapset</span> <span class="o">*</span>
-<span class="nf">DiscreteKnapsack</span><span class="p">(</span>
-    <span class="kt">int</span> <span class="n">max_weight</span><span class="p">,</span>
-    <span class="kt">int</span> <span class="n">num_items</span><span class="p">,</span>
-    <span class="kt">int</span> <span class="o">*</span><span class="n">item_weights</span><span class="p">,</span>
-    <span class="kt">double</span> <span class="o">*</span><span class="n">item_values</span><span class="p">);</span>
+<h4 id="Methods">Methods<a class="anchor-link" href="#Methods">&#182;</a></h4><div class="highlight"><pre><span></span><span class="k">extern</span><span class="w"> </span><span class="n">Bitmapset</span><span class="w"> </span><span class="o">*</span><span class="w"></span>
+<span class="nf">DiscreteKnapsack</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">max_weight</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">num_items</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="o">*</span><span class="n">item_weights</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="o">*</span><span class="n">item_values</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 <blockquote><p>Returns a bitmap of the indexes of the items chosen for the <em>0-1 Knapsack</em>.</p>
 <p>&nbsp;
@@ -16276,7 +16247,7 @@ If the key is not found, then <code>found</code> is set to <code>false</code> an
 </ol>
 <h4 id="Constants">Constants<a class="anchor-link" href="#Constants">&#182;</a></h4><p><em>N/A</em>.</p>
 <h4 id="Enumerations">Enumerations<a class="anchor-link" href="#Enumerations">&#182;</a></h4><p><em>N/A</em>.</p>
-<h4 id="Types">Types<a class="anchor-link" href="#Types">&#182;</a></h4><div class="highlight"><pre><span></span><span class="k">typedef</span> <span class="nf">int</span> <span class="p">(</span><span class="o">*</span><span class="n">pairingheap_comparator</span><span class="p">)</span> <span class="p">(</span><span class="k">const</span> <span class="n">pairingheap_node</span> <span class="o">*</span><span class="n">a</span><span class="p">,</span> <span class="k">const</span> <span class="n">pairingheap_node</span> <span class="o">*</span><span class="n">b</span><span class="p">,</span> <span class="kt">void</span> <span class="o">*</span><span class="n">arg</span><span class="p">);</span>
+<h4 id="Types">Types<a class="anchor-link" href="#Types">&#182;</a></h4><div class="highlight"><pre><span></span><span class="k">typedef</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="p">(</span><span class="o">*</span><span class="n">pairingheap_comparator</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">pairingheap_node</span><span class="w"> </span><span class="o">*</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">pairingheap_node</span><span class="w"> </span><span class="o">*</span><span class="n">b</span><span class="p">,</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">arg</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 <blockquote><p>A comparison function, which imposes a total ordering on some collection of objects.
 <br/>
@@ -16342,10 +16313,10 @@ $$</p>
 </tr>
 </tbody>
 </table>
-<h4 id="Methods">Methods<a class="anchor-link" href="#Methods">&#182;</a></h4><div class="highlight"><pre><span></span><span class="k">extern</span> <span class="n">pairingheap</span> <span class="o">*</span>
-<span class="nf">pairingheap_allocate</span><span class="p">(</span>
-    <span class="n">pairingheap_comparator</span> <span class="n">compare</span><span class="p">,</span>
-    <span class="kt">void</span> <span class="o">*</span><span class="n">arg</span><span class="p">);</span>
+<h4 id="Methods">Methods<a class="anchor-link" href="#Methods">&#182;</a></h4><div class="highlight"><pre><span></span><span class="k">extern</span><span class="w"> </span><span class="n">pairingheap</span><span class="w"> </span><span class="o">*</span><span class="w"></span>
+<span class="nf">pairingheap_allocate</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">pairingheap_comparator</span><span class="w"> </span><span class="n">compare</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">arg</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 <blockquote><p>Allocates a pairing heap that orders its elements according to the specified comparator and argument.</p>
 <p>&nbsp;
@@ -16364,9 +16335,9 @@ $$</p>
 </blockquote>
 <hr/>
 
-<div class="highlight"><pre><span></span><span class="k">extern</span> <span class="kt">void</span>
-<span class="nf">pairingheap_free</span><span class="p">(</span>
-    <span class="n">pairingheap</span> <span class="o">*</span><span class="n">heap</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><span class="k">extern</span><span class="w"> </span><span class="kt">void</span><span class="w"></span>
+<span class="nf">pairingheap_free</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">pairingheap</span><span class="w"> </span><span class="o">*</span><span class="n">heap</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 <blockquote><p>Frees the specified pairing heap.</p>
 <p>&nbsp;
@@ -16378,10 +16349,10 @@ $$</p>
 </blockquote>
 <hr/>
 
-<div class="highlight"><pre><span></span><span class="k">extern</span> <span class="kt">void</span>
-<span class="nf">pairingheap_add</span><span class="p">(</span>
-    <span class="n">pairingheap</span> <span class="o">*</span><span class="n">heap</span><span class="p">,</span>
-    <span class="n">pairingheap_node</span> <span class="o">*</span><span class="n">node</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><span class="k">extern</span><span class="w"> </span><span class="kt">void</span><span class="w"></span>
+<span class="nf">pairingheap_add</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">pairingheap</span><span class="w"> </span><span class="o">*</span><span class="n">heap</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">pairingheap_node</span><span class="w"> </span><span class="o">*</span><span class="n">node</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 <blockquote><p>Inserts the specified pairing heap node into the specified pairing heap, while preserving the <em>heap property</em>.
 <br/>
@@ -16396,9 +16367,9 @@ $$</p>
 </blockquote>
 <hr/>
 
-<div class="highlight"><pre><span></span><span class="k">extern</span> <span class="n">pairingheap_node</span> <span class="o">*</span>
-<span class="nf">pairingheap_first</span><span class="p">(</span>
-    <span class="n">pairingheap</span> <span class="o">*</span><span class="n">heap</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><span class="k">extern</span><span class="w"> </span><span class="n">pairingheap_node</span><span class="w"> </span><span class="o">*</span><span class="w"></span>
+<span class="nf">pairingheap_first</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">pairingheap</span><span class="w"> </span><span class="o">*</span><span class="n">heap</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 <blockquote><p>Retrieves, but does not remove, the root pairing heap node of the specified pairing heap.
 <br/>
@@ -16418,9 +16389,9 @@ $$</p>
 </blockquote>
 <hr/>
 
-<div class="highlight"><pre><span></span><span class="k">extern</span> <span class="n">pairingheap_node</span> <span class="o">*</span>
-<span class="nf">pairingheap_remove_first</span><span class="p">(</span>
-    <span class="n">pairingheap</span> <span class="o">*</span><span class="n">heap</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><span class="k">extern</span><span class="w"> </span><span class="n">pairingheap_node</span><span class="w"> </span><span class="o">*</span><span class="w"></span>
+<span class="nf">pairingheap_remove_first</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">pairingheap</span><span class="w"> </span><span class="o">*</span><span class="n">heap</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 <blockquote><p>Retrieves and removes the root pairing node of the specified pairing heap.
 <br/>
@@ -16440,10 +16411,10 @@ $$</p>
 </blockquote>
 <hr/>
 
-<div class="highlight"><pre><span></span><span class="k">extern</span> <span class="kt">void</span>
-<span class="nf">pairingheap_remove</span><span class="p">(</span>
-    <span class="n">pairingheap</span> <span class="o">*</span><span class="n">heap</span><span class="p">,</span>
-    <span class="n">pairingheap_node</span> <span class="o">*</span><span class="n">node</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><span class="k">extern</span><span class="w"> </span><span class="kt">void</span><span class="w"></span>
+<span class="nf">pairingheap_remove</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">pairingheap</span><span class="w"> </span><span class="o">*</span><span class="n">heap</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">pairingheap_node</span><span class="w"> </span><span class="o">*</span><span class="n">node</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 <blockquote><p>Removes the specified pairing heap node from the specified pairing heap.
 <br/>
@@ -16519,13 +16490,13 @@ $$</p>
 </tr>
 </tbody>
 </table>
-<h4 id="Types">Types<a class="anchor-link" href="#Types">&#182;</a></h4><div class="highlight"><pre><span></span><span class="k">typedef</span> <span class="k">struct</span> <span class="n">RBTree</span> <span class="n">RBTree</span><span class="p">;</span>
+<h4 id="Types">Types<a class="anchor-link" href="#Types">&#182;</a></h4><div class="highlight"><pre><span></span><span class="k">typedef</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">RBTree</span><span class="w"> </span><span class="n">RBTree</span><span class="p">;</span><span class="w"></span>
 </pre></div>
 <blockquote><p>A red-black binary search tree.</p>
 </blockquote>
 <hr/>
 
-<div class="highlight"><pre><span></span><span class="k">typedef</span> <span class="nf">int</span> <span class="p">(</span><span class="o">*</span><span class="n">rbt_comparator</span><span class="p">)</span> <span class="p">(</span><span class="k">const</span> <span class="n">RBTNode</span> <span class="o">*</span><span class="n">a</span><span class="p">,</span> <span class="k">const</span> <span class="n">RBTNode</span> <span class="o">*</span><span class="n">b</span><span class="p">,</span> <span class="kt">void</span> <span class="o">*</span><span class="n">arg</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><span class="k">typedef</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="p">(</span><span class="o">*</span><span class="n">rbt_comparator</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">RBTNode</span><span class="w"> </span><span class="o">*</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">RBTNode</span><span class="w"> </span><span class="o">*</span><span class="n">b</span><span class="p">,</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">arg</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 <blockquote><p>A comparison function, which imposes a total ordering on some collection of keys.
 <br/>
@@ -16540,19 +16511,19 @@ $$</p>
 </blockquote>
 <hr/>
 
-<div class="highlight"><pre><span></span><span class="k">typedef</span> <span class="nf">void</span> <span class="p">(</span><span class="o">*</span><span class="n">rbt_combiner</span><span class="p">)</span> <span class="p">(</span><span class="n">RBTNode</span> <span class="o">*</span><span class="n">existing</span><span class="p">,</span> <span class="k">const</span> <span class="n">RBTNode</span> <span class="o">*</span><span class="n">newdata</span><span class="p">,</span> <span class="kt">void</span> <span class="o">*</span><span class="n">arg</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><span class="k">typedef</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="p">(</span><span class="o">*</span><span class="n">rbt_combiner</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="n">RBTNode</span><span class="w"> </span><span class="o">*</span><span class="n">existing</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">RBTNode</span><span class="w"> </span><span class="o">*</span><span class="n">newdata</span><span class="p">,</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">arg</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 <blockquote><p>A combine function that merges an existing red-black tree node with a new red-black tree node.</p>
 </blockquote>
 <hr/>
 
-<div class="highlight"><pre><span></span><span class="k">typedef</span> <span class="n">RBTNode</span> <span class="o">*</span><span class="p">(</span><span class="o">*</span><span class="n">rbt_allocfunc</span><span class="p">)</span> <span class="p">(</span><span class="kt">void</span> <span class="o">*</span><span class="n">arg</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><span class="k">typedef</span><span class="w"> </span><span class="n">RBTNode</span><span class="w"> </span><span class="o">*</span><span class="p">(</span><span class="o">*</span><span class="n">rbt_allocfunc</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">arg</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 <blockquote><p>An allocate function for a new red-black tree node.</p>
 </blockquote>
 <hr/>
 
-<div class="highlight"><pre><span></span><span class="k">typedef</span> <span class="nf">void</span> <span class="p">(</span><span class="o">*</span><span class="n">rbt_freefunc</span><span class="p">)</span> <span class="p">(</span><span class="n">RBTNode</span> <span class="o">*</span><span class="n">x</span><span class="p">,</span> <span class="kt">void</span> <span class="o">*</span><span class="n">arg</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><span class="k">typedef</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="p">(</span><span class="o">*</span><span class="n">rbt_freefunc</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="n">RBTNode</span><span class="w"> </span><span class="o">*</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">arg</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 <blockquote><p>A free function for an old red-black tree node.</p>
 </blockquote>
@@ -16608,14 +16579,14 @@ $$</p>
 </tr>
 </tbody>
 </table>
-<h4 id="Methods">Methods<a class="anchor-link" href="#Methods">&#182;</a></h4><div class="highlight"><pre><span></span><span class="k">extern</span> <span class="n">RBTree</span> <span class="o">*</span>
-<span class="nf">rbt_create</span><span class="p">(</span>
-    <span class="n">Size</span> <span class="n">node_size</span><span class="p">,</span>
-    <span class="n">rbt_comparator</span> <span class="n">comparator</span><span class="p">,</span>
-    <span class="n">rbt_combiner</span> <span class="n">combiner</span><span class="p">,</span>
-    <span class="n">rbt_allocfunc</span> <span class="n">allocfunc</span><span class="p">,</span>
-    <span class="n">rbt_freefunc</span> <span class="n">freefunc</span><span class="p">,</span>
-    <span class="kt">void</span> <span class="o">*</span><span class="n">arg</span><span class="p">);</span>
+<h4 id="Methods">Methods<a class="anchor-link" href="#Methods">&#182;</a></h4><div class="highlight"><pre><span></span><span class="k">extern</span><span class="w"> </span><span class="n">RBTree</span><span class="w"> </span><span class="o">*</span><span class="w"></span>
+<span class="nf">rbt_create</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">Size</span><span class="w"> </span><span class="n">node_size</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">rbt_comparator</span><span class="w"> </span><span class="n">comparator</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">rbt_combiner</span><span class="w"> </span><span class="n">combiner</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">rbt_allocfunc</span><span class="w"> </span><span class="n">allocfunc</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">rbt_freefunc</span><span class="w"> </span><span class="n">freefunc</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">arg</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 <blockquote><p>Allocates an empty red-black tree with the specified comparator, combiner, allocate, and free functions and argument.</p>
 <p>&nbsp;
@@ -16638,10 +16609,10 @@ $$</p>
 </blockquote>
 <hr/>
 
-<div class="highlight"><pre><span></span><span class="k">extern</span> <span class="n">RBTNode</span> <span class="o">*</span>
-<span class="nf">rbt_find</span><span class="p">(</span>
-    <span class="n">RBTree</span> <span class="o">*</span><span class="n">rbt</span><span class="p">,</span>
-    <span class="k">const</span> <span class="n">RBTNode</span> <span class="o">*</span><span class="n">data</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><span class="k">extern</span><span class="w"> </span><span class="n">RBTNode</span><span class="w"> </span><span class="o">*</span><span class="w"></span>
+<span class="nf">rbt_find</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">RBTree</span><span class="w"> </span><span class="o">*</span><span class="n">rbt</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">RBTNode</span><span class="w"> </span><span class="o">*</span><span class="n">data</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 <blockquote><p>Search for the specified data in the specified red-black tree.</p>
 <p>&nbsp;
@@ -16661,9 +16632,9 @@ $$</p>
 </blockquote>
 <hr/>
 
-<div class="highlight"><pre><span></span><span class="k">extern</span> <span class="n">RBTNode</span> <span class="o">*</span>
-<span class="nf">rbt_leftmost</span><span class="p">(</span>
-    <span class="n">RBTree</span> <span class="o">*</span><span class="n">rbt</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><span class="k">extern</span><span class="w"> </span><span class="n">RBTNode</span><span class="w"> </span><span class="o">*</span><span class="w"></span>
+<span class="nf">rbt_leftmost</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">RBTree</span><span class="w"> </span><span class="o">*</span><span class="n">rbt</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 <blockquote><p>Returns the leftmost (smallest) red-black tree node.</p>
 <p>&nbsp;
@@ -16682,11 +16653,11 @@ $$</p>
 </blockquote>
 <hr/>
 
-<div class="highlight"><pre><span></span><span class="k">extern</span> <span class="n">RBTNode</span> <span class="o">*</span>
-<span class="nf">rbt_insert</span><span class="p">(</span>
-    <span class="n">RBTree</span> <span class="o">*</span><span class="n">rbt</span><span class="p">,</span>
-    <span class="k">const</span> <span class="n">RBTNode</span> <span class="o">*</span><span class="n">data</span><span class="p">,</span>
-    <span class="kt">bool</span> <span class="o">*</span><span class="n">isNew</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><span class="k">extern</span><span class="w"> </span><span class="n">RBTNode</span><span class="w"> </span><span class="o">*</span><span class="w"></span>
+<span class="nf">rbt_insert</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">RBTree</span><span class="w"> </span><span class="o">*</span><span class="n">rbt</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">RBTNode</span><span class="w"> </span><span class="o">*</span><span class="n">data</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="o">*</span><span class="n">isNew</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 <blockquote><p>Inserts the specified data into the specified red-black tree.</p>
 <p>&nbsp;
@@ -16706,10 +16677,10 @@ $$</p>
 </blockquote>
 <hr/>
 
-<div class="highlight"><pre><span></span><span class="k">extern</span> <span class="kt">void</span>
-<span class="nf">rbt_delete</span><span class="p">(</span>
-    <span class="n">RBTree</span> <span class="o">*</span><span class="n">rbt</span><span class="p">,</span>
-    <span class="n">RBTNode</span> <span class="o">*</span><span class="n">node</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><span class="k">extern</span><span class="w"> </span><span class="kt">void</span><span class="w"></span>
+<span class="nf">rbt_delete</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">RBTree</span><span class="w"> </span><span class="o">*</span><span class="n">rbt</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">RBTNode</span><span class="w"> </span><span class="o">*</span><span class="n">node</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 <blockquote><p>Removes the specified red-black tree node.</p>
 <p>&nbsp;
@@ -16722,11 +16693,11 @@ $$</p>
 </blockquote>
 <hr/>
 
-<div class="highlight"><pre><span></span><span class="k">extern</span> <span class="kt">void</span>
-<span class="nf">rbt_begin_iterate</span><span class="p">(</span>
-    <span class="n">RBTree</span> <span class="o">*</span><span class="n">rbt</span><span class="p">,</span>
-    <span class="n">RBTOrderControl</span> <span class="n">ctrl</span><span class="p">,</span>
-    <span class="n">RBTreeIterator</span> <span class="o">*</span><span class="n">iter</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><span class="k">extern</span><span class="w"> </span><span class="kt">void</span><span class="w"></span>
+<span class="nf">rbt_begin_iterate</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">RBTree</span><span class="w"> </span><span class="o">*</span><span class="n">rbt</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">RBTOrderControl</span><span class="w"> </span><span class="n">ctrl</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">RBTreeIterator</span><span class="w"> </span><span class="o">*</span><span class="n">iter</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 <blockquote><p>Initializes a traversal of the specified red-black tree.</p>
 <p>&nbsp;
@@ -16740,9 +16711,9 @@ $$</p>
 </blockquote>
 <hr/>
 
-<div class="highlight"><pre><span></span><span class="k">extern</span> <span class="n">RBTNode</span> <span class="o">*</span>
-<span class="nf">rbt_iterate</span><span class="p">(</span>
-    <span class="n">RBTreeIterator</span> <span class="o">*</span><span class="n">iter</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><span class="k">extern</span><span class="w"> </span><span class="n">RBTNode</span><span class="w"> </span><span class="o">*</span><span class="w"></span>
+<span class="nf">rbt_iterate</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">RBTreeIterator</span><span class="w"> </span><span class="o">*</span><span class="n">iter</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 <blockquote><p>Returns the next red-black tree node according to the specified red-black tree iterator.</p>
 <p>&nbsp;
@@ -16774,7 +16745,7 @@ $$</p>
 </ul>
 <h4 id="Constants">Constants<a class="anchor-link" href="#Constants">&#182;</a></h4><p><em>N/A</em>.</p>
 <h4 id="Enumerations">Enumerations<a class="anchor-link" href="#Enumerations">&#182;</a></h4><p><em>N/A</em>.</p>
-<h4 id="Types">Types<a class="anchor-link" href="#Types">&#182;</a></h4><div class="highlight"><pre><span></span><span class="k">typedef</span> <span class="n">StringInfoData</span> <span class="o">*</span><span class="n">StringInfo</span><span class="p">;</span>
+<h4 id="Types">Types<a class="anchor-link" href="#Types">&#182;</a></h4><div class="highlight"><pre><span></span><span class="k">typedef</span><span class="w"> </span><span class="n">StringInfoData</span><span class="w"> </span><span class="o">*</span><span class="n">StringInfo</span><span class="p">;</span><span class="w"></span>
 </pre></div>
 <blockquote><p>A pointer type to an extensible string.</p>
 </blockquote>
@@ -16805,8 +16776,8 @@ $$</p>
 </tr>
 </tbody>
 </table>
-<h4 id="Methods">Methods<a class="anchor-link" href="#Methods">&#182;</a></h4><div class="highlight"><pre><span></span><span class="k">extern</span> <span class="n">StringInfo</span>
-<span class="nf">makeStringInfo</span><span class="p">(</span><span class="kt">void</span><span class="p">);</span>
+<h4 id="Methods">Methods<a class="anchor-link" href="#Methods">&#182;</a></h4><div class="highlight"><pre><span></span><span class="k">extern</span><span class="w"> </span><span class="n">StringInfo</span><span class="w"></span>
+<span class="nf">makeStringInfo</span><span class="p">(</span><span class="kt">void</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 <blockquote><p>Allocates an empty extensible string.</p>
 <p>&nbsp;
@@ -16818,9 +16789,9 @@ $$</p>
 </blockquote>
 <hr/>
 
-<div class="highlight"><pre><span></span><span class="k">extern</span> <span class="kt">void</span>
-<span class="nf">initStringInfo</span><span class="p">(</span>
-    <span class="n">StringInfo</span> <span class="n">str</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><span class="k">extern</span><span class="w"> </span><span class="kt">void</span><span class="w"></span>
+<span class="nf">initStringInfo</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">StringInfo</span><span class="w"> </span><span class="n">str</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 <blockquote><p>Initializes an <code>undefined</code> extensible string to be empty.</p>
 <p>&nbsp;
@@ -16832,9 +16803,9 @@ $$</p>
 </blockquote>
 <hr/>
 
-<div class="highlight"><pre><span></span><span class="k">extern</span> <span class="kt">void</span>
-<span class="nf">resetStringInfo</span><span class="p">(</span>
-    <span class="n">StringInfo</span> <span class="n">str</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><span class="k">extern</span><span class="w"> </span><span class="kt">void</span><span class="w"></span>
+<span class="nf">resetStringInfo</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">StringInfo</span><span class="w"> </span><span class="n">str</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 <blockquote><p>Resets the specified extensible string.</p>
 <p>&nbsp;
@@ -16846,10 +16817,10 @@ $$</p>
 </blockquote>
 <hr/>
 
-<div class="highlight"><pre><span></span><span class="k">extern</span> <span class="kt">void</span>
-<span class="nf">appendStringInfo</span><span class="p">(</span>
-    <span class="n">StringInfo</span> <span class="n">str</span><span class="p">,</span>
-    <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">fmt</span><span class="p">,...)</span> <span class="n">pg_attribute_printf</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><span class="k">extern</span><span class="w"> </span><span class="kt">void</span><span class="w"></span>
+<span class="nf">appendStringInfo</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">StringInfo</span><span class="w"> </span><span class="n">str</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">fmt</span><span class="p">,...)</span><span class="w"> </span><span class="n">pg_attribute_printf</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 <blockquote><p>Appends the specified formatted string to the specified extensible string.
 <br/>
@@ -16864,11 +16835,11 @@ $$</p>
 </blockquote>
 <hr/>
 
-<div class="highlight"><pre><span></span><span class="k">extern</span> <span class="kt">int</span>
-<span class="nf">appendStringInfoVA</span><span class="p">(</span>
-    <span class="n">StringInfo</span> <span class="n">str</span><span class="p">,</span>
-    <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">fmt</span><span class="p">,</span>
-    <span class="kt">va_list</span> <span class="n">args</span><span class="p">)</span> <span class="n">pg_attribute_printf</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><span class="k">extern</span><span class="w"> </span><span class="kt">int</span><span class="w"></span>
+<span class="nf">appendStringInfoVA</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">StringInfo</span><span class="w"> </span><span class="n">str</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">fmt</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="kt">va_list</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="n">pg_attribute_printf</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 <blockquote><p>Appends the specified formatted string to the specified extensible string.
 <br/>
@@ -16891,10 +16862,10 @@ $$</p>
 </blockquote>
 <hr/>
 
-<div class="highlight"><pre><span></span><span class="k">extern</span> <span class="kt">void</span>
-<span class="nf">appendStringInfoString</span><span class="p">(</span>
-    <span class="n">StringInfo</span> <span class="n">str</span><span class="p">,</span>
-    <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">s</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><span class="k">extern</span><span class="w"> </span><span class="kt">void</span><span class="w"></span>
+<span class="nf">appendStringInfoString</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">StringInfo</span><span class="w"> </span><span class="n">str</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">s</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 <blockquote><p>Appends the specified null-terminated string to the specified extensible string.</p>
 <p>&nbsp;
@@ -16907,10 +16878,10 @@ $$</p>
 </blockquote>
 <hr/>
 
-<div class="highlight"><pre><span></span><span class="k">extern</span> <span class="kt">void</span>
-<span class="nf">appendStringInfoChar</span><span class="p">(</span>
-    <span class="n">StringInfo</span> <span class="n">str</span><span class="p">,</span>
-    <span class="kt">char</span> <span class="n">ch</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><span class="k">extern</span><span class="w"> </span><span class="kt">void</span><span class="w"></span>
+<span class="nf">appendStringInfoChar</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">StringInfo</span><span class="w"> </span><span class="n">str</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="n">ch</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 <blockquote><p>Appends the specified character to the specified extensible string.</p>
 <p>&nbsp;
@@ -16923,10 +16894,10 @@ $$</p>
 </blockquote>
 <hr/>
 
-<div class="highlight"><pre><span></span><span class="k">extern</span> <span class="kt">void</span>
-<span class="nf">appendStringInfoSpaces</span><span class="p">(</span>
-    <span class="n">StringInfo</span> <span class="n">str</span><span class="p">,</span>
-    <span class="kt">int</span> <span class="n">count</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><span class="k">extern</span><span class="w"> </span><span class="kt">void</span><span class="w"></span>
+<span class="nf">appendStringInfoSpaces</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">StringInfo</span><span class="w"> </span><span class="n">str</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">count</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 <blockquote><p>Appends the specified number of spaces to the specified extensible string.</p>
 <p>&nbsp;
@@ -16939,11 +16910,11 @@ $$</p>
 </blockquote>
 <hr/>
 
-<div class="highlight"><pre><span></span><span class="k">extern</span> <span class="kt">void</span>
-<span class="nf">appendBinaryStringInfo</span><span class="p">(</span>
-    <span class="n">StringInfo</span> <span class="n">str</span><span class="p">,</span>
-    <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">data</span><span class="p">,</span>
-    <span class="kt">int</span> <span class="n">datalen</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><span class="k">extern</span><span class="w"> </span><span class="kt">void</span><span class="w"></span>
+<span class="nf">appendBinaryStringInfo</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">StringInfo</span><span class="w"> </span><span class="n">str</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">data</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">datalen</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 <blockquote><p>Appends an arbitrary binary string to the specified extensible string.</p>
 <p>&nbsp;
@@ -16957,11 +16928,11 @@ $$</p>
 </blockquote>
 <hr/>
 
-<div class="highlight"><pre><span></span><span class="k">extern</span> <span class="kt">void</span>
-<span class="nf">appendBinaryStringInfoNT</span><span class="p">(</span>
-    <span class="n">StringInfo</span> <span class="n">str</span><span class="p">,</span>
-    <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">data</span><span class="p">,</span>
-    <span class="kt">int</span> <span class="n">datalen</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><span class="k">extern</span><span class="w"> </span><span class="kt">void</span><span class="w"></span>
+<span class="nf">appendBinaryStringInfoNT</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">StringInfo</span><span class="w"> </span><span class="n">str</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">data</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">datalen</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 <blockquote><p>Appends an arbitrary binary string to the specified extensible string.
 <br/>
@@ -16977,10 +16948,10 @@ $$</p>
 </blockquote>
 <hr/>
 
-<div class="highlight"><pre><span></span><span class="k">extern</span> <span class="kt">void</span>
-<span class="nf">enlargeStringInfo</span><span class="p">(</span>
-    <span class="n">StringInfo</span> <span class="n">str</span><span class="p">,</span>
-    <span class="kt">int</span> <span class="n">needed</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><span class="k">extern</span><span class="w"> </span><span class="kt">void</span><span class="w"></span>
+<span class="nf">enlargeStringInfo</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">StringInfo</span><span class="w"> </span><span class="n">str</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">needed</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 <blockquote><p>Enlarges the specified extensible string's buffer by the specified number of bytes.</p>
 <p>&nbsp;
@@ -17021,7 +16992,7 @@ $$</p>
 <li>To interface with the simple hash table, call the various <code>SH_PREFIX ## _T</code> methods.</li>
 </ol>
 <h4 id="Constants">Constants<a class="anchor-link" href="#Constants">&#182;</a></h4><p><em>N/A</em>.</p>
-<h4 id="Enumerations">Enumerations<a class="anchor-link" href="#Enumerations">&#182;</a></h4><h5 id="SH_PREFIX-##-_status"><code>SH_PREFIX ## _status</code><a class="anchor-link" href="#SH_PREFIX-##-_status">&#182;</a></h5><table>
+<h4 id="Enumerations">Enumerations<a class="anchor-link" href="#Enumerations">&#182;</a></h4><h5 id="SH_PREFIX-%23%23-_status"><code>SH_PREFIX ## _status</code><a class="anchor-link" href="#SH_PREFIX-%23%23-_status">&#182;</a></h5><table>
 <thead><tr>
 <th style="text-align:right">Enum</th>
 <th style="text-align:left">Description</th>
@@ -17039,7 +17010,7 @@ $$</p>
 </tbody>
 </table>
 <h4 id="Types">Types<a class="anchor-link" href="#Types">&#182;</a></h4><p><em>N/A</em>.</p>
-<h4 id="Structures">Structures<a class="anchor-link" href="#Structures">&#182;</a></h4><h5 id="SH_PREFIX-##-_hash"><code>SH_PREFIX ## _hash</code><a class="anchor-link" href="#SH_PREFIX-##-_hash">&#182;</a></h5><table>
+<h4 id="Structures">Structures<a class="anchor-link" href="#Structures">&#182;</a></h4><h5 id="SH_PREFIX-%23%23-_hash"><code>SH_PREFIX ## _hash</code><a class="anchor-link" href="#SH_PREFIX-%23%23-_hash">&#182;</a></h5><table>
 <thead><tr>
 <th style="text-align:right">Field</th>
 <th style="text-align:left">Description</th>
@@ -17076,7 +17047,7 @@ $$</p>
 </tr>
 </tbody>
 </table>
-<h5 id="SH_PREFIX-##-_iterator"><code>SH_PREFIX ## _iterator</code><a class="anchor-link" href="#SH_PREFIX-##-_iterator">&#182;</a></h5><table>
+<h5 id="SH_PREFIX-%23%23-_iterator"><code>SH_PREFIX ## _iterator</code><a class="anchor-link" href="#SH_PREFIX-%23%23-_iterator">&#182;</a></h5><table>
 <thead><tr>
 <th style="text-align:right">Field</th>
 <th style="text-align:left">Description</th>
@@ -17097,11 +17068,11 @@ $$</p>
 </tr>
 </tbody>
 </table>
-<h4 id="Methods">Methods<a class="anchor-link" href="#Methods">&#182;</a></h4><div class="highlight"><pre><span></span><span class="n">SH_SCOPE</span> <span class="n">SH_PREFIX</span> <span class="err">##</span> <span class="n">_hash</span> <span class="o">*</span>
-<span class="n">SH_PREFIX</span> <span class="err">##</span> <span class="n">_create</span><span class="p">(</span>
-    <span class="n">MemoryContext</span> <span class="n">ctx</span><span class="p">,</span>
-    <span class="n">uint32</span> <span class="n">nelements</span><span class="p">,</span>
-    <span class="kt">void</span> <span class="o">*</span><span class="n">private_data</span><span class="p">);</span>
+<h4 id="Methods">Methods<a class="anchor-link" href="#Methods">&#182;</a></h4><div class="highlight"><pre><span></span><span class="n">SH_SCOPE</span><span class="w"> </span><span class="n">SH_PREFIX</span><span class="w"> </span><span class="err">##</span><span class="w"> </span><span class="n">_hash</span><span class="w"> </span><span class="o">*</span><span class="w"></span>
+<span class="n">SH_PREFIX</span><span class="w"> </span><span class="err">##</span><span class="w"> </span><span class="n">_create</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">MemoryContext</span><span class="w"> </span><span class="n">ctx</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">uint32</span><span class="w"> </span><span class="n">nelements</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">private_data</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 <blockquote><p>Allocates an empty hash table with the specified initial capacity, memory context, and argument.</p>
 <p>&nbsp;
@@ -17121,9 +17092,9 @@ $$</p>
 </blockquote>
 <hr/>
 
-<div class="highlight"><pre><span></span><span class="n">SH_SCOPE</span> <span class="kt">void</span>
-<span class="n">SH_PREFIX</span> <span class="err">##</span> <span class="n">_destroy</span><span class="p">(</span>
-    <span class="n">SH_PREFIX</span> <span class="err">##</span> <span class="n">_hash</span> <span class="o">*</span><span class="n">tb</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><span class="n">SH_SCOPE</span><span class="w"> </span><span class="kt">void</span><span class="w"></span>
+<span class="n">SH_PREFIX</span><span class="w"> </span><span class="err">##</span><span class="w"> </span><span class="n">_destroy</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">SH_PREFIX</span><span class="w"> </span><span class="err">##</span><span class="w"> </span><span class="n">_hash</span><span class="w"> </span><span class="o">*</span><span class="n">tb</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 <blockquote><p>Destroys the specified hash table.</p>
 <p>&nbsp;
@@ -17135,9 +17106,9 @@ $$</p>
 </blockquote>
 <hr/>
 
-<div class="highlight"><pre><span></span><span class="n">SH_SCOPE</span> <span class="kt">void</span>
-<span class="n">SH_PREFIX</span> <span class="err">##</span> <span class="n">_reset</span><span class="p">(</span>
-    <span class="n">SH_PREFIX</span> <span class="err">##</span> <span class="n">_hash</span> <span class="o">*</span><span class="n">tb</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><span class="n">SH_SCOPE</span><span class="w"> </span><span class="kt">void</span><span class="w"></span>
+<span class="n">SH_PREFIX</span><span class="w"> </span><span class="err">##</span><span class="w"> </span><span class="n">_reset</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">SH_PREFIX</span><span class="w"> </span><span class="err">##</span><span class="w"> </span><span class="n">_hash</span><span class="w"> </span><span class="o">*</span><span class="n">tb</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 <blockquote><p>Resets the specified hash table, retaining its parameters from <code>SH_PREFIX ## _create()</code>.</p>
 <p>&nbsp;
@@ -17149,10 +17120,10 @@ $$</p>
 </blockquote>
 <hr/>
 
-<div class="highlight"><pre><span></span><span class="n">SH_SCOPE</span> <span class="kt">void</span>
-<span class="n">SH_PREFIX</span> <span class="err">##</span> <span class="n">_grow</span><span class="p">(</span>
-    <span class="n">SH_PREFIX</span> <span class="err">##</span> <span class="n">_hash</span> <span class="o">*</span><span class="n">tb</span><span class="p">,</span>
-    <span class="n">uint32</span> <span class="n">newsize</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><span class="n">SH_SCOPE</span><span class="w"> </span><span class="kt">void</span><span class="w"></span>
+<span class="n">SH_PREFIX</span><span class="w"> </span><span class="err">##</span><span class="w"> </span><span class="n">_grow</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">SH_PREFIX</span><span class="w"> </span><span class="err">##</span><span class="w"> </span><span class="n">_hash</span><span class="w"> </span><span class="o">*</span><span class="n">tb</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">uint32</span><span class="w"> </span><span class="n">newsize</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 <blockquote><p>Increases the size of the specified hash table to support the specified number of buckets.</p>
 <p>&nbsp;
@@ -17165,11 +17136,11 @@ $$</p>
 </blockquote>
 <hr/>
 
-<div class="highlight"><pre><span></span><span class="n">SH_SCOPE</span> <span class="n">SH_ELEMENT_TYPE</span> <span class="o">*</span>
-<span class="n">SH_PREFIX</span> <span class="err">##</span> <span class="n">_insert</span><span class="p">(</span>
-    <span class="n">SH_PREFIX</span> <span class="err">##</span> <span class="n">_hash</span> <span class="o">*</span><span class="n">tb</span><span class="p">,</span>
-    <span class="n">SH_KEY_TYPE</span> <span class="n">key</span><span class="p">,</span>
-    <span class="kt">bool</span> <span class="o">*</span><span class="n">found</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><span class="n">SH_SCOPE</span><span class="w"> </span><span class="n">SH_ELEMENT_TYPE</span><span class="w"> </span><span class="o">*</span><span class="w"></span>
+<span class="n">SH_PREFIX</span><span class="w"> </span><span class="err">##</span><span class="w"> </span><span class="n">_insert</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">SH_PREFIX</span><span class="w"> </span><span class="err">##</span><span class="w"> </span><span class="n">_hash</span><span class="w"> </span><span class="o">*</span><span class="n">tb</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">SH_KEY_TYPE</span><span class="w"> </span><span class="n">key</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="o">*</span><span class="n">found</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 <blockquote><p>Inserts the specified key into the specified hash table.</p>
 <p>&nbsp;
@@ -17189,10 +17160,10 @@ $$</p>
 </blockquote>
 <hr/>
 
-<div class="highlight"><pre><span></span><span class="n">SH_SCOPE</span> <span class="n">SH_ELEMENT_TYPE</span> <span class="o">*</span>
-<span class="n">SH_PREFIX</span> <span class="err">##</span> <span class="n">_lookup</span><span class="p">(</span>
-    <span class="n">SH_PREFIX</span> <span class="err">##</span> <span class="n">_hash</span> <span class="o">*</span><span class="n">tb</span><span class="p">,</span>
-    <span class="n">SH_KEY_TYPE</span> <span class="n">key</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><span class="n">SH_SCOPE</span><span class="w"> </span><span class="n">SH_ELEMENT_TYPE</span><span class="w"> </span><span class="o">*</span><span class="w"></span>
+<span class="n">SH_PREFIX</span><span class="w"> </span><span class="err">##</span><span class="w"> </span><span class="n">_lookup</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">SH_PREFIX</span><span class="w"> </span><span class="err">##</span><span class="w"> </span><span class="n">_hash</span><span class="w"> </span><span class="o">*</span><span class="n">tb</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">SH_KEY_TYPE</span><span class="w"> </span><span class="n">key</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 <blockquote><p>Retrieves a hash table entry for the specified key.</p>
 <p>&nbsp;
@@ -17212,10 +17183,10 @@ $$</p>
 </blockquote>
 <hr/>
 
-<div class="highlight"><pre><span></span><span class="n">SH_SCOPE</span> <span class="kt">bool</span>
-<span class="n">SH_PREFIX</span> <span class="err">##</span> <span class="n">_delete</span><span class="p">(</span>
-    <span class="n">SH_PREFIX</span> <span class="err">##</span> <span class="n">_hash</span> <span class="o">*</span><span class="n">tb</span><span class="p">,</span>
-    <span class="n">SH_KEY_TYPE</span> <span class="n">key</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><span class="n">SH_SCOPE</span><span class="w"> </span><span class="kt">bool</span><span class="w"></span>
+<span class="n">SH_PREFIX</span><span class="w"> </span><span class="err">##</span><span class="w"> </span><span class="n">_delete</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">SH_PREFIX</span><span class="w"> </span><span class="err">##</span><span class="w"> </span><span class="n">_hash</span><span class="w"> </span><span class="o">*</span><span class="n">tb</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">SH_KEY_TYPE</span><span class="w"> </span><span class="n">key</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 <blockquote><p>Removes a hash table entry by the specified key.</p>
 <p>&nbsp;
@@ -17235,10 +17206,10 @@ $$</p>
 </blockquote>
 <hr/>
 
-<div class="highlight"><pre><span></span><span class="n">SH_SCOPE</span> <span class="kt">void</span>
-<span class="n">SH_PREFIX</span> <span class="err">##</span> <span class="n">_start_iterate</span><span class="p">(</span>
-    <span class="n">SH_PREFIX</span> <span class="err">##</span> <span class="n">_hash</span> <span class="o">*</span><span class="n">tb</span><span class="p">,</span>
-    <span class="n">SH_PREFIX</span> <span class="err">##</span> <span class="n">_iterator</span> <span class="o">*</span><span class="n">iter</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><span class="n">SH_SCOPE</span><span class="w"> </span><span class="kt">void</span><span class="w"></span>
+<span class="n">SH_PREFIX</span><span class="w"> </span><span class="err">##</span><span class="w"> </span><span class="n">_start_iterate</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">SH_PREFIX</span><span class="w"> </span><span class="err">##</span><span class="w"> </span><span class="n">_hash</span><span class="w"> </span><span class="o">*</span><span class="n">tb</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">SH_PREFIX</span><span class="w"> </span><span class="err">##</span><span class="w"> </span><span class="n">_iterator</span><span class="w"> </span><span class="o">*</span><span class="n">iter</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 <blockquote><p>Initializes a backwards scan of the specified hash table.</p>
 <p>&nbsp;
@@ -17251,11 +17222,11 @@ $$</p>
 </blockquote>
 <hr/>
 
-<div class="highlight"><pre><span></span><span class="n">SH_SCOPE</span> <span class="kt">void</span>
-<span class="n">SH_PREFIX</span> <span class="err">##</span> <span class="n">_start_iterate_at</span><span class="p">(</span>
-    <span class="n">SH_PREFIX</span> <span class="err">##</span> <span class="n">_hash</span> <span class="o">*</span><span class="n">tb</span><span class="p">,</span>
-    <span class="n">SH_PREFIX</span> <span class="err">##</span> <span class="n">_iterator</span> <span class="o">*</span><span class="n">iter</span><span class="p">,</span>
-    <span class="n">uint32</span> <span class="n">at</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><span class="n">SH_SCOPE</span><span class="w"> </span><span class="kt">void</span><span class="w"></span>
+<span class="n">SH_PREFIX</span><span class="w"> </span><span class="err">##</span><span class="w"> </span><span class="n">_start_iterate_at</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">SH_PREFIX</span><span class="w"> </span><span class="err">##</span><span class="w"> </span><span class="n">_hash</span><span class="w"> </span><span class="o">*</span><span class="n">tb</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">SH_PREFIX</span><span class="w"> </span><span class="err">##</span><span class="w"> </span><span class="n">_iterator</span><span class="w"> </span><span class="o">*</span><span class="n">iter</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">uint32</span><span class="w"> </span><span class="n">at</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 <blockquote><p>Initializes a backwards scan of the specified hash table at the specified bucket index.</p>
 <p>&nbsp;
@@ -17269,10 +17240,10 @@ $$</p>
 </blockquote>
 <hr/>
 
-<div class="highlight"><pre><span></span><span class="n">SH_SCOPE</span> <span class="n">SH_ELEMENT_TYPE</span> <span class="o">*</span>
-<span class="n">SH_PREFIX</span> <span class="err">##</span> <span class="n">_iterate</span><span class="p">(</span>
-    <span class="n">SH_PREFIX</span> <span class="err">##</span> <span class="n">_hash</span> <span class="o">*</span><span class="n">tb</span><span class="p">,</span>
-    <span class="n">SH_PREFIX</span> <span class="err">##</span> <span class="n">_iterator</span> <span class="o">*</span><span class="n">iter</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><span class="n">SH_SCOPE</span><span class="w"> </span><span class="n">SH_ELEMENT_TYPE</span><span class="w"> </span><span class="o">*</span><span class="w"></span>
+<span class="n">SH_PREFIX</span><span class="w"> </span><span class="err">##</span><span class="w"> </span><span class="n">_iterate</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">SH_PREFIX</span><span class="w"> </span><span class="err">##</span><span class="w"> </span><span class="n">_hash</span><span class="w"> </span><span class="o">*</span><span class="n">tb</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">SH_PREFIX</span><span class="w"> </span><span class="err">##</span><span class="w"> </span><span class="n">_iterator</span><span class="w"> </span><span class="o">*</span><span class="n">iter</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 <blockquote><p>Returns the next in-use bucket according to the specified hash table iterator.</p>
 <p>&nbsp;
@@ -17528,6 +17499,9 @@ $$</p>
     </div>
   </div>
 </body>
+
+
+
 
  
 

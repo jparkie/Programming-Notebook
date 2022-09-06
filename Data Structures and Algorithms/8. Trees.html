@@ -1,16 +1,91 @@
 <!DOCTYPE html>
 <html>
 <head><meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>8. Trees</title>
+<title>8. Trees</title><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<style type="text/css">
+  pre { line-height: 125%; }
+td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+span.linenos { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+td.linenos .special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+.highlight .hll { background-color: #ffffcc }
+.highlight { background: #f8f8f8; }
+.highlight .c { color: #3D7B7B; font-style: italic } /* Comment */
+.highlight .err { border: 1px solid #FF0000 } /* Error */
+.highlight .k { color: #008000; font-weight: bold } /* Keyword */
+.highlight .o { color: #666666 } /* Operator */
+.highlight .ch { color: #3D7B7B; font-style: italic } /* Comment.Hashbang */
+.highlight .cm { color: #3D7B7B; font-style: italic } /* Comment.Multiline */
+.highlight .cp { color: #9C6500 } /* Comment.Preproc */
+.highlight .cpf { color: #3D7B7B; font-style: italic } /* Comment.PreprocFile */
+.highlight .c1 { color: #3D7B7B; font-style: italic } /* Comment.Single */
+.highlight .cs { color: #3D7B7B; font-style: italic } /* Comment.Special */
+.highlight .gd { color: #A00000 } /* Generic.Deleted */
+.highlight .ge { font-style: italic } /* Generic.Emph */
+.highlight .gr { color: #E40000 } /* Generic.Error */
+.highlight .gh { color: #000080; font-weight: bold } /* Generic.Heading */
+.highlight .gi { color: #008400 } /* Generic.Inserted */
+.highlight .go { color: #717171 } /* Generic.Output */
+.highlight .gp { color: #000080; font-weight: bold } /* Generic.Prompt */
+.highlight .gs { font-weight: bold } /* Generic.Strong */
+.highlight .gu { color: #800080; font-weight: bold } /* Generic.Subheading */
+.highlight .gt { color: #0044DD } /* Generic.Traceback */
+.highlight .kc { color: #008000; font-weight: bold } /* Keyword.Constant */
+.highlight .kd { color: #008000; font-weight: bold } /* Keyword.Declaration */
+.highlight .kn { color: #008000; font-weight: bold } /* Keyword.Namespace */
+.highlight .kp { color: #008000 } /* Keyword.Pseudo */
+.highlight .kr { color: #008000; font-weight: bold } /* Keyword.Reserved */
+.highlight .kt { color: #B00040 } /* Keyword.Type */
+.highlight .m { color: #666666 } /* Literal.Number */
+.highlight .s { color: #BA2121 } /* Literal.String */
+.highlight .na { color: #687822 } /* Name.Attribute */
+.highlight .nb { color: #008000 } /* Name.Builtin */
+.highlight .nc { color: #0000FF; font-weight: bold } /* Name.Class */
+.highlight .no { color: #880000 } /* Name.Constant */
+.highlight .nd { color: #AA22FF } /* Name.Decorator */
+.highlight .ni { color: #717171; font-weight: bold } /* Name.Entity */
+.highlight .ne { color: #CB3F38; font-weight: bold } /* Name.Exception */
+.highlight .nf { color: #0000FF } /* Name.Function */
+.highlight .nl { color: #767600 } /* Name.Label */
+.highlight .nn { color: #0000FF; font-weight: bold } /* Name.Namespace */
+.highlight .nt { color: #008000; font-weight: bold } /* Name.Tag */
+.highlight .nv { color: #19177C } /* Name.Variable */
+.highlight .ow { color: #AA22FF; font-weight: bold } /* Operator.Word */
+.highlight .w { color: #bbbbbb } /* Text.Whitespace */
+.highlight .mb { color: #666666 } /* Literal.Number.Bin */
+.highlight .mf { color: #666666 } /* Literal.Number.Float */
+.highlight .mh { color: #666666 } /* Literal.Number.Hex */
+.highlight .mi { color: #666666 } /* Literal.Number.Integer */
+.highlight .mo { color: #666666 } /* Literal.Number.Oct */
+.highlight .sa { color: #BA2121 } /* Literal.String.Affix */
+.highlight .sb { color: #BA2121 } /* Literal.String.Backtick */
+.highlight .sc { color: #BA2121 } /* Literal.String.Char */
+.highlight .dl { color: #BA2121 } /* Literal.String.Delimiter */
+.highlight .sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
+.highlight .s2 { color: #BA2121 } /* Literal.String.Double */
+.highlight .se { color: #AA5D1F; font-weight: bold } /* Literal.String.Escape */
+.highlight .sh { color: #BA2121 } /* Literal.String.Heredoc */
+.highlight .si { color: #A45A77; font-weight: bold } /* Literal.String.Interpol */
+.highlight .sx { color: #008000 } /* Literal.String.Other */
+.highlight .sr { color: #A45A77 } /* Literal.String.Regex */
+.highlight .s1 { color: #BA2121 } /* Literal.String.Single */
+.highlight .ss { color: #19177C } /* Literal.String.Symbol */
+.highlight .bp { color: #008000 } /* Name.Builtin.Pseudo */
+.highlight .fm { color: #0000FF } /* Name.Function.Magic */
+.highlight .vc { color: #19177C } /* Name.Variable.Class */
+.highlight .vg { color: #19177C } /* Name.Variable.Global */
+.highlight .vi { color: #19177C } /* Name.Variable.Instance */
+.highlight .vm { color: #19177C } /* Name.Variable.Magic */
+.highlight .il { color: #666666 } /* Literal.Number.Integer.Long */
+  </style>
 
 
 
 <style type="text/css">
-    /*!
+/*!
 *
 * Twitter Bootstrap
 *
@@ -12944,120 +13019,7 @@ ul.typeahead-list  > li > a.pull-right {
 .terminal-app #terminado-container {
   margin-top: 20px;
 }
-/*# sourceMappingURL=style.min.css.map */
-    </style>
-<style type="text/css">
-    .highlight .hll { background-color: #ffffcc }
-.highlight  { background: #f8f8f8; }
-.highlight .c { color: #408080; font-style: italic } /* Comment */
-.highlight .err { border: 1px solid #FF0000 } /* Error */
-.highlight .k { color: #008000; font-weight: bold } /* Keyword */
-.highlight .o { color: #666666 } /* Operator */
-.highlight .ch { color: #408080; font-style: italic } /* Comment.Hashbang */
-.highlight .cm { color: #408080; font-style: italic } /* Comment.Multiline */
-.highlight .cp { color: #BC7A00 } /* Comment.Preproc */
-.highlight .cpf { color: #408080; font-style: italic } /* Comment.PreprocFile */
-.highlight .c1 { color: #408080; font-style: italic } /* Comment.Single */
-.highlight .cs { color: #408080; font-style: italic } /* Comment.Special */
-.highlight .gd { color: #A00000 } /* Generic.Deleted */
-.highlight .ge { font-style: italic } /* Generic.Emph */
-.highlight .gr { color: #FF0000 } /* Generic.Error */
-.highlight .gh { color: #000080; font-weight: bold } /* Generic.Heading */
-.highlight .gi { color: #00A000 } /* Generic.Inserted */
-.highlight .go { color: #888888 } /* Generic.Output */
-.highlight .gp { color: #000080; font-weight: bold } /* Generic.Prompt */
-.highlight .gs { font-weight: bold } /* Generic.Strong */
-.highlight .gu { color: #800080; font-weight: bold } /* Generic.Subheading */
-.highlight .gt { color: #0044DD } /* Generic.Traceback */
-.highlight .kc { color: #008000; font-weight: bold } /* Keyword.Constant */
-.highlight .kd { color: #008000; font-weight: bold } /* Keyword.Declaration */
-.highlight .kn { color: #008000; font-weight: bold } /* Keyword.Namespace */
-.highlight .kp { color: #008000 } /* Keyword.Pseudo */
-.highlight .kr { color: #008000; font-weight: bold } /* Keyword.Reserved */
-.highlight .kt { color: #B00040 } /* Keyword.Type */
-.highlight .m { color: #666666 } /* Literal.Number */
-.highlight .s { color: #BA2121 } /* Literal.String */
-.highlight .na { color: #7D9029 } /* Name.Attribute */
-.highlight .nb { color: #008000 } /* Name.Builtin */
-.highlight .nc { color: #0000FF; font-weight: bold } /* Name.Class */
-.highlight .no { color: #880000 } /* Name.Constant */
-.highlight .nd { color: #AA22FF } /* Name.Decorator */
-.highlight .ni { color: #999999; font-weight: bold } /* Name.Entity */
-.highlight .ne { color: #D2413A; font-weight: bold } /* Name.Exception */
-.highlight .nf { color: #0000FF } /* Name.Function */
-.highlight .nl { color: #A0A000 } /* Name.Label */
-.highlight .nn { color: #0000FF; font-weight: bold } /* Name.Namespace */
-.highlight .nt { color: #008000; font-weight: bold } /* Name.Tag */
-.highlight .nv { color: #19177C } /* Name.Variable */
-.highlight .ow { color: #AA22FF; font-weight: bold } /* Operator.Word */
-.highlight .w { color: #bbbbbb } /* Text.Whitespace */
-.highlight .mb { color: #666666 } /* Literal.Number.Bin */
-.highlight .mf { color: #666666 } /* Literal.Number.Float */
-.highlight .mh { color: #666666 } /* Literal.Number.Hex */
-.highlight .mi { color: #666666 } /* Literal.Number.Integer */
-.highlight .mo { color: #666666 } /* Literal.Number.Oct */
-.highlight .sa { color: #BA2121 } /* Literal.String.Affix */
-.highlight .sb { color: #BA2121 } /* Literal.String.Backtick */
-.highlight .sc { color: #BA2121 } /* Literal.String.Char */
-.highlight .dl { color: #BA2121 } /* Literal.String.Delimiter */
-.highlight .sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
-.highlight .s2 { color: #BA2121 } /* Literal.String.Double */
-.highlight .se { color: #BB6622; font-weight: bold } /* Literal.String.Escape */
-.highlight .sh { color: #BA2121 } /* Literal.String.Heredoc */
-.highlight .si { color: #BB6688; font-weight: bold } /* Literal.String.Interpol */
-.highlight .sx { color: #008000 } /* Literal.String.Other */
-.highlight .sr { color: #BB6688 } /* Literal.String.Regex */
-.highlight .s1 { color: #BA2121 } /* Literal.String.Single */
-.highlight .ss { color: #19177C } /* Literal.String.Symbol */
-.highlight .bp { color: #008000 } /* Name.Builtin.Pseudo */
-.highlight .fm { color: #0000FF } /* Name.Function.Magic */
-.highlight .vc { color: #19177C } /* Name.Variable.Class */
-.highlight .vg { color: #19177C } /* Name.Variable.Global */
-.highlight .vi { color: #19177C } /* Name.Variable.Instance */
-.highlight .vm { color: #19177C } /* Name.Variable.Magic */
-.highlight .il { color: #666666 } /* Literal.Number.Integer.Long */
-    </style>
-<style type="text/css">
-    
-/* Temporary definitions which will become obsolete with Notebook release 5.0 */
-.ansi-black-fg { color: #3E424D; }
-.ansi-black-bg { background-color: #3E424D; }
-.ansi-black-intense-fg { color: #282C36; }
-.ansi-black-intense-bg { background-color: #282C36; }
-.ansi-red-fg { color: #E75C58; }
-.ansi-red-bg { background-color: #E75C58; }
-.ansi-red-intense-fg { color: #B22B31; }
-.ansi-red-intense-bg { background-color: #B22B31; }
-.ansi-green-fg { color: #00A250; }
-.ansi-green-bg { background-color: #00A250; }
-.ansi-green-intense-fg { color: #007427; }
-.ansi-green-intense-bg { background-color: #007427; }
-.ansi-yellow-fg { color: #DDB62B; }
-.ansi-yellow-bg { background-color: #DDB62B; }
-.ansi-yellow-intense-fg { color: #B27D12; }
-.ansi-yellow-intense-bg { background-color: #B27D12; }
-.ansi-blue-fg { color: #208FFB; }
-.ansi-blue-bg { background-color: #208FFB; }
-.ansi-blue-intense-fg { color: #0065CA; }
-.ansi-blue-intense-bg { background-color: #0065CA; }
-.ansi-magenta-fg { color: #D160C4; }
-.ansi-magenta-bg { background-color: #D160C4; }
-.ansi-magenta-intense-fg { color: #A03196; }
-.ansi-magenta-intense-bg { background-color: #A03196; }
-.ansi-cyan-fg { color: #60C6C8; }
-.ansi-cyan-bg { background-color: #60C6C8; }
-.ansi-cyan-intense-fg { color: #258F8F; }
-.ansi-cyan-intense-bg { background-color: #258F8F; }
-.ansi-white-fg { color: #C5C1B4; }
-.ansi-white-bg { background-color: #C5C1B4; }
-.ansi-white-intense-fg { color: #A1A6B2; }
-.ansi-white-intense-bg { background-color: #A1A6B2; }
-
-.ansi-bold { font-weight: bold; }
-
-    </style>
-
-
+/*# sourceMappingURL=style.min.css.map */</style>
 <style type="text/css">
 /* Overrides of notebook CSS for static HTML export */
 body {
@@ -13069,44 +13031,55 @@ div#notebook {
   overflow: visible;
   border-top: none;
 }@media print {
+  body {
+    margin: 0;
+  }
   div.cell {
     display: block;
     page-break-inside: avoid;
-  } 
-  div.output_wrapper { 
-    display: block;
-    page-break-inside: avoid; 
   }
-  div.output { 
+  div.output_wrapper {
     display: block;
-    page-break-inside: avoid; 
+    page-break-inside: avoid;
+  }
+  div.output {
+    display: block;
+    page-break-inside: avoid;
   }
 }
 </style>
-
-<!-- Custom stylesheet, it must be in the same directory as the html file -->
-<link rel="stylesheet" href="custom.css">
-
-<!-- Loading mathjax macro -->
 <!-- Load mathjax -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS_HTML"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS_CHTML-full,Safe"> </script>
     <!-- MathJax configuration -->
     <script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ['$','$'], ["\\(","\\)"] ],
-            displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
-            processEscapes: true,
-            processEnvironments: true
-        },
-        // Center justify equations in code and markdown cells. Elsewhere
-        // we use CSS to left justify single line equations in code cells.
-        displayAlign: 'center',
-        "HTML-CSS": {
-            styles: {'.MathJax_Display': {"margin": 0}},
-            linebreaks: { automatic: true }
+    init_mathjax = function() {
+        if (window.MathJax) {
+        // MathJax loaded
+            MathJax.Hub.Config({
+                TeX: {
+                    equationNumbers: {
+                    autoNumber: "AMS",
+                    useLabelIds: true
+                    }
+                },
+                tex2jax: {
+                    inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+                    displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+                    processEscapes: true,
+                    processEnvironments: true
+                },
+                displayAlign: 'center',
+                CommonHTML: {
+                    linebreaks: { 
+                    automatic: true 
+                    }
+                }
+            });
+        
+            MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
         }
-    });
+    }
+    init_mathjax();
     </script>
     <!-- End of mathjax configuration --></head>
 <body>
@@ -13153,62 +13126,62 @@ div#notebook {
 <div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-Java"><pre><span></span><span class="kn">package</span> <span class="nn">trees.binary_search_tree</span><span class="o">;</span>
+<div class=" highlight hl-Java"><pre><span></span><span class="kn">package</span> <span class="nn">trees.binary_search_tree</span><span class="p">;</span>
 
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">BinarySearchTreeNode</span> <span class="o">{</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">BinarySearchTreeNode</span> <span class="p">{</span>
 
-    <span class="kd">private</span> <span class="kt">int</span> <span class="n">key</span><span class="o">;</span>
-    <span class="kd">private</span> <span class="kt">int</span> <span class="n">value</span><span class="o">;</span>
-    <span class="kd">private</span> <span class="n">BinarySearchTreeNode</span> <span class="n">parent</span><span class="o">;</span>
-    <span class="kd">private</span> <span class="n">BinarySearchTreeNode</span> <span class="n">left</span><span class="o">;</span>
-    <span class="kd">private</span> <span class="n">BinarySearchTreeNode</span> <span class="n">right</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kt">int</span> <span class="n">key</span><span class="p">;</span>
+    <span class="kd">private</span> <span class="kt">int</span> <span class="n">value</span><span class="p">;</span>
+    <span class="kd">private</span> <span class="n">BinarySearchTreeNode</span> <span class="n">parent</span><span class="p">;</span>
+    <span class="kd">private</span> <span class="n">BinarySearchTreeNode</span> <span class="n">left</span><span class="p">;</span>
+    <span class="kd">private</span> <span class="n">BinarySearchTreeNode</span> <span class="n">right</span><span class="p">;</span>
 
-    <span class="kd">public</span> <span class="nf">BinarySearchTreeNode</span><span class="o">(</span><span class="kt">int</span> <span class="n">key</span><span class="o">,</span> <span class="kt">int</span> <span class="n">value</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">this</span><span class="o">.</span><span class="na">key</span> <span class="o">=</span> <span class="n">key</span><span class="o">;</span>
-        <span class="k">this</span><span class="o">.</span><span class="na">value</span> <span class="o">=</span> <span class="n">value</span><span class="o">;</span>
-    <span class="o">}</span>
+    <span class="kd">public</span> <span class="nf">BinarySearchTreeNode</span><span class="p">(</span><span class="kt">int</span> <span class="n">key</span><span class="p">,</span> <span class="kt">int</span> <span class="n">value</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">key</span> <span class="o">=</span> <span class="n">key</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">value</span> <span class="o">=</span> <span class="n">value</span><span class="p">;</span>
+    <span class="p">}</span>
 
-    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">getKey</span><span class="o">()</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="n">key</span><span class="o">;</span>
-    <span class="o">}</span>
+    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">getKey</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">key</span><span class="p">;</span>
+    <span class="p">}</span>
 
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setKey</span><span class="o">(</span><span class="kt">int</span> <span class="n">key</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">this</span><span class="o">.</span><span class="na">key</span> <span class="o">=</span> <span class="n">key</span><span class="o">;</span>
-    <span class="o">}</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setKey</span><span class="p">(</span><span class="kt">int</span> <span class="n">key</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">key</span> <span class="o">=</span> <span class="n">key</span><span class="p">;</span>
+    <span class="p">}</span>
 
-    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">getValue</span><span class="o">()</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="n">value</span><span class="o">;</span>
-    <span class="o">}</span>
+    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">getValue</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">value</span><span class="p">;</span>
+    <span class="p">}</span>
 
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setValue</span><span class="o">(</span><span class="kt">int</span> <span class="n">value</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">this</span><span class="o">.</span><span class="na">value</span> <span class="o">=</span> <span class="n">value</span><span class="o">;</span>
-    <span class="o">}</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setValue</span><span class="p">(</span><span class="kt">int</span> <span class="n">value</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">value</span> <span class="o">=</span> <span class="n">value</span><span class="p">;</span>
+    <span class="p">}</span>
 
-    <span class="kd">public</span> <span class="n">BinarySearchTreeNode</span> <span class="nf">getParent</span><span class="o">()</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="n">parent</span><span class="o">;</span>
-    <span class="o">}</span>
+    <span class="kd">public</span> <span class="n">BinarySearchTreeNode</span> <span class="nf">getParent</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">parent</span><span class="p">;</span>
+    <span class="p">}</span>
 
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setParent</span><span class="o">(</span><span class="n">BinarySearchTreeNode</span> <span class="n">parent</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">this</span><span class="o">.</span><span class="na">parent</span> <span class="o">=</span> <span class="n">parent</span><span class="o">;</span>
-    <span class="o">}</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setParent</span><span class="p">(</span><span class="n">BinarySearchTreeNode</span> <span class="n">parent</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">parent</span> <span class="o">=</span> <span class="n">parent</span><span class="p">;</span>
+    <span class="p">}</span>
 
-    <span class="kd">public</span> <span class="n">BinarySearchTreeNode</span> <span class="nf">getLeft</span><span class="o">()</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="n">left</span><span class="o">;</span>
-    <span class="o">}</span>
+    <span class="kd">public</span> <span class="n">BinarySearchTreeNode</span> <span class="nf">getLeft</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">left</span><span class="p">;</span>
+    <span class="p">}</span>
 
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setLeft</span><span class="o">(</span><span class="n">BinarySearchTreeNode</span> <span class="n">left</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">this</span><span class="o">.</span><span class="na">left</span> <span class="o">=</span> <span class="n">left</span><span class="o">;</span>
-    <span class="o">}</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setLeft</span><span class="p">(</span><span class="n">BinarySearchTreeNode</span> <span class="n">left</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">left</span> <span class="o">=</span> <span class="n">left</span><span class="p">;</span>
+    <span class="p">}</span>
 
-    <span class="kd">public</span> <span class="n">BinarySearchTreeNode</span> <span class="nf">getRight</span><span class="o">()</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="n">right</span><span class="o">;</span>
-    <span class="o">}</span>
+    <span class="kd">public</span> <span class="n">BinarySearchTreeNode</span> <span class="nf">getRight</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">right</span><span class="p">;</span>
+    <span class="p">}</span>
 
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setRight</span><span class="o">(</span><span class="n">BinarySearchTreeNode</span> <span class="n">right</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">this</span><span class="o">.</span><span class="na">right</span> <span class="o">=</span> <span class="n">right</span><span class="o">;</span>
-    <span class="o">}</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setRight</span><span class="p">(</span><span class="n">BinarySearchTreeNode</span> <span class="n">right</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">right</span> <span class="o">=</span> <span class="n">right</span><span class="p">;</span>
+    <span class="p">}</span>
 
-<span class="o">}</span>
+<span class="p">}</span>
 </pre></div>
 
     </div>
@@ -13248,22 +13221,22 @@ div#notebook {
 <div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-Java"><pre><span></span><span class="kn">package</span> <span class="nn">trees.binary_search_tree</span><span class="o">;</span>
+<div class=" highlight hl-Java"><pre><span></span><span class="kn">package</span> <span class="nn">trees.binary_search_tree</span><span class="p">;</span>
 
-<span class="kn">import</span> <span class="nn">java.util.function.*</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.function.*</span><span class="p">;</span>
 
-<span class="kd">public</span> <span class="kd">interface</span> <span class="nc">PreOrderTraversal</span> <span class="o">{</span>
+<span class="kd">public</span> <span class="kd">interface</span> <span class="nc">PreOrderTraversal</span> <span class="p">{</span>
     
-    <span class="kd">public</span> <span class="k">default</span> <span class="kt">void</span> <span class="nf">preOrderTraversal</span><span class="o">(</span><span class="n">BinarySearchTreeNode</span> <span class="n">node</span><span class="o">,</span> <span class="n">BiConsumer</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">,</span> <span class="n">Integer</span><span class="o">&gt;</span> <span class="n">action</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">if</span> <span class="o">(</span><span class="n">node</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
-            <span class="k">return</span><span class="o">;</span>
-        <span class="o">}</span>
-        <span class="n">action</span><span class="o">.</span><span class="na">accept</span><span class="o">(</span><span class="n">node</span><span class="o">.</span><span class="na">getKey</span><span class="o">(),</span> <span class="n">node</span><span class="o">.</span><span class="na">getValue</span><span class="o">());</span>
-        <span class="n">preOrderTraversal</span><span class="o">(</span><span class="n">node</span><span class="o">.</span><span class="na">getLeft</span><span class="o">(),</span> <span class="n">action</span><span class="o">);</span>
-        <span class="n">preOrderTraversal</span><span class="o">(</span><span class="n">node</span><span class="o">.</span><span class="na">getRight</span><span class="o">(),</span> <span class="n">action</span><span class="o">);</span>
-    <span class="o">}</span>
+    <span class="kd">public</span> <span class="k">default</span> <span class="kt">void</span> <span class="nf">preOrderTraversal</span><span class="p">(</span><span class="n">BinarySearchTreeNode</span> <span class="n">node</span><span class="p">,</span> <span class="n">BiConsumer</span><span class="o">&lt;</span><span class="n">Integer</span><span class="p">,</span> <span class="n">Integer</span><span class="o">&gt;</span> <span class="n">action</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">node</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="n">action</span><span class="p">.</span><span class="na">accept</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">getKey</span><span class="p">(),</span> <span class="n">node</span><span class="p">.</span><span class="na">getValue</span><span class="p">());</span>
+        <span class="n">preOrderTraversal</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">getLeft</span><span class="p">(),</span> <span class="n">action</span><span class="p">);</span>
+        <span class="n">preOrderTraversal</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">getRight</span><span class="p">(),</span> <span class="n">action</span><span class="p">);</span>
+    <span class="p">}</span>
     
-<span class="o">}</span>
+<span class="p">}</span>
 </pre></div>
 
     </div>
@@ -13303,22 +13276,22 @@ div#notebook {
 <div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-Java"><pre><span></span><span class="kn">package</span> <span class="nn">trees.binary_search_tree</span><span class="o">;</span>
+<div class=" highlight hl-Java"><pre><span></span><span class="kn">package</span> <span class="nn">trees.binary_search_tree</span><span class="p">;</span>
 
-<span class="kn">import</span> <span class="nn">java.util.function.*</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.function.*</span><span class="p">;</span>
 
-<span class="kd">public</span> <span class="kd">interface</span> <span class="nc">InOrderTraversal</span> <span class="o">{</span>
+<span class="kd">public</span> <span class="kd">interface</span> <span class="nc">InOrderTraversal</span> <span class="p">{</span>
     
-    <span class="kd">public</span> <span class="k">default</span> <span class="kt">void</span> <span class="nf">inOrderTraversal</span><span class="o">(</span><span class="n">BinarySearchTreeNode</span> <span class="n">node</span><span class="o">,</span> <span class="n">BiConsumer</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">,</span> <span class="n">Integer</span><span class="o">&gt;</span> <span class="n">action</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">if</span> <span class="o">(</span><span class="n">node</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
-            <span class="k">return</span><span class="o">;</span>
-        <span class="o">}</span>
-        <span class="n">inOrderTraversal</span><span class="o">(</span><span class="n">node</span><span class="o">.</span><span class="na">getLeft</span><span class="o">(),</span> <span class="n">action</span><span class="o">);</span>
-        <span class="n">action</span><span class="o">.</span><span class="na">accept</span><span class="o">(</span><span class="n">node</span><span class="o">.</span><span class="na">getKey</span><span class="o">(),</span> <span class="n">node</span><span class="o">.</span><span class="na">getValue</span><span class="o">());</span>
-        <span class="n">inOrderTraversal</span><span class="o">(</span><span class="n">node</span><span class="o">.</span><span class="na">getRight</span><span class="o">(),</span> <span class="n">action</span><span class="o">);</span>
-    <span class="o">}</span>
+    <span class="kd">public</span> <span class="k">default</span> <span class="kt">void</span> <span class="nf">inOrderTraversal</span><span class="p">(</span><span class="n">BinarySearchTreeNode</span> <span class="n">node</span><span class="p">,</span> <span class="n">BiConsumer</span><span class="o">&lt;</span><span class="n">Integer</span><span class="p">,</span> <span class="n">Integer</span><span class="o">&gt;</span> <span class="n">action</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">node</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="n">inOrderTraversal</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">getLeft</span><span class="p">(),</span> <span class="n">action</span><span class="p">);</span>
+        <span class="n">action</span><span class="p">.</span><span class="na">accept</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">getKey</span><span class="p">(),</span> <span class="n">node</span><span class="p">.</span><span class="na">getValue</span><span class="p">());</span>
+        <span class="n">inOrderTraversal</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">getRight</span><span class="p">(),</span> <span class="n">action</span><span class="p">);</span>
+    <span class="p">}</span>
     
-<span class="o">}</span>
+<span class="p">}</span>
 </pre></div>
 
     </div>
@@ -13358,22 +13331,22 @@ div#notebook {
 <div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-Java"><pre><span></span><span class="kn">package</span> <span class="nn">trees.binary_search_tree</span><span class="o">;</span>
+<div class=" highlight hl-Java"><pre><span></span><span class="kn">package</span> <span class="nn">trees.binary_search_tree</span><span class="p">;</span>
 
-<span class="kn">import</span> <span class="nn">java.util.function.*</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.function.*</span><span class="p">;</span>
 
-<span class="kd">public</span> <span class="kd">interface</span> <span class="nc">PostOrderTraversal</span> <span class="o">{</span>
+<span class="kd">public</span> <span class="kd">interface</span> <span class="nc">PostOrderTraversal</span> <span class="p">{</span>
     
-    <span class="kd">public</span> <span class="k">default</span> <span class="kt">void</span> <span class="nf">postOrderTraversal</span><span class="o">(</span><span class="n">BinarySearchTreeNode</span> <span class="n">node</span><span class="o">,</span> <span class="n">BiConsumer</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">,</span> <span class="n">Integer</span><span class="o">&gt;</span> <span class="n">action</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">if</span> <span class="o">(</span><span class="n">node</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
-            <span class="k">return</span><span class="o">;</span>
-        <span class="o">}</span>
-        <span class="n">postOrderTraversal</span><span class="o">(</span><span class="n">node</span><span class="o">.</span><span class="na">getLeft</span><span class="o">(),</span> <span class="n">action</span><span class="o">);</span>
-        <span class="n">postOrderTraversal</span><span class="o">(</span><span class="n">node</span><span class="o">.</span><span class="na">getRight</span><span class="o">(),</span> <span class="n">action</span><span class="o">);</span>
-        <span class="n">action</span><span class="o">.</span><span class="na">accept</span><span class="o">(</span><span class="n">node</span><span class="o">.</span><span class="na">getKey</span><span class="o">(),</span> <span class="n">node</span><span class="o">.</span><span class="na">getValue</span><span class="o">());</span>
-    <span class="o">}</span>
+    <span class="kd">public</span> <span class="k">default</span> <span class="kt">void</span> <span class="nf">postOrderTraversal</span><span class="p">(</span><span class="n">BinarySearchTreeNode</span> <span class="n">node</span><span class="p">,</span> <span class="n">BiConsumer</span><span class="o">&lt;</span><span class="n">Integer</span><span class="p">,</span> <span class="n">Integer</span><span class="o">&gt;</span> <span class="n">action</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">node</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="n">postOrderTraversal</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">getLeft</span><span class="p">(),</span> <span class="n">action</span><span class="p">);</span>
+        <span class="n">postOrderTraversal</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">getRight</span><span class="p">(),</span> <span class="n">action</span><span class="p">);</span>
+        <span class="n">action</span><span class="p">.</span><span class="na">accept</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">getKey</span><span class="p">(),</span> <span class="n">node</span><span class="p">.</span><span class="na">getValue</span><span class="p">());</span>
+    <span class="p">}</span>
     
-<span class="o">}</span>
+<span class="p">}</span>
 </pre></div>
 
     </div>
@@ -13413,27 +13386,27 @@ div#notebook {
 <div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-Java"><pre><span></span><span class="kn">package</span> <span class="nn">trees.binary_search_tree</span><span class="o">;</span>
+<div class=" highlight hl-Java"><pre><span></span><span class="kn">package</span> <span class="nn">trees.binary_search_tree</span><span class="p">;</span>
 
-<span class="kn">import</span> <span class="nn">java.util.*</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.*</span><span class="p">;</span>
 
-<span class="kd">public</span> <span class="kd">interface</span> <span class="nc">Search</span> <span class="o">{</span>
+<span class="kd">public</span> <span class="kd">interface</span> <span class="nc">Search</span> <span class="p">{</span>
     
-    <span class="kd">public</span> <span class="k">default</span> <span class="n">BinarySearchTreeNode</span> <span class="nf">searchNode</span><span class="o">(</span><span class="n">BinarySearchTreeNode</span> <span class="n">node</span><span class="o">,</span> <span class="kt">int</span> <span class="n">key</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">if</span> <span class="o">(</span><span class="n">node</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
-            <span class="k">throw</span> <span class="k">new</span> <span class="n">NoSuchElementException</span><span class="o">();</span>
-        <span class="o">}</span>
-        <span class="k">if</span> <span class="o">(</span><span class="n">key</span> <span class="o">==</span> <span class="n">node</span><span class="o">.</span><span class="na">getKey</span><span class="o">())</span> <span class="o">{</span>
-            <span class="k">return</span> <span class="n">node</span><span class="o">;</span>
-        <span class="o">}</span>
-        <span class="k">if</span> <span class="o">(</span><span class="n">key</span> <span class="o">&lt;</span> <span class="n">node</span><span class="o">.</span><span class="na">getKey</span><span class="o">())</span> <span class="o">{</span>
-            <span class="k">return</span> <span class="n">searchNode</span><span class="o">(</span><span class="n">node</span><span class="o">.</span><span class="na">getLeft</span><span class="o">(),</span> <span class="n">key</span><span class="o">);</span>
-        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
-            <span class="k">return</span> <span class="n">searchNode</span><span class="o">(</span><span class="n">node</span><span class="o">.</span><span class="na">getRight</span><span class="o">(),</span> <span class="n">key</span><span class="o">);</span>
-        <span class="o">}</span>
-    <span class="o">}</span>
+    <span class="kd">public</span> <span class="k">default</span> <span class="n">BinarySearchTreeNode</span> <span class="nf">searchNode</span><span class="p">(</span><span class="n">BinarySearchTreeNode</span> <span class="n">node</span><span class="p">,</span> <span class="kt">int</span> <span class="n">key</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">node</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">throw</span> <span class="k">new</span> <span class="n">NoSuchElementException</span><span class="p">();</span>
+        <span class="p">}</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">key</span> <span class="o">==</span> <span class="n">node</span><span class="p">.</span><span class="na">getKey</span><span class="p">())</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="n">node</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">key</span> <span class="o">&lt;</span> <span class="n">node</span><span class="p">.</span><span class="na">getKey</span><span class="p">())</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="n">searchNode</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">getLeft</span><span class="p">(),</span> <span class="n">key</span><span class="p">);</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="n">searchNode</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">getRight</span><span class="p">(),</span> <span class="n">key</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
     
-<span class="o">}</span>
+<span class="p">}</span>
 </pre></div>
 
     </div>
@@ -13473,23 +13446,23 @@ div#notebook {
 <div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-Java"><pre><span></span><span class="kn">package</span> <span class="nn">trees.binary_search_tree</span><span class="o">;</span>
+<div class=" highlight hl-Java"><pre><span></span><span class="kn">package</span> <span class="nn">trees.binary_search_tree</span><span class="p">;</span>
 
-<span class="kn">import</span> <span class="nn">java.util.*</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.*</span><span class="p">;</span>
 
-<span class="kd">public</span> <span class="kd">interface</span> <span class="nc">Minimum</span> <span class="o">{</span>
+<span class="kd">public</span> <span class="kd">interface</span> <span class="nc">Minimum</span> <span class="p">{</span>
     
-    <span class="kd">public</span> <span class="k">default</span> <span class="n">BinarySearchTreeNode</span> <span class="nf">minimumNode</span><span class="o">(</span><span class="n">BinarySearchTreeNode</span> <span class="n">node</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">if</span> <span class="o">(</span><span class="n">node</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
-            <span class="k">throw</span> <span class="k">new</span> <span class="n">NoSuchElementException</span><span class="o">();</span>
-        <span class="o">}</span>
-        <span class="k">while</span> <span class="o">(</span><span class="n">node</span><span class="o">.</span><span class="na">getLeft</span><span class="o">()</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
-            <span class="n">node</span> <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="na">getLeft</span><span class="o">();</span>
-        <span class="o">}</span>
-        <span class="k">return</span> <span class="n">node</span><span class="o">;</span>
-    <span class="o">}</span>
+    <span class="kd">public</span> <span class="k">default</span> <span class="n">BinarySearchTreeNode</span> <span class="nf">minimumNode</span><span class="p">(</span><span class="n">BinarySearchTreeNode</span> <span class="n">node</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">node</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">throw</span> <span class="k">new</span> <span class="n">NoSuchElementException</span><span class="p">();</span>
+        <span class="p">}</span>
+        <span class="k">while</span> <span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">getLeft</span><span class="p">()</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">node</span> <span class="o">=</span> <span class="n">node</span><span class="p">.</span><span class="na">getLeft</span><span class="p">();</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="n">node</span><span class="p">;</span>
+    <span class="p">}</span>
     
-<span class="o">}</span>
+<span class="p">}</span>
 </pre></div>
 
     </div>
@@ -13529,23 +13502,23 @@ div#notebook {
 <div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-Java"><pre><span></span><span class="kn">package</span> <span class="nn">trees.binary_search_tree</span><span class="o">;</span>
+<div class=" highlight hl-Java"><pre><span></span><span class="kn">package</span> <span class="nn">trees.binary_search_tree</span><span class="p">;</span>
 
-<span class="kn">import</span> <span class="nn">java.util.*</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.*</span><span class="p">;</span>
 
-<span class="kd">public</span> <span class="kd">interface</span> <span class="nc">Maximum</span> <span class="o">{</span>
+<span class="kd">public</span> <span class="kd">interface</span> <span class="nc">Maximum</span> <span class="p">{</span>
     
-    <span class="kd">public</span> <span class="k">default</span> <span class="n">BinarySearchTreeNode</span> <span class="nf">maximumNode</span><span class="o">(</span><span class="n">BinarySearchTreeNode</span> <span class="n">node</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">if</span> <span class="o">(</span><span class="n">node</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
-            <span class="k">throw</span> <span class="k">new</span> <span class="n">NoSuchElementException</span><span class="o">();</span>
-        <span class="o">}</span>
-        <span class="k">while</span> <span class="o">(</span><span class="n">node</span><span class="o">.</span><span class="na">getRight</span><span class="o">()</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
-            <span class="n">node</span> <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="na">getRight</span><span class="o">();</span>
-        <span class="o">}</span>
-        <span class="k">return</span> <span class="n">node</span><span class="o">;</span>
-    <span class="o">}</span>
+    <span class="kd">public</span> <span class="k">default</span> <span class="n">BinarySearchTreeNode</span> <span class="nf">maximumNode</span><span class="p">(</span><span class="n">BinarySearchTreeNode</span> <span class="n">node</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">node</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">throw</span> <span class="k">new</span> <span class="n">NoSuchElementException</span><span class="p">();</span>
+        <span class="p">}</span>
+        <span class="k">while</span> <span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">getRight</span><span class="p">()</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">node</span> <span class="o">=</span> <span class="n">node</span><span class="p">.</span><span class="na">getRight</span><span class="p">();</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="n">node</span><span class="p">;</span>
+    <span class="p">}</span>
     
-<span class="o">}</span>
+<span class="p">}</span>
 </pre></div>
 
     </div>
@@ -13585,29 +13558,29 @@ div#notebook {
 <div class="prompt input_prompt">In&nbsp;[8]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-Java"><pre><span></span><span class="kn">package</span> <span class="nn">trees.binary_search_tree</span><span class="o">;</span>
+<div class=" highlight hl-Java"><pre><span></span><span class="kn">package</span> <span class="nn">trees.binary_search_tree</span><span class="p">;</span>
 
-<span class="kn">import</span> <span class="nn">java.util.*</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.*</span><span class="p">;</span>
 
-<span class="kd">public</span> <span class="kd">interface</span> <span class="nc">Successor</span> <span class="kd">extends</span> <span class="n">Minimum</span> <span class="o">{</span>
+<span class="kd">public</span> <span class="kd">interface</span> <span class="nc">Successor</span> <span class="kd">extends</span> <span class="n">Minimum</span> <span class="p">{</span>
     
-    <span class="kd">public</span> <span class="k">default</span> <span class="n">BinarySearchTreeNode</span> <span class="nf">successorNode</span><span class="o">(</span><span class="n">BinarySearchTreeNode</span> <span class="n">node</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">if</span> <span class="o">(</span><span class="n">node</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
-            <span class="k">throw</span> <span class="k">new</span> <span class="n">NoSuchElementException</span><span class="o">();</span>
-        <span class="o">}</span>
-        <span class="k">if</span> <span class="o">(</span><span class="n">node</span><span class="o">.</span><span class="na">getRight</span><span class="o">()</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
-            <span class="k">return</span> <span class="n">minimumNode</span><span class="o">(</span><span class="n">node</span><span class="o">.</span><span class="na">getRight</span><span class="o">());</span>
-        <span class="o">}</span>
-        <span class="n">BinarySearchTreeNode</span> <span class="n">parentNode</span> <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="na">getParent</span><span class="o">();</span>
-        <span class="n">BinarySearchTreeNode</span> <span class="n">currentNode</span> <span class="o">=</span> <span class="n">node</span><span class="o">;</span>
-        <span class="k">while</span> <span class="o">(</span><span class="n">parentNode</span> <span class="o">!=</span> <span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="n">currentNode</span> <span class="o">==</span> <span class="n">parentNode</span><span class="o">.</span><span class="na">getRight</span><span class="o">())</span> <span class="o">{</span>
-            <span class="n">currentNode</span> <span class="o">=</span> <span class="n">parentNode</span><span class="o">;</span>
-            <span class="n">parentNode</span> <span class="o">=</span> <span class="n">parentNode</span><span class="o">.</span><span class="na">getParent</span><span class="o">();</span>
-        <span class="o">}</span>
-        <span class="k">return</span> <span class="n">parentNode</span><span class="o">;</span>
-    <span class="o">}</span>
+    <span class="kd">public</span> <span class="k">default</span> <span class="n">BinarySearchTreeNode</span> <span class="nf">successorNode</span><span class="p">(</span><span class="n">BinarySearchTreeNode</span> <span class="n">node</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">node</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">throw</span> <span class="k">new</span> <span class="n">NoSuchElementException</span><span class="p">();</span>
+        <span class="p">}</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">getRight</span><span class="p">()</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="n">minimumNode</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">getRight</span><span class="p">());</span>
+        <span class="p">}</span>
+        <span class="n">BinarySearchTreeNode</span> <span class="n">parentNode</span> <span class="o">=</span> <span class="n">node</span><span class="p">.</span><span class="na">getParent</span><span class="p">();</span>
+        <span class="n">BinarySearchTreeNode</span> <span class="n">currentNode</span> <span class="o">=</span> <span class="n">node</span><span class="p">;</span>
+        <span class="k">while</span> <span class="p">(</span><span class="n">parentNode</span> <span class="o">!=</span> <span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="n">currentNode</span> <span class="o">==</span> <span class="n">parentNode</span><span class="p">.</span><span class="na">getRight</span><span class="p">())</span> <span class="p">{</span>
+            <span class="n">currentNode</span> <span class="o">=</span> <span class="n">parentNode</span><span class="p">;</span>
+            <span class="n">parentNode</span> <span class="o">=</span> <span class="n">parentNode</span><span class="p">.</span><span class="na">getParent</span><span class="p">();</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="n">parentNode</span><span class="p">;</span>
+    <span class="p">}</span>
     
-<span class="o">}</span>
+<span class="p">}</span>
 </pre></div>
 
     </div>
@@ -13647,29 +13620,29 @@ div#notebook {
 <div class="prompt input_prompt">In&nbsp;[9]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-Java"><pre><span></span><span class="kn">package</span> <span class="nn">trees.binary_search_tree</span><span class="o">;</span>
+<div class=" highlight hl-Java"><pre><span></span><span class="kn">package</span> <span class="nn">trees.binary_search_tree</span><span class="p">;</span>
 
-<span class="kn">import</span> <span class="nn">java.util.*</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.*</span><span class="p">;</span>
 
-<span class="kd">public</span> <span class="kd">interface</span> <span class="nc">Predecessor</span> <span class="kd">extends</span> <span class="n">Maximum</span> <span class="o">{</span>
+<span class="kd">public</span> <span class="kd">interface</span> <span class="nc">Predecessor</span> <span class="kd">extends</span> <span class="n">Maximum</span> <span class="p">{</span>
     
-    <span class="kd">public</span> <span class="k">default</span> <span class="n">BinarySearchTreeNode</span> <span class="nf">predecessorNode</span><span class="o">(</span><span class="n">BinarySearchTreeNode</span> <span class="n">node</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">if</span> <span class="o">(</span><span class="n">node</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
-            <span class="k">throw</span> <span class="k">new</span> <span class="n">NoSuchElementException</span><span class="o">();</span>
-        <span class="o">}</span>
-        <span class="k">if</span> <span class="o">(</span><span class="n">node</span><span class="o">.</span><span class="na">getLeft</span><span class="o">()</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
-            <span class="k">return</span> <span class="n">maximumNode</span><span class="o">(</span><span class="n">node</span><span class="o">.</span><span class="na">getLeft</span><span class="o">());</span>
-        <span class="o">}</span>
-        <span class="n">BinarySearchTreeNode</span> <span class="n">parentNode</span> <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="na">getParent</span><span class="o">();</span>
-        <span class="n">BinarySearchTreeNode</span> <span class="n">currentNode</span> <span class="o">=</span> <span class="n">node</span><span class="o">;</span>
-        <span class="k">while</span> <span class="o">(</span><span class="n">parentNode</span> <span class="o">!=</span> <span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="n">currentNode</span> <span class="o">==</span> <span class="n">parentNode</span><span class="o">.</span><span class="na">getLeft</span><span class="o">())</span> <span class="o">{</span>
-            <span class="n">currentNode</span> <span class="o">=</span> <span class="n">parentNode</span><span class="o">;</span>
-            <span class="n">parentNode</span> <span class="o">=</span> <span class="n">parentNode</span><span class="o">.</span><span class="na">getParent</span><span class="o">();</span>
-        <span class="o">}</span>
-        <span class="k">return</span> <span class="n">parentNode</span><span class="o">;</span>
-    <span class="o">}</span>
+    <span class="kd">public</span> <span class="k">default</span> <span class="n">BinarySearchTreeNode</span> <span class="nf">predecessorNode</span><span class="p">(</span><span class="n">BinarySearchTreeNode</span> <span class="n">node</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">node</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">throw</span> <span class="k">new</span> <span class="n">NoSuchElementException</span><span class="p">();</span>
+        <span class="p">}</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">getLeft</span><span class="p">()</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="n">maximumNode</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">getLeft</span><span class="p">());</span>
+        <span class="p">}</span>
+        <span class="n">BinarySearchTreeNode</span> <span class="n">parentNode</span> <span class="o">=</span> <span class="n">node</span><span class="p">.</span><span class="na">getParent</span><span class="p">();</span>
+        <span class="n">BinarySearchTreeNode</span> <span class="n">currentNode</span> <span class="o">=</span> <span class="n">node</span><span class="p">;</span>
+        <span class="k">while</span> <span class="p">(</span><span class="n">parentNode</span> <span class="o">!=</span> <span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="n">currentNode</span> <span class="o">==</span> <span class="n">parentNode</span><span class="p">.</span><span class="na">getLeft</span><span class="p">())</span> <span class="p">{</span>
+            <span class="n">currentNode</span> <span class="o">=</span> <span class="n">parentNode</span><span class="p">;</span>
+            <span class="n">parentNode</span> <span class="o">=</span> <span class="n">parentNode</span><span class="p">.</span><span class="na">getParent</span><span class="p">();</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="n">parentNode</span><span class="p">;</span>
+    <span class="p">}</span>
     
-<span class="o">}</span>
+<span class="p">}</span>
 </pre></div>
 
     </div>
@@ -13709,27 +13682,27 @@ div#notebook {
 <div class="prompt input_prompt">In&nbsp;[10]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-Java"><pre><span></span><span class="kn">package</span> <span class="nn">trees.binary_search_tree</span><span class="o">;</span>
+<div class=" highlight hl-Java"><pre><span></span><span class="kn">package</span> <span class="nn">trees.binary_search_tree</span><span class="p">;</span>
 
-<span class="kn">import</span> <span class="nn">java.util.*</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.*</span><span class="p">;</span>
 
-<span class="kd">public</span> <span class="kd">interface</span> <span class="nc">Insert</span> <span class="o">{</span>
+<span class="kd">public</span> <span class="kd">interface</span> <span class="nc">Insert</span> <span class="p">{</span>
     
-    <span class="kd">public</span> <span class="k">default</span> <span class="n">BinarySearchTreeNode</span> <span class="nf">insertNode</span><span class="o">(</span><span class="n">BinarySearchTreeNode</span> <span class="n">rootNode</span><span class="o">,</span> <span class="kt">int</span> <span class="n">key</span><span class="o">,</span> <span class="kt">int</span> <span class="n">value</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">if</span> <span class="o">(</span><span class="n">rootNode</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
-            <span class="k">return</span> <span class="k">new</span> <span class="n">BinarySearchTreeNode</span><span class="o">(</span><span class="n">key</span><span class="o">,</span> <span class="n">value</span><span class="o">);</span>
-        <span class="o">}</span>
-        <span class="k">if</span> <span class="o">(</span><span class="n">key</span> <span class="o">&lt;</span> <span class="n">rootNode</span><span class="o">.</span><span class="na">getKey</span><span class="o">())</span> <span class="o">{</span>
-            <span class="n">rootNode</span><span class="o">.</span><span class="na">setLeft</span><span class="o">(</span><span class="n">insertNode</span><span class="o">(</span><span class="n">rootNode</span><span class="o">.</span><span class="na">getLeft</span><span class="o">(),</span> <span class="n">key</span><span class="o">,</span> <span class="n">value</span><span class="o">));</span>
-            <span class="n">rootNode</span><span class="o">.</span><span class="na">getLeft</span><span class="o">().</span><span class="na">setParent</span><span class="o">(</span><span class="n">rootNode</span><span class="o">);</span>
-        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
-            <span class="n">rootNode</span><span class="o">.</span><span class="na">setRight</span><span class="o">(</span><span class="n">insertNode</span><span class="o">(</span><span class="n">rootNode</span><span class="o">.</span><span class="na">getRight</span><span class="o">(),</span> <span class="n">key</span><span class="o">,</span> <span class="n">value</span><span class="o">));</span>
-            <span class="n">rootNode</span><span class="o">.</span><span class="na">getRight</span><span class="o">().</span><span class="na">setParent</span><span class="o">(</span><span class="n">rootNode</span><span class="o">);</span>
-        <span class="o">}</span>
-        <span class="k">return</span> <span class="n">rootNode</span><span class="o">;</span>
-    <span class="o">}</span>
+    <span class="kd">public</span> <span class="k">default</span> <span class="n">BinarySearchTreeNode</span> <span class="nf">insertNode</span><span class="p">(</span><span class="n">BinarySearchTreeNode</span> <span class="n">rootNode</span><span class="p">,</span> <span class="kt">int</span> <span class="n">key</span><span class="p">,</span> <span class="kt">int</span> <span class="n">value</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">rootNode</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="k">new</span> <span class="n">BinarySearchTreeNode</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">);</span>
+        <span class="p">}</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">key</span> <span class="o">&lt;</span> <span class="n">rootNode</span><span class="p">.</span><span class="na">getKey</span><span class="p">())</span> <span class="p">{</span>
+            <span class="n">rootNode</span><span class="p">.</span><span class="na">setLeft</span><span class="p">(</span><span class="n">insertNode</span><span class="p">(</span><span class="n">rootNode</span><span class="p">.</span><span class="na">getLeft</span><span class="p">(),</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">));</span>
+            <span class="n">rootNode</span><span class="p">.</span><span class="na">getLeft</span><span class="p">().</span><span class="na">setParent</span><span class="p">(</span><span class="n">rootNode</span><span class="p">);</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="n">rootNode</span><span class="p">.</span><span class="na">setRight</span><span class="p">(</span><span class="n">insertNode</span><span class="p">(</span><span class="n">rootNode</span><span class="p">.</span><span class="na">getRight</span><span class="p">(),</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">));</span>
+            <span class="n">rootNode</span><span class="p">.</span><span class="na">getRight</span><span class="p">().</span><span class="na">setParent</span><span class="p">(</span><span class="n">rootNode</span><span class="p">);</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="n">rootNode</span><span class="p">;</span>
+    <span class="p">}</span>
     
-<span class="o">}</span>
+<span class="p">}</span>
 </pre></div>
 
     </div>
@@ -13769,53 +13742,53 @@ div#notebook {
 <div class="prompt input_prompt">In&nbsp;[11]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-Java"><pre><span></span><span class="kn">package</span> <span class="nn">trees.binary_search_tree</span><span class="o">;</span>
+<div class=" highlight hl-Java"><pre><span></span><span class="kn">package</span> <span class="nn">trees.binary_search_tree</span><span class="p">;</span>
 
-<span class="kn">import</span> <span class="nn">java.util.*</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.*</span><span class="p">;</span>
 
-<span class="kd">public</span> <span class="kd">interface</span> <span class="nc">Delete</span> <span class="kd">extends</span> <span class="n">Minimum</span> <span class="o">{</span>
+<span class="kd">public</span> <span class="kd">interface</span> <span class="nc">Delete</span> <span class="kd">extends</span> <span class="n">Minimum</span> <span class="p">{</span>
     
-    <span class="kd">public</span> <span class="k">default</span> <span class="n">BinarySearchTreeNode</span> <span class="nf">deleteNode</span><span class="o">(</span><span class="n">BinarySearchTreeNode</span> <span class="n">rootNode</span><span class="o">,</span> <span class="kt">int</span> <span class="n">key</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">if</span> <span class="o">(</span><span class="n">rootNode</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
-            <span class="k">throw</span> <span class="k">new</span> <span class="n">NoSuchElementException</span><span class="o">();</span>
-        <span class="o">}</span>
-        <span class="k">if</span> <span class="o">(</span><span class="n">key</span> <span class="o">&lt;</span> <span class="n">rootNode</span><span class="o">.</span><span class="na">getKey</span><span class="o">())</span> <span class="o">{</span>
-            <span class="n">rootNode</span><span class="o">.</span><span class="na">setLeft</span><span class="o">(</span><span class="n">deleteNode</span><span class="o">(</span><span class="n">rootNode</span><span class="o">.</span><span class="na">getLeft</span><span class="o">(),</span> <span class="n">key</span><span class="o">));</span>
-            <span class="k">if</span> <span class="o">(</span><span class="n">rootNode</span><span class="o">.</span><span class="na">getLeft</span><span class="o">()</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
-                <span class="n">rootNode</span><span class="o">.</span><span class="na">getLeft</span><span class="o">().</span><span class="na">setParent</span><span class="o">(</span><span class="n">rootNode</span><span class="o">);</span>
-            <span class="o">}</span>
-            <span class="k">return</span> <span class="n">rootNode</span><span class="o">;</span>
-        <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">key</span> <span class="o">&gt;</span> <span class="n">rootNode</span><span class="o">.</span><span class="na">getKey</span><span class="o">())</span> <span class="o">{</span>
-            <span class="n">rootNode</span><span class="o">.</span><span class="na">setRight</span><span class="o">(</span><span class="n">deleteNode</span><span class="o">(</span><span class="n">rootNode</span><span class="o">.</span><span class="na">getRight</span><span class="o">(),</span> <span class="n">key</span><span class="o">));</span>
-            <span class="k">if</span> <span class="o">(</span><span class="n">rootNode</span><span class="o">.</span><span class="na">getRight</span><span class="o">()</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
-                <span class="n">rootNode</span><span class="o">.</span><span class="na">getRight</span><span class="o">().</span><span class="na">setParent</span><span class="o">(</span><span class="n">rootNode</span><span class="o">);</span>
-            <span class="o">}</span>
-            <span class="k">return</span> <span class="n">rootNode</span><span class="o">;</span>
-        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
-            <span class="k">if</span> <span class="o">(</span><span class="n">rootNode</span><span class="o">.</span><span class="na">getLeft</span><span class="o">()</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="n">rootNode</span><span class="o">.</span><span class="na">getRight</span><span class="o">()</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="k">default</span> <span class="n">BinarySearchTreeNode</span> <span class="nf">deleteNode</span><span class="p">(</span><span class="n">BinarySearchTreeNode</span> <span class="n">rootNode</span><span class="p">,</span> <span class="kt">int</span> <span class="n">key</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">rootNode</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">throw</span> <span class="k">new</span> <span class="n">NoSuchElementException</span><span class="p">();</span>
+        <span class="p">}</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">key</span> <span class="o">&lt;</span> <span class="n">rootNode</span><span class="p">.</span><span class="na">getKey</span><span class="p">())</span> <span class="p">{</span>
+            <span class="n">rootNode</span><span class="p">.</span><span class="na">setLeft</span><span class="p">(</span><span class="n">deleteNode</span><span class="p">(</span><span class="n">rootNode</span><span class="p">.</span><span class="na">getLeft</span><span class="p">(),</span> <span class="n">key</span><span class="p">));</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">rootNode</span><span class="p">.</span><span class="na">getLeft</span><span class="p">()</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+                <span class="n">rootNode</span><span class="p">.</span><span class="na">getLeft</span><span class="p">().</span><span class="na">setParent</span><span class="p">(</span><span class="n">rootNode</span><span class="p">);</span>
+            <span class="p">}</span>
+            <span class="k">return</span> <span class="n">rootNode</span><span class="p">;</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">key</span> <span class="o">&gt;</span> <span class="n">rootNode</span><span class="p">.</span><span class="na">getKey</span><span class="p">())</span> <span class="p">{</span>
+            <span class="n">rootNode</span><span class="p">.</span><span class="na">setRight</span><span class="p">(</span><span class="n">deleteNode</span><span class="p">(</span><span class="n">rootNode</span><span class="p">.</span><span class="na">getRight</span><span class="p">(),</span> <span class="n">key</span><span class="p">));</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">rootNode</span><span class="p">.</span><span class="na">getRight</span><span class="p">()</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+                <span class="n">rootNode</span><span class="p">.</span><span class="na">getRight</span><span class="p">().</span><span class="na">setParent</span><span class="p">(</span><span class="n">rootNode</span><span class="p">);</span>
+            <span class="p">}</span>
+            <span class="k">return</span> <span class="n">rootNode</span><span class="p">;</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">rootNode</span><span class="p">.</span><span class="na">getLeft</span><span class="p">()</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="n">rootNode</span><span class="p">.</span><span class="na">getRight</span><span class="p">()</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
                 <span class="c1">// Case 1: No Children / Leaf Node =&gt; Delete Self.</span>
-                <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
-            <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">rootNode</span><span class="o">.</span><span class="na">getLeft</span><span class="o">()</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+                <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
+            <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">rootNode</span><span class="p">.</span><span class="na">getLeft</span><span class="p">()</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
                 <span class="c1">// Case 2a: One Right Child =&gt; Replace Self with Right Child.</span>
-                <span class="k">return</span> <span class="n">rootNode</span><span class="o">.</span><span class="na">getRight</span><span class="o">();</span>
-            <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">rootNode</span><span class="o">.</span><span class="na">getRight</span><span class="o">()</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+                <span class="k">return</span> <span class="n">rootNode</span><span class="p">.</span><span class="na">getRight</span><span class="p">();</span>
+            <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">rootNode</span><span class="p">.</span><span class="na">getRight</span><span class="p">()</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
                 <span class="c1">// Case 2b: One Left Child =&gt; Replace Self with Left Child.</span>
-                <span class="k">return</span> <span class="n">rootNode</span><span class="o">.</span><span class="na">getLeft</span><span class="o">();</span>
-            <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+                <span class="k">return</span> <span class="n">rootNode</span><span class="p">.</span><span class="na">getLeft</span><span class="p">();</span>
+            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
                 <span class="c1">// Case 3: Two Children =&gt; Replace Self with Successor.</span>
-                <span class="kd">final</span> <span class="n">BinarySearchTreeNode</span> <span class="n">successorNode</span> <span class="o">=</span> <span class="n">minimumNode</span><span class="o">(</span><span class="n">rootNode</span><span class="o">.</span><span class="na">getRight</span><span class="o">());</span>
-                <span class="n">rootNode</span><span class="o">.</span><span class="na">setKey</span><span class="o">(</span><span class="n">successorNode</span><span class="o">.</span><span class="na">getKey</span><span class="o">());</span>
-                <span class="n">rootNode</span><span class="o">.</span><span class="na">setValue</span><span class="o">(</span><span class="n">successorNode</span><span class="o">.</span><span class="na">getValue</span><span class="o">());</span>
-                <span class="n">rootNode</span><span class="o">.</span><span class="na">setRight</span><span class="o">(</span><span class="n">deleteNode</span><span class="o">(</span><span class="n">rootNode</span><span class="o">.</span><span class="na">getRight</span><span class="o">(),</span> <span class="n">rootNode</span><span class="o">.</span><span class="na">getKey</span><span class="o">()));</span>
-                <span class="k">if</span> <span class="o">(</span><span class="n">rootNode</span><span class="o">.</span><span class="na">getRight</span><span class="o">()</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
-                    <span class="n">rootNode</span><span class="o">.</span><span class="na">getRight</span><span class="o">().</span><span class="na">setParent</span><span class="o">(</span><span class="n">rootNode</span><span class="o">);</span>
-                <span class="o">}</span>
-                <span class="k">return</span> <span class="n">rootNode</span><span class="o">;</span>
-            <span class="o">}</span>
-        <span class="o">}</span>
-    <span class="o">}</span>
+                <span class="kd">final</span> <span class="n">BinarySearchTreeNode</span> <span class="n">successorNode</span> <span class="o">=</span> <span class="n">minimumNode</span><span class="p">(</span><span class="n">rootNode</span><span class="p">.</span><span class="na">getRight</span><span class="p">());</span>
+                <span class="n">rootNode</span><span class="p">.</span><span class="na">setKey</span><span class="p">(</span><span class="n">successorNode</span><span class="p">.</span><span class="na">getKey</span><span class="p">());</span>
+                <span class="n">rootNode</span><span class="p">.</span><span class="na">setValue</span><span class="p">(</span><span class="n">successorNode</span><span class="p">.</span><span class="na">getValue</span><span class="p">());</span>
+                <span class="n">rootNode</span><span class="p">.</span><span class="na">setRight</span><span class="p">(</span><span class="n">deleteNode</span><span class="p">(</span><span class="n">rootNode</span><span class="p">.</span><span class="na">getRight</span><span class="p">(),</span> <span class="n">rootNode</span><span class="p">.</span><span class="na">getKey</span><span class="p">()));</span>
+                <span class="k">if</span> <span class="p">(</span><span class="n">rootNode</span><span class="p">.</span><span class="na">getRight</span><span class="p">()</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="n">rootNode</span><span class="p">.</span><span class="na">getRight</span><span class="p">().</span><span class="na">setParent</span><span class="p">(</span><span class="n">rootNode</span><span class="p">);</span>
+                <span class="p">}</span>
+                <span class="k">return</span> <span class="n">rootNode</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
     
-<span class="o">}</span>
+<span class="p">}</span>
 </pre></div>
 
     </div>
@@ -13855,76 +13828,76 @@ div#notebook {
 <div class="prompt input_prompt">In&nbsp;[12]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-Java"><pre><span></span><span class="kn">package</span> <span class="nn">trees.binary_search_tree</span><span class="o">;</span>
+<div class=" highlight hl-Java"><pre><span></span><span class="kn">package</span> <span class="nn">trees.binary_search_tree</span><span class="p">;</span>
 
-<span class="kn">import</span> <span class="nn">java.util.*</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">java.util.function.*</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.*</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">java.util.function.*</span><span class="p">;</span>
 
 <span class="kd">public</span> <span class="kd">class</span> <span class="nc">BinarySearchTree</span> <span class="kd">implements</span> 
-    <span class="n">PreOrderTraversal</span><span class="o">,</span> 
-    <span class="n">InOrderTraversal</span><span class="o">,</span> 
-    <span class="n">PostOrderTraversal</span><span class="o">,</span> 
-    <span class="n">Search</span><span class="o">,</span> 
-    <span class="n">Minimum</span><span class="o">,</span> 
-    <span class="n">Maximum</span><span class="o">,</span> 
-    <span class="n">Successor</span><span class="o">,</span> 
-    <span class="n">Predecessor</span><span class="o">,</span> 
-    <span class="n">Insert</span><span class="o">,</span> 
-    <span class="n">Delete</span> <span class="o">{</span>
+    <span class="n">PreOrderTraversal</span><span class="p">,</span> 
+    <span class="n">InOrderTraversal</span><span class="p">,</span> 
+    <span class="n">PostOrderTraversal</span><span class="p">,</span> 
+    <span class="n">Search</span><span class="p">,</span> 
+    <span class="n">Minimum</span><span class="p">,</span> 
+    <span class="n">Maximum</span><span class="p">,</span> 
+    <span class="n">Successor</span><span class="p">,</span> 
+    <span class="n">Predecessor</span><span class="p">,</span> 
+    <span class="n">Insert</span><span class="p">,</span> 
+    <span class="n">Delete</span> <span class="p">{</span>
 
-    <span class="kd">private</span> <span class="n">BinarySearchTreeNode</span> <span class="n">root</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="n">BinarySearchTreeNode</span> <span class="n">root</span><span class="p">;</span>
 
-    <span class="kd">public</span> <span class="nf">BinarySearchTree</span><span class="o">()</span> <span class="o">{</span> <span class="o">}</span>
+    <span class="kd">public</span> <span class="nf">BinarySearchTree</span><span class="p">()</span> <span class="p">{</span> <span class="p">}</span>
 
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">preOrderTraversal</span><span class="o">(</span><span class="n">BiConsumer</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">,</span> <span class="n">Integer</span><span class="o">&gt;</span> <span class="n">action</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">preOrderTraversal</span><span class="o">(</span><span class="n">root</span><span class="o">,</span> <span class="n">action</span><span class="o">);</span>
-    <span class="o">}</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">preOrderTraversal</span><span class="p">(</span><span class="n">BiConsumer</span><span class="o">&lt;</span><span class="n">Integer</span><span class="p">,</span> <span class="n">Integer</span><span class="o">&gt;</span> <span class="n">action</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">preOrderTraversal</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">action</span><span class="p">);</span>
+    <span class="p">}</span>
 
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">inOrderTraversal</span><span class="o">(</span><span class="n">BiConsumer</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">,</span> <span class="n">Integer</span><span class="o">&gt;</span> <span class="n">action</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">inOrderTraversal</span><span class="o">(</span><span class="n">root</span><span class="o">,</span> <span class="n">action</span><span class="o">);</span>
-    <span class="o">}</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">inOrderTraversal</span><span class="p">(</span><span class="n">BiConsumer</span><span class="o">&lt;</span><span class="n">Integer</span><span class="p">,</span> <span class="n">Integer</span><span class="o">&gt;</span> <span class="n">action</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">inOrderTraversal</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">action</span><span class="p">);</span>
+    <span class="p">}</span>
 
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">postOrderTraversal</span><span class="o">(</span><span class="n">BiConsumer</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">,</span> <span class="n">Integer</span><span class="o">&gt;</span> <span class="n">action</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">postOrderTraversal</span><span class="o">(</span><span class="n">root</span><span class="o">,</span> <span class="n">action</span><span class="o">);</span>
-    <span class="o">}</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">postOrderTraversal</span><span class="p">(</span><span class="n">BiConsumer</span><span class="o">&lt;</span><span class="n">Integer</span><span class="p">,</span> <span class="n">Integer</span><span class="o">&gt;</span> <span class="n">action</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">postOrderTraversal</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">action</span><span class="p">);</span>
+    <span class="p">}</span>
 
-    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">searchValue</span><span class="o">(</span><span class="kt">int</span> <span class="n">key</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="n">searchNode</span><span class="o">(</span><span class="n">root</span><span class="o">,</span> <span class="n">key</span><span class="o">).</span><span class="na">getValue</span><span class="o">();</span>
-    <span class="o">}</span>
+    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">searchValue</span><span class="p">(</span><span class="kt">int</span> <span class="n">key</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">searchNode</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">key</span><span class="p">).</span><span class="na">getValue</span><span class="p">();</span>
+    <span class="p">}</span>
 
-    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">minimumValue</span><span class="o">()</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="n">minimumNode</span><span class="o">(</span><span class="n">root</span><span class="o">).</span><span class="na">getValue</span><span class="o">();</span>
-    <span class="o">}</span>
+    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">minimumValue</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">minimumNode</span><span class="p">(</span><span class="n">root</span><span class="p">).</span><span class="na">getValue</span><span class="p">();</span>
+    <span class="p">}</span>
 
-    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">maximumValue</span><span class="o">()</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="n">maximumNode</span><span class="o">(</span><span class="n">root</span><span class="o">).</span><span class="na">getValue</span><span class="o">();</span>
-    <span class="o">}</span>
+    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">maximumValue</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">maximumNode</span><span class="p">(</span><span class="n">root</span><span class="p">).</span><span class="na">getValue</span><span class="p">();</span>
+    <span class="p">}</span>
 
-    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">successorKey</span><span class="o">(</span><span class="kt">int</span> <span class="n">key</span><span class="o">)</span> <span class="o">{</span>
-        <span class="kd">final</span> <span class="n">BinarySearchTreeNode</span> <span class="n">resultNode</span> <span class="o">=</span> <span class="n">successorNode</span><span class="o">(</span><span class="n">searchNode</span><span class="o">(</span><span class="n">root</span><span class="o">,</span> <span class="n">key</span><span class="o">));</span>
-        <span class="k">if</span> <span class="o">(</span><span class="n">resultNode</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
-            <span class="k">throw</span> <span class="k">new</span> <span class="n">NoSuchElementException</span><span class="o">();</span>
-        <span class="o">}</span>
-        <span class="k">return</span> <span class="n">resultNode</span><span class="o">.</span><span class="na">getKey</span><span class="o">();</span>
-    <span class="o">}</span>
+    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">successorKey</span><span class="p">(</span><span class="kt">int</span> <span class="n">key</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">final</span> <span class="n">BinarySearchTreeNode</span> <span class="n">resultNode</span> <span class="o">=</span> <span class="n">successorNode</span><span class="p">(</span><span class="n">searchNode</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">key</span><span class="p">));</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">resultNode</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">throw</span> <span class="k">new</span> <span class="n">NoSuchElementException</span><span class="p">();</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="n">resultNode</span><span class="p">.</span><span class="na">getKey</span><span class="p">();</span>
+    <span class="p">}</span>
 
-    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">predecessorKey</span><span class="o">(</span><span class="kt">int</span> <span class="n">key</span><span class="o">)</span> <span class="o">{</span>
-        <span class="kd">final</span> <span class="n">BinarySearchTreeNode</span> <span class="n">resultNode</span> <span class="o">=</span> <span class="n">predecessorNode</span><span class="o">(</span><span class="n">searchNode</span><span class="o">(</span><span class="n">root</span><span class="o">,</span> <span class="n">key</span><span class="o">));</span>
-        <span class="k">if</span> <span class="o">(</span><span class="n">resultNode</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
-            <span class="k">throw</span> <span class="k">new</span> <span class="n">NoSuchElementException</span><span class="o">();</span>
-        <span class="o">}</span>
-        <span class="k">return</span> <span class="n">resultNode</span><span class="o">.</span><span class="na">getKey</span><span class="o">();</span>
-    <span class="o">}</span>
+    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">predecessorKey</span><span class="p">(</span><span class="kt">int</span> <span class="n">key</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">final</span> <span class="n">BinarySearchTreeNode</span> <span class="n">resultNode</span> <span class="o">=</span> <span class="n">predecessorNode</span><span class="p">(</span><span class="n">searchNode</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">key</span><span class="p">));</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">resultNode</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">throw</span> <span class="k">new</span> <span class="n">NoSuchElementException</span><span class="p">();</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="n">resultNode</span><span class="p">.</span><span class="na">getKey</span><span class="p">();</span>
+    <span class="p">}</span>
 
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">insert</span><span class="o">(</span><span class="kt">int</span> <span class="n">key</span><span class="o">,</span> <span class="kt">int</span> <span class="n">value</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">root</span> <span class="o">=</span> <span class="n">insertNode</span><span class="o">(</span><span class="n">root</span><span class="o">,</span> <span class="n">key</span><span class="o">,</span> <span class="n">value</span><span class="o">);</span>
-    <span class="o">}</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">insert</span><span class="p">(</span><span class="kt">int</span> <span class="n">key</span><span class="p">,</span> <span class="kt">int</span> <span class="n">value</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">root</span> <span class="o">=</span> <span class="n">insertNode</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">);</span>
+    <span class="p">}</span>
 
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">delete</span><span class="o">(</span><span class="kt">int</span> <span class="n">key</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">deleteNode</span><span class="o">(</span><span class="n">root</span><span class="o">,</span> <span class="n">key</span><span class="o">);</span>
-    <span class="o">}</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">delete</span><span class="p">(</span><span class="kt">int</span> <span class="n">key</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">deleteNode</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">key</span><span class="p">);</span>
+    <span class="p">}</span>
 
-<span class="o">}</span>
+<span class="p">}</span>
 </pre></div>
 
     </div>
@@ -13957,54 +13930,54 @@ div#notebook {
 <div class="prompt input_prompt">In&nbsp;[13]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-Java"><pre><span></span><span class="kn">package</span> <span class="nn">trees.binary_search_tree</span><span class="o">;</span>
+<div class=" highlight hl-Java"><pre><span></span><span class="kn">package</span> <span class="nn">trees.binary_search_tree</span><span class="p">;</span>
 
-<span class="n">BinarySearchTree</span> <span class="n">tree</span> <span class="o">=</span> <span class="k">new</span> <span class="n">BinarySearchTree</span><span class="o">();</span>
+<span class="n">BinarySearchTree</span> <span class="n">tree</span> <span class="o">=</span> <span class="k">new</span> <span class="n">BinarySearchTree</span><span class="p">();</span>
 
-<span class="n">tree</span><span class="o">.</span><span class="na">insert</span><span class="o">(</span><span class="mi">50</span><span class="o">,</span> <span class="mi">50</span><span class="o">);</span>
-<span class="n">tree</span><span class="o">.</span><span class="na">insert</span><span class="o">(</span><span class="mi">30</span><span class="o">,</span> <span class="mi">30</span><span class="o">);</span>
-<span class="n">tree</span><span class="o">.</span><span class="na">insert</span><span class="o">(</span><span class="mi">20</span><span class="o">,</span> <span class="mi">20</span><span class="o">);</span>
-<span class="n">tree</span><span class="o">.</span><span class="na">insert</span><span class="o">(</span><span class="mi">40</span><span class="o">,</span> <span class="mi">40</span><span class="o">);</span>
-<span class="n">tree</span><span class="o">.</span><span class="na">insert</span><span class="o">(</span><span class="mi">70</span><span class="o">,</span> <span class="mi">70</span><span class="o">);</span>
-<span class="n">tree</span><span class="o">.</span><span class="na">insert</span><span class="o">(</span><span class="mi">60</span><span class="o">,</span> <span class="mi">60</span><span class="o">);</span>
-<span class="n">tree</span><span class="o">.</span><span class="na">insert</span><span class="o">(</span><span class="mi">80</span><span class="o">,</span> <span class="mi">80</span><span class="o">);</span>
+<span class="n">tree</span><span class="p">.</span><span class="na">insert</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">50</span><span class="p">);</span>
+<span class="n">tree</span><span class="p">.</span><span class="na">insert</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mi">30</span><span class="p">);</span>
+<span class="n">tree</span><span class="p">.</span><span class="na">insert</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">20</span><span class="p">);</span>
+<span class="n">tree</span><span class="p">.</span><span class="na">insert</span><span class="p">(</span><span class="mi">40</span><span class="p">,</span> <span class="mi">40</span><span class="p">);</span>
+<span class="n">tree</span><span class="p">.</span><span class="na">insert</span><span class="p">(</span><span class="mi">70</span><span class="p">,</span> <span class="mi">70</span><span class="p">);</span>
+<span class="n">tree</span><span class="p">.</span><span class="na">insert</span><span class="p">(</span><span class="mi">60</span><span class="p">,</span> <span class="mi">60</span><span class="p">);</span>
+<span class="n">tree</span><span class="p">.</span><span class="na">insert</span><span class="p">(</span><span class="mi">80</span><span class="p">,</span> <span class="mi">80</span><span class="p">);</span>
 
-<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">&quot;Pre-Order Traversal: &quot;</span><span class="o">);</span>
-<span class="n">tree</span><span class="o">.</span><span class="na">preOrderTraversal</span><span class="o">((</span><span class="n">k</span><span class="o">,</span><span class="n">v</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="n">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">&quot;%d,&quot;</span><span class="o">,</span> <span class="n">k</span><span class="o">)));</span>
-<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;Nil&quot;</span><span class="o">);</span>
+<span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">print</span><span class="p">(</span><span class="s">&quot;Pre-Order Traversal: &quot;</span><span class="p">);</span>
+<span class="n">tree</span><span class="p">.</span><span class="na">preOrderTraversal</span><span class="p">((</span><span class="n">k</span><span class="p">,</span><span class="n">v</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">print</span><span class="p">(</span><span class="n">String</span><span class="p">.</span><span class="na">format</span><span class="p">(</span><span class="s">&quot;%d,&quot;</span><span class="p">,</span> <span class="n">k</span><span class="p">)));</span>
+<span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Nil&quot;</span><span class="p">);</span>
 
-<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">&quot;In-Order Traversal: &quot;</span><span class="o">);</span>
-<span class="n">tree</span><span class="o">.</span><span class="na">inOrderTraversal</span><span class="o">((</span><span class="n">k</span><span class="o">,</span><span class="n">v</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="n">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">&quot;%d,&quot;</span><span class="o">,</span> <span class="n">k</span><span class="o">)));</span>
-<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;Nil&quot;</span><span class="o">);</span>
+<span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">print</span><span class="p">(</span><span class="s">&quot;In-Order Traversal: &quot;</span><span class="p">);</span>
+<span class="n">tree</span><span class="p">.</span><span class="na">inOrderTraversal</span><span class="p">((</span><span class="n">k</span><span class="p">,</span><span class="n">v</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">print</span><span class="p">(</span><span class="n">String</span><span class="p">.</span><span class="na">format</span><span class="p">(</span><span class="s">&quot;%d,&quot;</span><span class="p">,</span> <span class="n">k</span><span class="p">)));</span>
+<span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Nil&quot;</span><span class="p">);</span>
 
-<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">&quot;Post-Order Traversal: &quot;</span><span class="o">);</span>
-<span class="n">tree</span><span class="o">.</span><span class="na">postOrderTraversal</span><span class="o">((</span><span class="n">k</span><span class="o">,</span><span class="n">v</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="n">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">&quot;%d,&quot;</span><span class="o">,</span> <span class="n">k</span><span class="o">)));</span>
-<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;Nil&quot;</span><span class="o">);</span>
+<span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">print</span><span class="p">(</span><span class="s">&quot;Post-Order Traversal: &quot;</span><span class="p">);</span>
+<span class="n">tree</span><span class="p">.</span><span class="na">postOrderTraversal</span><span class="p">((</span><span class="n">k</span><span class="p">,</span><span class="n">v</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">print</span><span class="p">(</span><span class="n">String</span><span class="p">.</span><span class="na">format</span><span class="p">(</span><span class="s">&quot;%d,&quot;</span><span class="p">,</span> <span class="n">k</span><span class="p">)));</span>
+<span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Nil&quot;</span><span class="p">);</span>
 
-<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">&quot;Search Value 40: %d&quot;</span><span class="o">,</span> <span class="n">tree</span><span class="o">.</span><span class="na">searchValue</span><span class="o">(</span><span class="mi">40</span><span class="o">)));</span>
+<span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">String</span><span class="p">.</span><span class="na">format</span><span class="p">(</span><span class="s">&quot;Search Value 40: %d&quot;</span><span class="p">,</span> <span class="n">tree</span><span class="p">.</span><span class="na">searchValue</span><span class="p">(</span><span class="mi">40</span><span class="p">)));</span>
 
-<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">&quot;Minimum Value: %d&quot;</span><span class="o">,</span> <span class="n">tree</span><span class="o">.</span><span class="na">minimumValue</span><span class="o">()));</span>
+<span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">String</span><span class="p">.</span><span class="na">format</span><span class="p">(</span><span class="s">&quot;Minimum Value: %d&quot;</span><span class="p">,</span> <span class="n">tree</span><span class="p">.</span><span class="na">minimumValue</span><span class="p">()));</span>
 
-<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">&quot;Maximum Value: %d&quot;</span><span class="o">,</span> <span class="n">tree</span><span class="o">.</span><span class="na">maximumValue</span><span class="o">()));</span>
+<span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">String</span><span class="p">.</span><span class="na">format</span><span class="p">(</span><span class="s">&quot;Maximum Value: %d&quot;</span><span class="p">,</span> <span class="n">tree</span><span class="p">.</span><span class="na">maximumValue</span><span class="p">()));</span>
 
-<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">&quot;Successor Key 40: %d&quot;</span><span class="o">,</span> <span class="n">tree</span><span class="o">.</span><span class="na">successorKey</span><span class="o">(</span><span class="mi">40</span><span class="o">)));</span>
+<span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">String</span><span class="p">.</span><span class="na">format</span><span class="p">(</span><span class="s">&quot;Successor Key 40: %d&quot;</span><span class="p">,</span> <span class="n">tree</span><span class="p">.</span><span class="na">successorKey</span><span class="p">(</span><span class="mi">40</span><span class="p">)));</span>
 
-<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">&quot;Predecessor Key 40: %d&quot;</span><span class="o">,</span> <span class="n">tree</span><span class="o">.</span><span class="na">predecessorKey</span><span class="o">(</span><span class="mi">40</span><span class="o">)));</span>
+<span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">String</span><span class="p">.</span><span class="na">format</span><span class="p">(</span><span class="s">&quot;Predecessor Key 40: %d&quot;</span><span class="p">,</span> <span class="n">tree</span><span class="p">.</span><span class="na">predecessorKey</span><span class="p">(</span><span class="mi">40</span><span class="p">)));</span>
 
-<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">&quot;Delete Key 20: &quot;</span><span class="o">);</span>
-<span class="n">tree</span><span class="o">.</span><span class="na">delete</span><span class="o">(</span><span class="mi">20</span><span class="o">);</span>
-<span class="n">tree</span><span class="o">.</span><span class="na">preOrderTraversal</span><span class="o">((</span><span class="n">k</span><span class="o">,</span><span class="n">v</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="n">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">&quot;%d,&quot;</span><span class="o">,</span> <span class="n">k</span><span class="o">)));</span>
-<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;Nil&quot;</span><span class="o">);</span>
+<span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">print</span><span class="p">(</span><span class="s">&quot;Delete Key 20: &quot;</span><span class="p">);</span>
+<span class="n">tree</span><span class="p">.</span><span class="na">delete</span><span class="p">(</span><span class="mi">20</span><span class="p">);</span>
+<span class="n">tree</span><span class="p">.</span><span class="na">preOrderTraversal</span><span class="p">((</span><span class="n">k</span><span class="p">,</span><span class="n">v</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">print</span><span class="p">(</span><span class="n">String</span><span class="p">.</span><span class="na">format</span><span class="p">(</span><span class="s">&quot;%d,&quot;</span><span class="p">,</span> <span class="n">k</span><span class="p">)));</span>
+<span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Nil&quot;</span><span class="p">);</span>
 
-<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">&quot;Delete Key 30: &quot;</span><span class="o">);</span>
-<span class="n">tree</span><span class="o">.</span><span class="na">delete</span><span class="o">(</span><span class="mi">30</span><span class="o">);</span>
-<span class="n">tree</span><span class="o">.</span><span class="na">preOrderTraversal</span><span class="o">((</span><span class="n">k</span><span class="o">,</span><span class="n">v</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="n">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">&quot;%d,&quot;</span><span class="o">,</span> <span class="n">k</span><span class="o">)));</span>
-<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;Nil&quot;</span><span class="o">);</span>
+<span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">print</span><span class="p">(</span><span class="s">&quot;Delete Key 30: &quot;</span><span class="p">);</span>
+<span class="n">tree</span><span class="p">.</span><span class="na">delete</span><span class="p">(</span><span class="mi">30</span><span class="p">);</span>
+<span class="n">tree</span><span class="p">.</span><span class="na">preOrderTraversal</span><span class="p">((</span><span class="n">k</span><span class="p">,</span><span class="n">v</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">print</span><span class="p">(</span><span class="n">String</span><span class="p">.</span><span class="na">format</span><span class="p">(</span><span class="s">&quot;%d,&quot;</span><span class="p">,</span> <span class="n">k</span><span class="p">)));</span>
+<span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Nil&quot;</span><span class="p">);</span>
 
-<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">&quot;Delete Key 50: &quot;</span><span class="o">);</span>
-<span class="n">tree</span><span class="o">.</span><span class="na">delete</span><span class="o">(</span><span class="mi">50</span><span class="o">);</span>
-<span class="n">tree</span><span class="o">.</span><span class="na">preOrderTraversal</span><span class="o">((</span><span class="n">k</span><span class="o">,</span><span class="n">v</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="n">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">&quot;%d,&quot;</span><span class="o">,</span> <span class="n">k</span><span class="o">)));</span>
-<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;Nil&quot;</span><span class="o">);</span>
+<span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">print</span><span class="p">(</span><span class="s">&quot;Delete Key 50: &quot;</span><span class="p">);</span>
+<span class="n">tree</span><span class="p">.</span><span class="na">delete</span><span class="p">(</span><span class="mi">50</span><span class="p">);</span>
+<span class="n">tree</span><span class="p">.</span><span class="na">preOrderTraversal</span><span class="p">((</span><span class="n">k</span><span class="p">,</span><span class="n">v</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">print</span><span class="p">(</span><span class="n">String</span><span class="p">.</span><span class="na">format</span><span class="p">(</span><span class="s">&quot;%d,&quot;</span><span class="p">,</span> <span class="n">k</span><span class="p">)));</span>
+<span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Nil&quot;</span><span class="p">);</span>
 </pre></div>
 
     </div>
@@ -14078,41 +14051,41 @@ Delete Key 50: 60,40,70,80,Nil
 <div class="prompt input_prompt">In&nbsp;[14]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-Java"><pre><span></span><span class="kn">package</span> <span class="nn">trees.fenwick_tree</span><span class="o">;</span>
+<div class=" highlight hl-Java"><pre><span></span><span class="kn">package</span> <span class="nn">trees.fenwick_tree</span><span class="p">;</span>
 
-<span class="kn">import</span> <span class="nn">java.util.*</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.*</span><span class="p">;</span>
 
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">FenwickTree</span> <span class="o">{</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">FenwickTree</span> <span class="p">{</span>
 
-    <span class="kd">private</span> <span class="kd">final</span> <span class="kt">int</span><span class="o">[]</span> <span class="n">array</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kd">final</span> <span class="kt">int</span><span class="o">[]</span> <span class="n">array</span><span class="p">;</span>
 
-    <span class="kd">public</span> <span class="nf">FenwickTree</span><span class="o">(</span><span class="kt">int</span> <span class="n">size</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">this</span><span class="o">.</span><span class="na">array</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">size</span> <span class="o">+</span> <span class="mi">1</span><span class="o">];</span>
-    <span class="o">}</span>
+    <span class="kd">public</span> <span class="nf">FenwickTree</span><span class="p">(</span><span class="kt">int</span> <span class="n">size</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">array</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">size</span> <span class="o">+</span> <span class="mi">1</span><span class="o">]</span><span class="p">;</span>
+    <span class="p">}</span>
 
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">add</span><span class="o">(</span><span class="kt">int</span> <span class="n">position</span><span class="o">,</span> <span class="kt">int</span> <span class="n">value</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">if</span> <span class="o">(</span><span class="n">position</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="o">)</span> <span class="o">{</span>
-            <span class="k">throw</span> <span class="k">new</span> <span class="n">IllegalArgumentException</span><span class="o">(</span><span class="s">&quot;position must start from 1&quot;</span><span class="o">);</span>
-        <span class="o">}</span>
-        <span class="k">while</span> <span class="o">(</span><span class="n">position</span> <span class="o">&lt;</span> <span class="n">array</span><span class="o">.</span><span class="na">length</span><span class="o">)</span> <span class="o">{</span>
-            <span class="n">array</span><span class="o">[</span><span class="n">position</span><span class="o">]</span> <span class="o">+=</span> <span class="n">value</span><span class="o">;</span>
-            <span class="n">position</span> <span class="o">+=</span> <span class="n">Integer</span><span class="o">.</span><span class="na">lowestOneBit</span><span class="o">(</span><span class="n">position</span><span class="o">);</span>
-        <span class="o">}</span>
-    <span class="o">}</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">add</span><span class="p">(</span><span class="kt">int</span> <span class="n">position</span><span class="p">,</span> <span class="kt">int</span> <span class="n">value</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">position</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">throw</span> <span class="k">new</span> <span class="n">IllegalArgumentException</span><span class="p">(</span><span class="s">&quot;position must start from 1&quot;</span><span class="p">);</span>
+        <span class="p">}</span>
+        <span class="k">while</span> <span class="p">(</span><span class="n">position</span> <span class="o">&lt;</span> <span class="n">array</span><span class="p">.</span><span class="na">length</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">array</span><span class="o">[</span><span class="n">position</span><span class="o">]</span> <span class="o">+=</span> <span class="n">value</span><span class="p">;</span>
+            <span class="n">position</span> <span class="o">+=</span> <span class="n">Integer</span><span class="p">.</span><span class="na">lowestOneBit</span><span class="p">(</span><span class="n">position</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
 
-    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">sum</span><span class="o">(</span><span class="kt">int</span> <span class="n">position</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">if</span> <span class="o">(</span><span class="n">position</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="o">)</span> <span class="o">{</span>
-            <span class="k">throw</span> <span class="k">new</span> <span class="n">IllegalArgumentException</span><span class="o">(</span><span class="s">&quot;position must start from 1&quot;</span><span class="o">);</span>
-        <span class="o">}</span>
-        <span class="kt">int</span> <span class="n">sum</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
-        <span class="k">while</span> <span class="o">(</span><span class="n">position</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
-            <span class="n">sum</span> <span class="o">+=</span> <span class="n">array</span><span class="o">[</span><span class="n">position</span><span class="o">];</span>
-            <span class="n">position</span> <span class="o">-=</span> <span class="n">Integer</span><span class="o">.</span><span class="na">lowestOneBit</span><span class="o">(</span><span class="n">position</span><span class="o">);</span>
-        <span class="o">}</span>
-        <span class="k">return</span> <span class="n">sum</span><span class="o">;</span>
-    <span class="o">}</span>
+    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">sum</span><span class="p">(</span><span class="kt">int</span> <span class="n">position</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">position</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">throw</span> <span class="k">new</span> <span class="n">IllegalArgumentException</span><span class="p">(</span><span class="s">&quot;position must start from 1&quot;</span><span class="p">);</span>
+        <span class="p">}</span>
+        <span class="kt">int</span> <span class="n">sum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="k">while</span> <span class="p">(</span><span class="n">position</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">sum</span> <span class="o">+=</span> <span class="n">array</span><span class="o">[</span><span class="n">position</span><span class="o">]</span><span class="p">;</span>
+            <span class="n">position</span> <span class="o">-=</span> <span class="n">Integer</span><span class="p">.</span><span class="na">lowestOneBit</span><span class="p">(</span><span class="n">position</span><span class="p">);</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="n">sum</span><span class="p">;</span>
+    <span class="p">}</span>
 
-<span class="o">}</span>
+<span class="p">}</span>
 </pre></div>
 
     </div>
@@ -14145,24 +14118,24 @@ Delete Key 50: 60,40,70,80,Nil
 <div class="prompt input_prompt">In&nbsp;[15]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-Java"><pre><span></span><span class="kn">package</span> <span class="nn">trees.fenwick_tree</span><span class="o">;</span>
+<div class=" highlight hl-Java"><pre><span></span><span class="kn">package</span> <span class="nn">trees.fenwick_tree</span><span class="p">;</span>
 
-<span class="kt">int</span><span class="o">[]</span> <span class="n">array</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[]</span> <span class="o">{</span><span class="mi">1</span><span class="o">,</span> <span class="mi">2</span><span class="o">,</span> <span class="mi">3</span><span class="o">,</span> <span class="mi">4</span><span class="o">,</span> <span class="mi">5</span><span class="o">,</span> <span class="mi">6</span><span class="o">,</span> <span class="mi">7</span><span class="o">,</span> <span class="mi">8</span><span class="o">};</span>
+<span class="kt">int</span><span class="o">[]</span> <span class="n">array</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[]</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">};</span>
 
-<span class="n">FenwickTree</span> <span class="n">tree</span> <span class="o">=</span> <span class="k">new</span> <span class="n">FenwickTree</span><span class="o">(</span><span class="n">array</span><span class="o">.</span><span class="na">length</span><span class="o">);</span>
+<span class="n">FenwickTree</span> <span class="n">tree</span> <span class="o">=</span> <span class="k">new</span> <span class="n">FenwickTree</span><span class="p">(</span><span class="n">array</span><span class="p">.</span><span class="na">length</span><span class="p">);</span>
 
-<span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">position</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="n">position</span> <span class="o">&lt;=</span> <span class="n">array</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">position</span><span class="o">++)</span> <span class="o">{</span>
-    <span class="n">tree</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">position</span><span class="o">,</span> <span class="n">array</span><span class="o">[</span><span class="n">position</span> <span class="o">-</span> <span class="mi">1</span><span class="o">]);</span>
-<span class="o">}</span>
+<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">position</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">position</span> <span class="o">&lt;=</span> <span class="n">array</span><span class="p">.</span><span class="na">length</span><span class="p">;</span> <span class="n">position</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">tree</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">position</span><span class="p">,</span> <span class="n">array</span><span class="o">[</span><span class="n">position</span> <span class="o">-</span> <span class="mi">1</span><span class="o">]</span><span class="p">);</span>
+<span class="p">}</span>
 
-<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">&quot;Sum to Position 1: %d&quot;</span><span class="o">,</span> <span class="n">tree</span><span class="o">.</span><span class="na">sum</span><span class="o">(</span><span class="mi">1</span><span class="o">)));</span>
-<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">&quot;Sum to Position 2: %d&quot;</span><span class="o">,</span> <span class="n">tree</span><span class="o">.</span><span class="na">sum</span><span class="o">(</span><span class="mi">2</span><span class="o">)));</span>
-<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">&quot;Sum to Position 3: %d&quot;</span><span class="o">,</span> <span class="n">tree</span><span class="o">.</span><span class="na">sum</span><span class="o">(</span><span class="mi">3</span><span class="o">)));</span>
-<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">&quot;Sum to Position 4: %d&quot;</span><span class="o">,</span> <span class="n">tree</span><span class="o">.</span><span class="na">sum</span><span class="o">(</span><span class="mi">4</span><span class="o">)));</span>
-<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">&quot;Sum to Position 5: %d&quot;</span><span class="o">,</span> <span class="n">tree</span><span class="o">.</span><span class="na">sum</span><span class="o">(</span><span class="mi">5</span><span class="o">)));</span>
-<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">&quot;Sum to Position 6: %d&quot;</span><span class="o">,</span> <span class="n">tree</span><span class="o">.</span><span class="na">sum</span><span class="o">(</span><span class="mi">6</span><span class="o">)));</span>
-<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">&quot;Sum to Position 7: %d&quot;</span><span class="o">,</span> <span class="n">tree</span><span class="o">.</span><span class="na">sum</span><span class="o">(</span><span class="mi">7</span><span class="o">)));</span>
-<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">&quot;Sum to Position 8: %d&quot;</span><span class="o">,</span> <span class="n">tree</span><span class="o">.</span><span class="na">sum</span><span class="o">(</span><span class="mi">8</span><span class="o">)));</span>
+<span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">String</span><span class="p">.</span><span class="na">format</span><span class="p">(</span><span class="s">&quot;Sum to Position 1: %d&quot;</span><span class="p">,</span> <span class="n">tree</span><span class="p">.</span><span class="na">sum</span><span class="p">(</span><span class="mi">1</span><span class="p">)));</span>
+<span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">String</span><span class="p">.</span><span class="na">format</span><span class="p">(</span><span class="s">&quot;Sum to Position 2: %d&quot;</span><span class="p">,</span> <span class="n">tree</span><span class="p">.</span><span class="na">sum</span><span class="p">(</span><span class="mi">2</span><span class="p">)));</span>
+<span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">String</span><span class="p">.</span><span class="na">format</span><span class="p">(</span><span class="s">&quot;Sum to Position 3: %d&quot;</span><span class="p">,</span> <span class="n">tree</span><span class="p">.</span><span class="na">sum</span><span class="p">(</span><span class="mi">3</span><span class="p">)));</span>
+<span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">String</span><span class="p">.</span><span class="na">format</span><span class="p">(</span><span class="s">&quot;Sum to Position 4: %d&quot;</span><span class="p">,</span> <span class="n">tree</span><span class="p">.</span><span class="na">sum</span><span class="p">(</span><span class="mi">4</span><span class="p">)));</span>
+<span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">String</span><span class="p">.</span><span class="na">format</span><span class="p">(</span><span class="s">&quot;Sum to Position 5: %d&quot;</span><span class="p">,</span> <span class="n">tree</span><span class="p">.</span><span class="na">sum</span><span class="p">(</span><span class="mi">5</span><span class="p">)));</span>
+<span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">String</span><span class="p">.</span><span class="na">format</span><span class="p">(</span><span class="s">&quot;Sum to Position 6: %d&quot;</span><span class="p">,</span> <span class="n">tree</span><span class="p">.</span><span class="na">sum</span><span class="p">(</span><span class="mi">6</span><span class="p">)));</span>
+<span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">String</span><span class="p">.</span><span class="na">format</span><span class="p">(</span><span class="s">&quot;Sum to Position 7: %d&quot;</span><span class="p">,</span> <span class="n">tree</span><span class="p">.</span><span class="na">sum</span><span class="p">(</span><span class="mi">7</span><span class="p">)));</span>
+<span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">String</span><span class="p">.</span><span class="na">format</span><span class="p">(</span><span class="s">&quot;Sum to Position 8: %d&quot;</span><span class="p">,</span> <span class="n">tree</span><span class="p">.</span><span class="na">sum</span><span class="p">(</span><span class="mi">8</span><span class="p">)));</span>
 </pre></div>
 
     </div>
@@ -14234,48 +14207,48 @@ Sum to Position 8: 36
 <div class="prompt input_prompt">In&nbsp;[16]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-Java"><pre><span></span><span class="kn">package</span> <span class="nn">trees.segment_tree</span><span class="o">;</span>
+<div class=" highlight hl-Java"><pre><span></span><span class="kn">package</span> <span class="nn">trees.segment_tree</span><span class="p">;</span>
 
-<span class="kn">import</span> <span class="nn">java.util.*</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.*</span><span class="p">;</span>
 
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">SegmentTree</span> <span class="o">{</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">SegmentTree</span> <span class="p">{</span>
 
-    <span class="kd">private</span> <span class="kd">final</span> <span class="kt">int</span><span class="o">[]</span> <span class="n">array</span><span class="o">;</span>
-    <span class="kd">private</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">size</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kd">final</span> <span class="kt">int</span><span class="o">[]</span> <span class="n">array</span><span class="p">;</span>
+    <span class="kd">private</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">size</span><span class="p">;</span>
 
-    <span class="kd">public</span> <span class="nf">SegmentTree</span><span class="o">(</span><span class="kt">int</span> <span class="n">size</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">this</span><span class="o">.</span><span class="na">array</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="mi">2</span> <span class="o">*</span> <span class="n">size</span><span class="o">];</span>
-        <span class="k">this</span><span class="o">.</span><span class="na">size</span> <span class="o">=</span> <span class="n">size</span><span class="o">;</span>
-    <span class="o">}</span>
+    <span class="kd">public</span> <span class="nf">SegmentTree</span><span class="p">(</span><span class="kt">int</span> <span class="n">size</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">array</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="mi">2</span> <span class="o">*</span> <span class="n">size</span><span class="o">]</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">size</span> <span class="o">=</span> <span class="n">size</span><span class="p">;</span>
+    <span class="p">}</span>
 
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">add</span><span class="o">(</span><span class="kt">int</span> <span class="n">position</span><span class="o">,</span> <span class="kt">int</span> <span class="n">value</span><span class="o">)</span> <span class="o">{</span>
-        <span class="kd">final</span> <span class="kt">int</span> <span class="n">leafPosition</span> <span class="o">=</span> <span class="n">position</span> <span class="o">+</span> <span class="n">size</span><span class="o">;</span>
-        <span class="n">array</span><span class="o">[</span><span class="n">leafPosition</span><span class="o">]</span> <span class="o">+=</span> <span class="n">value</span><span class="o">;</span>
-        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">parentPosition</span> <span class="o">=</span> <span class="n">leafPosition</span> <span class="o">/</span> <span class="mi">2</span><span class="o">;</span> <span class="n">parentPosition</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="o">;</span> <span class="n">parentPosition</span> <span class="o">/=</span> <span class="mi">2</span><span class="o">)</span> <span class="o">{</span>
-            <span class="kd">final</span> <span class="kt">int</span> <span class="n">leftChildPosition</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">parentPosition</span><span class="o">;</span>
-            <span class="kd">final</span> <span class="kt">int</span> <span class="n">rightChildPosition</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">parentPosition</span> <span class="o">+</span> <span class="mi">1</span><span class="o">;</span>
-            <span class="n">array</span><span class="o">[</span><span class="n">parentPosition</span><span class="o">]</span> <span class="o">=</span> <span class="n">array</span><span class="o">[</span><span class="n">leftChildPosition</span><span class="o">]</span> <span class="o">+</span> <span class="n">array</span><span class="o">[</span><span class="n">rightChildPosition</span><span class="o">];</span>
-        <span class="o">}</span>
-    <span class="o">}</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">add</span><span class="p">(</span><span class="kt">int</span> <span class="n">position</span><span class="p">,</span> <span class="kt">int</span> <span class="n">value</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">final</span> <span class="kt">int</span> <span class="n">leafPosition</span> <span class="o">=</span> <span class="n">position</span> <span class="o">+</span> <span class="n">size</span><span class="p">;</span>
+        <span class="n">array</span><span class="o">[</span><span class="n">leafPosition</span><span class="o">]</span> <span class="o">+=</span> <span class="n">value</span><span class="p">;</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">parentPosition</span> <span class="o">=</span> <span class="n">leafPosition</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span> <span class="n">parentPosition</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">parentPosition</span> <span class="o">/=</span> <span class="mi">2</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kd">final</span> <span class="kt">int</span> <span class="n">leftChildPosition</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">parentPosition</span><span class="p">;</span>
+            <span class="kd">final</span> <span class="kt">int</span> <span class="n">rightChildPosition</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">parentPosition</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+            <span class="n">array</span><span class="o">[</span><span class="n">parentPosition</span><span class="o">]</span> <span class="o">=</span> <span class="n">array</span><span class="o">[</span><span class="n">leftChildPosition</span><span class="o">]</span> <span class="o">+</span> <span class="n">array</span><span class="o">[</span><span class="n">rightChildPosition</span><span class="o">]</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
 
-    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">sum</span><span class="o">(</span><span class="kt">int</span> <span class="n">fromPosition</span><span class="o">,</span> <span class="kt">int</span> <span class="n">toPosition</span><span class="o">)</span> <span class="o">{</span>
-        <span class="kt">int</span> <span class="n">fromLeafPosition</span> <span class="o">=</span> <span class="n">fromPosition</span> <span class="o">+</span> <span class="n">size</span><span class="o">;</span>
-        <span class="kt">int</span> <span class="n">toLeafPosition</span> <span class="o">=</span> <span class="n">toPosition</span> <span class="o">+</span> <span class="n">size</span><span class="o">;</span>
-        <span class="kt">int</span> <span class="n">sum</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
-        <span class="k">while</span> <span class="o">(</span><span class="n">fromLeafPosition</span> <span class="o">&lt;=</span> <span class="n">toLeafPosition</span><span class="o">)</span> <span class="o">{</span>
-            <span class="k">if</span> <span class="o">(</span><span class="n">fromLeafPosition</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">1</span><span class="o">)</span> <span class="o">{</span>
-                <span class="n">sum</span> <span class="o">+=</span> <span class="n">array</span><span class="o">[</span><span class="n">fromLeafPosition</span><span class="o">++];</span>
-            <span class="o">}</span>
-            <span class="k">if</span> <span class="o">(</span><span class="n">toLeafPosition</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
-                <span class="n">sum</span> <span class="o">+=</span> <span class="n">array</span><span class="o">[</span><span class="n">toLeafPosition</span><span class="o">--];</span>
-            <span class="o">}</span>
-            <span class="n">fromLeafPosition</span> <span class="o">/=</span> <span class="mi">2</span><span class="o">;</span>
-            <span class="n">toLeafPosition</span> <span class="o">/=</span> <span class="mi">2</span><span class="o">;</span>
-        <span class="o">}</span>
-        <span class="k">return</span> <span class="n">sum</span><span class="o">;</span>
-    <span class="o">}</span>
+    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">sum</span><span class="p">(</span><span class="kt">int</span> <span class="n">fromPosition</span><span class="p">,</span> <span class="kt">int</span> <span class="n">toPosition</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kt">int</span> <span class="n">fromLeafPosition</span> <span class="o">=</span> <span class="n">fromPosition</span> <span class="o">+</span> <span class="n">size</span><span class="p">;</span>
+        <span class="kt">int</span> <span class="n">toLeafPosition</span> <span class="o">=</span> <span class="n">toPosition</span> <span class="o">+</span> <span class="n">size</span><span class="p">;</span>
+        <span class="kt">int</span> <span class="n">sum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="k">while</span> <span class="p">(</span><span class="n">fromLeafPosition</span> <span class="o">&lt;=</span> <span class="n">toLeafPosition</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">fromLeafPosition</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+                <span class="n">sum</span> <span class="o">+=</span> <span class="n">array</span><span class="o">[</span><span class="n">fromLeafPosition</span><span class="o">++]</span><span class="p">;</span>
+            <span class="p">}</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">toLeafPosition</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+                <span class="n">sum</span> <span class="o">+=</span> <span class="n">array</span><span class="o">[</span><span class="n">toLeafPosition</span><span class="o">--]</span><span class="p">;</span>
+            <span class="p">}</span>
+            <span class="n">fromLeafPosition</span> <span class="o">/=</span> <span class="mi">2</span><span class="p">;</span>
+            <span class="n">toLeafPosition</span> <span class="o">/=</span> <span class="mi">2</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="n">sum</span><span class="p">;</span>
+    <span class="p">}</span>
 
-<span class="o">}</span>
+<span class="p">}</span>
 </pre></div>
 
     </div>
@@ -14308,20 +14281,20 @@ Sum to Position 8: 36
 <div class="prompt input_prompt">In&nbsp;[17]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-Java"><pre><span></span><span class="kn">package</span> <span class="nn">trees.segment_tree</span><span class="o">;</span>
+<div class=" highlight hl-Java"><pre><span></span><span class="kn">package</span> <span class="nn">trees.segment_tree</span><span class="p">;</span>
 
-<span class="kt">int</span><span class="o">[]</span> <span class="n">array</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[]</span> <span class="o">{</span><span class="mi">1</span><span class="o">,</span> <span class="mi">2</span><span class="o">,</span> <span class="mi">3</span><span class="o">,</span> <span class="mi">4</span><span class="o">,</span> <span class="mi">5</span><span class="o">,</span> <span class="mi">6</span><span class="o">,</span> <span class="mi">7</span><span class="o">,</span> <span class="mi">8</span><span class="o">};</span>
+<span class="kt">int</span><span class="o">[]</span> <span class="n">array</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[]</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">};</span>
 
-<span class="n">SegmentTree</span> <span class="n">tree</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SegmentTree</span><span class="o">(</span><span class="n">array</span><span class="o">.</span><span class="na">length</span><span class="o">);</span>
+<span class="n">SegmentTree</span> <span class="n">tree</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SegmentTree</span><span class="p">(</span><span class="n">array</span><span class="p">.</span><span class="na">length</span><span class="p">);</span>
 
-<span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">position</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">position</span> <span class="o">&lt;</span> <span class="n">array</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">position</span><span class="o">++)</span> <span class="o">{</span>
-    <span class="n">tree</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">position</span><span class="o">,</span> <span class="n">array</span><span class="o">[</span><span class="n">position</span><span class="o">]);</span>
-<span class="o">}</span>
+<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">position</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">position</span> <span class="o">&lt;</span> <span class="n">array</span><span class="p">.</span><span class="na">length</span><span class="p">;</span> <span class="n">position</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">tree</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">position</span><span class="p">,</span> <span class="n">array</span><span class="o">[</span><span class="n">position</span><span class="o">]</span><span class="p">);</span>
+<span class="p">}</span>
 
-<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">&quot;Sum from Position 0 to Position 0: %d&quot;</span><span class="o">,</span> <span class="n">tree</span><span class="o">.</span><span class="na">sum</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="mi">0</span><span class="o">)));</span>
-<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">&quot;Sum from Position 0 to Position 3: %d&quot;</span><span class="o">,</span> <span class="n">tree</span><span class="o">.</span><span class="na">sum</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="mi">3</span><span class="o">)));</span>
-<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">&quot;Sum from Position 4 to Position 7: %d&quot;</span><span class="o">,</span> <span class="n">tree</span><span class="o">.</span><span class="na">sum</span><span class="o">(</span><span class="mi">4</span><span class="o">,</span> <span class="mi">7</span><span class="o">)));</span>
-<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">&quot;Sum from Position 0 to Position 7: %d&quot;</span><span class="o">,</span> <span class="n">tree</span><span class="o">.</span><span class="na">sum</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="mi">7</span><span class="o">)));</span>
+<span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">String</span><span class="p">.</span><span class="na">format</span><span class="p">(</span><span class="s">&quot;Sum from Position 0 to Position 0: %d&quot;</span><span class="p">,</span> <span class="n">tree</span><span class="p">.</span><span class="na">sum</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)));</span>
+<span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">String</span><span class="p">.</span><span class="na">format</span><span class="p">(</span><span class="s">&quot;Sum from Position 0 to Position 3: %d&quot;</span><span class="p">,</span> <span class="n">tree</span><span class="p">.</span><span class="na">sum</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">)));</span>
+<span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">String</span><span class="p">.</span><span class="na">format</span><span class="p">(</span><span class="s">&quot;Sum from Position 4 to Position 7: %d&quot;</span><span class="p">,</span> <span class="n">tree</span><span class="p">.</span><span class="na">sum</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">7</span><span class="p">)));</span>
+<span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">String</span><span class="p">.</span><span class="na">format</span><span class="p">(</span><span class="s">&quot;Sum from Position 0 to Position 7: %d&quot;</span><span class="p">,</span> <span class="n">tree</span><span class="p">.</span><span class="na">sum</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">7</span><span class="p">)));</span>
 </pre></div>
 
     </div>
@@ -14388,83 +14361,83 @@ Sum from Position 0 to Position 7: 36
 <div class="prompt input_prompt">In&nbsp;[18]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-Java"><pre><span></span><span class="kn">package</span> <span class="nn">trees.trie</span><span class="o">;</span>
+<div class=" highlight hl-Java"><pre><span></span><span class="kn">package</span> <span class="nn">trees.trie</span><span class="p">;</span>
 
-<span class="kn">import</span> <span class="nn">java.util.*</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.*</span><span class="p">;</span>
 
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Trie</span> <span class="o">{</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Trie</span> <span class="p">{</span>
 
-    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">class</span> <span class="nc">TrieNode</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">class</span> <span class="nc">TrieNode</span> <span class="p">{</span>
 
-        <span class="kd">private</span> <span class="kd">final</span> <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">Character</span><span class="o">,</span> <span class="n">TrieNode</span><span class="o">&gt;</span> <span class="n">children</span><span class="o">;</span>
-        <span class="kd">private</span> <span class="kt">boolean</span> <span class="n">isString</span><span class="o">;</span>
+        <span class="kd">private</span> <span class="kd">final</span> <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">Character</span><span class="p">,</span> <span class="n">TrieNode</span><span class="o">&gt;</span> <span class="n">children</span><span class="p">;</span>
+        <span class="kd">private</span> <span class="kt">boolean</span> <span class="n">isString</span><span class="p">;</span>
 
-        <span class="kd">public</span> <span class="nf">TrieNode</span><span class="o">()</span> <span class="o">{</span>
-            <span class="k">this</span><span class="o">.</span><span class="na">children</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;&gt;();</span>
-        <span class="o">}</span>
+        <span class="kd">public</span> <span class="nf">TrieNode</span><span class="p">()</span> <span class="p">{</span>
+            <span class="k">this</span><span class="p">.</span><span class="na">children</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+        <span class="p">}</span>
 
-    <span class="o">}</span>
+    <span class="p">}</span>
 
-    <span class="kd">private</span> <span class="kd">final</span> <span class="n">TrieNode</span> <span class="n">root</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kd">final</span> <span class="n">TrieNode</span> <span class="n">root</span><span class="p">;</span>
 
-    <span class="kd">public</span> <span class="nf">Trie</span><span class="o">()</span> <span class="o">{</span>
-        <span class="k">this</span><span class="o">.</span><span class="na">root</span> <span class="o">=</span> <span class="k">new</span> <span class="n">TrieNode</span><span class="o">();</span>
-    <span class="o">}</span>
+    <span class="kd">public</span> <span class="nf">Trie</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">root</span> <span class="o">=</span> <span class="k">new</span> <span class="n">TrieNode</span><span class="p">();</span>
+    <span class="p">}</span>
 
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">insert</span><span class="o">(</span><span class="n">String</span> <span class="n">word</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">Character</span><span class="o">,</span> <span class="n">TrieNode</span><span class="o">&gt;</span> <span class="n">children</span> <span class="o">=</span> <span class="n">root</span><span class="o">.</span><span class="na">children</span><span class="o">;</span>
-        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">index</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">index</span> <span class="o">&lt;</span> <span class="n">word</span><span class="o">.</span><span class="na">length</span><span class="o">();</span> <span class="n">index</span><span class="o">++)</span> <span class="o">{</span>
-            <span class="kd">final</span> <span class="kt">char</span> <span class="n">currentCharacter</span> <span class="o">=</span> <span class="n">word</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">index</span><span class="o">);</span>
-            <span class="k">if</span> <span class="o">(!</span><span class="n">children</span><span class="o">.</span><span class="na">containsKey</span><span class="o">(</span><span class="n">currentCharacter</span><span class="o">))</span> <span class="o">{</span>
-                <span class="n">children</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">currentCharacter</span><span class="o">,</span> <span class="k">new</span> <span class="n">TrieNode</span><span class="o">());</span>
-            <span class="o">}</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">insert</span><span class="p">(</span><span class="n">String</span> <span class="n">word</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">Character</span><span class="p">,</span> <span class="n">TrieNode</span><span class="o">&gt;</span> <span class="n">children</span> <span class="o">=</span> <span class="n">root</span><span class="p">.</span><span class="na">children</span><span class="p">;</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">index</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">index</span> <span class="o">&lt;</span> <span class="n">word</span><span class="p">.</span><span class="na">length</span><span class="p">();</span> <span class="n">index</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kd">final</span> <span class="kt">char</span> <span class="n">currentCharacter</span> <span class="o">=</span> <span class="n">word</span><span class="p">.</span><span class="na">charAt</span><span class="p">(</span><span class="n">index</span><span class="p">);</span>
+            <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">children</span><span class="p">.</span><span class="na">containsKey</span><span class="p">(</span><span class="n">currentCharacter</span><span class="p">))</span> <span class="p">{</span>
+                <span class="n">children</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="n">currentCharacter</span><span class="p">,</span> <span class="k">new</span> <span class="n">TrieNode</span><span class="p">());</span>
+            <span class="p">}</span>
 
-            <span class="kd">final</span> <span class="n">TrieNode</span> <span class="n">currentNode</span> <span class="o">=</span> <span class="n">children</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">currentCharacter</span><span class="o">);</span>
-            <span class="k">if</span> <span class="o">(</span><span class="n">index</span> <span class="o">==</span> <span class="n">word</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">-</span> <span class="mi">1</span><span class="o">)</span> <span class="o">{</span>
-                <span class="n">currentNode</span><span class="o">.</span><span class="na">isString</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
-            <span class="o">}</span>
+            <span class="kd">final</span> <span class="n">TrieNode</span> <span class="n">currentNode</span> <span class="o">=</span> <span class="n">children</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">currentCharacter</span><span class="p">);</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">index</span> <span class="o">==</span> <span class="n">word</span><span class="p">.</span><span class="na">length</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+                <span class="n">currentNode</span><span class="p">.</span><span class="na">isString</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+            <span class="p">}</span>
 
-            <span class="n">children</span> <span class="o">=</span> <span class="n">currentNode</span><span class="o">.</span><span class="na">children</span><span class="o">;</span>
-        <span class="o">}</span>
-    <span class="o">}</span>
+            <span class="n">children</span> <span class="o">=</span> <span class="n">currentNode</span><span class="p">.</span><span class="na">children</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
 
-    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">search</span><span class="o">(</span><span class="n">String</span> <span class="n">word</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">Character</span><span class="o">,</span> <span class="n">TrieNode</span><span class="o">&gt;</span> <span class="n">children</span> <span class="o">=</span> <span class="n">root</span><span class="o">.</span><span class="na">children</span><span class="o">;</span>
-        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">index</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">index</span> <span class="o">&lt;</span> <span class="n">word</span><span class="o">.</span><span class="na">length</span><span class="o">();</span> <span class="n">index</span><span class="o">++)</span> <span class="o">{</span>
-            <span class="kd">final</span> <span class="kt">char</span> <span class="n">currentCharacter</span> <span class="o">=</span> <span class="n">word</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">index</span><span class="o">);</span>
-            <span class="k">if</span> <span class="o">(!</span><span class="n">children</span><span class="o">.</span><span class="na">containsKey</span><span class="o">(</span><span class="n">currentCharacter</span><span class="o">))</span> <span class="o">{</span>
-                <span class="k">break</span><span class="o">;</span>
-            <span class="o">}</span>
+    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">search</span><span class="p">(</span><span class="n">String</span> <span class="n">word</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">Character</span><span class="p">,</span> <span class="n">TrieNode</span><span class="o">&gt;</span> <span class="n">children</span> <span class="o">=</span> <span class="n">root</span><span class="p">.</span><span class="na">children</span><span class="p">;</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">index</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">index</span> <span class="o">&lt;</span> <span class="n">word</span><span class="p">.</span><span class="na">length</span><span class="p">();</span> <span class="n">index</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kd">final</span> <span class="kt">char</span> <span class="n">currentCharacter</span> <span class="o">=</span> <span class="n">word</span><span class="p">.</span><span class="na">charAt</span><span class="p">(</span><span class="n">index</span><span class="p">);</span>
+            <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">children</span><span class="p">.</span><span class="na">containsKey</span><span class="p">(</span><span class="n">currentCharacter</span><span class="p">))</span> <span class="p">{</span>
+                <span class="k">break</span><span class="p">;</span>
+            <span class="p">}</span>
 
-            <span class="kd">final</span> <span class="n">TrieNode</span> <span class="n">currentNode</span> <span class="o">=</span> <span class="n">children</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">currentCharacter</span><span class="o">);</span>
-            <span class="k">if</span> <span class="o">(</span><span class="n">index</span> <span class="o">==</span> <span class="n">word</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">-</span> <span class="mi">1</span><span class="o">)</span> <span class="o">{</span>
-                <span class="k">return</span> <span class="n">currentNode</span><span class="o">.</span><span class="na">isString</span><span class="o">;</span>
-            <span class="o">}</span>
+            <span class="kd">final</span> <span class="n">TrieNode</span> <span class="n">currentNode</span> <span class="o">=</span> <span class="n">children</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">currentCharacter</span><span class="p">);</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">index</span> <span class="o">==</span> <span class="n">word</span><span class="p">.</span><span class="na">length</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">return</span> <span class="n">currentNode</span><span class="p">.</span><span class="na">isString</span><span class="p">;</span>
+            <span class="p">}</span>
 
-            <span class="n">children</span> <span class="o">=</span> <span class="n">currentNode</span><span class="o">.</span><span class="na">children</span><span class="o">;</span>
-        <span class="o">}</span>
-        <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
-    <span class="o">}</span>
+            <span class="n">children</span> <span class="o">=</span> <span class="n">currentNode</span><span class="p">.</span><span class="na">children</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+    <span class="p">}</span>
 
-    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">startsWith</span><span class="o">(</span><span class="n">String</span> <span class="n">prefix</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">Character</span><span class="o">,</span> <span class="n">TrieNode</span><span class="o">&gt;</span> <span class="n">children</span> <span class="o">=</span> <span class="n">root</span><span class="o">.</span><span class="na">children</span><span class="o">;</span>
-        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">index</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">index</span> <span class="o">&lt;</span> <span class="n">prefix</span><span class="o">.</span><span class="na">length</span><span class="o">();</span> <span class="n">index</span><span class="o">++)</span> <span class="o">{</span>
-            <span class="kd">final</span> <span class="kt">char</span> <span class="n">currentCharacter</span> <span class="o">=</span> <span class="n">prefix</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">index</span><span class="o">);</span>
-            <span class="k">if</span> <span class="o">(!</span><span class="n">children</span><span class="o">.</span><span class="na">containsKey</span><span class="o">(</span><span class="n">currentCharacter</span><span class="o">))</span> <span class="o">{</span>
-                <span class="k">break</span><span class="o">;</span>
-            <span class="o">}</span>
+    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">startsWith</span><span class="p">(</span><span class="n">String</span> <span class="n">prefix</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">Character</span><span class="p">,</span> <span class="n">TrieNode</span><span class="o">&gt;</span> <span class="n">children</span> <span class="o">=</span> <span class="n">root</span><span class="p">.</span><span class="na">children</span><span class="p">;</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">index</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">index</span> <span class="o">&lt;</span> <span class="n">prefix</span><span class="p">.</span><span class="na">length</span><span class="p">();</span> <span class="n">index</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kd">final</span> <span class="kt">char</span> <span class="n">currentCharacter</span> <span class="o">=</span> <span class="n">prefix</span><span class="p">.</span><span class="na">charAt</span><span class="p">(</span><span class="n">index</span><span class="p">);</span>
+            <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">children</span><span class="p">.</span><span class="na">containsKey</span><span class="p">(</span><span class="n">currentCharacter</span><span class="p">))</span> <span class="p">{</span>
+                <span class="k">break</span><span class="p">;</span>
+            <span class="p">}</span>
             
-            <span class="kd">final</span> <span class="n">TrieNode</span> <span class="n">currentNode</span> <span class="o">=</span> <span class="n">children</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">currentCharacter</span><span class="o">);</span>
-            <span class="k">if</span> <span class="o">(</span><span class="n">index</span> <span class="o">==</span> <span class="n">prefix</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">-</span> <span class="mi">1</span><span class="o">)</span> <span class="o">{</span>
-                <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
-            <span class="o">}</span>
+            <span class="kd">final</span> <span class="n">TrieNode</span> <span class="n">currentNode</span> <span class="o">=</span> <span class="n">children</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">currentCharacter</span><span class="p">);</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">index</span> <span class="o">==</span> <span class="n">prefix</span><span class="p">.</span><span class="na">length</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+            <span class="p">}</span>
 
-            <span class="n">children</span> <span class="o">=</span> <span class="n">currentNode</span><span class="o">.</span><span class="na">children</span><span class="o">;</span>
-        <span class="o">}</span>
-        <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
-    <span class="o">}</span>
+            <span class="n">children</span> <span class="o">=</span> <span class="n">currentNode</span><span class="p">.</span><span class="na">children</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+    <span class="p">}</span>
 
-<span class="o">}</span>
+<span class="p">}</span>
 </pre></div>
 
     </div>
@@ -14497,17 +14470,17 @@ Sum from Position 0 to Position 7: 36
 <div class="prompt input_prompt">In&nbsp;[19]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-Java"><pre><span></span><span class="kn">package</span> <span class="nn">trees.trie</span><span class="o">;</span>
+<div class=" highlight hl-Java"><pre><span></span><span class="kn">package</span> <span class="nn">trees.trie</span><span class="p">;</span>
 
-<span class="n">Trie</span> <span class="n">trie</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Trie</span><span class="o">();</span>
+<span class="n">Trie</span> <span class="n">trie</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Trie</span><span class="p">();</span>
 
-<span class="n">trie</span><span class="o">.</span><span class="na">insert</span><span class="o">(</span><span class="s">&quot;CANAL&quot;</span><span class="o">);</span>
-<span class="n">trie</span><span class="o">.</span><span class="na">insert</span><span class="o">(</span><span class="s">&quot;CANDY&quot;</span><span class="o">);</span>
+<span class="n">trie</span><span class="p">.</span><span class="na">insert</span><span class="p">(</span><span class="s">&quot;CANAL&quot;</span><span class="p">);</span>
+<span class="n">trie</span><span class="p">.</span><span class="na">insert</span><span class="p">(</span><span class="s">&quot;CANDY&quot;</span><span class="p">);</span>
 
-<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">&quot;Search(CANAL): %b&quot;</span><span class="o">,</span> <span class="n">trie</span><span class="o">.</span><span class="na">search</span><span class="o">(</span><span class="s">&quot;CANAL&quot;</span><span class="o">)));</span>
-<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">&quot;Search(CANDY): %b&quot;</span><span class="o">,</span> <span class="n">trie</span><span class="o">.</span><span class="na">search</span><span class="o">(</span><span class="s">&quot;CANDY&quot;</span><span class="o">)));</span>
-<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">&quot;Search(CANON): %b&quot;</span><span class="o">,</span> <span class="n">trie</span><span class="o">.</span><span class="na">search</span><span class="o">(</span><span class="s">&quot;CANON&quot;</span><span class="o">)));</span>
-<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">&quot;StartsWith(CAN): %b&quot;</span><span class="o">,</span> <span class="n">trie</span><span class="o">.</span><span class="na">startsWith</span><span class="o">(</span><span class="s">&quot;CAN&quot;</span><span class="o">)));</span>
+<span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">String</span><span class="p">.</span><span class="na">format</span><span class="p">(</span><span class="s">&quot;Search(CANAL): %b&quot;</span><span class="p">,</span> <span class="n">trie</span><span class="p">.</span><span class="na">search</span><span class="p">(</span><span class="s">&quot;CANAL&quot;</span><span class="p">)));</span>
+<span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">String</span><span class="p">.</span><span class="na">format</span><span class="p">(</span><span class="s">&quot;Search(CANDY): %b&quot;</span><span class="p">,</span> <span class="n">trie</span><span class="p">.</span><span class="na">search</span><span class="p">(</span><span class="s">&quot;CANDY&quot;</span><span class="p">)));</span>
+<span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">String</span><span class="p">.</span><span class="na">format</span><span class="p">(</span><span class="s">&quot;Search(CANON): %b&quot;</span><span class="p">,</span> <span class="n">trie</span><span class="p">.</span><span class="na">search</span><span class="p">(</span><span class="s">&quot;CANON&quot;</span><span class="p">)));</span>
+<span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">String</span><span class="p">.</span><span class="na">format</span><span class="p">(</span><span class="s">&quot;StartsWith(CAN): %b&quot;</span><span class="p">,</span> <span class="n">trie</span><span class="p">.</span><span class="na">startsWith</span><span class="p">(</span><span class="s">&quot;CAN&quot;</span><span class="p">)));</span>
 </pre></div>
 
     </div>
@@ -14552,6 +14525,9 @@ StartsWith(CAN): true
     </div>
   </div>
 </body>
+
+
+
 
  
 

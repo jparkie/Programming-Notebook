@@ -7,3 +7,9 @@ repos:
         language: system
         files: .ipynb
         types: [file]
+    -   id: jupyter-html-fix
+        name: HTML Render Fix
+        entry: sed -b -i 's/^None//'
+        language: system
+        files: .html
+        types: [file]

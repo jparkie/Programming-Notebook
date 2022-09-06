@@ -1,16 +1,91 @@
 <!DOCTYPE html>
 <html>
 <head><meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>ECE493 Notes</title>
+<title>ECE493 Notes</title><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<style type="text/css">
+  pre { line-height: 125%; }
+td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+span.linenos { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+td.linenos .special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+.highlight .hll { background-color: #ffffcc }
+.highlight { background: #f8f8f8; }
+.highlight .c { color: #3D7B7B; font-style: italic } /* Comment */
+.highlight .err { border: 1px solid #FF0000 } /* Error */
+.highlight .k { color: #008000; font-weight: bold } /* Keyword */
+.highlight .o { color: #666666 } /* Operator */
+.highlight .ch { color: #3D7B7B; font-style: italic } /* Comment.Hashbang */
+.highlight .cm { color: #3D7B7B; font-style: italic } /* Comment.Multiline */
+.highlight .cp { color: #9C6500 } /* Comment.Preproc */
+.highlight .cpf { color: #3D7B7B; font-style: italic } /* Comment.PreprocFile */
+.highlight .c1 { color: #3D7B7B; font-style: italic } /* Comment.Single */
+.highlight .cs { color: #3D7B7B; font-style: italic } /* Comment.Special */
+.highlight .gd { color: #A00000 } /* Generic.Deleted */
+.highlight .ge { font-style: italic } /* Generic.Emph */
+.highlight .gr { color: #E40000 } /* Generic.Error */
+.highlight .gh { color: #000080; font-weight: bold } /* Generic.Heading */
+.highlight .gi { color: #008400 } /* Generic.Inserted */
+.highlight .go { color: #717171 } /* Generic.Output */
+.highlight .gp { color: #000080; font-weight: bold } /* Generic.Prompt */
+.highlight .gs { font-weight: bold } /* Generic.Strong */
+.highlight .gu { color: #800080; font-weight: bold } /* Generic.Subheading */
+.highlight .gt { color: #0044DD } /* Generic.Traceback */
+.highlight .kc { color: #008000; font-weight: bold } /* Keyword.Constant */
+.highlight .kd { color: #008000; font-weight: bold } /* Keyword.Declaration */
+.highlight .kn { color: #008000; font-weight: bold } /* Keyword.Namespace */
+.highlight .kp { color: #008000 } /* Keyword.Pseudo */
+.highlight .kr { color: #008000; font-weight: bold } /* Keyword.Reserved */
+.highlight .kt { color: #B00040 } /* Keyword.Type */
+.highlight .m { color: #666666 } /* Literal.Number */
+.highlight .s { color: #BA2121 } /* Literal.String */
+.highlight .na { color: #687822 } /* Name.Attribute */
+.highlight .nb { color: #008000 } /* Name.Builtin */
+.highlight .nc { color: #0000FF; font-weight: bold } /* Name.Class */
+.highlight .no { color: #880000 } /* Name.Constant */
+.highlight .nd { color: #AA22FF } /* Name.Decorator */
+.highlight .ni { color: #717171; font-weight: bold } /* Name.Entity */
+.highlight .ne { color: #CB3F38; font-weight: bold } /* Name.Exception */
+.highlight .nf { color: #0000FF } /* Name.Function */
+.highlight .nl { color: #767600 } /* Name.Label */
+.highlight .nn { color: #0000FF; font-weight: bold } /* Name.Namespace */
+.highlight .nt { color: #008000; font-weight: bold } /* Name.Tag */
+.highlight .nv { color: #19177C } /* Name.Variable */
+.highlight .ow { color: #AA22FF; font-weight: bold } /* Operator.Word */
+.highlight .w { color: #bbbbbb } /* Text.Whitespace */
+.highlight .mb { color: #666666 } /* Literal.Number.Bin */
+.highlight .mf { color: #666666 } /* Literal.Number.Float */
+.highlight .mh { color: #666666 } /* Literal.Number.Hex */
+.highlight .mi { color: #666666 } /* Literal.Number.Integer */
+.highlight .mo { color: #666666 } /* Literal.Number.Oct */
+.highlight .sa { color: #BA2121 } /* Literal.String.Affix */
+.highlight .sb { color: #BA2121 } /* Literal.String.Backtick */
+.highlight .sc { color: #BA2121 } /* Literal.String.Char */
+.highlight .dl { color: #BA2121 } /* Literal.String.Delimiter */
+.highlight .sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
+.highlight .s2 { color: #BA2121 } /* Literal.String.Double */
+.highlight .se { color: #AA5D1F; font-weight: bold } /* Literal.String.Escape */
+.highlight .sh { color: #BA2121 } /* Literal.String.Heredoc */
+.highlight .si { color: #A45A77; font-weight: bold } /* Literal.String.Interpol */
+.highlight .sx { color: #008000 } /* Literal.String.Other */
+.highlight .sr { color: #A45A77 } /* Literal.String.Regex */
+.highlight .s1 { color: #BA2121 } /* Literal.String.Single */
+.highlight .ss { color: #19177C } /* Literal.String.Symbol */
+.highlight .bp { color: #008000 } /* Name.Builtin.Pseudo */
+.highlight .fm { color: #0000FF } /* Name.Function.Magic */
+.highlight .vc { color: #19177C } /* Name.Variable.Class */
+.highlight .vg { color: #19177C } /* Name.Variable.Global */
+.highlight .vi { color: #19177C } /* Name.Variable.Instance */
+.highlight .vm { color: #19177C } /* Name.Variable.Magic */
+.highlight .il { color: #666666 } /* Literal.Number.Integer.Long */
+  </style>
 
 
 
 <style type="text/css">
-    /*!
+/*!
 *
 * Twitter Bootstrap
 *
@@ -12944,120 +13019,7 @@ ul.typeahead-list  > li > a.pull-right {
 .terminal-app #terminado-container {
   margin-top: 20px;
 }
-/*# sourceMappingURL=style.min.css.map */
-    </style>
-<style type="text/css">
-    .highlight .hll { background-color: #ffffcc }
-.highlight  { background: #f8f8f8; }
-.highlight .c { color: #408080; font-style: italic } /* Comment */
-.highlight .err { border: 1px solid #FF0000 } /* Error */
-.highlight .k { color: #008000; font-weight: bold } /* Keyword */
-.highlight .o { color: #666666 } /* Operator */
-.highlight .ch { color: #408080; font-style: italic } /* Comment.Hashbang */
-.highlight .cm { color: #408080; font-style: italic } /* Comment.Multiline */
-.highlight .cp { color: #BC7A00 } /* Comment.Preproc */
-.highlight .cpf { color: #408080; font-style: italic } /* Comment.PreprocFile */
-.highlight .c1 { color: #408080; font-style: italic } /* Comment.Single */
-.highlight .cs { color: #408080; font-style: italic } /* Comment.Special */
-.highlight .gd { color: #A00000 } /* Generic.Deleted */
-.highlight .ge { font-style: italic } /* Generic.Emph */
-.highlight .gr { color: #FF0000 } /* Generic.Error */
-.highlight .gh { color: #000080; font-weight: bold } /* Generic.Heading */
-.highlight .gi { color: #00A000 } /* Generic.Inserted */
-.highlight .go { color: #888888 } /* Generic.Output */
-.highlight .gp { color: #000080; font-weight: bold } /* Generic.Prompt */
-.highlight .gs { font-weight: bold } /* Generic.Strong */
-.highlight .gu { color: #800080; font-weight: bold } /* Generic.Subheading */
-.highlight .gt { color: #0044DD } /* Generic.Traceback */
-.highlight .kc { color: #008000; font-weight: bold } /* Keyword.Constant */
-.highlight .kd { color: #008000; font-weight: bold } /* Keyword.Declaration */
-.highlight .kn { color: #008000; font-weight: bold } /* Keyword.Namespace */
-.highlight .kp { color: #008000 } /* Keyword.Pseudo */
-.highlight .kr { color: #008000; font-weight: bold } /* Keyword.Reserved */
-.highlight .kt { color: #B00040 } /* Keyword.Type */
-.highlight .m { color: #666666 } /* Literal.Number */
-.highlight .s { color: #BA2121 } /* Literal.String */
-.highlight .na { color: #7D9029 } /* Name.Attribute */
-.highlight .nb { color: #008000 } /* Name.Builtin */
-.highlight .nc { color: #0000FF; font-weight: bold } /* Name.Class */
-.highlight .no { color: #880000 } /* Name.Constant */
-.highlight .nd { color: #AA22FF } /* Name.Decorator */
-.highlight .ni { color: #999999; font-weight: bold } /* Name.Entity */
-.highlight .ne { color: #D2413A; font-weight: bold } /* Name.Exception */
-.highlight .nf { color: #0000FF } /* Name.Function */
-.highlight .nl { color: #A0A000 } /* Name.Label */
-.highlight .nn { color: #0000FF; font-weight: bold } /* Name.Namespace */
-.highlight .nt { color: #008000; font-weight: bold } /* Name.Tag */
-.highlight .nv { color: #19177C } /* Name.Variable */
-.highlight .ow { color: #AA22FF; font-weight: bold } /* Operator.Word */
-.highlight .w { color: #bbbbbb } /* Text.Whitespace */
-.highlight .mb { color: #666666 } /* Literal.Number.Bin */
-.highlight .mf { color: #666666 } /* Literal.Number.Float */
-.highlight .mh { color: #666666 } /* Literal.Number.Hex */
-.highlight .mi { color: #666666 } /* Literal.Number.Integer */
-.highlight .mo { color: #666666 } /* Literal.Number.Oct */
-.highlight .sa { color: #BA2121 } /* Literal.String.Affix */
-.highlight .sb { color: #BA2121 } /* Literal.String.Backtick */
-.highlight .sc { color: #BA2121 } /* Literal.String.Char */
-.highlight .dl { color: #BA2121 } /* Literal.String.Delimiter */
-.highlight .sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
-.highlight .s2 { color: #BA2121 } /* Literal.String.Double */
-.highlight .se { color: #BB6622; font-weight: bold } /* Literal.String.Escape */
-.highlight .sh { color: #BA2121 } /* Literal.String.Heredoc */
-.highlight .si { color: #BB6688; font-weight: bold } /* Literal.String.Interpol */
-.highlight .sx { color: #008000 } /* Literal.String.Other */
-.highlight .sr { color: #BB6688 } /* Literal.String.Regex */
-.highlight .s1 { color: #BA2121 } /* Literal.String.Single */
-.highlight .ss { color: #19177C } /* Literal.String.Symbol */
-.highlight .bp { color: #008000 } /* Name.Builtin.Pseudo */
-.highlight .fm { color: #0000FF } /* Name.Function.Magic */
-.highlight .vc { color: #19177C } /* Name.Variable.Class */
-.highlight .vg { color: #19177C } /* Name.Variable.Global */
-.highlight .vi { color: #19177C } /* Name.Variable.Instance */
-.highlight .vm { color: #19177C } /* Name.Variable.Magic */
-.highlight .il { color: #666666 } /* Literal.Number.Integer.Long */
-    </style>
-<style type="text/css">
-    
-/* Temporary definitions which will become obsolete with Notebook release 5.0 */
-.ansi-black-fg { color: #3E424D; }
-.ansi-black-bg { background-color: #3E424D; }
-.ansi-black-intense-fg { color: #282C36; }
-.ansi-black-intense-bg { background-color: #282C36; }
-.ansi-red-fg { color: #E75C58; }
-.ansi-red-bg { background-color: #E75C58; }
-.ansi-red-intense-fg { color: #B22B31; }
-.ansi-red-intense-bg { background-color: #B22B31; }
-.ansi-green-fg { color: #00A250; }
-.ansi-green-bg { background-color: #00A250; }
-.ansi-green-intense-fg { color: #007427; }
-.ansi-green-intense-bg { background-color: #007427; }
-.ansi-yellow-fg { color: #DDB62B; }
-.ansi-yellow-bg { background-color: #DDB62B; }
-.ansi-yellow-intense-fg { color: #B27D12; }
-.ansi-yellow-intense-bg { background-color: #B27D12; }
-.ansi-blue-fg { color: #208FFB; }
-.ansi-blue-bg { background-color: #208FFB; }
-.ansi-blue-intense-fg { color: #0065CA; }
-.ansi-blue-intense-bg { background-color: #0065CA; }
-.ansi-magenta-fg { color: #D160C4; }
-.ansi-magenta-bg { background-color: #D160C4; }
-.ansi-magenta-intense-fg { color: #A03196; }
-.ansi-magenta-intense-bg { background-color: #A03196; }
-.ansi-cyan-fg { color: #60C6C8; }
-.ansi-cyan-bg { background-color: #60C6C8; }
-.ansi-cyan-intense-fg { color: #258F8F; }
-.ansi-cyan-intense-bg { background-color: #258F8F; }
-.ansi-white-fg { color: #C5C1B4; }
-.ansi-white-bg { background-color: #C5C1B4; }
-.ansi-white-intense-fg { color: #A1A6B2; }
-.ansi-white-intense-bg { background-color: #A1A6B2; }
-
-.ansi-bold { font-weight: bold; }
-
-    </style>
-
-
+/*# sourceMappingURL=style.min.css.map */</style>
 <style type="text/css">
 /* Overrides of notebook CSS for static HTML export */
 body {
@@ -13069,44 +13031,55 @@ div#notebook {
   overflow: visible;
   border-top: none;
 }@media print {
+  body {
+    margin: 0;
+  }
   div.cell {
     display: block;
     page-break-inside: avoid;
-  } 
-  div.output_wrapper { 
-    display: block;
-    page-break-inside: avoid; 
   }
-  div.output { 
+  div.output_wrapper {
     display: block;
-    page-break-inside: avoid; 
+    page-break-inside: avoid;
+  }
+  div.output {
+    display: block;
+    page-break-inside: avoid;
   }
 }
 </style>
-
-<!-- Custom stylesheet, it must be in the same directory as the html file -->
-<link rel="stylesheet" href="custom.css">
-
-<!-- Loading mathjax macro -->
 <!-- Load mathjax -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS_HTML"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS_CHTML-full,Safe"> </script>
     <!-- MathJax configuration -->
     <script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ['$','$'], ["\\(","\\)"] ],
-            displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
-            processEscapes: true,
-            processEnvironments: true
-        },
-        // Center justify equations in code and markdown cells. Elsewhere
-        // we use CSS to left justify single line equations in code cells.
-        displayAlign: 'center',
-        "HTML-CSS": {
-            styles: {'.MathJax_Display': {"margin": 0}},
-            linebreaks: { automatic: true }
+    init_mathjax = function() {
+        if (window.MathJax) {
+        // MathJax loaded
+            MathJax.Hub.Config({
+                TeX: {
+                    equationNumbers: {
+                    autoNumber: "AMS",
+                    useLabelIds: true
+                    }
+                },
+                tex2jax: {
+                    inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+                    displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+                    processEscapes: true,
+                    processEnvironments: true
+                },
+                displayAlign: 'center',
+                CommonHTML: {
+                    linebreaks: { 
+                    automatic: true 
+                    }
+                }
+            });
+        
+            MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
         }
-    });
+    }
+    init_mathjax();
     </script>
     <!-- End of mathjax configuration --></head>
 <body>
@@ -14298,7 +14271,7 @@ $$p_{t}(x) \propto \exp\left( \frac{1}{t} \sum_{c \in C} \theta_{c}(x_{c}) \righ
 <li><strong>Exact Inference Algorithms</strong>: Slow/NP-Hard</li>
 <li><strong>Approximate Inference Algorithms</strong>: Marginal Inference, MAP Inference, Expectations</li>
 </ul>
-<h5 id="Expectations-$\mathbb{E}[f(X)]$---Why-do-we-want-to-estimate-expectations-of-random-variables?">Expectations $\mathbb{E}[f(X)]$ - Why do we want to estimate expectations of random variables?<a class="anchor-link" href="#Expectations-$\mathbb{E}[f(X)]$---Why-do-we-want-to-estimate-expectations-of-random-variables?">&#182;</a></h5><ul>
+<h5 id="Expectations-$%5Cmathbb%7BE%7D%5Bf(X)%5D$---Why-do-we-want-to-estimate-expectations-of-random-variables?">Expectations $\mathbb{E}[f(X)]$ - Why do we want to estimate expectations of random variables?<a class="anchor-link" href="#Expectations-$%5Cmathbb%7BE%7D%5Bf(X)%5D$---Why-do-we-want-to-estimate-expectations-of-random-variables?">&#182;</a></h5><ul>
 <li>Abstractly, approximate inference algorithms want to estimate the probability of some real-world phenomenon.</li>
 <li>Mathematically, estimating a probability $p(x)$ is a <strong>SPECIALIZATION</strong> of estimating an expectation $\mathbb{E}_{x \sim p}[f(x)] = \sum_{x} f(x)p(x)$</li>
 <li>If $f(x) = \mathbb{I}_{\lvert x \rvert}$, where $\mathbb{I}_{\lvert x \rvert}$ is an indicator function for event $x$,
@@ -14913,7 +14886,7 @@ $$</li>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Bayesian-Learning-and-A/B-Testing---How-do-you-determine-which-of-$A$-and-$B$-are-better-after-observing-$n_{A}$-and-$n_{B}$-trials?">Bayesian Learning and A/B Testing - How do you determine which of $A$ and $B$ are better after observing $n_{A}$ and $n_{B}$ trials?<a class="anchor-link" href="#Bayesian-Learning-and-A/B-Testing---How-do-you-determine-which-of-$A$-and-$B$-are-better-after-observing-$n_{A}$-and-$n_{B}$-trials?">&#182;</a></h4><ol>
+<h4 id="Bayesian-Learning-and-A/B-Testing---How-do-you-determine-which-of-$A$-and-$B$-are-better-after-observing-$n_%7BA%7D$-and-$n_%7BB%7D$-trials?">Bayesian Learning and A/B Testing - How do you determine which of $A$ and $B$ are better after observing $n_{A}$ and $n_{B}$ trials?<a class="anchor-link" href="#Bayesian-Learning-and-A/B-Testing---How-do-you-determine-which-of-$A$-and-$B$-are-better-after-observing-$n_%7BA%7D$-and-$n_%7BB%7D$-trials?">&#182;</a></h4><ol>
 <li>Let $0 &lt; p_{A} &lt; 1$ be the unknown probability that $A$ is truly effective.</li>
 <li>Let $0 &lt; p_{B} &lt; 1$ be the unknown probability that $B$ is truly effective.</li>
 <li>Let $\delta = A - B$ be the measure whether $A$ is more effective than $B$.</li>
@@ -14994,7 +14967,7 @@ $$
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="$\epsilon$-Greedy-Bandits-Algorithm---How-do-you-choose-actions-using-the-$\epsilon$-greedy-bandits-algorithm?">$\epsilon$-Greedy Bandits Algorithm - How do you choose actions using the $\epsilon$-greedy bandits algorithm?<a class="anchor-link" href="#$\epsilon$-Greedy-Bandits-Algorithm---How-do-you-choose-actions-using-the-$\epsilon$-greedy-bandits-algorithm?">&#182;</a></h4><ol>
+<h4 id="$%5Cepsilon$-Greedy-Bandits-Algorithm---How-do-you-choose-actions-using-the-$%5Cepsilon$-greedy-bandits-algorithm?">$\epsilon$-Greedy Bandits Algorithm - How do you choose actions using the $\epsilon$-greedy bandits algorithm?<a class="anchor-link" href="#$%5Cepsilon$-Greedy-Bandits-Algorithm---How-do-you-choose-actions-using-the-$%5Cepsilon$-greedy-bandits-algorithm?">&#182;</a></h4><ol>
 <li>Let $A_{t}$ be the action chosen from $k$ possibilities at time step $t$.</li>
 <li>Let $R_{t}$ be the independent and identically distributed reward yielded by action $A_{t}$.</li>
 <li>Let $Q_{t}(a)$ be the expected reward from choosing action $a$ until time step $t$.</li>
@@ -15017,7 +14990,7 @@ $$
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="$\epsilon$-Greedy-Action-Selection---How-does-$\epsilon$-greedy-action-selection-work?">$\epsilon$-Greedy Action Selection - How does $\epsilon$-greedy action selection work?<a class="anchor-link" href="#$\epsilon$-Greedy-Action-Selection---How-does-$\epsilon$-greedy-action-selection-work?">&#182;</a></h4>$$
+<h4 id="$%5Cepsilon$-Greedy-Action-Selection---How-does-$%5Cepsilon$-greedy-action-selection-work?">$\epsilon$-Greedy Action Selection - How does $\epsilon$-greedy action selection work?<a class="anchor-link" href="#$%5Cepsilon$-Greedy-Action-Selection---How-does-$%5Cepsilon$-greedy-action-selection-work?">&#182;</a></h4>$$
 A_{t} \gets
 \begin{cases}
 \max_{a} Q_{t}(a) &amp; \text{ with probability } 1 - \epsilon \\
@@ -15782,7 +15755,7 @@ $$
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="$\lambda$-Return---What-is-$\lambda$-return?">$\lambda$-Return - What is $\lambda$-return?<a class="anchor-link" href="#$\lambda$-Return---What-is-$\lambda$-return?">&#182;</a></h4><ul>
+<h4 id="$%5Clambda$-Return---What-is-$%5Clambda$-return?">$\lambda$-Return - What is $\lambda$-return?<a class="anchor-link" href="#$%5Clambda$-Return---What-is-$%5Clambda$-return?">&#182;</a></h4><ul>
 <li><strong>$\lambda$-Return</strong>: The return from averaging all $n$-step backups with $\lambda^{n - 1}$ weights.
 $$R_{t}^{\lambda} = (1 - \lambda) \sum_{n = 1}^{\infty} \lambda^{n - 1} R_{t}^{(n)}$$
 $$\Delta V_{t}(s_t) = \alpha \left[ R_{t}^{\lambda} - V_{t}(s_{t}) \right]$$</li>
@@ -15802,7 +15775,7 @@ $$R_{t}^{\lambda} = (1 - \lambda) \sum_{n = 1}^{T - t - 1} \lambda^{n - 1} R_{t}
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Eligibility-Trace---How-do-you-use-eligibility-traces-to-compute-TD$(\lambda)$?">Eligibility Trace - How do you use eligibility traces to compute TD$(\lambda)$?<a class="anchor-link" href="#Eligibility-Trace---How-do-you-use-eligibility-traces-to-compute-TD$(\lambda)$?">&#182;</a></h4><ul>
+<h4 id="Eligibility-Trace---How-do-you-use-eligibility-traces-to-compute-TD$(%5Clambda)$?">Eligibility Trace - How do you use eligibility traces to compute TD$(\lambda)$?<a class="anchor-link" href="#Eligibility-Trace---How-do-you-use-eligibility-traces-to-compute-TD$(%5Clambda)$?">&#182;</a></h4><ul>
 <li><strong>Eligibility Trace</strong>: A backward view mechanism for implementing TD$(\lambda)$ by decaying all traces by $\gamma \lambda$ and increment the trace for the current state by 1, and accumulating the trace.
 $$
 e_{t}(s) =
@@ -15822,7 +15795,7 @@ $$V_{t + 1}(s) = V_{t}(s) + \alpha \delta_{t} e_{t}(s)$$</li>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Online-Tabular-TD$(\lambda)$-Algorithm---How-does-$\lambda$-extend-TD-for-prediction?">Online Tabular TD$(\lambda)$ Algorithm - How does $\lambda$ extend TD for prediction?<a class="anchor-link" href="#Online-Tabular-TD$(\lambda)$-Algorithm---How-does-$\lambda$-extend-TD-for-prediction?">&#182;</a></h4><p><img src="images/MS_RL_4.png" alt="Online Tabular TD$(\lambda)$ Algorithm"></p>
+<h4 id="Online-Tabular-TD$(%5Clambda)$-Algorithm---How-does-$%5Clambda$-extend-TD-for-prediction?">Online Tabular TD$(\lambda)$ Algorithm - How does $\lambda$ extend TD for prediction?<a class="anchor-link" href="#Online-Tabular-TD$(%5Clambda)$-Algorithm---How-does-$%5Clambda$-extend-TD-for-prediction?">&#182;</a></h4><p><img src="images/MS_RL_4.png" alt="Online Tabular TD$(\lambda)$ Algorithm"></p>
 
 </div>
 </div>
@@ -15830,7 +15803,7 @@ $$V_{t + 1}(s) = V_{t}(s) + \alpha \delta_{t} e_{t}(s)$$</li>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="SARSA$(\lambda)$-Algorithm---How-does-$\lambda$-extend-SARSA-for-on-policy-control?">SARSA$(\lambda)$ Algorithm - How does $\lambda$ extend SARSA for on-policy control?<a class="anchor-link" href="#SARSA$(\lambda)$-Algorithm---How-does-$\lambda$-extend-SARSA-for-on-policy-control?">&#182;</a></h4><p><img src="images/MS_RL_3.png" alt="SARSA$(\lambda)$ Algorithm"></p>
+<h4 id="SARSA$(%5Clambda)$-Algorithm---How-does-$%5Clambda$-extend-SARSA-for-on-policy-control?">SARSA$(\lambda)$ Algorithm - How does $\lambda$ extend SARSA for on-policy control?<a class="anchor-link" href="#SARSA$(%5Clambda)$-Algorithm---How-does-$%5Clambda$-extend-SARSA-for-on-policy-control?">&#182;</a></h4><p><img src="images/MS_RL_3.png" alt="SARSA$(\lambda)$ Algorithm"></p>
 
 </div>
 </div>
@@ -15838,7 +15811,7 @@ $$V_{t + 1}(s) = V_{t}(s) + \alpha \delta_{t} e_{t}(s)$$</li>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Watkin's-Q$(\lambda)$-Algorithm---How-does-Watkin's-algorithm-achieve-off-policy-control?">Watkin's Q$(\lambda)$ Algorithm - How does Watkin's algorithm achieve off-policy control?<a class="anchor-link" href="#Watkin's-Q$(\lambda)$-Algorithm---How-does-Watkin's-algorithm-achieve-off-policy-control?">&#182;</a></h4><p><img src="images/MS_RL_5.png" alt="Watkin&#39;s Q$(\lambda)$ Algorithm"></p>
+<h4 id="Watkin's-Q$(%5Clambda)$-Algorithm---How-does-Watkin's-algorithm-achieve-off-policy-control?">Watkin's Q$(\lambda)$ Algorithm - How does Watkin's algorithm achieve off-policy control?<a class="anchor-link" href="#Watkin's-Q$(%5Clambda)$-Algorithm---How-does-Watkin's-algorithm-achieve-off-policy-control?">&#182;</a></h4><p><img src="images/MS_RL_5.png" alt="Watkin&#39;s Q$(\lambda)$ Algorithm"></p>
 <ol>
 <li>Zero out eligibility trace after a non-greedy action.</li>
 <li>Take the maximum when backing up at the first non-greedy choice.</li>
@@ -15850,11 +15823,11 @@ e_{t}(s, a) =
 0 &amp;\text{if } Q_{t - 1}(s_{t}, a_{t}) \ne \max_{a} Q_{t - 1}(s_{t}, a) \\
 \gamma \lambda e_{t - 1}(s, a) &amp;\text{otherwise}
 \end{cases}
-$$$$\delta_{t} = r_{t + 1} + \gamma \max_{a'} Q_{t}(s_{t + 1}, a') - Q_{t}(s_{t}, a_{t})$$$$Q_{t + 1}(s, a) = Q_{t}(s, a) + \alpha \delta_{t} e_{t}(s, a)$$<h5 id="Peng's-Q$(\lambda)$-Variant">Peng's Q$(\lambda)$ Variant<a class="anchor-link" href="#Peng's-Q$(\lambda)$-Variant">&#182;</a></h5><ol>
+$$$$\delta_{t} = r_{t + 1} + \gamma \max_{a'} Q_{t}(s_{t + 1}, a') - Q_{t}(s_{t}, a_{t})$$$$Q_{t + 1}(s, a) = Q_{t}(s, a) + \alpha \delta_{t} e_{t}(s, a)$$<h5 id="Peng's-Q$(%5Clambda)$-Variant">Peng's Q$(\lambda)$ Variant<a class="anchor-link" href="#Peng's-Q$(%5Clambda)$-Variant">&#182;</a></h5><ol>
 <li>Never zero out eligibility trace after a non-greedy action.</li>
 <li>Take the maximum when backing up at the last non-greedy choice.</li>
 </ol>
-<h5 id="Naive-Q$(\lambda)$-Variant">Naive Q$(\lambda)$ Variant<a class="anchor-link" href="#Naive-Q$(\lambda)$-Variant">&#182;</a></h5><ol>
+<h5 id="Naive-Q$(%5Clambda)$-Variant">Naive Q$(\lambda)$ Variant<a class="anchor-link" href="#Naive-Q$(%5Clambda)$-Variant">&#182;</a></h5><ol>
 <li>Never zero out eligibility trace after a non-greedy action.</li>
 <li>Take the maximum when backing up at current action.</li>
 </ol>
@@ -15957,7 +15930,7 @@ $$</li>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Incremental-Prediction-Algorithms---How-do-you-substitute-the-true-value-function-$v_{\pi}(s)$-in-linear-value-function-approximation?">Incremental Prediction Algorithms - How do you substitute the true value function $v_{\pi}(s)$ in linear value function approximation?<a class="anchor-link" href="#Incremental-Prediction-Algorithms---How-do-you-substitute-the-true-value-function-$v_{\pi}(s)$-in-linear-value-function-approximation?">&#182;</a></h4><ul>
+<h4 id="Incremental-Prediction-Algorithms---How-do-you-substitute-the-true-value-function-$v_%7B%5Cpi%7D(s)$-in-linear-value-function-approximation?">Incremental Prediction Algorithms - How do you substitute the true value function $v_{\pi}(s)$ in linear value function approximation?<a class="anchor-link" href="#Incremental-Prediction-Algorithms---How-do-you-substitute-the-true-value-function-$v_%7B%5Cpi%7D(s)$-in-linear-value-function-approximation?">&#182;</a></h4><ul>
 <li>For MC, the substitute is the return $G_{t}$.
 $$\Delta \pmb{w} = \alpha \left( G_{t} - \hat{v}(S_{t}, w) \right) \nabla_{\pmb{w}} \hat{v}(S_{t}, \pmb{w})$$</li>
 <li>For TD$(0)$, the substitute is the TD target $R_{t + 1} + \gamma \cdot \hat{v}(S_{t + 1}, \pmb{w})$.
@@ -16360,6 +16333,9 @@ $$\nabla_{\pmb{\theta}} J(\pmb{\theta}) = \mathbb{E}_{\pi}\left[ \nabla_{\pmb{\t
     </div>
   </div>
 </body>
+
+
+
 
  
 
