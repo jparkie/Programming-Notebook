@@ -13377,13 +13377,178 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Implementation-of-Search">Implementation of Search<a class="anchor-link" href="#Implementation-of-Search">&#182;</a></h3>
+<h3 id="Implementation-of-Morris-Traversal-(Threaded-In-Order-Traversal)">Implementation of Morris Traversal (Threaded In-Order Traversal)<a class="anchor-link" href="#Implementation-of-Morris-Traversal-(Threaded-In-Order-Traversal)">&#182;</a></h3>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-Java"><pre><span></span><span class="kn">package</span> <span class="nn">trees.binary_search_tree</span><span class="p">;</span>
+
+<span class="kn">import</span> <span class="nn">java.util.function.*</span><span class="p">;</span>
+
+<span class="kd">public</span> <span class="kd">interface</span> <span class="nc">ForwardMorrisTraversal</span> <span class="p">{</span>
+    
+    <span class="kd">public</span> <span class="k">default</span> <span class="kt">void</span> <span class="nf">forwardMorrisTraversal</span><span class="p">(</span><span class="n">BinarySearchTreeNode</span> <span class="n">node</span><span class="p">,</span> <span class="n">BiConsumer</span><span class="o">&lt;</span><span class="n">Integer</span><span class="p">,</span> <span class="n">Integer</span><span class="o">&gt;</span> <span class="n">action</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// Forward In-Order Traversal: Left, Visit, Right, Left,....</span>
+        <span class="c1">// Threading: Given a node, its predecessor&#39;s right child should thread to the node.</span>
+        <span class="c1">// Space: O(1) and No Parent References.</span>
+        <span class="k">while</span> <span class="p">(</span><span class="n">node</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">getLeft</span><span class="p">()</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+                <span class="c1">// Case 1: Iteratively Equivalent to Recursive Exhaustion of Left. </span>
+                <span class="c1">// Visit:</span>
+                <span class="n">action</span><span class="p">.</span><span class="na">accept</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">getKey</span><span class="p">(),</span> <span class="n">node</span><span class="p">.</span><span class="na">getValue</span><span class="p">());</span>
+                <span class="c1">// Right:</span>
+                <span class="n">node</span> <span class="o">=</span> <span class="n">node</span><span class="p">.</span><span class="na">getRight</span><span class="p">();</span>
+            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+                <span class="c1">// Case 2:</span>
+                <span class="c1">// A. Find Predecessor to Thread:</span>
+                <span class="c1">// Note 1: If the left child exists, then the predecessor is the maximum/rightmost leaf of the left subtree.</span>
+                <span class="c1">// Note 2: If the candidate predecessor&#39;s right child already points to the node, then we have already threaded.</span>
+                <span class="n">BinarySearchTreeNode</span> <span class="n">predecessorNode</span> <span class="o">=</span> <span class="n">node</span><span class="p">.</span><span class="na">getLeft</span><span class="p">();</span>
+                <span class="k">while</span> <span class="p">(</span><span class="n">predecessorNode</span><span class="p">.</span><span class="na">getRight</span><span class="p">()</span> <span class="o">!=</span> <span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="n">predecessorNode</span><span class="p">.</span><span class="na">getRight</span><span class="p">()</span> <span class="o">!=</span> <span class="n">node</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="n">predecessorNode</span> <span class="o">=</span> <span class="n">predecessorNode</span><span class="p">.</span><span class="na">getRight</span><span class="p">();</span>
+                <span class="p">}</span>
+                <span class="c1">// B. Thread Predecessor to Node:</span>
+                <span class="k">if</span> <span class="p">(</span><span class="n">predecessorNode</span><span class="p">.</span><span class="na">getRight</span><span class="p">()</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="c1">// Right:</span>
+                    <span class="n">predecessorNode</span><span class="p">.</span><span class="na">setRight</span><span class="p">(</span><span class="n">node</span><span class="p">);</span>
+                    <span class="c1">// Left:</span>
+                    <span class="n">node</span> <span class="o">=</span> <span class="n">node</span><span class="p">.</span><span class="na">getLeft</span><span class="p">();</span>
+                <span class="p">}</span>
+                <span class="c1">// C. Consume Thread to Successor:</span>
+                <span class="k">else</span> <span class="p">{</span>
+                    <span class="c1">// Consume Thread:</span>
+                    <span class="n">predecessorNode</span><span class="p">.</span><span class="na">setRight</span><span class="p">(</span><span class="kc">null</span><span class="p">);</span>
+                    <span class="c1">// Visit:</span>
+                    <span class="n">action</span><span class="p">.</span><span class="na">accept</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">getKey</span><span class="p">(),</span> <span class="n">node</span><span class="p">.</span><span class="na">getValue</span><span class="p">());</span>
+                    <span class="c1">// Right:</span>
+                    <span class="n">node</span> <span class="o">=</span> <span class="n">node</span><span class="p">.</span><span class="na">getRight</span><span class="p">();</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    
+<span class="p">}</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[5]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>trees.binary_search_tree.ForwardMorrisTraversal</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-Java"><pre><span></span><span class="kn">package</span> <span class="nn">trees.binary_search_tree</span><span class="p">;</span>
+
+<span class="kn">import</span> <span class="nn">java.util.function.*</span><span class="p">;</span>
+
+<span class="kd">public</span> <span class="kd">interface</span> <span class="nc">BackwardMorrisTraversal</span> <span class="p">{</span>
+    
+    <span class="kd">public</span> <span class="k">default</span> <span class="kt">void</span> <span class="nf">backwardMorrisTraversal</span><span class="p">(</span><span class="n">BinarySearchTreeNode</span> <span class="n">node</span><span class="p">,</span> <span class="n">BiConsumer</span><span class="o">&lt;</span><span class="n">Integer</span><span class="p">,</span> <span class="n">Integer</span><span class="o">&gt;</span> <span class="n">action</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// Backward In-Order Traversal: Right, Visit, Left, Right,....</span>
+        <span class="c1">// Threading: Given a node, its successor&#39;s left child should thread to the node.</span>
+        <span class="c1">// Space: O(1) and No Parent References.</span>
+        <span class="k">while</span> <span class="p">(</span><span class="n">node</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">getRight</span><span class="p">()</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+                <span class="c1">// Case 1: Iteratively Equivalent to Recursive Exhaustion of Right. </span>
+                <span class="c1">// Visit:</span>
+                <span class="n">action</span><span class="p">.</span><span class="na">accept</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">getKey</span><span class="p">(),</span> <span class="n">node</span><span class="p">.</span><span class="na">getValue</span><span class="p">());</span>
+                <span class="c1">// Left:</span>
+                <span class="n">node</span> <span class="o">=</span> <span class="n">node</span><span class="p">.</span><span class="na">getLeft</span><span class="p">();</span>
+            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+                <span class="c1">// Case 2:</span>
+                <span class="c1">// A. Find Successor to Thread:</span>
+                <span class="c1">// Note 1: If the right child exists, then the successor is the minimum/leftmost leaf of the right subtree.</span>
+                <span class="c1">// Note 2: If the candidate successor&#39;s left child already points to the node, then we have already threaded.</span>
+                <span class="n">BinarySearchTreeNode</span> <span class="n">successorNode</span> <span class="o">=</span> <span class="n">node</span><span class="p">.</span><span class="na">getRight</span><span class="p">();</span>
+                <span class="k">while</span> <span class="p">(</span><span class="n">successorNode</span><span class="p">.</span><span class="na">getLeft</span><span class="p">()</span> <span class="o">!=</span> <span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="n">successorNode</span><span class="p">.</span><span class="na">getLeft</span><span class="p">()</span> <span class="o">!=</span> <span class="n">node</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="n">successorNode</span> <span class="o">=</span> <span class="n">successorNode</span><span class="p">.</span><span class="na">getLeft</span><span class="p">();</span>
+                <span class="p">}</span>
+                <span class="c1">// B. Thread Predecessor to Node:</span>
+                <span class="k">if</span> <span class="p">(</span><span class="n">successorNode</span><span class="p">.</span><span class="na">getLeft</span><span class="p">()</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="c1">// Left:</span>
+                    <span class="n">successorNode</span><span class="p">.</span><span class="na">setLeft</span><span class="p">(</span><span class="n">node</span><span class="p">);</span>
+                    <span class="c1">// Right:</span>
+                    <span class="n">node</span> <span class="o">=</span> <span class="n">node</span><span class="p">.</span><span class="na">getRight</span><span class="p">();</span>
+                <span class="p">}</span>
+                <span class="c1">// C. Consume Thread to Predecessor:</span>
+                <span class="k">else</span> <span class="p">{</span>
+                    <span class="c1">// Consume Thread:</span>
+                    <span class="n">successorNode</span><span class="p">.</span><span class="na">setLeft</span><span class="p">(</span><span class="kc">null</span><span class="p">);</span>
+                    <span class="c1">// Visit:</span>
+                    <span class="n">action</span><span class="p">.</span><span class="na">accept</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">getKey</span><span class="p">(),</span> <span class="n">node</span><span class="p">.</span><span class="na">getValue</span><span class="p">());</span>
+                    <span class="c1">// Left:</span>
+                    <span class="n">node</span> <span class="o">=</span> <span class="n">node</span><span class="p">.</span><span class="na">getLeft</span><span class="p">();</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    
+<span class="p">}</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[6]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>trees.binary_search_tree.BackwardMorrisTraversal</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Implementation-of-Search">Implementation of Search<a class="anchor-link" href="#Implementation-of-Search">&#182;</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-Java"><pre><span></span><span class="kn">package</span> <span class="nn">trees.binary_search_tree</span><span class="p">;</span>
@@ -13419,7 +13584,7 @@ div#notebook {
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[5]:</div>
+    <div class="prompt output_prompt">Out[7]:</div>
 
 
 
@@ -13443,7 +13608,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-Java"><pre><span></span><span class="kn">package</span> <span class="nn">trees.binary_search_tree</span><span class="p">;</span>
@@ -13475,7 +13640,7 @@ div#notebook {
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[6]:</div>
+    <div class="prompt output_prompt">Out[8]:</div>
 
 
 
@@ -13499,7 +13664,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-Java"><pre><span></span><span class="kn">package</span> <span class="nn">trees.binary_search_tree</span><span class="p">;</span>
@@ -13531,7 +13696,7 @@ div#notebook {
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[7]:</div>
+    <div class="prompt output_prompt">Out[9]:</div>
 
 
 
@@ -13555,7 +13720,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-Java"><pre><span></span><span class="kn">package</span> <span class="nn">trees.binary_search_tree</span><span class="p">;</span>
@@ -13593,7 +13758,7 @@ div#notebook {
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[8]:</div>
+    <div class="prompt output_prompt">Out[10]:</div>
 
 
 
@@ -13617,7 +13782,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[9]:</div>
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-Java"><pre><span></span><span class="kn">package</span> <span class="nn">trees.binary_search_tree</span><span class="p">;</span>
@@ -13655,7 +13820,7 @@ div#notebook {
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[9]:</div>
+    <div class="prompt output_prompt">Out[11]:</div>
 
 
 
@@ -13679,7 +13844,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[10]:</div>
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-Java"><pre><span></span><span class="kn">package</span> <span class="nn">trees.binary_search_tree</span><span class="p">;</span>
@@ -13715,7 +13880,7 @@ div#notebook {
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[10]:</div>
+    <div class="prompt output_prompt">Out[12]:</div>
 
 
 
@@ -13739,7 +13904,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[11]:</div>
+<div class="prompt input_prompt">In&nbsp;[13]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-Java"><pre><span></span><span class="kn">package</span> <span class="nn">trees.binary_search_tree</span><span class="p">;</span>
@@ -13801,7 +13966,7 @@ div#notebook {
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[11]:</div>
+    <div class="prompt output_prompt">Out[13]:</div>
 
 
 
@@ -13819,13 +13984,81 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Implementation-of-Merge-Disjoint">Implementation of Merge Disjoint<a class="anchor-link" href="#Implementation-of-Merge-Disjoint">&#182;</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[14]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-Java"><pre><span></span><span class="kn">package</span> <span class="nn">trees.binary_search_tree</span><span class="p">;</span>
+
+<span class="kn">import</span> <span class="nn">java.util.*</span><span class="p">;</span>
+
+<span class="kd">public</span> <span class="kd">interface</span> <span class="nc">MergeDisjoint</span> <span class="kd">extends</span> <span class="n">Minimum</span><span class="p">,</span> <span class="n">Maximum</span><span class="p">,</span> <span class="n">Delete</span> <span class="p">{</span>
+    
+    <span class="kd">public</span> <span class="k">default</span> <span class="n">BinarySearchTreeNode</span> <span class="nf">mergeDisjointNodes</span><span class="p">(</span><span class="n">BinarySearchTreeNode</span> <span class="n">leftNode</span><span class="p">,</span> <span class="n">BinarySearchTreeNode</span> <span class="n">rightNode</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">leftNode</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="n">rightNode</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">leftNode</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="n">rightNode</span><span class="p">;</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">rightNode</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="n">leftNode</span><span class="p">;</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="c1">// Assert Left &lt;&lt;&lt; Right</span>
+            <span class="kd">final</span> <span class="n">BinarySearchTreeNode</span> <span class="n">leftMaximum</span> <span class="o">=</span> <span class="n">maximumNode</span><span class="p">(</span><span class="n">leftNode</span><span class="p">);</span>
+            <span class="kd">final</span> <span class="n">BinarySearchTreeNode</span> <span class="n">rightMinimum</span> <span class="o">=</span> <span class="n">minimumNode</span><span class="p">(</span><span class="n">rightNode</span><span class="p">);</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">leftMaximum</span><span class="p">.</span><span class="na">getKey</span><span class="p">()</span> <span class="o">&gt;</span> <span class="n">rightMinimum</span><span class="p">.</span><span class="na">getKey</span><span class="p">())</span> <span class="p">{</span>
+                <span class="k">throw</span> <span class="k">new</span> <span class="n">IllegalStateException</span><span class="p">();</span>
+            <span class="p">}</span>
+            <span class="n">deleteNode</span><span class="p">(</span><span class="n">leftNode</span><span class="p">,</span> <span class="n">leftMaximum</span><span class="p">.</span><span class="na">getKey</span><span class="p">());</span>
+            <span class="kd">final</span> <span class="n">BinarySearchTreeNode</span> <span class="n">rootNode</span> <span class="o">=</span> <span class="k">new</span> <span class="n">BinarySearchTreeNode</span><span class="p">(</span><span class="n">leftMaximum</span><span class="p">.</span><span class="na">getKey</span><span class="p">(),</span> <span class="n">leftMaximum</span><span class="p">.</span><span class="na">getValue</span><span class="p">());</span>
+            <span class="n">rootNode</span><span class="p">.</span><span class="na">setLeft</span><span class="p">(</span><span class="n">leftNode</span><span class="p">);</span>
+            <span class="n">rootNode</span><span class="p">.</span><span class="na">setRight</span><span class="p">(</span><span class="n">rightNode</span><span class="p">);</span>
+            <span class="k">return</span> <span class="n">rootNode</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    
+<span class="p">}</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[14]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>trees.binary_search_tree.MergeDisjoint</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Implementation-of-Binary-Search-Tree">Implementation of Binary Search Tree<a class="anchor-link" href="#Implementation-of-Binary-Search-Tree">&#182;</a></h3>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<div class="prompt input_prompt">In&nbsp;[15]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-Java"><pre><span></span><span class="kn">package</span> <span class="nn">trees.binary_search_tree</span><span class="p">;</span>
@@ -13837,13 +14070,16 @@ div#notebook {
     <span class="n">PreOrderTraversal</span><span class="p">,</span> 
     <span class="n">InOrderTraversal</span><span class="p">,</span> 
     <span class="n">PostOrderTraversal</span><span class="p">,</span> 
+    <span class="n">ForwardMorrisTraversal</span><span class="p">,</span> 
+    <span class="n">BackwardMorrisTraversal</span><span class="p">,</span> 
     <span class="n">Search</span><span class="p">,</span> 
     <span class="n">Minimum</span><span class="p">,</span> 
     <span class="n">Maximum</span><span class="p">,</span> 
     <span class="n">Successor</span><span class="p">,</span> 
     <span class="n">Predecessor</span><span class="p">,</span> 
     <span class="n">Insert</span><span class="p">,</span> 
-    <span class="n">Delete</span> <span class="p">{</span>
+    <span class="n">Delete</span><span class="p">,</span>
+    <span class="n">MergeDisjoint</span> <span class="p">{</span>
 
     <span class="kd">private</span> <span class="n">BinarySearchTreeNode</span> <span class="n">root</span><span class="p">;</span>
 
@@ -13859,6 +14095,14 @@ div#notebook {
 
     <span class="kd">public</span> <span class="kt">void</span> <span class="nf">postOrderTraversal</span><span class="p">(</span><span class="n">BiConsumer</span><span class="o">&lt;</span><span class="n">Integer</span><span class="p">,</span> <span class="n">Integer</span><span class="o">&gt;</span> <span class="n">action</span><span class="p">)</span> <span class="p">{</span>
         <span class="n">postOrderTraversal</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">action</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">forwardMorrisTraversal</span><span class="p">(</span><span class="n">BiConsumer</span><span class="o">&lt;</span><span class="n">Integer</span><span class="p">,</span> <span class="n">Integer</span><span class="o">&gt;</span> <span class="n">action</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">forwardMorrisTraversal</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">action</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">backwardMorrisTraversal</span><span class="p">(</span><span class="n">BiConsumer</span><span class="o">&lt;</span><span class="n">Integer</span><span class="p">,</span> <span class="n">Integer</span><span class="o">&gt;</span> <span class="n">action</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">backwardMorrisTraversal</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">action</span><span class="p">);</span>
     <span class="p">}</span>
 
     <span class="kd">public</span> <span class="kt">int</span> <span class="nf">searchValue</span><span class="p">(</span><span class="kt">int</span> <span class="n">key</span><span class="p">)</span> <span class="p">{</span>
@@ -13910,7 +14154,7 @@ div#notebook {
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[12]:</div>
+    <div class="prompt output_prompt">Out[15]:</div>
 
 
 
@@ -13927,7 +14171,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[13]:</div>
+<div class="prompt input_prompt">In&nbsp;[16]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-Java"><pre><span></span><span class="kn">package</span> <span class="nn">trees.binary_search_tree</span><span class="p">;</span>
@@ -13952,6 +14196,14 @@ div#notebook {
 
 <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">print</span><span class="p">(</span><span class="s">&quot;Post-Order Traversal: &quot;</span><span class="p">);</span>
 <span class="n">tree</span><span class="p">.</span><span class="na">postOrderTraversal</span><span class="p">((</span><span class="n">k</span><span class="p">,</span><span class="n">v</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">print</span><span class="p">(</span><span class="n">String</span><span class="p">.</span><span class="na">format</span><span class="p">(</span><span class="s">&quot;%d,&quot;</span><span class="p">,</span> <span class="n">k</span><span class="p">)));</span>
+<span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Nil&quot;</span><span class="p">);</span>
+
+<span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">print</span><span class="p">(</span><span class="s">&quot;Forward Morris Traversal: &quot;</span><span class="p">);</span>
+<span class="n">tree</span><span class="p">.</span><span class="na">forwardMorrisTraversal</span><span class="p">((</span><span class="n">k</span><span class="p">,</span><span class="n">v</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">print</span><span class="p">(</span><span class="n">String</span><span class="p">.</span><span class="na">format</span><span class="p">(</span><span class="s">&quot;%d,&quot;</span><span class="p">,</span> <span class="n">k</span><span class="p">)));</span>
+<span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Nil&quot;</span><span class="p">);</span>
+
+<span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">print</span><span class="p">(</span><span class="s">&quot;Backward Morris Traversal: &quot;</span><span class="p">);</span>
+<span class="n">tree</span><span class="p">.</span><span class="na">backwardMorrisTraversal</span><span class="p">((</span><span class="n">k</span><span class="p">,</span><span class="n">v</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">print</span><span class="p">(</span><span class="n">String</span><span class="p">.</span><span class="na">format</span><span class="p">(</span><span class="s">&quot;%d,&quot;</span><span class="p">,</span> <span class="n">k</span><span class="p">)));</span>
 <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Nil&quot;</span><span class="p">);</span>
 
 <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">String</span><span class="p">.</span><span class="na">format</span><span class="p">(</span><span class="s">&quot;Search Value 40: %d&quot;</span><span class="p">,</span> <span class="n">tree</span><span class="p">.</span><span class="na">searchValue</span><span class="p">(</span><span class="mi">40</span><span class="p">)));</span>
@@ -13997,6 +14249,8 @@ div#notebook {
 <pre>Pre-Order Traversal: 50,30,20,40,70,60,80,Nil
 In-Order Traversal: 20,30,40,50,60,70,80,Nil
 Post-Order Traversal: 20,40,30,60,80,70,50,Nil
+Forward Morris Traversal: 20,30,40,50,60,70,80,Nil
+Backward Morris Traversal: 80,70,60,50,40,30,20,Nil
 Search Value 40: 40
 Minimum Value: 20
 Maximum Value: 80
@@ -14011,7 +14265,7 @@ Delete Key 50: 60,40,70,80,Nil
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[13]:</div>
+    <div class="prompt output_prompt">Out[16]:</div>
 
 
 
@@ -14048,7 +14302,7 @@ Delete Key 50: 60,40,70,80,Nil
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[14]:</div>
+<div class="prompt input_prompt">In&nbsp;[17]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-Java"><pre><span></span><span class="kn">package</span> <span class="nn">trees.fenwick_tree</span><span class="p">;</span>
@@ -14098,7 +14352,7 @@ Delete Key 50: 60,40,70,80,Nil
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[14]:</div>
+    <div class="prompt output_prompt">Out[17]:</div>
 
 
 
@@ -14115,7 +14369,7 @@ Delete Key 50: 60,40,70,80,Nil
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[15]:</div>
+<div class="prompt input_prompt">In&nbsp;[18]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-Java"><pre><span></span><span class="kn">package</span> <span class="nn">trees.fenwick_tree</span><span class="p">;</span>
@@ -14166,7 +14420,7 @@ Sum to Position 8: 36
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[15]:</div>
+    <div class="prompt output_prompt">Out[18]:</div>
 
 
 
@@ -14204,7 +14458,7 @@ Sum to Position 8: 36
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[16]:</div>
+<div class="prompt input_prompt">In&nbsp;[19]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-Java"><pre><span></span><span class="kn">package</span> <span class="nn">trees.segment_tree</span><span class="p">;</span>
@@ -14261,7 +14515,7 @@ Sum to Position 8: 36
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[16]:</div>
+    <div class="prompt output_prompt">Out[19]:</div>
 
 
 
@@ -14278,7 +14532,7 @@ Sum to Position 8: 36
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[17]:</div>
+<div class="prompt input_prompt">In&nbsp;[20]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-Java"><pre><span></span><span class="kn">package</span> <span class="nn">trees.segment_tree</span><span class="p">;</span>
@@ -14321,7 +14575,186 @@ Sum from Position 0 to Position 7: 36
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[17]:</div>
+    <div class="prompt output_prompt">Out[20]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>null</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Tournament-Tree-(Merge-Heap)-($O(n%5Clog(k))$)">Tournament Tree (Merge Heap) ($O(n\log(k))$)<a class="anchor-link" href="#Tournament-Tree-(Merge-Heap)-($O(n%5Clog(k))$)">&#182;</a></h2><p><a href="https://www.tutorialspoint.com/tournament-trees-winner-trees-and-loser-trees-in-data-structure">See Link</a>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>A Tournament Tree is used to merge a set of sorted iterators into a single sorted iterator.</li>
+<li>A Winner Tree is structured like a binary heap such that parent nodes store the lesser key of their children.</li>
+<li>The leaves are the heads of each sorted iterator.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[21]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-Java"><pre><span></span><span class="kn">package</span> <span class="nn">trees.tournament</span><span class="p">;</span>
+
+<span class="kn">import</span> <span class="nn">java.util.*</span><span class="p">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">WinnerTree</span> <span class="kd">implements</span> <span class="n">Iterator</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="p">{</span>
+
+    <span class="kd">private</span> <span class="kd">final</span> <span class="n">PriorityQueue</span><span class="o">&lt;</span><span class="n">Leaf</span><span class="o">&gt;</span> <span class="n">winnerTree</span><span class="p">;</span>
+
+    <span class="kd">public</span> <span class="nf">WinnerTree</span><span class="p">(</span><span class="n">List</span><span class="o">&lt;</span><span class="n">Iterator</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;&gt;</span> <span class="n">iterators</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">winnerTree</span> <span class="o">=</span> <span class="k">new</span> <span class="n">PriorityQueue</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+        <span class="k">for</span> <span class="p">(</span><span class="n">Iterator</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">iterator</span> <span class="p">:</span> <span class="n">iterators</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kd">final</span> <span class="n">Leaf</span> <span class="n">leaf</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Leaf</span><span class="p">(</span><span class="n">iterator</span><span class="p">);</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">leaf</span><span class="p">.</span><span class="na">isEmpty</span><span class="p">())</span> <span class="p">{</span>
+                <span class="k">continue</span><span class="p">;</span>
+            <span class="p">}</span>
+            <span class="k">this</span><span class="p">.</span><span class="na">winnerTree</span><span class="p">.</span><span class="na">offer</span><span class="p">(</span><span class="n">leaf</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">hasNext</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="o">!</span><span class="n">winnerTree</span><span class="p">.</span><span class="na">isEmpty</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="n">Integer</span> <span class="nf">next</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">winnerTree</span><span class="p">.</span><span class="na">isEmpty</span><span class="p">())</span> <span class="p">{</span>
+            <span class="k">throw</span> <span class="k">new</span> <span class="n">NoSuchElementException</span><span class="p">();</span>
+        <span class="p">}</span>
+        <span class="kd">final</span> <span class="n">Leaf</span> <span class="n">winnerLeaf</span> <span class="o">=</span> <span class="n">winnerTree</span><span class="p">.</span><span class="na">poll</span><span class="p">();</span>
+        <span class="kd">final</span> <span class="kt">int</span> <span class="n">winnerValue</span> <span class="o">=</span> <span class="n">winnerLeaf</span><span class="p">.</span><span class="na">poll</span><span class="p">();</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">winnerLeaf</span><span class="p">.</span><span class="na">isEmpty</span><span class="p">())</span> <span class="p">{</span>
+            <span class="n">winnerTree</span><span class="p">.</span><span class="na">offer</span><span class="p">(</span><span class="n">winnerLeaf</span><span class="p">);</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="n">winnerValue</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">class</span> <span class="nc">Leaf</span> <span class="kd">implements</span> <span class="n">Comparable</span><span class="o">&lt;</span><span class="n">Leaf</span><span class="o">&gt;</span> <span class="p">{</span>
+
+        <span class="kd">private</span> <span class="kd">final</span> <span class="n">Iterator</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">iterator</span><span class="p">;</span>
+        <span class="kd">private</span> <span class="n">Integer</span> <span class="n">head</span><span class="p">;</span>
+
+        <span class="kd">public</span> <span class="nf">Leaf</span><span class="p">(</span><span class="n">Iterator</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">iterator</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">this</span><span class="p">.</span><span class="na">iterator</span> <span class="o">=</span> <span class="n">iterator</span><span class="p">;</span>
+            <span class="k">this</span><span class="p">.</span><span class="na">head</span> <span class="o">=</span> <span class="n">iterator</span><span class="p">.</span><span class="na">hasNext</span><span class="p">()</span> <span class="o">?</span> <span class="n">iterator</span><span class="p">.</span><span class="na">next</span><span class="p">()</span> <span class="p">:</span> <span class="kc">null</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="kd">public</span> <span class="n">Integer</span> <span class="nf">peek</span><span class="p">()</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">head</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">throw</span> <span class="k">new</span> <span class="n">NoSuchElementException</span><span class="p">();</span>
+            <span class="p">}</span>
+            <span class="k">return</span> <span class="n">head</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="kd">public</span> <span class="n">Integer</span> <span class="nf">poll</span><span class="p">()</span> <span class="p">{</span>
+            <span class="kd">final</span> <span class="n">Integer</span> <span class="n">currentHead</span> <span class="o">=</span> <span class="n">head</span><span class="p">;</span>
+            <span class="n">head</span> <span class="o">=</span> <span class="n">iterator</span><span class="p">.</span><span class="na">hasNext</span><span class="p">()</span> <span class="o">?</span> <span class="n">iterator</span><span class="p">.</span><span class="na">next</span><span class="p">()</span> <span class="p">:</span> <span class="kc">null</span><span class="p">;</span>
+            <span class="k">return</span> <span class="n">currentHead</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isEmpty</span><span class="p">()</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="n">head</span> <span class="o">==</span> <span class="kc">null</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="nd">@Override</span>
+        <span class="kd">public</span> <span class="kt">int</span> <span class="nf">compareTo</span><span class="p">(</span><span class="n">Leaf</span> <span class="n">that</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="n">Integer</span><span class="p">.</span><span class="na">compare</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="na">peek</span><span class="p">(),</span> <span class="n">that</span><span class="p">.</span><span class="na">peek</span><span class="p">());</span>
+        <span class="p">}</span>
+
+    <span class="p">}</span>
+
+<span class="p">}</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[21]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>trees.tournament.WinnerTree</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[22]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-Java"><pre><span></span><span class="kn">package</span> <span class="nn">trees.tournament</span><span class="p">;</span>
+
+<span class="kn">import</span> <span class="nn">java.util.*</span><span class="p">;</span>
+
+<span class="n">WinnerTree</span> <span class="n">winnerTree</span> <span class="o">=</span> <span class="k">new</span> <span class="n">WinnerTree</span><span class="p">(</span><span class="n">Arrays</span><span class="p">.</span><span class="na">asList</span><span class="p">(</span>
+    <span class="n">Arrays</span><span class="p">.</span><span class="na">asList</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">).</span><span class="na">iterator</span><span class="p">(),</span>
+    <span class="n">Arrays</span><span class="p">.</span><span class="na">asList</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">).</span><span class="na">iterator</span><span class="p">(),</span>
+    <span class="n">Arrays</span><span class="p">.</span><span class="na">asList</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">8</span><span class="p">).</span><span class="na">iterator</span><span class="p">()</span>
+<span class="p">));</span>
+
+<span class="n">winnerTree</span><span class="p">.</span><span class="na">forEachRemaining</span><span class="p">(</span><span class="n">k</span> <span class="o">-&gt;</span> <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">print</span><span class="p">(</span><span class="n">String</span><span class="p">.</span><span class="na">format</span><span class="p">(</span><span class="s">&quot;%d,&quot;</span><span class="p">,</span> <span class="n">k</span><span class="p">)));</span>
+<span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Nil&quot;</span><span class="p">);</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>1,2,3,4,5,6,7,8,9,10,Nil
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[22]:</div>
 
 
 
@@ -14358,7 +14791,7 @@ Sum from Position 0 to Position 7: 36
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[18]:</div>
+<div class="prompt input_prompt">In&nbsp;[23]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-Java"><pre><span></span><span class="kn">package</span> <span class="nn">trees.trie</span><span class="p">;</span>
@@ -14450,7 +14883,7 @@ Sum from Position 0 to Position 7: 36
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[18]:</div>
+    <div class="prompt output_prompt">Out[23]:</div>
 
 
 
@@ -14467,7 +14900,7 @@ Sum from Position 0 to Position 7: 36
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[19]:</div>
+<div class="prompt input_prompt">In&nbsp;[24]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-Java"><pre><span></span><span class="kn">package</span> <span class="nn">trees.trie</span><span class="p">;</span>
@@ -14507,7 +14940,7 @@ StartsWith(CAN): true
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[19]:</div>
+    <div class="prompt output_prompt">Out[24]:</div>
 
 
 
