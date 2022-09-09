@@ -13213,8 +13213,8 @@ div#notebook {
     <span class="p">}</span>
     
     <span class="kd">public</span> <span class="n">Iterable</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="nf">getAdjacents</span><span class="p">(</span><span class="kt">int</span> <span class="n">v</span><span class="p">)</span> <span class="p">{</span>
-        <span class="kt">boolean</span><span class="o">[]</span> <span class="n">adjacencyVector</span> <span class="o">=</span> <span class="n">adjacencyMatrix</span><span class="o">[</span><span class="n">v</span><span class="o">]</span><span class="p">;</span>
-        <span class="n">LinkedList</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">adjacencyList</span> <span class="o">=</span> <span class="k">new</span> <span class="n">LinkedList</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+        <span class="kd">final</span> <span class="kt">boolean</span><span class="o">[]</span> <span class="n">adjacencyVector</span> <span class="o">=</span> <span class="n">adjacencyMatrix</span><span class="o">[</span><span class="n">v</span><span class="o">]</span><span class="p">;</span>
+        <span class="kd">final</span> <span class="n">LinkedList</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">adjacencyList</span> <span class="o">=</span> <span class="k">new</span> <span class="n">LinkedList</span><span class="o">&lt;&gt;</span><span class="p">();</span>
         <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">vertex</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">vertex</span> <span class="o">&lt;</span> <span class="n">vertices</span><span class="p">;</span> <span class="n">vertex</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
             <span class="k">if</span> <span class="p">(</span><span class="n">adjacencyVector</span><span class="o">[</span><span class="n">vertex</span><span class="o">]</span><span class="p">)</span> <span class="p">{</span>
                 <span class="n">adjacencyList</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">vertex</span><span class="p">);</span>
@@ -13357,7 +13357,7 @@ div#notebook {
     <span class="p">}</span>
 
     <span class="kd">public</span> <span class="n">Iterable</span><span class="o">&lt;</span><span class="n">WeightedEdge</span><span class="o">&gt;</span> <span class="nf">getEdges</span><span class="p">()</span> <span class="p">{</span>
-        <span class="n">LinkedList</span><span class="o">&lt;</span><span class="n">WeightedEdge</span><span class="o">&gt;</span> <span class="n">edges</span> <span class="o">=</span> <span class="k">new</span> <span class="n">LinkedList</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+        <span class="kd">final</span> <span class="n">LinkedList</span><span class="o">&lt;</span><span class="n">WeightedEdge</span><span class="o">&gt;</span> <span class="n">edges</span> <span class="o">=</span> <span class="k">new</span> <span class="n">LinkedList</span><span class="o">&lt;&gt;</span><span class="p">();</span>
         <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">vertex</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">vertex</span> <span class="o">&lt;</span> <span class="n">vertices</span><span class="p">;</span> <span class="n">vertex</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
             <span class="n">edges</span><span class="p">.</span><span class="na">addAll</span><span class="p">(</span><span class="n">adjacencyList</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">vertex</span><span class="p">));</span>
         <span class="p">}</span>
@@ -13422,8 +13422,8 @@ div#notebook {
     <span class="p">}</span>
 
     <span class="kd">public</span> <span class="n">Iterable</span><span class="o">&lt;</span><span class="n">WeightedEdge</span><span class="o">&gt;</span> <span class="nf">getAdjacents</span><span class="p">(</span><span class="kt">int</span> <span class="n">v</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">WeightedEdge</span><span class="o">[]</span> <span class="n">adjacencyVector</span> <span class="o">=</span> <span class="n">adjacencyMatrix</span><span class="o">[</span><span class="n">v</span><span class="o">]</span><span class="p">;</span>
-        <span class="n">LinkedList</span><span class="o">&lt;</span><span class="n">WeightedEdge</span><span class="o">&gt;</span> <span class="n">adjacencyList</span> <span class="o">=</span> <span class="k">new</span> <span class="n">LinkedList</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+        <span class="kd">final</span> <span class="n">WeightedEdge</span><span class="o">[]</span> <span class="n">adjacencyVector</span> <span class="o">=</span> <span class="n">adjacencyMatrix</span><span class="o">[</span><span class="n">v</span><span class="o">]</span><span class="p">;</span>
+        <span class="kd">final</span> <span class="n">LinkedList</span><span class="o">&lt;</span><span class="n">WeightedEdge</span><span class="o">&gt;</span> <span class="n">adjacencyList</span> <span class="o">=</span> <span class="k">new</span> <span class="n">LinkedList</span><span class="o">&lt;&gt;</span><span class="p">();</span>
         <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">vertex</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">vertex</span> <span class="o">&lt;</span> <span class="n">vertices</span><span class="p">;</span> <span class="n">vertex</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
             <span class="k">if</span> <span class="p">(</span><span class="n">adjacencyVector</span><span class="o">[</span><span class="n">vertex</span><span class="o">]</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
                 <span class="n">adjacencyList</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">adjacencyVector</span><span class="o">[</span><span class="n">vertex</span><span class="o">]</span><span class="p">);</span>
@@ -13433,7 +13433,7 @@ div#notebook {
     <span class="p">}</span>
 
     <span class="kd">public</span> <span class="n">Iterable</span><span class="o">&lt;</span><span class="n">WeightedEdge</span><span class="o">&gt;</span> <span class="nf">getEdges</span><span class="p">()</span> <span class="p">{</span>
-        <span class="n">LinkedList</span><span class="o">&lt;</span><span class="n">WeightedEdge</span><span class="o">&gt;</span> <span class="n">edges</span> <span class="o">=</span> <span class="k">new</span> <span class="n">LinkedList</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+        <span class="kd">final</span> <span class="n">LinkedList</span><span class="o">&lt;</span><span class="n">WeightedEdge</span><span class="o">&gt;</span> <span class="n">edges</span> <span class="o">=</span> <span class="k">new</span> <span class="n">LinkedList</span><span class="o">&lt;&gt;</span><span class="p">();</span>
         <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">rowVertex</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">rowVertex</span> <span class="o">&lt;</span> <span class="n">vertices</span><span class="p">;</span> <span class="n">rowVertex</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
             <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">colVertex</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">colVertex</span> <span class="o">&lt;</span> <span class="n">vertices</span><span class="p">;</span> <span class="n">colVertex</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
                 <span class="k">if</span> <span class="p">(</span><span class="n">adjacencyMatrix</span><span class="o">[</span><span class="n">rowVertex</span><span class="o">][</span><span class="n">colVertex</span><span class="o">]</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
@@ -13497,19 +13497,19 @@ div#notebook {
         <span class="n">ListGraph</span> <span class="n">graph</span><span class="p">,</span> 
         <span class="kt">int</span> <span class="n">v</span><span class="p">,</span> 
         <span class="n">Consumer</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">action</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">Set</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">visitedSet</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashSet</span><span class="o">&lt;&gt;</span><span class="p">();</span>
-        <span class="n">Stack</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">stack</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Stack</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+        <span class="kd">final</span> <span class="n">Set</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">visitedSet</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashSet</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+        <span class="kd">final</span> <span class="n">Stack</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">stack</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Stack</span><span class="o">&lt;&gt;</span><span class="p">();</span>
         
         <span class="n">stack</span><span class="p">.</span><span class="na">push</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
         
         <span class="k">while</span> <span class="p">(</span><span class="o">!</span><span class="n">stack</span><span class="p">.</span><span class="na">isEmpty</span><span class="p">())</span> <span class="p">{</span>
-            <span class="kt">int</span> <span class="n">currentVertex</span> <span class="o">=</span> <span class="n">stack</span><span class="p">.</span><span class="na">pop</span><span class="p">();</span>
+            <span class="kd">final</span> <span class="kt">int</span> <span class="n">currentVertex</span> <span class="o">=</span> <span class="n">stack</span><span class="p">.</span><span class="na">pop</span><span class="p">();</span>
             
             <span class="n">visitedSet</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">currentVertex</span><span class="p">);</span>
             
             <span class="n">action</span><span class="p">.</span><span class="na">accept</span><span class="p">(</span><span class="n">currentVertex</span><span class="p">);</span>
             
-            <span class="n">Iterable</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">adjacents</span> <span class="o">=</span> <span class="n">graph</span><span class="p">.</span><span class="na">getAdjacents</span><span class="p">(</span><span class="n">currentVertex</span><span class="p">);</span>
+            <span class="kd">final</span> <span class="n">Iterable</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">adjacents</span> <span class="o">=</span> <span class="n">graph</span><span class="p">.</span><span class="na">getAdjacents</span><span class="p">(</span><span class="n">currentVertex</span><span class="p">);</span>
             <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">adjacentVertex</span> <span class="p">:</span> <span class="n">adjacents</span><span class="p">)</span> <span class="p">{</span>
                 <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">visitedSet</span><span class="p">.</span><span class="na">contains</span><span class="p">(</span><span class="n">adjacentVertex</span><span class="p">))</span> <span class="p">{</span>
                     <span class="n">stack</span><span class="p">.</span><span class="na">push</span><span class="p">(</span><span class="n">adjacentVertex</span><span class="p">);</span>
@@ -13555,7 +13555,7 @@ div#notebook {
 
 <span class="kn">import</span> <span class="nn">graphs.*</span><span class="p">;</span>
 
-<span class="n">ListGraph</span> <span class="n">graph</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ListGraph</span><span class="p">(</span><span class="mi">4</span><span class="p">);</span>
+<span class="kd">final</span> <span class="n">ListGraph</span> <span class="n">graph</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ListGraph</span><span class="p">(</span><span class="mi">4</span><span class="p">);</span>
 <span class="n">graph</span><span class="p">.</span><span class="na">addEdge</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
 <span class="n">graph</span><span class="p">.</span><span class="na">addEdge</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
 <span class="n">graph</span><span class="p">.</span><span class="na">addEdge</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
@@ -13630,19 +13630,19 @@ div#notebook {
         <span class="n">ListGraph</span> <span class="n">graph</span><span class="p">,</span> 
         <span class="kt">int</span> <span class="n">v</span><span class="p">,</span> 
         <span class="n">Consumer</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">action</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">Set</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">visitedSet</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashSet</span><span class="o">&lt;&gt;</span><span class="p">();</span>
-        <span class="n">Deque</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">queue</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayDeque</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+        <span class="kd">final</span> <span class="n">Set</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">visitedSet</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashSet</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+        <span class="kd">final</span> <span class="n">Deque</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">queue</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayDeque</span><span class="o">&lt;&gt;</span><span class="p">();</span>
         
         <span class="n">queue</span><span class="p">.</span><span class="na">offer</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
         
         <span class="k">while</span> <span class="p">(</span><span class="o">!</span><span class="n">queue</span><span class="p">.</span><span class="na">isEmpty</span><span class="p">())</span> <span class="p">{</span>
-            <span class="kt">int</span> <span class="n">currentVertex</span> <span class="o">=</span> <span class="n">queue</span><span class="p">.</span><span class="na">poll</span><span class="p">();</span>
+            <span class="kd">final</span> <span class="kt">int</span> <span class="n">currentVertex</span> <span class="o">=</span> <span class="n">queue</span><span class="p">.</span><span class="na">poll</span><span class="p">();</span>
             
             <span class="n">visitedSet</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">currentVertex</span><span class="p">);</span>
             
             <span class="n">action</span><span class="p">.</span><span class="na">accept</span><span class="p">(</span><span class="n">currentVertex</span><span class="p">);</span>
             
-            <span class="n">Iterable</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">adjacents</span> <span class="o">=</span> <span class="n">graph</span><span class="p">.</span><span class="na">getAdjacents</span><span class="p">(</span><span class="n">currentVertex</span><span class="p">);</span>
+            <span class="kd">final</span> <span class="n">Iterable</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">adjacents</span> <span class="o">=</span> <span class="n">graph</span><span class="p">.</span><span class="na">getAdjacents</span><span class="p">(</span><span class="n">currentVertex</span><span class="p">);</span>
             <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">adjacentVertex</span> <span class="p">:</span> <span class="n">adjacents</span><span class="p">)</span> <span class="p">{</span>
                 <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">visitedSet</span><span class="p">.</span><span class="na">contains</span><span class="p">(</span><span class="n">adjacentVertex</span><span class="p">))</span> <span class="p">{</span>
                     <span class="n">queue</span><span class="p">.</span><span class="na">offer</span><span class="p">(</span><span class="n">adjacentVertex</span><span class="p">);</span>
@@ -13688,7 +13688,7 @@ div#notebook {
 
 <span class="kn">import</span> <span class="nn">graphs.*</span><span class="p">;</span>
 
-<span class="n">ListGraph</span> <span class="n">graph</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ListGraph</span><span class="p">(</span><span class="mi">4</span><span class="p">);</span>
+<span class="kd">final</span> <span class="n">ListGraph</span> <span class="n">graph</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ListGraph</span><span class="p">(</span><span class="mi">4</span><span class="p">);</span>
 <span class="n">graph</span><span class="p">.</span><span class="na">addEdge</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
 <span class="n">graph</span><span class="p">.</span><span class="na">addEdge</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
 <span class="n">graph</span><span class="p">.</span><span class="na">addEdge</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
@@ -13761,9 +13761,9 @@ div#notebook {
     <span class="kd">public</span> <span class="kd">static</span> <span class="kd">class</span> <span class="nc">VertexDistancePair</span> <span class="kd">implements</span> <span class="n">Comparable</span><span class="o">&lt;</span><span class="n">VertexDistancePair</span><span class="o">&gt;</span> <span class="p">{</span>
 
         <span class="kd">private</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">vertex</span><span class="p">;</span>
-        <span class="kd">private</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">distance</span><span class="p">;</span>
+        <span class="kd">private</span> <span class="kd">final</span> <span class="kt">double</span> <span class="n">distance</span><span class="p">;</span>
 
-        <span class="kd">public</span> <span class="nf">VertexDistancePair</span><span class="p">(</span><span class="kt">int</span> <span class="n">vertex</span><span class="p">,</span> <span class="kt">int</span> <span class="n">distance</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">public</span> <span class="nf">VertexDistancePair</span><span class="p">(</span><span class="kt">int</span> <span class="n">vertex</span><span class="p">,</span> <span class="kt">double</span> <span class="n">distance</span><span class="p">)</span> <span class="p">{</span>
             <span class="k">this</span><span class="p">.</span><span class="na">vertex</span> <span class="o">=</span> <span class="n">vertex</span><span class="p">;</span>
             <span class="k">this</span><span class="p">.</span><span class="na">distance</span> <span class="o">=</span> <span class="n">distance</span><span class="p">;</span>
         <span class="p">}</span>
@@ -13772,13 +13772,13 @@ div#notebook {
             <span class="k">return</span> <span class="n">vertex</span><span class="p">;</span>
         <span class="p">}</span>
 
-        <span class="kd">public</span> <span class="kt">int</span> <span class="nf">getDistance</span><span class="p">()</span> <span class="p">{</span>
+        <span class="kd">public</span> <span class="kt">double</span> <span class="nf">getDistance</span><span class="p">()</span> <span class="p">{</span>
             <span class="k">return</span> <span class="n">distance</span><span class="p">;</span>
         <span class="p">}</span>
 
         <span class="nd">@Override</span>
         <span class="kd">public</span> <span class="kt">int</span> <span class="nf">compareTo</span><span class="p">(</span><span class="n">VertexDistancePair</span> <span class="n">other</span><span class="p">)</span> <span class="p">{</span>
-            <span class="k">return</span> <span class="n">Integer</span><span class="p">.</span><span class="na">compare</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="na">distance</span><span class="p">,</span> <span class="n">other</span><span class="p">.</span><span class="na">distance</span><span class="p">);</span>
+            <span class="k">return</span> <span class="n">Double</span><span class="p">.</span><span class="na">compare</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="na">distance</span><span class="p">,</span> <span class="n">other</span><span class="p">.</span><span class="na">distance</span><span class="p">);</span>
         <span class="p">}</span>
 
     <span class="p">}</span>
@@ -13795,25 +13795,25 @@ div#notebook {
         <span class="kt">int</span> <span class="n">source</span><span class="p">,</span>
         <span class="kt">int</span> <span class="n">destination</span>
     <span class="p">)</span> <span class="p">{</span>
-        <span class="n">Map</span><span class="o">&lt;</span><span class="n">Integer</span><span class="p">,</span> <span class="n">Integer</span><span class="o">&gt;</span> <span class="n">distanceTo</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;&gt;</span><span class="p">();</span>
-        <span class="n">Map</span><span class="o">&lt;</span><span class="n">Integer</span><span class="p">,</span> <span class="n">WeightedEdge</span><span class="o">&gt;</span> <span class="n">edgeTo</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;&gt;</span><span class="p">();</span>
-        <span class="n">PriorityQueue</span><span class="o">&lt;</span><span class="n">VertexDistancePair</span><span class="o">&gt;</span> <span class="n">priorityQueue</span> <span class="o">=</span> <span class="k">new</span> <span class="n">PriorityQueue</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+        <span class="kd">final</span> <span class="n">Map</span><span class="o">&lt;</span><span class="n">Integer</span><span class="p">,</span> <span class="n">Double</span><span class="o">&gt;</span> <span class="n">distanceTo</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+        <span class="kd">final</span> <span class="n">Map</span><span class="o">&lt;</span><span class="n">Integer</span><span class="p">,</span> <span class="n">WeightedEdge</span><span class="o">&gt;</span> <span class="n">edgeTo</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+        <span class="kd">final</span> <span class="n">PriorityQueue</span><span class="o">&lt;</span><span class="n">VertexDistancePair</span><span class="o">&gt;</span> <span class="n">priorityQueue</span> <span class="o">=</span> <span class="k">new</span> <span class="n">PriorityQueue</span><span class="o">&lt;&gt;</span><span class="p">();</span>
 
         <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">vertex</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">vertex</span> <span class="o">&lt;</span> <span class="n">graph</span><span class="p">.</span><span class="na">getVertices</span><span class="p">();</span> <span class="n">vertex</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-            <span class="n">distanceTo</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="n">vertex</span><span class="p">,</span> <span class="n">Integer</span><span class="p">.</span><span class="na">MAX_VALUE</span><span class="p">);</span>
+            <span class="n">distanceTo</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="n">vertex</span><span class="p">,</span> <span class="n">Double</span><span class="p">.</span><span class="na">POSITIVE_INFINITY</span><span class="p">);</span>
         <span class="p">}</span>
-        <span class="n">distanceTo</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+        <span class="n">distanceTo</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">);</span>
 
         <span class="n">priorityQueue</span><span class="p">.</span><span class="na">offer</span><span class="p">(</span><span class="k">new</span> <span class="n">VertexDistancePair</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="n">distanceTo</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">source</span><span class="p">)));</span>
 
         <span class="k">while</span> <span class="p">(</span><span class="o">!</span><span class="n">priorityQueue</span><span class="p">.</span><span class="na">isEmpty</span><span class="p">())</span> <span class="p">{</span>
-            <span class="kt">int</span> <span class="n">minimumVertex</span> <span class="o">=</span> <span class="n">priorityQueue</span><span class="p">.</span><span class="na">poll</span><span class="p">().</span><span class="na">getVertex</span><span class="p">();</span>
+            <span class="kd">final</span> <span class="kt">int</span> <span class="n">minimumVertex</span> <span class="o">=</span> <span class="n">priorityQueue</span><span class="p">.</span><span class="na">poll</span><span class="p">().</span><span class="na">getVertex</span><span class="p">();</span>
 
-            <span class="n">Iterable</span><span class="o">&lt;</span><span class="n">WeightedEdge</span><span class="o">&gt;</span> <span class="n">adjacents</span> <span class="o">=</span> <span class="n">graph</span><span class="p">.</span><span class="na">getAdjacents</span><span class="p">(</span><span class="n">minimumVertex</span><span class="p">);</span>
+            <span class="kd">final</span> <span class="n">Iterable</span><span class="o">&lt;</span><span class="n">WeightedEdge</span><span class="o">&gt;</span> <span class="n">adjacents</span> <span class="o">=</span> <span class="n">graph</span><span class="p">.</span><span class="na">getAdjacents</span><span class="p">(</span><span class="n">minimumVertex</span><span class="p">);</span>
             <span class="k">for</span> <span class="p">(</span><span class="n">WeightedEdge</span> <span class="n">adjacentEdge</span> <span class="p">:</span> <span class="n">adjacents</span><span class="p">)</span> <span class="p">{</span>
-                <span class="kt">int</span> <span class="n">v</span> <span class="o">=</span> <span class="n">adjacentEdge</span><span class="p">.</span><span class="na">getV</span><span class="p">();</span>
-                <span class="kt">int</span> <span class="n">w</span> <span class="o">=</span> <span class="n">adjacentEdge</span><span class="p">.</span><span class="na">getW</span><span class="p">();</span>
-                <span class="kt">int</span> <span class="n">weight</span> <span class="o">=</span> <span class="n">adjacentEdge</span><span class="p">.</span><span class="na">getWeight</span><span class="p">();</span>
+                <span class="kd">final</span> <span class="kt">int</span> <span class="n">v</span> <span class="o">=</span> <span class="n">adjacentEdge</span><span class="p">.</span><span class="na">getV</span><span class="p">();</span>
+                <span class="kd">final</span> <span class="kt">int</span> <span class="n">w</span> <span class="o">=</span> <span class="n">adjacentEdge</span><span class="p">.</span><span class="na">getW</span><span class="p">();</span>
+                <span class="kd">final</span> <span class="kt">int</span> <span class="n">weight</span> <span class="o">=</span> <span class="n">adjacentEdge</span><span class="p">.</span><span class="na">getWeight</span><span class="p">();</span>
                 <span class="k">if</span> <span class="p">(</span><span class="n">distanceTo</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">w</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">distanceTo</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="o">+</span> <span class="n">weight</span><span class="p">)</span> <span class="p">{</span>
                     <span class="n">distanceTo</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">distanceTo</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="o">+</span> <span class="n">weight</span><span class="p">);</span>
                     <span class="n">edgeTo</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">adjacentEdge</span><span class="p">);</span>
@@ -13829,7 +13829,7 @@ div#notebook {
         <span class="n">Map</span><span class="o">&lt;</span><span class="n">Integer</span><span class="p">,</span> <span class="n">WeightedEdge</span><span class="o">&gt;</span> <span class="n">edgeTo</span><span class="p">,</span> 
         <span class="kt">int</span> <span class="n">destination</span>
     <span class="p">)</span> <span class="p">{</span>
-        <span class="n">LinkedList</span><span class="o">&lt;</span><span class="n">WeightedEdge</span><span class="o">&gt;</span> <span class="n">path</span> <span class="o">=</span> <span class="k">new</span> <span class="n">LinkedList</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+        <span class="kd">final</span> <span class="n">LinkedList</span><span class="o">&lt;</span><span class="n">WeightedEdge</span><span class="o">&gt;</span> <span class="n">path</span> <span class="o">=</span> <span class="k">new</span> <span class="n">LinkedList</span><span class="o">&lt;&gt;</span><span class="p">();</span>
         
         <span class="kt">int</span> <span class="n">currentVertex</span> <span class="o">=</span> <span class="n">destination</span><span class="p">;</span>
         <span class="k">while</span> <span class="p">(</span><span class="n">edgeTo</span><span class="p">.</span><span class="na">containsKey</span><span class="p">(</span><span class="n">currentVertex</span><span class="p">))</span> <span class="p">{</span>
@@ -13879,7 +13879,7 @@ div#notebook {
 
 <span class="kn">import</span> <span class="nn">java.util.*</span><span class="p">;</span>
 
-<span class="n">WeightedEdgeListGraph</span> <span class="n">graph</span> <span class="o">=</span> <span class="k">new</span> <span class="n">WeightedEdgeListGraph</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span>
+<span class="kd">final</span> <span class="n">WeightedEdgeListGraph</span> <span class="n">graph</span> <span class="o">=</span> <span class="k">new</span> <span class="n">WeightedEdgeListGraph</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span>
 <span class="n">graph</span><span class="p">.</span><span class="na">addEdge</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">);</span>
 <span class="n">graph</span><span class="p">.</span><span class="na">addEdge</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">);</span>
 <span class="n">graph</span><span class="p">.</span><span class="na">addEdge</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
@@ -13891,7 +13891,7 @@ div#notebook {
 <span class="n">graph</span><span class="p">.</span><span class="na">addEdge</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">9</span><span class="p">);</span>
 <span class="n">graph</span><span class="p">.</span><span class="na">addEdge</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
 
-<span class="n">List</span><span class="o">&lt;</span><span class="n">WeightedEdge</span><span class="o">&gt;</span> <span class="n">path</span> <span class="o">=</span> <span class="n">Dijkstra</span><span class="p">.</span><span class="na">shortestPath</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
+<span class="kd">final</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">WeightedEdge</span><span class="o">&gt;</span> <span class="n">path</span> <span class="o">=</span> <span class="n">Dijkstra</span><span class="p">.</span><span class="na">shortestPath</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
 
 <span class="n">path</span><span class="p">.</span><span class="na">forEach</span><span class="p">(</span><span class="n">edge</span> <span class="o">-&gt;</span> <span class="p">{</span>
     <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">String</span><span class="p">.</span><span class="na">format</span><span class="p">(</span><span class="s">&quot;%d -&gt; %d&quot;</span><span class="p">,</span> <span class="n">edge</span><span class="p">.</span><span class="na">getV</span><span class="p">(),</span> <span class="n">edge</span><span class="p">.</span><span class="na">getW</span><span class="p">()));</span>
@@ -13968,20 +13968,20 @@ div#notebook {
         <span class="kt">int</span> <span class="n">source</span><span class="p">,</span>
         <span class="kt">int</span> <span class="n">destination</span>
     <span class="p">)</span> <span class="p">{</span>
-        <span class="n">Map</span><span class="o">&lt;</span><span class="n">Integer</span><span class="p">,</span> <span class="n">Integer</span><span class="o">&gt;</span> <span class="n">distanceTo</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;&gt;</span><span class="p">();</span>
-        <span class="n">Map</span><span class="o">&lt;</span><span class="n">Integer</span><span class="p">,</span> <span class="n">WeightedEdge</span><span class="o">&gt;</span> <span class="n">edgeTo</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+        <span class="kd">final</span> <span class="n">Map</span><span class="o">&lt;</span><span class="n">Integer</span><span class="p">,</span> <span class="n">Double</span><span class="o">&gt;</span> <span class="n">distanceTo</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+        <span class="kd">final</span> <span class="n">Map</span><span class="o">&lt;</span><span class="n">Integer</span><span class="p">,</span> <span class="n">WeightedEdge</span><span class="o">&gt;</span> <span class="n">edgeTo</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;&gt;</span><span class="p">();</span>
 
         <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">vertex</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">vertex</span> <span class="o">&lt;</span> <span class="n">graph</span><span class="p">.</span><span class="na">getVertices</span><span class="p">();</span> <span class="n">vertex</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-            <span class="n">distanceTo</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="n">vertex</span><span class="p">,</span> <span class="n">Integer</span><span class="p">.</span><span class="na">MAX_VALUE</span><span class="p">);</span>
+            <span class="n">distanceTo</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="n">vertex</span><span class="p">,</span> <span class="n">Double</span><span class="p">.</span><span class="na">POSITIVE_INFINITY</span><span class="p">);</span>
         <span class="p">}</span>
-        <span class="n">distanceTo</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+        <span class="n">distanceTo</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">);</span>
         
         <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">vertex</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">vertex</span> <span class="o">&lt;</span> <span class="n">graph</span><span class="p">.</span><span class="na">getVertices</span><span class="p">();</span> <span class="n">vertex</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-            <span class="n">Iterable</span><span class="o">&lt;</span><span class="n">WeightedEdge</span><span class="o">&gt;</span> <span class="n">edges</span> <span class="o">=</span> <span class="n">graph</span><span class="p">.</span><span class="na">getEdges</span><span class="p">();</span>
+            <span class="kd">final</span> <span class="n">Iterable</span><span class="o">&lt;</span><span class="n">WeightedEdge</span><span class="o">&gt;</span> <span class="n">edges</span> <span class="o">=</span> <span class="n">graph</span><span class="p">.</span><span class="na">getEdges</span><span class="p">();</span>
             <span class="k">for</span> <span class="p">(</span><span class="n">WeightedEdge</span> <span class="n">edge</span> <span class="p">:</span> <span class="n">edges</span><span class="p">)</span> <span class="p">{</span>
-                <span class="kt">int</span> <span class="n">v</span> <span class="o">=</span> <span class="n">edge</span><span class="p">.</span><span class="na">getV</span><span class="p">();</span>
-                <span class="kt">int</span> <span class="n">w</span> <span class="o">=</span> <span class="n">edge</span><span class="p">.</span><span class="na">getW</span><span class="p">();</span>
-                <span class="kt">int</span> <span class="n">weight</span> <span class="o">=</span> <span class="n">edge</span><span class="p">.</span><span class="na">getWeight</span><span class="p">();</span>
+                <span class="kd">final</span> <span class="kt">int</span> <span class="n">v</span> <span class="o">=</span> <span class="n">edge</span><span class="p">.</span><span class="na">getV</span><span class="p">();</span>
+                <span class="kd">final</span> <span class="kt">int</span> <span class="n">w</span> <span class="o">=</span> <span class="n">edge</span><span class="p">.</span><span class="na">getW</span><span class="p">();</span>
+                <span class="kd">final</span> <span class="kt">int</span> <span class="n">weight</span> <span class="o">=</span> <span class="n">edge</span><span class="p">.</span><span class="na">getWeight</span><span class="p">();</span>
                 <span class="k">if</span> <span class="p">(</span><span class="n">distanceTo</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">w</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">distanceTo</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="o">+</span> <span class="n">weight</span><span class="p">)</span> <span class="p">{</span>
                     <span class="n">distanceTo</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">distanceTo</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="o">+</span> <span class="n">weight</span><span class="p">);</span>
                     <span class="n">edgeTo</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">edge</span><span class="p">);</span>
@@ -13989,11 +13989,11 @@ div#notebook {
             <span class="p">}</span>
         <span class="p">}</span>
 
-        <span class="n">Iterable</span><span class="o">&lt;</span><span class="n">WeightedEdge</span><span class="o">&gt;</span> <span class="n">edges</span> <span class="o">=</span> <span class="n">graph</span><span class="p">.</span><span class="na">getEdges</span><span class="p">();</span>
+        <span class="kd">final</span> <span class="n">Iterable</span><span class="o">&lt;</span><span class="n">WeightedEdge</span><span class="o">&gt;</span> <span class="n">edges</span> <span class="o">=</span> <span class="n">graph</span><span class="p">.</span><span class="na">getEdges</span><span class="p">();</span>
         <span class="k">for</span> <span class="p">(</span><span class="n">WeightedEdge</span> <span class="n">edge</span> <span class="p">:</span> <span class="n">edges</span><span class="p">)</span> <span class="p">{</span>
-            <span class="kt">int</span> <span class="n">v</span> <span class="o">=</span> <span class="n">edge</span><span class="p">.</span><span class="na">getV</span><span class="p">();</span>
-            <span class="kt">int</span> <span class="n">w</span> <span class="o">=</span> <span class="n">edge</span><span class="p">.</span><span class="na">getW</span><span class="p">();</span>
-            <span class="kt">int</span> <span class="n">weight</span> <span class="o">=</span> <span class="n">edge</span><span class="p">.</span><span class="na">getWeight</span><span class="p">();</span>
+            <span class="kd">final</span> <span class="kt">int</span> <span class="n">v</span> <span class="o">=</span> <span class="n">edge</span><span class="p">.</span><span class="na">getV</span><span class="p">();</span>
+            <span class="kd">final</span> <span class="kt">int</span> <span class="n">w</span> <span class="o">=</span> <span class="n">edge</span><span class="p">.</span><span class="na">getW</span><span class="p">();</span>
+            <span class="kd">final</span> <span class="kt">int</span> <span class="n">weight</span> <span class="o">=</span> <span class="n">edge</span><span class="p">.</span><span class="na">getWeight</span><span class="p">();</span>
             <span class="k">if</span> <span class="p">(</span><span class="n">distanceTo</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">w</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">distanceTo</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="o">+</span> <span class="n">weight</span><span class="p">)</span> <span class="p">{</span>
                 <span class="k">throw</span> <span class="k">new</span> <span class="n">IllegalStateException</span><span class="p">(</span><span class="s">&quot;Negative-Weight Cycle Detected!&quot;</span><span class="p">);</span>
             <span class="p">}</span>
@@ -14006,7 +14006,7 @@ div#notebook {
         <span class="n">Map</span><span class="o">&lt;</span><span class="n">Integer</span><span class="p">,</span> <span class="n">WeightedEdge</span><span class="o">&gt;</span> <span class="n">edgeTo</span><span class="p">,</span> 
         <span class="kt">int</span> <span class="n">destination</span>
     <span class="p">)</span> <span class="p">{</span>
-        <span class="n">LinkedList</span><span class="o">&lt;</span><span class="n">WeightedEdge</span><span class="o">&gt;</span> <span class="n">path</span> <span class="o">=</span> <span class="k">new</span> <span class="n">LinkedList</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+        <span class="kd">final</span> <span class="n">LinkedList</span><span class="o">&lt;</span><span class="n">WeightedEdge</span><span class="o">&gt;</span> <span class="n">path</span> <span class="o">=</span> <span class="k">new</span> <span class="n">LinkedList</span><span class="o">&lt;&gt;</span><span class="p">();</span>
         
         <span class="kt">int</span> <span class="n">currentVertex</span> <span class="o">=</span> <span class="n">destination</span><span class="p">;</span>
         <span class="k">while</span> <span class="p">(</span><span class="n">edgeTo</span><span class="p">.</span><span class="na">containsKey</span><span class="p">(</span><span class="n">currentVertex</span><span class="p">))</span> <span class="p">{</span>
@@ -14056,7 +14056,7 @@ div#notebook {
 
 <span class="kn">import</span> <span class="nn">java.util.*</span><span class="p">;</span>
 
-<span class="n">WeightedEdgeListGraph</span> <span class="n">graph</span> <span class="o">=</span> <span class="k">new</span> <span class="n">WeightedEdgeListGraph</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span>
+<span class="kd">final</span> <span class="n">WeightedEdgeListGraph</span> <span class="n">graph</span> <span class="o">=</span> <span class="k">new</span> <span class="n">WeightedEdgeListGraph</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span>
 <span class="n">graph</span><span class="p">.</span><span class="na">addEdge</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">);</span>
 <span class="n">graph</span><span class="p">.</span><span class="na">addEdge</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">);</span>
 <span class="n">graph</span><span class="p">.</span><span class="na">addEdge</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
@@ -14068,7 +14068,7 @@ div#notebook {
 <span class="n">graph</span><span class="p">.</span><span class="na">addEdge</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">9</span><span class="p">);</span>
 <span class="n">graph</span><span class="p">.</span><span class="na">addEdge</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
 
-<span class="n">List</span><span class="o">&lt;</span><span class="n">WeightedEdge</span><span class="o">&gt;</span> <span class="n">path</span> <span class="o">=</span> <span class="n">BellmanFord</span><span class="p">.</span><span class="na">shortestPath</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
+<span class="kd">final</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">WeightedEdge</span><span class="o">&gt;</span> <span class="n">path</span> <span class="o">=</span> <span class="n">BellmanFord</span><span class="p">.</span><span class="na">shortestPath</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
 
 <span class="n">path</span><span class="p">.</span><span class="na">forEach</span><span class="p">(</span><span class="n">edge</span> <span class="o">-&gt;</span> <span class="p">{</span>
     <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">String</span><span class="p">.</span><span class="na">format</span><span class="p">(</span><span class="s">&quot;%d -&gt; %d&quot;</span><span class="p">,</span> <span class="n">edge</span><span class="p">.</span><span class="na">getV</span><span class="p">(),</span> <span class="n">edge</span><span class="p">.</span><span class="na">getW</span><span class="p">()));</span>
@@ -14116,6 +14116,185 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="All-Pairs-Shortest-Paths:-Floyd-Warshall-Algorithm-($O(%7CV%7C%5E3)$)">All-Pairs Shortest Paths: Floyd-Warshall Algorithm ($O(|V|^3)$)<a class="anchor-link" href="#All-Pairs-Shortest-Paths:-Floyd-Warshall-Algorithm-($O(%7CV%7C%5E3)$)">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[14]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-Java"><pre><span></span><span class="kn">package</span> <span class="nn">graphs.floyd_warshall</span><span class="p">;</span>
+
+<span class="kn">import</span> <span class="nn">graphs.*</span><span class="p">;</span>
+
+<span class="kn">import</span> <span class="nn">java.util.*</span><span class="p">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">FloydWarshall</span> <span class="p">{</span>
+
+    <span class="kd">private</span> <span class="kd">final</span> <span class="n">WeightedEdgeListGraph</span> <span class="n">graph</span><span class="p">;</span>
+    <span class="kd">private</span> <span class="kd">final</span> <span class="kt">double</span><span class="o">[][]</span> <span class="n">distanceTo</span><span class="p">;</span>
+    <span class="kd">private</span> <span class="kd">final</span> <span class="n">WeightedEdge</span><span class="o">[][]</span> <span class="n">edgeTo</span><span class="p">;</span>
+
+    <span class="cm">/*</span>
+<span class="cm">     * Floyd-Warshall Algorithm:</span>
+<span class="cm">     * 1. Assume all pairs of vertices have an infinite distance from each other.</span>
+<span class="cm">     * 2. Initialize the distance of each pair of vertices of an edge to the weight.</span>
+<span class="cm">     * 3. Initialize the distance of each pair of identical vertices to zero.</span>
+<span class="cm">     * 4. For every intermediary vertex, relax all pairs of vertices through a path with the intermediary vertex.</span>
+<span class="cm">     */</span>
+    <span class="kd">public</span> <span class="nf">FloydWarshall</span><span class="p">(</span><span class="n">WeightedEdgeListGraph</span> <span class="n">graph</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">graph</span> <span class="o">=</span> <span class="n">graph</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">distanceTo</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">double</span><span class="o">[</span><span class="n">graph</span><span class="p">.</span><span class="na">getVertices</span><span class="p">()</span><span class="o">][</span><span class="n">graph</span><span class="p">.</span><span class="na">getVertices</span><span class="p">()</span><span class="o">]</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">edgeTo</span> <span class="o">=</span> <span class="k">new</span> <span class="n">WeightedEdge</span><span class="o">[</span><span class="n">graph</span><span class="p">.</span><span class="na">getVertices</span><span class="p">()</span><span class="o">][</span><span class="n">graph</span><span class="p">.</span><span class="na">getVertices</span><span class="p">()</span><span class="o">]</span><span class="p">;</span>
+
+        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">vVertex</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">vVertex</span> <span class="o">&lt;</span> <span class="n">graph</span><span class="p">.</span><span class="na">getVertices</span><span class="p">();</span> <span class="n">vVertex</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">wVertex</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">wVertex</span> <span class="o">&lt;</span> <span class="n">graph</span><span class="p">.</span><span class="na">getVertices</span><span class="p">();</span> <span class="n">wVertex</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+                <span class="n">distanceTo</span><span class="o">[</span><span class="n">vVertex</span><span class="o">][</span><span class="n">wVertex</span><span class="o">]</span> <span class="o">=</span> <span class="n">Double</span><span class="p">.</span><span class="na">POSITIVE_INFINITY</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        
+        <span class="k">for</span> <span class="p">(</span><span class="n">WeightedEdge</span> <span class="n">edge</span> <span class="p">:</span> <span class="n">graph</span><span class="p">.</span><span class="na">getEdges</span><span class="p">())</span> <span class="p">{</span>
+            <span class="n">distanceTo</span><span class="o">[</span><span class="n">edge</span><span class="p">.</span><span class="na">getV</span><span class="p">()</span><span class="o">][</span><span class="n">edge</span><span class="p">.</span><span class="na">getW</span><span class="p">()</span><span class="o">]</span> <span class="o">=</span> <span class="n">edge</span><span class="p">.</span><span class="na">getWeight</span><span class="p">();</span>
+            <span class="n">edgeTo</span><span class="o">[</span><span class="n">edge</span><span class="p">.</span><span class="na">getV</span><span class="p">()</span><span class="o">][</span><span class="n">edge</span><span class="p">.</span><span class="na">getW</span><span class="p">()</span><span class="o">]</span> <span class="o">=</span> <span class="n">edge</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">vertex</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">vertex</span> <span class="o">&lt;</span> <span class="n">graph</span><span class="p">.</span><span class="na">getVertices</span><span class="p">();</span> <span class="n">vertex</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">distanceTo</span><span class="o">[</span><span class="n">vertex</span><span class="o">][</span><span class="n">vertex</span><span class="o">]</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">;</span>
+            <span class="n">edgeTo</span><span class="o">[</span><span class="n">vertex</span><span class="o">][</span><span class="n">vertex</span><span class="o">]</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">iVertex</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">iVertex</span> <span class="o">&lt;</span> <span class="n">graph</span><span class="p">.</span><span class="na">getVertices</span><span class="p">();</span> <span class="n">iVertex</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">vVertex</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">vVertex</span> <span class="o">&lt;</span> <span class="n">graph</span><span class="p">.</span><span class="na">getVertices</span><span class="p">();</span> <span class="n">vVertex</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">if</span> <span class="p">(</span><span class="n">edgeTo</span><span class="o">[</span><span class="n">vVertex</span><span class="o">][</span><span class="n">iVertex</span><span class="o">]</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="k">continue</span><span class="p">;</span>
+                <span class="p">}</span>
+                <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">wVertex</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">wVertex</span> <span class="o">&lt;</span> <span class="n">graph</span><span class="p">.</span><span class="na">getVertices</span><span class="p">();</span> <span class="n">wVertex</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="k">if</span> <span class="p">(</span><span class="n">distanceTo</span><span class="o">[</span><span class="n">vVertex</span><span class="o">][</span><span class="n">wVertex</span><span class="o">]</span> <span class="o">&gt;</span> <span class="n">distanceTo</span><span class="o">[</span><span class="n">vVertex</span><span class="o">][</span><span class="n">iVertex</span><span class="o">]</span> <span class="o">+</span> <span class="n">distanceTo</span><span class="o">[</span><span class="n">iVertex</span><span class="o">][</span><span class="n">wVertex</span><span class="o">]</span><span class="p">)</span> <span class="p">{</span>
+                        <span class="n">distanceTo</span><span class="o">[</span><span class="n">vVertex</span><span class="o">][</span><span class="n">wVertex</span><span class="o">]</span> <span class="o">=</span> <span class="n">distanceTo</span><span class="o">[</span><span class="n">vVertex</span><span class="o">][</span><span class="n">iVertex</span><span class="o">]</span> <span class="o">+</span> <span class="n">distanceTo</span><span class="o">[</span><span class="n">iVertex</span><span class="o">][</span><span class="n">wVertex</span><span class="o">]</span><span class="p">;</span>
+                        <span class="n">edgeTo</span><span class="o">[</span><span class="n">vVertex</span><span class="o">][</span><span class="n">wVertex</span><span class="o">]</span> <span class="o">=</span> <span class="n">edgeTo</span><span class="o">[</span><span class="n">iVertex</span><span class="o">][</span><span class="n">wVertex</span><span class="o">]</span><span class="p">;</span>
+                    <span class="p">}</span>
+                <span class="p">}</span>
+                <span class="k">if</span> <span class="p">(</span><span class="n">distanceTo</span><span class="o">[</span><span class="n">vVertex</span><span class="o">][</span><span class="n">vVertex</span><span class="o">]</span> <span class="o">&lt;</span> <span class="mf">0.0</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="k">throw</span> <span class="k">new</span> <span class="n">IllegalStateException</span><span class="p">(</span><span class="s">&quot;Negative-Weight Cycle Detected!&quot;</span><span class="p">);</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="kd">public</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">WeightedEdge</span><span class="o">&gt;</span> <span class="nf">shortestPath</span><span class="p">(</span><span class="kt">int</span> <span class="n">source</span><span class="p">,</span> <span class="kt">int</span> <span class="n">destination</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">final</span> <span class="n">LinkedList</span><span class="o">&lt;</span><span class="n">WeightedEdge</span><span class="o">&gt;</span> <span class="n">path</span> <span class="o">=</span> <span class="k">new</span> <span class="n">LinkedList</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="n">distanceTo</span><span class="o">[</span><span class="n">source</span><span class="o">][</span><span class="n">destination</span><span class="o">]</span> <span class="o">&lt;</span> <span class="n">Double</span><span class="p">.</span><span class="na">POSITIVE_INFINITY</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">for</span> <span class="p">(</span><span class="n">WeightedEdge</span> <span class="n">edge</span> <span class="o">=</span> <span class="n">edgeTo</span><span class="o">[</span><span class="n">source</span><span class="o">][</span><span class="n">destination</span><span class="o">]</span><span class="p">;</span> <span class="n">edge</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">;</span> <span class="n">edge</span> <span class="o">=</span> <span class="n">edgeTo</span><span class="o">[</span><span class="n">source</span><span class="o">][</span><span class="n">edge</span><span class="p">.</span><span class="na">getV</span><span class="p">()</span><span class="o">]</span><span class="p">)</span> <span class="p">{</span>
+                <span class="n">path</span><span class="p">.</span><span class="na">addFirst</span><span class="p">(</span><span class="n">edge</span><span class="p">);</span>   
+            <span class="p">}</span>
+        <span class="p">}</span>
+
+        <span class="k">return</span> <span class="n">path</span><span class="p">;</span>
+    <span class="p">}</span>
+
+<span class="p">}</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[14]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>graphs.floyd_warshall.FloydWarshall</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[15]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-Java"><pre><span></span><span class="kn">package</span> <span class="nn">graphs.floyd_warshall</span><span class="p">;</span>
+
+<span class="kn">import</span> <span class="nn">graphs.*</span><span class="p">;</span>
+
+<span class="kn">import</span> <span class="nn">java.util.*</span><span class="p">;</span>
+
+<span class="kd">final</span> <span class="n">WeightedEdgeListGraph</span> <span class="n">graph</span> <span class="o">=</span> <span class="k">new</span> <span class="n">WeightedEdgeListGraph</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span>
+<span class="n">graph</span><span class="p">.</span><span class="na">addEdge</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">);</span>
+<span class="n">graph</span><span class="p">.</span><span class="na">addEdge</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">);</span>
+<span class="n">graph</span><span class="p">.</span><span class="na">addEdge</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+<span class="n">graph</span><span class="p">.</span><span class="na">addEdge</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
+<span class="n">graph</span><span class="p">.</span><span class="na">addEdge</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">);</span>
+<span class="n">graph</span><span class="p">.</span><span class="na">addEdge</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">7</span><span class="p">);</span>
+<span class="n">graph</span><span class="p">.</span><span class="na">addEdge</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">6</span><span class="p">);</span>
+<span class="n">graph</span><span class="p">.</span><span class="na">addEdge</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span>
+<span class="n">graph</span><span class="p">.</span><span class="na">addEdge</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">9</span><span class="p">);</span>
+<span class="n">graph</span><span class="p">.</span><span class="na">addEdge</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
+
+<span class="kd">final</span> <span class="n">FloydWarshall</span> <span class="n">floydWarshall</span> <span class="o">=</span> <span class="k">new</span> <span class="n">FloydWarshall</span><span class="p">(</span><span class="n">graph</span><span class="p">);</span>
+<span class="kd">final</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">WeightedEdge</span><span class="o">&gt;</span> <span class="n">path</span> <span class="o">=</span> <span class="n">floydWarshall</span><span class="p">.</span><span class="na">shortestPath</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
+
+<span class="n">path</span><span class="p">.</span><span class="na">forEach</span><span class="p">(</span><span class="n">edge</span> <span class="o">-&gt;</span> <span class="p">{</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">String</span><span class="p">.</span><span class="na">format</span><span class="p">(</span><span class="s">&quot;%d -&gt; %d&quot;</span><span class="p">,</span> <span class="n">edge</span><span class="p">.</span><span class="na">getV</span><span class="p">(),</span> <span class="n">edge</span><span class="p">.</span><span class="na">getW</span><span class="p">()));</span>
+<span class="p">});</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>0 -&gt; 4
+4 -&gt; 1
+1 -&gt; 2
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[15]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>null</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Minimum-Spanning-Trees:-Disjoint-Set-/-Union-Find">Minimum Spanning Trees: Disjoint-Set / Union-Find<a class="anchor-link" href="#Minimum-Spanning-Trees:-Disjoint-Set-/-Union-Find">&#182;</a></h2><p><a href="https://algs4.cs.princeton.edu/15uf/">See Link</a>.</p>
 
 </div>
@@ -14123,7 +14302,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[14]:</div>
+<div class="prompt input_prompt">In&nbsp;[16]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-Java"><pre><span></span><span class="kn">package</span> <span class="nn">graphs.disjoint_set</span><span class="p">;</span>
@@ -14149,8 +14328,8 @@ div#notebook {
 <span class="cm">     * point to the root of the larger rank.</span>
 <span class="cm">     */</span>
     <span class="kd">public</span> <span class="kt">void</span> <span class="nf">union</span><span class="p">(</span><span class="kt">int</span> <span class="n">p</span><span class="p">,</span> <span class="kt">int</span> <span class="n">q</span><span class="p">)</span> <span class="p">{</span>
-        <span class="kt">int</span> <span class="n">rootP</span> <span class="o">=</span> <span class="n">find</span><span class="p">(</span><span class="n">p</span><span class="p">);</span>
-        <span class="kt">int</span> <span class="n">rootQ</span> <span class="o">=</span> <span class="n">find</span><span class="p">(</span><span class="n">q</span><span class="p">);</span>
+        <span class="kd">final</span> <span class="kt">int</span> <span class="n">rootP</span> <span class="o">=</span> <span class="n">find</span><span class="p">(</span><span class="n">p</span><span class="p">);</span>
+        <span class="kd">final</span> <span class="kt">int</span> <span class="n">rootQ</span> <span class="o">=</span> <span class="n">find</span><span class="p">(</span><span class="n">q</span><span class="p">);</span>
         <span class="k">if</span> <span class="p">(</span><span class="n">rootP</span> <span class="o">==</span> <span class="n">rootQ</span><span class="p">)</span> <span class="p">{</span>
             <span class="k">return</span><span class="p">;</span>
         <span class="p">}</span>
@@ -14206,7 +14385,7 @@ div#notebook {
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[14]:</div>
+    <div class="prompt output_prompt">Out[16]:</div>
 
 
 
@@ -14231,7 +14410,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[15]:</div>
+<div class="prompt input_prompt">In&nbsp;[17]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-Java"><pre><span></span><span class="kn">package</span> <span class="nn">graphs.kruskal</span><span class="p">;</span>
@@ -14250,16 +14429,16 @@ div#notebook {
 <span class="cm">     *    including the connecting edge into the MST.</span>
 <span class="cm">     */</span>
     <span class="kd">public</span> <span class="kd">static</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">WeightedEdge</span><span class="o">&gt;</span> <span class="nf">minimumSpanningTree</span><span class="p">(</span><span class="n">WeightedEdgeListGraph</span> <span class="n">graph</span><span class="p">)</span> <span class="p">{</span>        
-        <span class="n">DisjointSet</span> <span class="n">disjointSet</span> <span class="o">=</span> <span class="k">new</span> <span class="n">DisjointSet</span><span class="p">(</span><span class="n">graph</span><span class="p">.</span><span class="na">getVertices</span><span class="p">());</span>
+        <span class="kd">final</span> <span class="n">DisjointSet</span> <span class="n">disjointSet</span> <span class="o">=</span> <span class="k">new</span> <span class="n">DisjointSet</span><span class="p">(</span><span class="n">graph</span><span class="p">.</span><span class="na">getVertices</span><span class="p">());</span>
 
-        <span class="n">PriorityQueue</span><span class="o">&lt;</span><span class="n">WeightedEdge</span><span class="o">&gt;</span> <span class="n">priorityQueue</span> <span class="o">=</span> <span class="k">new</span> <span class="n">PriorityQueue</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+        <span class="kd">final</span> <span class="n">PriorityQueue</span><span class="o">&lt;</span><span class="n">WeightedEdge</span><span class="o">&gt;</span> <span class="n">priorityQueue</span> <span class="o">=</span> <span class="k">new</span> <span class="n">PriorityQueue</span><span class="o">&lt;&gt;</span><span class="p">();</span>
         <span class="k">for</span> <span class="p">(</span><span class="n">WeightedEdge</span> <span class="n">edge</span> <span class="p">:</span> <span class="n">graph</span><span class="p">.</span><span class="na">getEdges</span><span class="p">())</span> <span class="p">{</span>
             <span class="n">priorityQueue</span><span class="p">.</span><span class="na">offer</span><span class="p">(</span><span class="n">edge</span><span class="p">);</span>
         <span class="p">}</span>
 
-        <span class="n">LinkedList</span><span class="o">&lt;</span><span class="n">WeightedEdge</span><span class="o">&gt;</span> <span class="n">mst</span> <span class="o">=</span> <span class="k">new</span> <span class="n">LinkedList</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+        <span class="kd">final</span> <span class="n">LinkedList</span><span class="o">&lt;</span><span class="n">WeightedEdge</span><span class="o">&gt;</span> <span class="n">mst</span> <span class="o">=</span> <span class="k">new</span> <span class="n">LinkedList</span><span class="o">&lt;&gt;</span><span class="p">();</span>
         <span class="k">while</span> <span class="p">(</span><span class="o">!</span><span class="n">priorityQueue</span><span class="p">.</span><span class="na">isEmpty</span><span class="p">()</span> <span class="o">&amp;&amp;</span> <span class="n">mst</span><span class="p">.</span><span class="na">size</span><span class="p">()</span> <span class="o">&lt;</span> <span class="n">graph</span><span class="p">.</span><span class="na">getVertices</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
-            <span class="n">WeightedEdge</span> <span class="n">currentEdge</span> <span class="o">=</span> <span class="n">priorityQueue</span><span class="p">.</span><span class="na">poll</span><span class="p">();</span>
+            <span class="kd">final</span> <span class="n">WeightedEdge</span> <span class="n">currentEdge</span> <span class="o">=</span> <span class="n">priorityQueue</span><span class="p">.</span><span class="na">poll</span><span class="p">();</span>
             <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">disjointSet</span><span class="p">.</span><span class="na">connected</span><span class="p">(</span><span class="n">currentEdge</span><span class="p">.</span><span class="na">getV</span><span class="p">(),</span> <span class="n">currentEdge</span><span class="p">.</span><span class="na">getW</span><span class="p">()))</span> <span class="p">{</span>
                 <span class="n">disjointSet</span><span class="p">.</span><span class="na">union</span><span class="p">(</span><span class="n">currentEdge</span><span class="p">.</span><span class="na">getV</span><span class="p">(),</span> <span class="n">currentEdge</span><span class="p">.</span><span class="na">getW</span><span class="p">());</span>
                 <span class="n">mst</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">currentEdge</span><span class="p">);</span>
@@ -14282,7 +14461,7 @@ div#notebook {
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[15]:</div>
+    <div class="prompt output_prompt">Out[17]:</div>
 
 
 
@@ -14299,7 +14478,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[16]:</div>
+<div class="prompt input_prompt">In&nbsp;[18]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-Java"><pre><span></span><span class="kn">package</span> <span class="nn">graphs.kruskal</span><span class="p">;</span>
@@ -14308,14 +14487,14 @@ div#notebook {
 
 <span class="kn">import</span> <span class="nn">java.util.*</span><span class="p">;</span>
 
-<span class="n">WeightedEdgeListGraph</span> <span class="n">graph</span> <span class="o">=</span> <span class="k">new</span> <span class="n">WeightedEdgeListGraph</span><span class="p">(</span><span class="mi">4</span><span class="p">);</span>
+<span class="kd">final</span> <span class="n">WeightedEdgeListGraph</span> <span class="n">graph</span> <span class="o">=</span> <span class="k">new</span> <span class="n">WeightedEdgeListGraph</span><span class="p">(</span><span class="mi">4</span><span class="p">);</span>
 <span class="n">graph</span><span class="p">.</span><span class="na">addEdge</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">);</span>
 <span class="n">graph</span><span class="p">.</span><span class="na">addEdge</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">6</span><span class="p">);</span>
 <span class="n">graph</span><span class="p">.</span><span class="na">addEdge</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">);</span>
 <span class="n">graph</span><span class="p">.</span><span class="na">addEdge</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">15</span><span class="p">);</span>
 <span class="n">graph</span><span class="p">.</span><span class="na">addEdge</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">);</span>
 
-<span class="n">List</span><span class="o">&lt;</span><span class="n">WeightedEdge</span><span class="o">&gt;</span> <span class="n">mst</span> <span class="o">=</span> <span class="n">Kruskal</span><span class="p">.</span><span class="na">minimumSpanningTree</span><span class="p">(</span><span class="n">graph</span><span class="p">);</span>
+<span class="kd">final</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">WeightedEdge</span><span class="o">&gt;</span> <span class="n">mst</span> <span class="o">=</span> <span class="n">Kruskal</span><span class="p">.</span><span class="na">minimumSpanningTree</span><span class="p">(</span><span class="n">graph</span><span class="p">);</span>
 
 <span class="n">mst</span><span class="p">.</span><span class="na">forEach</span><span class="p">(</span><span class="n">edge</span> <span class="o">-&gt;</span> <span class="p">{</span>
     <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">String</span><span class="p">.</span><span class="na">format</span><span class="p">(</span><span class="s">&quot;%d -&gt; %d&quot;</span><span class="p">,</span> <span class="n">edge</span><span class="p">.</span><span class="na">getV</span><span class="p">(),</span> <span class="n">edge</span><span class="p">.</span><span class="na">getW</span><span class="p">()));</span>
@@ -14345,7 +14524,7 @@ div#notebook {
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[16]:</div>
+    <div class="prompt output_prompt">Out[18]:</div>
 
 
 
@@ -14370,7 +14549,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[17]:</div>
+<div class="prompt input_prompt">In&nbsp;[19]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-Java"><pre><span></span><span class="kn">package</span> <span class="nn">graphs.topological_sort</span><span class="p">;</span>
@@ -14387,10 +14566,10 @@ div#notebook {
 <span class="cm">     * a vertex later in the order.</span>
 <span class="cm">     */</span>
     <span class="kd">public</span> <span class="kd">static</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="nf">topologicalSort</span><span class="p">(</span><span class="n">ListGraph</span> <span class="n">graph</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">LinkedList</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">topologicalOrder</span> <span class="o">=</span> <span class="k">new</span> <span class="n">LinkedList</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+        <span class="kd">final</span> <span class="n">LinkedList</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">topologicalOrder</span> <span class="o">=</span> <span class="k">new</span> <span class="n">LinkedList</span><span class="o">&lt;&gt;</span><span class="p">();</span>
 
-        <span class="n">Set</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">temporarySet</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashSet</span><span class="o">&lt;&gt;</span><span class="p">();</span>
-        <span class="n">Set</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">visitedSet</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashSet</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+        <span class="kd">final</span> <span class="n">Set</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">temporarySet</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashSet</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+        <span class="kd">final</span> <span class="n">Set</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">visitedSet</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashSet</span><span class="o">&lt;&gt;</span><span class="p">();</span>
         <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">vertex</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">vertex</span> <span class="o">&lt;</span> <span class="n">graph</span><span class="p">.</span><span class="na">getVertices</span><span class="p">();</span> <span class="n">vertex</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
             <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">visitedSet</span><span class="p">.</span><span class="na">contains</span><span class="p">(</span><span class="n">vertex</span><span class="p">))</span> <span class="p">{</span>
                 <span class="n">depthFirstSearch</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">vertex</span><span class="p">,</span> <span class="n">topologicalOrder</span><span class="p">,</span> <span class="n">temporarySet</span><span class="p">,</span> <span class="n">visitedSet</span><span class="p">);</span>
@@ -14411,7 +14590,7 @@ div#notebook {
 
         <span class="n">temporarySet</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
 
-        <span class="n">Iterable</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">adjacents</span> <span class="o">=</span> <span class="n">graph</span><span class="p">.</span><span class="na">getAdjacents</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
+        <span class="kd">final</span> <span class="n">Iterable</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">adjacents</span> <span class="o">=</span> <span class="n">graph</span><span class="p">.</span><span class="na">getAdjacents</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
         <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">adjacentVertex</span> <span class="p">:</span> <span class="n">adjacents</span><span class="p">)</span> <span class="p">{</span>
             <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">visitedSet</span><span class="p">.</span><span class="na">contains</span><span class="p">(</span><span class="n">adjacentVertex</span><span class="p">))</span> <span class="p">{</span>
                 <span class="n">depthFirstSearch</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">adjacentVertex</span><span class="p">,</span> <span class="n">topologicalOrder</span><span class="p">,</span> <span class="n">temporarySet</span><span class="p">,</span> <span class="n">visitedSet</span><span class="p">);</span>
@@ -14440,7 +14619,7 @@ div#notebook {
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[17]:</div>
+    <div class="prompt output_prompt">Out[19]:</div>
 
 
 
@@ -14457,7 +14636,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[18]:</div>
+<div class="prompt input_prompt">In&nbsp;[20]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-Java"><pre><span></span><span class="kn">package</span> <span class="nn">graphs.topological_sort</span><span class="p">;</span>
@@ -14466,7 +14645,7 @@ div#notebook {
 
 <span class="kn">import</span> <span class="nn">java.util.*</span><span class="p">;</span>
 
-<span class="n">ListGraph</span> <span class="n">graph</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ListGraph</span><span class="p">(</span><span class="mi">6</span><span class="p">);</span>
+<span class="kd">final</span> <span class="n">ListGraph</span> <span class="n">graph</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ListGraph</span><span class="p">(</span><span class="mi">6</span><span class="p">);</span>
 <span class="n">graph</span><span class="p">.</span><span class="na">addEdge</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
 <span class="n">graph</span><span class="p">.</span><span class="na">addEdge</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
 <span class="n">graph</span><span class="p">.</span><span class="na">addEdge</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
@@ -14474,7 +14653,7 @@ div#notebook {
 <span class="n">graph</span><span class="p">.</span><span class="na">addEdge</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span>
 <span class="n">graph</span><span class="p">.</span><span class="na">addEdge</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
 
-<span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">topologicalOrder</span> <span class="o">=</span> <span class="n">TopologicalSort</span><span class="p">.</span><span class="na">topologicalSort</span><span class="p">(</span><span class="n">graph</span><span class="p">);</span>
+<span class="kd">final</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">topologicalOrder</span> <span class="o">=</span> <span class="n">TopologicalSort</span><span class="p">.</span><span class="na">topologicalSort</span><span class="p">(</span><span class="n">graph</span><span class="p">);</span>
 
 <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">topologicalOrder</span><span class="p">.</span><span class="na">toString</span><span class="p">());</span>
 </pre></div>
@@ -14500,7 +14679,7 @@ div#notebook {
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[18]:</div>
+    <div class="prompt output_prompt">Out[20]:</div>
 
 
 
@@ -14525,7 +14704,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[19]:</div>
+<div class="prompt input_prompt">In&nbsp;[21]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-Java"><pre><span></span><span class="kn">package</span> <span class="nn">graphs.kosaraju</span><span class="p">;</span>
@@ -14547,14 +14726,14 @@ div#notebook {
 <span class="cm">     *    from the current vertex.</span>
 <span class="cm">     */</span>
     <span class="kd">public</span> <span class="kd">static</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;&gt;</span> <span class="nf">stronglyConnectedComponents</span><span class="p">(</span><span class="n">ListGraph</span> <span class="n">graph</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">List</span><span class="o">&lt;</span><span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;&gt;</span> <span class="n">components</span> <span class="o">=</span> <span class="k">new</span> <span class="n">LinkedList</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+        <span class="kd">final</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;&gt;</span> <span class="n">components</span> <span class="o">=</span> <span class="k">new</span> <span class="n">LinkedList</span><span class="o">&lt;&gt;</span><span class="p">();</span>
 
-        <span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">reversePostOrderVertices</span> <span class="o">=</span> <span class="n">reversePostOrder</span><span class="p">(</span><span class="n">graph</span><span class="p">);</span>
-        <span class="n">ListGraph</span> <span class="n">reverseGraph</span> <span class="o">=</span> <span class="n">reverse</span><span class="p">(</span><span class="n">graph</span><span class="p">);</span>
-        <span class="n">Set</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">visitedSet</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashSet</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+        <span class="kd">final</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">reversePostOrderVertices</span> <span class="o">=</span> <span class="n">reversePostOrder</span><span class="p">(</span><span class="n">graph</span><span class="p">);</span>
+        <span class="kd">final</span> <span class="n">ListGraph</span> <span class="n">reverseGraph</span> <span class="o">=</span> <span class="n">reverse</span><span class="p">(</span><span class="n">graph</span><span class="p">);</span>
+        <span class="kd">final</span> <span class="n">Set</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">visitedSet</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashSet</span><span class="o">&lt;&gt;</span><span class="p">();</span>
         <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">currentVertex</span> <span class="p">:</span> <span class="n">reversePostOrderVertices</span><span class="p">)</span> <span class="p">{</span>
             <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">visitedSet</span><span class="p">.</span><span class="na">contains</span><span class="p">(</span><span class="n">currentVertex</span><span class="p">))</span> <span class="p">{</span>
-                <span class="n">LinkedList</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">component</span> <span class="o">=</span> <span class="k">new</span> <span class="n">LinkedList</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+                <span class="kd">final</span> <span class="n">LinkedList</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">component</span> <span class="o">=</span> <span class="k">new</span> <span class="n">LinkedList</span><span class="o">&lt;&gt;</span><span class="p">();</span>
                 <span class="n">reversePostOrderDepthFirstSearch</span><span class="p">(</span><span class="n">reverseGraph</span><span class="p">,</span> <span class="n">currentVertex</span><span class="p">,</span> <span class="n">visitedSet</span><span class="p">,</span> <span class="n">component</span><span class="p">);</span>
                 <span class="n">components</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">component</span><span class="p">);</span>
                 <span class="n">visitedSet</span><span class="p">.</span><span class="na">addAll</span><span class="p">(</span><span class="n">component</span><span class="p">);</span>
@@ -14565,9 +14744,9 @@ div#notebook {
     <span class="p">}</span>
 
     <span class="kd">private</span> <span class="kd">static</span> <span class="n">LinkedList</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="nf">reversePostOrder</span><span class="p">(</span><span class="n">ListGraph</span> <span class="n">graph</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">LinkedList</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">results</span> <span class="o">=</span> <span class="k">new</span> <span class="n">LinkedList</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+        <span class="kd">final</span> <span class="n">LinkedList</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">results</span> <span class="o">=</span> <span class="k">new</span> <span class="n">LinkedList</span><span class="o">&lt;&gt;</span><span class="p">();</span>
 
-        <span class="n">Set</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">visitedSet</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashSet</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+        <span class="kd">final</span> <span class="n">Set</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">visitedSet</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashSet</span><span class="o">&lt;&gt;</span><span class="p">();</span>
         <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">vertex</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">vertex</span> <span class="o">&lt;</span> <span class="n">graph</span><span class="p">.</span><span class="na">getVertices</span><span class="p">();</span> <span class="n">vertex</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
             <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">visitedSet</span><span class="p">.</span><span class="na">contains</span><span class="p">(</span><span class="n">vertex</span><span class="p">))</span> <span class="p">{</span>
                 <span class="n">reversePostOrderDepthFirstSearch</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">vertex</span><span class="p">,</span> <span class="n">visitedSet</span><span class="p">,</span> <span class="n">results</span><span class="p">);</span>
@@ -14585,7 +14764,7 @@ div#notebook {
     <span class="p">)</span> <span class="p">{</span>
         <span class="n">visitedSet</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
 
-        <span class="n">Iterable</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">adjacents</span> <span class="o">=</span> <span class="n">graph</span><span class="p">.</span><span class="na">getAdjacents</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
+        <span class="kd">final</span> <span class="n">Iterable</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">adjacents</span> <span class="o">=</span> <span class="n">graph</span><span class="p">.</span><span class="na">getAdjacents</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
         <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">adjacentVertex</span> <span class="p">:</span> <span class="n">adjacents</span><span class="p">)</span> <span class="p">{</span>
             <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">visitedSet</span><span class="p">.</span><span class="na">contains</span><span class="p">(</span><span class="n">adjacentVertex</span><span class="p">))</span> <span class="p">{</span>
                 <span class="n">reversePostOrderDepthFirstSearch</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">adjacentVertex</span><span class="p">,</span> <span class="n">visitedSet</span><span class="p">,</span> <span class="n">results</span><span class="p">);</span>
@@ -14596,7 +14775,7 @@ div#notebook {
     <span class="p">}</span>
     
     <span class="kd">private</span> <span class="kd">static</span> <span class="n">ListGraph</span> <span class="nf">reverse</span><span class="p">(</span><span class="n">ListGraph</span> <span class="n">graph</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">ListGraph</span> <span class="n">reversedGraph</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ListGraph</span><span class="p">(</span><span class="n">graph</span><span class="p">.</span><span class="na">getVertices</span><span class="p">());</span>
+        <span class="kd">final</span> <span class="n">ListGraph</span> <span class="n">reversedGraph</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ListGraph</span><span class="p">(</span><span class="n">graph</span><span class="p">.</span><span class="na">getVertices</span><span class="p">());</span>
 
         <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">v</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">v</span> <span class="o">&lt;</span> <span class="n">graph</span><span class="p">.</span><span class="na">getVertices</span><span class="p">();</span> <span class="n">v</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
             <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">w</span> <span class="p">:</span> <span class="n">graph</span><span class="p">.</span><span class="na">getAdjacents</span><span class="p">(</span><span class="n">v</span><span class="p">))</span> <span class="p">{</span>
@@ -14620,7 +14799,7 @@ div#notebook {
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[19]:</div>
+    <div class="prompt output_prompt">Out[21]:</div>
 
 
 
@@ -14637,7 +14816,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[20]:</div>
+<div class="prompt input_prompt">In&nbsp;[22]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-Java"><pre><span></span><span class="kn">package</span> <span class="nn">graphs.kosaraju</span><span class="p">;</span>
@@ -14646,7 +14825,7 @@ div#notebook {
 
 <span class="kn">import</span> <span class="nn">java.util.*</span><span class="p">;</span>
 
-<span class="n">ListGraph</span> <span class="n">graph</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ListGraph</span><span class="p">(</span><span class="mi">7</span><span class="p">);</span>
+<span class="kd">final</span> <span class="n">ListGraph</span> <span class="n">graph</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ListGraph</span><span class="p">(</span><span class="mi">7</span><span class="p">);</span>
 <span class="n">graph</span><span class="p">.</span><span class="na">addEdge</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
 <span class="n">graph</span><span class="p">.</span><span class="na">addEdge</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span>
 <span class="n">graph</span><span class="p">.</span><span class="na">addEdge</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
@@ -14658,7 +14837,7 @@ div#notebook {
 <span class="n">graph</span><span class="p">.</span><span class="na">addEdge</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">);</span>
 <span class="n">graph</span><span class="p">.</span><span class="na">addEdge</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">5</span><span class="p">);</span>
 
-<span class="n">List</span><span class="o">&lt;</span><span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;&gt;</span> <span class="n">stronglyConnectedComponents</span> <span class="o">=</span> <span class="n">Kosaraju</span><span class="p">.</span><span class="na">stronglyConnectedComponents</span><span class="p">(</span><span class="n">graph</span><span class="p">);</span>
+<span class="kd">final</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;&gt;</span> <span class="n">stronglyConnectedComponents</span> <span class="o">=</span> <span class="n">Kosaraju</span><span class="p">.</span><span class="na">stronglyConnectedComponents</span><span class="p">(</span><span class="n">graph</span><span class="p">);</span>
 
 <span class="n">stronglyConnectedComponents</span><span class="p">.</span><span class="na">forEach</span><span class="p">(</span><span class="n">component</span> <span class="o">-&gt;</span> <span class="p">{</span>
     <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">component</span><span class="p">.</span><span class="na">toString</span><span class="p">());</span>
@@ -14689,7 +14868,7 @@ div#notebook {
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[20]:</div>
+    <div class="prompt output_prompt">Out[22]:</div>
 
 
 
@@ -14714,7 +14893,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[21]:</div>
+<div class="prompt input_prompt">In&nbsp;[23]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-Java"><pre><span></span><span class="kn">package</span> <span class="nn">graphs.maximum_flow</span><span class="p">;</span>
@@ -14812,7 +14991,7 @@ div#notebook {
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[21]:</div>
+    <div class="prompt output_prompt">Out[23]:</div>
 
 
 
@@ -14829,7 +15008,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[22]:</div>
+<div class="prompt input_prompt">In&nbsp;[24]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-Java"><pre><span></span><span class="kn">package</span> <span class="nn">graphs.maximum_flow</span><span class="p">;</span>
@@ -14850,7 +15029,7 @@ div#notebook {
     <span class="p">}</span>
 
     <span class="kd">public</span> <span class="kt">void</span> <span class="nf">addEdge</span><span class="p">(</span><span class="kt">int</span> <span class="n">v</span><span class="p">,</span> <span class="kt">int</span> <span class="n">w</span><span class="p">,</span> <span class="kt">double</span> <span class="n">capacity</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">FlowEdge</span> <span class="n">flowEdge</span> <span class="o">=</span> <span class="k">new</span> <span class="n">FlowEdge</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">capacity</span><span class="p">);</span>
+        <span class="kd">final</span> <span class="n">FlowEdge</span> <span class="n">flowEdge</span> <span class="o">=</span> <span class="k">new</span> <span class="n">FlowEdge</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">capacity</span><span class="p">);</span>
         <span class="n">adjacencyList</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">v</span><span class="p">).</span><span class="na">add</span><span class="p">(</span><span class="n">flowEdge</span><span class="p">);</span>
         <span class="n">adjacencyList</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">w</span><span class="p">).</span><span class="na">add</span><span class="p">(</span><span class="n">flowEdge</span><span class="p">);</span>
     <span class="p">}</span>
@@ -14864,7 +15043,7 @@ div#notebook {
     <span class="p">}</span>
 
     <span class="kd">public</span> <span class="n">Iterable</span><span class="o">&lt;</span><span class="n">FlowEdge</span><span class="o">&gt;</span> <span class="nf">getEdges</span><span class="p">()</span> <span class="p">{</span>
-        <span class="n">LinkedList</span><span class="o">&lt;</span><span class="n">FlowEdge</span><span class="o">&gt;</span> <span class="n">edges</span> <span class="o">=</span> <span class="k">new</span> <span class="n">LinkedList</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+        <span class="kd">final</span> <span class="n">LinkedList</span><span class="o">&lt;</span><span class="n">FlowEdge</span><span class="o">&gt;</span> <span class="n">edges</span> <span class="o">=</span> <span class="k">new</span> <span class="n">LinkedList</span><span class="o">&lt;&gt;</span><span class="p">();</span>
         <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">vertex</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">vertex</span> <span class="o">&lt;</span> <span class="n">vertices</span><span class="p">;</span> <span class="n">vertex</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
             <span class="n">edges</span><span class="p">.</span><span class="na">addAll</span><span class="p">(</span><span class="n">adjacencyList</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">vertex</span><span class="p">));</span>
         <span class="p">}</span>
@@ -14884,7 +15063,7 @@ div#notebook {
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[22]:</div>
+    <div class="prompt output_prompt">Out[24]:</div>
 
 
 
@@ -14901,7 +15080,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[23]:</div>
+<div class="prompt input_prompt">In&nbsp;[25]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-Java"><pre><span></span><span class="kn">package</span> <span class="nn">graphs.maximum_flow</span><span class="p">;</span>
@@ -14944,7 +15123,7 @@ div#notebook {
     <span class="p">)</span> <span class="p">{</span>
         <span class="kt">double</span> <span class="n">maximumFlow</span> <span class="o">=</span> <span class="n">initialFlow</span><span class="p">(</span><span class="n">network</span><span class="p">,</span> <span class="n">destination</span><span class="p">);</span>
 
-        <span class="n">Map</span><span class="o">&lt;</span><span class="n">Integer</span><span class="p">,</span> <span class="n">FlowEdge</span><span class="o">&gt;</span> <span class="n">edgeTo</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+        <span class="kd">final</span> <span class="n">Map</span><span class="o">&lt;</span><span class="n">Integer</span><span class="p">,</span> <span class="n">FlowEdge</span><span class="o">&gt;</span> <span class="n">edgeTo</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;&gt;</span><span class="p">();</span>
         <span class="k">while</span> <span class="p">(</span><span class="n">hasBreadthFirstSearchPath</span><span class="p">(</span><span class="n">network</span><span class="p">,</span> <span class="n">source</span><span class="p">,</span> <span class="n">destination</span><span class="p">,</span> <span class="n">edgeTo</span><span class="p">))</span> <span class="p">{</span>
             <span class="c1">// 1. Find Bottleneck Capacity by Traversing Path</span>
             <span class="kt">double</span> <span class="n">bottleneckCapacity</span> <span class="o">=</span> <span class="n">Double</span><span class="p">.</span><span class="na">POSITIVE_INFINITY</span><span class="p">;</span>
@@ -14967,7 +15146,7 @@ div#notebook {
 
     <span class="kd">private</span> <span class="kd">static</span> <span class="kt">double</span> <span class="nf">initialFlow</span><span class="p">(</span><span class="n">FlowNetwork</span> <span class="n">network</span><span class="p">,</span> <span class="kt">int</span> <span class="n">vertex</span><span class="p">)</span> <span class="p">{</span>
         <span class="kt">double</span> <span class="n">flow</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">;</span>
-        <span class="n">Iterable</span><span class="o">&lt;</span><span class="n">FlowEdge</span><span class="o">&gt;</span> <span class="n">adjacents</span> <span class="o">=</span> <span class="n">network</span><span class="p">.</span><span class="na">getAdjacents</span><span class="p">(</span><span class="n">vertex</span><span class="p">);</span>
+        <span class="kd">final</span> <span class="n">Iterable</span><span class="o">&lt;</span><span class="n">FlowEdge</span><span class="o">&gt;</span> <span class="n">adjacents</span> <span class="o">=</span> <span class="n">network</span><span class="p">.</span><span class="na">getAdjacents</span><span class="p">(</span><span class="n">vertex</span><span class="p">);</span>
         <span class="k">for</span> <span class="p">(</span><span class="n">FlowEdge</span> <span class="n">adjacentEdge</span> <span class="p">:</span> <span class="n">adjacents</span><span class="p">)</span> <span class="p">{</span>
             <span class="k">if</span> <span class="p">(</span><span class="n">vertex</span> <span class="o">==</span> <span class="n">adjacentEdge</span><span class="p">.</span><span class="na">getV</span><span class="p">())</span>  <span class="p">{</span>
                 <span class="n">flow</span> <span class="o">-=</span> <span class="n">adjacentEdge</span><span class="p">.</span><span class="na">getFlow</span><span class="p">();</span>
@@ -14989,13 +15168,13 @@ div#notebook {
         <span class="c1">// Clear When Finding New Path</span>
         <span class="n">edgeTo</span><span class="p">.</span><span class="na">clear</span><span class="p">();</span>
 
-        <span class="n">Set</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">visitedSet</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashSet</span><span class="o">&lt;&gt;</span><span class="p">();</span>
-        <span class="n">Deque</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">queue</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayDeque</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+        <span class="kd">final</span> <span class="n">Set</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">visitedSet</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashSet</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+        <span class="kd">final</span> <span class="n">Deque</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">queue</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayDeque</span><span class="o">&lt;&gt;</span><span class="p">();</span>
 
         <span class="n">queue</span><span class="p">.</span><span class="na">offer</span><span class="p">(</span><span class="n">source</span><span class="p">);</span>
 
         <span class="k">while</span> <span class="p">(</span><span class="o">!</span><span class="n">queue</span><span class="p">.</span><span class="na">isEmpty</span><span class="p">())</span> <span class="p">{</span>
-            <span class="kt">int</span> <span class="n">currentVertex</span> <span class="o">=</span> <span class="n">queue</span><span class="p">.</span><span class="na">poll</span><span class="p">();</span>
+            <span class="kd">final</span> <span class="kt">int</span> <span class="n">currentVertex</span> <span class="o">=</span> <span class="n">queue</span><span class="p">.</span><span class="na">poll</span><span class="p">();</span>
 
             <span class="n">visitedSet</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">currentVertex</span><span class="p">);</span>
 
@@ -15004,9 +15183,9 @@ div#notebook {
                 <span class="k">break</span><span class="p">;</span>
             <span class="p">}</span>
 
-            <span class="n">Iterable</span><span class="o">&lt;</span><span class="n">FlowEdge</span><span class="o">&gt;</span> <span class="n">adjacents</span> <span class="o">=</span> <span class="n">network</span><span class="p">.</span><span class="na">getAdjacents</span><span class="p">(</span><span class="n">currentVertex</span><span class="p">);</span>
+            <span class="kd">final</span> <span class="n">Iterable</span><span class="o">&lt;</span><span class="n">FlowEdge</span><span class="o">&gt;</span> <span class="n">adjacents</span> <span class="o">=</span> <span class="n">network</span><span class="p">.</span><span class="na">getAdjacents</span><span class="p">(</span><span class="n">currentVertex</span><span class="p">);</span>
             <span class="k">for</span> <span class="p">(</span><span class="n">FlowEdge</span> <span class="n">adjacentEdge</span> <span class="p">:</span> <span class="n">adjacents</span><span class="p">)</span> <span class="p">{</span>
-                <span class="kt">int</span> <span class="n">otherVertex</span> <span class="o">=</span> <span class="n">adjacentEdge</span><span class="p">.</span><span class="na">getOther</span><span class="p">(</span><span class="n">currentVertex</span><span class="p">);</span>
+                <span class="kd">final</span> <span class="kt">int</span> <span class="n">otherVertex</span> <span class="o">=</span> <span class="n">adjacentEdge</span><span class="p">.</span><span class="na">getOther</span><span class="p">(</span><span class="n">currentVertex</span><span class="p">);</span>
                 <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">visitedSet</span><span class="p">.</span><span class="na">contains</span><span class="p">(</span><span class="n">otherVertex</span><span class="p">))</span> <span class="p">{</span>
                     <span class="c1">// Path Exists Only If Capacity Is Available</span>
                     <span class="k">if</span> <span class="p">(</span><span class="n">adjacentEdge</span><span class="p">.</span><span class="na">getResidualCapacityTo</span><span class="p">(</span><span class="n">otherVertex</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
@@ -15021,16 +15200,16 @@ div#notebook {
     <span class="p">}</span>
     
     <span class="kd">private</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">minimumCut</span><span class="p">(</span><span class="n">FlowNetwork</span> <span class="n">network</span><span class="p">,</span> <span class="kt">int</span> <span class="n">source</span><span class="p">,</span> <span class="n">Set</span><span class="o">&lt;</span><span class="n">FlowEdge</span><span class="o">&gt;</span> <span class="n">minimumCut</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">Set</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">visitedSet</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashSet</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+        <span class="kd">final</span> <span class="n">Set</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">visitedSet</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashSet</span><span class="o">&lt;&gt;</span><span class="p">();</span>
 
         <span class="n">depthFirstSearch</span><span class="p">(</span><span class="n">network</span><span class="p">,</span> <span class="n">source</span><span class="p">,</span> <span class="n">visitedSet</span><span class="p">);</span>
 
         <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">vertex</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">vertex</span> <span class="o">&lt;</span> <span class="n">network</span><span class="p">.</span><span class="na">getVertices</span><span class="p">();</span> <span class="n">vertex</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-            <span class="n">Iterable</span><span class="o">&lt;</span><span class="n">FlowEdge</span><span class="o">&gt;</span> <span class="n">adjacents</span> <span class="o">=</span> <span class="n">network</span><span class="p">.</span><span class="na">getAdjacents</span><span class="p">(</span><span class="n">vertex</span><span class="p">);</span>
+            <span class="kd">final</span> <span class="n">Iterable</span><span class="o">&lt;</span><span class="n">FlowEdge</span><span class="o">&gt;</span> <span class="n">adjacents</span> <span class="o">=</span> <span class="n">network</span><span class="p">.</span><span class="na">getAdjacents</span><span class="p">(</span><span class="n">vertex</span><span class="p">);</span>
             <span class="k">for</span> <span class="p">(</span><span class="n">FlowEdge</span> <span class="n">adjacentEdge</span> <span class="p">:</span> <span class="n">adjacents</span><span class="p">)</span> <span class="p">{</span>
-                <span class="kt">boolean</span> <span class="n">isOriginalEdge</span> <span class="o">=</span> <span class="n">vertex</span> <span class="o">==</span> <span class="n">adjacentEdge</span><span class="p">.</span><span class="na">getV</span><span class="p">();</span>
-                <span class="kt">boolean</span> <span class="n">inA</span> <span class="o">=</span> <span class="n">visitedSet</span><span class="p">.</span><span class="na">contains</span><span class="p">(</span><span class="n">adjacentEdge</span><span class="p">.</span><span class="na">getV</span><span class="p">());</span>
-                <span class="kt">boolean</span> <span class="n">inB</span> <span class="o">=</span> <span class="o">!</span><span class="n">visitedSet</span><span class="p">.</span><span class="na">contains</span><span class="p">(</span><span class="n">adjacentEdge</span><span class="p">.</span><span class="na">getW</span><span class="p">());</span>
+                <span class="kd">final</span> <span class="kt">boolean</span> <span class="n">isOriginalEdge</span> <span class="o">=</span> <span class="n">vertex</span> <span class="o">==</span> <span class="n">adjacentEdge</span><span class="p">.</span><span class="na">getV</span><span class="p">();</span>
+                <span class="kd">final</span> <span class="kt">boolean</span> <span class="n">inA</span> <span class="o">=</span> <span class="n">visitedSet</span><span class="p">.</span><span class="na">contains</span><span class="p">(</span><span class="n">adjacentEdge</span><span class="p">.</span><span class="na">getV</span><span class="p">());</span>
+                <span class="kd">final</span> <span class="kt">boolean</span> <span class="n">inB</span> <span class="o">=</span> <span class="o">!</span><span class="n">visitedSet</span><span class="p">.</span><span class="na">contains</span><span class="p">(</span><span class="n">adjacentEdge</span><span class="p">.</span><span class="na">getW</span><span class="p">());</span>
                 <span class="k">if</span> <span class="p">(</span><span class="n">isOriginalEdge</span> <span class="o">&amp;&amp;</span> <span class="n">inA</span> <span class="o">&amp;&amp;</span> <span class="n">inB</span><span class="p">)</span> <span class="p">{</span>
                     <span class="n">minimumCut</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">adjacentEdge</span><span class="p">);</span>
                 <span class="p">}</span>
@@ -15041,9 +15220,9 @@ div#notebook {
     <span class="kd">private</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">depthFirstSearch</span><span class="p">(</span><span class="n">FlowNetwork</span> <span class="n">network</span><span class="p">,</span> <span class="kt">int</span> <span class="n">v</span><span class="p">,</span> <span class="n">Set</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">visitedSet</span><span class="p">)</span> <span class="p">{</span>
         <span class="n">visitedSet</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
 
-        <span class="n">Iterable</span><span class="o">&lt;</span><span class="n">FlowEdge</span><span class="o">&gt;</span> <span class="n">adjacents</span> <span class="o">=</span> <span class="n">network</span><span class="p">.</span><span class="na">getAdjacents</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
+        <span class="kd">final</span> <span class="n">Iterable</span><span class="o">&lt;</span><span class="n">FlowEdge</span><span class="o">&gt;</span> <span class="n">adjacents</span> <span class="o">=</span> <span class="n">network</span><span class="p">.</span><span class="na">getAdjacents</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
         <span class="k">for</span> <span class="p">(</span><span class="n">FlowEdge</span> <span class="n">adjacentEdge</span> <span class="p">:</span> <span class="n">adjacents</span><span class="p">)</span> <span class="p">{</span>
-            <span class="kt">int</span> <span class="n">otherVertex</span> <span class="o">=</span> <span class="n">adjacentEdge</span><span class="p">.</span><span class="na">getOther</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
+            <span class="kd">final</span> <span class="kt">int</span> <span class="n">otherVertex</span> <span class="o">=</span> <span class="n">adjacentEdge</span><span class="p">.</span><span class="na">getOther</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
             <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">visitedSet</span><span class="p">.</span><span class="na">contains</span><span class="p">(</span><span class="n">otherVertex</span><span class="p">))</span> <span class="p">{</span>
                 <span class="k">if</span> <span class="p">(</span><span class="n">adjacentEdge</span><span class="p">.</span><span class="na">getResidualCapacityTo</span><span class="p">(</span><span class="n">otherVertex</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
                     <span class="n">depthFirstSearch</span><span class="p">(</span><span class="n">network</span><span class="p">,</span> <span class="n">otherVertex</span><span class="p">,</span> <span class="n">visitedSet</span><span class="p">);</span>
@@ -15065,7 +15244,7 @@ div#notebook {
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[23]:</div>
+    <div class="prompt output_prompt">Out[25]:</div>
 
 
 
@@ -15082,14 +15261,14 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[24]:</div>
+<div class="prompt input_prompt">In&nbsp;[26]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-Java"><pre><span></span><span class="kn">package</span> <span class="nn">graphs.maximum_flow</span><span class="p">;</span>
 
 <span class="kn">import</span> <span class="nn">java.util.*</span><span class="p">;</span>
 
-<span class="n">FlowNetwork</span> <span class="n">network</span> <span class="o">=</span> <span class="k">new</span> <span class="n">FlowNetwork</span><span class="p">(</span><span class="mi">6</span><span class="p">);</span>
+<span class="kd">final</span> <span class="n">FlowNetwork</span> <span class="n">network</span> <span class="o">=</span> <span class="k">new</span> <span class="n">FlowNetwork</span><span class="p">(</span><span class="mi">6</span><span class="p">);</span>
 <span class="n">network</span><span class="p">.</span><span class="na">addEdge</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">);</span>
 <span class="n">network</span><span class="p">.</span><span class="na">addEdge</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">);</span>
 <span class="n">network</span><span class="p">.</span><span class="na">addEdge</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mf">6.0</span><span class="p">);</span>
@@ -15099,8 +15278,8 @@ div#notebook {
 <span class="n">network</span><span class="p">.</span><span class="na">addEdge</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">);</span>
 <span class="n">network</span><span class="p">.</span><span class="na">addEdge</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">);</span>
 
-<span class="n">Set</span><span class="o">&lt;</span><span class="n">FlowEdge</span><span class="o">&gt;</span> <span class="n">minimumCut</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashSet</span><span class="o">&lt;&gt;</span><span class="p">();</span>
-<span class="kt">double</span> <span class="n">maximumFlow</span> <span class="o">=</span> <span class="n">FordFulkerson</span><span class="p">.</span><span class="na">maximumFlow</span><span class="p">(</span><span class="n">network</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">minimumCut</span><span class="p">);</span>
+<span class="kd">final</span> <span class="n">Set</span><span class="o">&lt;</span><span class="n">FlowEdge</span><span class="o">&gt;</span> <span class="n">minimumCut</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashSet</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+<span class="kd">final</span> <span class="kt">double</span> <span class="n">maximumFlow</span> <span class="o">=</span> <span class="n">FordFulkerson</span><span class="p">.</span><span class="na">maximumFlow</span><span class="p">(</span><span class="n">network</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">minimumCut</span><span class="p">);</span>
 
 <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">String</span><span class="p">.</span><span class="na">format</span><span class="p">(</span><span class="s">&quot;Maximum Flow: %f&quot;</span><span class="p">,</span> <span class="n">maximumFlow</span><span class="p">));</span>
 <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Minimum Cut:&quot;</span><span class="p">);</span>
@@ -15125,15 +15304,15 @@ div#notebook {
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Maximum Flow: 7.000000
 Minimum Cut:
-1 -&gt; 2
 3 -&gt; 4
+1 -&gt; 2
 </pre>
 </div>
 </div>
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[24]:</div>
+    <div class="prompt output_prompt">Out[26]:</div>
 
 
 
