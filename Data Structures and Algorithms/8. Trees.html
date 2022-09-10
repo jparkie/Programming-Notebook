@@ -14176,7 +14176,7 @@ div#notebook {
     <div class="input_area">
 <div class=" highlight hl-Java"><pre><span></span><span class="kn">package</span> <span class="nn">trees.binary_search_tree</span><span class="p">;</span>
 
-<span class="n">BinarySearchTree</span> <span class="n">tree</span> <span class="o">=</span> <span class="k">new</span> <span class="n">BinarySearchTree</span><span class="p">();</span>
+<span class="kd">final</span> <span class="n">BinarySearchTree</span> <span class="n">tree</span> <span class="o">=</span> <span class="k">new</span> <span class="n">BinarySearchTree</span><span class="p">();</span>
 
 <span class="n">tree</span><span class="p">.</span><span class="na">insert</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">50</span><span class="p">);</span>
 <span class="n">tree</span><span class="p">.</span><span class="na">insert</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mi">30</span><span class="p">);</span>
@@ -14374,9 +14374,9 @@ Delete Key 50: 60,40,70,80,Nil
     <div class="input_area">
 <div class=" highlight hl-Java"><pre><span></span><span class="kn">package</span> <span class="nn">trees.fenwick_tree</span><span class="p">;</span>
 
-<span class="kt">int</span><span class="o">[]</span> <span class="n">array</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[]</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">};</span>
+<span class="kd">final</span> <span class="kt">int</span><span class="o">[]</span> <span class="n">array</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[]</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">};</span>
 
-<span class="n">FenwickTree</span> <span class="n">tree</span> <span class="o">=</span> <span class="k">new</span> <span class="n">FenwickTree</span><span class="p">(</span><span class="n">array</span><span class="p">.</span><span class="na">length</span><span class="p">);</span>
+<span class="kd">final</span> <span class="n">FenwickTree</span> <span class="n">tree</span> <span class="o">=</span> <span class="k">new</span> <span class="n">FenwickTree</span><span class="p">(</span><span class="n">array</span><span class="p">.</span><span class="na">length</span><span class="p">);</span>
 
 <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">position</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">position</span> <span class="o">&lt;=</span> <span class="n">array</span><span class="p">.</span><span class="na">length</span><span class="p">;</span> <span class="n">position</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
     <span class="n">tree</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">position</span><span class="p">,</span> <span class="n">array</span><span class="o">[</span><span class="n">position</span> <span class="o">-</span> <span class="mi">1</span><span class="o">]</span><span class="p">);</span>
@@ -14537,9 +14537,9 @@ Sum to Position 8: 36
     <div class="input_area">
 <div class=" highlight hl-Java"><pre><span></span><span class="kn">package</span> <span class="nn">trees.segment_tree</span><span class="p">;</span>
 
-<span class="kt">int</span><span class="o">[]</span> <span class="n">array</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[]</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">};</span>
+<span class="kd">final</span> <span class="kt">int</span><span class="o">[]</span> <span class="n">array</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[]</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">};</span>
 
-<span class="n">SegmentTree</span> <span class="n">tree</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SegmentTree</span><span class="p">(</span><span class="n">array</span><span class="p">.</span><span class="na">length</span><span class="p">);</span>
+<span class="kd">final</span> <span class="n">SegmentTree</span> <span class="n">tree</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SegmentTree</span><span class="p">(</span><span class="n">array</span><span class="p">.</span><span class="na">length</span><span class="p">);</span>
 
 <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">position</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">position</span> <span class="o">&lt;</span> <span class="n">array</span><span class="p">.</span><span class="na">length</span><span class="p">;</span> <span class="n">position</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
     <span class="n">tree</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">position</span><span class="p">,</span> <span class="n">array</span><span class="o">[</span><span class="n">position</span><span class="o">]</span><span class="p">);</span>
@@ -14723,7 +14723,7 @@ Sum from Position 0 to Position 7: 36
 
 <span class="kn">import</span> <span class="nn">java.util.*</span><span class="p">;</span>
 
-<span class="n">WinnerTree</span> <span class="n">winnerTree</span> <span class="o">=</span> <span class="k">new</span> <span class="n">WinnerTree</span><span class="p">(</span><span class="n">Arrays</span><span class="p">.</span><span class="na">asList</span><span class="p">(</span>
+<span class="kd">final</span> <span class="n">WinnerTree</span> <span class="n">winnerTree</span> <span class="o">=</span> <span class="k">new</span> <span class="n">WinnerTree</span><span class="p">(</span><span class="n">Arrays</span><span class="p">.</span><span class="na">asList</span><span class="p">(</span>
     <span class="n">Arrays</span><span class="p">.</span><span class="na">asList</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">).</span><span class="na">iterator</span><span class="p">(),</span>
     <span class="n">Arrays</span><span class="p">.</span><span class="na">asList</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">).</span><span class="na">iterator</span><span class="p">(),</span>
     <span class="n">Arrays</span><span class="p">.</span><span class="na">asList</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">8</span><span class="p">).</span><span class="na">iterator</span><span class="p">()</span>
@@ -14905,7 +14905,7 @@ Sum from Position 0 to Position 7: 36
     <div class="input_area">
 <div class=" highlight hl-Java"><pre><span></span><span class="kn">package</span> <span class="nn">trees.trie</span><span class="p">;</span>
 
-<span class="n">Trie</span> <span class="n">trie</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Trie</span><span class="p">();</span>
+<span class="kd">final</span> <span class="n">Trie</span> <span class="n">trie</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Trie</span><span class="p">();</span>
 
 <span class="n">trie</span><span class="p">.</span><span class="na">insert</span><span class="p">(</span><span class="s">&quot;CANAL&quot;</span><span class="p">);</span>
 <span class="n">trie</span><span class="p">.</span><span class="na">insert</span><span class="p">(</span><span class="s">&quot;CANDY&quot;</span><span class="p">);</span>
