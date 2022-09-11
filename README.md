@@ -39,6 +39,7 @@ A collection of [BeakerX](http://beakerx.com/) IPython notebooks and PDFs about 
 	- [7\. Graphs](http://jparkie.github.io/Programming-Notebook/Data%20Structures%20and%20Algorithms/7.%20Graphs.html)
 	- [8\. Trees](http://jparkie.github.io/Programming-Notebook/Data%20Structures%20and%20Algorithms/8.%20Trees.html)
 	- [9\. Bit Hacks](http://jparkie.github.io/Programming-Notebook/Data%20Structures%20and%20Algorithms/9.%20Bit%20Hacks.html)
+	- [10\. Strings](http://jparkie.github.io/Programming-Notebook/Data%20Structures%20and%20Algorithms/10.%20Strings.html)
 - **Databases**
 	- [Architecture of a Database System](http://jparkie.github.io/Programming-Notebook/Databases/Architecture%20of%20a%20Database%20System/Architecture%20of%20a%20Database%20System.html)
 	- [PostgreSQL](http://jparkie.github.io/Programming-Notebook/Databases/PostgreSQL/PostgreSQL%2012.html)
