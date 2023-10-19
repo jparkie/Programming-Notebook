@@ -13070,12 +13070,12 @@ div#notebook {
                 },
                 displayAlign: 'center',
                 CommonHTML: {
-                    linebreaks: { 
-                    automatic: true 
+                    linebreaks: {
+                    automatic: true
                     }
                 }
             });
-        
+
             MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
         }
     }
@@ -13543,21 +13543,21 @@ $$
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Programming-to-Modeling">Programming to Modeling<a class="anchor-link" href="#Programming-to-Modeling">&#182;</a></h3><ul>
-<li><strong>Assertions</strong>: <code>assert e</code> - Aborts an execution when $e$ is false, no-op otherwise.<div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">assert</span><span class="p">(</span><span class="kt">bool</span><span class="w"> </span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">b</span><span class="p">)</span><span class="w"></span>
-<span class="w">      </span><span class="n">error</span><span class="p">();</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<li><strong>Assertions</strong>: <code>assert e</code> - Aborts an execution when $e$ is false, no-op otherwise.<div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">assert</span><span class="p">(</span><span class="kt">bool</span><span class="w"> </span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">b</span><span class="p">)</span>
+<span class="w">      </span><span class="n">error</span><span class="p">();</span>
+<span class="p">}</span>
 </pre></div>
 </li>
-<li><strong>Non-Determinism</strong>: <code>havoc x</code> - Assign a variable $x$ a non-deterministic value.<div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">havoc</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="o">&amp;</span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">y</span><span class="p">;</span><span class="w"></span>
-<span class="w">  </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">y</span><span class="p">;</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<li><strong>Non-Determinism</strong>: <code>havoc x</code> - Assign a variable $x$ a non-deterministic value.<div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">havoc</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="o">&amp;</span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">y</span><span class="p">;</span>
+<span class="w">  </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">y</span><span class="p">;</span>
+<span class="p">}</span>
 </pre></div>
 </li>
-<li><strong>Assumptions</strong>: <code>assume e</code> - Block execution if $e$ is false, no-op otherwise.<div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">assume</span><span class="p">(</span><span class="kt">bool</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">  </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">e</span><span class="p">);</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<li><strong>Assumptions</strong>: <code>assume e</code> - Block execution if $e$ is false, no-op otherwise.<div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">assume</span><span class="p">(</span><span class="kt">bool</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">e</span><span class="p">);</span>
+<span class="p">}</span>
 </pre></div>
 </li>
 </ul>
@@ -15389,7 +15389,7 @@ $$<ul>
 
 
 
- 
+
 
 
 </html>

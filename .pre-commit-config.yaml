@@ -9,7 +9,7 @@ repos:
         types: [file]
     -   id: jupyter-html-fix
         name: HTML Render Fix
-        entry: sed -b -i 's/^None//'
+        entry: sed -i '' 's/^None//'
         language: system
         files: .html
         types: [file]

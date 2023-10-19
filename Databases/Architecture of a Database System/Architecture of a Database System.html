@@ -13070,12 +13070,12 @@ div#notebook {
                 },
                 displayAlign: 'center',
                 CommonHTML: {
-                    linebreaks: { 
-                    automatic: true 
+                    linebreaks: {
+                    automatic: true
                     }
                 }
             });
-        
+
             MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
         }
     }
@@ -13465,20 +13465,20 @@ div#notebook {
 <li>The <strong>Iterator</strong> is a model for executing a directed dataflow graph by implementing all operators as subclasses of the classic object-oriented <em>Iterator</em>.</li>
 </ul>
 <div class="highlight"><pre><span></span><span class="c1">// Abstract Iterator; Additional Optional Members in Descendants.</span>
-<span class="k">typedef</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">Iterator</span><span class="w"></span>
-<span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="kt">size_t</span><span class="w"> </span><span class="n">inputsLen</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="n">Iterator</span><span class="w"> </span><span class="o">*</span><span class="n">inputs</span><span class="p">[];</span><span class="w"></span>
-<span class="p">}</span><span class="w"> </span><span class="n">Iterator</span><span class="p">;</span><span class="w"></span>
+<span class="k">typedef</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">Iterator</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="kt">size_t</span><span class="w"> </span><span class="n">inputsLen</span><span class="p">;</span>
+<span class="w">    </span><span class="n">Iterator</span><span class="w"> </span><span class="o">*</span><span class="n">inputs</span><span class="p">[];</span>
+<span class="p">}</span><span class="w"> </span><span class="n">Iterator</span><span class="p">;</span>
 
 <span class="c1">// Allocate Resources.</span>
-<span class="kt">void</span><span class="w"> </span><span class="nf">Iterator_Initialize</span><span class="p">(</span><span class="n">Iterator</span><span class="w"> </span><span class="o">*</span><span class="n">iterator</span><span class="p">);</span><span class="w"></span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">Iterator_Initialize</span><span class="p">(</span><span class="n">Iterator</span><span class="w"> </span><span class="o">*</span><span class="n">iterator</span><span class="p">);</span>
 
 <span class="c1">// Deallocate Resources.</span>
-<span class="kt">void</span><span class="w"> </span><span class="nf">Iterator_Close</span><span class="p">(</span><span class="n">Iterator</span><span class="w"> </span><span class="o">*</span><span class="n">iterator</span><span class="p">);</span><span class="w"></span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">Iterator_Close</span><span class="p">(</span><span class="n">Iterator</span><span class="w"> </span><span class="o">*</span><span class="n">iterator</span><span class="p">);</span>
 
 <span class="c1">// Null-Terminated Yield.</span>
-<span class="n">TupleDescriptor</span><span class="w"> </span><span class="o">*</span><span class="nf">Iterator_Next</span><span class="p">(</span><span class="n">Iterator</span><span class="w"> </span><span class="o">*</span><span class="n">iterator</span><span class="p">);</span><span class="w"></span>
+<span class="n">TupleDescriptor</span><span class="w"> </span><span class="o">*</span><span class="nf">Iterator_Next</span><span class="p">(</span><span class="n">Iterator</span><span class="w"> </span><span class="o">*</span><span class="n">iterator</span><span class="p">);</span>
 </pre></div>
 <h4 id="Iterator-Discussion">Iterator Discussion<a class="anchor-link" href="#Iterator-Discussion">&#182;</a></h4><ul>
 <li><strong>Advantage #1</strong>: Every <em>Iterators</em>' logic is independent of its children and parents in the directed dataflow graph.</li>
@@ -14032,7 +14032,7 @@ $$<ul>
 
 
 
- 
+
 
 
 </html>
