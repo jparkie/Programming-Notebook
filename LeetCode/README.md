@@ -1,5 +1,7 @@
 # Learning LeetCode
 
+> **Reminder**: Breadth + Associations + Spaced Repetition ⇒ Reading 5 LeetCode Solutions in 1 Hour ≫ Writing 1 LeetCode Solution in 30 Minutes.
+
 1. Watch [**The Black Box Method**](https://youtu.be/RDzsrmMl48I?si=QxAUl7csv9086aWp).
 2. *Black Box* Data Structures and Algorithms.
     - *Goal*: Given a sufficient *Standard Library* like the *Java Standard Library*, memorize how to utilize its data structures and algorithms to implement other data structures and algorithms that you will need to solve problems.
